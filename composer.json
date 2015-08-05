@@ -1,0 +1,30 @@
+{
+    "name": "vistart/yii2-models",
+    "description": "The Models for Yii 2 Applications",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","vistart","model"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "vistart",
+            "email": "i@vistart.name"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.5",
+        "vistart/yii2-helpers": "^1.0",
+        "vistart/yii2-behaviors": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "vistart\\Models\\": ""
+        }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/vistart/yii2-models"
+        }
+    ]
+}
