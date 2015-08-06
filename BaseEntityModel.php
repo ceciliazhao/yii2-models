@@ -15,6 +15,7 @@ namespace vistart\Models;
 use Yii;
 use vistart\Behaviors\DatetimeBehavior;
 use vistart\Helpers\Number;
+use vistart\Helpers\Ip;
 use yii\db\ActiveRecord;
 /**
  * This Base Entity Model is used for being extended to the other Active Record, 
