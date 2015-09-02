@@ -13,7 +13,6 @@
 namespace vistart\Models;
 
 use Yii;
-use vistart\Behaviors\DatetimeBehavior;
 use vistart\Helpers\Number;
 use vistart\Helpers\Ip;
 use yii\db\ActiveRecord;
@@ -75,8 +74,8 @@ class BaseEntityModel extends ActiveRecord
     
     /**
      * @var string REQUIRED. Determine whether enable the IP attributes and features.
-     * If you set false, the ipAttribute* and ipTypeAttribute will be ignored, and
-     * getIpAddress & setIpAddress will be skipped.
+     * If you set this property to false, the ipAttribute* and ipTypeAttribute 
+     * will be ignored, and getIpAddress & setIpAddress will be skipped.
      */
     public $enableIP = true;
     public $ipAttribute1 = 'ip_1';
@@ -124,17 +123,23 @@ class BaseEntityModel extends ActiveRecord
     {
         return [
             [
-                'class' => DatetimeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => [
-                        $this->createdAtAttribute, $this->updatedAtAttribute
-                    ],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => [
-                        $this->updatedAtAttribute,
-                    ],
-                ],
-            ],
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => $this->createdAtAttribute,
+                'updatedAtAttribute' => $this->updatedAtAttribute,
+                'value' => [$this, 'getCurrentDatetime'],
+            ]
         ];
+    }
+    
+    /**
+     * Get the current date & time in format of "Y-m-d H:i:s".
+     * You can override this method to customize the return value.
+     * @param type $event
+     * @return string
+     */
+    public function getCurrentDatetime($event)
+    {
+        return date('Y-m-d H:i:s');
     }
     
     public function getIpAddress()
