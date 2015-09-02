@@ -20,7 +20,7 @@ use yii\db\ActiveRecord;
  * This Base Entity Model is used for being extended to the other Active Record, 
  * which include `createdAt`, `updatedAt`, `ipAddress`, `ipType`. `GUID` 
  * attributes, and so on. The `createdAt` and `updatedAt` attributes' meaning 
- * are same as those of DatetimeBehavior.
+ * are same as those of TimestampBehavior.
  * The `ipAddress` store the standard IP Address, which is of IPv4 or IPv6.
  * You should set the IP Address before using it. the setIpAddress() method
  * will judge the IP Address type automatically.
@@ -132,6 +132,43 @@ class BaseEntityModel extends ActiveRecord
     }
     
     /**
+     * Returns the validation rules for attributes which are in this model.
+     * We don't recommend you to override this method, You should merge the 
+     * validation rules in your own rules() method.
+     * @return array validation rules
+     * @see scenarios()
+     */
+    public function rules()
+    {
+        $requiredRule = [
+            [$this->guidAttribute], 'required',
+        ];
+        $uniqueRules = [
+            [$this->guidAttribute], 'unique',
+        ];
+        $guidRules = [
+            [$this->guidAttribute], 'string', 'max' => 36,
+        ];
+        $ipAttributeRules = [
+            [$this->ipAttribute1, $this->ipAttribute2, $this->ipAttribute3, $this->ipAttribute4], 'integer',
+        ];
+        $ipTypeAttributeRule = [
+            [$this->ipTypeAttribute], 'in', 'range' => [Ip::IPv4, Ip::IPv6]
+        ];
+        $createdAndUpdatedAtAttributeRule = [
+            [$this->createdAtAttribute, $this->updatedAtAttribute], 'safe',
+        ];
+        return [
+            $requiredRule,
+            $uniqueRules,
+            $guidRules,
+            $ipAttributeRules,
+            $ipTypeAttributeRule,
+            $createdAndUpdatedAtAttributeRule,
+        ];
+    }
+    
+    /**
      * Get the current date & time in format of "Y-m-d H:i:s".
      * You can override this method to customize the return value.
      * @param type $event
@@ -144,7 +181,7 @@ class BaseEntityModel extends ActiveRecord
     
     public function getIpAddress()
     {
-        if ($this->enableIP == false){
+        if (!$this->enableIP){
             return null;
         }
         $ipTypeAttribute = $this->ipTypeAttribute;
@@ -163,7 +200,7 @@ class BaseEntityModel extends ActiveRecord
     
     public function setIpAddress($ip)
     {
-        if ($this->enableIP == false){
+        if (!$this->enableIP){
             return null;
         }
         $ipTypeAttribute = $this->ipTypeAttribute;
