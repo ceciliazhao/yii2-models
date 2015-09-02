@@ -13,6 +13,7 @@
 namespace vistart\Models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use vistart\Helpers\Number;
 use vistart\Helpers\Ip;
 use yii\db\ActiveRecord;
