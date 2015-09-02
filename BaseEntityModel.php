@@ -158,14 +158,16 @@ class BaseEntityModel extends ActiveRecord
         $createdAndUpdatedAtAttributeRule = [
             [$this->createdAtAttribute, $this->updatedAtAttribute], 'safe',
         ];
-        return [
+        $rules = [
             $requiredRule,
             $uniqueRules,
             $guidRules,
-            $ipAttributeRules,
-            $ipTypeAttributeRule,
             $createdAndUpdatedAtAttributeRule,
         ];
+        if ($this->enableIP){
+            $rules = array_merge($rules, $ipAttributeRules, $ipTypeAttributeRule);
+        }
+        return $rules;
     }
     
     /**
