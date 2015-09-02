@@ -43,6 +43,7 @@ use yii\db\ActiveRecord;
  * @property string $guidAttribute the attribute name of GUID attribute (primary key).
  * @property string $createdAtAttribute
  * @property string $updatedAtAttribute
+ * @property boolean $enableIP
  * @property string $ipAttribute1
  * @property string $ipAttribute2
  * @property string $ipAttribute3
@@ -55,6 +56,9 @@ use yii\db\ActiveRecord;
  */
 class BaseEntityModel extends ActiveRecord
 {
+    /**
+     * @var string REQUIRED. the attribute that will receive the GUID value.
+     */
     public $guidAttribute = 'guid';
     
     /**
@@ -68,6 +72,13 @@ class BaseEntityModel extends ActiveRecord
      * Set this property to false if you do not want to record the update time.
      */
     public $updatedAtAttribute = 'update_time';
+    
+    /**
+     * @var string REQUIRED. Determine whether enable the IP attributes and features.
+     * If you set false, the ipAttribute* and ipTypeAttribute will be ignored, and
+     * getIpAddress & setIpAddress will be skipped.
+     */
+    public $enableIP = true;
     public $ipAttribute1 = 'ip_1';
     public $ipAttribute2 = 'ip_2';
     public $ipAttribute3 = 'ip_3';
@@ -91,7 +102,9 @@ class BaseEntityModel extends ActiveRecord
     {
         $guidAttribute = $this->guidAttribute;
         $this->$guidAttribute = self::GenerateUuid();
-        $this->ipAddress = Yii::$app->request->userIP;
+        if ($this->enableIP) {
+            $this->ipAddress = Yii::$app->request->userIP;
+        }
     }
     
     public static function GenerateUuid()
@@ -126,6 +139,9 @@ class BaseEntityModel extends ActiveRecord
     
     public function getIpAddress()
     {
+        if ($this->enableIP == false){
+            return null;
+        }
         $ipTypeAttribute = $this->ipTypeAttribute;
         $ipAttribute1 = $this->ipAttribute1;
         $ipAttribute2 = $this->ipAttribute2;
@@ -142,6 +158,9 @@ class BaseEntityModel extends ActiveRecord
     
     public function setIpAddress($ip)
     {
+        if ($this->enableIP == false){
+            return null;
+        }
         $ipTypeAttribute = $this->ipTypeAttribute;
         $ipAttribute1 = $this->ipAttribute1;
         $ipAttribute2 = $this->ipAttribute2;
