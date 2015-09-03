@@ -1,6 +1,6 @@
 Models for Yii 2
 ================
-The Models for Yii 2 Applications
+This extension provide a BaseEntityModel.
 
 Installation
 ------------
@@ -32,6 +32,30 @@ use vistart\Models\BaseEntityModel;
 
 class Example extends BaseEntityModel
 {
+    public $guidAttribute = 'Your GUID Attribute Name';
+    
+     * @inheritdoc
+     */
+    public $createdAtAttribute = 'Your createdAt Attribute Name';
+    
+    /**
+     * @inheritdoc
+     */
+    public $updatedAtAttribute = 'Your updatedAt Attribute Name';
+    
+    /**
+     * @inheritdoc
+     */
+    public $ipAttribute1 = 'Your IP_1 Attribute Name';
+    public $ipAttribute2 = 'Your IP_2 Attribute Name';
+    public $ipAttribute3 = 'Your IP_3 Attribute Name';
+    public $ipAttribute4 = 'Your IP_4 Attribute Name';
+    public $ipTypeAttribute = 'Your IP type Attribute Name';
+    public function rules()
+    {
+        $rules = ['Your Rules];
+        return array_merge(parent::rules(), $rules);
+    }
 ...
 }
 ```
