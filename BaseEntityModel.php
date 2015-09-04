@@ -97,6 +97,7 @@ class BaseEntityModel extends ActiveRecord
      * Initialize the default value of all attributes.
      * You should override this method to specify the above Attribute Name
      * attributes, and call the parent's method in the end of your own.
+     * This method don't return anything.
      */
     protected function initDefaultValues()
     {
@@ -132,6 +133,13 @@ class BaseEntityModel extends ActiveRecord
         ];
     }
     
+    const VALIDATOR_REQUIRED = 'required';
+    const VALIDATOR_UNIQUE = 'unique';
+    const VALIDATOR_STRING = 'string';
+    const VALIDATOR_INTEGER = 'integer';
+    const VALIDATOR_RANGE = 'in';
+    const VALIDATOR_SAFE = 'safe';
+    
     /**
      * Returns the validation rules for attributes which are in this model.
      * We don't recommend you to override this method, You should merge the 
@@ -142,22 +150,22 @@ class BaseEntityModel extends ActiveRecord
     public function rules()
     {
         $requiredRule = [
-            [$this->guidAttribute], 'required',
+            [$this->guidAttribute], self::VALIDATOR_REQUIRED,
         ];
         $uniqueRules = [
-            [$this->guidAttribute], 'unique',
+            [$this->guidAttribute], self::VALIDATOR_UNIQUE,
         ];
         $guidRules = [
-            [$this->guidAttribute], 'string', 'max' => 36,
+            [$this->guidAttribute], self::VALIDATOR_STRING, 'max' => 36,
         ];
         $ipAttributeRules = [
-            [$this->ipAttribute1, $this->ipAttribute2, $this->ipAttribute3, $this->ipAttribute4], 'integer',
+            [$this->ipAttribute1, $this->ipAttribute2, $this->ipAttribute3, $this->ipAttribute4], self::VALIDATOR_INTEGER,
         ];
         $ipTypeAttributeRule = [
-            [$this->ipTypeAttribute], 'in', 'range' => [Ip::IPv4, Ip::IPv6]
+            [$this->ipTypeAttribute], self::VALIDATOR_RANGE, 'range' => [Ip::IPv4, Ip::IPv6]
         ];
         $createdAndUpdatedAtAttributeRule = [
-            [$this->createdAtAttribute, $this->updatedAtAttribute], 'safe',
+            [$this->createdAtAttribute, $this->updatedAtAttribute], self::VALIDATOR_SAFE,
         ];
         $rules = [
             $requiredRule,
@@ -183,6 +191,14 @@ class BaseEntityModel extends ActiveRecord
         return date('Y-m-d H:i:s');
     }
     
+    
+    /**
+     * Return the IP address.
+     * The IP address is converted from ipAttribute*.
+     * If you disable($this->enableIP = false) the IP feature, this method will
+     * return null.
+     * @return string|integer|null
+     */
     public function getIpAddress()
     {
         if (!$this->enableIP){
@@ -202,6 +218,13 @@ class BaseEntityModel extends ActiveRecord
         return $this->$ipAttribute4;
     }
     
+    /**
+     * Convert the IP address to integer, and store it to ipAttribute*.
+     * If you disable($this->enableIP = false) the IP feature, this method will
+     * be skipped.
+     * @param type $ip
+     * @return type
+     */
     public function setIpAddress($ip)
     {
         if (!$this->enableIP){

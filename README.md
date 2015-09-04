@@ -46,8 +46,20 @@ class Example extends BaseEntityModel
     
     public function rules()
     {
-        $rules = ['Your Rules];
+        $rules = ['Your Rules'];
         return array_merge(parent::rules(), $rules);
+    }
+
+    public function behaviors()
+    {
+        $behaviors = ['Your Behaviors'];
+        return array_merge(parent::behaviors(), $behaviors);
+    }
+
+    protected function initDefaultValues()
+    {
+        'Initialize attributes...'
+        parent::initDefaultValues();
     }
 ...
 }
