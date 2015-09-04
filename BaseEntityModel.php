@@ -57,9 +57,21 @@ use yii\db\ActiveRecord;
 class BaseEntityModel extends ActiveRecord
 {
     /**
-     * @var string REQUIRED. the attribute that will receive the GUID value.
+     * @var string REQUIRED. The attribute that will receive the GUID value.
      */
     public $guidAttribute = 'guid';
+    
+    /**
+     * @var string OPTIONAL.Tthe attribute that will receive the IDentifier No. value.
+     * You can set this property to false if you don't use this feature.
+     */
+    public $idAttribute = false;
+    
+    /**
+     * @var string OPTIONAL. The length of id attribute value.
+     * If you set $idAttribute to false, this property will be skipped.
+     */
+    public $idAttributeLength = 4;
     
     /**
      * @var string the attribute that will receive datetime value
@@ -103,6 +115,11 @@ class BaseEntityModel extends ActiveRecord
     {
         $guidAttribute = $this->guidAttribute;
         $this->$guidAttribute = self::GenerateUuid();
+        if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
+        {
+            $idAttribute = $this->idAttribute;
+            $this->$idAttribute = self::GenerateId($this->idAttributeLength);
+        }
         if ($this->enableIP) {
             $this->ipAddress = Yii::$app->request->userIP;
         }
@@ -119,6 +136,11 @@ class BaseEntityModel extends ActiveRecord
     public static function CheckUuidExists($uuid)
     {
         return (self::findOne($uuid) !== null);
+    }
+    
+    public static function GenerateId($length)
+    {
+        return Yii::$app->security->generateRandomString($length);
     }
     
     public function behaviors() 
@@ -149,34 +171,46 @@ class BaseEntityModel extends ActiveRecord
      */
     public function rules()
     {
+        $rules = [];
         $requiredRule = [
             [$this->guidAttribute], self::VALIDATOR_REQUIRED,
         ];
+        $rules[] = $requiredRule;
+        if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
+        {
+            $requiredRule[0][] = $this->idAttribute;
+            $rules[] = $requiredRule;
+            
+            $idAttributeRule = [
+                [$this->idAttribute], self::VALIDATOR_STRING, 'max' => $this->idAttributeLength, 'min' => $this->idAttributeLength,
+            ];
+            $rules[] = $idAttributeRule;
+        }
+        
         $uniqueRules = [
-            [$this->guidAttribute], self::VALIDATOR_UNIQUE,
-        ];
-        $guidRules = [
+            [[$this->guidAttribute], self::VALIDATOR_UNIQUE,]
+         ];
+        $rules = array_merge($rules, $uniqueRules);
+        
+        $guidRule = [
             [$this->guidAttribute], self::VALIDATOR_STRING, 'max' => 36,
         ];
-        $ipAttributeRules = [
-            [$this->ipAttribute1, $this->ipAttribute2, $this->ipAttribute3, $this->ipAttribute4], self::VALIDATOR_INTEGER,
-        ];
-        $ipTypeAttributeRule = [
-            [$this->ipTypeAttribute], self::VALIDATOR_RANGE, 'range' => [Ip::IPv4, Ip::IPv6]
-        ];
+        $rules[] = $guidRule;
+        
+        if ($this->enableIP){
+            $ipAttributeRule = [
+                [$this->ipAttribute1, $this->ipAttribute2, $this->ipAttribute3, $this->ipAttribute4], self::VALIDATOR_INTEGER,
+            ];
+            $ipTypeAttributeRule = [
+                [$this->ipTypeAttribute], self::VALIDATOR_RANGE, 'range' => [Ip::IPv4, Ip::IPv6]
+            ];
+            $rules[] = $ipAttributeRule;
+            $rules[] = $ipTypeAttributeRule;
+        }
         $createdAndUpdatedAtAttributeRule = [
             [$this->createdAtAttribute, $this->updatedAtAttribute], self::VALIDATOR_SAFE,
         ];
-        $rules = [
-            $requiredRule,
-            $uniqueRules,
-            $guidRules,
-            $createdAndUpdatedAtAttributeRule,
-        ];
-        if ($this->enableIP){
-            $rules[] = $ipAttributeRules;
-            $rules[] = $ipTypeAttributeRule;
-        }
+        $rules[] = $createdAndUpdatedAtAttributeRule;
         return $rules;
     }
     
