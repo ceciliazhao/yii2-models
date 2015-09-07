@@ -40,16 +40,6 @@ use yii\db\ActiveRecord;
  * 
  * The above attributes' name also have the default name.
  * 
- * @property string $guidAttribute the attribute name of GUID attribute (primary key).
- * @property string $createdAtAttribute
- * @property string $updatedAtAttribute
- * @property boolean $enableIP
- * @property string $ipAttribute1
- * @property string $ipAttribute2
- * @property string $ipAttribute3
- * @property string $ipAttribute4
- * @property string $ipTypeAttribute
- * 
  * @property string $ipAddress IP Address. You should get before setting it.
  * 
  * @author vistart <i@vistart.name>
