@@ -145,6 +145,17 @@ class BaseEntityModel extends ActiveRecord
         ];
     }
     
+    /**
+     * Get the current date & time in format of "Y-m-d H:i:s".
+     * You can override this method to customize the return value.
+     * @param type $event
+     * @return string
+     */
+    public function getCurrentDatetime($event)
+    {
+        return date('Y-m-d H:i:s');
+    }
+    
     const VALIDATOR_REQUIRED = 'required';
     const VALIDATOR_UNIQUE = 'unique';
     const VALIDATOR_STRING = 'string';
@@ -203,19 +214,7 @@ class BaseEntityModel extends ActiveRecord
         $rules[] = $createdAndUpdatedAtAttributeRule;
         return $rules;
     }
-    
-    /**
-     * Get the current date & time in format of "Y-m-d H:i:s".
-     * You can override this method to customize the return value.
-     * @param type $event
-     * @return string
-     */
-    public function getCurrentDatetime($event)
-    {
-        return date('Y-m-d H:i:s');
-    }
-    
-    
+        
     /**
      * Return the IP address.
      * The IP address is converted from ipAttribute*.
