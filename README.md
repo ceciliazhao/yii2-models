@@ -1,5 +1,7 @@
 Models for Yii 2
 ================
+
+[![Join the chat at https://gitter.im/vistart/yii2-models](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vistart/yii2-models?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This extension provide a BaseEntityModel.
 
 Installation
