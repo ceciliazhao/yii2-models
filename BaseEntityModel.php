@@ -90,6 +90,9 @@ class BaseEntityModel extends ActiveRecord
     public function init()
     {
         if ($this->isNewRecord){
+            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetGuidAttribute']);
+            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetIdAttribute']);
+            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetIpAddress']);
             $this->initDefaultValues();
         }
         parent::init();
@@ -103,13 +106,25 @@ class BaseEntityModel extends ActiveRecord
      */
     protected function initDefaultValues()
     {
+    }
+    
+    public function onSetGuidAttribute($event)
+    {
         $guidAttribute = $this->guidAttribute;
         $this->$guidAttribute = self::GenerateUuid();
+    }
+    
+    public function onSetIdAttribute($event)
+    {
         if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
         {
             $idAttribute = $this->idAttribute;
             $this->$idAttribute = self::GenerateId($this->idAttributeLength);
         }
+    }
+    
+    public function onSetIpAddress($event)
+    {
         if ($this->enableIP) {
             $this->ipAddress = Yii::$app->request->userIP;
         }
@@ -173,10 +188,13 @@ class BaseEntityModel extends ActiveRecord
     public function rules()
     {
         $rules = [];
+        // The GUID attribute is required.
         $requiredRule = [
             [$this->guidAttribute], self::VALIDATOR_REQUIRED,
         ];
         $rules[] = $requiredRule;
+        
+        // Check and attach the ID attribute rule(s).
         if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
         {
             $requiredRule[0][] = $this->idAttribute;
@@ -188,6 +206,7 @@ class BaseEntityModel extends ActiveRecord
             $rules[] = $idAttributeRule;
         }
         
+        // The GUID is unique among the whole records in current table.
         $uniqueRules = [
             [[$this->guidAttribute], self::VALIDATOR_UNIQUE,]
          ];
