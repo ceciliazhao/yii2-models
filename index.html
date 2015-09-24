@@ -96,24 +96,65 @@
 <span class="pl-s1"><span class="pl-c">     * correspoding validation rules will be ignored.</span></span>
 <span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$enableIP</span> <span class="pl-k">=</span> <span class="pl-c1">true</span><span class="pl-k">.</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string The attribute name that will receive the beginning 32 bit of</span></span>
+<span class="pl-s1"><span class="pl-c">     * IPv6, or 0 of IPv4.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$ipAttribute1</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Your IP_1 Attribute Name<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string The attribute name that will receive the 33 - 64 bit of IPv6,</span></span>
+<span class="pl-s1"><span class="pl-c">     * or 0 of IPv4.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$ipAttribute2</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Your IP_2 Attribute Name<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string The attribute name that will receive the 65 - 96 bit of IPv6,</span></span>
+<span class="pl-s1"><span class="pl-c">     * or 0 of IPv4.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$ipAttribute3</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Your IP_3 Attribute Name<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string The attribute name that will receive the last 32 bit of IPv6,</span></span>
+<span class="pl-s1"><span class="pl-c">     * or IPv4.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$ipAttribute4</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Your IP_4 Attribute Name<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string The attribute name that will receive the type of IP address.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$ipTypeAttribute</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Your IP type Attribute Name<span class="pl-pds">'</span></span>;</span>
 <span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * This method has been implemented in BaseEntityModel, if you want to add </span></span>
+<span class="pl-s1"><span class="pl-c">     * validation rule(s), please implement your own rules array first, and </span></span>
+<span class="pl-s1"><span class="pl-c">     * merge the parent's and your's, then return it, DO NOT override it directly.</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@return</span> array Validation rules.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">rules</span>()</span>
 <span class="pl-s1">    {</span>
 <span class="pl-s1">        <span class="pl-smi">$rules</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>Your Rules<span class="pl-pds">'</span></span>];</span>
 <span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-c1">array_merge</span>(<span class="pl-k">parent</span><span class="pl-k">::</span>rules(), <span class="pl-smi">$rules</span>);</span>
 <span class="pl-s1">    }</span>
 <span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * This method has been implemented in BaseEntityModel, if you want to add</span></span>
+<span class="pl-s1"><span class="pl-c">     * behaviors, please implement your own behaviors array first, and merge</span></span>
+<span class="pl-s1"><span class="pl-c">     * the parent's and your's, then return it, DO NOT override it directly.</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@return</span> array Behaviors.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
 <span class="pl-s1">    {</span>
 <span class="pl-s1">        <span class="pl-smi">$behaviors</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>Your Behaviors<span class="pl-pds">'</span></span>];</span>
 <span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-c1">array_merge</span>(<span class="pl-k">parent</span><span class="pl-k">::</span>behaviors(), <span class="pl-smi">$behaviors</span>);</span>
 <span class="pl-s1">    }</span>
 <span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * This method has been implemented in BaseEntityModel, please DO NOT </span></span>
+<span class="pl-s1"><span class="pl-c">     * override it.</span></span>
+<span class="pl-s1"><span class="pl-c">     * This method does not return a value.</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">protected</span> <span class="pl-k">function</span> <span class="pl-en">initDefaultValues</span>()</span>
 <span class="pl-s1">    {</span>
 <span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>Initialize attributes...<span class="pl-pds">'</span></span></span>
@@ -139,11 +180,13 @@
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$updatedByAttribute</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>updater_uuid<span class="pl-pds">'</span></span>;</span>
 <span class="pl-s1"></span>
 <span class="pl-s1">    <span class="pl-c">/**</span></span>
-<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string the attribute that specify the name of id of Yii::$app-&gt;user-&gt;identity.</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@var</span> string the attribute that specify the name of id of </span></span>
+<span class="pl-s1"><span class="pl-c">     * Yii::$app-&gt;user-&gt;identity.</span></span>
 <span class="pl-s1"><span class="pl-c">     */</span></span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-smi">$identityIdAttribute</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>user_uuid<span class="pl-pds">'</span></span>;</span>
 <span class="pl-s1"></span>
-<span class="pl-s1">    <span class="pl-c">// the usage of rules(), behaviors, and initDefaultValues() are same as those of BaseEntityModel.</span></span>
+<span class="pl-s1">    <span class="pl-c">// the usage of rules(), behaviors, and initDefaultValues() are same as </span></span>
+<span class="pl-s1">    <span class="pl-c">// those of BaseEntityModel.</span></span>
 <span class="pl-s1">}</span></pre></div>
 
 <h2>
