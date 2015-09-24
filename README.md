@@ -8,6 +8,7 @@ The BaseEntityModel would help you to fill the following attribute(s) automatica
 * ID
 * createdAt and updatedAt
 * IP address
+
 Please see detailed usage in the comments of code.
 
 Installation
