@@ -25,6 +25,7 @@ class BaseBlameableEntityModel extends BaseEntityModel
      * Set this property to false if you do not want to record the creator ID.
      */
     public $createdByAttribute = 'user_uuid';
+    
     /**
      * @var string the attribute that will receive current user GUID value
      * Set this property to false if you do not want to record the updater ID.
@@ -35,6 +36,9 @@ class BaseBlameableEntityModel extends BaseEntityModel
     
     public $updatedByAttributeRule = [];
     
+    /**
+     * @var string the attribute that specify the name of id of Yii::$app->user->identity.
+     */
     public $identityIdAttribute = 'user_uuid';
     
     protected function initDefaultValues() 

@@ -29,14 +29,14 @@ use yii\db\ActiveRecord;
  * 
  * You should extend this class, for your own ActiveRecord class(es). Then you
  * need to specify the following attributes' name:
- * guidAttribute
- * createdAtAttribute
- * updatedAtAttribute
- * ipAttribute1
- * ipAttribute2
- * ipAttribute3
- * ipAttribute4
- * ipTypeAttribute
+ * * guidAttribute
+ * * createdAtAttribute
+ * * updatedAtAttribute
+ * * ipAttribute1
+ * * ipAttribute2
+ * * ipAttribute3
+ * * ipAttribute4
+ * * ipTypeAttribute
  * 
  * The above attributes' name also have the default name.
  * 
