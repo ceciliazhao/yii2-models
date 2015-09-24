@@ -68,24 +68,65 @@ class Example extends BaseEntityModel
      * correspoding validation rules will be ignored.
      */
     public $enableIP = true.
+
+    /**
+     * @var string The attribute name that will receive the beginning 32 bit of
+     * IPv6, or 0 of IPv4.
+     */
     public $ipAttribute1 = 'Your IP_1 Attribute Name';
+
+    /**
+     * @var string The attribute name that will receive the 33 - 64 bit of IPv6,
+     * or 0 of IPv4.
+     */
     public $ipAttribute2 = 'Your IP_2 Attribute Name';
+
+    /**
+     * @var string The attribute name that will receive the 65 - 96 bit of IPv6,
+     * or 0 of IPv4.
+     */
     public $ipAttribute3 = 'Your IP_3 Attribute Name';
+
+    /**
+     * @var string The attribute name that will receive the last 32 bit of IPv6,
+     * or IPv4.
+     */
     public $ipAttribute4 = 'Your IP_4 Attribute Name';
+
+    /**
+     * @var string The attribute name that will receive the type of IP address.
+     */
     public $ipTypeAttribute = 'Your IP type Attribute Name';
     
+    /**
+     * This method has been implemented in BaseEntityModel, if you want to add 
+     * validation rule(s), please implement your own rules array first, and 
+     * merge the parent's and your's, then return it, DO NOT override it directly.
+     * @return array Validation rules.
+     */
     public function rules()
     {
         $rules = ['Your Rules'];
         return array_merge(parent::rules(), $rules);
     }
 
+    /**
+     * This method has been implemented in BaseEntityModel, if you want to add
+     * behaviors, please implement your own behaviors array first, and merge
+     * the parent's and your's, then return it, DO NOT override it directly.
+     * @return array Behaviors.
+     */
     public function behaviors()
     {
         $behaviors = ['Your Behaviors'];
         return array_merge(parent::behaviors(), $behaviors);
     }
 
+    /**
+     * This method has been implemented in BaseEntityModel, please DO NOT 
+     * override it.
+     * This method does not return a value.
+     */
     protected function initDefaultValues()
     {
         'Initialize attributes...'
@@ -112,11 +153,13 @@ class Example extends BaseBlameableEntityModel
     public $updatedByAttribute = 'updater_uuid';
 
     /**
-     * @var string the attribute that specify the name of id of Yii::$app->user->identity.
+     * @var string the attribute that specify the name of id of 
+     * Yii::$app->user->identity.
      */
     public $identityIdAttribute = 'user_uuid';
 
-    // the usage of rules(), behaviors, and initDefaultValues() are same as those of BaseEntityModel.
+    // the usage of rules(), behaviors, and initDefaultValues() are same as 
+    // those of BaseEntityModel.
 }
 ~~~
 
