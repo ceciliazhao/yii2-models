@@ -1,7 +1,6 @@
 Models for Yii 2
 ================
 
-[![Join the chat at https://gitter.im/vistart/yii2-models](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vistart/yii2-models?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This extension provide a BaseEntityModel.
 
 Installation
@@ -67,3 +66,11 @@ class Example extends BaseEntityModel
 }
 ```
 
+Contact Us
+----------
+
+[![Join the chat at https://gitter.im/vistart/yii2-models](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vistart/yii2-models?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+If you have any problems or good ideas about yii2-models, please discuss there, or send an email to i@vistart.name. Thank you!
+
+If you want to send an email with your issues, please briefly introduce yourself first, for instance including your title and github homepage.
