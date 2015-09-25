@@ -32,9 +32,9 @@ class BaseBlameableEntityModel extends BaseEntityModel
      */
     public $updatedByAttribute = 'updater_uuid';
     
-    public $createdByAttributeRule = [];
+    public $createdByAttributeRules = [];
     
-    public $updatedByAttributeRule = [];
+    public $updatedByAttributeRules = [];
     
     const COMBINATION_UNIQUE = 'unqiue';
     
@@ -58,16 +58,18 @@ class BaseBlameableEntityModel extends BaseEntityModel
         // if the $this->createdByAttributeRule or $this->updatedByAttributeRule 
         // is empty array, we will assign a safe validator for each. Because the
         // assignment operation is done after validation.
-        if (empty($this->createdByAttributeRule) || !is_array($this->createdByAttributeRule))
+        if (empty($this->createdByAttributeRules) || !is_array($this->createdByAttributeRules))
         {
-            $this->createdByAttributeRule = [
-                [$this->createdByAttribute], parent::VALIDATOR_SAFE,
+            $this->createdByAttributeRules = [
+                [[$this->createdByAttribute], parent::VALIDATOR_SAFE,],
+                [[$this->createdByAttribute], parent::VALIDATOR_STRING, 'max' => 36],
             ];
         }
-        if (empty($this->updatedByAttributeRule) || !is_array($this->updatedByAttributeRule))
+        if (empty($this->updatedByAttributeRules) || !is_array($this->updatedByAttributeRules))
         {
-            $this->updatedByAttributeRule = [
-                [$this->updatedByAttribute], parent::VALIDATOR_SAFE,
+            $this->updatedByAttributeRules = [
+                [[$this->updatedByAttribute], parent::VALIDATOR_SAFE,],
+                [[$this->updatedByAttribute], parent::VALIDATOR_STRING, 'max' => 36],
             ];
         }
         parent::initDefaultValues();
@@ -110,12 +112,19 @@ class BaseBlameableEntityModel extends BaseEntityModel
         
         if (!empty($this->createdByAttribute))
         {
-            $rules[] = $this->createdByAttributeRule;
+            $rules = array_merge($rules, $this->createdByAttributeRules);
         }
         
         if (!empty($this->updatedByAttribute))
         {
-            $rules[] = $this->updatedByAttributeRule;
+            $rules = array_merge($rules, $this->updatedByAttributeRules);
+        }
+        
+        if ($this->createdByCombinedWithId)
+        {
+            $rules[] = [
+                [$this->createdByAttribute, $this->idAttribute], self::VALIDATOR_UNIQUE, 'targetAttribute' => [$this->createdByAttribute, $this->idAttribute]
+            ];
         }
         return $rules;
     }
