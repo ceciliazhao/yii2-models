@@ -32,9 +32,22 @@ class BaseBlameableEntityModel extends BaseEntityModel
      */
     public $updatedByAttribute = 'updater_uuid';
     
+    /**
+     * @var array the whole validation rules of creator attribute only, except 
+     * of combination rules.
+     */
     public $createdByAttributeRules = [];
     
+    /**
+     * @var array the whole validation rules of updater attribute only, except 
+     * of combination rules.
+     */
     public $updatedByAttributeRules = [];
+    
+    /**
+     * @var string the attribute that specify the name of id of Yii::$app->user->identity.
+     */
+    public $identityUuidAttribute = 'user_uuid';
     
     const COMBINATION_UNIQUE = 'unqiue';
     
@@ -45,38 +58,40 @@ class BaseBlameableEntityModel extends BaseEntityModel
      */
     public $createdByCombinedWithId = self::COMBINATION_UNIQUE;
     
-    /**
-     * @var string the attribute that specify the name of id of Yii::$app->user->identity.
-     */
-    public $identityUuidAttribute = 'user_uuid';
+    public function init()
+    {
+        $this->on(self::EVENT_INIT, [$this, 'onInitBlameRules']);
+        parent::init();
+    }
     
     /**
-     * @inheritdoc
-     */
-    protected function initDefaultValues() 
+     * This method will automatically assign the safe validator to createdBy,
+     * updatedBy attributes when each of them is empty, because the assignment
+     * operation is done after validation.
+     * This method does not return anything, and DO NOT call it directly.
+     */    
+    private function onInitBlameRules()
     {
-        // if the $this->createdByAttributeRule or $this->updatedByAttributeRule 
-        // is empty array, we will assign a safe validator for each. Because the
-        // assignment operation is done after validation.
         if (empty($this->createdByAttributeRules) || !is_array($this->createdByAttributeRules))
         {
             $this->createdByAttributeRules = [
                 [[$this->createdByAttribute], parent::VALIDATOR_SAFE,],
-                [[$this->createdByAttribute], parent::VALIDATOR_STRING, 'max' => 36],
             ];
         }
         if (empty($this->updatedByAttributeRules) || !is_array($this->updatedByAttributeRules))
         {
             $this->updatedByAttributeRules = [
                 [[$this->updatedByAttribute], parent::VALIDATOR_SAFE,],
-                [[$this->updatedByAttribute], parent::VALIDATOR_STRING, 'max' => 36],
             ];
         }
-        parent::initDefaultValues();
     }
     
     /**
      * @inheritdoc
+     * ------------
+     * # Behaviors of BaseBlameableEntityModel
+     * This method will attach the BlameableBehavior to createdByAttribute,
+     * updatedByAttribute with value that returned by specified method.
      */
     public function behaviors() 
     {
@@ -105,6 +120,10 @@ class BaseBlameableEntityModel extends BaseEntityModel
     
     /**
      * @inheritdoc
+     * ------------
+     * # Rules of BaseBlameableEntityModel
+     * This method will attach the createdBy, updatedBy, createdByCombinedWithId
+     * rules, then return it.
      */
     public function rules()
     {
