@@ -52,13 +52,13 @@ class BaseEntityModel extends ActiveRecord
     public $guidAttribute = 'guid';
     
     /**
-     * @var string OPTIONAL.Tthe attribute that will receive the IDentifier No. value.
+     * @var string OPTIONAL.The attribute that will receive the IDentifier No.
      * You can set this property to false if you don't use this feature.
      */
     public $idAttribute = false;
     
     /**
-     * @var string OPTIONAL. The length of id attribute value.
+     * @var integer OPTIONAL. The length of id attribute value.
      * If you set $idAttribute to false, this property will be skipped.
      */
     public $idAttributeLength = 4;
@@ -87,6 +87,9 @@ class BaseEntityModel extends ActiveRecord
     public $ipAttribute4 = 'ip_4';
     public $ipTypeAttribute = 'ip_type';
     
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         if ($this->isNewRecord){
@@ -102,18 +105,28 @@ class BaseEntityModel extends ActiveRecord
      * Initialize the default value of all attributes.
      * You should override this method to specify the above Attribute Name
      * attributes, and call the parent's method in the end of your own.
-     * This method don't return anything.
+     * This method does not return anything.
      */
     protected function initDefaultValues()
     {
     }
     
+    /**
+     * This method is ONLY used for being triggered by event. DON'T call it 
+     * directly.
+     * @param type $event
+     */
     public function onSetGuidAttribute($event)
     {
         $guidAttribute = $this->guidAttribute;
         $this->$guidAttribute = self::GenerateUuid();
     }
     
+    /**
+     * This method is ONLY used for being triggered by event. DON'T call it 
+     * directly.
+     * @param type $event
+     */
     public function onSetIdAttribute($event)
     {
         if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
@@ -123,6 +136,11 @@ class BaseEntityModel extends ActiveRecord
         }
     }
     
+    /**
+     * This method is ONLY used for being triggered by event. DON'T call it 
+     * directly.
+     * @param type $event
+     */
     public function onSetIpAddress($event)
     {
         if ($this->enableIP) {
@@ -130,6 +148,10 @@ class BaseEntityModel extends ActiveRecord
         }
     }
     
+    /**
+     * 
+     * @return type
+     */
     public static function GenerateUuid()
     {
         do {
@@ -138,16 +160,29 @@ class BaseEntityModel extends ActiveRecord
         return $uuid;
     }
     
+    /**
+     * 
+     * @param type $uuid
+     * @return type
+     */
     public static function CheckUuidExists($uuid)
     {
         return (self::findOne($uuid) !== null);
     }
     
+    /**
+     * 
+     * @param type $length
+     * @return type
+     */
     public static function GenerateId($length)
     {
         return Yii::$app->security->generateRandomString($length);
     }
     
+    /**
+     * @inheritdoc
+     */
     public function behaviors() 
     {
         return [
@@ -206,7 +241,7 @@ class BaseEntityModel extends ActiveRecord
             $rules[] = $idAttributeRule;
         }
         
-        // The GUID is unique among the whole records in current table.
+        // The GUID is unique among the whole records of current table.
         $uniqueRules = [
             [[$this->guidAttribute], self::VALIDATOR_UNIQUE,]
          ];

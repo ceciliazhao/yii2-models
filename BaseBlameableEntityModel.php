@@ -14,20 +14,20 @@ namespace vistart\Models;
 use yii\behaviors\BlameableBehavior;
 /**
  * BaseBlameableEntityModel automatically fills the specified attributes with 
- * the current user GUID.
+ * the current user's GUID.
  *
  * @author vistart <i@vistart.name>
  */
 class BaseBlameableEntityModel extends BaseEntityModel
 {
     /**
-     * @var string the attribute that will receive current user GUID value
+     * @var string the attribute that will receive current user's GUID value.
      * Set this property to false if you do not want to record the creator ID.
      */
     public $createdByAttribute = 'user_uuid';
     
     /**
-     * @var string the attribute that will receive current user GUID value
+     * @var string the attribute that will receive current user's GUID value.
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = 'updater_uuid';
@@ -36,11 +36,23 @@ class BaseBlameableEntityModel extends BaseEntityModel
     
     public $updatedByAttributeRule = [];
     
+    const COMBINATION_UNIQUE = 'unqiue';
+    
+    /**
+     * Determine the type of combination of creator's GUID and record's ID.
+     * If you don't want to combine them, please set it to false.
+     * @var boolean|string 
+     */
+    public $createdByCombinedWithId = self::COMBINATION_UNIQUE;
+    
     /**
      * @var string the attribute that specify the name of id of Yii::$app->user->identity.
      */
-    public $identityIdAttribute = 'user_uuid';
+    public $identityUuidAttribute = 'user_uuid';
     
+    /**
+     * @inheritdoc
+     */
     protected function initDefaultValues() 
     {
         // if the $this->createdByAttributeRule or $this->updatedByAttributeRule 
@@ -61,6 +73,9 @@ class BaseBlameableEntityModel extends BaseEntityModel
         parent::initDefaultValues();
     }
     
+    /**
+     * @inheritdoc
+     */
     public function behaviors() 
     {
         $behaviors = parent::behaviors();
@@ -74,17 +89,21 @@ class BaseBlameableEntityModel extends BaseEntityModel
     }
     
     /**
-     * This method is ONLY used for be triggered by event. DON'T call it directly.
+     * This method is ONLY used for being triggered by event. DON'T call it 
+     * directly.
      * @param type $event
-     * @return type
+     * @return string 
      */
     public function onGetCurrentUserUuid($event)
     {
         $identity = Yii::$app->user->identity;
-        $identityIdAttribute = $this->identityIdAttribute;
-        return $identity->$identityIdAttribute;
+        $identityUuidAttribute = $this->identityUuidAttribute;
+        return $identity->$identityUuidAttribute;
     }
     
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         $rules = parent::rules();

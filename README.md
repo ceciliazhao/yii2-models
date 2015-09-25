@@ -55,10 +55,15 @@ class Example extends BaseEntityModel
     public $idAttribute = false;
 
     /**
-     * @var string
+     * @var string the attribute that will receive datetime value
+     * Set this property to false if you do not want to record the creation time.
      */
     public $createdAtAttribute = 'Your createdAt Attribute Name';
 
+    /**
+     * @var string the attribute that will receive datetime value.
+     * Set this property to false if you do not want to record the update time.
+     */
     public $updatedAtAttribute = 'Your updatedAt Attribute Name';
     
     /**
@@ -70,25 +75,25 @@ class Example extends BaseEntityModel
     public $enableIP = true.
 
     /**
-     * @var string The attribute name that will receive the beginning 32 bit of
+     * @var string The attribute name that will receive the beginning 32 bits of
      * IPv6, or 0 of IPv4.
      */
     public $ipAttribute1 = 'Your IP_1 Attribute Name';
 
     /**
-     * @var string The attribute name that will receive the 33 - 64 bit of IPv6,
+     * @var string The attribute name that will receive the 33 - 64 bits of IPv6,
      * or 0 of IPv4.
      */
     public $ipAttribute2 = 'Your IP_2 Attribute Name';
 
     /**
-     * @var string The attribute name that will receive the 65 - 96 bit of IPv6,
+     * @var string The attribute name that will receive the 65 - 96 bits of IPv6,
      * or 0 of IPv4.
      */
     public $ipAttribute3 = 'Your IP_3 Attribute Name';
 
     /**
-     * @var string The attribute name that will receive the last 32 bit of IPv6,
+     * @var string The attribute name that will receive the last 32 bits of IPv6,
      * or IPv4.
      */
     public $ipAttribute4 = 'Your IP_4 Attribute Name';
@@ -141,13 +146,13 @@ If you have some ActiveRecord need to be blamed, mayby you are interested in Bas
 class Example extends BaseBlameableEntityModel
 {
     /**
-     * @var string the attribute that will receive current user GUID value
+     * @var string the attribute that will receive current user's GUID value.
      * Set this property to false if you do not want to record the creator ID.
      */
     public $createdByAttribute = 'user_uuid';
 
     /**
-     * @var string the attribute that will receive current user GUID value
+     * @var string the attribute that will receive current user's GUID value.
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = 'updater_uuid';
@@ -156,7 +161,7 @@ class Example extends BaseBlameableEntityModel
      * @var string the attribute that specify the name of id of 
      * Yii::$app->user->identity.
      */
-    public $identityIdAttribute = 'user_uuid';
+    public $identityUuidAttribute = 'user_uuid';
 
     // the usage of rules(), behaviors, and initDefaultValues() are same as 
     // those of BaseEntityModel.
