@@ -59,7 +59,7 @@ class BaseEntityModel extends ActiveRecord
     
     /**
      * @var integer OPTIONAL. The length of id attribute value.
-     * If you set $idAttribute to false, this property will be skipped.
+     * If you set $idAttribute to false, this property will be ignored.
      */
     public $idAttributeLength = 4;
     
@@ -93,9 +93,9 @@ class BaseEntityModel extends ActiveRecord
     public function init()
     {
         if ($this->isNewRecord){
-            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetGuidAttribute']);
-            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetIdAttribute']);
-            $this->on(ActiveRecord::EVENT_INIT, [$this, 'onSetIpAddress']);
+            $this->on(self::EVENT_INIT, [$this, 'onSetGuidAttribute']);
+            $this->on(self::EVENT_INIT, [$this, 'onSetIdAttribute']);
+            $this->on(self::EVENT_INIT, [$this, 'onSetIpAddress']);
             $this->initDefaultValues();
         }
         parent::init();

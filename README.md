@@ -53,6 +53,12 @@ class Example extends BaseEntityModel
      * not want to use this feature, please set it to false.
      */
     public $idAttribute = false;
+    
+    /**
+     * @var integer The length of id attribute value. This property is OPTIONAL.
+     * If you set $idAttribute to false, this property will be ignored.
+     */
+    public $idAttributeLength = 4;
 
     /**
      * @var string the attribute that will receive datetime value
