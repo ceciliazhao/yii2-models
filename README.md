@@ -3,6 +3,13 @@ Models for Yii 2
 
 This extension provide a BaseEntityModel.
 
+[![Latest Stable Version](https://poser.pugx.org/vistart/yii2-models/v/stable)](https://packagist.org/packages/vistart/yii2-models)
+[![Total Downloads](https://poser.pugx.org/vistart/yii2-models/downloads)](https://packagist.org/packages/vistart/yii2-models)
+[![Monthly Downloads](https://poser.pugx.org/vistart/yii2-models/d/monthly)](https://packagist.org/packages/vistart/yii2-models)
+[![Daily Downloads](https://poser.pugx.org/vistart/yii2-models/d/daily)](https://packagist.org/packages/vistart/yii2-models)
+[![Latest Unstable Version](https://poser.pugx.org/vistart/yii2-models/v/unstable)](https://packagist.org/packages/vistart/yii2-models)
+[![License](https://poser.pugx.org/vistart/yii2-models/license)](https://packagist.org/packages/vistart/yii2-models)
+
 The BaseEntityModel would help you to fill the following attribute(s) automatically:
 * GUID
 * ID
