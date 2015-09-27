@@ -71,7 +71,7 @@ class BaseBlameableEntityModel extends BaseEntityModel
      * This method does not return anything, and DO NOT call it directly.
      * @param \yii\base\Event $event
      */    
-    private function onInitBlameRules($event)
+    protected function onInitBlameRules($event)
     {
         $sender = $event->sender;
         if (empty($sender->createdByAttributeRules) || !is_array($sender->createdByAttributeRules))
@@ -120,7 +120,7 @@ class BaseBlameableEntityModel extends BaseEntityModel
         {
             throw new \yii\base\NotSupportedException('The sender is empty.');
         }
-        $identity = Yii::$app->user->identity;
+        $identity = \Yii::$app->user->identity;
         $identityUuidAttribute = $sender->identityUuidAttribute;
         return $identity->$identityUuidAttribute;
     }
@@ -134,7 +134,7 @@ class BaseBlameableEntityModel extends BaseEntityModel
      */
     public function rules()
     {
-        $rules = parent::rules();
+        $rules = [];
         
         if (!empty($this->createdByAttribute))
         {
@@ -148,10 +148,11 @@ class BaseBlameableEntityModel extends BaseEntityModel
         
         if ($this->createdByCombinedWithId)
         {
+            $this->idAttributeSafe = true;
             $rules[] = [
                 [$this->createdByAttribute, $this->idAttribute], self::VALIDATOR_UNIQUE, 'targetAttribute' => [$this->createdByAttribute, $this->idAttribute]
             ];
         }
-        return $rules;
+        return array_merge(parent::rules(), $rules);
     }
 }

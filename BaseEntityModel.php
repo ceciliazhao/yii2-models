@@ -64,6 +64,11 @@ class BaseEntityModel extends ActiveRecord
     public $idAttributeLength = 4;
     
     /**
+     * @var boolean Determine whether the ID is safe for validation.
+     */
+    protected $idAttributeSafe = false;
+    
+    /**
      * @var string the attribute that will receive datetime value
      * Set this property to false if you do not want to record the creation time.
      */
@@ -193,18 +198,28 @@ class BaseEntityModel extends ActiveRecord
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => $this->createdAtAttribute,
                 'updatedAtAttribute' => $this->updatedAtAttribute,
-                'value' => [$this, 'getCurrentDatetime'],
+                'value' => [$this, 'onUpdateCurrentDatetime'],
             ]
         ];
     }
     
     /**
-     * Get the current date & time in format of "Y-m-d H:i:s".
-     * You can override this method to customize the return value.
-     * @param type $event
+     * Get the current date & date in format of "Y-m-d H:i:s".
+     * This method is used for being triggered. DO NOT call it directly.
+     * @param \yii\base\Event $event
      * @return string
      */
-    public function getCurrentDatetime($event)
+    public function onUpdateCurrentDatetime($event)
+    {
+        return self::getCurrentDatetime();
+    }
+    
+    /**
+     * Get the current date & time in format of "Y-m-d H:i:s".
+     * You can override this method to customize the return value.
+     * @return string
+     */
+    public static function getCurrentDatetime()
     {
         return date('Y-m-d H:i:s');
     }
@@ -233,7 +248,7 @@ class BaseEntityModel extends ActiveRecord
         $rules[] = $requiredRule;
         
         // Check and attach the ID attribute rule(s).
-        if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
+        if (!$this->idAttributeSafe && $this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
         {
             $requiredRule[0][] = $this->idAttribute;
             $rules[] = $requiredRule;
