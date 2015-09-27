@@ -1,7 +1,7 @@
 Models for Yii 2
 ================
 
-This extension provide a BaseEntityModel.
+This extension provide a BaseEntityModel for relational database ActiveRecord, a BaseBlameableEntityModel that inherited from BaseEntityModel for some classes needed to be blamed.
 
 [![Latest Stable Version](https://poser.pugx.org/vistart/yii2-models/v/stable)](https://packagist.org/packages/vistart/yii2-models)
 [![Total Downloads](https://poser.pugx.org/vistart/yii2-models/downloads)](https://packagist.org/packages/vistart/yii2-models)
