@@ -158,7 +158,9 @@ If you have some ActiveRecord need to be blamed, maybe you are interested in Bas
 
 BaseBlameableEntityModel automatically fills the specified attributes with the current user's GUID. The basic usage is following:
 ~~~php
-* @property string $comment
+/**
+ * @property string $comment
+ */
 class CommentExample extends BaseBlameableEntityModel
 {
     /**
