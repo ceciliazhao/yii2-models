@@ -154,7 +154,7 @@ class Example extends BaseEntityModel
 }
 ```
 
-If you have some ActiveRecord need to be blamed, mayby you are interested in BaseBlameableEntityModel, the basic usage is following:
+If you have some ActiveRecord need to be blamed, maybe you are interested in BaseBlameableEntityModel, the basic usage is following:
 ~~~php
 class Example extends BaseBlameableEntityModel
 {

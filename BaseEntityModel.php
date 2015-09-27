@@ -114,37 +114,40 @@ class BaseEntityModel extends ActiveRecord
     /**
      * This method is ONLY used for being triggered by event. DON'T call it 
      * directly.
-     * @param type $event
+     * @param \yii\base\Event $event
      */
     public function onSetGuidAttribute($event)
     {
-        $guidAttribute = $this->guidAttribute;
-        $this->$guidAttribute = self::GenerateUuid();
+        $sender = $event->sender;
+        $guidAttribute = $sender->guidAttribute;
+        $sender->$guidAttribute = self::GenerateUuid();
     }
     
     /**
      * This method is ONLY used for being triggered by event. DON'T call it 
      * directly.
-     * @param type $event
+     * @param \yii\base\Event $event
      */
     public function onSetIdAttribute($event)
     {
-        if ($this->idAttribute !== false && is_string($this->idAttribute) && is_int($this->idAttributeLength) && $this->idAttributeLength > 0)
+        $sender = $event->sender;
+        if ($sender->idAttribute !== false && is_string($sender->idAttribute) && is_int($sender->idAttributeLength) && $sender->idAttributeLength > 0)
         {
-            $idAttribute = $this->idAttribute;
-            $this->$idAttribute = self::GenerateId($this->idAttributeLength);
+            $idAttribute = $sender->idAttribute;
+            $sender->$idAttribute = self::GenerateId($sender->idAttributeLength);
         }
     }
     
     /**
      * This method is ONLY used for being triggered by event. DON'T call it 
      * directly.
-     * @param type $event
+     * @param \yii\base\Event $event
      */
     public function onSetIpAddress($event)
     {
-        if ($this->enableIP) {
-            $this->ipAddress = Yii::$app->request->userIP;
+        $sender = $event->sender;
+        if ($sender->enableIP) {
+            $sender->ipAddress = Yii::$app->request->userIP;
         }
     }
     

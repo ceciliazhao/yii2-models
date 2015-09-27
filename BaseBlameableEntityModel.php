@@ -69,19 +69,21 @@ class BaseBlameableEntityModel extends BaseEntityModel
      * updatedBy attributes when each of them is empty, because the assignment
      * operation is done after validation.
      * This method does not return anything, and DO NOT call it directly.
+     * @param \yii\base\Event $event
      */    
-    private function onInitBlameRules()
+    private function onInitBlameRules($event)
     {
-        if (empty($this->createdByAttributeRules) || !is_array($this->createdByAttributeRules))
+        $sender = $event->sender;
+        if (empty($sender->createdByAttributeRules) || !is_array($sender->createdByAttributeRules))
         {
-            $this->createdByAttributeRules = [
-                [[$this->createdByAttribute], parent::VALIDATOR_SAFE,],
+            $sender->createdByAttributeRules = [
+                [[$sender->createdByAttribute], parent::VALIDATOR_SAFE,],
             ];
         }
-        if (empty($this->updatedByAttributeRules) || !is_array($this->updatedByAttributeRules))
+        if (empty($sender->updatedByAttributeRules) || !is_array($sender->updatedByAttributeRules))
         {
-            $this->updatedByAttributeRules = [
-                [[$this->updatedByAttribute], parent::VALIDATOR_SAFE,],
+            $sender->updatedByAttributeRules = [
+                [[$sender->updatedByAttribute], parent::VALIDATOR_SAFE,],
             ];
         }
     }
@@ -108,13 +110,18 @@ class BaseBlameableEntityModel extends BaseEntityModel
     /**
      * This method is ONLY used for being triggered by event. DON'T call it 
      * directly.
-     * @param type $event
+     * @param \yii\base\Event $event
      * @return string 
      */
     public function onGetCurrentUserUuid($event)
     {
+        $sender = $event->sender;
+        if (!$sender)
+        {
+            throw new \yii\base\NotSupportedException('The sender is empty.');
+        }
         $identity = Yii::$app->user->identity;
-        $identityUuidAttribute = $this->identityUuidAttribute;
+        $identityUuidAttribute = $sender->identityUuidAttribute;
         return $identity->$identityUuidAttribute;
     }
     
