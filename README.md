@@ -154,9 +154,12 @@ class Example extends BaseEntityModel
 }
 ```
 
-If you have some ActiveRecord need to be blamed, maybe you are interested in BaseBlameableEntityModel, the basic usage is following:
+If you have some ActiveRecord need to be blamed, maybe you are interested in BaseBlameableEntityModel.
+
+BaseBlameableEntityModel automatically fills the specified attributes with the current user's GUID. The basic usage is following:
 ~~~php
-class Example extends BaseBlameableEntityModel
+* @property string $comment
+class CommentExample extends BaseBlameableEntityModel
 {
     /**
      * @var string the attribute that will receive current user's GUID value.
@@ -168,7 +171,7 @@ class Example extends BaseBlameableEntityModel
      * @var string the attribute that will receive current user's GUID value.
      * Set this property to false if you do not want to record the updater ID.
      */
-    public $updatedByAttribute = 'updater_uuid';
+    public $updatedByAttribute = 'user_uuid';
 
     /**
      * @var string the attribute that specify the name of id of 
@@ -176,10 +179,62 @@ class Example extends BaseBlameableEntityModel
      */
     public $identityUuidAttribute = 'user_uuid';
 
+    public $enableIP = false;
+
+    public static function tableName()
+    {
+        return <table_name>;
+    }
+
     // the usage of rules(), behaviors, and initDefaultValues() are same as 
     // those of BaseEntityModel.
+    public function rules()
+    {
+        $rules = [
+            [['comment'], 'required'],
+            [['comment'], 'string', 'max' => 140], 
+        ];
+        return array_merge(parent::rules(), $rules);
+    }
+
+    public function behaviors()
+    {
+        $behaviors = <Your Behaviors>;
+        return array_merge(parent::behaviors(), $behaviors);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            ...
+        ];
+    }
 }
 ~~~
+
+Well, when you are signed-in, you can save a new `Example` instance:
+~~~php
+$example = new CommentExample();
+$example->comment = 'New Comment.';
+$example->save();
+// Then it will automatically fill the GUID, Creator's GUID, create time &
+// update time, but except IP address, because you disabled the IP features.
+~~~
+
+or update an existing one:
+~~~php
+$example = CommentExample::find()->where([$this->createdByAttribute => $user_uuid])->one();
+$example->comment => 'Updated Comment.';
+$example->save();
+// Then it will automatically update the update time of current item.
+~~~
+
+Before you use it, you must make sure the Example model that corresponds a database table include the following attributes:
+* guid
+* user_uuid
+* create_time
+* update_time
+* comment
 
 Contact Us
 ----------

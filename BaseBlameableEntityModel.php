@@ -15,6 +15,50 @@ use yii\behaviors\BlameableBehavior;
 /**
  * BaseBlameableEntityModel automatically fills the specified attributes with 
  * the current user's GUID.
+ * 
+ * For example:
+ * ~~~php
+ * * @property string $comment
+ * class Example extends BaseBlameableEntityModel
+ * {
+ *     public static function tableName()
+ *     {
+ *         return <table_name>;
+ *     }
+ * 
+ *     public function rules()
+ *     {
+ *         $rules = [
+ *             [['comment'], 'required'],
+ *             [['comment'], 'string', 'max' => 140], 
+ *         ];
+ *         return array_merge(parent::rules(), $rules);
+ *     }
+ * 
+ *     public function behaviors()
+ *     {
+ *         $behaviors = <Your Behaviors>;
+ *         return array_merge(parent::behaviors(), $behaviors);
+ *     }
+ * 
+ *     public function attributeLabels()
+ *     {
+ *         return [
+ *             ...
+ *         ];
+ *     }
+ * }
+ * 
+ * Well, when you are signed-in, you can save a new `Example` instance:
+ * $example = new Example();
+ * $example->comment = 'New Comment.';
+ * $example->save();
+ * 
+ * or update an existing one:
+ * $example = Example::find()->where([$this->createdByAttribute => $user_uuid])->one();
+ * $example->comment => 'Updated Comment.';
+ * $example->save();
+ * ~~~
  *
  * @author vistart <i@vistart.name>
  */
@@ -146,7 +190,7 @@ class BaseBlameableEntityModel extends BaseEntityModel
             $rules = array_merge($rules, $this->updatedByAttributeRules);
         }
         
-        if ($this->createdByCombinedWithId)
+        if ($this->createdByCombinedWithId && !$this->idAttribute)
         {
             $this->idAttributeSafe = true;
             $rules[] = [
