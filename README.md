@@ -230,7 +230,7 @@ $example = Example::find()
                   ->one();
 if ($example)
 {
-    $example->comment => 'Updated Comment.';
+    $example->comment = 'Updated Comment.';
     $example->save();
 }
 // Then it will automatically update the update time of current item.
