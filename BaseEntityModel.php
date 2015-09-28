@@ -242,7 +242,7 @@ class BaseEntityModel extends ActiveRecord
     }
     
     /**
-     * Get the current date & date in format of "Y-m-d H:i:s".
+     * Get the current date & time in format of "Y-m-d H:i:s".
      * This method is used for being triggered. DO NOT call it directly.
      * @param \yii\base\Event $event
      * @return string Date & Time.
