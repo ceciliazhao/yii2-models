@@ -250,9 +250,14 @@
 
 <p>or update an existing one:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$example</span> <span class="pl-k">=</span> <span class="pl-c1">CommentExample</span><span class="pl-k">::</span>find()<span class="pl-k">-&gt;</span>where([<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">createdByAttribute</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$user_uuid</span>])<span class="pl-k">-&gt;</span>one();</span>
-<span class="pl-s1"><span class="pl-smi">$example</span><span class="pl-k">-&gt;</span><span class="pl-smi">comment</span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Updated Comment.<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1"><span class="pl-smi">$example</span><span class="pl-k">-&gt;</span>save();</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$example</span> <span class="pl-k">=</span> <span class="pl-c1">Example</span><span class="pl-k">::</span>find()</span>
+<span class="pl-s1">                  <span class="pl-k">-&gt;</span>where([<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">createdByAttribute</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$user_uuid</span>])</span>
+<span class="pl-s1">                  <span class="pl-k">-&gt;</span>one();</span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-smi">$example</span>)</span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-smi">$example</span><span class="pl-k">-&gt;</span><span class="pl-smi">comment</span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Updated Comment.<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">    <span class="pl-smi">$example</span><span class="pl-k">-&gt;</span>save();</span>
+<span class="pl-s1">}</span>
 <span class="pl-s1"><span class="pl-c">// Then it will automatically update the update time of current item.</span></span></pre></div>
 
 <p>Before you use it, you must make sure the Example model that corresponds a database table include the following attributes:</p>
