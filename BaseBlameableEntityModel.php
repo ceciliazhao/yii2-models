@@ -60,7 +60,7 @@ use yii\behaviors\BlameableBehavior;
  *                   ->one();
  * if ($example)
  * {
- *     $example->comment => 'Updated Comment.';
+ *     $example->comment = 'Updated Comment.';
  *     $example->save();
  * }
  * ~~~
