@@ -55,12 +55,18 @@ use yii\behaviors\BlameableBehavior;
  * $example->save();
  * 
  * or update an existing one:
- * $example = Example::find()->where([$this->createdByAttribute => $user_uuid])->one();
- * $example->comment => 'Updated Comment.';
- * $example->save();
+ * $example = Example::find()
+ *                   ->where([$this->createdByAttribute => $user_uuid])
+ *                   ->one();
+ * if ($example)
+ * {
+ *     $example->comment => 'Updated Comment.';
+ *     $example->save();
+ * }
  * ~~~
  *
  * @author vistart <i@vistart.name>
+ * @since 1.1
  */
 class BaseBlameableEntityModel extends BaseEntityModel
 {
@@ -96,9 +102,8 @@ class BaseBlameableEntityModel extends BaseEntityModel
     const COMBINATION_UNIQUE = 'unqiue';
     
     /**
-     * Determine the type of combination of creator's GUID and record's ID.
-     * If you don't want to combine them, please set it to false.
-     * @var boolean|string 
+     * @var boolean|string Determine the type of combination of creator's GUID 
+     * and record's ID. If you don't want to combine them, please set it to false.
      */
     public $createdByCombinedWithId = self::COMBINATION_UNIQUE;
     
@@ -160,10 +165,6 @@ class BaseBlameableEntityModel extends BaseEntityModel
     public function onGetCurrentUserUuid($event)
     {
         $sender = $event->sender;
-        if (!$sender)
-        {
-            throw new \yii\base\NotSupportedException('The sender is empty.');
-        }
         $identity = \Yii::$app->user->identity;
         $identityUuidAttribute = $sender->identityUuidAttribute;
         return $identity->$identityUuidAttribute;
@@ -190,11 +191,13 @@ class BaseBlameableEntityModel extends BaseEntityModel
             $rules = array_merge($rules, $this->updatedByAttributeRules);
         }
         
-        if ($this->createdByCombinedWithId && !$this->idAttribute)
+        if ($this->createdByCombinedWithId && $this->idAttribute && is_string($this->idAttribute))
         {
             $this->idAttributeSafe = true;
             $rules[] = [
-                [$this->createdByAttribute, $this->idAttribute], self::VALIDATOR_UNIQUE, 'targetAttribute' => [$this->createdByAttribute, $this->idAttribute]
+                [$this->createdByAttribute, $this->idAttribute], 
+                self::VALIDATOR_UNIQUE, 
+                'targetAttribute' => [$this->createdByAttribute, $this->idAttribute]
             ];
         }
         return array_merge(parent::rules(), $rules);

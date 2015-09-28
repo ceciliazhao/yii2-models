@@ -225,9 +225,14 @@ $example->save();
 
 or update an existing one:
 ~~~php
-$example = CommentExample::find()->where([$this->createdByAttribute => $user_uuid])->one();
-$example->comment => 'Updated Comment.';
-$example->save();
+$example = Example::find()
+                  ->where([$this->createdByAttribute => $user_uuid])
+                  ->one();
+if ($example)
+{
+    $example->comment => 'Updated Comment.';
+    $example->save();
+}
 // Then it will automatically update the update time of current item.
 ~~~
 
