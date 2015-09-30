@@ -90,13 +90,13 @@ abstract class BaseBlameableEntityModel extends BaseEntityModel
      * @var array the whole validation rules of creator attribute only, except 
      * of combination rules.
      */
-    public $_createdByAttributeRules = [];
+    private $_createdByAttributeRules = [];
     
     /**
      * @var array the whole validation rules of updater attribute only, except 
      * of combination rules.
      */
-    public $_updatedByAttributeRules = [];
+    private $_updatedByAttributeRules = [];
     
     /**
      * @var string the attribute that specify the name of id of 
