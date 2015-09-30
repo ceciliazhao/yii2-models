@@ -64,11 +64,15 @@ use yii\behaviors\BlameableBehavior;
  *     $example->save();
  * }
  * ~~~
- *
+ * 
+ * @property array createdByAttributeRules the whole validation rules of 
+ * creator attribute only, except of combination rules.
+ * @property array updatedByAttributeRules the whole validation rules of 
+ * creator attribute only, except of combination rules.
  * @author vistart <i@vistart.name>
  * @since 1.1
  */
-class BaseBlameableEntityModel extends BaseEntityModel
+abstract class BaseBlameableEntityModel extends BaseEntityModel
 {
     /**
      * @var string the attribute that will receive current user's GUID value.
@@ -86,16 +90,17 @@ class BaseBlameableEntityModel extends BaseEntityModel
      * @var array the whole validation rules of creator attribute only, except 
      * of combination rules.
      */
-    public $createdByAttributeRules = [];
+    public $_createdByAttributeRules = [];
     
     /**
      * @var array the whole validation rules of updater attribute only, except 
      * of combination rules.
      */
-    public $updatedByAttributeRules = [];
+    public $_updatedByAttributeRules = [];
     
     /**
-     * @var string the attribute that specify the name of id of Yii::$app->user->identity.
+     * @var string the attribute that specify the name of id of 
+     * Yii::$app->user->identity. Or same as $createByAttribute.
      */
     public $identityUuidAttribute = 'user_uuid';
     
@@ -107,34 +112,38 @@ class BaseBlameableEntityModel extends BaseEntityModel
      */
     public $createdByCombinedWithId = self::COMBINATION_UNIQUE;
     
-    public function init()
+    public function getCreatedByAttributeRules()
     {
-        $this->on(self::EVENT_INIT, [$this, 'onInitBlameRules']);
-        parent::init();
+        if (empty($this->_createdByAttributeRules)
+         || !is_array($this->_createdByAttributeRules))
+        {
+            $this->_createdByAttributeRules = [
+                [[$this->createdByAttribute], parent::VALIDATOR_SAFE],
+            ];
+        }
+        return $this->_createdByAttributeRules;
     }
     
-    /**
-     * This method will automatically assign the safe validator to createdBy,
-     * updatedBy attributes when each of them is empty, because the assignment
-     * operation is done after validation.
-     * This method does not return anything, and DO NOT call it directly.
-     * @param \yii\base\Event $event
-     */    
-    protected function onInitBlameRules($event)
+    public function setCreatedByAttributeRules($rules)
     {
-        $sender = $event->sender;
-        if (empty($sender->createdByAttributeRules) || !is_array($sender->createdByAttributeRules))
+        $this->_createdByAttributeRules = $rules;
+    }
+    
+    public function getUpdatedByAttributeRules()
+    {
+        if (empty($this->_updatedByAttributeRules)
+         || !is_array($this->_updatedByAttributeRules))
         {
-            $sender->createdByAttributeRules = [
-                [[$sender->createdByAttribute], parent::VALIDATOR_SAFE,],
+            $this->_updatedByAttributeRules = [
+                [[$this->updatedByAttribute], parent::VALIDATOR_SAFE],
             ];
         }
-        if (empty($sender->updatedByAttributeRules) || !is_array($sender->updatedByAttributeRules))
-        {
-            $sender->updatedByAttributeRules = [
-                [[$sender->updatedByAttribute], parent::VALIDATOR_SAFE,],
-            ];
-        }
+        return $this->_updatedByAttributeRules;
+    }
+    
+    public function setUpdatedByAttributeRules($rules)
+    {
+        $this->_updatedByAttributeRules = $rules;
     }
     
     /**
@@ -166,6 +175,10 @@ class BaseBlameableEntityModel extends BaseEntityModel
     {
         $sender = $event->sender;
         $identity = \Yii::$app->user->identity;
+        if (!is_string($sender->identityUuidAttribute))
+        {
+            $sender->identityUuidAttribute = $sender->createdByAttribute;
+        }
         $identityUuidAttribute = $sender->identityUuidAttribute;
         return $identity->$identityUuidAttribute;
     }
@@ -191,7 +204,9 @@ class BaseBlameableEntityModel extends BaseEntityModel
             $rules = array_merge($rules, $this->updatedByAttributeRules);
         }
         
-        if ($this->createdByCombinedWithId && $this->idAttribute && is_string($this->idAttribute))
+        if ($this->createdByCombinedWithId === self::COMBINATION_UNIQUE
+         && $this->idAttribute 
+         && is_string($this->idAttribute))
         {
             $this->idAttributeSafe = true;
             $rules[] = [

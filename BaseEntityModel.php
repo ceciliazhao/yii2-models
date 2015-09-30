@@ -44,7 +44,7 @@ use yii\db\ActiveRecord;
  * 
  * @author vistart <i@vistart.name>
  */
-class BaseEntityModel extends ActiveRecord
+abstract class BaseEntityModel extends ActiveRecord
 {
     /**
      * @var string REQUIRED. The attribute that will receive the GUID value.

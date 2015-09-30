@@ -177,7 +177,7 @@ class CommentExample extends BaseBlameableEntityModel
 
     /**
      * @var string the attribute that specify the name of id of 
-     * Yii::$app->user->identity.
+     * Yii::$app->user->identity. Or same as $createByAttribute.
      */
     public $identityUuidAttribute = 'user_uuid';
 
