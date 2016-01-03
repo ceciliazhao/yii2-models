@@ -65,6 +65,9 @@ trait ConfirmationTrait {
      */
     public function onInitConfirmation($event) {
         $sender = $event->sender;
+        if (!$sender->confirmationAttribute) {
+            return;
+        }
         $confirmationAttribute = $sender->confirmationAttribute;
         $confirmTimeAttribute = $sender->confirmTimeAttribute;
         $sender->$confirmationAttribute = self::$CONFIRM_FALSE;
@@ -105,10 +108,15 @@ trait ConfirmationTrait {
     }
 
     public function getConfirmationRules() {
-        return [
-            [[$this->confirmationAttribute], 'integer', 'min' => 0],
-            [[$this->confirmTimeAttribute], 'safe'],
-        ];
+        if ($this->confirmationAttribute)
+        {
+            return [
+                [[$this->confirmationAttribute], 'integer', 'min' => 0],
+                [[$this->confirmTimeAttribute], 'safe'],
+            ];
+        } else {
+            return [];
+        }
     }
 
     /**

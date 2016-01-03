@@ -19,6 +19,8 @@ namespace vistart\Models\traits;
  * @property-read string $authKey
  * @property-read string $guid
  * @property array $statusRules
+ * @property array $authKeyRules
+ * @property array $accessTokenRules
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -29,7 +31,9 @@ trait IdentityTrait {
     public $statusAttribute = 'status';
     private $_statusRules = [];
     public $authKeyAttribute = 'auth_key';
+    private $_authKeyRules = [];
     public $accessTokenAttribute = 'access_token';
+    private $_accessTokenRules = [];
 
     public static function findIdentity($id) {
         $self = (self::className());
@@ -64,13 +68,45 @@ trait IdentityTrait {
         return $this->auth_key === $authKey;
     }
 
+    public function getAuthKeyRules() {
+        if (empty($this->_authKeyRules)) {
+            $this->_authKeyRules = [
+                [[$this->authKeyAttribute], 'required'],
+                [[$this->authKeyAttribute], 'string', 'max' => 32],
+            ];
+        }
+        return $this->_authKeyRules;
+    }
+
+    public function setAuthKeyRules($rules) {
+        if (!empty($rules) && is_array($rules)) {
+            $this->_authKeyRules = $rules;
+        }
+    }
+
+    public function getAccessTokenRules() {
+        if (empty($this->_accessTokenRules)) {
+            $this->_accessTokenRules = [
+                [[$this->accessTokenAttribute], 'required'],
+                [[$this->accessTokenAttribute], 'string', 'max' => 32],
+            ];
+        }
+        return $this->_accessTokenRules;
+    }
+
+    public function setAccessTokenRules($rules) {
+        if (!empty($rules) && is_array($rules)) {
+            $this->_accessTokenRules = $rules;
+        }
+    }
+
     /**
      * 
      * @return type
      */
     public function getStatusRules() {
         if (empty($this->_statusRules)) {
-            $this->_sourceRules = [
+            $this->_statusRules = [
                 [[$this->statusAttribute], 'required'],
                 [[$this->statusAttribute], 'integer', 'min' => 0],
             ];
@@ -84,7 +120,7 @@ trait IdentityTrait {
      */
     public function setStatusRules($rules) {
         if (!empty($rules) && is_array($rules)) {
-            $this->_sourceRules = $rules;
+            $this->_statusRules = $rules;
         }
     }
 

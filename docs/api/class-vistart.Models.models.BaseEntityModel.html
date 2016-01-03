@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\BaseBlameableEntityModel</title>
+	<title>Class vistart\Models\models\BaseEntityModel</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -74,8 +74,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
+				<li class="active"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
@@ -94,34 +94,11 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseBlameableEntityModel</h1>
+	<h1>Class BaseEntityModel</h1>
 
 
 	<div class="description">
-	<p>BaseBlameableEntityModel automatically fills the specified attributes with
-the current user's GUID.</p>
-
-<p>For example:</p>
-
-<pre><code class="php">* @property string $comment
-class Comment extends BaseBlameableEntityModel
-{ public static function tableName() { return &lt;table_name&gt;; }
- public function rules() { $rules = [ [['comment'], 'required'], [['comment'], 'string', 'max' =&gt; 140], ]; return array_merge(parent::rules(), $rules); }
- public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); }
- public function attributeLabels() { return [ ... ]; }
-}
-
-Well, when you are signed-in, you can save a new `Example` instance:
-$example = new Example();
-$example-&gt;comment = 'New Comment.';
-$example-&gt;save();
-
-or update an existing one:
-$example = Example::find() -&gt;where([$this-&gt;createdByAttribute =&gt; $user_uuid]) -&gt;one();
-if ($example)
-{ $example-&gt;comment = 'Updated Comment.'; $example-&gt;save();
-}
-</code></pre>
+	<p>The abstract BaseEntityModel is used for entity class.</p>
 	</div>
 
 	<dl class="tree well">
@@ -132,24 +109,22 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-vistart.Models.models.BaseEntityModel.html"><span>vistart\Models\models\BaseEntityModel</span></a>
-			
+<b><span>vistart\Models\models\BaseEntityModel</span></b>			
 			
 			 uses 
 					<a href="class-vistart.Models.traits.EntityTrait.html"><span>vistart\Models\traits\EntityTrait</span></a>
 			
 		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\BaseBlameableEntityModel</span></b>			
-			
-			 uses 
-					<a href="class-vistart.Models.traits.BlameableTrait.html"><span>vistart\Models\traits\BlameableTrait</span></a>
-			
-		</dd>
 	</dl>
 
 
+	<div>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">vistart\Models\models\BaseBlameableEntityModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+		</p>
+	</div>
 
 
 
@@ -166,9 +141,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-				<b>Since:</b>
-				1.1<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableEntityModel.html#17-94" title="Go to source code">models/BaseBlameableEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-47" title="Go to source code">models/BaseEntityModel.php</a>
 		<br>
 	</div>
 
@@ -188,22 +161,20 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseBlameableEntityModel.html#82-92" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#32-45" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Initialize new entity.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Initialize new entity.</p>
 
 
 
 
 
 
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseEntityModel.html#_init">vistart\Models\models\BaseEntityModel::init</a></code></div>
 
 			</div>
 			</div></td>
@@ -213,38 +184,13 @@ yii\db\ActiveRecord
 
 
 		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentTypes">getContentTypes()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onContentChanged">onContentChanged()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_rules">rules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.ConfirmationTrait.html#methods">vistart\Models\traits\ConfirmationTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmationRules">getConfirmationRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getIsConfirmed">getIsConfirmed()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onConfirmationChanged">onConfirmationChanged()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onInitConfirmation">onInitConfirmation()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetConfirmation">resetConfirmation()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>
 			</p>
@@ -296,29 +242,40 @@ yii\db\ActiveRecord
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="skipInit" id="$skipInit">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseEntityModel.html#27-30" title="Go to source code"><var>$skipInit</var></a>
+
+				<div class="description short">
+					<p>Determines to skip initialization.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Determines to skip initialization.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$skipInit" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
 		</div>
 
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties inherited from <a href="class-vistart.Models.models.BaseEntityModel.html#properties">vistart\Models\models\BaseEntityModel</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseEntityModel.html#$skipInit"><var>$skipInit</var></a></code>
-			</p>
-		</div>
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$EVENT_NEW_RECORD_CREATED"><var>$EVENT_NEW_RECORD_CREATED</var></a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttribute"><var>$contentAttribute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$identityGuidAttribute"><var>$identityGuidAttribute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$updatedByAttribute"><var>$updatedByAttribute</var></a></code>
 			</p>
 		</div>
 
@@ -329,16 +286,6 @@ yii\db\ActiveRecord
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityBehaviors"><var>$entityBehaviors</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityRules"><var>$entityRules</var></a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableBehaviors"><var>$blameableBehaviors</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableRules"><var>$blameableRules</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$content"><var>$content</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentCanBeEdited"><var>$contentCanBeEdited</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentTypes"><var>$contentTypes</var></a></code>
 			</p>
 		</div>
 

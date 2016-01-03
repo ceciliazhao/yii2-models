@@ -111,14 +111,16 @@ trait IDTrait {
                 $this->idAttributeLength > 0) {
             $rules = [
                 [[$this->idAttribute], 'required'],
-                [[$this->idAttribute], 'string',
-                    'length' => $this->idAttributeLength,],
                 [[$this->idAttribute], 'unique'],
             ];
             if ($this->idAttributeType === $this->idAttributeTypeInteger) {
                 $rules[] = [
                     [$this->idAttribute], 'integer',
                 ];
+            }
+            if ($this->idAttributeType === $this->idAttributeTypeString) {
+                $rules[] = [[$this->idAttribute], 'string',
+                    'length' => $this->idAttributeLength,];
             }
             return $rules;
         }

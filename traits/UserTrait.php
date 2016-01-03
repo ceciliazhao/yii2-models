@@ -38,4 +38,8 @@ trait UserTrait {
         return new $className($config);
     }
 
+    public function rules() {
+        return array_merge(parent::rules(), $this->passwordHashRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules);
+    }
+
 }

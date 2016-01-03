@@ -47,6 +47,12 @@ trait PasswordTrait {
      * - 'crypt' - use PHP `crypt()` function.
      */
     public $passwordHashStrategy = 'crypt';
+
+    /**
+     * @var integer if $passwordHashStrategy equals 'crypt', this value statically
+     * equals 60.
+     */
+    public $passwordHashAttributeLength = 60;
     private $_passwordHashRules = [];
 
     /**
@@ -54,11 +60,13 @@ trait PasswordTrait {
      * @return array password hash rules.
      */
     public function getPasswordHashRules() {
+        if ($this->passwordHashStrategy == 'crypt') {
+            $this->passwordHashAttributeLength = 60;
+        }
         if (empty($this->_passwordHashRules)) {
             $this->_passwordHashRules = [
-                [[$this->passwordHashAttribute], 'string', 'max' => 80],
+                [[$this->passwordHashAttribute], 'string', 'max' => $this->passwordHashAttributeLength],
             ];
-            return $this->_passwordHashRules;
         }
         return $this->_passwordHashRules;
     }

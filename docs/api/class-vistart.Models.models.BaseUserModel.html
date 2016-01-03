@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\BaseEntityModel</title>
+	<title>Class vistart\Models\models\BaseUserModel</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -75,10 +75,10 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
-				<li class="active"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
+				<li class="active"><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
 			</ul>
 
 
@@ -94,11 +94,11 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseEntityModel</h1>
+	<h1>Class BaseUserModel</h1>
 
 
 	<div class="description">
-	<p>The abstract BaseEntityModel is used for entity class.</p>
+	<p>The abstract BaseUserModel is used for user identity class.</p>
 	</div>
 
 	<dl class="tree well">
@@ -109,22 +109,26 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\BaseEntityModel</span></b>			
+			<a href="class-vistart.Models.models.BaseEntityModel.html"><span>vistart\Models\models\BaseEntityModel</span></a>
+			
 			
 			 uses 
 					<a href="class-vistart.Models.traits.EntityTrait.html"><span>vistart\Models\traits\EntityTrait</span></a>
 			
 		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>vistart\Models\models\BaseUserModel</span></b>			
+			 implements 
+<span>yii\web\IdentityInterface</span>
+			
+			 uses 
+					<a href="class-vistart.Models.traits.UserTrait.html"><span>vistart\Models\traits\UserTrait</span></a>
+			
+		</dd>
 	</dl>
 
 
-	<div>
-		<h3>Direct known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">vistart\Models\models\BaseBlameableEntityModel</a></code>, 
-			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
-		</p>
-	</div>
 
 
 
@@ -141,7 +145,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-41" title="Go to source code">models/BaseEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserModel.html#17-35" title="Go to source code">models/BaseUserModel.php</a>
 		<br>
 	</div>
 
@@ -161,20 +165,22 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#29-39" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserModel.html#27-33" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Initialize new entity.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Initialize new entity.</p>
 
 
 
 
 
 
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseEntityModel.html#_init">vistart\Models\models\BaseEntityModel::init</a></code></div>
 
 			</div>
 			</div></td>
@@ -184,13 +190,58 @@ yii\db\ActiveRecord
 
 
 		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.UserTrait.html#methods">vistart\Models\traits\UserTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.UserTrait.html#_createNewModel">createNewModel()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserTrait.html#_rules">rules()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPassword">setPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordHashRules">setPasswordHashRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.RegistrationTrait.html#methods">vistart\Models\traits\RegistrationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_deregister">deregister()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_getSourceRules">getSourceRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_onInitSourceAttribute">onInitSourceAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_register">register()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_setSourceRules">setSourceRules()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IdentityTrait.html#methods">vistart\Models\traits\IdentityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentity">findIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByAccessToken">findIdentityByAccessToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByGuid">findIdentityByGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAccessTokenRules">getAccessTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKey">getAuthKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKeyRules">getAuthKeyRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getGuid">getGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getId">getId()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getStatusRules">getStatusRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_onInitStatusAttribute">onInitStatusAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAccessTokenRules">setAccessTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAuthKeyRules">setAuthKeyRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setStatusRules">setStatusRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_validateAuthKey">validateAuthKey()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>
 			</p>
@@ -242,35 +293,14 @@ yii\db\ActiveRecord
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
-			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="skipInit" id="$skipInit">
-			<td class="attributes"><code>
-				public  
-				boolean
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseEntityModel.html#27" title="Go to source code"><var>$skipInit</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$skipInit" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
-			</table>
 		</div>
 
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from <a href="class-vistart.Models.models.BaseEntityModel.html#properties">vistart\Models\models\BaseEntityModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseEntityModel.html#$skipInit"><var>$skipInit</var></a></code>
+			</p>
+		</div>
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>

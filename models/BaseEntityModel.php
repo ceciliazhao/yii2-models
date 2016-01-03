@@ -24,8 +24,14 @@ abstract class BaseEntityModel extends ActiveRecord {
 
     use EntityTrait;
 
+    /**
+     * @var boolean Determines to skip initialization.
+     */
     public $skipInit = false;
 
+    /**
+     * Initialize new entity.
+     */
     public function init() {
         if ($this->skipInit)
             return;

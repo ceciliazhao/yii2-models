@@ -56,6 +56,12 @@ trait BlameableTrait {
     public $contentAttribute = false;
 
     /**
+     *
+     * @var type 
+     */
+    public $contentAttributeRule = null;
+
+    /**
      * @var boolean|array Specify the logic type of content, not data type. If
      * your content doesn't need this feature. please specify false. If the
      * $contentAttribute is specified to false, this attribute will be skipped.
@@ -151,14 +157,22 @@ trait BlameableTrait {
             $this->_blameableRules = array_merge(
                     parent::rules(), $this->confirmationRules, [
                 [[$this->createdByAttribute], 'safe'],
-                [$this->contentAttribute, 'required'],
                 [[$this->createdByAttribute], 'string', 'max' => 36],
-                [$this->contentAttribute, 'email'],
                 [[$this->createdByAttribute, $this->idAttribute], 'unique', 'targetAttribute' =>
                     [$this->createdByAttribute, $this->idAttribute],
                 ],
                     ]
             );
+            if ($this->contentAttribute) {
+                $this->_blameableRules[] = [
+                    [$this->contentAttribute], 'required'
+                ];
+                if ($this->contentAttributeRule) {
+                    $this->_blameableRules[] = [
+                        [$this->contentAttribute], $this->contentAttributeRule
+                    ];
+                }
+            }
         }
         return $this->_blameableRules;
     }
@@ -229,6 +243,7 @@ trait BlameableTrait {
         if (!$identity) {
             return null;
         }
+        $identityGuidAttribute = $identity->guidAttribute;
         return $identity->$identityGuidAttribute;
     }
 
