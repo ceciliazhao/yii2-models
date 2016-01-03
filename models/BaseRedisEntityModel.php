@@ -1,4 +1,5 @@
 <?php
+
 /*
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,14 +11,16 @@
  */
 
 namespace vistart\Models\models;
+
 use vistart\Models\traits\EntityTrait;
+
 /**
  * Description of BaseRedisEntityModel
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseRedisEntityModel extends \yii\redis\ActiveRecord
-{
+abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord {
+
     use EntityTrait;
 }

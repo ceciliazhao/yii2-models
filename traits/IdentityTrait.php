@@ -22,62 +22,54 @@ namespace vistart\Models\traits;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait IdentityTrait
-{
+trait IdentityTrait {
+
     public static $STATUS_ACTIVE = 1;
     public static $STATUS_INACTIVE = 0;
     public $statusAttribute = 'status';
     private $_statusRules = [];
     public $authKeyAttribute = 'auth_key';
     public $accessTokenAttribute = 'access_token';
-    
-    public static function findIdentity($id)
-    {
+
+    public static function findIdentity($id) {
         $self = (self::className());
         return static::findOne([(new $self(['skipInit' => true]))->idAttribute => $id]);
     }
-    
-    public static function findIdentityByGuid($guid)
-    {
+
+    public static function findIdentityByGuid($guid) {
         return static::findOne($guid);
     }
-    
-    public static function findIdentityByAccessToken($token, $type = NULL)
-    {
+
+    public static function findIdentityByAccessToken($token, $type = NULL) {
         return static::findOne(['access_token' => $token]);
     }
-    
-    public function getId()
-    {
+
+    public function getId() {
         $idAttribute = $this->idAttribute;
-        if (empty($idAttribute)) return false;
+        if (empty($idAttribute))
+            return false;
         return $this->$idAttribute;
     }
-    
-    public function getGuid()
-    {
+
+    public function getGuid() {
         $guidAttribute = $this->guidAttribute;
         return $this->$guidAttribute;
     }
-    
-    public function getAuthKey()
-    {
+
+    public function getAuthKey() {
         return $this->auth_key;
     }
-    
-    public function validateAuthKey($authKey)
-    {
+
+    public function validateAuthKey($authKey) {
         return $this->auth_key === $authKey;
     }
-    
+
     /**
      * 
      * @return type
      */
-    public function getStatusRules()
-    {
-        if (empty($this->_statusRules))
-        {
+    public function getStatusRules() {
+        if (empty($this->_statusRules)) {
             $this->_sourceRules = [
                 [[$this->statusAttribute], 'required'],
                 [[$this->statusAttribute], 'integer', 'min' => 0],
@@ -85,23 +77,27 @@ trait IdentityTrait
         }
         return $this->_statusRules;
     }
-    
+
     /**
      * 
      * @param type $rules
      */
-    public function setStatusRules($rules)
-    {
-        if (!empty($rules) && is_array($rules))
-        {
+    public function setStatusRules($rules) {
+        if (!empty($rules) && is_array($rules)) {
             $this->_sourceRules = $rules;
         }
     }
-    
-    public function onInitStatusAttribute($event)
-    {
+
+    /**
+     * 
+     * This method is ONLY used for being triggered by event. DO NOT call,
+     * override or modify it directly, unless you know the consequences.
+     * @param \yii\base\Event $event
+     */
+    public function onInitStatusAttribute($event) {
         $sender = $event->sender;
         $statusAttribute = $sender->statusAttribute;
         $sender->$statusAttribute = self::$STATUS_ACTIVE;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,7 +11,9 @@
  */
 
 namespace vistart\Models\models;
+
 use vistart\Models\traits\BlameableTrait;
+
 /**
  * BaseBlameableEntityModel automatically fills the specified attributes with 
  * the current user's GUID.
@@ -72,7 +75,20 @@ use vistart\Models\traits\BlameableTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseBlameableEntityModel extends BaseEntityModel
-{
+abstract class BaseBlameableEntityModel extends BaseEntityModel {
+
     use BlameableTrait;
+
+    /**
+     * 
+     */
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->on(self::$EVENT_CONFIRMATION_CHANGED, [$this, "onConfirmationChanged"]);
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, "onInitConfirmation"]);
+        $this->on(self::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
+        parent::init();
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,14 +11,16 @@
  */
 
 namespace vistart\Models\models;
+
 use vistart\Models\traits\EntityTrait;
+
 /**
  * Description of BaseMongoEntityModel
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
-{
+abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord {
+
     use EntityTrait;
 }

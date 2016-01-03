@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,14 +11,31 @@
  */
 
 namespace vistart\Models\models;
+
 use yii\db\ActiveRecord;
 use vistart\Models\traits\EntityTrait;
+
 /**
  * The abstract BaseEntityModel is used for entity class.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseEntityModel extends ActiveRecord
-{
+abstract class BaseEntityModel extends ActiveRecord {
+
     use EntityTrait;
+
+    public $skipInit = false;
+
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitGuidAttribute']);
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitIdAttribute']);
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitIpAddress']);
+        if ($this->isNewRecord) {
+            $this->trigger(self::$EVENT_NEW_RECORD_CREATED);
+        }
+        parent::init();
+    }
+
 }

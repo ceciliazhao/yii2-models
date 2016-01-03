@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,35 +11,31 @@
  */
 
 namespace vistart\Models\traits;
+
 /**
  * Assemble PasswordTrait, RegistrationTrait and IdentityTrait into UserTrait.
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait UserTrait
-{
-    use PasswordTrait, RegistrationTrait, IdentityTrait;
-    
-    public function init()
-    {
-        if ($this->skipInit) return;
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitStatusAttribute']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitSourceAttribute']);
-        parent::init();
-    }
-    
+trait UserTrait {
+
+    use PasswordTrait,
+        RegistrationTrait,
+        IdentityTrait;
+
     /**
      * 
-     * @param string $className Full qualified name.
-     * @param array $config
+     * @param string $className Full qualified class name.
+     * @param array $config name-value pairs that will be used to initialize
+     * the object properties.
      */
-    public function createNewModel($className, $config = [])
-    {
+    public function createNewModel($className, $config = []) {
         $guidAttribute = $this->guidAttribute;
-        if (!isset($config[$guidAttribute])){
+        if (!isset($config[$guidAttribute])) {
             $config[$guidAttribute] = $this->$guidAttribute;
         }
         return new $className($config);
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,14 +11,25 @@
  */
 
 namespace vistart\Models\models;
+
 use vistart\Models\traits\UserTrait;
+
 /**
  * The abstract BaseUserModel is used for user identity class.
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserModel extends BaseEntityModel implements \yii\web\IdentityInterface
-{
+abstract class BaseUserModel extends BaseEntityModel implements \yii\web\IdentityInterface {
+
     use UserTrait;
+
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitStatusAttribute']);
+        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitSourceAttribute']);
+        parent::init();
+    }
+
 }

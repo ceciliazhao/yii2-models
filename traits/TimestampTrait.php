@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
@@ -10,7 +11,9 @@
  */
 
 namespace vistart\Models\traits;
+
 use yii\behaviors\TimestampBehavior;
+
 /**
  * 
  * @property-read array $timestampBehaviors
@@ -19,45 +22,43 @@ use yii\behaviors\TimestampBehavior;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait TimestampTrait
-{
+trait TimestampTrait {
+
     /**
      * @var string the attribute that will receive datetime value
      * Set this property to false if you do not want to record the creation time.
      */
     public $createdAtAttribute = 'create_time';
-    
+
     /**
      * @var string the attribute that will receive datetime value.
      * Set this property to false if you do not want to record the update time.
      */
     public $updatedAtAttribute = 'update_time';
-    
+
     /**
      * Get the current date & time in format of "Y-m-d H:i:s".
      * You can override this method to customize the return value.
      * @return string Date & Time.
      * @since 1.1
      */
-    public static function getCurrentDatetime()
-    {
+    public static function getCurrentDatetime() {
         return date('Y-m-d H:i:s');
     }
-    
+
     /**
      * Get the current date & time in format of "Y-m-d H:i:s".
-     * This method is used for being triggered. DO NOT call it directly.
+     * This method is ONLY used for being triggered by event. DO NOT call,
+     * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      * @return string Date & Time.
      * @since 1.1
      */
-    public function onUpdateCurrentDatetime($event)
-    {
+    public function onUpdateCurrentDatetime($event) {
         return self::getCurrentDatetime();
     }
-    
-    public function getTimestampBehaviors()
-    {
+
+    public function getTimestampBehaviors() {
         return [
             [
                 'class' => TimestampBehavior::className(),
@@ -67,18 +68,17 @@ trait TimestampTrait
             ]
         ];
     }
-    
-    public function getCreatedAtRules()
-    {
+
+    public function getCreatedAtRules() {
         return [
             [[$this->createdAtAttribute], 'safe'],
         ];
     }
-    
-    public function getUpdatedAtRules()
-    {
+
+    public function getUpdatedAtRules() {
         return [
             [[$this->updatedAtAttribute], 'safe'],
         ];
     }
+
 }
