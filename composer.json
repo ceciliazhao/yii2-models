@@ -1,6 +1,6 @@
 {
     "name": "vistart/yii2-models",
-    "description": "The Models for Yii 2 Applications",
+    "description": "The Base Models for Yii 2 Applications",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","vistart","model"],
     "license": "BSD-3-Clause",
@@ -13,6 +13,7 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
+        "yiisoft/yii2-gii": "*",
         "vistart/yii2-helpers": "*",
         "vistart/yii2-behaviors": "*"
     },

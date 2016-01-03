@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -25,7 +25,7 @@ use vistart\Models\models\BaseUserModel;
 /**
  * Description of Generator
  *
- * @author i
+ * @author vistart <i@vistart.name>
  */
 class Generator extends \yii\gii\Generator {
 
@@ -196,8 +196,7 @@ class Generator extends \yii\gii\Generator {
                 'relations' => isset($relations[$tableName]) ? $relations[$tableName] : [],
             ];
             $files[] = new CodeFile(
-                Yii::getAlias('@' . str_replace('\\', '/', $this->ns)) . '/' . $modelClassName . '.php',
-                $this->render('model.php', $params)
+                    Yii::getAlias('@' . str_replace('\\', '/', $this->ns)) . '/' . $modelClassName . '.php', $this->render('model.php', $params)
             );
 
             // query :
@@ -207,8 +206,7 @@ class Generator extends \yii\gii\Generator {
                     'modelClassName' => $modelClassName,
                 ];
                 $files[] = new CodeFile(
-                    Yii::getAlias('@' . str_replace('\\', '/', $this->queryNs)) . '/' . $queryClassName . '.php',
-                    $this->render('query.php', $params)
+                        Yii::getAlias('@' . str_replace('\\', '/', $this->queryNs)) . '/' . $queryClassName . '.php', $this->render('query.php', $params)
                 );
             }
         }
@@ -238,19 +236,21 @@ class Generator extends \yii\gii\Generator {
 
         return $labels;
     }
-/*
-    public function generateRules($table) {
-        if ($this->generateRules) {
-            
-        }
-    }
-    
-    public function generateBehaviors($table) {
-        if ($this->generateBehaviors) {
-            
-        }
-    }
-*/
+
+    /*
+      public function generateRules($table) {
+      if ($this->generateRules) {
+
+      }
+      }
+
+      public function generateBehaviors($table) {
+      if ($this->generateBehaviors) {
+
+      }
+      }
+     */
+
     /**
      * Generates relations using a junction table by adding an extra viaTable().
      * @param \yii\db\TableSchema the table being checked

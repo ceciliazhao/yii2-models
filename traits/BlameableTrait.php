@@ -6,7 +6,7 @@
  * | |/ // /(__  )  / / / /| || |     | |
  * |___//_//____/  /_/ /_/ |_||_|     |_|
  * @link http://vistart.name/
- * @copyright Copyright (c) 2015 vistart
+ * @copyright Copyright (c) 2016 vistart
  * @license http://vistart.name/license/
  */
 
@@ -52,12 +52,15 @@ trait BlameableTrait {
      * ```php
      * public $contentAttribute = false; // no need of this feature.
      * ```
+     * 
+     * If you don't need this feature, you should add rules corresponding with
+     * `content` in `rules()` method of your user model by yourself.
      */
     public $contentAttribute = false;
 
     /**
-     *
-     * @var type 
+     * @var array built-in validator name or validatation method name and
+     * additional parameters.
      */
     public $contentAttributeRule = null;
 
@@ -168,9 +171,9 @@ trait BlameableTrait {
                     [$this->contentAttribute], 'required'
                 ];
                 if ($this->contentAttributeRule) {
-                    $this->_blameableRules[] = [
-                        [$this->contentAttribute], $this->contentAttributeRule
-                    ];
+                    $this->_blameableRules[] = array_merge(
+                        [[$this->contentAttribute]], $this->contentAttributeRule
+                    );
                 }
             }
         }

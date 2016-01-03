@@ -58,6 +58,16 @@
 							Models<span></span>
 						</a>
 							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.model.html">
+							model						</a>
+							</li>
+								</ul></li>
 					<li class="active">
 						<a href="namespace-vistart.Models.models.html">
 							models						</a>
@@ -99,6 +109,36 @@
 
 	<div class="description">
 	<p>The abstract BaseUserModel is used for user identity class.</p>
+
+<p>For example, you should create a table for user model before you want to
+define a User class used for representing a user. Then, you can use base
+user model generator to generate a new user model, like following:</p>
+
+<pre><code class="php">* @property string $guid
+class User extends \vistart\Models\models\BaseUserModel { public static function tableName() { return &lt;table_name&gt;; }
+ public static function attributeLabels() { return [ &lt;All labels.&gt; ]; }
+}
+</code></pre>
+
+<p>Well, if you want to register a new user, you should create a new user
+instance, and prepare attributes for it. then call the <code>register()</code> method.
+like following:</p>
+
+<pre><code class="php">$user = new User(['password' =&gt; '123456']);
+$user-&gt;register();
+</code></pre>
+
+<p>If there is not only one user instance to be stored in database, but also
+other associated models, such as Profile class, should be stored
+synchronously, you can prepare their models and give them to parameter of
+<code>register()</code> method, like following:</p>
+
+<pre><code class="php">$profile = new Profile();
+$user-&gt;register([$profile]);
+</code></pre>
+
+<p>Note: you should supplement <code>get&lt;ModelName&gt;()</code> method(s) by yourself, or by
+generator.</p>
 	</div>
 
 	<dl class="tree well">
@@ -145,7 +185,9 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserModel.html#17-35" title="Go to source code">models/BaseUserModel.php</a>
+				<b>See:</b>
+				<code><a href="class-vistart.Models.models.BaseEntityModel.html">vistart\Models\models\BaseEntityModel</a></code><br>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserModel.html#17-81" title="Go to source code">models/BaseUserModel.php</a>
 		<br>
 	</div>
 
@@ -165,14 +207,24 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseUserModel.html#27-33" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserModel.html#65-79" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				<p>Initialize new entity.</p>
+				<p>Initialize user model.
+This procedure will append events used for initialization of <code>status</code> and
+<code>source</code> attributes.
+When <code>$skipInit</code> is assigned to <code>false</code>, the above processes will be skipped.
+If you want to modify or override this method, you should add <code>parent::init()</code>
+statement at the end of your init() method.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Initialize new entity.</p>
+				<p>Initialize user model.
+This procedure will append events used for initialization of <code>status</code> and
+<code>source</code> attributes.
+When <code>$skipInit</code> is assigned to <code>false</code>, the above processes will be skipped.
+If you want to modify or override this method, you should add <code>parent::init()</code>
+statement at the end of your init() method.</p>
 
 
 
