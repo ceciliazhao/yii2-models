@@ -14,3 +14,4 @@ Base Models for Yii 2 Applications
 - Chg #11: onInitConfirmation() event of ConfirmationTrait ignored the non-specified $confirmationAttribute. (yuanyuancin)
 - New: Add CHANGELOG.md (vistart)
 - New: Add API documents (vistart)
+- New: Add Base Models Generators (vistart)
