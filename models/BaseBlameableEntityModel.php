@@ -51,7 +51,7 @@ use vistart\Models\traits\BlameableTrait;
  *     }
  * }
  * 
- * Well, when you signed-in, you can save a new `Example` instance:
+ * Well, when you're signed-in, you can save a new `Example` instance:
  * $example = new Example();
  * $example->comment = 'New Comment.';
  * $example->save();
