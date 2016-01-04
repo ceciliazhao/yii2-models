@@ -72,7 +72,7 @@ trait IPTrait {
      */
     public function onInitIpAddress($event) {
         $sender = $event->sender;
-        if ($sender->enableIP) {
+        if ($sender->enableIP && empty($sender->ipAddress)) {
             $sender->ipAddress = Yii::$app->request->userIP;
         }
     }

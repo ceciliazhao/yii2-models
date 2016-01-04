@@ -117,16 +117,32 @@ trait BlameableTrait {
      */
     public function getContent() {
         $contentAttribute = $this->contentAttribute;
-        if ($this->contentAttribute === false)
+        if ($contentAttribute === false)
             return null;
         if (is_array($contentAttribute)) {
-            $content = "";
-            foreach ($contentAttribute as $attribute) {
-                $content .= $this->$attribute;
+            $content = [];
+            foreach ($contentAttribute as $key => $value) {
+                $content[$key] = $this->$value;
             }
             return $content;
         }
         return $this->$contentAttribute;
+    }
+    
+    /**
+     * 
+     * @param mixed $content
+     */
+    public function setContent($content) {
+        $contentAttribute = $this->contentAttribute;
+        if ($contentAttribute === false)
+            return;
+        if (is_array($contentAttribute)) {
+            foreach ($contentAttribute as $key => $value) {
+                $this->$value = $content[$key];
+            }
+        }
+        $this->$contentAttribute = $content;
     }
 
     /**

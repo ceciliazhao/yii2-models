@@ -28,8 +28,9 @@ trait IDTrait {
      * @since 1.1
      */
     public $idAttribute = false;
-    public $idAttributeTypeString = 0;
-    public $idAttributeTypeInteger = 1;
+    public static $ID_TYPE_STRING = 0;
+    public static $ID_TYPE_INTEGER = 1;
+    public static $ID_TYPE_AUTO_INCREMENT = 2;
 
     /**
      * @var integer 
@@ -38,14 +39,16 @@ trait IDTrait {
     public $idAttributeType = 0;
 
     /**
-     * @var string 
+     * @var string The prefix of ID. When ID type is Auto Increment, this feature
+     * is skipped.
      * @since 2.0
      */
     public $idAttributePrefix = '';
 
     /**
      * @var integer OPTIONAL. The length of id attribute value.
-     * If you set $idAttribute to false, this property will be ignored.
+     * If you set $idAttribute to false or ID type to Auto Increment, this
+     * property will be ignored.
      * @since 1.1
      */
     public $idAttributeLength = 4;
@@ -68,9 +71,13 @@ trait IDTrait {
         if ($sender->idAttribute !== false &&
                 is_string($sender->idAttribute) &&
                 is_int($sender->idAttributeLength) &&
-                $sender->idAttributeLength > 0) {
+                $sender->idAttributeLength > 0 &&
+                $sender->idAttributeType != self::$ID_TYPE_AUTO_INCREMENT) {
             $idAttribute = $sender->idAttribute;
             $sender->$idAttribute = $sender->generateId();
+        }
+        if ($sender->idAttributeType === self::$ID_TYPE_AUTO_INCREMENT) {
+            $sender->idAttributeSafe = true;
         }
     }
 
@@ -80,15 +87,18 @@ trait IDTrait {
      * @return string the generated ID.
      */
     public function generateId() {
-        if ($this->idAttributeType == $this->idAttributeTypeInteger) {
+        if ($this->idAttributeType == self::$ID_TYPE_INTEGER) {
             return Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
         }
-        if ($this->idAttributeType == $this->idAttributeTypeString) {
+        if ($this->idAttributeType == self::$ID_TYPE_STRING) {
             return $this->idAttributePrefix .
                     Yii::$app->security->generateRandomString(
                             $this->idAttributeLength - strlen($this->idAttributePrefix
                             )
             );
+        }
+        if ($this->idAttributeType == self::$ID_TYPE_AUTO_INCREMENT) {
+            return null;
         }
         return false;
     }
@@ -113,14 +123,19 @@ trait IDTrait {
                 [[$this->idAttribute], 'required'],
                 [[$this->idAttribute], 'unique'],
             ];
-            if ($this->idAttributeType === $this->idAttributeTypeInteger) {
+            if ($this->idAttributeType === self::$ID_TYPE_INTEGER) {
                 $rules[] = [
                     [$this->idAttribute], 'integer',
                 ];
             }
-            if ($this->idAttributeType === $this->idAttributeTypeString) {
+            if ($this->idAttributeType === self::$ID_TYPE_STRING) {
                 $rules[] = [[$this->idAttribute], 'string',
                     'length' => $this->idAttributeLength,];
+            }
+            if ($this->idAttributeType === self::$ID_TYPE_AUTO_INCREMENT) {
+                $rules[] = [
+                    [$this->idAttribute], 'safe',
+                ];
             }
             return $rules;
         }

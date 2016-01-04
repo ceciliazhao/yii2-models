@@ -28,6 +28,7 @@ install:
     
 before_script:
     - php -r "echo INTL_ICU_VERSION . \"\n\";"
+    - php -v
     - mysql --version
     - mysql -uroot < tests/data/yii2-models.sql
     - |

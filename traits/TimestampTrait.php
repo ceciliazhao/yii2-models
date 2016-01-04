@@ -35,6 +35,9 @@ trait TimestampTrait {
      * Set this property to false if you do not want to record the update time.
      */
     public $updatedAtAttribute = 'update_time';
+    public $timeFormat = 0;
+    public static $TIME_FORMAT_DATE_TIME = 0;
+    public static $TIME_FORMAT_TIMESTAMP = 1;
 
     /**
      * Get the current date & time in format of "Y-m-d H:i:s".
@@ -42,8 +45,14 @@ trait TimestampTrait {
      * @return string Date & Time.
      * @since 1.1
      */
-    public static function getCurrentDatetime() {
-        return date('Y-m-d H:i:s');
+    public static function getCurrentDatetime($event) {
+        $sender = $event->sender;
+        if ($sender->timeFormat === self::$TIME_FORMAT_DATE_TIME) {
+            return date('Y-m-d H:i:s');
+        }
+        if ($sender->timeFormat === self::$TIME_FORMAT_TIMESTAMP) {
+            return time();
+        }
     }
 
     /**
@@ -55,7 +64,7 @@ trait TimestampTrait {
      * @since 1.1
      */
     public function onUpdateCurrentDatetime($event) {
-        return self::getCurrentDatetime();
+        return self::getCurrentDatetime($event);
     }
 
     public function getTimestampBehaviors() {
