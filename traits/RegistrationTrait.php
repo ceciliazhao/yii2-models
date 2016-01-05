@@ -53,7 +53,7 @@ trait RegistrationTrait {
             return false;
         }
         $this->trigger(self::$EVENT_BEFORE_REGISTER);
-        $transaction = Yii::$app->db->beginTransaction();
+        $transaction = $this->getDb()->beginTransaction();
         try {
             if (!$this->save()) {
                 throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $this->errors);
@@ -68,7 +68,7 @@ trait RegistrationTrait {
             $transaction->rollBack();
             Yii::warning($ex->errorInfo, 'user\register');
             $this->trigger(self::$EVENT_REGISTER_FAILED);
-            return false;
+            return $ex;
         }
         $this->trigger(self::$EVENT_AFTER_REGISTER);
         return true;
@@ -86,12 +86,12 @@ trait RegistrationTrait {
     public function deregister() {
         $this->trigger(self::$EVENT_BEFORE_DEREGISTER);
         $result = $this->delete();
-        if ($result) {
+        if ($result == 1) {
             $this->trigger(self::$EVENT_AFTER_DEREGISTER);
         } else {
             $this->trigger(self::$EVENT_DEREGISTER_FAILED);
         }
-        return $result;
+        return $result == 1;
     }
 
     /**

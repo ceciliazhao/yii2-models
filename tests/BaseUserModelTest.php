@@ -71,7 +71,25 @@ class BaseUserModelTest extends TestCase {
 
     public function testPassword() {
         $password = '123456';
-        $user = new User(['password' => $password]);
+        $user = new User();
+        $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
+        $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
+        
+        $user->on(User::$EVENT_AFTER_SET_PASSWORD, function($event){
+            $this->assertTrue(true, 'EVENT_AFTER_SET_PASSWORD');
+            $sender = $event->sender;
+            $this->assertInstanceOf(User::className(), $sender);
+        });
+        $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
+        
+        $user->on(User::$EVENT_BEFORE_VALIDATE_PASSWORD, function($event){
+            $this->assertTrue(true, 'EVENT_BEFORE_VALIDATE_PASSWORD');
+            $sender = $event->sender;
+            $this->assertInstanceOf(User::className(), $sender);
+        });
+        $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
+        
+        $user->password = $password;
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
@@ -81,6 +99,31 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
+    }
+    
+    public function testTimestamp() {
+        $user = new User();
+        $createdAtAttribute = $user->createdAtAttribute;
+        $updatedAtAttribute = $user->updatedAtAttribute;
+        $this->assertNull($user->$createdAtAttribute);
+        $this->assertNull($user->$updatedAtAttribute);
+        $result = $user->register();
+        if ($result instanceof \yii\db\Exception){
+            var_dump($result->getMessage());
+            $this->assertFalse(false);
+        } else {
+            $this->assertTrue($result);
+        }
+        
+        $this->assertNotNull($user->$createdAtAttribute);
+        $this->assertNotNull($user->$updatedAtAttribute);
+        $this->assertTrue($user->deregister());
+    }
+    
+    public function testRegister() {
+        $user = new User();
+        $this->assertTrue($user->register());
+        $this->assertTrue($user->deregister());
     }
 
     private function validatePassword($password, $hash) {

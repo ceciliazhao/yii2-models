@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use Yii;
+
 /**
  * Description of IdentityTrait
  *
@@ -84,6 +86,18 @@ trait IdentityTrait {
         }
     }
 
+    /**
+     * 
+     * This method is ONLY used for being triggered by event. DO NOT call,
+     * override or modify it directly, unless you know the consequences.
+     * @param \yii\base\Event $event
+     */
+    public function onInitAuthKey($event) {
+        $sender = $event->sender;
+        $authKeyAttribute = $sender->authKeyAttribute;
+        $sender->$authKeyAttribute = Yii::$app->security->generateRandomString();
+    }
+
     public function getAccessTokenRules() {
         if (empty($this->_accessTokenRules)) {
             $this->_accessTokenRules = [
@@ -98,6 +112,18 @@ trait IdentityTrait {
         if (!empty($rules) && is_array($rules)) {
             $this->_accessTokenRules = $rules;
         }
+    }
+
+    /**
+     * 
+     * This method is ONLY used for being triggered by event. DO NOT call,
+     * override or modify it directly, unless you know the consequences.
+     * @param \yii\base\Event $event
+     */
+    public function onInitAccessToken($event) {
+        $sender = $event->sender;
+        $accessTokenAttribute = $sender->accessTokenAttribute;
+        $sender->$accessTokenAttribute = Yii::$app->security->generateRandomString();
     }
 
     /**
