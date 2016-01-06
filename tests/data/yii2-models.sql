@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-04 18:15:40
--- 服务器版本： 5.7.9
+-- Generation Time: 2016-01-07 00:42:57
+-- 服务器版本： 5.7.10
 -- PHP Version: 5.6.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -27,14 +27,15 @@ USE `yii2-models`;
 --
 -- 表的结构 `user`
 --
--- 创建时间： 2016-01-04 08:20:50
+-- 创建时间： 2016-01-06 15:25:11
+-- 最后更新： 2016-01-06 16:13:23
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `guid` varchar(36) NOT NULL,
   `id` int(14) UNSIGNED NOT NULL DEFAULT '0',
-  `pass_hash` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `pass_hash` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -42,10 +43,15 @@ CREATE TABLE `user` (
   `ip_3` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
-  `auth_key` varchar(255) NOT NULL,
-  `access_token` varchar(255) NOT NULL,
+  `auth_key` varchar(40) NOT NULL DEFAULT '',
+  `access_token` varchar(40) NOT NULL DEFAULT '',
+  `password_reset_token` varchar(40) NOT NULL DEFAULT '',
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `source` varchar(255) NOT NULL DEFAULT '0'
+  `source` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`),
+  UNIQUE KEY `user_id_unique` (`id`),
+  UNIQUE KEY `user_auth_key_unique` (`auth_key`) USING BTREE,
+  UNIQUE KEY `user_access_token_unique` (`access_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -53,12 +59,11 @@ CREATE TABLE `user` (
 --
 -- 表的结构 `user_email`
 --
--- 创建时间： 2016-01-04 08:21:06
--- 最后更新： 2016-01-03 03:14:42
+-- 创建时间： 2016-01-04 11:01:39
 --
 
 DROP TABLE IF EXISTS `user_email`;
-CREATE TABLE `user_email` (
+CREATE TABLE IF NOT EXISTS `user_email` (
   `guid` varchar(36) NOT NULL,
   `user_guid` varchar(36) NOT NULL,
   `id` varchar(8) NOT NULL,
@@ -66,28 +71,10 @@ CREATE TABLE `user_email` (
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00'
+  `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  PRIMARY KEY (`guid`),
+  UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`guid`),
-  ADD UNIQUE KEY `user_id_unique` (`id`),
-  ADD UNIQUE KEY `user_auth_key_unique` (`auth_key`) USING BTREE,
-  ADD UNIQUE KEY `user_access_token_unique` (`access_token`);
-
---
--- Indexes for table `user_email`
---
-ALTER TABLE `user_email`
-  ADD PRIMARY KEY (`guid`),
-  ADD UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`);
 
 --
 -- 限制导出的表
