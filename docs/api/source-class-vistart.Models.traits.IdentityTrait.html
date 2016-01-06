@@ -212,7 +212,7 @@
 </span><span id="74" class="l"><a href="#74"> 74 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;_authKeyRules)) {
 </span><span id="75" class="l"><a href="#75"> 75 </a>            <span class="php-var">$this</span>-&gt;_authKeyRules = [
 </span><span id="76" class="l"><a href="#76"> 76 </a>                [[<span class="php-var">$this</span>-&gt;authKeyAttribute], <span class="php-quote">'required'</span>],
-</span><span id="77" class="l"><a href="#77"> 77 </a>                [[<span class="php-var">$this</span>-&gt;authKeyAttribute], <span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">32</span>],
+</span><span id="77" class="l"><a href="#77"> 77 </a>                [[<span class="php-var">$this</span>-&gt;authKeyAttribute], <span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">40</span>],
 </span><span id="78" class="l"><a href="#78"> 78 </a>            ];
 </span><span id="79" class="l"><a href="#79"> 79 </a>        }
 </span><span id="80" class="l"><a href="#80"> 80 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;_authKeyRules;
@@ -233,14 +233,14 @@
 </span><span id="95" class="l"><a href="#95"> 95 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitAuthKey(<span class="php-var">$event</span>) {
 </span><span id="96" class="l"><a href="#96"> 96 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="97" class="l"><a href="#97"> 97 </a>        <span class="php-var">$authKeyAttribute</span> = <span class="php-var">$sender</span>-&gt;authKeyAttribute;
-</span><span id="98" class="l"><a href="#98"> 98 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$authKeyAttribute</span> = Yii::<span class="php-var">$app</span>-&gt;security-&gt;generateRandomString();
+</span><span id="98" class="l"><a href="#98"> 98 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$authKeyAttribute</span> = <span class="php-keyword2">sha1</span>(Yii::<span class="php-var">$app</span>-&gt;security-&gt;generateRandomString());
 </span><span id="99" class="l"><a href="#99"> 99 </a>    }
 </span><span id="100" class="l"><a href="#100">100 </a>
 </span><span id="101" class="l"><a href="#101">101 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAccessTokenRules() {
 </span><span id="102" class="l"><a href="#102">102 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;_accessTokenRules)) {
 </span><span id="103" class="l"><a href="#103">103 </a>            <span class="php-var">$this</span>-&gt;_accessTokenRules = [
 </span><span id="104" class="l"><a href="#104">104 </a>                [[<span class="php-var">$this</span>-&gt;accessTokenAttribute], <span class="php-quote">'required'</span>],
-</span><span id="105" class="l"><a href="#105">105 </a>                [[<span class="php-var">$this</span>-&gt;accessTokenAttribute], <span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">32</span>],
+</span><span id="105" class="l"><a href="#105">105 </a>                [[<span class="php-var">$this</span>-&gt;accessTokenAttribute], <span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">40</span>],
 </span><span id="106" class="l"><a href="#106">106 </a>            ];
 </span><span id="107" class="l"><a href="#107">107 </a>        }
 </span><span id="108" class="l"><a href="#108">108 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;_accessTokenRules;
@@ -261,7 +261,7 @@
 </span><span id="123" class="l"><a href="#123">123 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitAccessToken(<span class="php-var">$event</span>) {
 </span><span id="124" class="l"><a href="#124">124 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="125" class="l"><a href="#125">125 </a>        <span class="php-var">$accessTokenAttribute</span> = <span class="php-var">$sender</span>-&gt;accessTokenAttribute;
-</span><span id="126" class="l"><a href="#126">126 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$accessTokenAttribute</span> = Yii::<span class="php-var">$app</span>-&gt;security-&gt;generateRandomString();
+</span><span id="126" class="l"><a href="#126">126 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$accessTokenAttribute</span> = <span class="php-keyword2">sha1</span>(Yii::<span class="php-var">$app</span>-&gt;security-&gt;generateRandomString());
 </span><span id="127" class="l"><a href="#127">127 </a>    }
 </span><span id="128" class="l"><a href="#128">128 </a>
 </span><span id="129" class="l"><a href="#129">129 </a>    <span class="php-comment">/**

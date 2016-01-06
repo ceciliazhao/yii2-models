@@ -77,6 +77,7 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
         $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitSourceAttribute']);
         $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitAuthKey']);
         $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitAccessToken']);
+        $this->on(self::$EVENT_AFTER_SET_PASSWORD, [$this, 'onAfterSetNewPassword']);
         parent::init();
     }
 

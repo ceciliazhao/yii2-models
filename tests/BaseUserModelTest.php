@@ -18,7 +18,6 @@ use Yii;
 
 /**
  * Description of BaseUserModelTest
- *
  * @author vistart <i@vistart.name>
  * @since 2.0
  */
@@ -28,7 +27,14 @@ class BaseUserModelTest extends TestCase {
         parent::setUp();
         User::$db = $this->getConnection();
     }
-
+    
+    /*
+    public function testInit() {
+        $user = new User();
+        var_dump($user->rules());
+        die();
+    }
+    */
     public function testNewUser() {
         $user = new User();
         $this->assertNotEmpty($user);
@@ -52,9 +58,6 @@ class BaseUserModelTest extends TestCase {
 
     public function testID() {
         $user = new User();
-        $this->assertEmpty($user->id);
-
-        $user = new User(['idAttribute' => 'id']);
         $this->assertNotEmpty($user->id);
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
@@ -72,7 +75,7 @@ class BaseUserModelTest extends TestCase {
     public function testPassword() {
         $password = '123456';
         $user = new User();
-        $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
+        $this->assertTrue($user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
         $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
 
         $user->on(User::$EVENT_AFTER_SET_PASSWORD, function($event) {
@@ -93,6 +96,24 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
+    }
+    
+    public function onResetPasswordFailed($event) {
+        $sender = $event->sender;
+        var_dump($sender->errors);
+        $this->assertFalse(true);
+    }
+    
+    public function testPasswordResetToken() {
+        $password = '123456';
+        $user = new User(['password' => $password]);
+        $user->on(User::$EVENT_RESET_PASSWORD_FAILED, [$this, 'onResetPasswordFailed']);
+        $user->register();
+        $this->assertTrue($user->applyNewPassword());
+        $password = $password . ' ';
+        $passwordResetTokenAttribute = $user->passwordResetTokenAttribute;
+        $user->resetPassword($password, $user->$passwordResetTokenAttribute);
+        $user->deregister();
     }
 
     public function testStatus() {
@@ -124,9 +145,9 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $this->assertTrue($user->register());
         $authKeyAttribute = $user->authKeyAttribute;
-        $this->assertEquals(32, strlen($user->$authKeyAttribute));
+        $this->assertEquals(40, strlen($user->$authKeyAttribute));
         $accessTokenAttribute = $user->accessTokenAttribute;
-        $this->assertEquals(32, strlen($user->$accessTokenAttribute));
+        $this->assertEquals(40, strlen($user->$accessTokenAttribute));
         $sourceAttribute = $user->sourceAttribute;
         $this->assertEquals($user->sourceSelf, $user->$sourceAttribute);
         $statusAttribute = $user->statusAttribute;

@@ -173,7 +173,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.User.html#15-29" title="Go to source code">tests/data/ar/User.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.User.html#15-30" title="Go to source code">tests/data/ar/User.php</a>
 		<br>
 	</div>
 
@@ -193,7 +193,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDb">#</a>
-			<code><a href="source-class-vistart.Models.tests.data.ar.User.html#25-27" title="Go to source code">getDb</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.data.ar.User.html#26-28" title="Go to source code">getDb</a>( )</code>
 
 			<div class="description short">
 				
@@ -231,11 +231,18 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_applyNewPassword">applyNewPassword()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordResetToken">generatePasswordResetToken()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordResetTokenRules">getPasswordResetTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_onAfterSetNewPassword">onAfterSetNewPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_resetPassword">resetPassword()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPassword">setPassword()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordHashRules">setPasswordHashRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a></code>
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordResetTokenRules">setPasswordResetTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePasswordResetToken">validatePasswordResetToken()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -328,6 +335,68 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="idAttributeType" id="$idAttributeType">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.User.html#22" title="Go to source code"><var>$idAttributeType</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+						<h4>Since</h4>
+						<div class="list">
+								2.0<br>
+						</div>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$idAttributeType" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="idAttributeLength" id="$idAttributeLength">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.User.html#23" title="Go to source code"><var>$idAttributeLength</var></a>
+
+				<div class="description short">
+					<p>OPTIONAL. The length of id attribute value.
+If you set $idAttribute to false or ID type to Auto Increment, this
+property will be ignored.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>OPTIONAL. The length of id attribute value.
+If you set $idAttribute to false or ID type to Auto Increment, this
+property will be ignored.</p>
+
+						<h4>Since</h4>
+						<div class="list">
+								1.1<br>
+						</div>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$idAttributeLength" class="anchor">#</a>
+					<code><span class="php-num">8</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="db" id="$db">
 			<td class="attributes"><code>
 				public static 
@@ -335,7 +404,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.User.html#23" title="Go to source code"><var>$db</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.User.html#24" title="Go to source code"><var>$db</var></a>
 
 				<div class="description short">
 					

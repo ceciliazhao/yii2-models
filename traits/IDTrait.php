@@ -27,7 +27,7 @@ trait IDTrait {
      * You can set this property to false if you don't use this feature.
      * @since 1.1
      */
-    public $idAttribute = false;
+    public $idAttribute = 'id';
     public static $ID_TYPE_STRING = 0;
     public static $ID_TYPE_INTEGER = 1;
     public static $ID_TYPE_AUTO_INCREMENT = 2;

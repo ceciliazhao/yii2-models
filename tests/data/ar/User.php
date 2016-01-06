@@ -19,7 +19,8 @@ namespace vistart\Models\tests\data\ar;
  * @since 2.0
  */
 class User extends \vistart\Models\models\BaseUserModel {
-    
+    public $idAttributeType = 1;
+    public $idAttributeLength = 8;
     public static $db;
 
     public static function getDb() {

@@ -18,6 +18,7 @@ use Yii;
  * Description of PasswordTrait
  * @property-write string $password New password to be set.
  * @property array $passwordHashRules
+ * @property array $passwordResetTokenRules
  * @property array $rules
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -28,11 +29,16 @@ trait PasswordTrait {
     public static $EVENT_BEFORE_VALIDATE_PASSWORD = "beforeValidatePassword";
     public static $EVENT_VALIDATE_PASSWORD_SUCCEEDED = "validatePasswordSucceeded";
     public static $EVENT_VALIDATE_PASSWORD_FAILED = "validatePasswordFailed";
+    public static $EVENT_BEFORE_RESET_PASSWORD = "beforeResetPassword";
+    public static $EVENT_AFTER_RESET_PASSWORD = "afterResetPassword";
+    public static $EVENT_RESET_PASSWORD_FAILED = "resetPasswordFailed";
+    public static $EVENT_PASSWORD_RESET_TOKEN_GENERATED = "passwordResetTokenGenerated";
 
     /**
      * @var string The name of attribute used for storing password hash.
      */
     public $passwordHashAttribute = 'pass_hash';
+    public $passwordResetTokenAttribute = 'password_reset_token';
 
     /**
      * @var integer Cost parameter used by the Blowfish hash algorithm.
@@ -54,6 +60,7 @@ trait PasswordTrait {
      */
     public $passwordHashAttributeLength = 60;
     private $_passwordHashRules = [];
+    private $_passwordResetTokenRules = [];
 
     /**
      * Get rules of password hash.
@@ -63,7 +70,7 @@ trait PasswordTrait {
         if ($this->passwordHashStrategy == 'crypt') {
             $this->passwordHashAttributeLength = 60;
         }
-        if (empty($this->_passwordHashRules)) {
+        if (empty($this->_passwordHashRules) || !is_array($this->_passwordHashRules)) {
             $this->_passwordHashRules = [
                 [[$this->passwordHashAttribute], 'string', 'max' => $this->passwordHashAttributeLength],
             ];
@@ -78,6 +85,30 @@ trait PasswordTrait {
     public function setPasswordHashRules($rules) {
         if (!empty($rules) && is_array($rules)) {
             $this->_passwordHashRules = $rules;
+        }
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function getPasswordResetTokenRules() {
+        if (empty($this->_passwordResetTokenRules) || !is_array($this->_passwordResetTokenRules)) {
+            $this->_passwordResetTokenRules = [
+                [[$this->passwordResetTokenAttribute], 'string', 'length' => 40],
+                [[$this->passwordResetTokenAttribute], 'unique'],
+            ];
+        }
+        return $this->_passwordResetTokenRules;
+    }
+    
+    /**
+     * 
+     * @param type $rules
+     */
+    public function setPasswordResetTokenRules($rules) {
+        if (!empty($rules) && is_array($rules)) {
+            $this->_passwordResetTokenRules = $rules;
         }
     }
 
@@ -136,6 +167,70 @@ trait PasswordTrait {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $this->$passwordHashAttribute = Yii::$app->security->generatePasswordHash($password);
         $this->trigger(self::$EVENT_AFTER_SET_PASSWORD);
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function applyNewPassword() {
+        if ($this->isNewRecord) {
+            return false;
+        }
+        $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
+        $this->$passwordResetTokenAttribute = self::generatePasswordResetToken();
+        if (!$this->save()) {
+            $this->trigger(self::$EVENT_RESET_PASSWORD_FAILED);
+            return false;
+        }
+        $this->trigger(self::$EVENT_PASSWORD_RESET_TOKEN_GENERATED);
+        return true;
+    }
+
+    /**
+     * 
+     */
+    public function resetPassword($password, $token) {
+        if (!$this->validatePasswordResetToken($token)) {
+            return false;
+        }
+        $this->trigger(self::$EVENT_BEFORE_RESET_PASSWORD);
+        $this->password = $password;
+        $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
+        $this->$passwordResetTokenAttribute = '';
+        if (!$this->save()) {
+            $this->trigger(self::$EVENT_RESET_PASSWORD_FAILED);
+            return;
+        }
+        $this->trigger(self::$EVENT_AFTER_RESET_PASSWORD);
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public static function generatePasswordResetToken()
+    {
+        return sha1(Yii::$app->security->generateRandomString());
+    }
+    
+    /**
+     * 
+     * @param type $event
+     */
+    public function onAfterSetNewPassword($event) {
+        $this->onInitAuthKey($event);
+        $this->onInitAccessToken($event);
+    }
+
+    /**
+     * 
+     * @param string $token
+     * @return boolean
+     */
+    protected function validatePasswordResetToken($token) {
+        $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
+        return $this->$passwordResetTokenAttribute === $token;
     }
 
 }

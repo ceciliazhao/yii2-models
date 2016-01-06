@@ -74,7 +74,7 @@ trait IdentityTrait {
         if (empty($this->_authKeyRules)) {
             $this->_authKeyRules = [
                 [[$this->authKeyAttribute], 'required'],
-                [[$this->authKeyAttribute], 'string', 'max' => 32],
+                [[$this->authKeyAttribute], 'string', 'max' => 40],
             ];
         }
         return $this->_authKeyRules;
@@ -95,14 +95,14 @@ trait IdentityTrait {
     public function onInitAuthKey($event) {
         $sender = $event->sender;
         $authKeyAttribute = $sender->authKeyAttribute;
-        $sender->$authKeyAttribute = Yii::$app->security->generateRandomString();
+        $sender->$authKeyAttribute = sha1(Yii::$app->security->generateRandomString());
     }
 
     public function getAccessTokenRules() {
         if (empty($this->_accessTokenRules)) {
             $this->_accessTokenRules = [
                 [[$this->accessTokenAttribute], 'required'],
-                [[$this->accessTokenAttribute], 'string', 'max' => 32],
+                [[$this->accessTokenAttribute], 'string', 'max' => 40],
             ];
         }
         return $this->_accessTokenRules;
@@ -123,7 +123,7 @@ trait IdentityTrait {
     public function onInitAccessToken($event) {
         $sender = $event->sender;
         $accessTokenAttribute = $sender->accessTokenAttribute;
-        $sender->$accessTokenAttribute = Yii::$app->security->generateRandomString();
+        $sender->$accessTokenAttribute = sha1(Yii::$app->security->generateRandomString());
     }
 
     /**
