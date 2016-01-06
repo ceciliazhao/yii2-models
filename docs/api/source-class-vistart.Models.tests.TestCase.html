@@ -231,33 +231,29 @@
 </span><span id="93" class="l"><a href="#93"> 93 </a>            <span class="php-var">$this</span>-&gt;markTestSkipped(<span class="php-quote">'No mysql server connection configured.'</span>);
 </span><span id="94" class="l"><a href="#94"> 94 </a>        }
 </span><span id="95" class="l"><a href="#95"> 95 </a>        <span class="php-var">$connection</span> = <span class="php-keyword1">new</span> Connection(<span class="php-var">$params</span>);
-</span><span id="96" class="l"><a href="#96"> 96 </a><span class="php-comment">//        if (!@stream_socket_client($connection-&gt;hostname . ':' . $connection-&gt;port, $errorNumber, $errorDescription, 0.5)) {</span>
-</span><span id="97" class="l"><a href="#97"> 97 </a><span class="php-comment">//            $this-&gt;markTestSkipped('No redis server running at ' . $connection-&gt;hostname . ':' . $connection-&gt;port . ' : ' . $errorNumber . ' - ' . $errorDescription);</span>
-</span><span id="98" class="l"><a href="#98"> 98 </a><span class="php-comment">//        }</span>
-</span><span id="99" class="l"><a href="#99"> 99 </a>
-</span><span id="100" class="l"><a href="#100">100 </a>        <span class="php-var">$this</span>-&gt;mockWebApplication([<span class="php-quote">'components'</span> =&gt; [<span class="php-quote">'mysql'</span> =&gt; <span class="php-var">$connection</span>]]);
-</span><span id="101" class="l"><a href="#101">101 </a>
-</span><span id="102" class="l"><a href="#102">102 </a>        parent::setUp();
-</span><span id="103" class="l"><a href="#103">103 </a>    }
-</span><span id="104" class="l"><a href="#104">104 </a>
-</span><span id="105" class="l"><a href="#105">105 </a>    <span class="php-comment">/**
-</span></span><span id="106" class="l"><a href="#106">106 </a><span class="php-comment">     * @param  boolean    $reset whether to clean up the test database
-</span></span><span id="107" class="l"><a href="#107">107 </a><span class="php-comment">     * @return Connection
-</span></span><span id="108" class="l"><a href="#108">108 </a><span class="php-comment">     */</span>
-</span><span id="109" class="l"><a href="#109">109 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getConnection(<span class="php-var">$reset</span> = <span class="php-keyword1">true</span>) {
-</span><span id="110" class="l"><a href="#110">110 </a>        <span class="php-var">$databases</span> = self::getParam(<span class="php-quote">'databases'</span>);
-</span><span id="111" class="l"><a href="#111">111 </a>        <span class="php-var">$params</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$databases</span>[<span class="php-quote">'mysql'</span>]) ? <span class="php-var">$databases</span>[<span class="php-quote">'mysql'</span>] : [];
-</span><span id="112" class="l"><a href="#112">112 </a>        <span class="php-var">$db</span> = <span class="php-keyword1">new</span> Connection(<span class="php-var">$params</span>);
-</span><span id="113" class="l"><a href="#113">113 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$reset</span>) {
-</span><span id="114" class="l"><a href="#114">114 </a>            <span class="php-var">$db</span>-&gt;open();
-</span><span id="115" class="l"><a href="#115">115 </a>            <span class="php-comment">//$db-&gt;flushdb();</span>
-</span><span id="116" class="l"><a href="#116">116 </a>        }
-</span><span id="117" class="l"><a href="#117">117 </a>
-</span><span id="118" class="l"><a href="#118">118 </a>        <span class="php-keyword1">return</span> <span class="php-var">$db</span>;
-</span><span id="119" class="l"><a href="#119">119 </a>    }
-</span><span id="120" class="l"><a href="#120">120 </a>
-</span><span id="121" class="l"><a href="#121">121 </a>}
-</span><span id="122" class="l"><a href="#122">122 </a></span></code></pre>
+</span><span id="96" class="l"><a href="#96"> 96 </a>        <span class="php-var">$this</span>-&gt;mockWebApplication([<span class="php-quote">'components'</span> =&gt; [<span class="php-quote">'db'</span> =&gt; <span class="php-var">$connection</span>]]);
+</span><span id="97" class="l"><a href="#97"> 97 </a>
+</span><span id="98" class="l"><a href="#98"> 98 </a>        parent::setUp();
+</span><span id="99" class="l"><a href="#99"> 99 </a>    }
+</span><span id="100" class="l"><a href="#100">100 </a>
+</span><span id="101" class="l"><a href="#101">101 </a>    <span class="php-comment">/**
+</span></span><span id="102" class="l"><a href="#102">102 </a><span class="php-comment">     * @param  boolean    $reset whether to clean up the test database
+</span></span><span id="103" class="l"><a href="#103">103 </a><span class="php-comment">     * @return Connection
+</span></span><span id="104" class="l"><a href="#104">104 </a><span class="php-comment">     */</span>
+</span><span id="105" class="l"><a href="#105">105 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getConnection(<span class="php-var">$reset</span> = <span class="php-keyword1">true</span>) {
+</span><span id="106" class="l"><a href="#106">106 </a>        <span class="php-var">$databases</span> = self::getParam(<span class="php-quote">'databases'</span>);
+</span><span id="107" class="l"><a href="#107">107 </a>        <span class="php-var">$params</span> = <span class="php-keyword1">isset</span>(<span class="php-var">$databases</span>[<span class="php-quote">'mysql'</span>]) ? <span class="php-var">$databases</span>[<span class="php-quote">'mysql'</span>] : [];
+</span><span id="108" class="l"><a href="#108">108 </a>        <span class="php-var">$db</span> = <span class="php-keyword1">new</span> Connection(<span class="php-var">$params</span>);
+</span><span id="109" class="l"><a href="#109">109 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$reset</span>) {
+</span><span id="110" class="l"><a href="#110">110 </a>            <span class="php-var">$db</span>-&gt;open();
+</span><span id="111" class="l"><a href="#111">111 </a>            <span class="php-comment">//$db-&gt;flushdb();</span>
+</span><span id="112" class="l"><a href="#112">112 </a>        }
+</span><span id="113" class="l"><a href="#113">113 </a>
+</span><span id="114" class="l"><a href="#114">114 </a>        <span class="php-keyword1">return</span> <span class="php-var">$db</span>;
+</span><span id="115" class="l"><a href="#115">115 </a>    }
+</span><span id="116" class="l"><a href="#116">116 </a>
+</span><span id="117" class="l"><a href="#117">117 </a>}
+</span><span id="118" class="l"><a href="#118">118 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

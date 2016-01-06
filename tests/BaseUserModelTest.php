@@ -44,7 +44,7 @@ class BaseUserModelTest extends TestCase {
     public function testGUID() {
         $user = new User();
         $this->assertNotEmpty($user->guid);
-        
+
         $user = new User();
         $guidAttribute = $user->guidAttribute;
         $this->assertEquals($user->guid, $user->$guidAttribute);
@@ -59,7 +59,7 @@ class BaseUserModelTest extends TestCase {
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
     }
-    
+
     public function testIP() {
         $ipAddress = '::1';
         $user = new User(['ipAddress' => $ipAddress]);
@@ -74,21 +74,21 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
         $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
-        
-        $user->on(User::$EVENT_AFTER_SET_PASSWORD, function($event){
+
+        $user->on(User::$EVENT_AFTER_SET_PASSWORD, function($event) {
             $this->assertTrue(true, 'EVENT_AFTER_SET_PASSWORD');
             $sender = $event->sender;
             $this->assertInstanceOf(User::className(), $sender);
         });
         $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
-        
-        $user->on(User::$EVENT_BEFORE_VALIDATE_PASSWORD, function($event){
+
+        $user->on(User::$EVENT_BEFORE_VALIDATE_PASSWORD, function($event) {
             $this->assertTrue(true, 'EVENT_BEFORE_VALIDATE_PASSWORD');
             $sender = $event->sender;
             $this->assertInstanceOf(User::className(), $sender);
         });
         $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
-        
+
         $user->password = $password;
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
@@ -100,7 +100,7 @@ class BaseUserModelTest extends TestCase {
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
     }
-    
+
     public function testTimestamp() {
         $user = new User();
         $createdAtAttribute = $user->createdAtAttribute;
@@ -108,7 +108,7 @@ class BaseUserModelTest extends TestCase {
         $this->assertNull($user->$createdAtAttribute);
         $this->assertNull($user->$updatedAtAttribute);
         $result = $user->register();
-        if ($result instanceof \yii\db\Exception){
+        if ($result instanceof \yii\db\Exception) {
             var_dump($result->getMessage());
             $this->assertFalse(false);
         } else {
@@ -119,10 +119,18 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotNull($user->$updatedAtAttribute);
         $this->assertTrue($user->deregister());
     }
-    
+
     public function testRegister() {
         $user = new User();
         $this->assertTrue($user->register());
+        $authKeyAttribute = $user->authKeyAttribute;
+        $this->assertEquals(32, strlen($user->$authKeyAttribute));
+        $accessTokenAttribute = $user->accessTokenAttribute;
+        $this->assertEquals(32, strlen($user->$accessTokenAttribute));
+        $sourceAttribute = $user->sourceAttribute;
+        $this->assertEquals($user->sourceSelf, $user->$sourceAttribute);
+        $statusAttribute = $user->statusAttribute;
+        $this->assertEquals(User::$STATUS_ACTIVE, $user->$statusAttribute);
         $this->assertTrue($user->deregister());
     }
 

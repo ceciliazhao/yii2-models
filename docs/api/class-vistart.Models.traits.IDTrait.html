@@ -153,7 +153,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.IDTrait.html#18-130" title="Go to source code">traits/IDTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.IDTrait.html#18-145" title="Go to source code">traits/IDTrait.php</a>
 		<br>
 	</div>
 
@@ -173,7 +173,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitIdAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#59-75" title="Go to source code">onInitIdAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#62-82" title="Go to source code">onInitIdAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize the ID attribute with new generated ID.
@@ -215,7 +215,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_generateId">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#77-94" title="Go to source code">generateId</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#84-104" title="Go to source code">generateId</a>( )</code>
 
 			<div class="description short">
 				<p>Generate the ID. You can override this method to implement your own
@@ -250,7 +250,7 @@ generation algorithm.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIdRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#96-128" title="Go to source code">getIdRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#106-143" title="Go to source code">getIdRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -319,14 +319,14 @@ You can set this property to false if you don't use this feature.</p>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttributeTypeString" id="$idAttributeTypeString">
+		<tr data-order="ID_TYPE_STRING" id="$ID_TYPE_STRING">
 			<td class="attributes"><code>
-				public  
+				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#31" title="Go to source code"><var>$idAttributeTypeString</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#31" title="Go to source code"><var>$ID_TYPE_STRING</var></a>
 
 				<div class="description short">
 					
@@ -339,19 +339,19 @@ You can set this property to false if you don't use this feature.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idAttributeTypeString" class="anchor">#</a>
+					<a href="#$ID_TYPE_STRING" class="anchor">#</a>
 					<code><span class="php-num">0</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttributeTypeInteger" id="$idAttributeTypeInteger">
+		<tr data-order="ID_TYPE_INTEGER" id="$ID_TYPE_INTEGER">
 			<td class="attributes"><code>
-				public  
+				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#32" title="Go to source code"><var>$idAttributeTypeInteger</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#32" title="Go to source code"><var>$ID_TYPE_INTEGER</var></a>
 
 				<div class="description short">
 					
@@ -364,8 +364,33 @@ You can set this property to false if you don't use this feature.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idAttributeTypeInteger" class="anchor">#</a>
+					<a href="#$ID_TYPE_INTEGER" class="anchor">#</a>
 					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="ID_TYPE_AUTO_INCREMENT" id="$ID_TYPE_AUTO_INCREMENT">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.IDTrait.html#33" title="Go to source code"><var>$ID_TYPE_AUTO_INCREMENT</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$ID_TYPE_AUTO_INCREMENT" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
 				</div>
 			</td>
 		</tr>
@@ -376,7 +401,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#34-38" title="Go to source code"><var>$idAttributeType</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#35-39" title="Go to source code"><var>$idAttributeType</var></a>
 
 				<div class="description short">
 					
@@ -405,14 +430,16 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#40-44" title="Go to source code"><var>$idAttributePrefix</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#41-46" title="Go to source code"><var>$idAttributePrefix</var></a>
 
 				<div class="description short">
-					
+					<p>The prefix of ID. When ID type is Auto Increment, this feature
+is skipped.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					
+					<p>The prefix of ID. When ID type is Auto Increment, this feature
+is skipped.</p>
 
 						<h4>Since</h4>
 						<div class="list">
@@ -434,16 +461,18 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#46-51" title="Go to source code"><var>$idAttributeLength</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#48-54" title="Go to source code"><var>$idAttributeLength</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL. The length of id attribute value.
-If you set $idAttribute to false, this property will be ignored.</p>
+If you set $idAttribute to false or ID type to Auto Increment, this
+property will be ignored.</p>
 				</div>
 
 				<div class="description detailed hidden">
 					<p>OPTIONAL. The length of id attribute value.
-If you set $idAttribute to false, this property will be ignored.</p>
+If you set $idAttribute to false or ID type to Auto Increment, this
+property will be ignored.</p>
 
 						<h4>Since</h4>
 						<div class="list">
@@ -465,7 +494,7 @@ If you set $idAttribute to false, this property will be ignored.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#53-57" title="Go to source code"><var>$idAttributeSafe</var></a>
+					<a href="source-class-vistart.Models.traits.IDTrait.html#56-60" title="Go to source code"><var>$idAttributeSafe</var></a>
 
 				<div class="description short">
 					<p>Determine whether the ID is safe for validation.</p>
