@@ -195,6 +195,7 @@ class BaseUserModelTest extends TestCase {
                 $this->assertFalse(true);
             }
         }
+        var_dump(User::find()->count());
     }
 
 }

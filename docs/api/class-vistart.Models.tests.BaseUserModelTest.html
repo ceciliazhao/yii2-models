@@ -64,8 +64,8 @@
 						</a>
 							<ul>
 					<li>
-						<a href="namespace-vistart.Models.gii.model.html">
-							model						</a>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
 							</li>
 								</ul></li>
 					<li>
@@ -161,7 +161,7 @@ PHPUnit_Framework_TestCase
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.tests.BaseUserModelTest.html#19-162" title="Go to source code">tests/BaseUserModelTest.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.tests.BaseUserModelTest.html#19-201" title="Go to source code">tests/BaseUserModelTest.php</a>
 		<br>
 	</div>
 
@@ -201,7 +201,7 @@ PHPUnit_Framework_TestCase
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="testNewUser" id="_testNewUser">
+		<tr data-order="testInit" id="_testInit">
 
 			<td class="attributes"><code>
 				 public 
@@ -211,8 +211,8 @@ PHPUnit_Framework_TestCase
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_testNewUser">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#38-48" title="Go to source code">testNewUser</a>( )</code>
+			<a class="anchor" href="#_testInit">#</a>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#31-33" title="Go to source code">testInit</a>( )</code>
 
 			<div class="description short">
 				
@@ -225,6 +225,39 @@ PHPUnit_Framework_TestCase
 
 
 
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="testNewUser" id="_testNewUser">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_testNewUser">#</a>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#34-47" title="Go to source code">testNewUser</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+					<h4>Depends</h4>
+					<div class="list">
+							testInit<br>
+					</div>
 
 
 			</div>
@@ -241,7 +274,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testGUID">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#50-57" title="Go to source code">testGUID</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#49-59" title="Go to source code">testGUID</a>( )</code>
 
 			<div class="description short">
 				
@@ -254,6 +287,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testNewUser<br>
+					</div>
 
 
 			</div>
@@ -270,7 +307,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testID">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#59-64" title="Go to source code">testID</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#61-69" title="Go to source code">testID</a>( )</code>
 
 			<div class="description short">
 				
@@ -283,6 +320,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testGUID<br>
+					</div>
 
 
 			</div>
@@ -299,7 +340,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testIP">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#66-73" title="Go to source code">testIP</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#71-81" title="Go to source code">testIP</a>( )</code>
 
 			<div class="description short">
 				
@@ -312,6 +353,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testID<br>
+					</div>
 
 
 			</div>
@@ -328,7 +373,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testPassword">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#75-99" title="Go to source code">testPassword</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#83-110" title="Go to source code">testPassword</a>( )</code>
 
 			<div class="description short">
 				
@@ -341,6 +386,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testIP<br>
+					</div>
 
 
 			</div>
@@ -357,7 +406,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onResetPasswordFailed">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#101-105" title="Go to source code">onResetPasswordFailed</a>( <span> <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#112-116" title="Go to source code">onResetPasswordFailed</a>( <span> <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -386,7 +435,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testPasswordResetToken">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#107-117" title="Go to source code">testPasswordResetToken</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#118-131" title="Go to source code">testPasswordResetToken</a>( )</code>
 
 			<div class="description short">
 				
@@ -399,6 +448,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testPassword<br>
+					</div>
 
 
 			</div>
@@ -415,7 +468,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testStatus">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#119-123" title="Go to source code">testStatus</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#133-140" title="Go to source code">testStatus</a>( )</code>
 
 			<div class="description short">
 				
@@ -428,6 +481,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testPasswordResetToken<br>
+					</div>
 
 
 			</div>
@@ -444,7 +501,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testTimestamp">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#125-142" title="Go to source code">testTimestamp</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#142-162" title="Go to source code">testTimestamp</a>( )</code>
 
 			<div class="description short">
 				
@@ -457,6 +514,10 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testStatus<br>
+					</div>
 
 
 			</div>
@@ -473,7 +534,7 @@ PHPUnit_Framework_TestCase
 
 			<td class="name"><div>
 			<a class="anchor" href="#_testRegister">#</a>
-			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#144-156" title="Go to source code">testRegister</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#164-179" title="Go to source code">testRegister</a>( )</code>
 
 			<div class="description short">
 				
@@ -486,6 +547,43 @@ PHPUnit_Framework_TestCase
 
 
 
+					<h4>Depends</h4>
+					<div class="list">
+							testTimestamp<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="testNewUser256" id="_testNewUser256">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_testNewUser256">#</a>
+			<code><a href="source-class-vistart.Models.tests.BaseUserModelTest.html#185-199" title="Go to source code">testNewUser256</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+					<h4>Depends</h4>
+					<div class="list">
+							testRegister<br>
+					</div>
 
 
 			</div>

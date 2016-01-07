@@ -10,7 +10,7 @@
  * @license http://vistart.name/license/
  */
 
-namespace vistart\Models\gii\model;
+namespace vistart\Models\gii\baseUserModel;
 
 use Yii;
 use yii\db\ActiveQuery;
