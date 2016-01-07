@@ -16,6 +16,7 @@ namespace vistart\Models\traits;
  * 
  * @property-read boolean $isConfirmed
  * @property-write integer $confirmation
+ * @property-read array $confirmationRules
  * @version 2.0
  * @author vistart <i@vistart.name>
  */

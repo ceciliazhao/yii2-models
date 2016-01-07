@@ -188,6 +188,7 @@ class BaseUserModelTest extends TestCase {
     public function testNewUser256() {
         User::deleteAll();
         //set_time_limit(1800);
+        /*
         for ($i = 0; $i < 256; $i++) {
             $password = '123456';
             $user = new User(['password' => $password]);
@@ -195,7 +196,7 @@ class BaseUserModelTest extends TestCase {
                 $this->assertFalse(true);
             }
         }
-        var_dump(User::find()->count());
+        var_dump(User::find()->count());*/
     }
 
 }

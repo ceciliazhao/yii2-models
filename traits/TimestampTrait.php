@@ -79,12 +79,14 @@ trait TimestampTrait {
     }
 
     public function getCreatedAtRules() {
+        if (!$this->createdAtAttribute) return [];
         return [
             [[$this->createdAtAttribute], 'safe'],
         ];
     }
 
     public function getUpdatedAtRules() {
+        if (!$this->updatedAtAttribute) return [];
         return [
             [[$this->updatedAtAttribute], 'safe'],
         ];

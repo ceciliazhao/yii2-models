@@ -15,13 +15,20 @@ namespace vistart\Models\traits;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * 
+ * 该 Trait 用于处理属于用户的实例。包括以下功能：
+ * 1.单列内容；多列内容待定；
+ * 2.内容类型；具体类型应当自定义；
+ * 3.内容规则；自动生成；
+ * 4.归属用户 GUID；
+ * 5.创建用户 GUID；
+ * 6.上次更新用户 GUID；
+ * 7.确认功能由 ConfirmationTrait 提供；
+ * 8.实例功能由 EntityTrait 提供。
  * @property array $blameableRules Get or set all the rules associated with
  * creator, updater, content and its ID, as well as all the inherited rules.
  * @property array $blameableBehaviors Get or set all the behaviors assoriated
  * with creator and updater, as well as all the inherited behaviors. 
  * @property-read mixed $content
- * @property-read array $contentTypes
  * @property-read boolean $contentCanBeEdited
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -65,25 +72,24 @@ trait BlameableTrait {
     public $contentAttributeRule = null;
 
     /**
+     * @var boolean|string Specify the field which stores the type of content.
+     */
+    public $contentTypeAttribute = false;
+    
+    /**
      * @var boolean|array Specify the logic type of content, not data type. If
      * your content doesn't need this feature. please specify false. If the
      * $contentAttribute is specified to false, this attribute will be skipped.
      * 
      * ```php
-     * public $contentTypeAttribute = [
+     * public $contentTypes = [
      *     'public',
      *     'private',
      *     'friend',
      * ];
      * ```
      */
-    public $contentTypeAttribute = false;
-
-    /**
-     * @var string the attribute that specify the name of id of 
-     * Yii::$app->user->identity. Or same as $createByAttribute.
-     */
-    public $identityGuidAttribute = 'user_guid';
+    public $contentTypes = false;
 
     /**
      * @var string the attribute that will receive current user ID value
@@ -128,7 +134,7 @@ trait BlameableTrait {
         }
         return $this->$contentAttribute;
     }
-    
+
     /**
      * 
      * @param mixed $content
@@ -147,17 +153,6 @@ trait BlameableTrait {
 
     /**
      * 
-     * @return array
-     * @throws \yii\base\NotSupportedException
-     */
-    public function getContentTypes() {
-        if ($this->contentAttribute === false)
-            return null;
-        throw new \yii\base\NotSupportedException("This method is not implemented.");
-    }
-
-    /**
-     * 
      * @return boolean
      * @throws \yii\base\NotSupportedException
      */
@@ -169,29 +164,69 @@ trait BlameableTrait {
 
     /**
      * 
+     * @return boolean Whether this content has ever been edited.
+     */
+    public function hasEverEdited() {
+        $createdAtAttribute = $this->createdByAttribute;
+        $updatedAtAttribute = $this->updatedByAttribute;
+        if (!$createdAtAttribute || !$updatedAtAttribute) {
+            return false;
+        }
+        return $this->$createdAtAttribute === $this->$updatedAtAttribute;
+    }
+
+    /**
+     * 
      * @return array
      */
     public function getBlameableRules() {
-        if (empty($this->_blameableRules) || !is_array($this->_blameableRules)) {
-            $this->_blameableRules = array_merge(
-                    parent::rules(), $this->confirmationRules, [
-                [[$this->createdByAttribute], 'safe'],
-                [[$this->createdByAttribute], 'string', 'max' => 36],
-                [[$this->createdByAttribute, $this->idAttribute], 'unique', 'targetAttribute' =>
-                    [$this->createdByAttribute, $this->idAttribute],
-                ],
-                    ]
+        // 若当前规则不为空，且是数组，则认为是规则数组，直接返回。
+        if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
+            return $this->_blameableRules;
+        }
+        
+        // 当前规则
+        $rules = [];
+        
+        // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
+        if (is_string($this->createdByAttribute) && !empty($this->createdByAttribute)) {
+            $rules[] = [
+                [$this->createdByAttribute], 'safe',
+            ];
+        }
+        
+        if (is_string($this->updatedByAttribute) && !empty($this->updatedByAttribute)) {
+            $rules[] = [
+                [$this->updatedByAttribute], 'safe',
+            ];
+        }
+        
+        // 先将父类规则与确认规则合并。
+        $this->_blameableRules = array_merge(
+                parent::rules(), $this->confirmationRules, $rules
+        );
+        
+        // 若 contentAttribute 未设置，则直接返回，否则合并。
+        if (!$this->contentAttribute) {
+            return $this->_blameableRules;
+        }
+        $this->_blameableRules[] = [
+            [$this->contentAttribute], 'required'
+        ];
+        if ($this->contentAttributeRule && is_array($this->contentAttributeRule)) {
+            $this->_blameableRules[] = array_merge(
+                    [$this->contentAttribute], $this->contentAttributeRule
             );
-            if ($this->contentAttribute) {
-                $this->_blameableRules[] = [
-                    [$this->contentAttribute], 'required'
-                ];
-                if ($this->contentAttributeRule) {
-                    $this->_blameableRules[] = array_merge(
-                        [[$this->contentAttribute]], $this->contentAttributeRule
-                    );
-                }
-            }
+        }
+        
+        if (!$this->contentTypeAttribute) {
+            return $this->_blameableRules;
+        }
+        
+        if (!is_array($this->contentTypes || empty($this->contentTypes))) {
+            $this->_blameableRules[] = [
+                [$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)
+            ];
         }
         return $this->_blameableRules;
     }
@@ -250,14 +285,6 @@ trait BlameableTrait {
      * @return string the GUID of current user or the owner.
      */
     public function onGetCurrentUserGuid($event) {
-        $sender = $event->sender;
-        if (!is_string($sender->identityGuidAttribute)) {
-            $sender->identityGuidAttribute = $sender->createdByAttribute;
-        }
-        $identityGuidAttribute = $sender->identityGuidAttribute;
-        if (isset($sender->$identityGuidAttribute)) {
-            return $sender->$identityGuidAttribute;
-        }
         $identity = \Yii::$app->user->identity;
         if (!$identity) {
             return null;
