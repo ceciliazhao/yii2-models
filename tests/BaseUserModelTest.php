@@ -28,13 +28,12 @@ class BaseUserModelTest extends TestCase {
         User::$db = $this->getConnection();
     }
     
-    /*
     public function testInit() {
-        $user = new User();
-        var_dump($user->rules());
-        die();
+        User::deleteAll();
     }
-    */
+    /**
+     * @depends testInit
+     */
     public function testNewUser() {
         $user = new User();
         $this->assertNotEmpty($user);
@@ -47,6 +46,9 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals(false, $this->validatePassword('1234567', $user->$passwordHashAttribute));
     }
 
+    /**
+     * @depends testNewUser
+     */
     public function testGUID() {
         $user = new User();
         $this->assertNotEmpty($user->guid);
@@ -56,6 +58,9 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals($user->guid, $user->$guidAttribute);
     }
 
+    /**
+     * @depends testGUID
+     */
     public function testID() {
         $user = new User();
         $this->assertNotEmpty($user->id);
@@ -63,6 +68,9 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals($user->id, $user->$idAttribute);
     }
 
+    /**
+     * @depends testID
+     */
     public function testIP() {
         $ipAddress = '::1';
         $user = new User(['ipAddress' => $ipAddress]);
@@ -72,6 +80,9 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
     }
 
+    /**
+     * @depends testIP
+     */
     public function testPassword() {
         $password = '123456';
         $user = new User();
@@ -104,6 +115,9 @@ class BaseUserModelTest extends TestCase {
         $this->assertFalse(true);
     }
     
+    /**
+     * @depends testPassword
+     */
     public function testPasswordResetToken() {
         $password = '123456';
         $user = new User(['password' => $password]);
@@ -116,12 +130,18 @@ class BaseUserModelTest extends TestCase {
         $user->deregister();
     }
 
+    /**
+     * @depends testPasswordResetToken
+     */
     public function testStatus() {
         $user = new User();
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
     }
 
+    /**
+     * @depends testStatus
+     */
     public function testTimestamp() {
         $user = new User();
         $createdAtAttribute = $user->createdAtAttribute;
@@ -140,7 +160,10 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotNull($user->$updatedAtAttribute);
         $this->assertTrue($user->deregister());
     }
-
+    
+    /**
+     * @depends testTimestamp
+     */
     public function testRegister() {
         $user = new User();
         $this->assertTrue($user->register());
@@ -157,6 +180,21 @@ class BaseUserModelTest extends TestCase {
 
     private function validatePassword($password, $hash) {
         return Yii::$app->security->validatePassword($password, $hash);
+    }
+    
+    /**
+     * @depends testRegister
+     */
+    public function testNewUser256() {
+        User::deleteAll();
+        //set_time_limit(1800);
+        for ($i = 0; $i < 256; $i++) {
+            $password = '123456';
+            $user = new User(['password' => $password]);
+            if (!$user->register()) {
+                $this->assertFalse(true);
+            }
+        }
     }
 
 }
