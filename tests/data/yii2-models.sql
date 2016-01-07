@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-07 21:34:04
+-- Generation Time: 2016-01-08 01:38:49
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -28,6 +28,7 @@ USE `yii2-models`;
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-07 13:33:20
+-- 最后更新： 2016-01-07 17:33:15
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 -- 表的结构 `user_email`
 --
--- 创建时间： 2016-01-07 13:33:20
+-- 创建时间： 2016-01-07 16:47:01
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -72,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `confirm_code` varchar(8) NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
