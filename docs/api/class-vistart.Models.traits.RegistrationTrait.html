@@ -186,9 +186,9 @@ if any errors occur in the process, and all the earlier steps succeeded
 are rolled back.
 If current user is not a new one(isNewRecord = false), the registration
 will be skipped and return false.
-The $EVENT_BEFORE_REGISTER will be triggered before registration starts.
-If registration finished, the $EVENT_AFTER_REGISTER will be triggered. or
-$EVENT_REGISTER_FAILED will be triggered when any errors occured.</p>
+The $eventBeforeRegister will be triggered before registration starts.
+If registration finished, the $eventAfterRegister will be triggered. or
+$eventRegisterFailed will be triggered when any errors occured.</p>
 			</div>
 
 			<div class="description detailed hidden">
@@ -199,9 +199,9 @@ if any errors occur in the process, and all the earlier steps succeeded
 are rolled back.
 If current user is not a new one(isNewRecord = false), the registration
 will be skipped and return false.
-The $EVENT_BEFORE_REGISTER will be triggered before registration starts.
-If registration finished, the $EVENT_AFTER_REGISTER will be triggered. or
-$EVENT_REGISTER_FAILED will be triggered when any errors occured.</p>
+The $eventBeforeRegister will be triggered before registration starts.
+If registration finished, the $eventAfterRegister will be triggered. or
+$eventRegisterFailed will be triggered when any errors occured.</p>
 
 
 					<h4>Parameters</h4>
@@ -389,14 +389,14 @@ override or modify it directly, unless you know the consequences.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="EVENT_AFTER_REGISTER" id="$EVENT_AFTER_REGISTER">
+		<tr data-order="eventAfterRegister" id="$eventAfterRegister">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#26" title="Go to source code"><var>$EVENT_AFTER_REGISTER</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#26" title="Go to source code"><var>$eventAfterRegister</var></a>
 
 				<div class="description short">
 					
@@ -409,19 +409,19 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_AFTER_REGISTER" class="anchor">#</a>
+					<a href="#$eventAfterRegister" class="anchor">#</a>
 					<code><span class="php-quote">&quot;afterRegister&quot;</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="EVENT_BEFORE_REGISTER" id="$EVENT_BEFORE_REGISTER">
+		<tr data-order="eventBeforeRegister" id="$eventBeforeRegister">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#27" title="Go to source code"><var>$EVENT_BEFORE_REGISTER</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#27" title="Go to source code"><var>$eventBeforeRegister</var></a>
 
 				<div class="description short">
 					
@@ -434,19 +434,19 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_BEFORE_REGISTER" class="anchor">#</a>
+					<a href="#$eventBeforeRegister" class="anchor">#</a>
 					<code><span class="php-quote">&quot;beforeRegister&quot;</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="EVENT_REGISTER_FAILED" id="$EVENT_REGISTER_FAILED">
+		<tr data-order="eventRegisterFailed" id="$eventRegisterFailed">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#28" title="Go to source code"><var>$EVENT_REGISTER_FAILED</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#28" title="Go to source code"><var>$eventRegisterFailed</var></a>
 
 				<div class="description short">
 					
@@ -459,19 +459,19 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_REGISTER_FAILED" class="anchor">#</a>
+					<a href="#$eventRegisterFailed" class="anchor">#</a>
 					<code><span class="php-quote">&quot;registerFailed&quot;</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="EVENT_AFTER_DEREGISTER" id="$EVENT_AFTER_DEREGISTER">
+		<tr data-order="eventAfterDeregister" id="$eventAfterDeregister">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#29" title="Go to source code"><var>$EVENT_AFTER_DEREGISTER</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#29" title="Go to source code"><var>$eventAfterDeregister</var></a>
 
 				<div class="description short">
 					
@@ -484,19 +484,19 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_AFTER_DEREGISTER" class="anchor">#</a>
+					<a href="#$eventAfterDeregister" class="anchor">#</a>
 					<code><span class="php-quote">&quot;afterDeregister&quot;</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="EVENT_BEFORE_DEREGISTER" id="$EVENT_BEFORE_DEREGISTER">
+		<tr data-order="eventBeforeDeregister" id="$eventBeforeDeregister">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#30" title="Go to source code"><var>$EVENT_BEFORE_DEREGISTER</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#30" title="Go to source code"><var>$eventBeforeDeregister</var></a>
 
 				<div class="description short">
 					
@@ -509,19 +509,19 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_BEFORE_DEREGISTER" class="anchor">#</a>
+					<a href="#$eventBeforeDeregister" class="anchor">#</a>
 					<code><span class="php-quote">&quot;beforeDeregister&quot;</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="EVENT_DEREGISTER_FAILED" id="$EVENT_DEREGISTER_FAILED">
+		<tr data-order="eventDeregisterFailed" id="$eventDeregisterFailed">
 			<td class="attributes"><code>
 				public static 
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#31" title="Go to source code"><var>$EVENT_DEREGISTER_FAILED</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#31" title="Go to source code"><var>$eventDeregisterFailed</var></a>
 
 				<div class="description short">
 					
@@ -534,7 +534,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$EVENT_DEREGISTER_FAILED" class="anchor">#</a>
+					<a href="#$eventDeregisterFailed" class="anchor">#</a>
 					<code><span class="php-quote">&quot;deregisterFailed&quot;</span></code>
 				</div>
 			</td>

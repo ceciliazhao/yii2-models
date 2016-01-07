@@ -30,6 +30,8 @@ use yii\behaviors\BlameableBehavior;
  * with creator and updater, as well as all the inherited behaviors. 
  * @property-read mixed $content
  * @property-read boolean $contentCanBeEdited
+ * @property-read mixed $creator;
+ * @property-read mixed $updater;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -63,7 +65,7 @@ trait BlameableTrait {
      * If you don't need this feature, you should add rules corresponding with
      * `content` in `rules()` method of your user model by yourself.
      */
-    public $contentAttribute = false;
+    public $contentAttribute = 'content';
 
     /**
      * @var array built-in validator name or validatation method name and
@@ -102,6 +104,22 @@ trait BlameableTrait {
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = "user_guid";
+    
+    public $userClass;
+    
+    public function getCreator() {
+        if (!$this->createdByAttribute) {
+            return null;
+        }
+        return $userClass::findOne($this->createdByAttribute);
+    }
+    
+    public function getUpdater() {
+        if (!$this->updatedByAttribute) {
+            return null;
+        }
+        return $userClass::findOne($this->updatedByAttribute);
+    }
 
     /**
      * @inheritdoc
@@ -147,8 +165,9 @@ trait BlameableTrait {
             foreach ($contentAttribute as $key => $value) {
                 $this->$value = $content[$key];
             }
+        } else {
+            $this->$contentAttribute = $content;
         }
-        $this->$contentAttribute = $content;
     }
 
     /**
@@ -224,6 +243,9 @@ trait BlameableTrait {
         }
         
         if (!is_array($this->contentTypes || empty($this->contentTypes))) {
+            $this->_blameableRules[] = [
+                [$this->contentTypeAttribute], 'required'
+            ];
             $this->_blameableRules[] = [
                 [$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)
             ];

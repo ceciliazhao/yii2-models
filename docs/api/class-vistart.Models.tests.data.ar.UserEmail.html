@@ -172,7 +172,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#15-45" title="Go to source code">tests/data/ar/UserEmail.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#15-46" title="Go to source code">tests/data/ar/UserEmail.php</a>
 		<br>
 	</div>
 
@@ -221,7 +221,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDb">#</a>
-			<code><a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#41-43" title="Go to source code">getDb</a>( )</code>
+			<code><a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#42-44" title="Go to source code">getDb</a>( )</code>
 
 			<div class="description short">
 				
@@ -257,6 +257,8 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getCreator">getCreator()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUpdater">getUpdater()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onContentChanged">onContentChanged()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
@@ -269,12 +271,20 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.ConfirmationTrait.html#methods">vistart\Models\traits\ConfirmationTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_Confirm">Confirm()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_applyConfirmation">applyConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_generateConfirmationCode">generateConfirmationCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmCode">getConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmation">getConfirmation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmationRules">getConfirmationRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getIsConfirmed">getIsConfirmed()</a></code>, 
 				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onConfirmationChanged">onConfirmationChanged()</a></code>, 
 				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onInitConfirmation">onInitConfirmation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetConfirmation">resetConfirmation()</a></code>, 
-				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a></code>
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetOthersConfirmation">resetOthersConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmCode">setConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_validateConfirmationCode">validateConfirmationCode()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -450,6 +460,33 @@ additional parameters.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="confirmCodeAttribute" id="$confirmCodeAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#30" title="Go to source code"><var>$confirmCodeAttribute</var></a>
+
+				<div class="description short">
+					<p>if $confirmationAttribute is not empty or false, this
+attribute must be specified, otherwith exception would be thrown.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>if $confirmationAttribute is not empty or false, this
+attribute must be specified, otherwith exception would be thrown.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$confirmCodeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'confirm_code'</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="updatedByAttribute" id="$updatedByAttribute">
 			<td class="attributes"><code>
 				public  
@@ -457,7 +494,7 @@ additional parameters.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#30" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#31" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value
@@ -484,7 +521,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#31" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#32" title="Go to source code"><var>$enableIP</var></a>
 
 				<div class="description short">
 					<p>REQUIRED. Determine whether enableing the IP attributes and
@@ -519,7 +556,7 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#32" title="Go to source code"><var>$contentTypeAttribute</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#33" title="Go to source code"><var>$contentTypeAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the field which stores the type of content.</p>
@@ -544,7 +581,7 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#33-37" title="Go to source code"><var>$contentTypes</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#34-38" title="Go to source code"><var>$contentTypes</var></a>
 
 				<div class="description short">
 					<p>Specify the logic type of content, not data type. If
@@ -586,7 +623,7 @@ $contentAttribute is specified to false, this attribute will be skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#39" title="Go to source code"><var>$db</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#40" title="Go to source code"><var>$db</var></a>
 
 				<div class="description short">
 					
@@ -617,13 +654,14 @@ $contentAttribute is specified to false, this attribute will be skipped.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#$EVENT_NEW_RECORD_CREATED"><var>$EVENT_NEW_RECORD_CREATED</var></a></code>
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a></code>
 			</p>
 		</div>
 

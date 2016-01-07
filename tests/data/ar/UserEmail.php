@@ -27,6 +27,7 @@ class UserEmail extends \vistart\Models\models\BaseBlameableEntityModel {
     public $contentAttribute = 'email';
     public $contentAttributeRule = ['email'];
     public $confirmationAttribute = 'confirmed';
+    public $confirmCodeAttribute = 'confirm_code';
     public $updatedByAttribute = false;
     public $enableIP = false;
     public $contentTypeAttribute = 'type';

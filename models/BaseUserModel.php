@@ -73,11 +73,11 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
     public function init() {
         if ($this->skipInit)
             return;
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitStatusAttribute']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitSourceAttribute']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitAuthKey']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitAccessToken']);
-        $this->on(self::$EVENT_AFTER_SET_PASSWORD, [$this, 'onAfterSetNewPassword']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitStatusAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitSourceAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitAuthKey']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitAccessToken']);
+        $this->on(self::$eventAfterSetPassword, [$this, 'onAfterSetNewPassword']);
         parent::init();
     }
 

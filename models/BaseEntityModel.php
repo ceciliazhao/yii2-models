@@ -35,11 +35,11 @@ abstract class BaseEntityModel extends ActiveRecord {
     public function init() {
         if ($this->skipInit)
             return;
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitGuidAttribute']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitIdAttribute']);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, 'onInitIpAddress']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
         if ($this->isNewRecord) {
-            $this->trigger(self::$EVENT_NEW_RECORD_CREATED);
+            $this->trigger(self::$eventNewRecordCreated);
         }
         parent::init();
     }

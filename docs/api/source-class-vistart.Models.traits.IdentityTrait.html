@@ -168,8 +168,8 @@
 </span></span><span id="28" class="l"><a href="#28"> 28 </a><span class="php-comment"> */</span>
 </span><span id="29" class="l"><a href="#29"> 29 </a><span class="php-keyword1">trait</span> IdentityTrait {
 </span><span id="30" class="l"><a href="#30"> 30 </a>
-</span><span id="31" class="l"><a href="#31"> 31 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$STATUS_ACTIVE</span> = <span class="php-num">1</span>;
-</span><span id="32" class="l"><a href="#32"> 32 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$STATUS_INACTIVE</span> = <span class="php-num">0</span>;
+</span><span id="31" class="l"><a href="#31"> 31 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$statusActive</span> = <span class="php-num">1</span>;
+</span><span id="32" class="l"><a href="#32"> 32 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$statusInactive</span> = <span class="php-num">0</span>;
 </span><span id="33" class="l"><a href="#33"> 33 </a>    <span class="php-keyword1">public</span> <span class="php-var">$statusAttribute</span> = <span class="php-quote">'status'</span>;
 </span><span id="34" class="l"><a href="#34"> 34 </a>    <span class="php-keyword1">private</span> <span class="php-var">$_statusRules</span> = [];
 </span><span id="35" class="l"><a href="#35"> 35 </a>    <span class="php-keyword1">public</span> <span class="php-var">$authKeyAttribute</span> = <span class="php-quote">'auth_key'</span>;
@@ -299,7 +299,7 @@
 </span><span id="159" class="l"><a href="#159">159 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitStatusAttribute(<span class="php-var">$event</span>) {
 </span><span id="160" class="l"><a href="#160">160 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="161" class="l"><a href="#161">161 </a>        <span class="php-var">$statusAttribute</span> = <span class="php-var">$sender</span>-&gt;statusAttribute;
-</span><span id="162" class="l"><a href="#162">162 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$statusAttribute</span> = self::<span class="php-var">$STATUS_ACTIVE</span>;
+</span><span id="162" class="l"><a href="#162">162 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$statusAttribute</span> = self::<span class="php-var">$statusActive</span>;
 </span><span id="163" class="l"><a href="#163">163 </a>    }
 </span><span id="164" class="l"><a href="#164">164 </a>
 </span><span id="165" class="l"><a href="#165">165 </a>}

@@ -85,8 +85,8 @@ abstract class BaseBlameableEntityModel extends BaseEntityModel {
     public function init() {
         if ($this->skipInit)
             return;
-        $this->on(self::$EVENT_CONFIRMATION_CHANGED, [$this, "onConfirmationChanged"]);
-        $this->on(self::$EVENT_NEW_RECORD_CREATED, [$this, "onInitConfirmation"]);
+        $this->on(self::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);
+        $this->on(self::$eventNewRecordCreated, [$this, "onInitConfirmation"]);
         $this->on(self::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
         parent::init();
     }

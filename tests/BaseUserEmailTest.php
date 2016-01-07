@@ -13,13 +13,12 @@
 namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\UserEmail;
-use vistart\Helpers\Ip;
 use Yii;
 
 /**
  * Description of BaseUserEmailTest
  *
- * @author i
+ * @author vistart <i@vistart.name>
  */
 class BaseUserEmailTest extends TestCase {
 

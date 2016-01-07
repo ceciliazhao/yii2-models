@@ -28,8 +28,8 @@ use Yii;
  */
 trait IdentityTrait {
 
-    public static $STATUS_ACTIVE = 1;
-    public static $STATUS_INACTIVE = 0;
+    public static $statusActive = 1;
+    public static $statusInactive = 0;
     public $statusAttribute = 'status';
     private $_statusRules = [];
     public $authKeyAttribute = 'auth_key';
@@ -159,7 +159,7 @@ trait IdentityTrait {
     public function onInitStatusAttribute($event) {
         $sender = $event->sender;
         $statusAttribute = $sender->statusAttribute;
-        $sender->$statusAttribute = self::$STATUS_ACTIVE;
+        $sender->$statusAttribute = self::$statusActive;
     }
 
 }

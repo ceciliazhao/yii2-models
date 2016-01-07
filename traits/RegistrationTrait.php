@@ -23,12 +23,12 @@ use Yii;
  */
 trait RegistrationTrait {
 
-    public static $EVENT_AFTER_REGISTER = "afterRegister";
-    public static $EVENT_BEFORE_REGISTER = "beforeRegister";
-    public static $EVENT_REGISTER_FAILED = "registerFailed";
-    public static $EVENT_AFTER_DEREGISTER = "afterDeregister";
-    public static $EVENT_BEFORE_DEREGISTER = "beforeDeregister";
-    public static $EVENT_DEREGISTER_FAILED = "deregisterFailed";
+    public static $eventAfterRegister = "afterRegister";
+    public static $eventBeforeRegister = "beforeRegister";
+    public static $eventRegisterFailed = "registerFailed";
+    public static $eventAfterDeregister = "afterDeregister";
+    public static $eventBeforeDeregister = "beforeDeregister";
+    public static $eventDeregisterFailed = "deregisterFailed";
     public $sourceAttribute = 'source';
     private $_sourceRules = [];
     public $sourceSelf = '0';
@@ -41,9 +41,9 @@ trait RegistrationTrait {
      * are rolled back.
      * If current user is not a new one(isNewRecord = false), the registration
      * will be skipped and return false.
-     * The $EVENT_BEFORE_REGISTER will be triggered before registration starts.
-     * If registration finished, the $EVENT_AFTER_REGISTER will be triggered. or
-     * $EVENT_REGISTER_FAILED will be triggered when any errors occured.
+     * The $eventBeforeRegister will be triggered before registration starts.
+     * If registration finished, the $eventAfterRegister will be triggered. or
+     * $eventRegisterFailed will be triggered when any errors occured.
      * @param array $associatedModels The models associated with user to be stored synchronously.
      * @return boolean Whether the registration succeeds or not.
      * @throws \yii\db\IntegrityException
@@ -52,7 +52,7 @@ trait RegistrationTrait {
         if (!$this->isNewRecord) {
             return false;
         }
-        $this->trigger(self::$EVENT_BEFORE_REGISTER);
+        $this->trigger(self::$eventBeforeRegister);
         $transaction = $this->getDb()->beginTransaction();
         try {
             if (!$this->save()) {
@@ -67,10 +67,10 @@ trait RegistrationTrait {
         } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
             Yii::warning($ex->errorInfo, 'user\register');
-            $this->trigger(self::$EVENT_REGISTER_FAILED);
+            $this->trigger(self::$eventRegisterFailed);
             return $ex;
         }
-        $this->trigger(self::$EVENT_AFTER_REGISTER);
+        $this->trigger(self::$eventAfterRegister);
         return true;
     }
 
@@ -84,12 +84,12 @@ trait RegistrationTrait {
      * @return boolean Whether deregistration succeeds or not.
      */
     public function deregister() {
-        $this->trigger(self::$EVENT_BEFORE_DEREGISTER);
+        $this->trigger(self::$eventBeforeDeregister);
         $result = $this->delete();
         if ($result == 1) {
-            $this->trigger(self::$EVENT_AFTER_DEREGISTER);
+            $this->trigger(self::$eventAfterDeregister);
         } else {
-            $this->trigger(self::$EVENT_DEREGISTER_FAILED);
+            $this->trigger(self::$eventDeregisterFailed);
         }
         return $result == 1;
     }

@@ -226,22 +226,22 @@
 </span><span id="86" class="l"><a href="#86"> 86 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> testPassword() {
 </span><span id="87" class="l"><a href="#87"> 87 </a>        <span class="php-var">$password</span> = <span class="php-quote">'123456'</span>;
 </span><span id="88" class="l"><a href="#88"> 88 </a>        <span class="php-var">$user</span> = <span class="php-keyword1">new</span> User();
-</span><span id="89" class="l"><a href="#89"> 89 </a>        <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$EVENT_AFTER_SET_PASSWORD</span>));
-</span><span id="90" class="l"><a href="#90"> 90 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">false</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$EVENT_BEFORE_VALIDATE_PASSWORD</span>));
+</span><span id="89" class="l"><a href="#89"> 89 </a>        <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$eventAfterSetPassword</span>));
+</span><span id="90" class="l"><a href="#90"> 90 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">false</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$eventBeforeValidatePassword</span>));
 </span><span id="91" class="l"><a href="#91"> 91 </a>
-</span><span id="92" class="l"><a href="#92"> 92 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$EVENT_AFTER_SET_PASSWORD</span>, <span class="php-keyword1">function</span>(<span class="php-var">$event</span>) {
+</span><span id="92" class="l"><a href="#92"> 92 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$eventAfterSetPassword</span>, <span class="php-keyword1">function</span>(<span class="php-var">$event</span>) {
 </span><span id="93" class="l"><a href="#93"> 93 </a>            <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-keyword1">true</span>, <span class="php-quote">'EVENT_AFTER_SET_PASSWORD'</span>);
 </span><span id="94" class="l"><a href="#94"> 94 </a>            <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="95" class="l"><a href="#95"> 95 </a>            <span class="php-var">$this</span>-&gt;assertInstanceOf(User::className(), <span class="php-var">$sender</span>);
 </span><span id="96" class="l"><a href="#96"> 96 </a>        });
-</span><span id="97" class="l"><a href="#97"> 97 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$EVENT_AFTER_SET_PASSWORD</span>));
+</span><span id="97" class="l"><a href="#97"> 97 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$eventAfterSetPassword</span>));
 </span><span id="98" class="l"><a href="#98"> 98 </a>
-</span><span id="99" class="l"><a href="#99"> 99 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$EVENT_BEFORE_VALIDATE_PASSWORD</span>, <span class="php-keyword1">function</span>(<span class="php-var">$event</span>) {
+</span><span id="99" class="l"><a href="#99"> 99 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$eventBeforeValidatePassword</span>, <span class="php-keyword1">function</span>(<span class="php-var">$event</span>) {
 </span><span id="100" class="l"><a href="#100">100 </a>            <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-keyword1">true</span>, <span class="php-quote">'EVENT_BEFORE_VALIDATE_PASSWORD'</span>);
 </span><span id="101" class="l"><a href="#101">101 </a>            <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="102" class="l"><a href="#102">102 </a>            <span class="php-var">$this</span>-&gt;assertInstanceOf(User::className(), <span class="php-var">$sender</span>);
 </span><span id="103" class="l"><a href="#103">103 </a>        });
-</span><span id="104" class="l"><a href="#104">104 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$EVENT_BEFORE_VALIDATE_PASSWORD</span>));
+</span><span id="104" class="l"><a href="#104">104 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$user</span>-&gt;hasEventHandlers(User::<span class="php-var">$eventBeforeValidatePassword</span>));
 </span><span id="105" class="l"><a href="#105">105 </a>
 </span><span id="106" class="l"><a href="#106">106 </a>        <span class="php-var">$user</span>-&gt;password = <span class="php-var">$password</span>;
 </span><span id="107" class="l"><a href="#107">107 </a>        <span class="php-var">$passwordHashAttribute</span> = <span class="php-var">$user</span>-&gt;passwordHashAttribute;
@@ -261,7 +261,7 @@
 </span><span id="121" class="l"><a href="#121">121 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> testPasswordResetToken() {
 </span><span id="122" class="l"><a href="#122">122 </a>        <span class="php-var">$password</span> = <span class="php-quote">'123456'</span>;
 </span><span id="123" class="l"><a href="#123">123 </a>        <span class="php-var">$user</span> = <span class="php-keyword1">new</span> User([<span class="php-quote">'password'</span> =&gt; <span class="php-var">$password</span>]);
-</span><span id="124" class="l"><a href="#124">124 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$EVENT_RESET_PASSWORD_FAILED</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onResetPasswordFailed'</span>]);
+</span><span id="124" class="l"><a href="#124">124 </a>        <span class="php-var">$user</span>-&gt;on(User::<span class="php-var">$eventResetPasswordFailed</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onResetPasswordFailed'</span>]);
 </span><span id="125" class="l"><a href="#125">125 </a>        <span class="php-var">$user</span>-&gt;register();
 </span><span id="126" class="l"><a href="#126">126 </a>        <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-var">$user</span>-&gt;applyNewPassword());
 </span><span id="127" class="l"><a href="#127">127 </a>        <span class="php-var">$password</span> = <span class="php-var">$password</span> . <span class="php-quote">' '</span>;
@@ -314,7 +314,7 @@
 </span><span id="174" class="l"><a href="#174">174 </a>        <span class="php-var">$sourceAttribute</span> = <span class="php-var">$user</span>-&gt;sourceAttribute;
 </span><span id="175" class="l"><a href="#175">175 </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-var">$user</span>-&gt;sourceSelf, <span class="php-var">$user</span>-&gt;<span class="php-var">$sourceAttribute</span>);
 </span><span id="176" class="l"><a href="#176">176 </a>        <span class="php-var">$statusAttribute</span> = <span class="php-var">$user</span>-&gt;statusAttribute;
-</span><span id="177" class="l"><a href="#177">177 </a>        <span class="php-var">$this</span>-&gt;assertEquals(User::<span class="php-var">$STATUS_ACTIVE</span>, <span class="php-var">$user</span>-&gt;<span class="php-var">$statusAttribute</span>);
+</span><span id="177" class="l"><a href="#177">177 </a>        <span class="php-var">$this</span>-&gt;assertEquals(User::<span class="php-var">$statusActive</span>, <span class="php-var">$user</span>-&gt;<span class="php-var">$statusAttribute</span>);
 </span><span id="178" class="l"><a href="#178">178 </a>        <span class="php-var">$this</span>-&gt;assertTrue(<span class="php-var">$user</span>-&gt;deregister());
 </span><span id="179" class="l"><a href="#179">179 </a>    }
 </span><span id="180" class="l"><a href="#180">180 </a>

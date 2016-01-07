@@ -86,22 +86,22 @@ class BaseUserModelTest extends TestCase {
     public function testPassword() {
         $password = '123456';
         $user = new User();
-        $this->assertTrue($user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
-        $this->assertEquals(false, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
+        $this->assertTrue($user->hasEventHandlers(User::$eventAfterSetPassword));
+        $this->assertEquals(false, $user->hasEventHandlers(User::$eventBeforeValidatePassword));
 
-        $user->on(User::$EVENT_AFTER_SET_PASSWORD, function($event) {
+        $user->on(User::$eventAfterSetPassword, function($event) {
             $this->assertTrue(true, 'EVENT_AFTER_SET_PASSWORD');
             $sender = $event->sender;
             $this->assertInstanceOf(User::className(), $sender);
         });
-        $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_AFTER_SET_PASSWORD));
+        $this->assertEquals(true, $user->hasEventHandlers(User::$eventAfterSetPassword));
 
-        $user->on(User::$EVENT_BEFORE_VALIDATE_PASSWORD, function($event) {
+        $user->on(User::$eventBeforeValidatePassword, function($event) {
             $this->assertTrue(true, 'EVENT_BEFORE_VALIDATE_PASSWORD');
             $sender = $event->sender;
             $this->assertInstanceOf(User::className(), $sender);
         });
-        $this->assertEquals(true, $user->hasEventHandlers(User::$EVENT_BEFORE_VALIDATE_PASSWORD));
+        $this->assertEquals(true, $user->hasEventHandlers(User::$eventBeforeValidatePassword));
 
         $user->password = $password;
         $passwordHashAttribute = $user->passwordHashAttribute;
@@ -121,7 +121,7 @@ class BaseUserModelTest extends TestCase {
     public function testPasswordResetToken() {
         $password = '123456';
         $user = new User(['password' => $password]);
-        $user->on(User::$EVENT_RESET_PASSWORD_FAILED, [$this, 'onResetPasswordFailed']);
+        $user->on(User::$eventResetPasswordFailed, [$this, 'onResetPasswordFailed']);
         $user->register();
         $this->assertTrue($user->applyNewPassword());
         $password = $password . ' ';
@@ -174,7 +174,7 @@ class BaseUserModelTest extends TestCase {
         $sourceAttribute = $user->sourceAttribute;
         $this->assertEquals($user->sourceSelf, $user->$sourceAttribute);
         $statusAttribute = $user->statusAttribute;
-        $this->assertEquals(User::$STATUS_ACTIVE, $user->$statusAttribute);
+        $this->assertEquals(User::$statusActive, $user->$statusAttribute);
         $this->assertTrue($user->deregister());
     }
 

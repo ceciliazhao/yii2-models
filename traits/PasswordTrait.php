@@ -25,14 +25,14 @@ use Yii;
  */
 trait PasswordTrait {
 
-    public static $EVENT_AFTER_SET_PASSWORD = "afterSetPassword";
-    public static $EVENT_BEFORE_VALIDATE_PASSWORD = "beforeValidatePassword";
-    public static $EVENT_VALIDATE_PASSWORD_SUCCEEDED = "validatePasswordSucceeded";
-    public static $EVENT_VALIDATE_PASSWORD_FAILED = "validatePasswordFailed";
-    public static $EVENT_BEFORE_RESET_PASSWORD = "beforeResetPassword";
-    public static $EVENT_AFTER_RESET_PASSWORD = "afterResetPassword";
-    public static $EVENT_RESET_PASSWORD_FAILED = "resetPasswordFailed";
-    public static $EVENT_PASSWORD_RESET_TOKEN_GENERATED = "passwordResetTokenGenerated";
+    public static $eventAfterSetPassword = "afterSetPassword";
+    public static $eventBeforeValidatePassword = "beforeValidatePassword";
+    public static $eventValidatePasswordSucceeded = "validatePasswordSucceeded";
+    public static $eventValidatePasswordFailed = "validatePasswordFailed";
+    public static $eventBeforeResetPassword = "beforeResetPassword";
+    public static $eventAfterResetPassword = "afterResetPassword";
+    public static $eventResetPasswordFailed = "resetPasswordFailed";
+    public static $eventPasswordResetTokenGenerated = "passwordResetTokenGenerated";
 
     /**
      * @var string The name of attribute used for storing password hash.
@@ -152,9 +152,9 @@ trait PasswordTrait {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $result = Yii::$app->security->validatePassword($password, $this->$passwordHashAttribute);
         if ($result) {
-            $this->trigger(self::$EVENT_VALIDATE_PASSWORD_SUCCEEDED);
+            $this->trigger(self::$eventValidatePasswordSucceeded);
         } else {
-            $this->trigger(self::$EVENT_VALIDATE_PASSWORD_FAILED);
+            $this->trigger(self::$eventValidatePasswordFailed);
         }
         return $result;
     }
@@ -166,7 +166,7 @@ trait PasswordTrait {
     public function setPassword($password) {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $this->$passwordHashAttribute = Yii::$app->security->generatePasswordHash($password);
-        $this->trigger(self::$EVENT_AFTER_SET_PASSWORD);
+        $this->trigger(self::$eventAfterSetPassword);
     }
     
     /**
@@ -180,10 +180,10 @@ trait PasswordTrait {
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
         $this->$passwordResetTokenAttribute = self::generatePasswordResetToken();
         if (!$this->save()) {
-            $this->trigger(self::$EVENT_RESET_PASSWORD_FAILED);
+            $this->trigger(self::$eventResetPasswordFailed);
             return false;
         }
-        $this->trigger(self::$EVENT_PASSWORD_RESET_TOKEN_GENERATED);
+        $this->trigger(self::$eventPasswordResetTokenGenerated);
         return true;
     }
 
@@ -194,15 +194,15 @@ trait PasswordTrait {
         if (!$this->validatePasswordResetToken($token)) {
             return false;
         }
-        $this->trigger(self::$EVENT_BEFORE_RESET_PASSWORD);
+        $this->trigger(self::$eventBeforeResetPassword);
         $this->password = $password;
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
         $this->$passwordResetTokenAttribute = '';
         if (!$this->save()) {
-            $this->trigger(self::$EVENT_RESET_PASSWORD_FAILED);
+            $this->trigger(self::$eventResetPasswordFailed);
             return;
         }
-        $this->trigger(self::$EVENT_AFTER_RESET_PASSWORD);
+        $this->trigger(self::$eventAfterResetPassword);
     }
     
     /**

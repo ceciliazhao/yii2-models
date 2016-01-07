@@ -26,7 +26,7 @@ trait EntityTrait {
 
     private $_entityRules = [];
     private $_entityBehaviors = [];
-    public static $EVENT_NEW_RECORD_CREATED = 'newRecordCreated';
+    public static $eventNewRecordCreated = 'newRecordCreated';
 
     /**
      * Populate and return the entity rules.

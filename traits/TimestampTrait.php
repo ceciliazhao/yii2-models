@@ -36,8 +36,8 @@ trait TimestampTrait {
      */
     public $updatedAtAttribute = 'update_time';
     public $timeFormat = 0;
-    public static $TIME_FORMAT_DATE_TIME = 0;
-    public static $TIME_FORMAT_TIMESTAMP = 1;
+    public static $timeFormatDatetime = 0;
+    public static $timeFormatTimestamp = 1;
 
     /**
      * Get the current date & time in format of "Y-m-d H:i:s".
@@ -47,10 +47,10 @@ trait TimestampTrait {
      */
     public static function getCurrentDatetime($event) {
         $sender = $event->sender;
-        if ($sender->timeFormat === self::$TIME_FORMAT_DATE_TIME) {
+        if ($sender->timeFormat === self::$timeFormatDatetime) {
             return date('Y-m-d H:i:s');
         }
-        if ($sender->timeFormat === self::$TIME_FORMAT_TIMESTAMP) {
+        if ($sender->timeFormat === self::$timeFormatTimestamp) {
             return time();
         }
     }
