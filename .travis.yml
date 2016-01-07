@@ -30,7 +30,7 @@ before_script:
     - php -r "echo INTL_ICU_VERSION . \"\n\";"
     - php -v
     - mysql --version
-    - mysql -uroot < tests/data/yii2-models.sql
+    - mysql -uroot < tests/data/yii2-models.sql.gz
     - |
         if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
           PHPUNIT_FLAGS="--coverage-clover=coverage.clover"

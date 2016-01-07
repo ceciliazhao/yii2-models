@@ -39,6 +39,6 @@ class BaseUserEmailTest extends TestCase {
         $email = new UserEmail();
         $this->assertNotNull($email);
         
-        var_dump($email->rules());
+        //var_dump($email->rules());
     }
 }

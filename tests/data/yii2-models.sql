@@ -3,18 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-07 00:42:57
+-- Generation Time: 2016-01-07 21:34:04
 -- 服务器版本： 5.7.10
--- PHP Version: 5.6.16
+-- PHP Version: 5.6.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+08:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `yii2-models`
@@ -27,8 +27,7 @@ USE `yii2-models`;
 --
 -- 表的结构 `user`
 --
--- 创建时间： 2016-01-06 15:25:11
--- 最后更新： 2016-01-06 16:13:23
+-- 创建时间： 2016-01-07 13:33:20
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 -- 表的结构 `user_email`
 --
--- 创建时间： 2016-01-04 11:01:39
+-- 创建时间： 2016-01-07 13:33:20
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -68,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
   `user_guid` varchar(36) NOT NULL,
   `id` varchar(8) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
