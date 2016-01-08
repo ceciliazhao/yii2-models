@@ -23,14 +23,10 @@ use Yii;
  */
 class BaseUserModelTest extends TestCase {
 
-    public function setUp() {
-        parent::setUp();
-        User::$db = $this->getConnection();
-    }
-    
     public function testInit() {
-        User::deleteAll();
+        //User::deleteAll();
     }
+
     /**
      * @depends testInit
      */
@@ -108,13 +104,13 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
     }
-    
+
     public function onResetPasswordFailed($event) {
         $sender = $event->sender;
         var_dump($sender->errors);
         $this->assertFalse(true);
     }
-    
+
     /**
      * @depends testPassword
      */
@@ -155,12 +151,12 @@ class BaseUserModelTest extends TestCase {
         } else {
             $this->assertTrue($result);
         }
-        
+
         $this->assertNotNull($user->$createdAtAttribute);
         $this->assertNotNull($user->$updatedAtAttribute);
         $this->assertTrue($user->deregister());
     }
-    
+
     /**
      * @depends testTimestamp
      */
@@ -181,22 +177,22 @@ class BaseUserModelTest extends TestCase {
     private function validatePassword($password, $hash) {
         return Yii::$app->security->validatePassword($password, $hash);
     }
-    
+
     /**
      * @depends testRegister
      */
     public function testNewUser256() {
-        User::deleteAll();
+        //User::deleteAll();
         //set_time_limit(1800);
         /*
-        for ($i = 0; $i < 256; $i++) {
-            $password = '123456';
-            $user = new User(['password' => $password]);
-            if (!$user->register()) {
-                $this->assertFalse(true);
-            }
-        }
-        var_dump(User::find()->count());*/
+          for ($i = 0; $i < 256; $i++) {
+          $password = '123456';
+          $user = new User(['password' => $password]);
+          if (!$user->register()) {
+          $this->assertFalse(true);
+          }
+          }
+          var_dump(User::find()->count()); */
     }
 
 }

@@ -12,7 +12,7 @@
 
 namespace vistart\Models\traits;
 
-use yii\behaviors\BlameableBehavior;
+use vistart\Models\behaviors\IgnorableBlameableBehavior;
 
 /**
  * 该 Trait 用于处理属于用户的实例。包括以下功能：
@@ -77,7 +77,7 @@ trait BlameableTrait {
      * @var boolean|string Specify the field which stores the type of content.
      */
     public $contentTypeAttribute = false;
-    
+
     /**
      * @var boolean|array Specify the logic type of content, not data type. If
      * your content doesn't need this feature. please specify false. If the
@@ -92,7 +92,7 @@ trait BlameableTrait {
      * ```
      */
     public $contentTypes = false;
-    
+
     /**
      * @var boolean|string This attribute speicfy the name of description
      * attribute. If this attribute is assigned to false, this feature will be
@@ -111,13 +111,13 @@ trait BlameableTrait {
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = "user_guid";
-    
+
     /**
      * @var boolean|string The name of user class which own the current entity.
      * If this attribute is assigned to false, this feature will be skipped.
      */
     public $userClass;
-    
+
     /**
      * 
      * @return mixed
@@ -126,9 +126,10 @@ trait BlameableTrait {
         if (!$this->createdByAttribute || empty($this->userClass)) {
             return null;
         }
+        $userClass = $this->userClass;
         return $userClass::findOne($this->createdByAttribute);
     }
-    
+
     /**
      * 
      * @return mixed
@@ -137,6 +138,7 @@ trait BlameableTrait {
         if (!$this->updatedByAttribute || empty($this->userClass)) {
             return null;
         }
+        $userClass = $this->userClass;
         return $userClass::findOne($this->updatedByAttribute);
     }
 
@@ -222,60 +224,65 @@ trait BlameableTrait {
         if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
             return $this->_blameableRules;
         }
-        
-        // 当前规则
+
+        // 父类规则与确认规则合并。
+        $this->_blameableRules = array_merge(
+                parent::rules(), $this->confirmationRules, $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
+        );
+
+        return $this->_blameableRules;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    protected function getBlameableAttributeRules() {
         $rules = [];
-        
         // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
         if (is_string($this->createdByAttribute) && !empty($this->createdByAttribute)) {
             $rules[] = [
                 [$this->createdByAttribute], 'safe',
             ];
         }
-        
+
         if (is_string($this->updatedByAttribute) && !empty($this->updatedByAttribute)) {
             $rules[] = [
                 [$this->updatedByAttribute], 'safe',
             ];
         }
-        
-        // 先将父类规则与确认规则合并。
-        $this->_blameableRules = array_merge(
-                parent::rules(), $this->confirmationRules, $rules
-        );
-        
+        return $rules;
+    }
+
+    protected function getDescriptionRules() {
+        $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
-            $this->_blameableRules[] = [
+            $rules[] = [
                 $this->descriptionAttribute, 'string'
             ];
         }
-        
-        // 若 contentAttribute 未设置，则直接返回，否则合并。
+        return $rules;
+    }
+
+    protected function getContentRules() {
         if (!$this->contentAttribute) {
-            return $this->_blameableRules;
+            return [];
         }
-        $this->_blameableRules[] = [
-            [$this->contentAttribute], 'required'
-        ];
+        $rules = [];
+        $rules[] = [[$this->contentAttribute], 'required'];
         if ($this->contentAttributeRule && is_array($this->contentAttributeRule)) {
-            $this->_blameableRules[] = array_merge(
-                    [$this->contentAttribute], $this->contentAttributeRule
-            );
+            $rules[] = array_merge([$this->contentAttribute], $this->contentAttributeRule);
         }
-        
+
         if (!$this->contentTypeAttribute) {
-            return $this->_blameableRules;
+            return $rules;
         }
-        
+
         if (!is_array($this->contentTypes || empty($this->contentTypes))) {
-            $this->_blameableRules[] = [
-                [$this->contentTypeAttribute], 'required'
-            ];
-            $this->_blameableRules[] = [
-                [$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)
-            ];
+            $rules[] = [[$this->contentTypeAttribute], 'required'];
+            $rules[] = [[$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)];
         }
-        return $this->_blameableRules;
+        return $rules;
     }
 
     /**
@@ -294,9 +301,10 @@ trait BlameableTrait {
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
             $behaviors = parent::behaviors();
             $behaviors[] = [
-                'class' => BlameableBehavior::className(),
+                'class' => IgnorableBlameableBehavior::className(),
                 'createdByAttribute' => $this->createdByAttribute,
                 'updatedByAttribute' => $this->updatedByAttribute,
+                'skipOnSet' => $this->isNewRecord,
                 'value' => [$this, 'onGetCurrentUserGuid'],
             ];
             $this->_blameableBehaviors = $behaviors;
@@ -333,11 +341,10 @@ trait BlameableTrait {
      */
     public function onGetCurrentUserGuid($event) {
         $identity = \Yii::$app->user->identity;
-        if (!$identity) {
-            return null;
+        if ($identity) {
+            $identityGuidAttribute = $identity->guidAttribute;
+            return $identity->$identityGuidAttribute;
         }
-        $identityGuidAttribute = $identity->guidAttribute;
-        return $identity->$identityGuidAttribute;
     }
 
 }

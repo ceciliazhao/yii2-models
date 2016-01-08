@@ -13,31 +13,38 @@
 namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\UserEmail;
+use vistart\Models\tests\data\ar\User;
 use Yii;
 
 /**
- * Description of BaseUserEmailTest
- *
+ * 
  * @author vistart <i@vistart.name>
  */
 class BaseUserEmailTest extends TestCase {
 
-    public function setUp() {
-        parent::setUp();
-        UserEmail::$db = $this->getConnection();
-    }
-    
     public function testInit() {
-        UserEmail::deleteAll();
+        //UserEmail::deleteAll();
     }
-    
+
     /**
      * @depends testInit
      */
     public function testNew() {
         $email = new UserEmail();
         $this->assertNotNull($email);
-        
-        //var_dump($email->rules());
+        $user = new User();
+        $email = $user->createNewModel(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
+        $this->assertNotNull($email);
+        $this->assertTrue($user->register([$email]));
+        $user = User::findOne($user->guid);
+        $this->assertInstanceOf(User::className(), $user);
+        $this->assertInstanceOf(UserEmail::className(), $user->userEmails[0]);
+        $guid = $user->guid;
+        $this->assertTrue($user->deregister());
+        $user = User::findOne($guid);
+        $email = UserEmail::findOne(['user_guid' => $guid]);
+        $this->assertNull($user);
+        $this->assertNull($email);
     }
+
 }

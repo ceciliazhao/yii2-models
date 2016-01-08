@@ -232,5 +232,11 @@ trait PasswordTrait {
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
         return $this->$passwordResetTokenAttribute === $token;
     }
+    
+    public function onInitPasswordResetToken($event) {
+        $sender = $event->sender;
+        $passwordResetTokenAttribute = $sender->passwordResetTokenAttribute;
+        $sender->$passwordResetTokenAttribute = '';
+    }
 
 }

@@ -74,6 +74,10 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
                             'scriptFile' => __DIR__ . '/index.php',
                             'scriptUrl' => '/index.php',
                         ],
+                        'user' => [
+                            'identityClass' => 'app\models\user\User',
+                            'enableAutoLogin' => true,
+                        ]
                     ]
                         ], $config));
     }

@@ -59,6 +59,10 @@
 						</a>
 							<ul>
 					<li>
+						<a href="namespace-vistart.Models.behaviors.html">
+							behaviors						</a>
+							</li>
+					<li>
 						<a href="namespace-vistart.Models.gii.html">
 							gii<span></span>
 						</a>
@@ -172,7 +176,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#15-46" title="Go to source code">tests/data/ar/UserEmail.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#15-67" title="Go to source code">tests/data/ar/UserEmail.php</a>
 		<br>
 	</div>
 
@@ -210,18 +214,18 @@ yii\db\ActiveRecord
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getDb" id="_getDb">
+		<tr data-order="attributeLabels" id="_attributeLabels">
 
 			<td class="attributes"><code>
-				 public static
+				 public 
 				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getDb">#</a>
-			<code><a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#42-44" title="Go to source code">getDb</a>( )</code>
+			<a class="anchor" href="#_attributeLabels">#</a>
+			<code><a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#51-65" title="Go to source code">attributeLabels</a>( )</code>
 
 			<div class="description short">
 				
@@ -234,6 +238,9 @@ yii\db\ActiveRecord
 
 
 
+					<h4>Inheritdoc</h4>
+					<div class="list">
+					</div>
 
 
 			</div>
@@ -253,11 +260,14 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentRules">getContentRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getCreator">getCreator()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescriptionRules">getDescriptionRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUpdater">getUpdater()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onContentChanged">onContentChanged()</a></code>, 
@@ -339,12 +349,238 @@ yii\db\ActiveRecord
 
 
 
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Constants summary</h2></div>
+			<table class="summary table table-bordered table-striped constants" id="constants">
+			<tr data-order="TYPE_HOME" id="TYPE_HOME">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#31" title="Go to source code"><b>TYPE_HOME</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#TYPE_HOME" class="anchor">#</a>
+						<code><span class="php-num">0x00</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="TYPE_WORK" id="TYPE_WORK">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#32" title="Go to source code"><b>TYPE_WORK</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#TYPE_WORK" class="anchor">#</a>
+						<code><span class="php-num">0x01</span></code>
+					</div>
+				</td>
+			</tr>
+			<tr data-order="TYPE_OTHER" id="TYPE_OTHER">
+
+				<td class="attributes"><code>integer</code></td>
+				<td class="name">
+					<code>
+						<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#33" title="Go to source code"><b>TYPE_OTHER</b></a>
+					</code>
+
+					<div class="description short">
+						
+					</div>
+
+					<div class="description detailed hidden">
+						
+
+					</div>
+				</td>
+				<td class="value">
+					<div>
+						<a href="#TYPE_OTHER" class="anchor">#</a>
+						<code><span class="php-num">0xff</span></code>
+					</div>
+				</td>
+			</tr>
+			</table>
+		</div>
+
 
 
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
+			<td class="attributes"><code>
+				public  
+				string|boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#27" title="Go to source code"><var>$confirmationAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$confirmationAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'confirmed'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="confirmCodeAttribute" id="$confirmCodeAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#28" title="Go to source code"><var>$confirmCodeAttribute</var></a>
+
+				<div class="description short">
+					<p>This attribute specify the name of confirm_code attribute, if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>This attribute specify the name of confirm_code attribute, if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$confirmCodeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'confirm_code'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="contentTypeAttribute" id="$contentTypeAttribute">
+			<td class="attributes"><code>
+				public  
+				boolean|string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#29" title="Go to source code"><var>$contentTypeAttribute</var></a>
+
+				<div class="description short">
+					<p>Specify the field which stores the type of content.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Specify the field which stores the type of content.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$contentTypeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'type'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="contentTypes" id="$contentTypes">
+			<td class="attributes"><code>
+				public  
+				boolean|array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#35-39" title="Go to source code"><var>$contentTypes</var></a>
+
+				<div class="description short">
+					<p>Specify the logic type of content, not data type. If
+your content doesn't need this feature. please specify false. If the
+$contentAttribute is specified to false, this attribute will be skipped.</p>
+
+<pre><span class="php-keyword1">public</span> <span class="php-var">$contentTypes</span> = [
+    <span class="php-quote">'public'</span>,
+    <span class="php-quote">'private'</span>,
+    <span class="php-quote">'friend'</span>,
+];</pre>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Specify the logic type of content, not data type. If
+your content doesn't need this feature. please specify false. If the
+$contentAttribute is specified to false, this attribute will be skipped.</p>
+
+<pre><span class="php-keyword1">public</span> <span class="php-var">$contentTypes</span> = [ <span class="php-quote">'public'</span>, <span class="php-quote">'private'</span>, <span class="php-quote">'friend'</span>,
+];</pre>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$contentTypes" class="anchor">#</a>
+					<code>[
+    self::TYPE_HOME =&gt; <span class="php-quote">'home'</span>,
+    self::TYPE_WORK =&gt; <span class="php-quote">'work'</span>,
+    self::TYPE_OTHER =&gt; <span class="php-quote">'other'</span>,
+]</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="updatedByAttribute" id="$updatedByAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#40" title="Go to source code"><var>$updatedByAttribute</var></a>
+
+				<div class="description short">
+					<p>the attribute that will receive current user ID value
+Set this property to false if you do not want to record the updater ID.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>the attribute that will receive current user ID value
+Set this property to false if you do not want to record the updater ID.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$updatedByAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="contentAttribute" id="$contentAttribute">
 			<td class="attributes"><code>
 				public  
@@ -352,7 +588,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#27" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#41" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -415,7 +651,7 @@ false.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#28" title="Go to source code"><var>$contentAttributeRule</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#42" title="Go to source code"><var>$contentAttributeRule</var></a>
 
 				<div class="description short">
 					<p>built-in validator name or validatation method name and
@@ -431,88 +667,7 @@ additional parameters.</p>
 			<td class="value">
 				<div>
 					<a href="#$contentAttributeRule" class="anchor">#</a>
-					<code>[<span class="php-quote">'email'</span>]</code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
-			<td class="attributes"><code>
-				public  
-				string|boolean
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#29" title="Go to source code"><var>$confirmationAttribute</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$confirmationAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'confirmed'</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="confirmCodeAttribute" id="$confirmCodeAttribute">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#30" title="Go to source code"><var>$confirmCodeAttribute</var></a>
-
-				<div class="description short">
-					<p>This attribute specify the name of confirm_code attribute, if
-this attribute is assigned to false, this feature will be ignored.
-if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>This attribute specify the name of confirm_code attribute, if
-this attribute is assigned to false, this feature will be ignored.
-if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$confirmCodeAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'confirm_code'</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="updatedByAttribute" id="$updatedByAttribute">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#31" title="Go to source code"><var>$updatedByAttribute</var></a>
-
-				<div class="description short">
-					<p>the attribute that will receive current user ID value
-Set this property to false if you do not want to record the updater ID.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>the attribute that will receive current user ID value
-Set this property to false if you do not want to record the updater ID.</p>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$updatedByAttribute" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
+					<code>[<span class="php-quote">'email'</span>, <span class="php-quote">'message'</span> =&gt; <span class="php-quote">'Please input valid emaill address.'</span>, <span class="php-quote">'allowName'</span> =&gt; <span class="php-keyword1">true</span>]</code>
 				</div>
 			</td>
 		</tr>
@@ -523,7 +678,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#32" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#43" title="Go to source code"><var>$enableIP</var></a>
 
 				<div class="description short">
 					<p>REQUIRED. Determine whether enableing the IP attributes and
@@ -548,98 +703,6 @@ skipped.</p>
 				<div>
 					<a href="#$enableIP" class="anchor">#</a>
 					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="contentTypeAttribute" id="$contentTypeAttribute">
-			<td class="attributes"><code>
-				public  
-				boolean|string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#33" title="Go to source code"><var>$contentTypeAttribute</var></a>
-
-				<div class="description short">
-					<p>Specify the field which stores the type of content.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>Specify the field which stores the type of content.</p>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$contentTypeAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'type'</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="contentTypes" id="$contentTypes">
-			<td class="attributes"><code>
-				public  
-				boolean|array
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#34-38" title="Go to source code"><var>$contentTypes</var></a>
-
-				<div class="description short">
-					<p>Specify the logic type of content, not data type. If
-your content doesn't need this feature. please specify false. If the
-$contentAttribute is specified to false, this attribute will be skipped.</p>
-
-<pre><span class="php-keyword1">public</span> <span class="php-var">$contentTypes</span> = [
-    <span class="php-quote">'public'</span>,
-    <span class="php-quote">'private'</span>,
-    <span class="php-quote">'friend'</span>,
-];</pre>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>Specify the logic type of content, not data type. If
-your content doesn't need this feature. please specify false. If the
-$contentAttribute is specified to false, this attribute will be skipped.</p>
-
-<pre><span class="php-keyword1">public</span> <span class="php-var">$contentTypes</span> = [ <span class="php-quote">'public'</span>, <span class="php-quote">'private'</span>, <span class="php-quote">'friend'</span>,
-];</pre>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$contentTypes" class="anchor">#</a>
-					<code>[
-    <span class="php-num">0</span> =&gt; <span class="php-quote">'home'</span>,
-    <span class="php-num">1</span> =&gt; <span class="php-quote">'work'</span>,
-    <span class="php-num">255</span> =&gt; <span class="php-quote">'other'</span>,
-]</code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="db" id="$db">
-			<td class="attributes"><code>
-				public static 
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.tests.data.ar.UserEmail.html#40" title="Go to source code"><var>$db</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$db" class="anchor">#</a>
-					<code></code>
 				</div>
 			</td>
 		</tr>

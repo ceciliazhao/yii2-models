@@ -31,11 +31,13 @@ trait UserTrait {
      * the object properties.
      */
     public function createNewModel($className, $config = []) {
-        $guidAttribute = $this->guidAttribute;
-        if (!isset($config[$guidAttribute])) {
-            $config[$guidAttribute] = $this->$guidAttribute;
+        if (!isset($config['userClass'])) {
+            $config['userClass'] = self::className();
         }
-        return new $className($config);
+        $entity = new $className($config);
+        $createdByAttribute = $entity->createdByAttribute;
+        $entity->$createdByAttribute = $this->guid;
+        return $entity;
     }
 
     public function rules() {
