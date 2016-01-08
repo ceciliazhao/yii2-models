@@ -112,10 +112,10 @@ trait IPTrait {
      * Convert the IP address to integer, and store it(them) to ipAttribute*.
      * If you disable($this->enableIP = false) the IP feature, this method will
      * be skipped(return null).
-     * @param string $ip the significantly IP address.
+     * @param string $ipAddress the significantly IP address.
      * @return string|integer|null Integer when succeeded to convert.
      */
-    public function setIpAddress($ip) {
+    public function setIpAddress($ipAddress) {
         if (!$this->enableIP) {
             return null;
         }
@@ -124,23 +124,23 @@ trait IPTrait {
         $ipAttribute2 = $this->ipAttribute2;
         $ipAttribute3 = $this->ipAttribute3;
         $ipAttribute4 = $this->ipAttribute4;
-        $this->$ipTypeAttribute = Ip::judgeIPtype($ip);
+        $this->$ipTypeAttribute = Ip::judgeIPtype($ipAddress);
         if ($this->$ipTypeAttribute == Ip::IPv4) {
             $this->$ipAttribute1 = 0;
             $this->$ipAttribute2 = 0;
             $this->$ipAttribute3 = 0;
-            $this->$ipAttribute4 = Ip::ip2long($ip);
+            $this->$ipAttribute4 = Ip::ip2long($ipAddress);
             return Ip::IPv4;
         }
         if ($this->$ipTypeAttribute == Ip::IPv6) {
-            $ips = Ip::splitIPv6(Ip::IPv6toLong($ip));
+            $ips = Ip::splitIPv6(Ip::IPv6toLong($ipAddress));
             $this->$ipAttribute1 = bindec($ips[0]);
             $this->$ipAttribute2 = bindec($ips[1]);
             $this->$ipAttribute3 = bindec($ips[2]);
             $this->$ipAttribute4 = bindec($ips[3]);
             return Ip::IPv6;
         }
-        return $ip;
+        return $ipAddress;
     }
 
     public function getIpRules() {

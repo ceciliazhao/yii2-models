@@ -153,9 +153,9 @@ trait PasswordTrait {
         $result = Yii::$app->security->validatePassword($password, $this->$passwordHashAttribute);
         if ($result) {
             $this->trigger(self::$eventValidatePasswordSucceeded);
-        } else {
-            $this->trigger(self::$eventValidatePasswordFailed);
+            return $result;
         }
+        $this->trigger(self::$eventValidatePasswordFailed);
         return $result;
     }
 

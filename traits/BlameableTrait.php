@@ -28,10 +28,10 @@ use yii\behaviors\BlameableBehavior;
  * creator, updater, content and its ID, as well as all the inherited rules.
  * @property array $blameableBehaviors Get or set all the behaviors assoriated
  * with creator and updater, as well as all the inherited behaviors. 
- * @property-read mixed $content
- * @property-read boolean $contentCanBeEdited
- * @property-read mixed $creator;
- * @property-read mixed $updater;
+ * @property-read mixed $content Content.
+ * @property-read boolean $contentCanBeEdited Whether this content could be edited.
+ * @property-read mixed $creator The creator who created this content.
+ * @property-read mixed $updater The updater who updated this content.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -92,6 +92,13 @@ trait BlameableTrait {
      * ```
      */
     public $contentTypes = false;
+    
+    /**
+     * @var boolean|string This attribute speicfy the name of description
+     * attribute. If this attribute is assigned to false, this feature will be
+     * skipped.
+     */
+    public $descriptionAttribute = false;
 
     /**
      * @var string the attribute that will receive current user ID value
@@ -105,17 +112,29 @@ trait BlameableTrait {
      */
     public $updatedByAttribute = "user_guid";
     
+    /**
+     * @var boolean|string The name of user class which own the current entity.
+     * If this attribute is assigned to false, this feature will be skipped.
+     */
     public $userClass;
     
+    /**
+     * 
+     * @return mixed
+     */
     public function getCreator() {
-        if (!$this->createdByAttribute) {
+        if (!$this->createdByAttribute || empty($this->userClass)) {
             return null;
         }
         return $userClass::findOne($this->createdByAttribute);
     }
     
+    /**
+     * 
+     * @return mixed
+     */
     public function getUpdater() {
-        if (!$this->updatedByAttribute) {
+        if (!$this->updatedByAttribute || empty($this->userClass)) {
             return null;
         }
         return $userClass::findOne($this->updatedByAttribute);
@@ -165,9 +184,9 @@ trait BlameableTrait {
             foreach ($contentAttribute as $key => $value) {
                 $this->$value = $content[$key];
             }
-        } else {
-            $this->$contentAttribute = $content;
+            return;
         }
+        $this->$contentAttribute = $content;
     }
 
     /**
@@ -224,6 +243,12 @@ trait BlameableTrait {
         $this->_blameableRules = array_merge(
                 parent::rules(), $this->confirmationRules, $rules
         );
+        
+        if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
+            $this->_blameableRules[] = [
+                $this->descriptionAttribute, 'string'
+            ];
+        }
         
         // 若 contentAttribute 未设置，则直接返回，否则合并。
         if (!$this->contentAttribute) {

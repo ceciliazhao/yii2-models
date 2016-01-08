@@ -17,8 +17,8 @@ use yii\behaviors\TimestampBehavior;
 /**
  * 
  * @property-read array $timestampBehaviors
- * @property-read array createdAtRules
- * @property-read array updatedAtRules
+ * @property-read array $createdAtRules
+ * @property-read array $updatedAtRules
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -78,6 +78,10 @@ trait TimestampTrait {
         ];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getCreatedAtRules() {
         if (!$this->createdAtAttribute) return [];
         return [
@@ -85,6 +89,10 @@ trait TimestampTrait {
         ];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getUpdatedAtRules() {
         if (!$this->updatedAtAttribute) return [];
         return [

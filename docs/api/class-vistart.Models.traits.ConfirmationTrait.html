@@ -153,7 +153,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.ConfirmationTrait.html#17-240" title="Go to source code">traits/ConfirmationTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.ConfirmationTrait.html#17-271" title="Go to source code">traits/ConfirmationTrait.php</a>
 		<br>
 	</div>
 
@@ -173,7 +173,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_applyConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#63-76" title="Go to source code">applyConfirmation</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#71-84" title="Go to source code">applyConfirmation</a>( )</code>
 
 			<div class="description short">
 				
@@ -210,7 +210,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setConfirmCode">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#78-91" title="Go to source code">setConfirmCode</a>( <span>string <var>$code</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#86-105" title="Go to source code">setConfirmCode</a>( <span>string <var>$code</var></span> )</code>
 
 			<div class="description short">
 				
@@ -244,7 +244,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfirmCode">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#93-103" title="Go to source code">getConfirmCode</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#107-117" title="Go to source code">getConfirmCode</a>( )</code>
 
 			<div class="description short">
 				
@@ -266,7 +266,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="Confirm" id="_Confirm">
+		<tr data-order="confirm" id="_confirm">
 
 			<td class="attributes"><code>
 				 public 
@@ -276,15 +276,15 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_Confirm">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#105-116" title="Go to source code">Confirm</a>( <span>string <var>$code</var></span> )</code>
+			<a class="anchor" href="#_confirm">#</a>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#119-130" title="Go to source code">confirm</a>( <span>string <var>$code</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Confirm the current content.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Confirm the current content.</p>
 
 
 					<h4>Parameters</h4>
@@ -308,14 +308,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				type
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_generateConfirmationCode">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#118-124" title="Go to source code">generateConfirmationCode</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#132-138" title="Go to source code">generateConfirmationCode</a>( )</code>
 
 			<div class="description short">
 				
@@ -328,7 +328,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						string
 					</div>
 
 
@@ -341,21 +341,21 @@
 
 			<td class="attributes"><code>
 				 public 
-				type
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_validateConfirmationCode">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#126-134" title="Go to source code">validateConfirmationCode</a>( <span>type <var>$code</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#140-150" title="Go to source code">validateConfirmationCode</a>( <span>string <var>$code</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Validate the confirmation code.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validate the confirmation code.</p>
 
 
 					<h4>Parameters</h4>
@@ -366,7 +366,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						boolean<br>Whether the confirmation code is valid.
 					</div>
 
 
@@ -386,7 +386,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIsConfirmed">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#136-143" title="Go to source code">getIsConfirmed</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#152-161" title="Go to source code">getIsConfirmed</a>( )</code>
 
 			<div class="description short">
 				<p>Get confirmation status of current model.</p>
@@ -419,7 +419,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#145-158" title="Go to source code">onInitConfirmation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#163-176" title="Go to source code">onInitConfirmation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize the confirmation status.
@@ -457,7 +457,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#160-168" title="Go to source code">setConfirmation</a>( <span>type <var>$value</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#178-188" title="Go to source code">setConfirmation</a>( <span>mixed <var>$value</var></span> )</code>
 
 			<div class="description short">
 				
@@ -484,14 +484,14 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="attributes"><code>
 				 public 
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#170-173" title="Go to source code">getConfirmation</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#190-199" title="Go to source code">getConfirmation</a>( )</code>
 
 			<div class="description short">
 				
@@ -502,6 +502,10 @@ override or modify it directly, unless you know the consequences.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
@@ -520,7 +524,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onConfirmationChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#175-195" title="Go to source code">onConfirmationChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#201-223" title="Go to source code">onConfirmationChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>When confirmation status changed, this event will be triggered. If
@@ -562,7 +566,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfirmationRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#197-210" title="Go to source code">getConfirmationRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#225-237" title="Go to source code">getConfirmationRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -595,7 +599,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_resetConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#212-227" title="Go to source code">resetConfirmation</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#239-256" title="Go to source code">resetConfirmation</a>( )</code>
 
 			<div class="description short">
 				<p>When the content changed, reset confirmation status.</p>
@@ -624,14 +628,14 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_resetOthersConfirmation">#</a>
-			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#229-238" title="Go to source code">resetOthersConfirmation</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.ConfirmationTrait.html#258-269" title="Go to source code">resetOthersConfirmation</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Reset others' confirmation when the others own the same content.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Reset others' confirmation when the others own the same content.</p>
 
 
 
@@ -690,7 +694,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#32" title="Go to source code"><var>$confirmTrue</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#33-36" title="Go to source code"><var>$confirmTrue</var></a>
 
 				<div class="description short">
 					
@@ -715,7 +719,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#34-37" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#38-41" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					
@@ -740,16 +744,18 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#39-43" title="Go to source code"><var>$confirmCodeAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#43-48" title="Go to source code"><var>$confirmCodeAttribute</var></a>
 
 				<div class="description short">
-					<p>if $confirmationAttribute is not empty or false, this
-attribute must be specified, otherwith exception would be thrown.</p>
+					<p>This attribute specify the name of confirm_code attribute, if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>if $confirmationAttribute is not empty or false, this
-attribute must be specified, otherwith exception would be thrown.</p>
+					<p>This attribute specify the name of confirm_code attribute, if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
 
 				</div>
 			</td>
@@ -767,14 +773,16 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#45-48" title="Go to source code"><var>$confirmCodeExpiration</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#50-54" title="Go to source code"><var>$confirmCodeExpiration</var></a>
 
 				<div class="description short">
-					<p>The expiration in second.</p>
+					<p>The expiration in seconds. If $confirmCodeAttribute is
+specified, this attribute must be specified.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>The expiration in second.</p>
+					<p>The expiration in seconds. If $confirmCodeAttribute is
+specified, this attribute must be specified.</p>
 
 				</div>
 			</td>
@@ -792,14 +800,18 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#50-53" title="Go to source code"><var>$confirmTimeAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#56-61" title="Go to source code"><var>$confirmTimeAttribute</var></a>
 
 				<div class="description short">
-					
+					<p>This attribute specify the name of confirm_time attribute. if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					
+					<p>This attribute specify the name of confirm_time attribute. if
+this attribute is assigned to false, this feature will be ignored.
+if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
 
 				</div>
 			</td>
@@ -817,7 +829,7 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#55-58" title="Go to source code"><var>$initConfirmTime</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#63-66" title="Go to source code"><var>$initConfirmTime</var></a>
 
 				<div class="description short">
 					
@@ -842,7 +854,7 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#59" title="Go to source code"><var>$eventConfirmationChanged</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#67" title="Go to source code"><var>$eventConfirmationChanged</var></a>
 
 				<div class="description short">
 					
@@ -867,7 +879,7 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#60" title="Go to source code"><var>$eventConfirmationCanceled</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#68" title="Go to source code"><var>$eventConfirmationCanceled</var></a>
 
 				<div class="description short">
 					
@@ -892,7 +904,7 @@ attribute must be specified, otherwith exception would be thrown.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#61" title="Go to source code"><var>$eventConfirmationSuceeded</var></a>
+					<a href="source-class-vistart.Models.traits.ConfirmationTrait.html#69" title="Go to source code"><var>$eventConfirmationSuceeded</var></a>
 
 				<div class="description short">
 					

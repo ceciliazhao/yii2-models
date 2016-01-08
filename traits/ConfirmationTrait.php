@@ -29,6 +29,10 @@ trait ConfirmationTrait {
      * @var int 
      */
     public static $confirmFalse = 0;
+    
+    /**
+     * @var int 
+     */
     public static $confirmTrue = 1;
 
     /**
@@ -37,18 +41,22 @@ trait ConfirmationTrait {
     public $confirmationAttribute = false;
 
     /**
-     * @var string if $confirmationAttribute is not empty or false, this
-     * attribute must be specified, otherwith exception would be thrown.
+     * @var string This attribute specify the name of confirm_code attribute, if
+     * this attribute is assigned to false, this feature will be ignored.
+     * if $confirmationAttribute is empty or false, this attribute will be skipped.
      */
     public $confirmCodeAttribute = 'confirm_code';
 
     /**
-     * @var integer The expiration in second.
+     * @var integer The expiration in seconds. If $confirmCodeAttribute is
+     * specified, this attribute must be specified.
      */
     public $confirmCodeExpiration = 3600;
 
     /**
-     * @var string 
+     * @var string This attribute specify the name of confirm_time attribute. if
+     * this attribute is assigned to false, this feature will be ignored.
+     * if $confirmationAttribute is empty or false, this attribute will be skipped.
      */
     public $confirmTimeAttribute = 'confirm_time';
 
@@ -80,14 +88,20 @@ trait ConfirmationTrait {
      * @param string $code
      */
     public function setConfirmCode($code) {
+        if (!$this->confirmCodeAttribute) {
+            return;
+        }
         $confirmCodeAttribute = $this->confirmCodeAttribute;
         $this->$confirmCodeAttribute = $code;
+        if (!$this->confirmTimeAttribute) {
+            return;
+        }
         $confirmTimeAttribute = $this->confirmTimeAttribute;
         if (!empty($code)) {
             $this->$confirmTimeAttribute = date('Y-m-d H:i:s');
-        } else {
-            $this->$confirmTimeAttribute = $this->initConfirmTime;
+            return;
         }
+        $this->$confirmTimeAttribute = $this->initConfirmTime;
     }
 
     /**
@@ -103,12 +117,12 @@ trait ConfirmationTrait {
     }
 
     /**
-     * 
+     * Confirm the current content.
      * @param string $code
      * @return boolean
      */
-    public function Confirm($code) {
-        if (!$this->validateConfirmationCode($code)) {
+    public function confirm($code) {
+        if (!$this->confirmationAttribute || !$this->validateConfirmationCode($code)) {
             return false;
         }
         $this->confirmation = self::$confirmTrue;
@@ -117,19 +131,21 @@ trait ConfirmationTrait {
 
     /**
      * 
-     * @return type
+     * @return string
      */
     public function generateConfirmationCode() {
         return substr(sha1(Yii::$app->security->generateRandomString()), 0, 8);
     }
 
     /**
-     * 
-     * @param type $code
-     * @return type
+     * Validate the confirmation code.
+     * @param string $code
+     * @return boolean Whether the confirmation code is valid.
      */
     public function validateConfirmationCode($code) {
         $confirmCodeAttribute = $this->confirmCodeAttribute;
+        if (!$confirmCodeAttribute)
+            return true;
         return $this->$confirmCodeAttribute === $code;
     }
 
@@ -139,6 +155,8 @@ trait ConfirmationTrait {
      */
     public function getIsConfirmed() {
         $confirmationAttribute = $this->confirmationAttribute;
+        if (!$confirmationAttribute)
+            return true;
         return $this->$confirmationAttribute > self::$confirmFalse;
     }
 
@@ -159,16 +177,24 @@ trait ConfirmationTrait {
 
     /**
      * 
-     * @param type $value
+     * @param mixed $value
      */
     public function setConfirmation($value) {
         $confirmationAttribute = $this->confirmationAttribute;
+        if (!$confirmationAttribute)
+            return;
         $this->$confirmationAttribute = $value;
         $this->trigger(self::$eventConfirmationChanged);
     }
-    
+
+    /**
+     * 
+     * @return mixed
+     */
     public function getConfirmation() {
         $confirmationAttribute = $this->confirmationAttribute;
+        if (!$confirmationAttribute)
+            return null;
         return $this->$confirmationAttribute;
     }
 
@@ -183,14 +209,16 @@ trait ConfirmationTrait {
     public function onConfirmationChanged($event) {
         $sender = $event->sender;
         $confirmationAttribute = $sender->confirmationAttribute;
+        if (!$confirmationAttribute)
+            return;
         if ($sender->isAttributeChanged($confirmationAttribute)) {
             $sender->confirmCode = '';
             if ($sender->$confirmationAttribute == self::$confirmFalse) {
                 $sender->trigger(self::$eventConfirmationCanceled);
-            } else {
-                $sender->trigger(self::$eventConfirmationSuceeded);
-                $sender->resetOthersConfirmation();
+                return;
             }
+            $sender->trigger(self::$eventConfirmationSuceeded);
+            $sender->resetOthersConfirmation();
         }
     }
 
@@ -199,14 +227,13 @@ trait ConfirmationTrait {
      * @return array
      */
     public function getConfirmationRules() {
-        if ($this->confirmationAttribute) {
-            return [
-                [[$this->confirmationAttribute], 'integer', 'min' => 0],
-                [[$this->confirmTimeAttribute], 'safe'],
-            ];
-        } else {
+        if (!$this->confirmationAttribute) {
             return [];
         }
+        return [
+            [[$this->confirmationAttribute], 'integer', 'min' => 0],
+            [[$this->confirmTimeAttribute], 'safe'],
+        ];
     }
 
     /**
@@ -214,6 +241,8 @@ trait ConfirmationTrait {
      */
     protected function resetConfirmation() {
         $contentAttribute = $this->contentAttribute;
+        if (!$contentAttribute)
+            return;
         if (is_array($contentAttribute)) {
             foreach ($contentAttribute as $attribute) {
                 if ($this->isAttributeChanged($attribute)) {
@@ -225,11 +254,13 @@ trait ConfirmationTrait {
             $this->confirmation = self::$confirmFalse;
         }
     }
-    
+
     /**
-     * 
+     * Reset others' confirmation when the others own the same content.
      */
     protected function resetOthersConfirmation() {
+        if (!$this->confirmationAttribute || empty($this->userClass))
+            return;
         $contents = self::find()->where([$this->contentAttribute => $this->content])->andWhere(['not', $this->createdByAttribute, $this->creator])->all();
         foreach ($contents as $content) {
             $content->confirmation = self::$confirmFalse;
