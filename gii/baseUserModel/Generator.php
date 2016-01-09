@@ -30,6 +30,28 @@ use vistart\Models\models\BaseUserModel;
 class Generator extends \yii\gii\Generator {
 
     public $db = 'db';
+    public $guidAttribute = 'guid';
+    public $idAttribute = 'id';
+    public $idAttributeType = '';
+    public $idAttributeTypes = [
+        0 => 'Random Number',
+        1 => 'Random String',
+        2 => 'Auto Increment',
+    ];
+    public $passwordHashAttribute = 'pass_hash';
+    public $createdAtAttribute = 'create_time';
+    public $updatedAtAttribute = 'update_time';
+    public $enableIP = true;
+    public $ipAttribute1 = 'ip_1';
+    public $ipAttribute2 = 'ip_2';
+    public $ipAttribute3 = 'ip_3';
+    public $ipAttribute4 = 'ip_4';
+    public $ipTypeAttribute = 'ip_type';
+    public $authKeyAttribute = 'auth_key';
+    public $accessTokenAttribute = 'access_token';
+    public $passwordResetTokenAttribute = 'password_reset_token';
+    public $statusAttribute = 'status';
+    public $sourceAttribute = 'source';
     public $ns = 'app\models';
     public $tableName;
     public $modelClass;
@@ -64,11 +86,11 @@ class Generator extends \yii\gii\Generator {
      */
     public function rules() {
         return array_merge(parent::rules(), [
-            [['db', 'ns', 'tableName', 'modelClass', 'baseClass', 'queryNs', 'queryClass', 'queryBaseClass'], 'filter', 'filter' => 'trim'],
+            [['db', 'ns', 'tableName', 'guidAttribute', 'idAttribute', 'passwordHashAttribute', 'createdAtAttribute', 'updatedAtAttribute', 'ipAttribute1', 'ipAttribute2', 'ipAttribute3', 'ipAttribute4', 'ipTypeAttribute', 'authKeyAttribute', 'accessTokenAttribute', 'passwordResetTokenAttribute', 'statusAttribute', 'sourceAttribute', 'modelClass', 'baseClass', 'queryNs', 'queryClass', 'queryBaseClass'], 'filter', 'filter' => 'trim'],
             [['ns', 'queryNs'], 'filter', 'filter' => function($value) {
             return trim($value, '\\');
         }],
-            [['db', 'ns', 'tableName', 'baseClass', 'queryNs', 'queryBaseClass'], 'required'],
+            [['db', 'ns', 'tableName', 'baseClass', 'queryNs', 'queryBaseClass', 'guidAttribute', 'passwordHashAttribute', 'authKeyAttribute', 'accessTokenAttribute', 'passwordResetTokenAttribute'], 'required'],
             [['db', 'modelClass', 'queryClass'], 'match', 'pattern' => '/^\w+$/', 'message' => 'Only word characters are allowed.'],
             [['ns', 'baseClass', 'queryNs', 'queryBaseClass'], 'match', 'pattern' => '/^[\w\\\\]+$/', 'message' => 'Only word characters and backslashes are allowed.'],
             [['tableName'], 'match', 'pattern' => '/^(\w+\.)?([\w\*]+)$/', 'message' => 'Only word characters, and optionally an asterisk and/or a dot are allowed.'],
@@ -78,7 +100,9 @@ class Generator extends \yii\gii\Generator {
             [['modelClass'], 'validateModelClass', 'skipOnEmpty' => false],
             [['baseClass'], 'validateClass', 'params' => ['extends' => ActiveRecord::className()]],
             [['queryBaseClass'], 'validateClass', 'params' => ['extends' => ActiveQuery::className()]],
-            [['generatePresettingRules', 'generatePresettingBehaviors', 'generateRelations', 'generateLabelsFromComments', 'useTablePrefix', 'useSchemaName', 'generateQuery'], 'boolean'],
+            [['enableIP', 'generatePresettingRules', 'generatePresettingBehaviors', 'generateRelations', 'generateLabelsFromComments', 'useTablePrefix', 'useSchemaName', 'generateQuery'], 'boolean'],
+            [['guidAttribute', 'idAttribute', 'passwordHashAttribute', 'createdAtAttribute', 'updatedAtAttribute', 'ipAttribute1', 'ipAttribute2', 'ipAttribute3', 'ipAttribute4', 'ipTypeAttribute', 'authKeyAttribute', 'accessTokenAttribute', 'passwordResetTokenAttribute', 'statusAttribute', 'sourceAttribute'], 'validateFieldsExist'],
+            [['enableIP', 'ipAttribute1', 'ipAttribute2', 'ipAttribute3', 'ipAttribute4', 'ipTypeAttribute'], 'validateIP'],
             [['enableI18N'], 'boolean'],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
         ]);
@@ -91,6 +115,22 @@ class Generator extends \yii\gii\Generator {
         return array_merge(parent::attributeLabels(), [
             'ns' => 'Namespace',
             'db' => 'Database Connection ID',
+//            'guidAttribute' => 'guid',
+//            'idAttribute' => 'id',
+//            'passwordHashAttribute' => 'pass_hash',
+//            'createdAtAttribute' => 'create_time',
+//            'updatedAtAttribute' => 'update_time',
+//            'enableIP' => 'enableIP',
+//            'ipAttribute1' => 'ip_1',
+//            'ipAttribute2' => 'ip_2',
+//            'ipAttribute3' => 'ip_3',
+//            'ipAttribute4' => 'ip_4',
+//            'ipTypeAttribute' => 'ip_type',
+//            'authKeyAttribute' => 'auth_key',
+//            'accessTokenAttribute' => 'access_token',
+//            'passwordResetTokenAttribute' => 'password_reset_token',
+//            'statusAttribute' => 'status',
+//            'sourceAttribute' => 'source',
             'tableName' => 'Table Name',
             'modelClass' => 'Model Class',
             'baseClass' => 'Base Class',
@@ -123,6 +163,22 @@ class Generator extends \yii\gii\Generator {
                 the namespace part as it is specified in "Namespace". You do not need to specify the class name
                 if "Table Name" ends with asterisk, in which case multiple ActiveRecord classes will be generated.',
             'baseClass' => 'This is the base class of the new ActiveRecord class. It should be a fully qualified namespaced class name.',
+            'guidAttribute' => 'REQUIRED. GUID Attribute Name, as well as field name of user table.',
+            'idAttribute' => 'OPTIONAL. ID Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
+            'passwordHashAttribute' => 'REQUIRED. Password Hash Attribute Name, as well as field name of user table.',
+            'createdAtAttribute' => 'OPTIONAL. Created At Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
+            'updatedAtAttribute' => 'OPTIONAL. Updated At Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
+            'enableIP' => 'Indicates whether enable the IP address feature. If true, the following five attributes are required.',
+            'ipAttribute1' => 'IP Attribute 1 Name, as well as field name of user table.',
+            'ipAttribute2' => 'IP Attribute 2 Name, as well as field name of user table.',
+            'ipAttribute3' => 'IP Attribute 3 Name, as well as field name of user table.',
+            'ipAttribute4' => 'IP Attribute 4 Name, as well as field name of user table.',
+            'ipTypeAttribute' => 'IP Type Attribute Name, as well as field name of user table.',
+            'authKeyAttribute' => 'REQUIRED. Auth Key Attribute Name, as well as field name of user table.',
+            'accessTokenAttribute' => 'REQUIRED. Access Token Attribute Name, as well as field name of user table.',
+            'passwordResetTokenAttribute' => 'OPTIONAL. Password Reset Token Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
+            'sourceAttribute' => 'OPTIONAL. Source Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
+            'statusAttribute' => 'OPTIONAL. Status Attribute Name, as well as field name of user table. Please left empty if no need for this feature.',
             'generatePresettingRules' => 'This indicates whether the generator should generate the presetting rules.',
             'generatePresettingBehaviors' => 'This indicates whether the generator should generate the presetting behaviors.',
             'generateRelations' => 'This indicates whether the generator should generate relations based on
@@ -236,21 +292,7 @@ class Generator extends \yii\gii\Generator {
 
         return $labels;
     }
-
-    /*
-      public function generateRules($table) {
-      if ($this->generateRules) {
-
-      }
-      }
-
-      public function generateBehaviors($table) {
-      if ($this->generateBehaviors) {
-
-      }
-      }
-     */
-
+    
     /**
      * Generates relations using a junction table by adding an extra viaTable().
      * @param \yii\db\TableSchema the table being checked
@@ -383,6 +425,10 @@ class Generator extends \yii\gii\Generator {
 
         return '[' . implode(', ', $pairs) . ']';
     }
+    
+    protected function generateRules($table) {
+        
+    }
 
     /**
      * Checks if the given table is a junction table.
@@ -440,6 +486,36 @@ class Generator extends \yii\gii\Generator {
 
         return $name;
     }
+    
+    public function validateFieldsExist() {
+        $db = $this->getDbConnection();
+        foreach ($this->getTableNames() as $table) {
+            $tableSchema = $db->getTableSchema($table);
+            $fields = [
+                'guidAttribute',
+                'idAttribute',
+                'passwordHashAttribute',
+                'createdAtAttribute',
+                'updatedAtAttribute',
+                'ipAttribute1',
+                'ipAttribute2',
+                'ipAttribute3',
+                'ipAttribute4',
+                'ipTypeAttribute',
+                'authKeyAttribute',
+                'accessTokenAttribute',
+                'passwordResetTokenAttribute',
+                'statusAttribute',
+                'sourceAttribute',
+            ];
+            foreach ($fields as $field) {
+                if (isset($this->$field) && $this->$field != '' && !isset($tableSchema->columns[$this->$field])) {
+                    $this->addError($field, '`' . $this->$field . '` field does not exist in `' . $table . '` table.');
+                    continue;
+                }
+            }
+        }
+    }
 
     /**
      * Validates the [[db]] attribute.
@@ -449,6 +525,25 @@ class Generator extends \yii\gii\Generator {
             $this->addError('db', 'There is no application component named "db".');
         } elseif (!Yii::$app->get($this->db) instanceof Connection) {
             $this->addError('db', 'The "db" application component must be a DB connection instance.');
+        }
+    }
+    
+    public function validateIP() {
+        if (!$this->enableIP) {
+            return;
+        }
+        $db = $this->getDbConnection();
+        $ipAttribute = 'ipAttribute';
+        for ($i = 1; $i <= 4; $i++) {
+            $ipAttributeName = $ipAttribute . $i;
+            if (empty($this->$ipAttributeName)) {
+                $this->addError($ipAttributeName, "`$ipAttributeName` should not be empty.");
+                continue;
+            }
+        }
+        if (empty($this->ipTypeAttribute)) {
+            $this->addError('ipTypeAttribute', "`ipTypeAttribute` should not be empty.");
+            return;
         }
     }
 

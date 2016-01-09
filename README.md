@@ -42,4 +42,4 @@ class Example extends BaseEntityModel
 ...
 }
 ```
-
+[![yii2-models](https://img.shields.io/badge/Powered_by-vistart-green.svg?style=flat)](https://vistart.name)
