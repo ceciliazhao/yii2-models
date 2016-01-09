@@ -22,6 +22,8 @@ class MultipleDomainsManager extends \vistart\Models\models\MultipleDomainsManag
      * @var string the base domain.
      */
     public $baseDomain = 'yii2-models.vistart';
+    
+    public $currentDomain = '';
 
     /**
      * <Sub Domain Name> => [
@@ -31,18 +33,35 @@ class MultipleDomainsManager extends \vistart\Models\models\MultipleDomainsManag
      * @var array 
      */
     public $subDomains = [
+       '' => [
+            'component' => [
+                'class' => 'yii\web\UrlManager', // `class` could be ignored as it is `yii\web\UrlManager`.
+                'enablePrettyUrl' => true,
+                'showScriptName' => false,
+                'suffix' => '.html',
+            ],
+            'schema' => 'http', // `schema` could be ignored as it is 'http'.
+        ],
         'my' => [
             'component' => [
-                'class' => 'yii\web\UrlManager',
                 'enablePrettyUrl' => true,
                 'showScriptName' => false,
                 'suffix' => '.html',
                 'rules' => [
-                    [
-                        'pattern' => 'login',
-                        'route' => 'site/login',
-                        'suffix' => '',
-                    ],
+                    'posts/<year:\d{4}>/<category>' => 'post/index',
+                    'posts' => 'post/index',
+                    'post/<id:\d+>' => 'post/view',
+                ],
+            ],
+            'schema' => 'https',
+        ],
+        'login' => [
+            'component' => [
+                'enablePrettyUrl' => true,
+                'showScriptName' => false,
+                'rules' => [
+                    '' => 'site/login',
+                    'logout' => 'site/logout',
                 ],
             ],
             'schema' => 'https',

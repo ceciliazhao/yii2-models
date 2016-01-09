@@ -30,11 +30,13 @@ class MultipleDomainsManagerTest extends TestCase {
      */
     public function testNew() {
         $MultipleDomainsManager = new MultipleDomainsManager();
-        $urlManager = $MultipleDomainsManager->get('my');
+        $urlManager = $MultipleDomainsManager->current;
+        $myUrlManager = $MultipleDomainsManager->get('my');
+        $loginUrlManager = $MultipleDomainsManager->get('login');
         $this->assertEquals('/site/index.html', $urlManager->createUrl('/site/index'));
-        $this->assertEquals('/login', $urlManager->createUrl('/site/login'));
-        var_dump($urlManager->createAbsoluteUrl('/site/index'));
-        var_dump($urlManager->createAbsoluteUrl('/site/login'));
+        $this->assertEquals('/posts.html', $myUrlManager->createUrl('/post/index'));
+        $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
+        $this->assertEquals('/logout', $loginUrlManager->createUrl('/site/logout'));
     }
 
 }

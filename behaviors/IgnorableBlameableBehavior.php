@@ -107,9 +107,8 @@ class IgnorableBlameableBehavior extends IgnorableAttributeBehavior {
         if ($this->value === null) {
             $user = Yii::$app->get('user', false);
             return $user && !$user->isGuest ? $user->id : null;
-        } else {
-            return call_user_func($this->value, $event);
         }
+        return call_user_func($this->value, $event);
     }
 
 }
