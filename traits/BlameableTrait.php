@@ -99,6 +99,7 @@ trait BlameableTrait {
      * skipped.
      */
     public $descriptionAttribute = false;
+    public $initDescription = '';
 
     /**
      * @var string the attribute that will receive current user ID value
@@ -344,6 +345,38 @@ trait BlameableTrait {
         if ($identity) {
             $identityGuidAttribute = $identity->guidAttribute;
             return $identity->$identityGuidAttribute;
+        }
+    }
+
+    /**
+     * 
+     * @param type $event
+     * @return type
+     */
+    public function onInitContentType($event) {
+        $sender = $event->sender;
+        if (!isset($sender->contentTypeAttribute) || !is_string($sender->contentTypeAttribute)) {
+            return;
+        }
+        $contentTypeAttribute = $sender->contentTypeAttribute;
+        if (!isset($sender->$contentTypeAttribute) && !empty($sender->contentTypes) && is_array($sender->contentTypes)) {
+            $sender->$contentTypeAttribute = $sender->contentTypes[0];
+        }
+    }
+
+    /**
+     * 
+     * @param type $event
+     * @return type
+     */
+    public function onInitDescription($event) {
+        $sender = $event->sender;
+        if (!isset($sender->descriptionAttribute) || !is_string($sender->descriptionAttribute)) {
+            return;
+        }
+        $descriptionAttribute = $sender->descriptionAttribute;
+        if (empty($sender->$descriptionAttribute)) {
+            $sender->$descriptionAttribute = $sender->initDescription;
         }
     }
 
