@@ -17,39 +17,62 @@ use Yii;
 /**
  * Description of SSOIdentity
  * This component needs MultipleDomainsManager component.
+ * 
+ * Usage:
+ * config/web.php (basic template) or config/main.php (advanced template):
+ * ```php
+ * $config = [
+ *     ...
+ *     'components' => [
+ *         ...
+ *         'multipleDomainsManager' => [
+ *              'baseDomain' => <Base Domain>,
+ *         ],
+ *         'user' => [
+ *             'class' => 'vistart\Models\components\SSOIdentity',
+ *             'enableAutoLogin' => true,
+ *             'identityClass' => <User Identity Class>,
+ *             'identityCookie' => [
+ *                 'name' => '_identity',
+ *                 'httpOnly' => true,
+ *                 'domain' => '.' . <Base Domain>,    // same as Multiple Domains Manager's `baseDomain` property.
+ *             ],
+ *         ],
+ *         'session' => [
+ *             ...
+ *             'cookieParams' => [
+ *                 'domain' => '.' . <Base Domain>,    // same as Multiple Domains Manager's `baseDomain` property.
+ *                 'lifetime' => 0,
+ *             ],
+ *             ...
+ *         ],
+ *         ...
+ *     ],
+ * ];
+ * 
+ * ```
+ * @since 2.0
  * @author vistart <i@vistart.name>
  */
 class SSOIdentity extends \yii\web\User {
 
-    public $baseDomain;
-    public $ssoScope = '';
-    public $loginDomain = 'login';
-    public $returnUrlServerNameParam = '__returnUrlServerName';
-    
-    public function loginRequired($checkAjax = true)
-    {
+    public $ssoDomain = 'sso';
+    public $loginUrl = ['sso'];
+
+    public function loginRequired($checkAjax = true) {
         $request = Yii::$app->getRequest();
-        Yii::$app->getSession()->set($this->returnUrlServerNameParam, $request->serverName);
-        Yii::$app->getSession()->cookieParams = ['domain' => $request->serverName, 'lifetime' => 0];
-        
+
         if ($this->enableSession && (!$checkAjax || !$request->getIsAjax())) {
             $this->setReturnUrl($request->getAbsoluteUrl());
         }
         if ($this->loginUrl !== null) {
             $loginUrl = (array) $this->loginUrl;
             if ($loginUrl[0] !== Yii::$app->requestedRoute) {
-                $loginUrlManager = Yii::$app->multipleDomainsManager->get($this->loginDomain);//var_dump($loginUrlManager);die();
-                return Yii::$app->getResponse()->redirect($loginUrlManager->createUrl($this->loginUrl));
+                $ssoUrlManager = Yii::$app->multipleDomainsManager->get($this->ssoDomain);
+                return Yii::$app->getResponse()->redirect($ssoUrlManager->createAbsoluteUrl($this->loginUrl));
             }
         }
         throw new ForbiddenHttpException(Yii::t('yii', 'Login Required'));
-    }
-
-    protected function sendIdentityCookie($identity, $duration)
-    {
-        $serverName = Yii::$app->getSession()->get($this->returnUrlServerNameParam, $this->ssoScope . '.' . $this->baseDomain);
-        $this->identityCookie['domain'] = $serverName;
-        parent::sendIdentityCookie($identity, $duration);
     }
 
 }

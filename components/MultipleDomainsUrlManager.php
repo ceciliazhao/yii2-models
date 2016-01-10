@@ -15,6 +15,7 @@ namespace vistart\Models\components;
 /**
  * Description of MultipleDomainsUrlManager
  *
+ * @since 2.0
  * @author vistart <i@vistart.name>
  */
 class MultipleDomainsUrlManager extends \yii\web\UrlManager {

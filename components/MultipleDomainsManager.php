@@ -36,6 +36,7 @@ class MultipleDomainsManager extends \yii\base\Component {
      * 
      * For example:
      * ```php
+     * $baseDomain = 'example.com',
      * $subDomains = [
      *    '' => [
      *         'component' => [
@@ -60,13 +61,13 @@ class MultipleDomainsManager extends \yii\base\Component {
      *         ],
      *         'schema' => 'https',
      *     ],
-     *     'login' => [
+     *     'sso' => [
      *         'component' => [
      *             'enablePrettyUrl' => true,
      *             'showScriptName' => false,
      *             'rules' => [
-     *                 '' => 'site/login',
-     *                 'logout' => 'site/logout',
+     *                 '' => 'sso/login',
+     *                 'logout' => 'sso/logout',
      *             ],
      *         ],
      *         'schema' => 'https',
@@ -89,12 +90,15 @@ class MultipleDomainsManager extends \yii\base\Component {
      * @return \yii\web\UrlManager
      */
     public function get($subdomain) {
+        if (!isset($this->subDomains[$subdomain])) {
+            return null;
+        }
         $subDomainConfig = $this->subDomains[$subdomain];
-        if (!isset($subDomainConfig) || !isset($subDomainConfig['component'])) {
+        if (!isset($subDomainConfig['component'])) {
             return null;
         }
         if (!isset($subDomainConfig['component']['class'])) {
-            $subDomainConfig['component']['class'] = "vistart\\Models\\components\\MultipleDomainsUrlManager";
+            $subDomainConfig['component']['class'] = MultipleDomainsUrlManager::className();
         }
         if (!isset($subDomainConfig['component']['hostInfo'])) {
             if (!isset($subDomainConfig['schema'])) {

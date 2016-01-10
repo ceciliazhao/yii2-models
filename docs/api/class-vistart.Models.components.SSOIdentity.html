@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\SSOIdentity</title>
+	<title>Class vistart\Models\components\SSOIdentity</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -28,7 +28,7 @@
 
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="namespace-vistart.Models.models.html" title="Summary of vistart\Models\models"><span>Namespace</span></a>
+						<a href="namespace-vistart.Models.components.html" title="Summary of vistart\Models\components"><span>Namespace</span></a>
 					</li>
 					<li class="active">
 <span>Class</span>					</li>
@@ -62,6 +62,10 @@
 						<a href="namespace-vistart.Models.behaviors.html">
 							behaviors						</a>
 							</li>
+					<li class="active">
+						<a href="namespace-vistart.Models.components.html">
+							components						</a>
+							</li>
 					<li>
 						<a href="namespace-vistart.Models.gii.html">
 							gii<span></span>
@@ -72,7 +76,7 @@
 							baseUserModel						</a>
 							</li>
 								</ul></li>
-					<li class="active">
+					<li>
 						<a href="namespace-vistart.Models.models.html">
 							models						</a>
 							</li>
@@ -88,13 +92,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
-				<li><a href="class-vistart.Models.models.MultipleDomainsManager.html">MultipleDomainsManager</a></li>
-				<li class="active"><a href="class-vistart.Models.models.SSOIdentity.html">SSOIdentity</a></li>
+				<li><a href="class-vistart.Models.components.MultipleDomainsManager.html">MultipleDomainsManager</a></li>
+				<li><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">MultipleDomainsUrlManager</a></li>
+				<li class="active"><a href="class-vistart.Models.components.SSOIdentity.html">SSOIdentity</a></li>
 			</ul>
 
 
@@ -114,7 +114,14 @@
 
 
 	<div class="description">
-	<p>Description of SSOIdentity</p>
+	<p>Description of SSOIdentity
+This component needs MultipleDomainsManager component.</p>
+
+<p>Usage:
+config/web.php (basic template) or config/main.php (advanced template):</p>
+
+<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;, ], <span class="php-quote">'user'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'vistart\Models\components\SSOIdentity'</span>, <span class="php-quote">'enableAutoLogin'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'identityClass'</span> =&gt; &lt;User Identity <span class="php-keyword1">Class</span>&gt;, <span class="php-quote">'identityCookie'</span> =&gt; [ <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>, <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property. ], ], 'session' =&gt; [ ... 'cookieParams' =&gt; [ 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multiple Domains Manager's `baseDomain` property. 'lifetime' =&gt; 0, ], ... ], ... ],</span>
+];</pre>
 	</div>
 
 	<dl class="tree well">
@@ -125,7 +132,7 @@ yii\web\User
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\SSOIdentity</span></b>			
+<b><span>vistart\Models\components\SSOIdentity</span></b>			
 			
 			
 		</dd>
@@ -141,12 +148,14 @@ yii\web\User
 	<div class="alert alert-info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.models.html">models</a><br>
+		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.components.html">components</a><br>
 		
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.SSOIdentity.html#17-53" title="Go to source code">models/SSOIdentity.php</a>
+				<b>Since:</b>
+				2.0<br>
+			<b>Located at</b> <a href="source-class-vistart.Models.components.SSOIdentity.html#17-78" title="Go to source code">components/SSOIdentity.php</a>
 		<br>
 	</div>
 
@@ -166,36 +175,7 @@ yii\web\User
 
 			<td class="name"><div>
 			<a class="anchor" href="#_loginRequired">#</a>
-			<code><a href="source-class-vistart.Models.models.SSOIdentity.html#28-44" title="Go to source code">loginRequired</a>( <span> <var>$checkAjax</var> = <span class="php-keyword1">true</span></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="sendIdentityCookie" id="_sendIdentityCookie">
-
-			<td class="attributes"><code>
-				 protected 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_sendIdentityCookie">#</a>
-			<code><a href="source-class-vistart.Models.models.SSOIdentity.html#46-51" title="Go to source code">sendIdentityCookie</a>( <span> <var>$identity</var></span>, <span> <var>$duration</var></span> )</code>
+			<code><a href="source-class-vistart.Models.components.SSOIdentity.html#62-76" title="Go to source code">loginRequired</a>( <span> <var>$checkAjax</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				
@@ -229,39 +209,14 @@ yii\web\User
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="baseDomain" id="$baseDomain">
-			<td class="attributes"><code>
-				public  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.SSOIdentity.html#24" title="Go to source code"><var>$baseDomain</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$baseDomain" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="ssoScope" id="$ssoScope">
+		<tr data-order="ssoDomain" id="$ssoDomain">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.SSOIdentity.html#25" title="Go to source code"><var>$ssoScope</var></a>
+					<a href="source-class-vistart.Models.components.SSOIdentity.html#59" title="Go to source code"><var>$ssoDomain</var></a>
 
 				<div class="description short">
 					
@@ -274,19 +229,19 @@ yii\web\User
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$ssoScope" class="anchor">#</a>
-					<code><span class="php-quote">''</span></code>
+					<a href="#$ssoDomain" class="anchor">#</a>
+					<code><span class="php-quote">'sso'</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="returnUrlServerNameParam" id="$returnUrlServerNameParam">
+		<tr data-order="loginUrl" id="$loginUrl">
 			<td class="attributes"><code>
 				public  
-				string
+				array
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.SSOIdentity.html#26" title="Go to source code"><var>$returnUrlServerNameParam</var></a>
+					<a href="source-class-vistart.Models.components.SSOIdentity.html#60" title="Go to source code"><var>$loginUrl</var></a>
 
 				<div class="description short">
 					
@@ -299,8 +254,8 @@ yii\web\User
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$returnUrlServerNameParam" class="anchor">#</a>
-					<code><span class="php-quote">'__returnUrlServerName'</span></code>
+					<a href="#$loginUrl" class="anchor">#</a>
+					<code>[<span class="php-quote">'sso'</span>]</code>
 				</div>
 			</td>
 		</tr>
