@@ -57,7 +57,7 @@ use Yii;
 class SSOIdentity extends \yii\web\User {
 
     public $ssoDomain = 'sso';
-    public $loginUrl = ['sso'];
+    public $loginUrl = ['sso/login'];
 
     public function loginRequired($checkAjax = true) {
         $request = Yii::$app->getRequest();
