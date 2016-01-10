@@ -17,7 +17,7 @@ namespace vistart\Models\tests\data\ar;
  *
  * @author i
  */
-class MultipleDomainsManager extends \vistart\Models\models\MultipleDomainsManager {
+class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsManager {
     /**
      * @var string the base domain.
      */

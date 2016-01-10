@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -10,19 +10,20 @@
  * @license http://vistart.name/license/
  */
 
-namespace vistart\Models\models;
+namespace vistart\Models\components;
 
 use Yii;
 
 /**
  * Description of SSOIdentity
- *
+ * This component needs MultipleDomainsManager component.
  * @author vistart <i@vistart.name>
  */
 class SSOIdentity extends \yii\web\User {
 
     public $baseDomain;
     public $ssoScope = '';
+    public $loginDomain = 'login';
     public $returnUrlServerNameParam = '__returnUrlServerName';
     
     public function loginRequired($checkAjax = true)
@@ -37,7 +38,8 @@ class SSOIdentity extends \yii\web\User {
         if ($this->loginUrl !== null) {
             $loginUrl = (array) $this->loginUrl;
             if ($loginUrl[0] !== Yii::$app->requestedRoute) {
-                return Yii::$app->getResponse()->redirect($this->loginUrl);
+                $loginUrlManager = Yii::$app->multipleDomainsManager->get($this->loginDomain);//var_dump($loginUrlManager);die();
+                return Yii::$app->getResponse()->redirect($loginUrlManager->createUrl($this->loginUrl));
             }
         }
         throw new ForbiddenHttpException(Yii::t('yii', 'Login Required'));

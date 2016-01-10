@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -10,7 +10,7 @@
  * @license http://vistart.name/license/
  */
 
-namespace vistart\Models\models;
+namespace vistart\Models\components;
 
 use Yii;
 
@@ -39,7 +39,7 @@ class MultipleDomainsManager extends \yii\base\Component {
      * $subDomains = [
      *    '' => [
      *         'component' => [
-     *             'class' => 'yii\web\UrlManager', // `class` could be ignored as it is `yii\web\UrlManager`.
+     *             'class' => 'yii\web\UrlManager', // `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.
      *             'enablePrettyUrl' => true,
      *             'showScriptName' => false,
      *             'suffix' => '.html',
@@ -79,7 +79,7 @@ class MultipleDomainsManager extends \yii\base\Component {
     
     /**
      * @var string Current sub-domain name. If current sub-domain does not exist
-     * in $this->subDomains, return Yii::$app->urlManager instead.
+     * in `$this->subDomains`, return `Yii::$app->urlManager` instead.
      */
     public $currentDomain = '';
 
@@ -94,7 +94,7 @@ class MultipleDomainsManager extends \yii\base\Component {
             return null;
         }
         if (!isset($subDomainConfig['component']['class'])) {
-            $subDomainConfig['component']['class'] = "yii\\web\\UrlManager";
+            $subDomainConfig['component']['class'] = "vistart\\Models\\components\\MultipleDomainsUrlManager";
         }
         if (!isset($subDomainConfig['component']['hostInfo'])) {
             if (!isset($subDomainConfig['schema'])) {

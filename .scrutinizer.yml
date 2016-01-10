@@ -1,0 +1,13 @@
+build:
+    environment:
+        php:
+            version: 5.5.25
+            ini:
+                'date.timezone': 'Asia/Shanghai'
+        
+        apache2:
+            modules: ['rewrite']
+            
+filter:
+    excluded_paths:
+        - tests/*
