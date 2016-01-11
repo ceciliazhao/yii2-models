@@ -16,7 +16,7 @@ use vistart\Helpers\Ip;
 use Yii;
 
 /**
- * 
+ * Entity features concerning IP address.
  * @property string|integer|null $ipAddress
  * @proeprty array $ipRules
  * @version 2.0

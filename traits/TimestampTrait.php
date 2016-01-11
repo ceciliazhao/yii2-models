@@ -15,7 +15,7 @@ namespace vistart\Models\traits;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * 
+ * Entity features concerning timestamp.
  * @property-read array $timestampBehaviors
  * @property-read array $createdAtRules
  * @property-read array $updatedAtRules
@@ -35,6 +35,10 @@ trait TimestampTrait {
      * Set this property to false if you do not want to record the update time.
      */
     public $updatedAtAttribute = 'update_time';
+    
+    /**
+     * @var integer Determine the format of timestamp.
+     */
     public $timeFormat = 0;
     public static $timeFormatDatetime = 0;
     public static $timeFormatTimestamp = 1;

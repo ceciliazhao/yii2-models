@@ -24,12 +24,17 @@ use vistart\Models\behaviors\IgnorableBlameableBehavior;
  * 6.上次更新用户 GUID；
  * 7.确认功能由 ConfirmationTrait 提供；
  * 8.实例功能由 EntityTrait 提供。
+ * 
+ * @property-read array $blameableAttributeRules Get all rules associated with
+ * blameable.
  * @property array $blameableRules Get or set all the rules associated with
  * creator, updater, content and its ID, as well as all the inherited rules.
  * @property array $blameableBehaviors Get or set all the behaviors assoriated
  * with creator and updater, as well as all the inherited behaviors. 
+ * @property-read array $descriptionRules Get description property rules.
  * @property-read mixed $content Content.
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
+ * @property-read array $contentRules Get content rules.
  * @property-read mixed $creator The creator who created this content.
  * @property-read mixed $updater The updater who updated this content.
  * @version 2.0
@@ -99,6 +104,10 @@ trait BlameableTrait {
      * skipped.
      */
     public $descriptionAttribute = false;
+
+    /**
+     * @var string
+     */
     public $initDescription = '';
 
     /**
@@ -115,7 +124,9 @@ trait BlameableTrait {
 
     /**
      * @var boolean|string The name of user class which own the current entity.
-     * If this attribute is assigned to false, this feature will be skipped.
+     * If this attribute is assigned to false, this feature will be skipped, and
+     * when you use createModel() method of UserTrait, it will be assigned with
+     * current user class.
      */
     public $userClass;
 
@@ -238,7 +249,7 @@ trait BlameableTrait {
      * 
      * @return string
      */
-    protected function getBlameableAttributeRules() {
+    public function getBlameableAttributeRules() {
         $rules = [];
         // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
         if (is_string($this->createdByAttribute) && !empty($this->createdByAttribute)) {
@@ -255,7 +266,7 @@ trait BlameableTrait {
         return $rules;
     }
 
-    protected function getDescriptionRules() {
+    public function getDescriptionRules() {
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
             $rules[] = [
@@ -265,7 +276,7 @@ trait BlameableTrait {
         return $rules;
     }
 
-    protected function getContentRules() {
+    public function getContentRules() {
         if (!$this->contentAttribute) {
             return [];
         }
@@ -287,15 +298,16 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Set blameable rules.
      * @param array $rules
      */
-    public function setBlameableRules($rules = []) {
+    protected function setBlameableRules($rules = []) {
         $this->_blameableRules = $rules;
     }
 
     /**
-     * 
+     * Get blameable behaviors. If current behaviors array is empty, the init
+     * array will be given.
      * @return array
      */
     public function getBlameableBehaviors() {
@@ -314,10 +326,10 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Set blameable behaviors.
      * @param array $behaviors
      */
-    public function setBlameableBehaviors($behaviors = []) {
+    protected function setBlameableBehaviors($behaviors = []) {
         $this->_blameableBehaviors = $behaviors;
     }
 
@@ -349,9 +361,9 @@ trait BlameableTrait {
     }
 
     /**
-     * 
-     * @param type $event
-     * @return type
+     * Initialize type of content. the first of element[index is 0] of
+     * $contentTypes will be used.
+     * @param \yii\base\Event $event
      */
     public function onInitContentType($event) {
         $sender = $event->sender;
@@ -365,9 +377,8 @@ trait BlameableTrait {
     }
 
     /**
-     * 
-     * @param type $event
-     * @return type
+     * Initialize description property with $initDescription.
+     * @param \yii\base\Event $event
      */
     public function onInitDescription($event) {
         $sender = $event->sender;

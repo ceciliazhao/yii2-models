@@ -33,7 +33,7 @@ class BaseUserEmailTest extends TestCase {
         $email = new UserEmail();
         $this->assertNotNull($email);
         $user = new User();
-        $email = $user->createNewModel(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
+        $email = $user->createModel(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
         $this->assertNotNull($email);
         $this->assertTrue($user->register([$email]));
         $user = User::findOne($user->guid);

@@ -25,12 +25,13 @@ trait UserTrait {
         IdentityTrait;
 
     /**
-     * 
+     * Create new entity model associated with current user.
+     * if $config does not specify `userClass` property, self will be assigned to.
      * @param string $className Full qualified class name.
      * @param array $config name-value pairs that will be used to initialize
      * the object properties.
      */
-    public function createNewModel($className, $config = []) {
+    public function createModel($className, $config = []) {
         if (!isset($config['userClass'])) {
             $config['userClass'] = self::className();
         }
@@ -40,6 +41,10 @@ trait UserTrait {
         return $entity;
     }
 
+    /**
+     * Get all rules with current user properties.
+     * @return array all rules.
+     */
     public function rules() {
         return array_merge(parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules);
     }

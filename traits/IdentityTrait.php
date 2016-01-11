@@ -15,7 +15,7 @@ namespace vistart\Models\traits;
 use Yii;
 
 /**
- * Description of IdentityTrait
+ * User features concerning identity.
  *
  * @property-read int $id
  * @property-read string $authKey

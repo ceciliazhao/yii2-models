@@ -15,7 +15,7 @@ namespace vistart\Models\traits;
 use Yii;
 
 /**
- * Description of PasswordTrait
+ * User features concerning password.
  * @property-write string $password New password to be set.
  * @property array $passwordHashRules
  * @property array $passwordResetTokenRules
@@ -90,7 +90,7 @@ trait PasswordTrait {
     
     /**
      * 
-     * @return type
+     * @return array
      */
     public function getPasswordResetTokenRules() {
         if (empty($this->_passwordResetTokenRules) || !is_array($this->_passwordResetTokenRules)) {

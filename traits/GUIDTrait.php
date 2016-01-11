@@ -15,6 +15,7 @@ namespace vistart\Models\traits;
 use vistart\Helpers\Number;
 
 /**
+ * Entity features concerning GUID.
  * @property-read array $guidRules
  * @version 2.0
  * @author vistart <i@vistart.name>

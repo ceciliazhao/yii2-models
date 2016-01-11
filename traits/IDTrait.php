@@ -37,6 +37,11 @@ trait IDTrait {
      * @since 2.0
      */
     public $idAttributeType = 0;
+    
+    /**
+     * @var boolean 
+     */
+    public $idPreassigned = false;
 
     /**
      * @var string The prefix of ID. When ID type is Auto Increment, this feature
@@ -68,6 +73,10 @@ trait IDTrait {
      */
     public function onInitIdAttribute($event) {
         $sender = $event->sender;
+        if ($sender->idPreassigned || $sender->idAttributeType === self::$idTypeAutoIncrement) {
+            $sender->idAttributeSafe = true;
+            return;
+        }
         if ($sender->idAttribute !== false &&
                 is_string($sender->idAttribute) &&
                 is_int($sender->idAttributeLength) &&
@@ -75,9 +84,6 @@ trait IDTrait {
                 $sender->idAttributeType != self::$idTypeAutoIncrement) {
             $idAttribute = $sender->idAttribute;
             $sender->$idAttribute = $sender->generateId();
-        }
-        if ($sender->idAttributeType === self::$idTypeAutoIncrement) {
-            $sender->idAttributeSafe = true;
         }
     }
 
