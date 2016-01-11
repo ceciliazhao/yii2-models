@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Trait vistart\Models\traits\EntityTrait</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-vistart.html">
+							vistart<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-vistart.Models.html">
+							Models<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.behaviors.html">
+							behaviors						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.components.html">
+							components						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
+							</li>
+								</ul></li>
+					<li>
+						<a href="namespace-vistart.Models.models.html">
+							models						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-vistart.Models.traits.html">
+							traits						</a>
+							</li>
+								</ul></li></ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-vistart.Models.traits.BlameableTrait.html">BlameableTrait</a></li>
+				<li><a href="class-vistart.Models.traits.ConfirmationTrait.html">ConfirmationTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.EntityTrait.html">EntityTrait</a></li>
+				<li><a href="class-vistart.Models.traits.GUIDTrait.html">GUIDTrait</a></li>
+				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
+				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
+				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
+				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
+				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
+				<li><a href="class-vistart.Models.traits.UserTrait.html">UserTrait</a></li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Trait EntityTrait</h1>
+
+
+	<div class="description">
+	<p>This trait must be used in class extended from ActiveRecord.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+<b><span>vistart\Models\traits\EntityTrait</span></b>			
+			
+			 uses 
+					<a href="class-vistart.Models.traits.GUIDTrait.html"><span>vistart\Models\traits\GUIDTrait</span></a>, 
+			
+					<a href="class-vistart.Models.traits.IDTrait.html"><span>vistart\Models\traits\IDTrait</span></a>, 
+			
+					<a href="class-vistart.Models.traits.IPTrait.html"><span>vistart\Models\traits\IPTrait</span></a>, 
+			
+					<a href="class-vistart.Models.traits.TimestampTrait.html"><span>vistart\Models\traits\TimestampTrait</span></a>
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+	<div>
+		<h3>Direct Known Users</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.models.BaseEntityModel.html">vistart\Models\models\BaseEntityModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html">vistart\Models\models\BaseMongoEntityModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseRedisEntityModel.html">vistart\Models\models\BaseRedisEntityModel</a></code>
+		</p>
+	</div>
+
+	<div>
+		<h3>Indirect Known Users</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">vistart\Models\models\BaseBlameableEntityModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+		</p>
+	</div>
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityTrait.html#15-103" title="Go to source code">traits/EntityTrait.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="rules" id="_rules">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_rules">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#31-40" title="Go to source code">rules</a>( )</code>
+
+			<div class="description short">
+				<p>Populate and return the entity rules.
+You should call this function in your extended class and merge the result
+with your rules, instead of overriding it, unless you know the
+consequences.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Populate and return the entity rules.
+You should call this function in your extended class and merge the result
+with your rules, instead of overriding it, unless you know the
+consequences.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="behaviors" id="_behaviors">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_behaviors">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#42-51" title="Go to source code">behaviors</a>( )</code>
+
+			<div class="description short">
+				<p>Populate and return the entity behaviors.
+You should call this function in your extended class and merge the result
+with your behaviors, instead of overriding it, unless you know the
+consequences.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Populate and return the entity behaviors.
+You should call this function in your extended class and merge the result
+with your behaviors, instead of overriding it, unless you know the
+consequences.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getEntityRules" id="_getEntityRules">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getEntityRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#53-64" title="Go to source code">getEntityRules</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setEntityRules" id="_setEntityRules">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setEntityRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#66-72" title="Go to source code">setEntityRules</a>( <span>type <var>$rules</var> = []</span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$rules</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getEntityBehaviors" id="_getEntityBehaviors">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getEntityBehaviors">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#74-83" title="Go to source code">getEntityBehaviors</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setEntityBehaviors" id="_setEntityBehaviors">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setEntityBehaviors">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#85-91" title="Go to source code">setEntityBehaviors</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="resetCacheKey" id="_resetCacheKey">
+
+			<td class="attributes"><code>
+				 public static
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_resetCacheKey">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#93-101" title="Go to source code">resetCacheKey</a>( <span>type <var>$cacheKey</var></span>, <span>type <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cacheKey</var></dt>
+						<dd></dd>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.GUIDTrait.html#methods">vistart\Models\traits\GUIDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_CheckGuidExists">CheckGuidExists()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_GenerateGuid">GenerateGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_getGuidRules">getGuidRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_onInitGuidAttribute">onInitGuidAttribute()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IDTrait.html#methods">vistart\Models\traits\IDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_generateId">generateId()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_getIdRules">getIdRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_onInitIdAttribute">onInitIdAttribute()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IPTrait.html#methods">vistart\Models\traits\IPTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpAddress">getIpAddress()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpRules">getIpRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_onInitIpAddress">onInitIpAddress()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_setIpAddress">setIpAddress()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.TimestampTrait.html#methods">vistart\Models\traits\TimestampTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getTimestampBehaviors">getTimestampBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAtRules">getUpdatedAtRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a></code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="eventNewRecordCreated" id="$eventNewRecordCreated">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#29" title="Go to source code"><var>$eventNewRecordCreated</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$eventNewRecordCreated" class="anchor">#</a>
+					<code><span class="php-quote">'newRecordCreated'</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.GUIDTrait.html#properties">vistart\Models\traits\GUIDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#$guidAttribute"><var>$guidAttribute</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.IDTrait.html#properties">vistart\Models\traits\IDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idAttribute"><var>$idAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idAttributeLength"><var>$idAttributeLength</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idAttributePrefix"><var>$idAttributePrefix</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idAttributeSafe"><var>$idAttributeSafe</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idAttributeType"><var>$idAttributeType</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idPreassigned"><var>$idPreassigned</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idTypeAutoIncrement"><var>$idTypeAutoIncrement</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idTypeInteger"><var>$idTypeInteger</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#$idTypeString"><var>$idTypeString</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.IPTrait.html#properties">vistart\Models\traits\IPTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$enableIP"><var>$enableIP</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$ipAttribute1"><var>$ipAttribute1</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$ipAttribute2"><var>$ipAttribute2</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$ipAttribute3"><var>$ipAttribute3</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$ipAttribute4"><var>$ipAttribute4</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#$ipTypeAttribute"><var>$ipTypeAttribute</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.TimestampTrait.html#properties">vistart\Models\traits\TimestampTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#$createdAtAttribute"><var>$createdAtAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#$timeFormat"><var>$timeFormat</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#$timeFormatDatetime"><var>$timeFormatDatetime</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#$timeFormatTimestamp"><var>$timeFormatTimestamp</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#$updatedAtAttribute"><var>$updatedAtAttribute</var></a></code>
+			</p>
+		</div>
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties</h3></div>
+			<table class="summary table table-bordered table-striped properties" id="magicProperties">
+		<tr data-order="entityRules" id="m$entityRules">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#17" title="Go to source code"><var>$entityRules</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="entityBehaviors" id="m$entityBehaviors">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#18" title="Go to source code"><var>$entityBehaviors</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.GUIDTrait.html#properties">vistart\Models\traits\GUIDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#m$guidRules"><var>$guidRules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.IDTrait.html#properties">vistart\Models\traits\IDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IDTrait.html#m$idRules"><var>$idRules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.IPTrait.html#properties">vistart\Models\traits\IPTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IPTrait.html#m$ipAddress"><var>$ipAddress</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.TimestampTrait.html#properties">vistart\Models\traits\TimestampTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#m$createdAtRules"><var>$createdAtRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#m$timestampBehaviors"><var>$timestampBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#m$updatedAtRules"><var>$updatedAtRules</var></a></code>
+			</p>
+		</div>
+
+</div>
+	</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
