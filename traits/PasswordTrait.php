@@ -152,10 +152,10 @@ trait PasswordTrait {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $result = Yii::$app->security->validatePassword($password, $this->$passwordHashAttribute);
         if ($result) {
-            $this->trigger(self::$eventValidatePasswordSucceeded);
+            $this->trigger(static::$eventValidatePasswordSucceeded);
             return $result;
         }
-        $this->trigger(self::$eventValidatePasswordFailed);
+        $this->trigger(static::$eventValidatePasswordFailed);
         return $result;
     }
 
@@ -166,7 +166,7 @@ trait PasswordTrait {
     public function setPassword($password) {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $this->$passwordHashAttribute = Yii::$app->security->generatePasswordHash($password);
-        $this->trigger(self::$eventAfterSetPassword);
+        $this->trigger(static::$eventAfterSetPassword);
     }
     
     /**
@@ -178,12 +178,12 @@ trait PasswordTrait {
             return false;
         }
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
-        $this->$passwordResetTokenAttribute = self::generatePasswordResetToken();
+        $this->$passwordResetTokenAttribute = static::generatePasswordResetToken();
         if (!$this->save()) {
-            $this->trigger(self::$eventResetPasswordFailed);
+            $this->trigger(static::$eventResetPasswordFailed);
             return false;
         }
-        $this->trigger(self::$eventPasswordResetTokenGenerated);
+        $this->trigger(static::$eventPasswordResetTokenGenerated);
         return true;
     }
 
@@ -194,15 +194,15 @@ trait PasswordTrait {
         if (!$this->validatePasswordResetToken($token)) {
             return false;
         }
-        $this->trigger(self::$eventBeforeResetPassword);
+        $this->trigger(static::$eventBeforeResetPassword);
         $this->password = $password;
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
         $this->$passwordResetTokenAttribute = '';
         if (!$this->save()) {
-            $this->trigger(self::$eventResetPasswordFailed);
+            $this->trigger(static::$eventResetPasswordFailed);
             return;
         }
-        $this->trigger(self::$eventAfterResetPassword);
+        $this->trigger(static::$eventAfterResetPassword);
     }
     
     /**

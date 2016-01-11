@@ -25,6 +25,7 @@ class BaseUserModelTest extends TestCase {
 
     public function testInit() {
         //User::deleteAll();
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -40,6 +41,7 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword('1234567', $user->$passwordHashAttribute));
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -52,6 +54,7 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $guidAttribute = $user->guidAttribute;
         $this->assertEquals($user->guid, $user->$guidAttribute);
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -62,6 +65,7 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotEmpty($user->id);
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -74,6 +78,7 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals($ipAddress, $user->ipAddress);
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -103,12 +108,14 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
+        echo __METHOD__ . ":Done!\n";
     }
 
     public function onResetPasswordFailed($event) {
         $sender = $event->sender;
         var_dump($sender->errors);
         $this->assertFalse(true);
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -124,6 +131,7 @@ class BaseUserModelTest extends TestCase {
         $passwordResetTokenAttribute = $user->passwordResetTokenAttribute;
         $user->resetPassword($password, $user->$passwordResetTokenAttribute);
         $user->deregister();
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -133,6 +141,7 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -155,6 +164,7 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotNull($user->$createdAtAttribute);
         $this->assertNotNull($user->$updatedAtAttribute);
         $this->assertTrue($user->deregister());
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -172,6 +182,7 @@ class BaseUserModelTest extends TestCase {
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(User::$statusActive, $user->$statusAttribute);
         $this->assertTrue($user->deregister());
+        echo __METHOD__ . ":Done!\n";
     }
 
     private function validatePassword($password, $hash) {
@@ -193,6 +204,7 @@ class BaseUserModelTest extends TestCase {
           }
           }
           var_dump(User::find()->count()); */
+        echo __METHOD__ . ":Done!\n";
     }
 
 }

@@ -52,7 +52,7 @@ trait RegistrationTrait {
         if (!$this->isNewRecord) {
             return false;
         }
-        $this->trigger(self::$eventBeforeRegister);
+        $this->trigger(static::$eventBeforeRegister);
         $transaction = $this->getDb()->beginTransaction();
         try {
             if (!$this->save()) {
@@ -67,10 +67,10 @@ trait RegistrationTrait {
         } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
             Yii::warning($ex->errorInfo, 'user\register');
-            $this->trigger(self::$eventRegisterFailed);
+            $this->trigger(static::$eventRegisterFailed);
             return $ex;
         }
-        $this->trigger(self::$eventAfterRegister);
+        $this->trigger(static::$eventAfterRegister);
         return true;
     }
 
@@ -84,12 +84,12 @@ trait RegistrationTrait {
      * @return boolean Whether deregistration succeeds or not.
      */
     public function deregister() {
-        $this->trigger(self::$eventBeforeDeregister);
+        $this->trigger(static::$eventBeforeDeregister);
         $result = $this->delete();
         if ($result == 1) {
-            $this->trigger(self::$eventAfterDeregister);
+            $this->trigger(static::$eventAfterDeregister);
         } else {
-            $this->trigger(self::$eventDeregisterFailed);
+            $this->trigger(static::$eventDeregisterFailed);
         }
         return $result == 1;
     }

@@ -24,6 +24,7 @@ class BaseUserEmailTest extends TestCase {
 
     public function testInit() {
         //UserEmail::deleteAll();
+        echo __METHOD__ . ":Done!\n";
     }
 
     /**
@@ -45,6 +46,7 @@ class BaseUserEmailTest extends TestCase {
         $email = UserEmail::findOne(['user_guid' => $guid]);
         $this->assertNull($user);
         $this->assertNull($email);
+        echo __METHOD__ . ":Done!\n";
     }
 
 }
