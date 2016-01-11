@@ -13,5 +13,5 @@ ratings:
 engines:
     phpmd:
         enabled: true
-    phpcs:
+    phpcodesniffer:
         enabled: true
