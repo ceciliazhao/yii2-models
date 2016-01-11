@@ -2,3 +2,16 @@ exclude_paths:
     - docs/**/*
     - tests/**/*
     - gii/**/*
+    
+ratings:
+    paths:
+        - behaviors/**
+        - components/**
+        - models/**
+        - traits/**
+        
+engines:
+    phpmd:
+        enabled: true
+    phpcs:
+        enabled: true
