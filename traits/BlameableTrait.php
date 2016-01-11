@@ -259,7 +259,7 @@ trait BlameableTrait {
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
             $rules[] = [
-                $this->descriptionAttribute, 'string'
+                [$this->descriptionAttribute], 'string'
             ];
         }
         return $rules;
@@ -279,7 +279,7 @@ trait BlameableTrait {
             return $rules;
         }
 
-        if (!is_array($this->contentTypes || empty($this->contentTypes))) {
+        if (is_array($this->contentTypes) && !empty($this->contentTypes)) {
             $rules[] = [[$this->contentTypeAttribute], 'required'];
             $rules[] = [[$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)];
         }

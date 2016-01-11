@@ -9,6 +9,10 @@ php:
     
 sudo: false
 
+branches:
+    except:
+        - gh-pages
+        
 services:
     - mysql
 
