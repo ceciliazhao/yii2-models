@@ -89,7 +89,7 @@ class MultipleDomainsManager extends \yii\base\Component {
      * @param string $subdomain
      * @return \yii\web\UrlManager
      */
-    public function get($subdomain) {
+    public function get($subdomain = '') {
         if (!isset($this->subDomains[$subdomain])) {
             return null;
         }
