@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\BaseBlameableEntityModel</title>
+	<title>Class vistart\Models\models\BaseMongoBlameableModel</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -93,11 +93,14 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">BaseAdditionalAccountModel</a></li>
-				<li class="active"><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
+				<li class="active"><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
 			</ul>
 
 
@@ -113,45 +116,22 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseBlameableEntityModel</h1>
+	<h1>Class BaseMongoBlameableModel</h1>
 
 
 	<div class="description">
-	<p>BaseBlameableEntityModel automatically fills the specified attributes with
-the current user's GUID.</p>
-
-<p>For example:</p>
-
-<pre><code class="php">* @property string $comment
-class Comment extends BaseBlameableEntityModel
-{ public static function tableName() { return &lt;table_name&gt;; }
- public function rules() { $rules = [ [['comment'], 'required'], [['comment'], 'string', 'max' =&gt; 140], ]; return array_merge(parent::rules(), $rules); }
- public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); }
- public function attributeLabels() { return [ ... ]; }
-}
-
-Well, when you're signed-in, you can save a new `Example` instance:
-$example = new Example();
-$example-&gt;comment = 'New Comment.';
-$example-&gt;save();
-
-or update an existing one:
-$example = Example::find() -&gt;where([$this-&gt;createdByAttribute =&gt; $user_uuid]) -&gt;one();
-if ($example)
-{ $example-&gt;comment = 'Updated Comment.'; $example-&gt;save();
-}
-</code></pre>
+	<p>Description of BaseMongoBlameableModel</p>
 	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-yii\db\ActiveRecord
+yii\mongodb\ActiveRecord
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-vistart.Models.models.BaseEntityModel.html"><span>vistart\Models\models\BaseEntityModel</span></a>
+			<a href="class-vistart.Models.models.BaseMongoEntityModel.html"><span>vistart\Models\models\BaseMongoEntityModel</span></a>
 			
 			
 			 uses 
@@ -160,7 +140,7 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\BaseBlameableEntityModel</span></b>			
+<b><span>vistart\Models\models\BaseMongoBlameableModel</span></b>			
 			
 			 uses 
 					<a href="class-vistart.Models.traits.BlameableTrait.html"><span>vistart\Models\traits\BlameableTrait</span></a>
@@ -172,7 +152,8 @@ yii\db\ActiveRecord
 	<div>
 		<h3>Direct known subclasses</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">vistart\Models\models\BaseAdditionalAccountModel</a></code>
+			<code><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">vistart\Models\models\BaseUserRelationGroupModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
 		</p>
 	</div>
 
@@ -182,18 +163,14 @@ yii\db\ActiveRecord
 
 
 	<div class="alert alert-info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.models.html">models</a><br>
 		
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-				<b>Version:</b>
-				2.0<br>
-				<b>Since:</b>
-				1.1<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableEntityModel.html#17-102" title="Go to source code">models/BaseBlameableEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#17-25" title="Go to source code">models/BaseMongoBlameableModel.php</a>
 		<br>
 	</div>
 
@@ -201,46 +178,20 @@ yii\db\ActiveRecord
 
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
-			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="init" id="_init">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseBlameableEntityModel.html#82-100" title="Go to source code">init</a>( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseEntityModel.html#_init">vistart\Models\models\BaseEntityModel::init</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
-			</table>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseMongoEntityModel.html#methods">vistart\Models\models\BaseMongoEntityModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_init">init()</a></code>
+			</p>
+		</div>
 
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_count">count()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
@@ -285,6 +236,7 @@ yii\db\ActiveRecord
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_initEvents">initEvents()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>
@@ -339,17 +291,12 @@ yii\db\ActiveRecord
             <div class="panel-heading"><h2>Properties summary</h2></div>
 		</div>
 
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties inherited from <a href="class-vistart.Models.models.BaseEntityModel.html#properties">vistart\Models\models\BaseEntityModel</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseEntityModel.html#$skipInit"><var>$skipInit</var></a></code>
-			</p>
-		</div>
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">

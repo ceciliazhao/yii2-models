@@ -23,4 +23,15 @@ use vistart\Models\traits\EntityTrait;
 abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord {
 
     use EntityTrait;
+
+    /**
+     * Initialize new entity.
+     */
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->initEvents();
+        parent::init();
+    }
+
 }

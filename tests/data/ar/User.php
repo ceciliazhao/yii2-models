@@ -12,6 +12,8 @@
 
 namespace vistart\Models\tests\data\ar;
 
+use Yii;
+
 /**
  * Description of ActiveRecord
  *
@@ -59,11 +61,12 @@ class User extends \vistart\Models\models\BaseUserModel {
     public function getUserEmails() {
         return $this->hasMany(UserEmail::className(), ['user_guid' => 'guid']);
     }
-/*
-    public static $db;
 
-    public static function getDb() {
-        return self::$db;
-    }
-*/
+    /*
+      public static $db;
+
+      public static function getDb() {
+      return self::$db;
+      }
+     */
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\BaseAdditionalAccountModel</title>
+	<title>Class vistart\Models\models\BaseUserRelationModel</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -92,7 +92,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">BaseAdditionalAccountModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">BaseAdditionalAccountModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
@@ -100,7 +100,7 @@
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
+				<li class="active"><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
 			</ul>
 
 
@@ -116,22 +116,22 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseAdditionalAccountModel</h1>
+	<h1>Class BaseUserRelationModel</h1>
 
 
 	<div class="description">
-	<p>Description of BaseAdditionalAccountModel</p>
+	<p>Description of BaseFriendModel</p>
 	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-yii\db\ActiveRecord
+yii\mongodb\ActiveRecord
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-vistart.Models.models.BaseEntityModel.html"><span>vistart\Models\models\BaseEntityModel</span></a>
+			<a href="class-vistart.Models.models.BaseMongoEntityModel.html"><span>vistart\Models\models\BaseMongoEntityModel</span></a>
 			
 			
 			 uses 
@@ -140,7 +140,7 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-vistart.Models.models.BaseBlameableModel.html"><span>vistart\Models\models\BaseBlameableModel</span></a>
+			<a href="class-vistart.Models.models.BaseMongoBlameableModel.html"><span>vistart\Models\models\BaseMongoBlameableModel</span></a>
 			
 			
 			 uses 
@@ -149,10 +149,10 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:90px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\BaseAdditionalAccountModel</span></b>			
+<b><span>vistart\Models\models\BaseUserRelationModel</span></b>			
 			
 			 uses 
-					<a href="class-vistart.Models.traits.AdditionalAccountTrait.html"><span>vistart\Models\traits\AdditionalAccountTrait</span></a>
+					<a href="class-vistart.Models.traits.UserRelationTrait.html"><span>vistart\Models\traits\UserRelationTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -172,7 +172,7 @@ yii\db\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#17-39" title="Go to source code">models/BaseAdditionalAccountModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-35" title="Go to source code">models/BaseUserRelationModel.php</a>
 		<br>
 	</div>
 
@@ -192,7 +192,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#32-37" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31-33" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				
@@ -210,7 +210,7 @@ yii\db\ActiveRecord
 					</div>
 
 					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_rules">vistart\Models\models\BaseBlameableModel::rules</a></code></div>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_rules">vistart\Models\models\BaseMongoBlameableModel::rules</a></code></div>
 
 			</div>
 			</div></td>
@@ -219,37 +219,19 @@ yii\db\ActiveRecord
 		</div>
 
 		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseBlameableModel.html#methods">vistart\Models\models\BaseBlameableModel</a></h3></div>
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseMongoEntityModel.html#methods">vistart\Models\models\BaseMongoEntityModel</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">init()</a></code>
+				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_init">init()</a></code>
 			</p>
 		</div>
 
 		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.AdditionalAccountTrait.html#methods">vistart\Models\traits\AdditionalAccountTrait</a></h3></div>
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.UserRelationTrait.html#methods">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#_getAdditionalAccountRules">getAdditionalAccountRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#_getCanBeLogon">getCanBeLogon()</a></code>, 
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#_getEnableLoginAttributeRules">getEnableLoginAttributeRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#_setCanBeLogon">setCanBeLogon()</a></code>
-			</p>
-		</div>
-		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_applyNewPassword">applyNewPassword()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordResetToken">generatePasswordResetToken()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordResetTokenRules">getPasswordResetTokenRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_onAfterSetNewPassword">onAfterSetNewPassword()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_onInitPasswordResetToken">onInitPasswordResetToken()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_resetPassword">resetPassword()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPassword">setPassword()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordHashRules">setPasswordHashRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordResetTokenRules">setPasswordResetTokenRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a></code>, 
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePasswordResetToken">validatePasswordResetToken()</a></code>
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroup">getGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getIsFavorite">getIsFavorite()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOtherGuidRules">getOtherGuidRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setIsFavorite">setIsFavorite()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -354,41 +336,6 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="enableIP" id="$enableIP">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#26" title="Go to source code"><var>$enableIP</var></a>
-
-				<div class="description short">
-					<p>REQUIRED. Determine whether enableing the IP attributes and
-features. If you set this property to false, the ipAttribute* and
-ipTypeAttribute will be ignored, and getIpAddress &amp; setIpAddress will be
-skipped.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>REQUIRED. Determine whether enableing the IP attributes and
-features. If you set this property to false, the ipAttribute* and
-ipTypeAttribute will be ignored, and getIpAddress &amp; setIpAddress will be
-skipped.</p>
-
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$enableIP" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
 		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
 			<td class="attributes"><code>
 				public  
@@ -396,7 +343,7 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#27" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#26" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					
@@ -421,7 +368,7 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#28" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#27" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -477,31 +424,33 @@ false.</p>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="descriptionAttribute" id="$descriptionAttribute">
+		<tr data-order="idAttribute" id="$idAttribute">
 			<td class="attributes"><code>
 				public  
-				boolean|string
+				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#29" title="Go to source code"><var>$descriptionAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#28" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
-					<p>This attribute speicfy the name of description
-attribute. If this attribute is assigned to false, this feature will be
-skipped.</p>
+					<p>OPTIONAL.The attribute that will receive the IDentifier No.
+You can set this property to false if you don't use this feature.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>This attribute speicfy the name of description
-attribute. If this attribute is assigned to false, this feature will be
-skipped.</p>
+					<p>OPTIONAL.The attribute that will receive the IDentifier No.
+You can set this property to false if you don't use this feature.</p>
 
+						<h4>Since</h4>
+						<div class="list">
+								1.1<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$descriptionAttribute" class="anchor">#</a>
+					<a href="#$idAttribute" class="anchor">#</a>
 					<code><span class="php-keyword1">false</span></code>
 				</div>
 			</td>
@@ -513,7 +462,7 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#30" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value
@@ -551,15 +500,24 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$descriptionAttribute"><var>$descriptionAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$initDescription"><var>$initDescription</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.AdditionalAccountTrait.html#properties">vistart\Models\traits\AdditionalAccountTrait</a></h3></div>
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.UserRelationTrait.html#properties">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#$enableLoginAttribute"><var>$enableLoginAttribute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#$independentPassword"><var>$independentPassword</var></a></code>
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$favoriteAttribute"><var>$favoriteAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupClass"><var>$groupClass</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupGuidAttribute"><var>$groupGuidAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeAttribute"><var>$relationTypeAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeBanned"><var>$relationTypeBanned</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeNormal"><var>$relationTypeNormal</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeSuspend"><var>$relationTypeSuspend</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypes"><var>$relationTypes</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$remarkAttribute"><var>$remarkAttribute</var></a></code>
 			</p>
 		</div>
 
@@ -587,9 +545,9 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</p>
 		</div>
 		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.AdditionalAccountTrait.html#properties">vistart\Models\traits\AdditionalAccountTrait</a></h3></div>
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.UserRelationTrait.html#properties">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.AdditionalAccountTrait.html#m$canBeLogon"><var>$canBeLogon</var></a></code>
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#m$isFavorite"><var>$isFavorite</var></a></code>
 			</p>
 		</div>
 

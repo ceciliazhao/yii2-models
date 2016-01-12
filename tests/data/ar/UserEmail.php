@@ -18,7 +18,7 @@ namespace vistart\Models\tests\data\ar;
  * @author vistart <i@vistart.name>
  * @since 2.0
  */
-class UserEmail extends \vistart\Models\models\BaseBlameableEntityModel {
+class UserEmail extends \vistart\Models\models\BaseBlameableModel {
 
     public static function tableName() {
         return '{{%user_email}}';
@@ -41,13 +41,7 @@ class UserEmail extends \vistart\Models\models\BaseBlameableEntityModel {
     public $contentAttribute = 'email';
     public $contentAttributeRule = ['email', 'message' => 'Please input valid emaill address.', 'allowName' => true];
     public $enableIP = false;
-    /*
-    public static $db;
 
-    public static function getDb() {
-        return self::$db;
-    }
-*/
     /**
      * @inheritdoc
      */

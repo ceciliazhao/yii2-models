@@ -93,11 +93,14 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">BaseAdditionalAccountModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">BaseBlameableEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></li>
 				<li class="active"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
 			</ul>
 
 
@@ -140,7 +143,7 @@ yii\db\ActiveRecord
 	<div>
 		<h3>Direct known subclasses</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">vistart\Models\models\BaseBlameableEntityModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseBlameableModel.html">vistart\Models\models\BaseBlameableModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
 		</p>
 	</div>
@@ -166,7 +169,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-47" title="Go to source code">models/BaseEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-37" title="Go to source code">models/BaseEntityModel.php</a>
 		<br>
 	</div>
 
@@ -186,7 +189,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#32-45" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#27-35" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize new entity.</p>
@@ -214,6 +217,7 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_initEvents">initEvents()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
@@ -267,40 +271,14 @@ yii\db\ActiveRecord
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
-			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="skipInit" id="$skipInit">
-			<td class="attributes"><code>
-				public  
-				boolean
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseEntityModel.html#27-30" title="Go to source code"><var>$skipInit</var></a>
-
-				<div class="description short">
-					<p>Determines to skip initialization.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>Determines to skip initialization.</p>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$skipInit" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
-			</table>
 		</div>
 
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a></code>
 			</p>
 		</div>
 

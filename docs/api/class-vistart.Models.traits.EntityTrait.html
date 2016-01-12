@@ -105,6 +105,8 @@
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
+				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
+				<li><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserTrait.html">UserTrait</a></li>
 			</ul>
 
@@ -160,8 +162,11 @@
 		<h3>Indirect Known Users</h3>
 		<p class="elementList">
 			<code><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">vistart\Models\models\BaseAdditionalAccountModel</a></code>, 
-			<code><a href="class-vistart.Models.models.BaseBlameableEntityModel.html">vistart\Models\models\BaseBlameableEntityModel</a></code>, 
-			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+			<code><a href="class-vistart.Models.models.BaseBlameableModel.html">vistart\Models\models\BaseBlameableModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">vistart\Models\models\BaseMongoBlameableModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">vistart\Models\models\BaseUserRelationGroupModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
 		</p>
 	</div>
 
@@ -171,7 +176,7 @@
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityTrait.html#15-103" title="Go to source code">traits/EntityTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityTrait.html#15-117" title="Go to source code">traits/EntityTrait.php</a>
 		<br>
 	</div>
 
@@ -191,7 +196,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#31-40" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#36-45" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				<p>Populate and return the entity rules.
@@ -230,7 +235,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_behaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#42-51" title="Go to source code">behaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#47-56" title="Go to source code">behaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Populate and return the entity behaviors.
@@ -269,7 +274,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getEntityRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#53-64" title="Go to source code">getEntityRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#58-69" title="Go to source code">getEntityRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -302,7 +307,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setEntityRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#66-72" title="Go to source code">setEntityRules</a>( <span>type <var>$rules</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#71-77" title="Go to source code">setEntityRules</a>( <span>type <var>$rules</var> = []</span> )</code>
 
 			<div class="description short">
 				
@@ -336,7 +341,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getEntityBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#74-83" title="Go to source code">getEntityBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#79-88" title="Go to source code">getEntityBehaviors</a>( )</code>
 
 			<div class="description short">
 				
@@ -369,7 +374,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setEntityBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#85-91" title="Go to source code">setEntityBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#90-96" title="Go to source code">setEntityBehaviors</a>( )</code>
 
 			<div class="description short">
 				
@@ -402,7 +407,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_resetCacheKey">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#93-101" title="Go to source code">resetCacheKey</a>( <span>type <var>$cacheKey</var></span>, <span>type <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#98-106" title="Go to source code">resetCacheKey</a>( <span>type <var>$cacheKey</var></span>, <span>type <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				
@@ -424,6 +429,35 @@ consequences.</p>
 					<div class="list">
 						type
 					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initEvents" id="_initEvents">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_initEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#108-115" title="Go to source code">initEvents</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
 
 
 
@@ -505,6 +539,31 @@ consequences.</p>
 				<div>
 					<a href="#$eventNewRecordCreated" class="anchor">#</a>
 					<code><span class="php-quote">'newRecordCreated'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="skipInit" id="$skipInit">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#31-34" title="Go to source code"><var>$skipInit</var></a>
+
+				<div class="description short">
+					<p>Determines to skip initialization.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Determines to skip initialization.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$skipInit" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
 				</div>
 			</td>
 		</tr>

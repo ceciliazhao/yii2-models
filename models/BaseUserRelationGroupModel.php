@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -12,28 +12,21 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\AdditionalAccountTrait;
+use vistart\Models\traits\UserRelationGroupTrait;
 
 /**
- * Description of BaseAdditionalAccountModel
+ * Description of BaseUserRelationGroupModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseAdditionalAccountModel extends BaseBlameableModel {
+abstract class BaseUserRelationGroupModel extends BaseMongoBlameableModel {
 
-    use AdditionalAccountTrait;
+    use UserRelationGroupTrait;
 
-    public $enableIP = false;
     public $confirmationAttribute = false;
-    public $contentAttribute = false;
-    public $descriptionAttribute = false;
+    public $idAttribute = false;
+    public $enableIP = false;
     public $updatedByAttribute = false;
 
-    /**
-     * @inheritdoc
-     */
-    public function rules() {
-        return array_merge($this->getAdditionalAccountRules());
-    }
-
+    //public $contentAttribute = 'content'; // Group Name
 }

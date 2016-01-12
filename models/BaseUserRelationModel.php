@@ -12,28 +12,24 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\AdditionalAccountTrait;
+use vistart\Models\traits\UserRelationTrait;
 
 /**
- * Description of BaseAdditionalAccountModel
+ * Description of BaseFriendModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseAdditionalAccountModel extends BaseBlameableModel {
+abstract class BaseUserRelationModel extends BaseMongoBlameableModel {
 
-    use AdditionalAccountTrait;
+    use UserRelationTrait;
 
-    public $enableIP = false;
     public $confirmationAttribute = false;
     public $contentAttribute = false;
-    public $descriptionAttribute = false;
+    public $idAttribute = false;
     public $updatedByAttribute = false;
 
-    /**
-     * @inheritdoc
-     */
     public function rules() {
-        return array_merge($this->getAdditionalAccountRules());
+        return array_merge(parent::rules(), $this->getOtherGuidRules());
     }
 
 }

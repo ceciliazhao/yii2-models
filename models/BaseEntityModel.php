@@ -25,22 +25,12 @@ abstract class BaseEntityModel extends ActiveRecord {
     use EntityTrait;
 
     /**
-     * @var boolean Determines to skip initialization.
-     */
-    public $skipInit = false;
-
-    /**
      * Initialize new entity.
      */
     public function init() {
         if ($this->skipInit)
             return;
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
-        if ($this->isNewRecord) {
-            $this->trigger(self::$eventNewRecordCreated);
-        }
+        $this->initEvents();
         parent::init();
     }
 

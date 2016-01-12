@@ -10,28 +10,15 @@
  * @license http://vistart.name/license/
  */
 
-namespace vistart\Models\models;
-
-use vistart\Models\traits\EntityTrait;
-
+namespace vistart\Models\traits;
 /**
- * Description of BaseRedisEntityModel
- *
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord {
-
-    use EntityTrait;
+trait UserRelationGroupTrait {
 
     /**
-     * Initialize new entity.
+     * @return \yii\db\Query
      */
-    public function init() {
-        if ($this->skipInit)
-            return;
-        $this->initEvents();
-        parent::init();
-    }
-
+    abstract public function getMembers();
 }

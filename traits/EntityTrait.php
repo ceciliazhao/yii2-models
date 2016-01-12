@@ -29,6 +29,11 @@ trait EntityTrait {
     public static $eventNewRecordCreated = 'newRecordCreated';
 
     /**
+     * @var boolean Determines to skip initialization.
+     */
+    public $skipInit = false;
+
+    /**
      * Populate and return the entity rules.
      * You should call this function in your extended class and merge the result
      * with your rules, instead of overriding it, unless you know the
@@ -98,6 +103,15 @@ trait EntityTrait {
      */
     public static function resetCacheKey($cacheKey, $value = false) {
         return Yii::$app->cache->set($cacheKey, $value);
+    }
+    
+    public function initEvents() {
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
+        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
+        if ($this->isNewRecord) {
+            $this->trigger(self::$eventNewRecordCreated);
+        }
     }
 
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait vistart\Models\traits\TimestampTrait</title>
+	<title>Trait vistart\Models\traits\UserRelationTrait</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -104,9 +104,9 @@
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
-				<li class="active"><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
+				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
-				<li><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserTrait.html">UserTrait</a></li>
 			</ul>
 
@@ -121,12 +121,9 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait TimestampTrait</h1>
+	<h1>Trait UserRelationTrait</h1>
 
 
-	<div class="description">
-	<p>Entity features concerning timestamp.</p>
-	</div>
 
 
 
@@ -137,7 +134,7 @@
 	<div>
 		<h3>Direct Known Users</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.traits.EntityTrait.html">vistart\Models\traits\EntityTrait</a></code>
+			<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
 		</p>
 	</div>
 
@@ -148,11 +145,7 @@
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
 		
 
-				<b>Author:</b>
-				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-				<b>Version:</b>
-				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.TimestampTrait.html#17-107" title="Go to source code">traits/TimestampTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationTrait.html#15-74" title="Go to source code">traits/UserRelationTrait.php</a>
 		<br>
 	</div>
 
@@ -161,92 +154,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="getCurrentDatetime" id="_getCurrentDatetime">
-
-			<td class="attributes"><code>
-				 public static
-				string
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getCurrentDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#46-60" title="Go to source code">getCurrentDatetime</a>( <span> <var>$event</var></span> )</code>
-
-			<div class="description short">
-				<p>Get the current date &amp; time in format of "Y-m-d H:i:s".
-You can override this method to customize the return value.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get the current date &amp; time in format of "Y-m-d H:i:s".
-You can override this method to customize the return value.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						string<br>Date &amp; Time.
-					</div>
-
-
-					<h4>Since</h4>
-					<div class="list">
-							1.1<br>
-					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="onUpdateCurrentDatetime" id="_onUpdateCurrentDatetime">
-
-			<td class="attributes"><code>
-				 public 
-				string
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_onUpdateCurrentDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#62-72" title="Go to source code">onUpdateCurrentDatetime</a>( <span>yii\base\Event <var>$event</var></span> )</code>
-
-			<div class="description short">
-				<p>Get the current date &amp; time in format of "Y-m-d H:i:s".
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get the current date &amp; time in format of "Y-m-d H:i:s".
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$event</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						string<br>Date &amp; Time.
-					</div>
-
-
-					<h4>Since</h4>
-					<div class="list">
-							1.1<br>
-					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getTimestampBehaviors" id="_getTimestampBehaviors">
+		<tr data-order="getIsFavorite" id="_getIsFavorite">
 
 			<td class="attributes"><code>
 				 public 
@@ -256,8 +164,8 @@ override or modify it directly, unless you know the consequences.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getTimestampBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#74-83" title="Go to source code">getTimestampBehaviors</a>( )</code>
+			<a class="anchor" href="#_getIsFavorite">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#35-38" title="Go to source code">getIsFavorite</a>( )</code>
 
 			<div class="description short">
 				
@@ -275,18 +183,18 @@ override or modify it directly, unless you know the consequences.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getCreatedAtRules" id="_getCreatedAtRules">
+		<tr data-order="setIsFavorite" id="_setIsFavorite">
 
 			<td class="attributes"><code>
 				 public 
-				array
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getCreatedAtRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#85-94" title="Go to source code">getCreatedAtRules</a>( )</code>
+			<a class="anchor" href="#_setIsFavorite">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#40-43" title="Go to source code">setIsFavorite</a>( <span> <var>$f</var></span> )</code>
 
 			<div class="description short">
 				
@@ -297,10 +205,6 @@ override or modify it directly, unless you know the consequences.</p>
 
 
 
-					<h4>Returns</h4>
-					<div class="list">
-						array
-					</div>
 
 
 
@@ -308,18 +212,18 @@ override or modify it directly, unless you know the consequences.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getUpdatedAtRules" id="_getUpdatedAtRules">
+		<tr data-order="getOtherGuidRules" id="_getOtherGuidRules">
 
 			<td class="attributes"><code>
 				 public 
-				array
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getUpdatedAtRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#96-105" title="Go to source code">getUpdatedAtRules</a>( )</code>
+			<a class="anchor" href="#_getOtherGuidRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#45-71" title="Go to source code">getOtherGuidRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -330,10 +234,35 @@ override or modify it directly, unless you know the consequences.</p>
 
 
 
-					<h4>Returns</h4>
-					<div class="list">
-						array
-					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getGroup" id="_getGroup">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getGroup">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#73" title="Go to source code">getGroup</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
 
 
 
@@ -357,93 +286,164 @@ override or modify it directly, unless you know the consequences.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="createdAtAttribute" id="$createdAtAttribute">
+		<tr data-order="otherGuidAttribute" id="$otherGuidAttribute">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#27-31" title="Go to source code"><var>$createdAtAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#20" title="Go to source code"><var>$otherGuidAttribute</var></a>
 
 				<div class="description short">
-					<p>the attribute that will receive datetime value
-Set this property to false if you do not want to record the creation time.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>the attribute that will receive datetime value
-Set this property to false if you do not want to record the creation time.</p>
+					
 
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$createdAtAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'create_time'</span></code>
+					<a href="#$otherGuidAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'other_guid'</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="updatedAtAttribute" id="$updatedAtAttribute">
+		<tr data-order="groupGuidAttribute" id="$groupGuidAttribute">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#33-37" title="Go to source code"><var>$updatedAtAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#21" title="Go to source code"><var>$groupGuidAttribute</var></a>
 
 				<div class="description short">
-					<p>the attribute that will receive datetime value.
-Set this property to false if you do not want to record the update time.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>the attribute that will receive datetime value.
-Set this property to false if you do not want to record the update time.</p>
+					
 
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$updatedAtAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'update_time'</span></code>
+					<a href="#$groupGuidAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'group_guid'</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="timeFormat" id="$timeFormat">
+		<tr data-order="groupClass" id="$groupClass">
 			<td class="attributes"><code>
 				public  
-				integer
+				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#39-42" title="Go to source code"><var>$timeFormat</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#22" title="Go to source code"><var>$groupClass</var></a>
 
 				<div class="description short">
-					<p>Determine the format of timestamp.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>Determine the format of timestamp.</p>
+					
 
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$timeFormat" class="anchor">#</a>
-					<code><span class="php-num">0</span></code>
+					<a href="#$groupClass" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="timeFormatDatetime" id="$timeFormatDatetime">
+		<tr data-order="relationTypeAttribute" id="$relationTypeAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#23" title="Go to source code"><var>$relationTypeAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationTypeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'type'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="remarkAttribute" id="$remarkAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#24" title="Go to source code"><var>$remarkAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$remarkAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'remark'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="favoriteAttribute" id="$favoriteAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#25" title="Go to source code"><var>$favoriteAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$favoriteAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'favorite'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationTypeNormal" id="$relationTypeNormal">
 			<td class="attributes"><code>
 				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#43" title="Go to source code"><var>$timeFormatDatetime</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#26" title="Go to source code"><var>$relationTypeNormal</var></a>
 
 				<div class="description short">
 					
@@ -456,19 +456,19 @@ Set this property to false if you do not want to record the update time.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$timeFormatDatetime" class="anchor">#</a>
-					<code><span class="php-num">0</span></code>
+					<a href="#$relationTypeNormal" class="anchor">#</a>
+					<code><span class="php-num">0x00</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="timeFormatTimestamp" id="$timeFormatTimestamp">
+		<tr data-order="relationTypeSuspend" id="$relationTypeSuspend">
 			<td class="attributes"><code>
 				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#44" title="Go to source code"><var>$timeFormatTimestamp</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#27" title="Go to source code"><var>$relationTypeSuspend</var></a>
 
 				<div class="description short">
 					
@@ -481,8 +481,62 @@ Set this property to false if you do not want to record the update time.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$timeFormatTimestamp" class="anchor">#</a>
-					<code><span class="php-num">1</span></code>
+					<a href="#$relationTypeSuspend" class="anchor">#</a>
+					<code><span class="php-num">0x01</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationTypeBanned" id="$relationTypeBanned">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#28" title="Go to source code"><var>$relationTypeBanned</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationTypeBanned" class="anchor">#</a>
+					<code><span class="php-num">0x10</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationTypes" id="$relationTypes">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#29-33" title="Go to source code"><var>$relationTypes</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationTypes" class="anchor">#</a>
+					<code>[
+    <span class="php-num">0x00</span> =&gt; <span class="php-quote">'Normal'</span>,
+    <span class="php-num">0x01</span> =&gt; <span class="php-quote">'Suspend'</span>,
+    <span class="php-num">0x10</span> =&gt; <span class="php-quote">'Banned'</span>,
+]</code>
 				</div>
 			</td>
 		</tr>
@@ -494,52 +548,14 @@ Set this property to false if you do not want to record the update time.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Magic properties</h3></div>
 			<table class="summary table table-bordered table-striped properties" id="magicProperties">
-		<tr data-order="timestampBehaviors" id="m$timestampBehaviors">
+		<tr data-order="isFavorite" id="m$isFavorite">
 			<td class="attributes"><code>
-				public  read-only
-				array
+				public  
+				boolean
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#19" title="Go to source code"><var>$timestampBehaviors</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-		</tr>
-		<tr data-order="createdAtRules" id="m$createdAtRules">
-			<td class="attributes"><code>
-				public  read-only
-				array
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#20" title="Go to source code"><var>$createdAtRules</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-		</tr>
-		<tr data-order="updatedAtRules" id="m$updatedAtRules">
-			<td class="attributes"><code>
-				public  read-only
-				array
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.TimestampTrait.html#21" title="Go to source code"><var>$updatedAtRules</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#16" title="Go to source code"><var>$isFavorite</var></a>
 
 				<div class="description short">
 					

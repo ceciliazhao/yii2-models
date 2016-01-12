@@ -75,7 +75,7 @@ use vistart\Models\traits\BlameableTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseBlameableEntityModel extends BaseEntityModel {
+abstract class BaseBlameableModel extends BaseEntityModel {
 
     use BlameableTrait;
 

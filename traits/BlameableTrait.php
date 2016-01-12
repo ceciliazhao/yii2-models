@@ -169,6 +169,15 @@ trait BlameableTrait {
     }
 
     /**
+     * Get total of contents which owned by their owner.
+     * @return integer
+     */
+    public function count() {
+        $createdByAttribute = $this->createdByAttribute;
+        return static::find()->where([$createdByAttribute => $this->$createdByAttribute])->count();
+    }
+
+    /**
      * 
      * @return mixed
      */
@@ -204,7 +213,8 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Determines whether content could be edited. Your should implement this
+     * method by yourself.
      * @return boolean
      * @throws \yii\base\NotSupportedException
      */

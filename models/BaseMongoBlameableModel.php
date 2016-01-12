@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -12,26 +12,14 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\EntityTrait;
+use vistart\Models\traits\BlameableTrait;
 
 /**
- * Description of BaseRedisEntityModel
+ * Description of BaseMongoBlameableModel
  *
- * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord {
+class BaseMongoBlameableModel extends BaseMongoEntityModel {
 
-    use EntityTrait;
-
-    /**
-     * Initialize new entity.
-     */
-    public function init() {
-        if ($this->skipInit)
-            return;
-        $this->initEvents();
-        parent::init();
-    }
-
+    use BlameableTrait;
 }
