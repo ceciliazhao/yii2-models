@@ -12,7 +12,7 @@
 
 namespace vistart\Models\traits;
 
-use vistart\Models\behaviors\IgnorableBlameableBehavior;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * 该 Trait 用于处理属于用户的实例。包括以下功能：
@@ -298,10 +298,9 @@ trait BlameableTrait {
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
             $behaviors = parent::behaviors();
             $behaviors[] = [
-                'class' => IgnorableBlameableBehavior::className(),
+                'class' => BlameableBehavior::className(),
                 'createdByAttribute' => $this->createdByAttribute,
                 'updatedByAttribute' => $this->updatedByAttribute,
-                'skipOnSet' => $this->isNewRecord,
                 'value' => [$this, 'onGetCurrentUserGuid'],
             ];
             $this->_blameableBehaviors = $behaviors;
@@ -337,6 +336,9 @@ trait BlameableTrait {
      * @return string the GUID of current user or the owner.
      */
     public function onGetCurrentUserGuid($event) {
+        if (isset($event->sender->attributes[$event->sender->createdByAttribute])) {
+            return $event->sender->attributes[$event->sender->createdByAttribute];
+        }
         $identity = \Yii::$app->user->identity;
         if ($identity) {
             $identityGuidAttribute = $identity->guidAttribute;
