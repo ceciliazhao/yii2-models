@@ -17,6 +17,7 @@ use vistart\Helpers\Number;
 /**
  * Entity features concerning GUID.
  * @property-read array $guidRules
+ * @property string $guid
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -70,6 +71,21 @@ trait GUIDTrait {
             ];
         }
         return $rules;
+    }
+
+    public function getGuid() {
+        $guidAttribute = $this->guidAttribute;
+        if (is_string($guidAttribute)) {
+            return $this->$guidAttribute;
+        }
+        return null;
+    }
+    
+    public function setGuid($guid) {
+        $guidAttribute = $this->guidAttribute;
+        if (is_string($guidAttribute)) {
+            $this->$guidAttribute = $guid;
+        }
     }
 
 }

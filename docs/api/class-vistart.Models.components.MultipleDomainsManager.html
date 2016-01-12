@@ -145,7 +145,7 @@ yii\base\Component
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.components.MultipleDomainsManager.html#17-120" title="Go to source code">components/MultipleDomainsManager.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.components.MultipleDomainsManager.html#17-140" title="Go to source code">components/MultipleDomainsManager.php</a>
 		<br>
 	</div>
 
@@ -165,7 +165,7 @@ yii\base\Component
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#87-110" title="Go to source code">get</a>( <span>string <var>$subdomain</var> = <span class="php-quote">''</span></span> )</code>
+			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#107-130" title="Go to source code">get</a>( <span>string <var>$subdomain</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
 				
@@ -203,7 +203,7 @@ yii\base\Component
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCurrent">#</a>
-			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#112-118" title="Go to source code">getCurrent</a>( )</code>
+			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#132-138" title="Go to source code">getCurrent</a>( )</code>
 
 			<div class="description short">
 				<p>Get URL Manager of current domain web application.</p>
@@ -273,7 +273,7 @@ yii\base\Component
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.components.MultipleDomainsManager.html#31-79" title="Go to source code"><var>$subDomains</var></a>
+					<a href="source-class-vistart.Models.components.MultipleDomainsManager.html#31-99" title="Go to source code"><var>$subDomains</var></a>
 
 				<div class="description short">
 					<p><Sub Domain Name> => [
@@ -292,6 +292,12 @@ yii\base\Component
 <span class="php-var">$subDomains</span> = [ <span class="php-quote">''</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'yii\web\UrlManager'</span>, <span class="php-comment">// `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`. 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', // the other properties... ], 'schema' =&gt; 'http', // `schema` could be ignored as it is 'http'. ], 'my' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', 'rules' =&gt; [ 'posts/&lt;year:\d{4}&gt;/&lt;category&gt;' =&gt; 'post/index', 'posts' =&gt; 'post/index', 'post/&lt;id:\d+&gt;' =&gt; 'post/view', ], ], 'schema' =&gt; 'https', ], 'sso' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'rules' =&gt; [ '' =&gt; 'sso/login', 'logout' =&gt; 'sso/logout', ], ], 'schema' =&gt; 'https', ],</span>
 ];</pre>
 
+<p>and you can configure the <code>config/web.php</code> (basic template) or <code>config/main.php</code> (advanced template)
+<code>components</code> section to add an element named <code>multipleDomainsManager</code>:</p>
+
+<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; <span class="php-quote">'example.com'</span>, <span class="php-quote">'subDomains'</span> =&gt; [ <span class="php-quote">'my'</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager component configuration <span class="php-keyword2">file</span>&gt;), ], ... ], ], ... ],
+];</pre>
+
 				</div>
 			</td>
 			<td class="value">
@@ -308,7 +314,7 @@ yii\base\Component
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.components.MultipleDomainsManager.html#81-85" title="Go to source code"><var>$currentDomain</var></a>
+					<a href="source-class-vistart.Models.components.MultipleDomainsManager.html#101-105" title="Go to source code"><var>$currentDomain</var></a>
 
 				<div class="description short">
 					<p>Current sub-domain name. If current sub-domain does not exist

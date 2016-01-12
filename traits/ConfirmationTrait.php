@@ -19,7 +19,9 @@ use Yii;
  * @property-read boolean $isConfirmed
  * @property integer $confirmation
  * @property-read array $confirmationRules
- * @property string $confirmCode
+ * @property string $confirmCode the confirm code used for confirming the content. 
+ * You can disable this attribute and create a new model for storing confirm code as
+ * its low-frequency usage.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */

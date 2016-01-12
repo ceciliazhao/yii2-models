@@ -17,9 +17,7 @@ use Yii;
 /**
  * User features concerning identity.
  *
- * @property-read int $id
  * @property-read string $authKey
- * @property-read string $guid
  * @property array $statusRules
  * @property array $authKeyRules
  * @property array $accessTokenRules
@@ -48,18 +46,6 @@ trait IdentityTrait {
 
     public static function findIdentityByAccessToken($token, $type = NULL) {
         return static::findOne(['access_token' => $token]);
-    }
-
-    public function getId() {
-        $idAttribute = $this->idAttribute;
-        if (empty($idAttribute))
-            return false;
-        return $this->$idAttribute;
-    }
-
-    public function getGuid() {
-        $guidAttribute = $this->guidAttribute;
-        return $this->$guidAttribute;
     }
 
     public function getAuthKey() {

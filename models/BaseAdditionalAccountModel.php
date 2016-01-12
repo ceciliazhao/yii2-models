@@ -33,7 +33,7 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel {
      * @inheritdoc
      */
     public function rules() {
-        return array_merge($this->getAdditionalAccountRules());
+        return array_merge($this->getAdditionalAccountRules(), parent::rules());
     }
 
 }

@@ -17,6 +17,7 @@ use vistart\Helpers\Number;
 
 /**
  * @property-read array $idRules
+ * @property mixed $id
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -63,6 +64,21 @@ trait IDTrait {
      * @since 1.1
      */
     protected $idAttributeSafe = false;
+
+    public function getId() {
+        $idAttribute = $this->idAttribute;
+        if (is_string($idAttribute)) {
+            return $this->$idAttribute;
+        }
+        return null;
+    }
+    
+    public function setId($id) {
+        $idAttribute = $this->idAttribute;
+        if (is_string($idAttribute)) {
+            $this->$idAttribute = $id;
+        }
+    }
 
     /**
      * Initialize the ID attribute with new generated ID.

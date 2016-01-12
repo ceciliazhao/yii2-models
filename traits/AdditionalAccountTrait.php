@@ -13,19 +13,26 @@
 namespace vistart\Models\traits;
 
 /**
- * @property boolean $canBeLogon
+ * @property boolean $canBeLogon determines whether this account could be used for logging-in.
+ * @version 2.0
+ * @author vistart <i@vistart.name>
  */
 trait AdditionalAccountTrait {
 
     use PasswordTrait;
 
     /**
-     * @var boolean|string 
+     * @var boolean|string The attribute of which determines whether enable to
+     * login with current additional account. You can assign it to false ff you
+     * want to disable this feature, this is equivolent to not allow to login
+     * with current additional account among all the users.
      */
     public $enableLoginAttribute = false;
 
     /**
-     * @var boolean|string 
+     * @var boolean|string  Determines whether login with current additional
+     * account with an independent password or not. If you set $enableLoginAttribute
+     * to false, this feature will be skipped.
      */
     public $independentPassword = false;
 
@@ -45,6 +52,10 @@ trait AdditionalAccountTrait {
         $this->$enableLoginAttribute = ($can ? 1 : 0);
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getEnableLoginAttributeRules() {
         return $this->enableLoginAttribute && is_string($this->enableLoginAttribute) ? [
             [[$this->enableLoginAttribute], 'boolean'],
@@ -52,8 +63,16 @@ trait AdditionalAccountTrait {
                 ] : [];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getAdditionalAccountRules() {
-        return array_merge($this->getEnableLoginAttributeRules(), $this->getPasswordHashRules());
+        $rules = $this->getEnableLoginAttributeRules();
+        if ($this->independentPassword) {
+            return array_merge($this->getEnableLoginAttributeRules(), $this->getPasswordHashRules());
+        }
+        return $rules;
     }
 
 }
