@@ -37,9 +37,9 @@ trait UserRelationTrait {
         return $this->$favoriteAttribute > 0;
     }
 
-    public function setIsFavorite($f) {
+    public function setIsFavorite($fav) {
         $favoriteAttribute = $this->favoriteAttribute;
-        $this->$favoriteAttribute = ($f ? 1 : 0);
+        $this->$favoriteAttribute = ($fav ? 1 : 0);
     }
 
     public function getOtherGuidRules() {

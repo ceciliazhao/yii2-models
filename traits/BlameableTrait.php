@@ -35,8 +35,6 @@ use vistart\Models\behaviors\IgnorableBlameableBehavior;
  * @property-read mixed $content Content.
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
  * @property-read array $contentRules Get content rules.
- * @property-read mixed $creator The creator who created this content.
- * @property-read mixed $updater The updater who updated this content.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -129,30 +127,6 @@ trait BlameableTrait {
      * current user class.
      */
     public $userClass;
-
-    /**
-     * 
-     * @return mixed
-     */
-    public function getCreator() {
-        if (!$this->createdByAttribute || empty($this->userClass)) {
-            return null;
-        }
-        $userClass = $this->userClass;
-        return $userClass::findOne($this->createdByAttribute);
-    }
-
-    /**
-     * 
-     * @return mixed
-     */
-    public function getUpdater() {
-        if (!$this->updatedByAttribute || empty($this->userClass)) {
-            return null;
-        }
-        $userClass = $this->userClass;
-        return $userClass::findOne($this->updatedByAttribute);
-    }
 
     /**
      * @inheritdoc
