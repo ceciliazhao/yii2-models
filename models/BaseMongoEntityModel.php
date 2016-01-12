@@ -23,6 +23,8 @@ use vistart\Models\traits\EntityTrait;
 abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord {
 
     use EntityTrait;
+    
+    public $guidAttribute = false;
 
     /**
      * Initialize new entity.

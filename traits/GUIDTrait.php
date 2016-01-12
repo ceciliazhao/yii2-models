@@ -37,7 +37,9 @@ trait GUIDTrait {
     public function onInitGuidAttribute($event) {
         $sender = $event->sender;
         $guidAttribute = $sender->guidAttribute;
-        $sender->$guidAttribute = self::GenerateGuid();
+        if (is_string($guidAttribute)) {
+            $sender->$guidAttribute = self::GenerateGuid();
+        }
     }
 
     /**
@@ -59,11 +61,15 @@ trait GUIDTrait {
     }
 
     public function getGuidRules() {
-        return [
-            [[$this->guidAttribute], 'required',],
-            [[$this->guidAttribute], 'unique',],
-            [[$this->guidAttribute], 'string', 'max' => 36],
-        ];
+        $rules = [];
+        if (is_string($this->guidAttribute)) {
+            $rules = [
+                [[$this->guidAttribute], 'required',],
+                [[$this->guidAttribute], 'unique',],
+                [[$this->guidAttribute], 'string', 'max' => 36],
+            ];
+        }
+        return $rules;
     }
 
 }
