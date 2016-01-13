@@ -70,7 +70,7 @@ trait AdditionalAccountTrait {
     public function getAdditionalAccountRules() {
         $rules = $this->getEnableLoginAttributeRules();
         if ($this->independentPassword) {
-            return array_merge($this->getEnableLoginAttributeRules(), $this->getPasswordHashRules());
+            $rules = array_merge($rules, $this->getPasswordHashRules());
         }
         return $rules;
     }

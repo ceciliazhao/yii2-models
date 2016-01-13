@@ -243,6 +243,7 @@ yii\mongodb\ActiveRecord
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentRules">getContentRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescriptionRules">getDescriptionRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_initBlameableEvents">initBlameableEvents()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onContentChanged">onContentChanged()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a></code>, 
@@ -274,9 +275,11 @@ yii\mongodb\ActiveRecord
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_initEvents">initEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_initEntityEvents">initEntityEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_onInitCache">onInitCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>
@@ -493,6 +496,12 @@ Set this property to false if you do not want to record the updater ID.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheId"><var>$cacheId</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityBehaviors"><var>$cacheKeyEntityBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityRules"><var>$cacheKeyEntityRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cachePrefix"><var>$cachePrefix</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityBehaviors"><var>$cacheTagEntityBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityRules"><var>$cacheTagEntityRules</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a></code>
 			</p>
@@ -500,6 +509,8 @@ Set this property to false if you do not want to record the updater ID.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableBehaviors"><var>$cacheKeyBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 

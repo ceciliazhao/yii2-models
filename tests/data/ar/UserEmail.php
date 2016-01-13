@@ -12,6 +12,8 @@
 
 namespace vistart\Models\tests\data\ar;
 
+use Yii;
+
 /**
  * Description of UserEmail
  *

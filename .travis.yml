@@ -15,6 +15,7 @@ branches:
         
 services:
     - mysql
+    - redis-server
 
 env:
     - DB=mysql

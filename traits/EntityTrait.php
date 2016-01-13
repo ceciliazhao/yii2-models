@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use Yii;
+
 /**
  * This trait must be used in class extended from ActiveRecord.
  * @property array $entityRules
@@ -26,7 +28,22 @@ trait EntityTrait {
 
     private $_entityRules = [];
     private $_entityBehaviors = [];
+
+    /**
+     * @var string cache key and tag prefix. the prefix is usually set to full
+     * qualified class name. 
+     */
+    public $cachePrefix = '';
     public static $eventNewRecordCreated = 'newRecordCreated';
+    public static $cacheKeyEntityRules = 'entity_rules';
+    public static $cacheTagEntityRules = 'tag_entity_rules';
+    public static $cacheKeyEntityBehaviors = 'entity_behaviors';
+    public static $cacheTagEntityBehaviors = 'tag_entity_behaviors';
+
+    /**
+     * @var string cache component id. 
+     */
+    public $cacheId = 'cache';
 
     /**
      * @var boolean Determines to skip initialization.
@@ -41,7 +58,7 @@ trait EntityTrait {
      * @return type
      */
     public function rules() {
-        return $this->entityRules;
+        return $this->getEntityRules();
     }
 
     /**
@@ -52,65 +69,120 @@ trait EntityTrait {
      * @return type
      */
     public function behaviors() {
-        return $this->entityBehaviors;
+        return $this->getEntityBehaviors();
+    }
+
+    /**
+     * Get cache component. If cache component is not configured, null will be
+     * given.
+     * @return \yii\caching\Cache cache component.
+     */
+    protected function getCache() {
+        $cacheId = $this->cacheId;
+        return Yii::$app->$cacheId;
     }
 
     /**
      * 
-     * @return type
+     * @return array
      */
     public function getEntityRules() {
+        $cache = $this->getCache();
+        if ($cache) {
+            $this->_entityRules = $cache->get($this->cachePrefix . static::$cacheKeyEntityRules);
+        }
         if (empty($this->_entityRules) || !is_array($this->_entityRules)) {
             $this->_entityRules = array_merge(
-                    $this->GUIDRules, $this->IDRules, $this->CreatedAtRules, $this->UpdatedAtRules, $this->IPRules
+                    $this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules()
             );
+            if ($cache) {
+                $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $this->_entityRules);
+            }
         }
         return $this->_entityRules;
     }
 
     /**
      * 
-     * @param type $rules
+     * @param array $rules
      */
     public function setEntityRules($rules = []) {
         $this->_entityRules = $rules;
+        $cache = $this->getCache();
+        if ($cache) {
+            $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $rules);
+        }
     }
 
     /**
      * 
-     * @return type
+     * @return array
      */
     public function getEntityBehaviors() {
+        $cache = $this->getCache();
+        if ($cache) {
+            $this->_entityBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyEntityBehaviors);
+        }
         if (empty($this->_entityBehaviors) || !is_array($this->_entityBehaviors)) {
-            $this->_entityBehaviors = $this->timestampBehaviors;
+            $this->_entityBehaviors = $this->getTimestampBehaviors();
+            if ($cache) {
+                $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $this->_entityBehaviors);
+            }
         }
         return $this->_entityBehaviors;
     }
 
     /**
      * 
-     * @return type
+     * @param array $behaviors
      */
-    public function setEntityBehaviors() {
-        return $this->_entityBehaviors;
+    public function setEntityBehaviors($behaviors) {
+        $this->_entityBehaviors = $behaviors;
+        $cache = $this->getCache();
+        if ($cache) {
+            $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $behaviors);
+        }
+    }
+
+    /**
+     * Reset cache key.
+     * @param string $cacheKey
+     * @param mixed $value
+     * @return boolean whether the value is successfully stored into cache. if
+     * cache component was not configured, then return false directly.
+     */
+    public function resetCacheKey($cacheKey, $value = false) {
+        $cache = $this->getCache();
+        if ($cache) {
+            return $this->getCache()->set($cacheKey, $value);
+        }
+        return false;
     }
 
     /**
      * 
-     * @param type $cacheKey
-     * @param type $value
-     * @return type
      */
-    public static function resetCacheKey($cacheKey, $value = false) {
-        return Yii::$app->cache->set($cacheKey, $value);
-    }
-    
-    public function initEvents() {
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
-        $this->on(self::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
+    protected function initEntityEvents() {
+        $this->on(static::EVENT_INIT, [$this, 'onInitCache']);
+        $this->on(static::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
+        $this->on(static::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
+        $this->on(static::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
         if ($this->isNewRecord) {
-            $this->trigger(self::$eventNewRecordCreated);
+            $this->trigger(static::$eventNewRecordCreated);
+        }
+    }
+
+    /**
+     * 
+     * @param \yii\base\Event $event
+     */
+    public function onInitCache($event) {
+        $sender = $event->sender;
+        $data = $event->data;
+        if (isset($data['prefix'])) {
+            $sender->cachePrefix = $data['prefix'];
+        } else {
+            $sender->cachePrefix = $sender::className();
         }
     }
 

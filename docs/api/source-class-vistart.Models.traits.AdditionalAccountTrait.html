@@ -204,7 +204,7 @@
 </span><span id="70" class="l"><a href="#70">70 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAdditionalAccountRules() {
 </span><span id="71" class="l"><a href="#71">71 </a>        <span class="php-var">$rules</span> = <span class="php-var">$this</span>-&gt;getEnableLoginAttributeRules();
 </span><span id="72" class="l"><a href="#72">72 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;independentPassword) {
-</span><span id="73" class="l"><a href="#73">73 </a>            <span class="php-keyword1">return</span> <span class="php-keyword2">array_merge</span>(<span class="php-var">$this</span>-&gt;getEnableLoginAttributeRules(), <span class="php-var">$this</span>-&gt;getPasswordHashRules());
+</span><span id="73" class="l"><a href="#73">73 </a>            <span class="php-var">$rules</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$rules</span>, <span class="php-var">$this</span>-&gt;getPasswordHashRules());
 </span><span id="74" class="l"><a href="#74">74 </a>        }
 </span><span id="75" class="l"><a href="#75">75 </a>        <span class="php-keyword1">return</span> <span class="php-var">$rules</span>;
 </span><span id="76" class="l"><a href="#76">76 </a>    }

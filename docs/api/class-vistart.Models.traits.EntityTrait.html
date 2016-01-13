@@ -172,7 +172,7 @@
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityTrait.html#15-117" title="Go to source code">traits/EntityTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityTrait.html#17-189" title="Go to source code">traits/EntityTrait.php</a>
 		<br>
 	</div>
 
@@ -192,7 +192,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#36-45" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#53-62" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				<p>Populate and return the entity rules.
@@ -231,7 +231,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_behaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#47-56" title="Go to source code">behaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#64-73" title="Go to source code">behaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Populate and return the entity behaviors.
@@ -259,18 +259,53 @@ consequences.</p>
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getCache" id="_getCache">
+
+			<td class="attributes"><code>
+				 protected 
+				yii\caching\Cache
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCache">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#75-83" title="Go to source code">getCache</a>( )</code>
+
+			<div class="description short">
+				<p>Get cache component. If cache component is not configured, null will be
+given.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get cache component. If cache component is not configured, null will be
+given.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						yii\caching\Cache<br>cache component.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getEntityRules" id="_getEntityRules">
 
 			<td class="attributes"><code>
 				 public 
-				type
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getEntityRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#58-69" title="Go to source code">getEntityRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#85-103" title="Go to source code">getEntityRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -283,7 +318,7 @@ consequences.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						array
 					</div>
 
 
@@ -303,7 +338,7 @@ consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setEntityRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#71-77" title="Go to source code">setEntityRules</a>( <span>type <var>$rules</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#105-115" title="Go to source code">setEntityRules</a>( <span>array <var>$rules</var> = []</span> )</code>
 
 			<div class="description short">
 				
@@ -330,14 +365,14 @@ consequences.</p>
 
 			<td class="attributes"><code>
 				 public 
-				type
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getEntityBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#79-88" title="Go to source code">getEntityBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#117-133" title="Go to source code">getEntityBehaviors</a>( )</code>
 
 			<div class="description short">
 				
@@ -350,7 +385,7 @@ consequences.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						array
 					</div>
 
 
@@ -363,14 +398,14 @@ consequences.</p>
 
 			<td class="attributes"><code>
 				 public 
-				type
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setEntityBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#90-96" title="Go to source code">setEntityBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#135-145" title="Go to source code">setEntityBehaviors</a>( <span>array <var>$behaviors</var></span> )</code>
 
 			<div class="description short">
 				
@@ -380,11 +415,12 @@ consequences.</p>
 				
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$behaviors</var></dt>
+						<dd></dd>
+					</dl></div>
 
-					<h4>Returns</h4>
-					<div class="list">
-						type
-					</div>
 
 
 
@@ -395,22 +431,22 @@ consequences.</p>
 		<tr data-order="resetCacheKey" id="_resetCacheKey">
 
 			<td class="attributes"><code>
-				 public static
-				type
+				 public 
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_resetCacheKey">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#98-106" title="Go to source code">resetCacheKey</a>( <span>type <var>$cacheKey</var></span>, <span>type <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#147-160" title="Go to source code">resetCacheKey</a>( <span>string <var>$cacheKey</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Reset cache key.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Reset cache key.</p>
 
 
 					<h4>Parameters</h4>
@@ -423,7 +459,8 @@ consequences.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						boolean<br><p>whether the value is successfully stored into cache. if
+cache component was not configured, then return false directly.</p>
 					</div>
 
 
@@ -432,18 +469,18 @@ consequences.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="initEvents" id="_initEvents">
+		<tr data-order="initEntityEvents" id="_initEntityEvents">
 
 			<td class="attributes"><code>
-				 public 
+				 protected 
 				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_initEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#108-115" title="Go to source code">initEvents</a>( )</code>
+			<a class="anchor" href="#_initEntityEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#162-173" title="Go to source code">initEntityEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -453,6 +490,40 @@ consequences.</p>
 				
 
 
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onInitCache" id="_onInitCache">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onInitCache">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityTrait.html#175-187" title="Go to source code">onInitCache</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -517,6 +588,33 @@ consequences.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="cachePrefix" id="$cachePrefix">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#32-36" title="Go to source code"><var>$cachePrefix</var></a>
+
+				<div class="description short">
+					<p>cache key and tag prefix. the prefix is usually set to full
+qualified class name.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>cache key and tag prefix. the prefix is usually set to full
+qualified class name.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cachePrefix" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="eventNewRecordCreated" id="$eventNewRecordCreated">
 			<td class="attributes"><code>
 				public static 
@@ -524,7 +622,7 @@ consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.EntityTrait.html#29" title="Go to source code"><var>$eventNewRecordCreated</var></a>
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#37" title="Go to source code"><var>$eventNewRecordCreated</var></a>
 
 				<div class="description short">
 					
@@ -542,6 +640,131 @@ consequences.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="cacheKeyEntityRules" id="$cacheKeyEntityRules">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#38" title="Go to source code"><var>$cacheKeyEntityRules</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cacheKeyEntityRules" class="anchor">#</a>
+					<code><span class="php-quote">'entity_rules'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="cacheTagEntityRules" id="$cacheTagEntityRules">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#39" title="Go to source code"><var>$cacheTagEntityRules</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cacheTagEntityRules" class="anchor">#</a>
+					<code><span class="php-quote">'tag_entity_rules'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="cacheKeyEntityBehaviors" id="$cacheKeyEntityBehaviors">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#40" title="Go to source code"><var>$cacheKeyEntityBehaviors</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cacheKeyEntityBehaviors" class="anchor">#</a>
+					<code><span class="php-quote">'entity_behaviors'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="cacheTagEntityBehaviors" id="$cacheTagEntityBehaviors">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#41" title="Go to source code"><var>$cacheTagEntityBehaviors</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cacheTagEntityBehaviors" class="anchor">#</a>
+					<code><span class="php-quote">'tag_entity_behaviors'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="cacheId" id="$cacheId">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#43-46" title="Go to source code"><var>$cacheId</var></a>
+
+				<div class="description short">
+					<p>cache component id.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>cache component id.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$cacheId" class="anchor">#</a>
+					<code><span class="php-quote">'cache'</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="skipInit" id="$skipInit">
 			<td class="attributes"><code>
 				public  
@@ -549,7 +772,7 @@ consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.EntityTrait.html#31-34" title="Go to source code"><var>$skipInit</var></a>
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#48-51" title="Go to source code"><var>$skipInit</var></a>
 
 				<div class="description short">
 					<p>Determines to skip initialization.</p>
@@ -623,7 +846,7 @@ consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.EntityTrait.html#17" title="Go to source code"><var>$entityRules</var></a>
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#19" title="Go to source code"><var>$entityRules</var></a>
 
 				<div class="description short">
 					
@@ -642,7 +865,7 @@ consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.EntityTrait.html#18" title="Go to source code"><var>$entityBehaviors</var></a>
+					<a href="source-class-vistart.Models.traits.EntityTrait.html#20" title="Go to source code"><var>$entityBehaviors</var></a>
 
 				<div class="description short">
 					

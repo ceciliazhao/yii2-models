@@ -30,6 +30,15 @@ $config = [
             'charset' => 'utf8',
         ],
     ],
+    'cache' => [
+        'class' => 'yii\redis\Cache',
+        'redis' => [
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+        ],
+        'keyPrefix' => 'test_',
+    ],
 ];
 
 if (is_file(__DIR__ . '/config.local.php')) {

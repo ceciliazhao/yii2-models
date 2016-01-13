@@ -127,19 +127,21 @@ trait BlameableTrait {
      * current user class.
      */
     public $userClass;
+    public static $cacheKeyBlameableRules = 'blameable_rules';
+    public static $cacheKeyBlameableBehaviors = 'blameable_behaviors';
 
     /**
      * @inheritdoc
      */
     public function rules() {
-        return $this->blameableRules;
+        return $this->getBlameableRules();
     }
 
     /**
      * @inheritdoc
      */
     public function behaviors() {
-        return $this->blameableBehaviors;
+        return $this->getBlameableBehaviors();
     }
 
     /**
@@ -216,6 +218,10 @@ trait BlameableTrait {
      * @return array
      */
     public function getBlameableRules() {
+        $cache = $this->getCache();
+        if ($cache) {
+            $this->_blameableRules = $cache->get($this->cachePrefix . static::$cacheKeyBlameableRules);
+        }
         // 若当前规则不为空，且是数组，则认为是规则数组，直接返回。
         if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
             return $this->_blameableRules;
@@ -223,9 +229,11 @@ trait BlameableTrait {
 
         // 父类规则与确认规则合并。
         $this->_blameableRules = array_merge(
-                parent::rules(), $this->confirmationRules, $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
+                parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
         );
-
+        if ($cache) {
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->_blameableRules);
+        }
         return $this->_blameableRules;
     }
 
@@ -287,6 +295,10 @@ trait BlameableTrait {
      */
     protected function setBlameableRules($rules = []) {
         $this->_blameableRules = $rules;
+        $cache = $this->getCache();
+        if ($cache) {
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->_blameableRules);
+        }
     }
 
     /**
@@ -295,6 +307,10 @@ trait BlameableTrait {
      * @return array
      */
     public function getBlameableBehaviors() {
+        $cache = $this->getCache();
+        if ($cache) {
+            $this->_blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
+        }
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
             $behaviors = parent::behaviors();
             $behaviors[] = [
@@ -304,6 +320,9 @@ trait BlameableTrait {
                 'value' => [$this, 'onGetCurrentUserGuid'],
             ];
             $this->_blameableBehaviors = $behaviors;
+            if ($cache) {
+                $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->_blameableBehaviors);
+            }
         }
         return $this->_blameableBehaviors;
     }
@@ -314,6 +333,10 @@ trait BlameableTrait {
      */
     protected function setBlameableBehaviors($behaviors = []) {
         $this->_blameableBehaviors = $behaviors;
+        $cache = $this->getCache();
+        if ($cache) {
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->_blameableBehaviors);
+        }
     }
 
     /**
@@ -375,6 +398,23 @@ trait BlameableTrait {
         if (empty($sender->$descriptionAttribute)) {
             $sender->$descriptionAttribute = $sender->initDescription;
         }
+    }
+
+    /**
+     * 
+     */
+    public function initBlameableEvents() {
+        $this->on(static::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);
+        $this->on(static::$eventNewRecordCreated, [$this, "onInitConfirmation"]);
+        $contentTypeAttribute = $this->contentTypeAttribute;
+        if (!isset($this->$contentTypeAttribute)) {
+            $this->on(static::$eventNewRecordCreated, [$this, "onInitContentType"]);
+        }
+        $descriptionAttribute = $this->descriptionAttribute;
+        if (!isset($this->$descriptionAttribute)) {
+            $this->on(static::$eventNewRecordCreated, [$this, 'onInitDescription']);
+        }
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
     }
 
 }
