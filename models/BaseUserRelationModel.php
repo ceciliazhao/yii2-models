@@ -19,7 +19,7 @@ use vistart\Models\traits\UserRelationTrait;
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserRelationModel extends BaseMongoBlameableModel {
+abstract class BaseUserRelationModel extends BaseBlameableModel {
 
     use UserRelationTrait;
 

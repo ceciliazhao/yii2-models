@@ -25,4 +25,11 @@ class BaseMongoBlameableModel extends BaseMongoEntityModel {
 
     public $guidAttribute = false;
 
+    public function attributes() {
+        return [
+            '_id',
+            $this->createdByAttribute,
+        ];
+    }
+
 }

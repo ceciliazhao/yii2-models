@@ -17,9 +17,10 @@ use vistart\Models\traits\UserRelationGroupTrait;
 /**
  * Description of BaseUserRelationGroupModel
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserRelationGroupModel extends BaseMongoBlameableModel {
+abstract class BaseUserRelationGroupModel extends BaseBlameableModel {
 
     use UserRelationGroupTrait;
 
