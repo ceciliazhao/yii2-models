@@ -79,7 +79,7 @@ trait EntityTrait {
      */
     protected function getCache() {
         $cacheId = $this->cacheId;
-        return Yii::$app->$cacheId;
+        return empty($cacheId) ? null : Yii::$app->$cacheId;
     }
 
     /**
@@ -92,12 +92,8 @@ trait EntityTrait {
             $this->_entityRules = $cache->get($this->cachePrefix . static::$cacheKeyEntityRules);
         }
         if (empty($this->_entityRules) || !is_array($this->_entityRules)) {
-            $this->_entityRules = array_merge(
-                    $this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules()
-            );
-            if ($cache) {
-                $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $this->_entityRules);
-            }
+            $rules = array_merge($this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules());
+            $this->setEntityRules($rules);
         }
         return $this->_entityRules;
     }
@@ -106,7 +102,7 @@ trait EntityTrait {
      * 
      * @param array $rules
      */
-    public function setEntityRules($rules = []) {
+    protected function setEntityRules($rules = []) {
         $this->_entityRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
@@ -124,10 +120,7 @@ trait EntityTrait {
             $this->_entityBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyEntityBehaviors);
         }
         if (empty($this->_entityBehaviors) || !is_array($this->_entityBehaviors)) {
-            $this->_entityBehaviors = $this->getTimestampBehaviors();
-            if ($cache) {
-                $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $this->_entityBehaviors);
-            }
+            $this->setEntityBehaviors($this->getTimestampBehaviors());
         }
         return $this->_entityBehaviors;
     }
@@ -136,7 +129,7 @@ trait EntityTrait {
      * 
      * @param array $behaviors
      */
-    public function setEntityBehaviors($behaviors) {
+    protected function setEntityBehaviors($behaviors) {
         $this->_entityBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {

@@ -30,6 +30,7 @@ abstract class BaseEntityModel extends ActiveRecord {
     public function init() {
         if ($this->skipInit)
             return;
+        $this->cacheId = false;
         $this->initEntityEvents();
         parent::init();
     }

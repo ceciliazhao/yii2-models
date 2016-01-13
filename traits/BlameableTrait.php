@@ -228,12 +228,10 @@ trait BlameableTrait {
         }
 
         // 父类规则与确认规则合并。
-        $this->_blameableRules = array_merge(
+        $rules = array_merge(
                 parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
         );
-        if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->_blameableRules);
-        }
+        $this->setBlameableRules($rules);
         return $this->_blameableRules;
     }
 
@@ -319,10 +317,7 @@ trait BlameableTrait {
                 'updatedByAttribute' => $this->updatedByAttribute,
                 'value' => [$this, 'onGetCurrentUserGuid'],
             ];
-            $this->_blameableBehaviors = $behaviors;
-            if ($cache) {
-                $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->_blameableBehaviors);
-            }
+            $this->setBlameableBehaviors($behaviors);
         }
         return $this->_blameableBehaviors;
     }
