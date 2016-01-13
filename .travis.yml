@@ -33,7 +33,7 @@ cache:
         - $HOME/.composer/cache
 
 install:
-    - tests/data/travis/mongodb-setup.sh
+    - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - travis_retry composer self-update && composer --version
     - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
     - export PATH="$HOME/.composer/vendor/bin/:$PATH"
