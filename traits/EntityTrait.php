@@ -106,7 +106,8 @@ trait EntityTrait {
         $this->_entityRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $rules);
+            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->cachePrefix . static::$cacheTagEntityRules]]);
+            $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $rules, 0, $tagDependency);
         }
     }
 
@@ -133,7 +134,8 @@ trait EntityTrait {
         $this->_entityBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $behaviors);
+            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->cachePrefix . static::$cacheTagEntityBehaviors]]);
+            $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $behaviors, 0, $tagDependency);
         }
     }
 

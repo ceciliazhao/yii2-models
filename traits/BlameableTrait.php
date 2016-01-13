@@ -228,6 +228,9 @@ trait BlameableTrait {
         }
 
         // 父类规则与确认规则合并。
+        if ($cache) {
+            \yii\caching\TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityRules]);
+        }
         $rules = array_merge(
                 parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
         );
@@ -310,6 +313,9 @@ trait BlameableTrait {
             $this->_blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
         }
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
+            if ($cache) {
+                \yii\caching\TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
+            }
             $behaviors = parent::behaviors();
             $behaviors[] = [
                 'class' => BlameableBehavior::className(),
