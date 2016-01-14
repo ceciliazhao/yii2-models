@@ -278,13 +278,13 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return \static
      */
-    protected static function buildRelationByUserGuid($user_guid, $other_guid) {
+    protected static function buildRelationByUserGuid($userGuid, $otherGuid) {
         $r = static::buildNoInitModel();
         $createdByAttribute = $r->createdByAttribute;
         $otherGuidAttribute = $r->otherGuidAttribute;
-        $relation = static::findOne([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+        $relation = static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
         if (!$relation) {
-            $relation = new static([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+            $relation = new static([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
         }
         return $relation;
     }
@@ -330,11 +330,11 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return type
      */
-    public static function removeOneRelationByUserGuid($user_guid, $other_guid) {
-        $r = static::buildNoInitModel();
-        $createdByAttribute = $r->createdByAttribute;
-        $otherGuidAttribute = $r->otherGuidAttribute;
-        $relation = static::findOne([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+    public static function removeOneRelationByUserGuid($userGuid, $otherGuid) {
+        $rni = static::buildNoInitModel();
+        $createdByAttribute = $rni->createdByAttribute;
+        $otherGuidAttribute = $rni->otherGuidAttribute;
+        $relation = static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
         return $relation->delete();
     }
 
@@ -354,11 +354,11 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return integer The number of relations removed.
      */
-    public static function removeAllRelationsByUserGuid($user_guid, $other_guid) {
-        $r = static::buildNoInitModel();
-        $createdByAttribute = $r->createdByAttribute;
-        $otherGuidAttribute = $r->otherGuidAttribute;
-        return static::deleteAll([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+    public static function removeAllRelationsByUserGuid($userGuid, $otherGuid) {
+        $rni = static::buildNoInitModel();
+        $createdByAttribute = $rni->createdByAttribute;
+        $otherGuidAttribute = $rni->otherGuidAttribute;
+        return static::deleteAll([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
     }
 
     /**
@@ -387,8 +387,8 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return type
      */
-    public static function findOneOppositeRelationByUserGuid($user_guid, $other_guid) {
-        return static::findOneRelationByUserGuid($other_guid, $user_guid);
+    public static function findOneOppositeRelationByUserGuid($userGuid, $otherGuid) {
+        return static::findOneRelationByUserGuid($otherGuid, $userGuid);
     }
 
     /**
@@ -397,11 +397,11 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return type
      */
-    public static function findOneRelationByUserGuid($user_guid, $other_guid) {
-        $r = static::buildNoInitModel();
-        $createdByAttribute = $r->createdByAttribute;
-        $otherGuidAttribute = $r->otherGuidAttribute;
-        return static::findOne([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+    public static function findOneRelationByUserGuid($userGuid, $otherGuid) {
+        $rni = static::buildNoInitModel();
+        $createdByAttribute = $rni->createdByAttribute;
+        $otherGuidAttribute = $rni->otherGuidAttribute;
+        return static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
     }
 
     /**
@@ -418,8 +418,8 @@ trait UserRelationTrait {
         return static::findAllRelationsByUserGuid($other->guid, $user->guid);
     }
 
-    public static function findAllOppositeRelationsByUserGuid($user_guid, $other_guid) {
-        return static::findAllRelationsByUserGuid($other_guid, $user_guid);
+    public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid) {
+        return static::findAllRelationsByUserGuid($otherGuid, $userGuid);
     }
 
     /**
@@ -428,11 +428,11 @@ trait UserRelationTrait {
      * @param string $other_guid
      * @return type
      */
-    public static function findAllRelationsByUserGuid($user_guid, $other_guid) {
-        $r = static::buildNoInitModel();
-        $createdByAttribute = $r->createdByAttribute;
-        $otherGuidAttribute = $r->otherGuidAttribute;
-        return static::findAll([$createdByAttribute => $user_guid, $otherGuidAttribute => $other_guid]);
+    public static function findAllRelationsByUserGuid($userGuid, $otherGuid) {
+        $rni = static::buildNoInitModel();
+        $createdByAttribute = $rni->createdByAttribute;
+        $otherGuidAttribute = $rni->otherGuidAttribute;
+        return static::findAll([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
     }
 
     /**
