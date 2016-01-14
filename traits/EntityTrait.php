@@ -51,6 +51,13 @@ trait EntityTrait {
     public $skipInit = false;
 
     /**
+     * @return \static New self without any initializations.
+     */
+    public static function buildNoInitModel() {
+        return new static(['skipInit' => true]);
+    }
+
+    /**
      * Populate and return the entity rules.
      * You should call this function in your extended class and merge the result
      * with your rules, instead of overriding it, unless you know the

@@ -222,6 +222,21 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.UserRelationTrait.html#methods">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_addGroup">addGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildBannedRelation">buildBannedRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildNormalRelation">buildNormalRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildOppositeRelation">buildOppositeRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">buildRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelationByUserGuid">buildRelationByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildSuspendRelation">buildSuspendRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_createOtherRelation">createOtherRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllOppositeRelations">findAllOppositeRelations()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllOppositeRelationsByUserGuid">findAllOppositeRelationsByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllRelations">findAllRelations()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllRelationsByUserGuid">findAllRelationsByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneOppositeRelation">findOneOppositeRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneOppositeRelationByUserGuid">findOneOppositeRelationByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelation">findOneRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelationByUserGuid">findOneRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getFavoriteRules">getFavoriteRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroup">getGroup()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupGuids">getGroupGuids()</a></code>, 
@@ -231,10 +246,18 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getRemarkRules">getRemarkRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getUserRelationRules">getUserRelationRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_initUserRelationEvents">initUserRelationEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onDeleteRelation">onDeleteRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onInitGroups">onInitGroups()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onInitRemark">onInitRemark()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onInsertRelation">onInsertRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onUpdateRelation">onUpdateRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_remove">remove()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeAllGroups">removeAllGroups()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeAllRelations">removeAllRelations()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeAllRelationsByUserGuid">removeAllRelationsByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeGroup">removeGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeOneRelation">removeOneRelation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeOneRelationByUserGuid">removeOneRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setGroupGuids">setGroupGuids()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setIsFavorite">setIsFavorite()</a></code>
@@ -285,6 +308,7 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_buildNoInitModel">buildNoInitModel()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
