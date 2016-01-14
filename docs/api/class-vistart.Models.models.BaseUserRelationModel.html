@@ -116,7 +116,11 @@
 
 
 	<div class="description">
-	<p>Description of BaseFriendModel</p>
+	<p>该类帮助用户定义用户关系。</p>
+
+<p>$confirmationAttribute 代表是否正式建立关系的属性。
+$confirmCodeAttribute 不启用。
+$confirmTimeAttribute 若正式建立关系，则为正式建立关系的时间。</p>
 	</div>
 
 	<dl class="tree well">
@@ -168,7 +172,9 @@ yii\db\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-35" title="Go to source code">models/BaseUserRelationModel.php</a>
+				<b>Version:</b>
+				2.0<br>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-42" title="Go to source code">models/BaseUserRelationModel.php</a>
 		<br>
 	</div>
 
@@ -177,7 +183,7 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="rules" id="_rules">
+		<tr data-order="init" id="_init">
 
 			<td class="attributes"><code>
 				 public 
@@ -187,8 +193,8 @@ yii\db\ActiveRecord
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31-33" title="Go to source code">rules</a>( )</code>
+			<a class="anchor" href="#_init">#</a>
+			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#35-40" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				
@@ -201,12 +207,9 @@ yii\db\ActiveRecord
 
 
 
-					<h4>Inheritdoc</h4>
-					<div class="list">
-					</div>
 
 					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_rules">vistart\Models\models\BaseBlameableModel::rules</a></code></div>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">vistart\Models\models\BaseBlameableModel::init</a></code></div>
 
 			</div>
 			</div></td>
@@ -214,19 +217,26 @@ yii\db\ActiveRecord
 			</table>
 		</div>
 
-		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseBlameableModel.html#methods">vistart\Models\models\BaseBlameableModel</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">init()</a></code>
-			</p>
-		</div>
 
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.UserRelationTrait.html#methods">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_addGroup">addGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getFavoriteRules">getFavoriteRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroup">getGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupGuids">getGroupGuids()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupsRules">getGroupsRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getIsFavorite">getIsFavorite()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOtherGuidRules">getOtherGuidRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getRemarkRules">getRemarkRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getUserRelationRules">getUserRelationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_initUserRelationEvents">initUserRelationEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onInitGroups">onInitGroups()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_onInitRemark">onInitRemark()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeAllGroups">removeAllGroups()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeGroup">removeGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_rules">rules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setGroupGuids">setGroupGuids()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setIsFavorite">setIsFavorite()</a></code>
 			</p>
 		</div>
@@ -337,27 +347,33 @@ yii\db\ActiveRecord
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
+		<tr data-order="idAttribute" id="$idAttribute">
 			<td class="attributes"><code>
 				public  
-				string|boolean
+				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#26" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
-					
+					<p>OPTIONAL.The attribute that will receive the IDentifier No.
+You can set this property to false if you don't use this feature.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					
+					<p>OPTIONAL.The attribute that will receive the IDentifier No.
+You can set this property to false if you don't use this feature.</p>
 
+						<h4>Since</h4>
+						<div class="list">
+								1.1<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$confirmationAttribute" class="anchor">#</a>
+					<a href="#$idAttribute" class="anchor">#</a>
 					<code><span class="php-keyword1">false</span></code>
 				</div>
 			</td>
@@ -369,7 +385,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#27" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#32" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -425,37 +441,6 @@ false.</p>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttribute" id="$idAttribute">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#28" title="Go to source code"><var>$idAttribute</var></a>
-
-				<div class="description short">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
-
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$idAttribute" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
 		<tr data-order="updatedByAttribute" id="$updatedByAttribute">
 			<td class="attributes"><code>
 				public  
@@ -463,15 +448,15 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#33" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
-					<p>the attribute that will receive current user ID value
+					<p>the attribute that will receive current user ID value.
 Set this property to false if you do not want to record the updater ID.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>the attribute that will receive current user ID value
+					<p>the attribute that will receive current user ID value.
 Set this property to false if you do not want to record the updater ID.</p>
 
 				</div>
@@ -510,6 +495,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$descriptionAttribute"><var>$descriptionAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$idCreatorCombinatedUnique"><var>$idCreatorCombinatedUnique</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$initDescription"><var>$initDescription</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a></code>
 			</p>
@@ -519,7 +505,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$favoriteAttribute"><var>$favoriteAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupClass"><var>$groupClass</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupGuidAttribute"><var>$groupGuidAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupsAttribute"><var>$groupsAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeAttribute"><var>$relationTypeAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeBanned"><var>$relationTypeBanned</var></a></code>, 
@@ -554,6 +540,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.UserRelationTrait.html#properties">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#m$groupGuids"><var>$groupGuids</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#m$isFavorite"><var>$isFavorite</var></a></code>
 			</p>
 		</div>

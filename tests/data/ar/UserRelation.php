@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -10,16 +10,16 @@
  * @license http://vistart.name/license/
  */
 
-namespace vistart\Models\traits;
+namespace vistart\Models\tests\data\ar;
+
+use vistart\Models\models\BaseUserRelationModel;
 /**
- * 
- * @version 2.0
+ * Description of UserRelation
+ *
  * @author vistart <i@vistart.name>
  */
-trait UserRelationGroupTrait {
-
-    /**
-     * @return \yii\db\Query
-     */
-    abstract public function getMembers();
+class UserRelation extends BaseUserRelationModel {
+    public static function tableName() {
+        return '{{%user_relation}}';
+    }
 }

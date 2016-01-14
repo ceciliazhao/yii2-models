@@ -174,7 +174,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#17-421" title="Go to source code">traits/BlameableTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#17-442" title="Go to source code">traits/BlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -194,7 +194,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#133-138" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#138-143" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				
@@ -226,7 +226,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_behaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#140-145" title="Go to source code">behaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#145-150" title="Go to source code">behaviors</a>( )</code>
 
 			<div class="description short">
 				
@@ -258,7 +258,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_count">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#147-154" title="Go to source code">count</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#152-159" title="Go to source code">count</a>( )</code>
 
 			<div class="description short">
 				<p>Get total of contents which owned by their owner.</p>
@@ -291,7 +291,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getContent">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#156-172" title="Go to source code">getContent</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#161-177" title="Go to source code">getContent</a>( )</code>
 
 			<div class="description short">
 				
@@ -324,7 +324,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setContent">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#174-189" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#179-194" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
 
 			<div class="description short">
 				
@@ -358,7 +358,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getContentCanBeEdited">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#191-201" title="Go to source code">getContentCanBeEdited</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#196-206" title="Go to source code">getContentCanBeEdited</a>( )</code>
 
 			<div class="description short">
 				<p>Determines whether content could be edited. Your should implement this
@@ -397,7 +397,7 @@ method by yourself.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_hasEverEdited">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#203-214" title="Go to source code">hasEverEdited</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#208-219" title="Go to source code">hasEverEdited</a>( )</code>
 
 			<div class="description short">
 				
@@ -430,20 +430,20 @@ method by yourself.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlameableRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#216-239" title="Go to source code">getBlameableRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#221-244" title="Go to source code">getBlameableRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Get the rules associated with content to be blamed.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get the rules associated with content to be blamed.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						array<br>rules.
 					</div>
 
 
@@ -456,27 +456,29 @@ method by yourself.</p>
 
 			<td class="attributes"><code>
 				 public 
-				string
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlameableAttributeRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#241-260" title="Go to source code">getBlameableAttributeRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#246-273" title="Go to source code">getBlameableAttributeRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Get the rules associated with <code>createdByAttribute</code>, <code>updatedByAttribute</code>
+and <code>idAttribute</code>-<code>createdByAttribute</code> combination unique.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get the rules associated with <code>createdByAttribute</code>, <code>updatedByAttribute</code>
+and <code>idAttribute</code>-<code>createdByAttribute</code> combination unique.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						string
+						array<br>rules.
 					</div>
 
 
@@ -489,24 +491,28 @@ method by yourself.</p>
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDescriptionRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#262-270" title="Go to source code">getDescriptionRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#275-287" title="Go to source code">getDescriptionRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Get the rules associated with <code>description</code> attribute.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get the rules associated with <code>description</code> attribute.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
 
 
@@ -518,24 +524,28 @@ method by yourself.</p>
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getContentRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#272-291" title="Go to source code">getContentRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#289-312" title="Go to source code">getContentRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Get the rules associated with <code>content</code> and <code>contentType</code> attributes.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get the rules associated with <code>content</code> and <code>contentType</code> attributes.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
 
 
@@ -554,7 +564,7 @@ method by yourself.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setBlameableRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#293-303" title="Go to source code">setBlameableRules</a>( <span>array <var>$rules</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#314-324" title="Go to source code">setBlameableRules</a>( <span>array <var>$rules</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Set blameable rules.</p>
@@ -588,7 +598,7 @@ method by yourself.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlameableBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#305-329" title="Go to source code">getBlameableBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#326-350" title="Go to source code">getBlameableBehaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Get blameable behaviors. If current behaviors array is empty, the init
@@ -623,7 +633,7 @@ array will be given.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setBlameableBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#331-341" title="Go to source code">setBlameableBehaviors</a>( <span>array <var>$behaviors</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#352-362" title="Go to source code">setBlameableBehaviors</a>( <span>array <var>$behaviors</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Set blameable behaviors.</p>
@@ -657,7 +667,7 @@ array will be given.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onContentChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#343-352" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#364-373" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>This event is triggered before the model update.
@@ -695,7 +705,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onGetCurrentUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#354-371" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#375-392" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Return the current user's GUID if current model doesn't specify the owner
@@ -739,7 +749,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitContentType">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#373-387" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#394-408" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize type of content. the first of element[index is 0] of
@@ -775,7 +785,7 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitDescription">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#389-402" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#410-423" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize description property with $initDescription.</p>
@@ -809,7 +819,7 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initBlameableEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#404-419" title="Go to source code">initBlameableEvents</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#425-440" title="Go to source code">initBlameableEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -1079,13 +1089,13 @@ skipped.</p>
 					<a href="source-class-vistart.Models.traits.BlameableTrait.html#111-115" title="Go to source code"><var>$createdByAttribute</var></a>
 
 				<div class="description short">
-					<p>the attribute that will receive current user ID value
-Set this property to false if you do not want to record the creator ID.</p>
+					<p>the attribute that will receive current user ID value. This
+attribute must be assigned.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>the attribute that will receive current user ID value
-Set this property to false if you do not want to record the creator ID.</p>
+					<p>the attribute that will receive current user ID value. This
+attribute must be assigned.</p>
 
 				</div>
 			</td>
@@ -1106,12 +1116,12 @@ Set this property to false if you do not want to record the creator ID.</p>
 					<a href="source-class-vistart.Models.traits.BlameableTrait.html#117-121" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
-					<p>the attribute that will receive current user ID value
+					<p>the attribute that will receive current user ID value.
 Set this property to false if you do not want to record the updater ID.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>the attribute that will receive current user ID value
+					<p>the attribute that will receive current user ID value.
 Set this property to false if you do not want to record the updater ID.</p>
 
 				</div>
@@ -1123,6 +1133,31 @@ Set this property to false if you do not want to record the updater ID.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="idCreatorCombinatedUnique" id="$idCreatorCombinatedUnique">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.BlameableTrait.html#123-126" title="Go to source code"><var>$idCreatorCombinatedUnique</var></a>
+
+				<div class="description short">
+					<p>Add combinated unique rule if assigned to true.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Add combinated unique rule if assigned to true.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$idCreatorCombinatedUnique" class="anchor">#</a>
+					<code><span class="php-keyword1">true</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="userClass" id="$userClass">
 			<td class="attributes"><code>
 				public  
@@ -1130,7 +1165,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.BlameableTrait.html#123-129" title="Go to source code"><var>$userClass</var></a>
+					<a href="source-class-vistart.Models.traits.BlameableTrait.html#128-134" title="Go to source code"><var>$userClass</var></a>
 
 				<div class="description short">
 					<p>The name of user class which own the current entity.
@@ -1161,7 +1196,7 @@ current user class.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.BlameableTrait.html#130" title="Go to source code"><var>$cacheKeyBlameableRules</var></a>
+					<a href="source-class-vistart.Models.traits.BlameableTrait.html#135" title="Go to source code"><var>$cacheKeyBlameableRules</var></a>
 
 				<div class="description short">
 					
@@ -1186,7 +1221,7 @@ current user class.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.BlameableTrait.html#131" title="Go to source code"><var>$cacheKeyBlameableBehaviors</var></a>
+					<a href="source-class-vistart.Models.traits.BlameableTrait.html#136" title="Go to source code"><var>$cacheKeyBlameableBehaviors</var></a>
 
 				<div class="description short">
 					

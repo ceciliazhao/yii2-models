@@ -109,16 +109,21 @@ trait BlameableTrait {
     public $initDescription = '';
 
     /**
-     * @var string the attribute that will receive current user ID value
-     * Set this property to false if you do not want to record the creator ID.
+     * @var string the attribute that will receive current user ID value. This
+     * attribute must be assigned.
      */
     public $createdByAttribute = "user_guid";
 
     /**
-     * @var string the attribute that will receive current user ID value
+     * @var string the attribute that will receive current user ID value.
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = "user_guid";
+    
+    /**
+     * @var boolean Add combinated unique rule if assigned to true.
+     */
+    public $idCreatorCombinatedUnique = true;
 
     /**
      * @var boolean|string The name of user class which own the current entity.
@@ -214,8 +219,8 @@ trait BlameableTrait {
     }
 
     /**
-     * 
-     * @return array
+     * Get the rules associated with content to be blamed.
+     * @return array rules.
      */
     public function getBlameableRules() {
         $cache = $this->getCache();
@@ -239,26 +244,38 @@ trait BlameableTrait {
     }
 
     /**
-     * 
-     * @return string
+     * Get the rules associated with `createdByAttribute`, `updatedByAttribute`
+     * and `idAttribute`-`createdByAttribute` combination unique.
+     * @return array rules.
      */
     public function getBlameableAttributeRules() {
         $rules = [];
         // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
-        if (is_string($this->createdByAttribute) && !empty($this->createdByAttribute)) {
-            $rules[] = [
-                [$this->createdByAttribute], 'safe',
-            ];
+        if (!is_string($this->createdByAttribute) || empty($this->createdByAttribute)) {
+            throw new \yii\base\NotSupportedException('You must assign the creator.');
         }
+        $rules[] = [
+            [$this->createdByAttribute], 'safe',
+        ];
 
         if (is_string($this->updatedByAttribute) && !empty($this->updatedByAttribute)) {
             $rules[] = [
                 [$this->updatedByAttribute], 'safe',
             ];
         }
+        
+        if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
+            $rules [] = [
+                [$this->idAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
+            ];
+        }
         return $rules;
     }
 
+    /**
+     * Get the rules associated with `description` attribute.
+     * @return array rules.
+     */
     public function getDescriptionRules() {
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
@@ -269,6 +286,10 @@ trait BlameableTrait {
         return $rules;
     }
 
+    /**
+     * Get the rules associated with `content` and `contentType` attributes.
+     * @return array rules.
+     */
     public function getContentRules() {
         if (!$this->contentAttribute) {
             return [];

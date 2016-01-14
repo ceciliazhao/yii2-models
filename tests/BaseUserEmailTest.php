@@ -41,7 +41,7 @@ class BaseUserEmailTest extends TestCase {
         $this->assertNotNull($email);
         // 与用户一同注册
         $this->assertTrue($user->register([$email]));
-        
+        //var_dump($email->rules());
         $user = User::findOne($user->guid);
         // 此处应为 User 实例。
         $this->assertInstanceOf(User::className(), $user);

@@ -15,21 +15,28 @@ namespace vistart\Models\models;
 use vistart\Models\traits\UserRelationTrait;
 
 /**
- * Description of BaseFriendModel
+ * 该类帮助用户定义用户关系。
  *
+ * $confirmationAttribute 代表是否正式建立关系的属性。
+ * $confirmCodeAttribute 不启用。
+ * $confirmTimeAttribute 若正式建立关系，则为正式建立关系的时间。
+ * 
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 abstract class BaseUserRelationModel extends BaseBlameableModel {
 
     use UserRelationTrait;
 
-    public $confirmationAttribute = false;
-    public $contentAttribute = false;
     public $idAttribute = false;
+    public $contentAttribute = false;
     public $updatedByAttribute = false;
-
-    public function rules() {
-        return array_merge(parent::rules(), $this->getOtherGuidRules());
+    
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->initUserRelationEvents();
+        parent::init();
     }
 
 }

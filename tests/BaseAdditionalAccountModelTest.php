@@ -87,4 +87,33 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $this->assertTrue($user->deregister());
         echo __METHOD__ . ":Done!\n";
     }
+    
+    public function testRules() {
+        $user = $this->prepareUser();
+        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $this->validateRules($aa->rules());
+        $this->assertTrue($user->deregister());
+        echo __METHOD__ . ":Done!\n";
+    }
+    
+    private function AdditionalAccountRules() {
+        return [
+            [['guid'], 'required'],
+            [['guid'], 'unique'],
+            [['guid'], 'string', 'max' => 36],
+        ];
+    }
+    
+    private function validateRules($rules) {
+        foreach ($rules as $key => $rule) {
+            $this->assertTrue(is_array($rule));
+            if (is_array($rule[0])) {
+            } elseif (is_string($rule[0])) {
+            } else {
+                // 只有可能是字符串或数组，不可能为其他类型。
+                $this->assertTrue(false);
+            }
+            //var_dump($rule);
+        }
+    }
 }

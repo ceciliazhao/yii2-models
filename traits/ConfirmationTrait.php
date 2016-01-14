@@ -15,7 +15,7 @@ namespace vistart\Models\traits;
 use Yii;
 
 /**
- * 
+ * This trait allow its owner to enable the entity to be blamed by user.
  * @property-read boolean $isConfirmed
  * @property integer $confirmation
  * @property-read array $confirmationRules

@@ -16,6 +16,7 @@ use Yii;
 use vistart\Helpers\Number;
 
 /**
+ * Entity features concerning ID.
  * @property-read array $idRules
  * @property mixed $id
  * @version 2.0
