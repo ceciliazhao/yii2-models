@@ -46,7 +46,7 @@ abstract class BaseEntityModel extends ActiveRecord {
      * @throws \yii\base\NotSupportedException
      */
     public function checkAttributes() {
-        if (YII_ENV !== 'prod' || YII_DEBUG) {
+        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
             if (!is_string($this->idAttribute) && empty($this->idAttribute) &&
                     !is_string($this->guidAttribute) && empty($this->guidAttribute)) {
                 throw new \yii\base\NotSupportedException('ID and GUID attributes are not be disabled simultaneously in relational database.');

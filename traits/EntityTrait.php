@@ -190,5 +190,14 @@ trait EntityTrait {
             $sender->cachePrefix = $sender::className();
         }
     }
+    
+    /**
+     * 
+     */
+    protected function recordWarnings() {
+        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
+            Yii::warning($this->errors);
+        }
+    }
 
 }

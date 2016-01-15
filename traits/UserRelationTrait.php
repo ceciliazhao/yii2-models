@@ -13,8 +13,13 @@
 namespace vistart\Models\traits;
 
 /**
+ * Relation features.
+ * Note: Several methods associated with "inserting", "updating" and "removing" may
+ * involve more DB operations, I strongly recommend those methods to be placed in
+ * transaction execution, in order to ensure data consistency.
  * @property array $groupGuids the guid array of all groups which owned by current relation.
  * @property boolean $isFavorite
+ * @property-read \vistart\Models\models\BaseUserRelationModel $opposite
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -66,7 +71,7 @@ trait UserRelationTrait {
      */
     public function getIsFavorite() {
         $favoriteAttribute = $this->favoriteAttribute;
-        return (int)$this->$favoriteAttribute > 0;
+        return (int) $this->$favoriteAttribute > 0;
     }
 
     /**
@@ -181,7 +186,7 @@ trait UserRelationTrait {
         $groupClass = $this->groupClass;
         return $groupClass::findOne($guid);
     }
-    
+
     /**
      * 
      * @param string $guid
@@ -195,7 +200,7 @@ trait UserRelationTrait {
         $createdByAttribute = $this->createdByAttribute;
         return static::find()->where([$createdByAttribute => $this->$createdByAttribute])->andWhere(['like', $this->groupsAttribute, $guid])->all();
     }
-    
+
     /**
      * 
      * @return array
@@ -277,7 +282,11 @@ trait UserRelationTrait {
         $this->on(static::EVENT_AFTER_UPDATE, [$this, 'onUpdateRelation']);
         $this->on(static::EVENT_AFTER_DELETE, [$this, 'onDeleteRelation']);
     }
-    
+
+    /**
+     * 
+     * @return \vistart\Models\models\BaseUserRelationModel
+     */
     public function getOpposite() {
         if ($this->isNewRecord) {
             return null;
@@ -289,67 +298,65 @@ trait UserRelationTrait {
 
     /**
      * Build a suspend relation.
-     * This method may involve more DB operations, I strongly recommend this method
-     * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * given if exists, or return a new relation.
      */
     public static function buildSuspendRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
         $relationTypeAttribute = $r->relationTypeAttribute;
         $relation->$relationTypeAttribute = self::$relationTypeSuspend;
-        $relation->confirmation = false;
         return $relation;
     }
 
     /**
      * Build a normal relation.
-     * This method may involve more DB operations, I strongly recommend this method
-     * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * given if exists, or return a new relation.
      */
     public static function buildNormalRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
         $relationTypeAttribute = $r->relationTypeAttribute;
         $relation->$relationTypeAttribute = self::$relationTypeNormal;
-        $relation->confirmation = true;
         return $relation;
     }
 
     /**
      * Build a banned relation.
-     * This method may involve more DB operations, I strongly recommend this method
-     * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * given if exists, or return a new relation.
      */
     public static function buildBannedRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
         $relationTypeAttribute = $r->relationTypeAttribute;
         $relation->$relationTypeAttribute = self::$relationTypeNormal;
-        $relation->confirmation = false;
         return $relation;
     }
-    
+
     /**
-     * 
+     * Build relation between initiator and recipient.
+     * @see buildRelationByUserGuid
      * @param \vistart\Models\models\BaseUserModel $user
      * @param \vistart\Models\models\BaseUserModel $other
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * given if exists, or return a new relation.
      */
     protected static function buildRelation($user, $other) {
         return static::buildRelationByUserGuid($user->guid, $other->guid);
     }
-    
+
     /**
-     * 
+     * Build relation between initiator whose guid is $userGuid and recipient
+     * whose guid is $otherGuid. 
      * @param string $userGuid
      * @param string $otherGuid
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * given if exists, or return a new relation.
      */
     protected static function buildRelationByUserGuid($userGuid, $otherGuid) {
         $rni = static::buildNoInitModel();
@@ -363,7 +370,8 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Build opposite relation throughout the current relation. The opposite
+     * relation will be given if existed.
      * @param type $relation
      * @return \vistart\Models\models\BaseUserRelationModel
      */
@@ -372,13 +380,12 @@ trait UserRelationTrait {
         $otherGuidAttribute = $relation->otherGuidAttribute;
         $relationTypeAttribute = $relation->relationTypeAttribute;
         $opposite = static::buildRelationByUserGuid($relation->$otherGuidAttribute, $relation->$createdByAttribute);
-        $opposite->confirmation = $relation->confirmation;
         $opposite->$relationTypeAttribute = $relation->$relationTypeAttribute;
         return $opposite;
     }
 
     /**
-     * 
+     * Remove myself.
      * @return integer|false The number of relations removed, or false if the remove
      * is unsuccessful for some reason. Note that it is possible the number of relations
      * removed is 0, even though the remove execution is successful.
@@ -396,7 +403,7 @@ trait UserRelationTrait {
     public static function removeOneRelation($user, $other) {
         return static::removeOneRelationByUserGuid($user->guid, $other->guid);
     }
-    
+
     /**
      * Remove first relation between initiator whose guid is $userGuid and
      * recipient whose $guid is $otherGuid.
@@ -525,32 +532,42 @@ trait UserRelationTrait {
 
     /**
      * The event triggered after insert new relation.
-     * The opposite relation should be inserted without triggerring events
-     *  simultaneously after new relation inserted,
+     * The opposite relation should be inserted without triggering events
+     * simultaneously after new relation inserted,
      * @param \yii\base\Event $event
      */
     public function onInsertRelation($event) {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
-        $opposite->save();
+        $result = $opposite->save();
+        if (!$result) {
+            $this->recordWarnings();
+        }
         $opposite->on(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
     }
 
     /**
-     * 
+     * The event triggered after update relation.
+     * The opposite relation should be updated without triggering events
+     * simultaneously after existed relation removed.
      * @param \yii\base\Event $event
      */
     public function onUpdateRelation($event) {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
-        $opposite->save();
+        $result = $opposite->save();
+        if (!$result) {
+            $this->recordWarnings();
+        }
         $opposite->on(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
     }
 
     /**
-     * 
+     * The event triggered after delete relation.
+     * The opposite relation should be deleted without triggering events
+     * simultaneously after existed relation removed.
      * @param \yii\base\Event $event
      */
     public function onDeleteRelation($event) {
