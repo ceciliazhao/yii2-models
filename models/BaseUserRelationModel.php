@@ -16,10 +16,6 @@ use vistart\Models\traits\UserRelationTrait;
 
 /**
  * 该类帮助用户定义用户关系。
- *
- * $confirmationAttribute 代表是否正式建立关系的属性。
- * $confirmCodeAttribute 不启用。
- * $confirmTimeAttribute 若正式建立关系，则为正式建立关系的时间。
  * 
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -29,6 +25,7 @@ abstract class BaseUserRelationModel extends BaseBlameableModel {
     use UserRelationTrait;
 
     public $idAttribute = false;
+    public $confirmationAttribute = false;
     public $contentAttribute = false;
     public $updatedByAttribute = false;
     

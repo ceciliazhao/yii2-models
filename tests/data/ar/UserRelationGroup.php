@@ -12,20 +12,13 @@
 
 namespace vistart\Models\tests\data\ar;
 
-use vistart\Models\models\BaseUserRelationModel;
 /**
- * Description of UserRelation
+ * Description of UserRelationGroup
  *
  * @author vistart <i@vistart.name>
  */
-class UserRelation extends BaseUserRelationModel {
-    
-    public function init() {
-        $this->groupClass = UserRelationGroup::className();
-        parent::init();
-    }
-    
-    public static function tableName() {
-        return '{{%user_relation}}';
+class UserRelationGroup extends \vistart\Models\models\BaseUserRelationGroupModel {
+    public function getMembers() {
+        
     }
 }

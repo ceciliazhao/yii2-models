@@ -117,10 +117,6 @@
 
 	<div class="description">
 	<p>该类帮助用户定义用户关系。</p>
-
-<p>$confirmationAttribute 代表是否正式建立关系的属性。
-$confirmCodeAttribute 不启用。
-$confirmTimeAttribute 若正式建立关系，则为正式建立关系的时间。</p>
 	</div>
 
 	<dl class="tree well">
@@ -174,7 +170,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-42" title="Go to source code">models/BaseUserRelationModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-39" title="Go to source code">models/BaseUserRelationModel.php</a>
 		<br>
 	</div>
 
@@ -194,7 +190,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#35-40" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#32-37" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				
@@ -234,7 +230,6 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">buildRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelationByUserGuid">buildRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildSuspendRelation">buildSuspendRelation()</a></code>, 
-				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_createOtherRelation">createOtherRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllOppositeRelations">findAllOppositeRelations()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllOppositeRelationsByUserGuid">findAllOppositeRelationsByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findAllRelations">findAllRelations()</a></code>, 
@@ -243,11 +238,14 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneOppositeRelationByUserGuid">findOneOppositeRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelation">findOneRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelationByUserGuid">findOneRelationByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getAllGroups">getAllGroups()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getFavoriteRules">getFavoriteRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroup">getGroup()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupGuids">getGroupGuids()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupMembers">getGroupMembers()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupsRules">getGroupsRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getIsFavorite">getIsFavorite()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOpposite">getOpposite()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOtherGuidRules">getOtherGuidRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getRemarkRules">getRemarkRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getUserRelationRules">getUserRelationRules()</a></code>, 
@@ -384,7 +382,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31" title="Go to source code"><var>$idAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#27" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL.The attribute that will receive the IDentifier No.
@@ -408,6 +406,31 @@ You can set this property to false if you don't use this feature.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
+			<td class="attributes"><code>
+				public  
+				string|boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#28" title="Go to source code"><var>$confirmationAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$confirmationAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="contentAttribute" id="$contentAttribute">
 			<td class="attributes"><code>
 				public  
@@ -415,7 +438,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#32" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -478,7 +501,7 @@ false.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#33" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#30" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.

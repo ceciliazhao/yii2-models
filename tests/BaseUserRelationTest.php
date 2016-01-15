@@ -14,6 +14,7 @@ namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\User;
 use vistart\Models\tests\data\ar\UserRelation;
+use vistart\Models\tests\data\ar\UserRelationGroup;
 
 /**
  * Description of UserRelationTest
@@ -42,6 +43,8 @@ class BaseUserRelationTest extends TestCase {
         if ($relation->save()) {
             $this->assertTrue(true);
             $opposite = UserRelation::findOneOppositeRelation($user, $other);
+            $this->assertInstanceOf(UserRelation::className(), $opposite);
+            $opposite = $relation->opposite;
             $this->assertInstanceOf(UserRelation::className(), $opposite);
             $opposites = UserRelation::findAllOppositeRelations($user, $other);
             $this->assertEquals(1, count($opposites));
@@ -110,6 +113,36 @@ class BaseUserRelationTest extends TestCase {
             var_dump($user->errors);
         }
         echo __METHOD__ . ":Done!\n";
+    }
+    
+    /**
+     * @depends testDeregisterOne
+     */
+    public function testFavorite() {
+        $users = $this->prepareModels();
+        $relations = $this->prepareRelationModels($users[0], $users[1]);
+        $favoriteAttribute = $relations[0]->favoriteAttribute;
+        $this->assertEquals(0, $relations[0]->$favoriteAttribute);
+        $this->assertFalse($relations[0]->isFavorite);
+        $relations[0]->isFavorite = true;
+        $this->assertTrue($relations[0]->save());
+        $this->assertEquals(1, $relations[0]->$favoriteAttribute);
+        $this->assertTrue($relations[0]->isFavorite);
+        $this->destroyModels($users);
+        echo __METHOD__ . ":Done!\n";
+    }
+    
+    /**
+     * @depends testFavorite
+     */
+    public function testGroup() {
+        /*
+        $users = $this->prepareModels();
+        $relations = $this->prepareRelationModels($users[0], $users[1]);
+        $relation = $relations[0];
+        $this->assertEmpty($relation->getGroup('123'));
+         * 
+         */
     }
 
 }

@@ -60,20 +60,35 @@ trait UserRelationTrait {
      */
     public $favoriteAttribute = 'favorite';
 
+    /**
+     * 
+     * @return boolean
+     */
     public function getIsFavorite() {
         $favoriteAttribute = $this->favoriteAttribute;
-        return $this->$favoriteAttribute > 0;
+        return (int)$this->$favoriteAttribute > 0;
     }
 
+    /**
+     * 
+     * @param boolean $fav
+     */
     public function setIsFavorite($fav) {
         $favoriteAttribute = $this->favoriteAttribute;
         $this->$favoriteAttribute = ($fav ? 1 : 0);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules() {
         return array_merge(parent::rules(), $this->getUserRelationRules());
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getUserRelationRules() {
         return array_merge([
             [[$this->relationTypeAttribute], 'boolean'],
@@ -81,6 +96,10 @@ trait UserRelationTrait {
                 ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getRemarkRules() {
         return is_string($this->remarkAttribute) ? [
             [[$this->remarkAttribute], 'string'],
@@ -88,13 +107,21 @@ trait UserRelationTrait {
                 ] : [];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getFavoriteRules() {
         return is_string($this->favoriteAttribute) ? [
             [[$this->favoriteAttribute], 'boolean'],
-            [[$this->favoriteAttribute], 'default', 'value' => 1],
+            [[$this->favoriteAttribute], 'default', 'value' => 0],
                 ] : [];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getGroupsRules() {
         return is_string($this->groupsAttribute) ? [
             [[$this->groupsAttribute], 'required'],
@@ -103,6 +130,10 @@ trait UserRelationTrait {
                 ] : [];
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getOtherGuidRules() {
         $rules = [
             [[$this->otherGuidAttribute, $this->relationTypeAttribute], 'required'],
@@ -112,6 +143,10 @@ trait UserRelationTrait {
         return $rules;
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getGroupGuids() {
         $jsonParser = new \yii\web\JsonParser();
         $groupsAttribute = $this->groupsAttribute;
@@ -121,6 +156,10 @@ trait UserRelationTrait {
         return $jsonParser->parse($this->$groupsAttribute, true);
     }
 
+    /**
+     * 
+     * @param array $guids
+     */
     public function setGroupGuids($guids = []) {
         if (!is_array($guids) || $this->groupsAttribute === false) {
             return;
@@ -133,7 +172,7 @@ trait UserRelationTrait {
     /**
      * Get group which guid is `$guid`.
      * @param string $guid
-     * @return type
+     * @return \vistart\Models\models\BaseUserRelationGroupModel
      */
     public function getGroup($guid) {
         if (empty($this->groupClass) || !is_string($this->groupClass) || $this->groupsAttribute === false) {
@@ -141,6 +180,33 @@ trait UserRelationTrait {
         }
         $groupClass = $this->groupClass;
         return $groupClass::findOne($guid);
+    }
+    
+    /**
+     * 
+     * @param string $guid
+     * @return type
+     */
+    public function getGroupMembers($guid) {
+        $group = $this->getGroup($guid);
+        if (empty($group)) {
+            return null;
+        }
+        $createdByAttribute = $this->createdByAttribute;
+        return static::find()->where([$createdByAttribute => $this->$createdByAttribute])->andWhere(['like', $this->groupsAttribute, $guid])->all();
+    }
+    
+    /**
+     * 
+     * @return array
+     */
+    public function getAllGroups() {
+        if (empty($this->groupClass) || !is_string($this->groupClass) || $this->groupsAttribute === false) {
+            return null;
+        }
+        $groupClass = $this->groupClass;
+        $createdByAttribute = $this->createdByAttribute;
+        return $groupClass::findAll([$createdByAttribute => $this->$createdByAttribute]);
     }
 
     /**
@@ -211,10 +277,14 @@ trait UserRelationTrait {
         $this->on(static::EVENT_AFTER_UPDATE, [$this, 'onUpdateRelation']);
         $this->on(static::EVENT_AFTER_DELETE, [$this, 'onDeleteRelation']);
     }
-
-    protected function createOtherRelation($config = []) {
-        $self = static::className();
-        return new $self([$config]);
+    
+    public function getOpposite() {
+        if ($this->isNewRecord) {
+            return null;
+        }
+        $createdByAttribute = $this->createdByAttribute;
+        $otherGuidAttribute = $this->otherGuidAttribute;
+        return static::findOneRelationByUserGuid($this->$otherGuidAttribute, $this->$createdByAttribute);
     }
 
     /**
@@ -223,6 +293,7 @@ trait UserRelationTrait {
      * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function buildSuspendRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
@@ -238,6 +309,7 @@ trait UserRelationTrait {
      * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function buildNormalRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
@@ -253,6 +325,7 @@ trait UserRelationTrait {
      * to be placed in transaction execution, in order to ensure data consistency.
      * @param type $user Initiator
      * @param type $other Recipient
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function buildBannedRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
@@ -261,22 +334,22 @@ trait UserRelationTrait {
         $relation->confirmation = false;
         return $relation;
     }
-
+    
     /**
      * 
-     * @param type $user
-     * @param type $other
-     * @return \static
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildRelation($user, $other) {
         return static::buildRelationByUserGuid($user->guid, $other->guid);
     }
-
+    
     /**
      * 
-     * @param string $user_guid
-     * @param string $other_guid
-     * @return \static
+     * @param string $userGuid
+     * @param string $otherGuid
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildRelationByUserGuid($userGuid, $otherGuid) {
         $rni = static::buildNoInitModel();
@@ -292,7 +365,7 @@ trait UserRelationTrait {
     /**
      * 
      * @param type $relation
-     * @return \static
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildOppositeRelation($relation) {
         $createdByAttribute = $relation->createdByAttribute;
@@ -315,20 +388,23 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
-     * @param type $user
-     * @param type $other
-     * @return type
+     * Remove first relation between initiator and recipient.
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return integer|false
      */
     public static function removeOneRelation($user, $other) {
         return static::removeOneRelationByUserGuid($user->guid, $other->guid);
     }
-
+    
     /**
-     * 
-     * @param string $user_guid
-     * @param string $other_guid
-     * @return type
+     * Remove first relation between initiator whose guid is $userGuid and
+     * recipient whose $guid is $otherGuid.
+     * @param string $userGuid Initiator's guid.
+     * @param string $otherGuid Recipient's guid.
+     * @return integer|false The number of relations removed, or false if the remove
+     * is unsuccessful for some reason. Note that it is possible the number of relations
+     * removed is 0, even though the remove execution is successful.
      */
     public static function removeOneRelationByUserGuid($userGuid, $otherGuid) {
         $rni = static::buildNoInitModel();
@@ -340,8 +416,8 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param type $user
-     * @param type $other
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
      * @return integer The number of relations removed.
      */
     public static function removeAllRelations($user, $other) {
@@ -350,8 +426,8 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param string $user_guid
-     * @param string $other_guid
+     * @param string $userGuid
+     * @param string $otherGuid
      * @return integer The number of relations removed.
      */
     public static function removeAllRelationsByUserGuid($userGuid, $otherGuid) {
@@ -363,9 +439,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param type $user
-     * @param type $other
-     * @return type
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneRelation($user, $other) {
         return static::findOneRelationByUserGuid($user->guid, $other->guid);
@@ -373,9 +449,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param type $user
-     * @param type $other
-     * @return type
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneOppositeRelation($user, $other) {
         return static::findOneRelationByUserGuid($other->guid, $user->guid);
@@ -383,9 +459,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param string $user_guid
-     * @param string $other_guid
-     * @return type
+     * @param string $userGuid
+     * @param string $otherGuid
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneOppositeRelationByUserGuid($userGuid, $otherGuid) {
         return static::findOneRelationByUserGuid($otherGuid, $userGuid);
@@ -393,9 +469,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param string $user_guid
-     * @param string $other_guid
-     * @return type
+     * @param string $userGuid
+     * @param string $otherGuid
+     * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneRelationByUserGuid($userGuid, $otherGuid) {
         $rni = static::buildNoInitModel();
@@ -406,9 +482,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param type $user
-     * @param type $other
-     * @return type
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return array
      */
     public static function findAllRelations($user, $other) {
         return static::findAllRelationsByUserGuid($user->guid, $other->guid);
@@ -416,9 +492,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param type $user
-     * @param type $other
-     * @return type
+     * @param \vistart\Models\models\BaseUserModel $user
+     * @param \vistart\Models\models\BaseUserModel $other
+     * @return array
      */
     public static function findAllOppositeRelations($user, $other) {
         return static::findAllRelationsByUserGuid($other->guid, $user->guid);
@@ -428,7 +504,7 @@ trait UserRelationTrait {
      * 
      * @param string $userGuid
      * @param string $otherGuid
-     * @return type
+     * @return array
      */
     public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid) {
         return static::findAllRelationsByUserGuid($otherGuid, $userGuid);
@@ -436,9 +512,9 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @param string $user_guid
-     * @param string $other_guid
-     * @return type
+     * @param string $userGuid
+     * @param string $otherGuid
+     * @return array
      */
     public static function findAllRelationsByUserGuid($userGuid, $otherGuid) {
         $rni = static::buildNoInitModel();
