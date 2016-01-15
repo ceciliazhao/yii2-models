@@ -98,6 +98,7 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
@@ -151,7 +152,7 @@ transaction execution, in order to ensure data consistency.</p>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationTrait.html#15-582" title="Go to source code">traits/UserRelationTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationTrait.html#15-658" title="Go to source code">traits/UserRelationTrait.php</a>
 		<br>
 	</div>
 
@@ -171,7 +172,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIsFavorite">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#68-75" title="Go to source code">getIsFavorite</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#76-83" title="Go to source code">getIsFavorite</a>( )</code>
 
 			<div class="description short">
 				
@@ -204,7 +205,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setIsFavorite">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#77-84" title="Go to source code">setIsFavorite</a>( <span>boolean <var>$fav</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#85-92" title="Go to source code">setIsFavorite</a>( <span>boolean <var>$fav</var></span> )</code>
 
 			<div class="description short">
 				
@@ -238,7 +239,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#86-91" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#94-99" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				
@@ -270,14 +271,14 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUserRelationRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#93-102" title="Go to source code">getUserRelationRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#101-110" title="Go to source code">getUserRelationRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Validation rules associated with user relation.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validation rules associated with user relation.</p>
 
 
 
@@ -303,20 +304,20 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRemarkRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#104-113" title="Go to source code">getRemarkRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#112-121" title="Go to source code">getRemarkRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Validation rules associated with remark attribute.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validation rules associated with remark attribute.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						array<br>rules.
 					</div>
 
 
@@ -336,14 +337,14 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getFavoriteRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#115-124" title="Go to source code">getFavoriteRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#123-132" title="Go to source code">getFavoriteRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Validation rules associated with favorites attribute.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validation rules associated with favorites attribute.</p>
 
 
 
@@ -369,14 +370,14 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGroupsRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#126-136" title="Go to source code">getGroupsRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#134-144" title="Go to source code">getGroupsRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Validation rules associated with groups attribute.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validation rules associated with groups attribute.</p>
 
 
 
@@ -402,14 +403,14 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getOtherGuidRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#138-149" title="Go to source code">getOtherGuidRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#146-157" title="Go to source code">getOtherGuidRules</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Validation rules associated with other guid attribute.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Validation rules associated with other guid attribute.</p>
 
 
 
@@ -435,7 +436,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGroupGuids">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#151-162" title="Go to source code">getGroupGuids</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#159-177" title="Go to source code">getGroupGuids</a>( <span> <var>$checkValid</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				
@@ -461,21 +462,61 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setGroupGuids">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#164-175" title="Go to source code">setGroupGuids</a>( <span>array <var>$guids</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#179-194" title="Go to source code">setGroupGuids</a>( <span>array <var>$guids</var> = []</span>, <span>boolean <var>$checkValid</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Set the group guids, it may check all guids if they are valid.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Set the group guids, it may check all guids if they are valid.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$guids</var></dt>
+						<dd></dd>
+						<dt><var>$checkValid</var></dt>
+						<dd>determines whether check the group is valid.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>array of all guids valid in json format.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="unsetInvalidGroups" id="_unsetInvalidGroups">
+
+			<td class="attributes"><code>
+				 protected 
+				array
 				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_unsetInvalidGroups">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#196-211" title="Go to source code">unsetInvalidGroups</a>( <span>array <var>$guids</var></span> )</code>
+
+			<div class="description short">
+				<p>Remove invalid group guid from provided guid array.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Remove invalid group guid from provided guid array.</p>
 
 
 					<h4>Parameters</h4>
@@ -484,6 +525,10 @@ transaction execution, in order to ensure data consistency.</p>
 						<dd></dd>
 					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -502,7 +547,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGroup">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#177-188" title="Go to source code">getGroup</a>( <span>string <var>$guid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#213-224" title="Go to source code">getGroup</a>( <span>string <var>$guid</var></span> )</code>
 
 			<div class="description short">
 				<p>Get group which guid is <code>$guid</code>.</p>
@@ -533,14 +578,52 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="attributes"><code>
 				 public 
-				type
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGroupMembers">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#190-202" title="Go to source code">getGroupMembers</a>( <span>string <var>$guid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#226-239" title="Go to source code">getGroupMembers</a>( <span>string <var>$guid</var></span> )</code>
+
+			<div class="description short">
+				<p>Get all relations in specified group whose guid is <code>$guid</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get all relations in specified group whose guid is <code>$guid</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$guid</var></dt>
+						<dd>the guid of group.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>all relations in specified group.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOnesAllRelations" id="_findOnesAllRelations">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findOnesAllRelations">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#241-248" title="Go to source code">findOnesAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span> )</code>
 
 			<div class="description short">
 				
@@ -552,13 +635,51 @@ transaction execution, in order to ensure data consistency.</p>
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$guid</var></dt>
+						<dt><var>$user</var></dt>
 						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOnesAllRelationsByUserGuid" id="_findOnesAllRelationsByUserGuid">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findOnesAllRelationsByUserGuid">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#250-257" title="Go to source code">findOnesAllRelationsByUserGuid</a>( <span>srting <var>$userGuid</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$userGuid</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
 					</div>
 
 
@@ -578,7 +699,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getAllGroups">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#204-215" title="Go to source code">getAllGroups</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#259-270" title="Go to source code">getAllGroups</a>( )</code>
 
 			<div class="description short">
 				
@@ -600,18 +721,51 @@ transaction execution, in order to ensure data consistency.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="addGroup" id="_addGroup">
+		<tr data-order="getNonGroupMembers" id="_getNonGroupMembers">
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_addGroup">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#217-230" title="Go to source code">addGroup</a>( <span>string <var>$guid</var></span> )</code>
+			<a class="anchor" href="#_getNonGroupMembers">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#272-279" title="Go to source code">getNonGroupMembers</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addGroupByGuid" id="_addGroupByGuid">
+
+			<td class="attributes"><code>
+				 public 
+				false|array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addGroupByGuid">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#281-296" title="Go to source code">addGroupByGuid</a>( <span>string <var>$guid</var></span> )</code>
 
 			<div class="description short">
 				<p>Add group specified by <code>$guid</code>.</p>
@@ -627,6 +781,48 @@ transaction execution, in order to ensure data consistency.</p>
 						<dd>the guid of group to be added.</dd>
 					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						false|array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addGroup" id="_addGroup">
+
+			<td class="attributes"><code>
+				 public 
+				false|array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addGroup">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#298-305" title="Go to source code">addGroup</a>( <span><code><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">vistart\Models\models\BaseUserRelationGroupModel</a></code> <var>$group</var></span> )</code>
+
+			<div class="description short">
+				<p>Add group.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Add group.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$group</var></dt>
+						<dd>the group to be added.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						false|array
+					</div>
 
 
 
@@ -645,7 +841,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeGroup">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#232-245" title="Go to source code">removeGroup</a>( <span>string <var>$guid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#307-321" title="Go to source code">removeGroup</a>( <span>string <var>$guid</var></span> )</code>
 
 			<div class="description short">
 				<p>Remove group specified by <code>$guid</code>.</p>
@@ -679,7 +875,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeAllGroups">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#247-252" title="Go to source code">removeAllGroups</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#323-328" title="Go to source code">removeAllGroups</a>( )</code>
 
 			<div class="description short">
 				
@@ -708,7 +904,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitGroups">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#254-261" title="Go to source code">onInitGroups</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#330-337" title="Go to source code">onInitGroups</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -742,7 +938,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitRemark">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#263-273" title="Go to source code">onInitRemark</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#339-349" title="Go to source code">onInitRemark</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -776,7 +972,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initUserRelationEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#275-284" title="Go to source code">initUserRelationEvents</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#351-360" title="Go to source code">initUserRelationEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -805,7 +1001,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getOpposite">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#286-297" title="Go to source code">getOpposite</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#362-373" title="Go to source code">getOpposite</a>( )</code>
 
 			<div class="description short">
 				
@@ -838,7 +1034,7 @@ transaction execution, in order to ensure data consistency.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildSuspendRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#299-311" title="Go to source code">buildSuspendRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#375-387" title="Go to source code">buildSuspendRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
 
 			<div class="description short">
 				<p>Build a suspend relation.</p>
@@ -879,7 +1075,7 @@ given if exists, or return a new relation.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildNormalRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#313-325" title="Go to source code">buildNormalRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#389-401" title="Go to source code">buildNormalRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
 
 			<div class="description short">
 				<p>Build a normal relation.</p>
@@ -920,7 +1116,7 @@ given if exists, or return a new relation.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildBannedRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#327-339" title="Go to source code">buildBannedRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#403-415" title="Go to source code">buildBannedRelation</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
 
 			<div class="description short">
 				<p>Build a banned relation.</p>
@@ -961,7 +1157,7 @@ given if exists, or return a new relation.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#341-351" title="Go to source code">buildRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#417-427" title="Go to source code">buildRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				<p>Build relation between initiator and recipient.</p>
@@ -1006,7 +1202,7 @@ given if exists, or return a new relation.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildRelationByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#353-370" title="Go to source code">buildRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#429-446" title="Go to source code">buildRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				<p>Build relation between initiator whose guid is $userGuid and recipient
@@ -1049,7 +1245,7 @@ given if exists, or return a new relation.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildOppositeRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#372-385" title="Go to source code">buildOppositeRelation</a>( <span>type <var>$relation</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#448-461" title="Go to source code">buildOppositeRelation</a>( <span>type <var>$relation</var></span> )</code>
 
 			<div class="description short">
 				<p>Build opposite relation throughout the current relation. The opposite
@@ -1089,7 +1285,7 @@ relation will be given if existed.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_remove">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#387-395" title="Go to source code">remove</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#463-471" title="Go to source code">remove</a>( )</code>
 
 			<div class="description short">
 				<p>Remove myself.</p>
@@ -1124,7 +1320,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeOneRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#397-405" title="Go to source code">removeOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#473-481" title="Go to source code">removeOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				<p>Remove first relation between initiator and recipient.</p>
@@ -1164,7 +1360,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeOneRelationByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#407-422" title="Go to source code">removeOneRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#483-498" title="Go to source code">removeOneRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				<p>Remove first relation between initiator whose guid is $userGuid and
@@ -1208,7 +1404,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeAllRelations">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#424-432" title="Go to source code">removeAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#500-508" title="Go to source code">removeAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1248,7 +1444,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeAllRelationsByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#434-445" title="Go to source code">removeAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#510-521" title="Go to source code">removeAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1288,7 +1484,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#447-455" title="Go to source code">findOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#523-531" title="Go to source code">findOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1328,7 +1524,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneOppositeRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#457-465" title="Go to source code">findOneOppositeRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#533-541" title="Go to source code">findOneOppositeRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1368,7 +1564,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneOppositeRelationByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#467-475" title="Go to source code">findOneOppositeRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#543-551" title="Go to source code">findOneOppositeRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1408,7 +1604,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneRelationByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#477-488" title="Go to source code">findOneRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#553-564" title="Go to source code">findOneRelationByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1448,7 +1644,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllRelations">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#490-498" title="Go to source code">findAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#566-574" title="Go to source code">findAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1488,7 +1684,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllOppositeRelations">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#500-508" title="Go to source code">findAllOppositeRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#576-584" title="Go to source code">findAllOppositeRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1528,7 +1724,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllOppositeRelationsByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#510-518" title="Go to source code">findAllOppositeRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#586-594" title="Go to source code">findAllOppositeRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1568,7 +1764,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllRelationsByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#520-531" title="Go to source code">findAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#596-607" title="Go to source code">findAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1608,7 +1804,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInsertRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#533-548" title="Go to source code">onInsertRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#609-624" title="Go to source code">onInsertRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>The event triggered after insert new relation.
@@ -1646,7 +1842,7 @@ simultaneously after new relation inserted,</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onUpdateRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#550-565" title="Go to source code">onUpdateRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#626-641" title="Go to source code">onUpdateRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>The event triggered after update relation.
@@ -1684,7 +1880,7 @@ simultaneously after existed relation removed.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onDeleteRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#567-580" title="Go to source code">onDeleteRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#643-656" title="Go to source code">onDeleteRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>The event triggered after delete relation.
@@ -1734,14 +1930,14 @@ simultaneously after existed relation removed.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#28" title="Go to source code"><var>$otherGuidAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#28-31" title="Go to source code"><var>$otherGuidAttribute</var></a>
 
 				<div class="description short">
-					
+					<p>the another party of the relation.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					
+					<p>the another party of the relation.</p>
 
 				</div>
 			</td>
@@ -1759,7 +1955,7 @@ simultaneously after existed relation removed.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#30-34" title="Go to source code"><var>$groupsAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#33-37" title="Go to source code"><var>$groupsAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute name of which determines the <code>groups</code> field.
@@ -1779,6 +1975,31 @@ you can assign it to <code>false</code> if you want to disable group features.</
 				</div>
 			</td>
 		</tr>
+		<tr data-order="groupLimited" id="$groupLimited">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#39-42" title="Go to source code"><var>$groupLimited</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$groupLimited" class="anchor">#</a>
+					<code><span class="php-num">10</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="remarkAttribute" id="$remarkAttribute">
 			<td class="attributes"><code>
 				public  
@@ -1786,7 +2007,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#36-39" title="Go to source code"><var>$remarkAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#44-47" title="Go to source code"><var>$remarkAttribute</var></a>
 
 				<div class="description short">
 					
@@ -1811,7 +2032,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#41-44" title="Go to source code"><var>$groupClass</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#49-52" title="Go to source code"><var>$groupClass</var></a>
 
 				<div class="description short">
 					
@@ -1836,7 +2057,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#46-49" title="Go to source code"><var>$relationTypeAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#54-57" title="Go to source code"><var>$relationTypeAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute name of which determines the relation type.</p>
@@ -1861,7 +2082,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#50" title="Go to source code"><var>$relationTypeNormal</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#58" title="Go to source code"><var>$relationTypeNormal</var></a>
 
 				<div class="description short">
 					
@@ -1886,7 +2107,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#51" title="Go to source code"><var>$relationTypeSuspend</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#59" title="Go to source code"><var>$relationTypeSuspend</var></a>
 
 				<div class="description short">
 					
@@ -1911,7 +2132,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#52" title="Go to source code"><var>$relationTypeBanned</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#60" title="Go to source code"><var>$relationTypeBanned</var></a>
 
 				<div class="description short">
 					
@@ -1936,7 +2157,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#54-61" title="Go to source code"><var>$relationTypes</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#62-69" title="Go to source code"><var>$relationTypes</var></a>
 
 				<div class="description short">
 					
@@ -1965,7 +2186,7 @@ you can assign it to <code>false</code> if you want to disable group features.</
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#63-66" title="Go to source code"><var>$favoriteAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#71-74" title="Go to source code"><var>$favoriteAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute name of which determines the <code>favorite</code> field.</p>

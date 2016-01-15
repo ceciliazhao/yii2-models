@@ -114,6 +114,7 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">vistart\Models\traits\IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">vistart\Models\traits\IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">vistart\Models\traits\IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">vistart\Models\traits\MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">vistart\Models\traits\PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">vistart\Models\traits\RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">vistart\Models\traits\TimestampTrait</a></li>
@@ -167,7 +168,7 @@
 </span></span><span id="33" class="l"><a href="#33">33 </a><span class="php-comment">     */</span>
 </span><span id="34" class="l"><a href="#34">34 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> createModel(<span class="php-var">$className</span>, <span class="php-var">$config</span> = []) {
 </span><span id="35" class="l"><a href="#35">35 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$config</span>[<span class="php-quote">'userClass'</span>])) {
-</span><span id="36" class="l"><a href="#36">36 </a>            <span class="php-var">$config</span>[<span class="php-quote">'userClass'</span>] = self::className();
+</span><span id="36" class="l"><a href="#36">36 </a>            <span class="php-var">$config</span>[<span class="php-quote">'userClass'</span>] = <span class="php-keyword1">static</span>::className();
 </span><span id="37" class="l"><a href="#37">37 </a>        }
 </span><span id="38" class="l"><a href="#38">38 </a>        <span class="php-var">$entity</span> = <span class="php-keyword1">new</span> <span class="php-var">$className</span>(<span class="php-var">$config</span>);
 </span><span id="39" class="l"><a href="#39">39 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$entity</span>-&gt;createdByAttribute;
@@ -192,6 +193,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?20add5d9452df2fde5183142d563cd43980fcc24"></script>
+<script src="elementlist.js?a7f893d98b84b1383c3316d9bc8a2a2dc6289d22"></script>
 </body>
 </html>

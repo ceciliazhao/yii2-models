@@ -97,6 +97,7 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
@@ -167,6 +168,10 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 	<td>Entity features concerning IP address.</td>
 </tr>
 <tr>
+	<td class="name"><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></td>
+	<td>一个模型的某列可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反了关系型数据库第一范式。</td>
+</tr>
+<tr>
 	<td class="name"><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></td>
 	<td>User features concerning password.</td>
 </tr>
@@ -180,7 +185,8 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></td>
-	<td>$contentAttribute 用于关系组名称。</td>
+	<td><p>$contentAttribute 关系组名称。
+$contentTypeAttribute 关系组类型。</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></td>
@@ -206,6 +212,6 @@ transaction execution, in order to ensure data consistency.</p></td>
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?20add5d9452df2fde5183142d563cd43980fcc24"></script>
+<script src="elementlist.js?a7f893d98b84b1383c3316d9bc8a2a2dc6289d22"></script>
 </body>
 </html>

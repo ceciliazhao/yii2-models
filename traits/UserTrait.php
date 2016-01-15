@@ -33,7 +33,7 @@ trait UserTrait {
      */
     public function createModel($className, $config = []) {
         if (!isset($config['userClass'])) {
-            $config['userClass'] = self::className();
+            $config['userClass'] = static::className();
         }
         $entity = new $className($config);
         $createdByAttribute = $entity->createdByAttribute;

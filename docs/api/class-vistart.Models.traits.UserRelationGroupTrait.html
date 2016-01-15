@@ -98,6 +98,7 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
@@ -121,7 +122,8 @@
 
 
 	<div class="description">
-	<p>$contentAttribute 用于关系组名称。</p>
+	<p>$contentAttribute 关系组名称。
+$contentTypeAttribute 关系组类型。</p>
 	</div>
 
 
@@ -148,7 +150,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#14-32" title="Go to source code">traits/UserRelationGroupTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#14-62" title="Go to source code">traits/UserRelationGroupTrait.php</a>
 		<br>
 	</div>
 
@@ -157,32 +159,33 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="getMembers" id="_getMembers">
+		<tr data-order="add" id="_add">
 
 			<td class="attributes"><code>
-				abstract public 
-				yii\db\Query
+				 public static
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getMembers">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#22-25" title="Go to source code">getMembers</a>( )</code>
+			<a class="anchor" href="#_add">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#24-31" title="Go to source code">add</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>add a group to user.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>add a group to user.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd></dd>
+					</dl></div>
 
-					<h4>Returns</h4>
-					<div class="list">
-						yii\db\Query
-					</div>
 
 
 
@@ -190,7 +193,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="rules" id="_rules">
+		<tr data-order="initUserRelationGroupEvents" id="_initUserRelationGroupEvents">
 
 			<td class="attributes"><code>
 				 public 
@@ -200,8 +203,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#27-29" title="Go to source code">rules</a>( )</code>
+			<a class="anchor" href="#_initUserRelationGroupEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#33-38" title="Go to source code">initUserRelationGroupEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -211,6 +214,44 @@
 				
 
 
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onDeleteGroup" id="_onDeleteGroup">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onDeleteGroup">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#40-61" title="Go to source code">onDeleteGroup</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>the event triggered before deleting group.
+I do not remove group's guid from groupsAttribute which contains the guid
+of group to be deleted.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>the event triggered before deleting group.
+I do not remove group's guid from groupsAttribute which contains the guid
+of group to be deleted.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -242,7 +283,7 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#21" title="Go to source code"><var>$relationClass</var></a>
+					<a href="source-class-vistart.Models.traits.UserRelationGroupTrait.html#22" title="Go to source code"><var>$relationClass</var></a>
 
 				<div class="description short">
 					

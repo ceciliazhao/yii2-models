@@ -136,13 +136,39 @@ class BaseUserRelationTest extends TestCase {
      * @depends testFavorite
      */
     public function testGroup() {
-        /*
         $users = $this->prepareModels();
         $relations = $this->prepareRelationModels($users[0], $users[1]);
         $relation = $relations[0];
+        $groupsAttribute = $relation->groupsAttribute;
+        $this->assertEquals('[]', $relation->$groupsAttribute);
         $this->assertEmpty($relation->getGroup('123'));
-         * 
-         */
+        $this->assertEmpty($relation->getGroupMembers('123'));
+        $members = $relation->getNonGroupMembers();
+        $this->assertEquals(1, count($members));
+        $group = $users[0]->createModel(UserRelationGroup::className(), ['content' => 'home']);
+        //var_dump($group->attributes);
+        if ($group->save()) {
+            $this->assertTrue(true);
+        } else {
+            var_dump($group->errors);
+            $this->assertFalse(true);
+        }
+        $relationGroups = $relation->addGroup($group);
+        $this->assertNotEmpty($relationGroups);
+        $this->assertEquals($group->guid, $relationGroups[0]);
+        $this->assertEquals($group->guid, $relation->groupGuids[0]);
+        if ($relation->save()) {
+            $this->assertTrue(true);
+        } else {
+            var_dump($relation->errors);
+            $this->assertFalse(true);
+        }
+        $this->assertGreaterThanOrEqual(1, $group->delete());
+        /*
+        $this->assertEmpty($relation->groupGuids[0]);
+        */
+        $this->destroyModels($users);
+        echo __METHOD__ . ":Done!\n";
     }
 
 }

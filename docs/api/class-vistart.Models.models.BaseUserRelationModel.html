@@ -224,6 +224,7 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.UserRelationTrait.html#methods">vistart\Models\traits\UserRelationTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_addGroup">addGroup()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_addGroupByGuid">addGroupByGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildBannedRelation">buildBannedRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildNormalRelation">buildNormalRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildOppositeRelation">buildOppositeRelation()</a></code>, 
@@ -238,6 +239,8 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneOppositeRelationByUserGuid">findOneOppositeRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelation">findOneRelation()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOneRelationByUserGuid">findOneRelationByUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOnesAllRelations">findOnesAllRelations()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_findOnesAllRelationsByUserGuid">findOnesAllRelationsByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getAllGroups">getAllGroups()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getFavoriteRules">getFavoriteRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroup">getGroup()</a></code>, 
@@ -245,6 +248,7 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupMembers">getGroupMembers()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getGroupsRules">getGroupsRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getIsFavorite">getIsFavorite()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getNonGroupMembers">getNonGroupMembers()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOpposite">getOpposite()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getOtherGuidRules">getOtherGuidRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_getRemarkRules">getRemarkRules()</a></code>, 
@@ -264,7 +268,8 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_removeOneRelationByUserGuid">removeOneRelationByUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setGroupGuids">setGroupGuids()</a></code>, 
-				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setIsFavorite">setIsFavorite()</a></code>
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_setIsFavorite">setIsFavorite()</a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_unsetInvalidGroups">unsetInvalidGroups()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -559,6 +564,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$favoriteAttribute"><var>$favoriteAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupClass"><var>$groupClass</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupLimited"><var>$groupLimited</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$groupsAttribute"><var>$groupsAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypeAttribute"><var>$relationTypeAttribute</var></a></code>, 

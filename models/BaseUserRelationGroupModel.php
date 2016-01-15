@@ -17,6 +17,9 @@ use vistart\Models\traits\UserRelationGroupTrait;
 /**
  * 该类帮助用户定义关系组。
  *
+ * $contentAttribute 关系组名称。
+ * $contentTypeAttribute 关系组类型。
+ * 
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -25,9 +28,16 @@ abstract class BaseUserRelationGroupModel extends BaseBlameableModel {
     use UserRelationGroupTrait;
 
     public $confirmationAttribute = false;
-    public $idAttribute = false;
     public $enableIP = false;
+    public $idAttribute = false;
+    public $updatedAtAttribute = false;
     public $updatedByAttribute = false;
 
-    //public $contentAttribute = 'content'; // Group Name
+    public function init() {
+        if ($this->skipInit)
+            return;
+        $this->initUserRelationGroupEvents();
+        parent::init();
+    }
+
 }

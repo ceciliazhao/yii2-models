@@ -23,6 +23,13 @@ use yii\db\Connection;
  * @author vistart <i@vistart.name>
  */
 abstract class TestCase extends \PHPUnit_Framework_TestCase {
+    
+    public function sleep($seconds = 1) {
+        for ($i = $seconds; $i > 0; $i--) {
+            echo "$i\n";
+            sleep(1);
+        }
+    }
 
     public static $params;
 

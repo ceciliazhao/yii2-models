@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait vistart\Models\traits\GUIDTrait</title>
+	<title>Trait vistart\Models\traits\MultipleBlameableTrait</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -94,11 +94,11 @@
 				<li><a href="class-vistart.Models.traits.BlameableTrait.html">BlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.ConfirmationTrait.html">ConfirmationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.EntityTrait.html">EntityTrait</a></li>
-				<li class="active"><a href="class-vistart.Models.traits.GUIDTrait.html">GUIDTrait</a></li>
+				<li><a href="class-vistart.Models.traits.GUIDTrait.html">GUIDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
-				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
@@ -118,11 +118,11 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait GUIDTrait</h1>
+	<h1>Trait MultipleBlameableTrait</h1>
 
 
 	<div class="description">
-	<p>Entity features concerning GUID.</p>
+	<p>一个模型的某列可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反了关系型数据库第一范式。</p>
 	</div>
 
 
@@ -131,12 +131,6 @@
 
 
 
-	<div>
-		<h3>Direct Known Users</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.traits.EntityTrait.html">vistart\Models\traits\EntityTrait</a></code>
-		</p>
-	</div>
 
 
 	<div class="alert alert-info">
@@ -149,7 +143,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.GUIDTrait.html#17-91" title="Go to source code">traits/GUIDTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#15-127" title="Go to source code">traits/MultipleBlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -158,75 +152,31 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="onInitGuidAttribute" id="_onInitGuidAttribute">
+		<tr data-order="getMultipleBlameableAttributeRules" id="_getMultipleBlameableAttributeRules">
 
 			<td class="attributes"><code>
 				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_onInitGuidAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#31-44" title="Go to source code">onInitGuidAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
-
-			<div class="description short">
-				<p>Initialize the GUID attribute with new generated GUID.
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initialize the GUID attribute with new generated GUID.
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$event</var></dt>
-						<dd></dd>
-					</dl></div>
-
-
-
-					<h4>Since</h4>
-					<div class="list">
-							1.1<br>
-					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="GenerateGuid" id="_GenerateGuid">
-
-			<td class="attributes"><code>
-				 public static
-				string
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_GenerateGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#46-53" title="Go to source code">GenerateGuid</a>( )</code>
+			<a class="anchor" href="#_getMultipleBlameableAttributeRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#37-47" title="Go to source code">getMultipleBlameableAttributeRules</a>( )</code>
 
 			<div class="description short">
-				<p>Generate GUID. It will check if the generated GUID existed in database
-table, if existed, it will regenerate one.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Generate GUID. It will check if the generated GUID existed in database
-table, if existed, it will regenerate one.</p>
+				
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						string<br>the generated GUID.
+						array
 					</div>
 
 
@@ -235,36 +185,36 @@ table, if existed, it will regenerate one.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="CheckGuidExists" id="_CheckGuidExists">
+		<tr data-order="addBlamedByGuid" id="_addBlamedByGuid">
 
 			<td class="attributes"><code>
-				 public static
+				 public 
 				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_CheckGuidExists">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#55-62" title="Go to source code">CheckGuidExists</a>( <span>string <var>$uuid</var></span> )</code>
+			<a class="anchor" href="#_addBlamedByGuid">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#49-58" title="Go to source code">addBlamedByGuid</a>( <span>type <var>$blameGuid</var></span> )</code>
 
 			<div class="description short">
-				<p>Check if the $uuid existed in current database table.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Check if the $uuid existed in current database table.</p>
+				
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$uuid</var></dt>
-						<dd>the GUID to be checked.</dd>
+						<dt><var>$blameGuid</var></dt>
+						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						boolean<br>Whether the $guid exists or not.
+						boolean
 					</div>
 
 
@@ -273,7 +223,121 @@ table, if existed, it will regenerate one.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getGuidRules" id="_getGuidRules">
+		<tr data-order="addBlamed" id="_addBlamed">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addBlamed">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#60-67" title="Go to source code">addBlamed</a>( <span>type <var>$blame</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$blame</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="removeBlamedByGuid" id="_removeBlamedByGuid">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_removeBlamedByGuid">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#69-78" title="Go to source code">removeBlamedByGuid</a>( <span>type <var>$blameGuid</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$blameGuid</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="removeBlamed" id="_removeBlamed">
+
+			<td class="attributes"><code>
+				 public 
+				type
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_removeBlamed">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#80-87" title="Go to source code">removeBlamed</a>( <span>type <var>$blame</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$blame</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="removeAllBlamed" id="_removeAllBlamed">
 
 			<td class="attributes"><code>
 				 public 
@@ -283,8 +347,8 @@ table, if existed, it will regenerate one.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getGuidRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#64-74" title="Go to source code">getGuidRules</a>( )</code>
+			<a class="anchor" href="#_removeAllBlamed">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#89-94" title="Go to source code">removeAllBlamed</a>( )</code>
 
 			<div class="description short">
 				
@@ -302,7 +366,7 @@ table, if existed, it will regenerate one.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getGuid" id="_getGuid">
+		<tr data-order="getBlamedGuids" id="_getBlamedGuids">
 
 			<td class="attributes"><code>
 				 public 
@@ -312,8 +376,8 @@ table, if existed, it will regenerate one.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#76-82" title="Go to source code">getGuid</a>( )</code>
+			<a class="anchor" href="#_getBlamedGuids">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#96-101" title="Go to source code">getBlamedGuids</a>( )</code>
 
 			<div class="description short">
 				
@@ -331,7 +395,7 @@ table, if existed, it will regenerate one.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="setGuid" id="_setGuid">
+		<tr data-order="setBlamedGuids" id="_setBlamedGuids">
 
 			<td class="attributes"><code>
 				 public 
@@ -341,8 +405,8 @@ table, if existed, it will regenerate one.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_setGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#84-89" title="Go to source code">setGuid</a>( <span> <var>$guid</var></span> )</code>
+			<a class="anchor" href="#_setBlamedGuids">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#103-109" title="Go to source code">setBlamedGuids</a>( <span>array <var>$guids</var></span> )</code>
 
 			<div class="description short">
 				
@@ -352,7 +416,78 @@ table, if existed, it will regenerate one.</p>
 				
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$guids</var></dt>
+						<dd></dd>
+					</dl></div>
 
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAllBlames" id="_getAllBlames">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAllBlames">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#111-117" title="Go to source code">getAllBlames</a>( )</code>
+
+			<div class="description short">
+				<p>Get all the blames of record.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get all the blames of record.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>all blames.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getNonBlameds" id="_getNonBlameds">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getNonBlameds">#</a>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#119-125" title="Go to source code">getNonBlameds</a>( )</code>
+
+			<div class="description short">
+				<p>Get all records which without any blames.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get all records which without any blames.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>all non-blameds.
+					</div>
 
 
 
@@ -376,47 +511,39 @@ table, if existed, it will regenerate one.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="guidAttribute" id="$guidAttribute">
+		<tr data-order="multipleBlameableClass" id="$multipleBlameableClass">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.GUIDTrait.html#26-29" title="Go to source code"><var>$guidAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#22-25" title="Go to source code"><var>$multipleBlameableClass</var></a>
 
 				<div class="description short">
-					<p>REQUIRED. The attribute that will receive the GUID value.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>REQUIRED. The attribute that will receive the GUID value.</p>
+					
 
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$guidAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'guid'</span></code>
+					<a href="#$multipleBlameableClass" class="anchor">#</a>
+					<code></code>
 				</div>
 			</td>
 		</tr>
-			</table>
-		</div>
-
-
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Magic properties</h3></div>
-			<table class="summary table table-bordered table-striped properties" id="magicProperties">
-		<tr data-order="guid" id="m$guid">
+		<tr data-order="multipleBlameableAttribute" id="$multipleBlameableAttribute">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.GUIDTrait.html#20" title="Go to source code"><var>$guid</var></a>
+					<a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#27-30" title="Go to source code"><var>$multipleBlameableAttribute</var></a>
 
 				<div class="description short">
 					
@@ -427,15 +554,21 @@ table, if existed, it will regenerate one.</p>
 
 				</div>
 			</td>
+			<td class="value">
+				<div>
+					<a href="#$multipleBlameableAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'owners'</span></code>
+				</div>
+			</td>
 		</tr>
-		<tr data-order="guidRules" id="m$guidRules">
+		<tr data-order="blamedLimited" id="$blamedLimited">
 			<td class="attributes"><code>
-				public  read-only
-				array
+				public  
+				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.GUIDTrait.html#19" title="Go to source code"><var>$guidRules</var></a>
+					<a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#32-35" title="Go to source code"><var>$blamedLimited</var></a>
 
 				<div class="description short">
 					
@@ -444,11 +577,20 @@ table, if existed, it will regenerate one.</p>
 				<div class="description detailed hidden">
 					
 
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$blamedLimited" class="anchor">#</a>
+					<code><span class="php-num">10</span></code>
 				</div>
 			</td>
 		</tr>
 			</table>
 		</div>
+
+
+
 
 
 

@@ -18,7 +18,4 @@ namespace vistart\Models\tests\data\ar;
  * @author vistart <i@vistart.name>
  */
 class UserRelationGroup extends \vistart\Models\models\BaseUserRelationGroupModel {
-    public function getMembers() {
-        
-    }
 }
