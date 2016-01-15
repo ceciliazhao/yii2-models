@@ -279,9 +279,9 @@ trait UserRelationTrait {
      * @return \static
      */
     protected static function buildRelationByUserGuid($userGuid, $otherGuid) {
-        $r = static::buildNoInitModel();
-        $createdByAttribute = $r->createdByAttribute;
-        $otherGuidAttribute = $r->otherGuidAttribute;
+        $rni = static::buildNoInitModel();
+        $createdByAttribute = $rni->createdByAttribute;
+        $otherGuidAttribute = $rni->otherGuidAttribute;
         $relation = static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
         if (!$relation) {
             $relation = new static([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
@@ -414,10 +414,22 @@ trait UserRelationTrait {
         return static::findAllRelationsByUserGuid($user->guid, $other->guid);
     }
 
+    /**
+     * 
+     * @param type $user
+     * @param type $other
+     * @return type
+     */
     public static function findAllOppositeRelations($user, $other) {
         return static::findAllRelationsByUserGuid($other->guid, $user->guid);
     }
 
+    /**
+     * 
+     * @param string $userGuid
+     * @param string $otherGuid
+     * @return type
+     */
     public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid) {
         return static::findAllRelationsByUserGuid($otherGuid, $userGuid);
     }
@@ -436,7 +448,9 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * The event triggered after insert new relation.
+     * The opposite relation should be inserted without triggerring events
+     *  simultaneously after new relation inserted,
      * @param \yii\base\Event $event
      */
     public function onInsertRelation($event) {

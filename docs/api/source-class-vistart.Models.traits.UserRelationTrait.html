@@ -413,9 +413,9 @@
 </span></span><span id="279" class="l"><a href="#279">279 </a><span class="php-comment">     * @return \static
 </span></span><span id="280" class="l"><a href="#280">280 </a><span class="php-comment">     */</span>
 </span><span id="281" class="l"><a href="#281">281 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> buildRelationByUserGuid(<span class="php-var">$userGuid</span>, <span class="php-var">$otherGuid</span>) {
-</span><span id="282" class="l"><a href="#282">282 </a>        <span class="php-var">$r</span> = <span class="php-keyword1">static</span>::buildNoInitModel();
-</span><span id="283" class="l"><a href="#283">283 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$r</span>-&gt;createdByAttribute;
-</span><span id="284" class="l"><a href="#284">284 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$r</span>-&gt;otherGuidAttribute;
+</span><span id="282" class="l"><a href="#282">282 </a>        <span class="php-var">$rni</span> = <span class="php-keyword1">static</span>::buildNoInitModel();
+</span><span id="283" class="l"><a href="#283">283 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$rni</span>-&gt;createdByAttribute;
+</span><span id="284" class="l"><a href="#284">284 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$rni</span>-&gt;otherGuidAttribute;
 </span><span id="285" class="l"><a href="#285">285 </a>        <span class="php-var">$relation</span> = <span class="php-keyword1">static</span>::findOne([<span class="php-var">$createdByAttribute</span> =&gt; <span class="php-var">$userGuid</span>, <span class="php-var">$otherGuidAttribute</span> =&gt; <span class="php-var">$otherGuid</span>]);
 </span><span id="286" class="l"><a href="#286">286 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$relation</span>) {
 </span><span id="287" class="l"><a href="#287">287 </a>            <span class="php-var">$relation</span> = <span class="php-keyword1">new</span> <span class="php-keyword1">static</span>([<span class="php-var">$createdByAttribute</span> =&gt; <span class="php-var">$userGuid</span>, <span class="php-var">$otherGuidAttribute</span> =&gt; <span class="php-var">$otherGuid</span>]);
@@ -548,66 +548,80 @@
 </span><span id="414" class="l"><a href="#414">414 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAllRelationsByUserGuid(<span class="php-var">$user</span>-&gt;guid, <span class="php-var">$other</span>-&gt;guid);
 </span><span id="415" class="l"><a href="#415">415 </a>    }
 </span><span id="416" class="l"><a href="#416">416 </a>
-</span><span id="417" class="l"><a href="#417">417 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllOppositeRelations(<span class="php-var">$user</span>, <span class="php-var">$other</span>) {
-</span><span id="418" class="l"><a href="#418">418 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAllRelationsByUserGuid(<span class="php-var">$other</span>-&gt;guid, <span class="php-var">$user</span>-&gt;guid);
-</span><span id="419" class="l"><a href="#419">419 </a>    }
-</span><span id="420" class="l"><a href="#420">420 </a>
-</span><span id="421" class="l"><a href="#421">421 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllOppositeRelationsByUserGuid(<span class="php-var">$userGuid</span>, <span class="php-var">$otherGuid</span>) {
-</span><span id="422" class="l"><a href="#422">422 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAllRelationsByUserGuid(<span class="php-var">$otherGuid</span>, <span class="php-var">$userGuid</span>);
-</span><span id="423" class="l"><a href="#423">423 </a>    }
-</span><span id="424" class="l"><a href="#424">424 </a>
-</span><span id="425" class="l"><a href="#425">425 </a>    <span class="php-comment">/**
-</span></span><span id="426" class="l"><a href="#426">426 </a><span class="php-comment">     * 
-</span></span><span id="427" class="l"><a href="#427">427 </a><span class="php-comment">     * @param string $user_guid
-</span></span><span id="428" class="l"><a href="#428">428 </a><span class="php-comment">     * @param string $other_guid
-</span></span><span id="429" class="l"><a href="#429">429 </a><span class="php-comment">     * @return type
-</span></span><span id="430" class="l"><a href="#430">430 </a><span class="php-comment">     */</span>
-</span><span id="431" class="l"><a href="#431">431 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllRelationsByUserGuid(<span class="php-var">$userGuid</span>, <span class="php-var">$otherGuid</span>) {
-</span><span id="432" class="l"><a href="#432">432 </a>        <span class="php-var">$rni</span> = <span class="php-keyword1">static</span>::buildNoInitModel();
-</span><span id="433" class="l"><a href="#433">433 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$rni</span>-&gt;createdByAttribute;
-</span><span id="434" class="l"><a href="#434">434 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$rni</span>-&gt;otherGuidAttribute;
-</span><span id="435" class="l"><a href="#435">435 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAll([<span class="php-var">$createdByAttribute</span> =&gt; <span class="php-var">$userGuid</span>, <span class="php-var">$otherGuidAttribute</span> =&gt; <span class="php-var">$otherGuid</span>]);
-</span><span id="436" class="l"><a href="#436">436 </a>    }
-</span><span id="437" class="l"><a href="#437">437 </a>
-</span><span id="438" class="l"><a href="#438">438 </a>    <span class="php-comment">/**
-</span></span><span id="439" class="l"><a href="#439">439 </a><span class="php-comment">     * 
-</span></span><span id="440" class="l"><a href="#440">440 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="441" class="l"><a href="#441">441 </a><span class="php-comment">     */</span>
-</span><span id="442" class="l"><a href="#442">442 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInsertRelation(<span class="php-var">$event</span>) {
-</span><span id="443" class="l"><a href="#443">443 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="444" class="l"><a href="#444">444 </a>        <span class="php-var">$opposite</span> = <span class="php-keyword1">static</span>::buildOppositeRelation(<span class="php-var">$sender</span>);
-</span><span id="445" class="l"><a href="#445">445 </a>        <span class="php-var">$opposite</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_INSERT, [<span class="php-var">$opposite</span>, <span class="php-quote">'onInsertRelation'</span>]);
-</span><span id="446" class="l"><a href="#446">446 </a>        <span class="php-var">$opposite</span>-&gt;save();
-</span><span id="447" class="l"><a href="#447">447 </a>        <span class="php-var">$opposite</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_INSERT, [<span class="php-var">$opposite</span>, <span class="php-quote">'onInsertRelation'</span>]);
+</span><span id="417" class="l"><a href="#417">417 </a>    <span class="php-comment">/**
+</span></span><span id="418" class="l"><a href="#418">418 </a><span class="php-comment">     * 
+</span></span><span id="419" class="l"><a href="#419">419 </a><span class="php-comment">     * @param type $user
+</span></span><span id="420" class="l"><a href="#420">420 </a><span class="php-comment">     * @param type $other
+</span></span><span id="421" class="l"><a href="#421">421 </a><span class="php-comment">     * @return type
+</span></span><span id="422" class="l"><a href="#422">422 </a><span class="php-comment">     */</span>
+</span><span id="423" class="l"><a href="#423">423 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllOppositeRelations(<span class="php-var">$user</span>, <span class="php-var">$other</span>) {
+</span><span id="424" class="l"><a href="#424">424 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAllRelationsByUserGuid(<span class="php-var">$other</span>-&gt;guid, <span class="php-var">$user</span>-&gt;guid);
+</span><span id="425" class="l"><a href="#425">425 </a>    }
+</span><span id="426" class="l"><a href="#426">426 </a>
+</span><span id="427" class="l"><a href="#427">427 </a>    <span class="php-comment">/**
+</span></span><span id="428" class="l"><a href="#428">428 </a><span class="php-comment">     * 
+</span></span><span id="429" class="l"><a href="#429">429 </a><span class="php-comment">     * @param string $userGuid
+</span></span><span id="430" class="l"><a href="#430">430 </a><span class="php-comment">     * @param string $otherGuid
+</span></span><span id="431" class="l"><a href="#431">431 </a><span class="php-comment">     * @return type
+</span></span><span id="432" class="l"><a href="#432">432 </a><span class="php-comment">     */</span>
+</span><span id="433" class="l"><a href="#433">433 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllOppositeRelationsByUserGuid(<span class="php-var">$userGuid</span>, <span class="php-var">$otherGuid</span>) {
+</span><span id="434" class="l"><a href="#434">434 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAllRelationsByUserGuid(<span class="php-var">$otherGuid</span>, <span class="php-var">$userGuid</span>);
+</span><span id="435" class="l"><a href="#435">435 </a>    }
+</span><span id="436" class="l"><a href="#436">436 </a>
+</span><span id="437" class="l"><a href="#437">437 </a>    <span class="php-comment">/**
+</span></span><span id="438" class="l"><a href="#438">438 </a><span class="php-comment">     * 
+</span></span><span id="439" class="l"><a href="#439">439 </a><span class="php-comment">     * @param string $user_guid
+</span></span><span id="440" class="l"><a href="#440">440 </a><span class="php-comment">     * @param string $other_guid
+</span></span><span id="441" class="l"><a href="#441">441 </a><span class="php-comment">     * @return type
+</span></span><span id="442" class="l"><a href="#442">442 </a><span class="php-comment">     */</span>
+</span><span id="443" class="l"><a href="#443">443 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> findAllRelationsByUserGuid(<span class="php-var">$userGuid</span>, <span class="php-var">$otherGuid</span>) {
+</span><span id="444" class="l"><a href="#444">444 </a>        <span class="php-var">$rni</span> = <span class="php-keyword1">static</span>::buildNoInitModel();
+</span><span id="445" class="l"><a href="#445">445 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$rni</span>-&gt;createdByAttribute;
+</span><span id="446" class="l"><a href="#446">446 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$rni</span>-&gt;otherGuidAttribute;
+</span><span id="447" class="l"><a href="#447">447 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">static</span>::findAll([<span class="php-var">$createdByAttribute</span> =&gt; <span class="php-var">$userGuid</span>, <span class="php-var">$otherGuidAttribute</span> =&gt; <span class="php-var">$otherGuid</span>]);
 </span><span id="448" class="l"><a href="#448">448 </a>    }
 </span><span id="449" class="l"><a href="#449">449 </a>
 </span><span id="450" class="l"><a href="#450">450 </a>    <span class="php-comment">/**
-</span></span><span id="451" class="l"><a href="#451">451 </a><span class="php-comment">     * 
-</span></span><span id="452" class="l"><a href="#452">452 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="453" class="l"><a href="#453">453 </a><span class="php-comment">     */</span>
-</span><span id="454" class="l"><a href="#454">454 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onUpdateRelation(<span class="php-var">$event</span>) {
-</span><span id="455" class="l"><a href="#455">455 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="456" class="l"><a href="#456">456 </a>        <span class="php-var">$opposite</span> = <span class="php-keyword1">static</span>::buildOppositeRelation(<span class="php-var">$sender</span>);
-</span><span id="457" class="l"><a href="#457">457 </a>        <span class="php-var">$opposite</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_UPDATE, [<span class="php-var">$opposite</span>, <span class="php-quote">'onUpdateRelation'</span>]);
-</span><span id="458" class="l"><a href="#458">458 </a>        <span class="php-var">$opposite</span>-&gt;save();
-</span><span id="459" class="l"><a href="#459">459 </a>        <span class="php-var">$opposite</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_UPDATE, [<span class="php-var">$opposite</span>, <span class="php-quote">'onUpdateRelation'</span>]);
-</span><span id="460" class="l"><a href="#460">460 </a>    }
-</span><span id="461" class="l"><a href="#461">461 </a>
-</span><span id="462" class="l"><a href="#462">462 </a>    <span class="php-comment">/**
-</span></span><span id="463" class="l"><a href="#463">463 </a><span class="php-comment">     * 
-</span></span><span id="464" class="l"><a href="#464">464 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="465" class="l"><a href="#465">465 </a><span class="php-comment">     */</span>
-</span><span id="466" class="l"><a href="#466">466 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onDeleteRelation(<span class="php-var">$event</span>) {
-</span><span id="467" class="l"><a href="#467">467 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="468" class="l"><a href="#468">468 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;createdByAttribute;
-</span><span id="469" class="l"><a href="#469">469 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$sender</span>-&gt;otherGuidAttribute;
-</span><span id="470" class="l"><a href="#470">470 </a>        <span class="php-var">$sender</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_DELETE, [<span class="php-var">$sender</span>, <span class="php-quote">'onDeleteRelation'</span>]);
-</span><span id="471" class="l"><a href="#471">471 </a>        <span class="php-keyword1">static</span>::removeAllRelationsByUserGuid(<span class="php-var">$sender</span>-&gt;<span class="php-var">$otherGuidAttribute</span>, <span class="php-var">$sender</span>-&gt;<span class="php-var">$createdByAttribute</span>);
-</span><span id="472" class="l"><a href="#472">472 </a>        <span class="php-var">$sender</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_DELETE, [<span class="php-var">$sender</span>, <span class="php-quote">'onDeleteRelation'</span>]);
-</span><span id="473" class="l"><a href="#473">473 </a>    }
-</span><span id="474" class="l"><a href="#474">474 </a>
-</span><span id="475" class="l"><a href="#475">475 </a>}
-</span><span id="476" class="l"><a href="#476">476 </a></span></code></pre>
+</span></span><span id="451" class="l"><a href="#451">451 </a><span class="php-comment">     * The event triggered after insert new relation.
+</span></span><span id="452" class="l"><a href="#452">452 </a><span class="php-comment">     * The opposite relation should be inserted without triggerring events
+</span></span><span id="453" class="l"><a href="#453">453 </a><span class="php-comment">     *  simultaneously after new relation inserted,
+</span></span><span id="454" class="l"><a href="#454">454 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="455" class="l"><a href="#455">455 </a><span class="php-comment">     */</span>
+</span><span id="456" class="l"><a href="#456">456 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInsertRelation(<span class="php-var">$event</span>) {
+</span><span id="457" class="l"><a href="#457">457 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="458" class="l"><a href="#458">458 </a>        <span class="php-var">$opposite</span> = <span class="php-keyword1">static</span>::buildOppositeRelation(<span class="php-var">$sender</span>);
+</span><span id="459" class="l"><a href="#459">459 </a>        <span class="php-var">$opposite</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_INSERT, [<span class="php-var">$opposite</span>, <span class="php-quote">'onInsertRelation'</span>]);
+</span><span id="460" class="l"><a href="#460">460 </a>        <span class="php-var">$opposite</span>-&gt;save();
+</span><span id="461" class="l"><a href="#461">461 </a>        <span class="php-var">$opposite</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_INSERT, [<span class="php-var">$opposite</span>, <span class="php-quote">'onInsertRelation'</span>]);
+</span><span id="462" class="l"><a href="#462">462 </a>    }
+</span><span id="463" class="l"><a href="#463">463 </a>
+</span><span id="464" class="l"><a href="#464">464 </a>    <span class="php-comment">/**
+</span></span><span id="465" class="l"><a href="#465">465 </a><span class="php-comment">     * 
+</span></span><span id="466" class="l"><a href="#466">466 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="467" class="l"><a href="#467">467 </a><span class="php-comment">     */</span>
+</span><span id="468" class="l"><a href="#468">468 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onUpdateRelation(<span class="php-var">$event</span>) {
+</span><span id="469" class="l"><a href="#469">469 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="470" class="l"><a href="#470">470 </a>        <span class="php-var">$opposite</span> = <span class="php-keyword1">static</span>::buildOppositeRelation(<span class="php-var">$sender</span>);
+</span><span id="471" class="l"><a href="#471">471 </a>        <span class="php-var">$opposite</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_UPDATE, [<span class="php-var">$opposite</span>, <span class="php-quote">'onUpdateRelation'</span>]);
+</span><span id="472" class="l"><a href="#472">472 </a>        <span class="php-var">$opposite</span>-&gt;save();
+</span><span id="473" class="l"><a href="#473">473 </a>        <span class="php-var">$opposite</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_UPDATE, [<span class="php-var">$opposite</span>, <span class="php-quote">'onUpdateRelation'</span>]);
+</span><span id="474" class="l"><a href="#474">474 </a>    }
+</span><span id="475" class="l"><a href="#475">475 </a>
+</span><span id="476" class="l"><a href="#476">476 </a>    <span class="php-comment">/**
+</span></span><span id="477" class="l"><a href="#477">477 </a><span class="php-comment">     * 
+</span></span><span id="478" class="l"><a href="#478">478 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="479" class="l"><a href="#479">479 </a><span class="php-comment">     */</span>
+</span><span id="480" class="l"><a href="#480">480 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onDeleteRelation(<span class="php-var">$event</span>) {
+</span><span id="481" class="l"><a href="#481">481 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="482" class="l"><a href="#482">482 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;createdByAttribute;
+</span><span id="483" class="l"><a href="#483">483 </a>        <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$sender</span>-&gt;otherGuidAttribute;
+</span><span id="484" class="l"><a href="#484">484 </a>        <span class="php-var">$sender</span>-&gt;off(<span class="php-keyword1">static</span>::EVENT_AFTER_DELETE, [<span class="php-var">$sender</span>, <span class="php-quote">'onDeleteRelation'</span>]);
+</span><span id="485" class="l"><a href="#485">485 </a>        <span class="php-keyword1">static</span>::removeAllRelationsByUserGuid(<span class="php-var">$sender</span>-&gt;<span class="php-var">$otherGuidAttribute</span>, <span class="php-var">$sender</span>-&gt;<span class="php-var">$createdByAttribute</span>);
+</span><span id="486" class="l"><a href="#486">486 </a>        <span class="php-var">$sender</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_DELETE, [<span class="php-var">$sender</span>, <span class="php-quote">'onDeleteRelation'</span>]);
+</span><span id="487" class="l"><a href="#487">487 </a>    }
+</span><span id="488" class="l"><a href="#488">488 </a>
+</span><span id="489" class="l"><a href="#489">489 </a>}
+</span><span id="490" class="l"><a href="#490">490 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

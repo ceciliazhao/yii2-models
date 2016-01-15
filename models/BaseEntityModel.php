@@ -16,7 +16,10 @@ use yii\db\ActiveRecord;
 use vistart\Models\traits\EntityTrait;
 
 /**
- * The abstract BaseEntityModel is used for entity class.
+ * The abstract BaseEntityModel is used for entity model class which associates
+ * with relational database table.
+ * Note: the $idAttribute and $guidAttribute are not be assigned to false
+ * simultaneously, and you should set at least one of them as primary key.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -31,7 +34,25 @@ abstract class BaseEntityModel extends ActiveRecord {
         if ($this->skipInit)
             return;
         $this->initEntityEvents();
+        $this->checkAttributes();
         parent::init();
+    }
+
+    /**
+     * Check whether all properties meet the standards. If you want to disable
+     * checking, please override this method and return true directly. This
+     * method runs when environment is not production or disable debug mode.
+     * @return boolean true if all checks pass.
+     * @throws \yii\base\NotSupportedException
+     */
+    public function checkAttributes() {
+        if (YII_ENV !== 'prod' || YII_DEBUG) {
+            if (!is_string($this->idAttribute) && empty($this->idAttribute) &&
+                    !is_string($this->guidAttribute) && empty($this->guidAttribute)) {
+                throw new \yii\base\NotSupportedException('ID and GUID attributes are not be disabled simultaneously in relational database.');
+            }
+        }
+        return true;
     }
 
 }

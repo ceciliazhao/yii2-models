@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -61,6 +61,9 @@ class BaseUserRelationTest extends TestCase {
         echo __METHOD__ . ":Done!\n";
     }
 
+    /**
+     * @depends testNew
+     */
     public function testRemoveOne() {
         echo __METHOD__ . ":Start!\n";
         $users = $this->prepareModels();
@@ -88,7 +91,7 @@ class BaseUserRelationTest extends TestCase {
     }
 
     /**
-     * @depends testNew
+     * @depends testRemoveOne
      */
     public function testDeregisterOne() {
         $users = $this->prepareModels();

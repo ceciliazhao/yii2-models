@@ -15,9 +15,12 @@ namespace vistart\Models\traits;
 use Yii;
 
 /**
- * This trait must be used in class extended from ActiveRecord.
+ * This trait must be used in class extended from ActiveRecord. The ActiveRecord
+ * supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecord.
  * @property array $entityRules
  * @property array $entityBehaviors
+ * @version 2.0
+ * @author vistart <i@vistart.name>
  */
 trait EntityTrait {
 

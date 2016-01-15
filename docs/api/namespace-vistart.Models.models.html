@@ -129,7 +129,10 @@ the current user's GUID.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></td>
-	<td>The abstract BaseEntityModel is used for entity class.</td>
+	<td><p>The abstract BaseEntityModel is used for entity model class which associates
+with relational database table.
+Note: the $idAttribute and $guidAttribute are not be assigned to false
+simultaneously, and you should set at least one of them as primary key.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></td>

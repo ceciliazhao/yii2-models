@@ -116,7 +116,10 @@
 
 
 	<div class="description">
-	<p>The abstract BaseEntityModel is used for entity class.</p>
+	<p>The abstract BaseEntityModel is used for entity model class which associates
+with relational database table.
+Note: the $idAttribute and $guidAttribute are not be assigned to false
+simultaneously, and you should set at least one of them as primary key.</p>
 	</div>
 
 	<dl class="tree well">
@@ -167,7 +170,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-37" title="Go to source code">models/BaseEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#18-58" title="Go to source code">models/BaseEntityModel.php</a>
 		<br>
 	</div>
 
@@ -187,7 +190,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#27-35" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#30-39" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize new entity.</p>
@@ -199,6 +202,47 @@ yii\db\ActiveRecord
 
 
 
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="checkAttributes" id="_checkAttributes">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_checkAttributes">#</a>
+			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#41-56" title="Go to source code">checkAttributes</a>( )</code>
+
+			<div class="description short">
+				<p>Check whether all properties meet the standards. If you want to disable
+checking, please override this method and return true directly. This
+method runs when environment is not production or disable debug mode.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Check whether all properties meet the standards. If you want to disable
+checking, please override this method and return true directly. This
+method runs when environment is not production or disable debug mode.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true if all checks pass.
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						yii\base\NotSupportedException
+					</div>
 
 
 

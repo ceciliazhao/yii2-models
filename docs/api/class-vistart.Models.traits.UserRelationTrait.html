@@ -145,7 +145,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationTrait.html#15-475" title="Go to source code">traits/UserRelationTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserRelationTrait.html#15-489" title="Go to source code">traits/UserRelationTrait.php</a>
 		<br>
 	</div>
 
@@ -1342,14 +1342,14 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="attributes"><code>
 				 public static
-				
+				type
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllOppositeRelations">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#417-419" title="Go to source code">findAllOppositeRelations</a>( <span> <var>$user</var></span>, <span> <var>$other</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#417-425" title="Go to source code">findAllOppositeRelations</a>( <span>type <var>$user</var></span>, <span>type <var>$other</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1359,7 +1359,18 @@ removed is 0, even though the remove execution is successful.</p>
 				
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd></dd>
+						<dt><var>$other</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
 
 
 
@@ -1371,14 +1382,14 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="attributes"><code>
 				 public static
-				
+				type
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllOppositeRelationsByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#421-423" title="Go to source code">findAllOppositeRelationsByUserGuid</a>( <span> <var>$userGuid</var></span>, <span> <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#427-435" title="Go to source code">findAllOppositeRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1388,7 +1399,18 @@ removed is 0, even though the remove execution is successful.</p>
 				
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$userGuid</var></dt>
+						<dd></dd>
+						<dt><var>$otherGuid</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						type
+					</div>
 
 
 
@@ -1407,7 +1429,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findAllRelationsByUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#425-436" title="Go to source code">findAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#437-448" title="Go to source code">findAllRelationsByUserGuid</a>( <span>string <var>$userGuid</var></span>, <span>string <var>$otherGuid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1447,14 +1469,17 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInsertRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#438-448" title="Go to source code">onInsertRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#450-462" title="Go to source code">onInsertRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>The event triggered after insert new relation.
+The opposite relation should be inserted without triggerring events
+ simultaneously after new relation inserted,</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The event triggered after insert new relation.
+The opposite relation should be inserted without triggerring events simultaneously after new relation inserted,</p>
 
 
 					<h4>Parameters</h4>
@@ -1481,7 +1506,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onUpdateRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#450-460" title="Go to source code">onUpdateRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#464-474" title="Go to source code">onUpdateRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -1515,7 +1540,7 @@ removed is 0, even though the remove execution is successful.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onDeleteRelation">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#462-473" title="Go to source code">onDeleteRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#476-487" title="Go to source code">onDeleteRelation</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
