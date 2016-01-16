@@ -36,7 +36,7 @@ class MultipleDomainsManager extends \yii\base\Component {
      * 
      * For example:
      * ```php
-     * $baseDomain = 'example.com',
+     * $baseDomain = 'example.com';
      * $subDomains = [
      *    '' => [
      *         'component' => [

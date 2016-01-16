@@ -28,7 +28,7 @@ abstract class BaseUserRelationModel extends BaseBlameableModel {
     public $confirmationAttribute = false;
     public $contentAttribute = false;
     public $updatedByAttribute = false;
-    
+
     public function init() {
         if ($this->skipInit)
             return;

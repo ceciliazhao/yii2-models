@@ -13,19 +13,23 @@
 namespace vistart\Models\tests\data\ar;
 
 use vistart\Models\models\BaseUserRelationModel;
+
 /**
  * Description of UserRelation
  *
  * @author vistart <i@vistart.name>
  */
 class UserRelation extends BaseUserRelationModel {
-    
+
+    public $multipleBlameableAttribute = 'groups';
+
     public function init() {
-        $this->groupClass = UserRelationGroup::className();
+        $this->multipleBlameableClass = UserRelationGroup::className();
         parent::init();
     }
-    
+
     public static function tableName() {
         return '{{%user_relation}}';
     }
+
 }

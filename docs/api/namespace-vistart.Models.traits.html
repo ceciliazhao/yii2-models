@@ -169,8 +169,9 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></td>
-	<td><p>一个模型的某列可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反了关系型数据库第一范式。
-此 trait 需要 PHP 版本大于等于 5.5.</p></td>
+	<td><p>一个模型的某个属性可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反
+了关系型数据库第一范式，因此此 trait 只适用于责任者属性修改不频繁的场景，在开
+发时必须严格测试数据一致性，并同时考量性能。</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></td>

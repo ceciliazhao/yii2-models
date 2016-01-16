@@ -141,11 +141,11 @@ class BaseUserRelationTest extends TestCase {
         $relation = $relations[0];
         $groupsAttribute = $relation->groupsAttribute;
         $this->assertEquals('[]', $relation->$groupsAttribute);
-        $this->assertEmpty($relation->getGroup('123'));
-        $this->assertEmpty($relation->getGroupMembers('123'));
         $members = $relation->getNonGroupMembers();
         $this->assertEquals(1, count($members));
         $group = $users[0]->createModel(UserRelationGroup::className(), ['content' => 'home']);
+        $this->assertEmpty($relation->getGroupMembers($group));
+        $this->assertEmpty($relation->getGroup($group->guid));
         //var_dump($group->attributes);
         if ($group->save()) {
             $this->assertTrue(true);

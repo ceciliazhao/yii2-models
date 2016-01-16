@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\traits\MultipleBlameableTrait as mb;
+
 /**
  * Relation features.
  * Note: Several methods associated with "inserting", "updating" and "removing" may
@@ -25,6 +27,19 @@ namespace vistart\Models\traits;
  */
 trait UserRelationTrait {
 
+    use mb {
+        mb::addBlame as addGroup;
+        mb::removeBlame as removeGroup;
+        mb::removeAllBlames as removeAllGroups;
+        mb::getBlame as getGroup;
+        mb::getBlameds as getGroupMembers;
+        mb::getBlameGuids as getGroupGuids;
+        mb::setBlameGuids as setGroupGuids;
+        mb::getAllBlames as getAllGroups;
+        mb::getNonBlameds as getNonGroupMembers;
+        mb::getMultipleBlameableAttributeRules as getGroupsRules;
+    }
+
     /**
      * @var string the another party of the relation.
      */
@@ -35,7 +50,7 @@ trait UserRelationTrait {
      * you can assign it to `false` if you want to disable group features.
      */
     public $groupsAttribute = 'groups';
-    
+
     /**
      * @var integer 
      */
@@ -132,18 +147,6 @@ trait UserRelationTrait {
     }
 
     /**
-     * Validation rules associated with groups attribute.
-     * @return array
-     */
-    public function getGroupsRules() {
-        return is_string($this->groupsAttribute) ? [
-            [[$this->groupsAttribute], 'required'],
-            [[$this->groupsAttribute], 'string'],
-            [[$this->groupsAttribute], 'default', 'value' => '[]'],
-                ] : [];
-    }
-
-    /**
      * Validation rules associated with other guid attribute.
      * @return array
      */
@@ -158,95 +161,13 @@ trait UserRelationTrait {
 
     /**
      * 
-     * @return array
-     */
-    public function getGroupGuids($checkValid = false) {
-        $groupsAttribute = $this->groupsAttribute;
-        if ($this->groupsAttribute === false) {
-            return [];
-        }
-        $jsonParser = new \yii\web\JsonParser();
-        $guids = $jsonParser->parse($this->$groupsAttribute, true);
-        if ($checkValid) {
-            $checkedGuids = $this->unsetInvalidGroups($guids);
-            if (!empty(array_diff($guids, $checkedGuids))) {
-                $guids = $this->setGroupGuids($checkedGuids, false);
-            }
-        }
-        return $guids;
-    }
-
-    /**
-     * Set the group guids, it may check all guids if they are valid.
-     * @param array $guids
-     * @param boolean $checkValid determines whether check the group is valid.
-     * @return string array of all guids valid in json format.
-     */
-    public function setGroupGuids($guids = [], $checkValid = true) {
-        if (!is_array($guids) || $this->groupsAttribute === false) {
-            return null;
-        }
-        if ($checkValid) {
-            $guids = $this->unsetInvalidGroups($guids);
-        }
-        $groupsAttribute = $this->groupsAttribute;
-        return $this->$groupsAttribute = json_encode(array_values($guids));
-    }
-    
-    /**
-     * Remove invalid group guid from provided guid array.
-     * @param array $guids
-     * @return array
-     */
-    protected function unsetInvalidGroups($guids) {
-        $groupClass = $this->groupClass;
-        $guids = \vistart\Helpers\Number::unsetInvalidUuids($guids);
-        foreach ($guids as $key => $guid) {
-            $group = $groupClass::findOne($guid);
-            if (!$group) {
-                unset($guids[$key]);
-            }
-        }
-        return $guids;
-    }
-
-    /**
-     * Get group which guid is `$guid`.
-     * @param string $guid
-     * @return \vistart\Models\models\BaseUserRelationGroupModel
-     */
-    public function getGroup($guid) {
-        if (empty($this->groupClass) || !is_string($this->groupClass) || $this->groupsAttribute === false) {
-            return null;
-        }
-        $groupClass = $this->groupClass;
-        return $groupClass::findOne($guid);
-    }
-
-    /**
-     * Get all relations in specified group whose guid is `$guid`.
-     * @param string $guid the guid of group.
-     * @return array all relations in specified group.
-     */
-    public function getGroupMembers($guid) {
-        $group = $this->getGroup($guid);
-        if (empty($group)) {
-            return null;
-        }
-        $createdByAttribute = $this->createdByAttribute;
-        return static::find()->where([$createdByAttribute => $this->$createdByAttribute])
-                        ->andWhere(['like', $this->groupsAttribute, $guid])->all();
-    }
-    
-    /**
-     * 
      * @param \vistart\Models\models\BaseUserModel $user
      * @return array
      */
     public static function findOnesAllRelations($user) {
         return static::findOnesAllRelationsByUserGuid($user->guid);
     }
-    
+
     /**
      * 
      * @param srting $userGuid
@@ -254,77 +175,6 @@ trait UserRelationTrait {
      */
     public static function findOnesAllRelationsByUserGuid($userGuid) {
         return static::findOne([$this->createdByAttribute => $userGuid]);
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function getAllGroups() {
-        if (empty($this->groupClass) || !is_string($this->groupClass) || $this->groupsAttribute === false) {
-            return null;
-        }
-        $groupClass = $this->groupClass;
-        $createdByAttribute = $this->createdByAttribute;
-        return $groupClass::findAll([$createdByAttribute => $this->$createdByAttribute]);
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function getNonGroupMembers() {
-        $createdByAttribute = $this->createdByAttribute;
-        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->groupsAttribute => json_encode([])])->all();
-    }
-
-    /**
-     * Add group specified by `$guid`.
-     * @param string $guid the guid of group to be added.
-     * @return false|array
-     */
-    public function addGroupByGuid($guid) {
-        if ($this->groupsAttribute === false) {
-            return false;
-        }
-        $groupGuids = $this->getGroupGuids();
-        if (array_search($guid, $groupGuids) === false) {
-            $groupGuids[] = $guid;
-            $this->setGroupGuids($groupGuids);
-        }
-        return $this->getGroupGuids();
-    }
-
-    /**
-     * Add group.
-     * @param \vistart\Models\models\BaseUserRelationGroupModel $group the group to be added.
-     * @return false|array
-     */
-    public function addGroup($group) {
-        return $this->addGroupByGuid($group->guid);
-    }
-
-    /**
-     * Remove group specified by `$guid`.
-     * @param string $guid the guid of group to be removed.
-     */
-    public function removeGroup($guid) {
-        if ($this->groupsAttribute === false) {
-            return false;
-        }
-        $groupGuids = $this->getGroupGuids();
-        if (($key = array_search($guid, $groupGuids)) !== false) {
-            unset($groupGuids[$key]);
-            $this->setGroupGuids($groupGuids);
-        }
-        return $this->getGroupGuids();
-    }
-
-    /**
-     * 
-     */
-    public function removeAllGroups() {
-        $this->setGroupGuids();
     }
 
     /**

@@ -13,8 +13,20 @@
 namespace vistart\Models\traits;
 
 /**
- * 一个模型的某列可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反了关系型数据库第一范式。
- * 此 trait 需要 PHP 版本大于等于 5.5.
+ * 一个模型的某个属性可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反
+ * 了关系型数据库第一范式，因此此 trait 只适用于责任者属性修改不频繁的场景，在开
+ * 发时必须严格测试数据一致性，并同时考量性能。
+ * 
+ * Notice:
+ * <ol>
+ * <li>You must specify two properties: $multipleBlameableClass and $multipleBlameableAttribute.
+ * <ul>
+ * <li>$multipleBlameableClass specify the class name of blame.</li>
+ * <li>$multipleBlameableAttribute specify the field name of blames.</li>
+ * </ul>
+ * </li>
+ * <li>You should rename each name of following methods optionally.</li>
+ * </ol>
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -28,7 +40,7 @@ trait MultipleBlameableTrait {
     /**
      * @var string 
      */
-    public $multipleBlameableAttribute = 'owners';
+    public $multipleBlameableAttribute = 'blames';
 
     /**
      * @var integer 
@@ -48,9 +60,9 @@ trait MultipleBlameableTrait {
     }
 
     /**
-     * 
-     * @param type $blameGuid
-     * @return boolean
+     * Add specified blame.
+     * @param string $blameGuid
+     * @return false|array blames after adding $blameGuid, or false if disable this feature.
      */
     public function addBlameByGuid($blameGuid) {
         if (!is_string($this->multipleBlameableAttribute)) {
@@ -58,25 +70,25 @@ trait MultipleBlameableTrait {
         }
         $blameGuids = $this->getBlameGuids(true);
         if (array_search($blameGuid, $blameGuids) === false) {
-            $blameGuids[] = $guid;
+            $blameGuids[] = $blameGuid;
             $this->setBlameGuids($blameGuids);
         }
         return $this->getBlameGuids();
     }
 
     /**
-     * 
-     * @param type $blame
-     * @return type
+     * Add specified blame.
+     * @param [multipleBlameableClass] $blame
+     * @return false|array
      */
     public function addBlame($blame) {
-        return $this->addBlamedByGuid($blame->guid);
+        return $this->addBlameByGuid($blame->guid);
     }
 
     /**
-     * 
-     * @param type $blameGuid
-     * @return boolean
+     * Remove specified blame.
+     * @param string $blameGuid
+     * @return false|array
      */
     public function removeBlameByGuid($blameGuid) {
         if (!is_string($this->multipleBlameableAttribute)) {
@@ -91,24 +103,25 @@ trait MultipleBlameableTrait {
     }
 
     /**
-     * 
-     * @param type $blame
-     * @return type
+     * Remove specified blame.
+     * @param [multipleBlameableClass] $blame
+     * @return false|array all guids in json format.
      */
     public function removeBlame($blame) {
         return $this->removeBlamedByGuid($blame->guid);
     }
 
     /**
-     * 
+     * Remove all blames.
      */
     public function removeAllBlames() {
         $this->setBlameGuids();
     }
 
     /**
-     * 
-     * @param boolean $checkValid
+     * Get the guid array of blames. it may check all guids if valid before return.
+     * @param boolean $checkValid determines whether checking the blame is valid.
+     * @return array all guids in json format.
      */
     public function getBlameGuids($checkValid = false) {
         $multipleBlameableAttribute = $this->multipleBlameableAttribute;
@@ -119,17 +132,18 @@ trait MultipleBlameableTrait {
         $guids = $jsonParser->parse($this->$multipleBlameableAttribute, true);
         if ($checkValid) {
             $checkedGuids = $this->unsetInvalidBlames($guids);
-            if (!empty(array_diff($guids, $checkedGuids))) {
+            $diff = array_diff($guids, $checkedGuids);
+            if (!empty($diff)) {
                 $guids = $this->setBlameGuids($checkedGuids, false);
             }
         }
         return $guids;
     }
-    
+
     /**
-     * Remove invalid group guid from provided guid array.
-     * @param array $guids
-     * @return array
+     * Remove invalid blame guid from provided guid array.
+     * @param array $guids guid array of blames.
+     * @return array guid array of blames unset invalid.
      */
     protected function unsetInvalidBlames($guids) {
         $guids = \vistart\Helpers\Number::unsetInvalidUuids($guids);
@@ -144,20 +158,48 @@ trait MultipleBlameableTrait {
     }
 
     /**
-     * 
-     * @param type $guids
-     * @param boolean $checkValid
-     * @return type
+     * Set the guid array of blames, it may check all guids if valid.
+     * @param array $guids guid array of blames.
+     * @param boolean $checkValid determines whether checking the blame is valid.
+     * @return null|string all guids valid in json format.
      */
     public function setBlameGuids($guids = [], $checkValid = true) {
         if (!is_array($guids) || $this->multipleBlameableAttribute === false) {
             return null;
         }
         if ($checkValid) {
-            $guids = $this->unsetInvalidUuids($guids);
+            $guids = $this->unsetInvalidBlames($guids);
         }
         $multipleBlameableAttribute = $this->multipleBlameableAttribute;
         return $this->$multipleBlameableAttribute = json_encode(array_values($guids));
+    }
+    
+    /**
+     * 
+     * @param string $blameGuid
+     * @return [multipleBlameableClass]
+     */
+    public function getBlame($blameGuid) {
+        if (empty($this->multipleBlameableClass) || !is_string($this->multipleBlameableClass) || $this->multipleBlameableAttribute === false) {
+            return null;
+        }
+        $mbClass = $this->multipleBlameableClass;
+        return $mbClass::findOne($blameGuid);
+    }
+    
+    /**
+     * 
+     * @param [multipleBlameableClass] $blame
+     * @return array
+     */
+    public function getBlameds($blame) {
+        $blameds = $this->getBlame($blame->guid);
+        if (empty($blameds)) {
+            return null;
+        }
+        $createdByAttribute = $this->createdByAttribute;
+        return static::find()->where([$createdByAttribute => $this->$createdByAttribute])
+                        ->andWhere(['like', $this->multipleBlameableAttribute, $blame->guid])->all();
     }
 
     /**
@@ -181,7 +223,7 @@ trait MultipleBlameableTrait {
      */
     public function getNonBlameds() {
         $createdByAttribute = $this->createdByAttribute;
-        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->groupsAttribute => json_encode([])])->all();
+        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->multipleBlameableAttribute => json_encode([])])->all();
     }
 
 }

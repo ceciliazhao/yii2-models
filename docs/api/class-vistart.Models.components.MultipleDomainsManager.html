@@ -288,7 +288,7 @@ yii\base\Component
 
 <p>For example:</p>
 
-<pre><span class="php-var">$baseDomain</span> = <span class="php-quote">'example.com'</span>,
+<pre><span class="php-var">$baseDomain</span> = <span class="php-quote">'example.com'</span>;
 <span class="php-var">$subDomains</span> = [ <span class="php-quote">''</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'yii\web\UrlManager'</span>, <span class="php-comment">// `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`. 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', // the other properties... ], 'schema' =&gt; 'http', // `schema` could be ignored as it is 'http'. ], 'my' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', 'rules' =&gt; [ 'posts/&lt;year:\d{4}&gt;/&lt;category&gt;' =&gt; 'post/index', 'posts' =&gt; 'post/index', 'post/&lt;id:\d+&gt;' =&gt; 'post/view', ], ], 'schema' =&gt; 'https', ], 'sso' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'rules' =&gt; [ '' =&gt; 'sso/login', 'logout' =&gt; 'sso/logout', ], ], 'schema' =&gt; 'https', ],</span>
 ];</pre>
 

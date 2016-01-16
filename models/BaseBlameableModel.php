@@ -18,7 +18,7 @@ use vistart\Models\traits\BlameableTrait;
  * BaseBlameableEntityModel automatically fills the specified attributes with 
  * the current user's GUID.
  * 
- * For example:
+ * For example:<br/>
  * ~~~php
  * * @property string $comment
  * class Comment extends BaseBlameableEntityModel
