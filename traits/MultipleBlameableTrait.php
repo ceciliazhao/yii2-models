@@ -35,6 +35,7 @@ use yii\web\JsonParser;
  * @property array $blameGuids
  * @property-read array $allBlames
  * @property-read array $nonBlameds
+ * @property-read integer $blamesCount
  * 
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -55,7 +56,7 @@ trait MultipleBlameableTrait {
      * @var integer the limit of blames. it should be greater than or equal 1, and
      * less than or equal 10.
      */
-    public $blamedLimited = 10;
+    public $blamesLimit = 10;
 
     /**
      * @var boolean 
@@ -74,7 +75,7 @@ trait MultipleBlameableTrait {
     public function getMultipleBlameableAttributeRules() {
         return is_string($this->multipleBlameableAttribute) ? [
             [[$this->multipleBlameableAttribute], 'required'],
-            [[$this->multipleBlameableAttribute], 'string', 'max' => $this->blamedLimited * 37 + 1],
+            [[$this->multipleBlameableAttribute], 'string', 'max' => $this->blamesLimit * 39 + 1],
             [[$this->multipleBlameableAttribute], 'default', 'value' => '[]'],
                 ] : [];
     }
@@ -83,16 +84,22 @@ trait MultipleBlameableTrait {
      * Add specified blame.
      * @param string $blameGuid
      * @return false|array blames after adding $blameGuid, or false if disable this feature.
+     * @throws \yii\base\InvalidParamException when blame has existed.
+     * @throws \yii\base\InvalidCallException when limit has been reached.
      */
     public function addBlameByGuid($blameGuid) {
         if (!is_string($this->multipleBlameableAttribute)) {
             return false;
         }
         $blameGuids = $this->getBlameGuids(true);
-        if (array_search($blameGuid, $blameGuids) === false) {
-            $blameGuids[] = $blameGuid;
-            $this->setBlameGuids($blameGuids);
+        if (array_search($blameGuid, $blameGuids)) {
+            throw new \yii\base\InvalidParamException('the blame has existed.');
         }
+        if ($this->getBlamesCount() >= $this->blamesLimit) {
+            throw new \yii\base\InvalidCallException("the limit($this->blamesLimit) of blames has been reached.");
+        }
+        $blameGuids[] = $blameGuid;
+        $this->setBlameGuids($blameGuids);
         return $this->getBlameGuids();
     }
 
@@ -136,6 +143,14 @@ trait MultipleBlameableTrait {
      */
     public function removeAllBlames() {
         $this->setBlameGuids();
+    }
+
+    /**
+     * Count the blames.
+     * @return integer
+     */
+    public function getBlamesCount() {
+        return count($this->getBlameGuids(true));
     }
 
     /**
@@ -253,6 +268,17 @@ trait MultipleBlameableTrait {
     public function getNonBlameds() {
         $createdByAttribute = $this->createdByAttribute;
         return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->multipleBlameableAttribute => json_encode([])])->all();
+    }
+
+    /**
+     * 
+     * @param \yii\base\Event $event
+     */
+    public function onInitBlamesLimit($event) {
+        $sender = $event->sender;
+        if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 10) {
+            $sender->blamesLimit = 10;
+        }
     }
 
 }

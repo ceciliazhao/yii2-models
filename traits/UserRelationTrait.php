@@ -22,6 +22,7 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * @property array $groupGuids the guid array of all groups which owned by current relation.
  * @property-read array $allGroups
  * @property-read array $nonGroupMembers
+ * @property-read integer $groupsCount
  * @property-read array $groupsRules
  * @property boolean $isFavorite
  * @property-read \vistart\Models\models\BaseUserRelationModel $opposite
@@ -40,6 +41,7 @@ trait UserRelationTrait {
         mb::setBlameGuids as setGroupGuids;
         mb::getAllBlames as getAllGroups;
         mb::getNonBlameds as getNonGroupMembers;
+        mb::getBlamesCount as getGroupsCount;
         mb::getMultipleBlameableAttributeRules as getGroupsRules;
     }
 
@@ -49,25 +51,9 @@ trait UserRelationTrait {
     public $otherGuidAttribute = 'other_guid';
 
     /**
-     * @var string the attribute name of which determines the `groups` field.
-     * you can assign it to `false` if you want to disable group features.
-     */
-    public $groupsAttribute = 'groups';
-
-    /**
-     * @var integer 
-     */
-    public $groupLimited = 10;
-
-    /**
      * @var string
      */
     public $remarkAttribute = 'remark';
-
-    /**
-     * @var string 
-     */
-    public $groupClass = '';
 
     /**
      * @var string the attribute name of which determines the relation type.
@@ -75,7 +61,6 @@ trait UserRelationTrait {
     public $bidirectionalTypeAttribute = 'type';
     public static $bidirectionalTypeNormal = 0x00;
     public static $bidirectionalTypeSuspend = 0x01;
-    public static $bidirectionalTypeBanned = 0x10;
 
     /**
      * @var array 
@@ -83,7 +68,6 @@ trait UserRelationTrait {
     public $bidirectionalTypes = [
         0x00 => 'Normal',
         0x01 => 'Suspend',
-        0x10 => 'Banned',
     ];
 
     /**
@@ -122,7 +106,7 @@ trait UserRelationTrait {
      */
     public function getUserRelationRules() {
         return array_merge([
-            [[$this->bidirectionalTypeAttribute], 'boolean'],
+            [[$this->bidirectionalTypeAttribute], 'integer'],
             [[$this->bidirectionalTypeAttribute], 'default', 'value' => static::$bidirectionalTypeNormal],
                 ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
     }
@@ -202,9 +186,10 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Attach events associated with user relation.
      */
     public function initUserRelationEvents() {
+        $this->on(static::EVENT_INIT, [$this, 'onInitBlamesLimit']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitGroups']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitRemark']);
         $this->on(static::$eventMultipleBlamesChanged, [$this, 'onBlamesChanged']);
@@ -214,7 +199,7 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Get opposite relation to self.
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     public function getOpposite() {
@@ -248,20 +233,6 @@ trait UserRelationTrait {
      * given if exists, or return a new relation.
      */
     public static function buildNormalRelation($user, $other) {
-        $relation = static::buildRelation($user, $other);
-        $btAttribute = $relation->bidirectionalTypeAttribute;
-        $relation->$btAttribute = static::$bidirectionalTypeNormal;
-        return $relation;
-    }
-
-    /**
-     * Build a banned relation.
-     * @param type $user Initiator
-     * @param type $other Recipient
-     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
-     * given if exists, or return a new relation.
-     */
-    public static function buildBannedRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
         $btAttribute = $relation->bidirectionalTypeAttribute;
         $relation->$btAttribute = static::$bidirectionalTypeNormal;
