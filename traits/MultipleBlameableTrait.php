@@ -12,6 +12,10 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Helpers\Number;
+use vistart\Models\events\MultipleBlameableEvent;
+use yii\web\JsonParser;
+
 /**
  * 一个模型的某个属性可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反
  * 了关系型数据库第一范式，因此此 trait 只适用于责任者属性修改不频繁的场景，在开
@@ -27,6 +31,11 @@ namespace vistart\Models\traits;
  * </li>
  * <li>You should rename each name of following methods optionally.</li>
  * </ol>
+ * @property-read array $multipleBlameableAttributeRules
+ * @property array $blameGuids
+ * @property-read array $allBlames
+ * @property-read array $nonBlameds
+ * 
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -43,9 +52,20 @@ trait MultipleBlameableTrait {
     public $multipleBlameableAttribute = 'blames';
 
     /**
-     * @var integer 
+     * @var integer the limit of blames. it should be greater than or equal 1, and
+     * less than or equal 10.
      */
     public $blamedLimited = 10;
+
+    /**
+     * @var boolean 
+     */
+    public $blamesChanged = false;
+
+    /**
+     * @var string event name.
+     */
+    public static $eventMultipleBlamesChanged = 'multipleBlamesChanged';
 
     /**
      * 
@@ -128,16 +148,21 @@ trait MultipleBlameableTrait {
         if ($multipleBlameableAttribute === false) {
             return [];
         }
-        $jsonParser = new \yii\web\JsonParser();
+        $jsonParser = new JsonParser();
         $guids = $jsonParser->parse($this->$multipleBlameableAttribute, true);
         if ($checkValid) {
-            $checkedGuids = $this->unsetInvalidBlames($guids);
-            $diff = array_diff($guids, $checkedGuids);
-            if (!empty($diff)) {
-                $guids = $this->setBlameGuids($checkedGuids, false);
-            }
+            $guids = $this->unsetInvalidBlames($guids);
         }
         return $guids;
+    }
+
+    /**
+     * 
+     * @param \vistart\Models\events\MultipleBlameableEvent $event
+     */
+    public function onBlamesChanged($event) {
+        $sender = $event->sender;
+        $sender->blamesChanged = $event->blamesChanged;
     }
 
     /**
@@ -146,22 +171,24 @@ trait MultipleBlameableTrait {
      * @return array guid array of blames unset invalid.
      */
     protected function unsetInvalidBlames($guids) {
-        $guids = \vistart\Helpers\Number::unsetInvalidUuids($guids);
+        $checkedGuids = Number::unsetInvalidUuids($guids);
         $multipleBlameableClass = $this->multipleBlameableClass;
-        foreach ($guids as $key => $guid) {
+        foreach ($checkedGuids as $key => $guid) {
             $blame = $multipleBlameableClass::findOne($guid);
             if (!$blame) {
-                unset($guids[$key]);
+                unset($checkedGuids[$key]);
             }
         }
-        return $guids;
+        $diff = array_diff($guids, $checkedGuids);
+        $this->trigger(static::$eventMultipleBlamesChanged, new MultipleBlameableEvent(['blamesChanged' => !empty($diff)]));
+        return $checkedGuids;
     }
 
     /**
      * Set the guid array of blames, it may check all guids if valid.
      * @param array $guids guid array of blames.
      * @param boolean $checkValid determines whether checking the blame is valid.
-     * @return null|string all guids valid in json format.
+     * @return false|array all guids.
      */
     public function setBlameGuids($guids = [], $checkValid = true) {
         if (!is_array($guids) || $this->multipleBlameableAttribute === false) {
@@ -171,29 +198,31 @@ trait MultipleBlameableTrait {
             $guids = $this->unsetInvalidBlames($guids);
         }
         $multipleBlameableAttribute = $this->multipleBlameableAttribute;
-        return $this->$multipleBlameableAttribute = json_encode(array_values($guids));
+        $this->$multipleBlameableAttribute = json_encode(array_values($guids));
+        return $guids;
     }
-    
+
     /**
      * 
      * @param string $blameGuid
      * @return [multipleBlameableClass]
      */
-    public function getBlame($blameGuid) {
-        if (empty($this->multipleBlameableClass) || !is_string($this->multipleBlameableClass) || $this->multipleBlameableAttribute === false) {
+    public static function getBlame($blameGuid) {
+        $self = static::buildNoInitModel();
+        if (empty($self->multipleBlameableClass) || !is_string($self->multipleBlameableClass) || $self->multipleBlameableAttribute === false) {
             return null;
         }
-        $mbClass = $this->multipleBlameableClass;
+        $mbClass = $self->multipleBlameableClass;
         return $mbClass::findOne($blameGuid);
     }
-    
+
     /**
-     * 
+     * Get all ones to be blamed by `$blame`.
      * @param [multipleBlameableClass] $blame
      * @return array
      */
     public function getBlameds($blame) {
-        $blameds = $this->getBlame($blame->guid);
+        $blameds = static::getBlame($blame->guid);
         if (empty($blameds)) {
             return null;
         }

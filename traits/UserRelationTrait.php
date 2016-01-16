@@ -20,6 +20,9 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * involve more DB operations, I strongly recommend those methods to be placed in
  * transaction execution, in order to ensure data consistency.
  * @property array $groupGuids the guid array of all groups which owned by current relation.
+ * @property-read array $allGroups
+ * @property-read array $nonGroupMembers
+ * @property-read array $groupsRules
  * @property boolean $isFavorite
  * @property-read \vistart\Models\models\BaseUserRelationModel $opposite
  * @version 2.0
@@ -69,15 +72,15 @@ trait UserRelationTrait {
     /**
      * @var string the attribute name of which determines the relation type.
      */
-    public $relationTypeAttribute = 'type';
-    public static $relationTypeNormal = 0x00;
-    public static $relationTypeSuspend = 0x01;
-    public static $relationTypeBanned = 0x10;
+    public $bidirectionalTypeAttribute = 'type';
+    public static $bidirectionalTypeNormal = 0x00;
+    public static $bidirectionalTypeSuspend = 0x01;
+    public static $bidirectionalTypeBanned = 0x10;
 
     /**
      * @var array 
      */
-    public $relationTypes = [
+    public $bidirectionalTypes = [
         0x00 => 'Normal',
         0x01 => 'Suspend',
         0x10 => 'Banned',
@@ -119,8 +122,8 @@ trait UserRelationTrait {
      */
     public function getUserRelationRules() {
         return array_merge([
-            [[$this->relationTypeAttribute], 'boolean'],
-            [[$this->relationTypeAttribute], 'default', 'value' => static::$relationTypeNormal],
+            [[$this->bidirectionalTypeAttribute], 'boolean'],
+            [[$this->bidirectionalTypeAttribute], 'default', 'value' => static::$bidirectionalTypeNormal],
                 ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
     }
 
@@ -152,7 +155,7 @@ trait UserRelationTrait {
      */
     public function getOtherGuidRules() {
         $rules = [
-            [[$this->otherGuidAttribute, $this->relationTypeAttribute], 'required'],
+            [[$this->otherGuidAttribute, $this->bidirectionalTypeAttribute], 'required'],
             [[$this->otherGuidAttribute], 'string', 'max' => 36],
             [[$this->otherGuidAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->otherGuidAttribute, $this->createdByAttribute]],
         ];
@@ -204,6 +207,7 @@ trait UserRelationTrait {
     public function initUserRelationEvents() {
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitGroups']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitRemark']);
+        $this->on(static::$eventMultipleBlamesChanged, [$this, 'onBlamesChanged']);
         $this->on(static::EVENT_AFTER_INSERT, [$this, 'onInsertRelation']);
         $this->on(static::EVENT_AFTER_UPDATE, [$this, 'onUpdateRelation']);
         $this->on(static::EVENT_AFTER_DELETE, [$this, 'onDeleteRelation']);
@@ -231,8 +235,8 @@ trait UserRelationTrait {
      */
     public static function buildSuspendRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
-        $relationTypeAttribute = $r->relationTypeAttribute;
-        $relation->$relationTypeAttribute = self::$relationTypeSuspend;
+        $btAttribute = $relation->bidirectionalTypeAttribute;
+        $relation->$btAttribute = static::$bidirectionalTypeSuspend;
         return $relation;
     }
 
@@ -245,8 +249,8 @@ trait UserRelationTrait {
      */
     public static function buildNormalRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
-        $relationTypeAttribute = $r->relationTypeAttribute;
-        $relation->$relationTypeAttribute = self::$relationTypeNormal;
+        $btAttribute = $relation->bidirectionalTypeAttribute;
+        $relation->$btAttribute = static::$bidirectionalTypeNormal;
         return $relation;
     }
 
@@ -259,8 +263,8 @@ trait UserRelationTrait {
      */
     public static function buildBannedRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
-        $relationTypeAttribute = $r->relationTypeAttribute;
-        $relation->$relationTypeAttribute = self::$relationTypeNormal;
+        $btAttribute = $relation->bidirectionalTypeAttribute;
+        $relation->$btAttribute = static::$bidirectionalTypeNormal;
         return $relation;
     }
 
@@ -304,9 +308,9 @@ trait UserRelationTrait {
     protected static function buildOppositeRelation($relation) {
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
-        $relationTypeAttribute = $relation->relationTypeAttribute;
+        $bidirectionalTypeAttribute = $relation->bidirectionalTypeAttribute;
         $opposite = static::buildRelationByUserGuid($relation->$otherGuidAttribute, $relation->$createdByAttribute);
-        $opposite->$relationTypeAttribute = $relation->$relationTypeAttribute;
+        $opposite->$bidirectionalTypeAttribute = $relation->$bidirectionalTypeAttribute;
         return $opposite;
     }
 
@@ -466,9 +470,8 @@ trait UserRelationTrait {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
-        $result = $opposite->save();
-        if (!$result) {
-            $this->recordWarnings();
+        if (!$opposite->save()) {
+            $opposite->recordWarnings();
         }
         $opposite->on(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
     }
@@ -483,9 +486,8 @@ trait UserRelationTrait {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
-        $result = $opposite->save();
-        if (!$result) {
-            $this->recordWarnings();
+        if (!$opposite->save()) {
+            $opposite->recordWarnings();
         }
         $opposite->on(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
     }

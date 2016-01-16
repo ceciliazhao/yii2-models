@@ -136,25 +136,43 @@ class BaseUserRelationTest extends TestCase {
      * @depends testFavorite
      */
     public function testGroup() {
+        // 准备两个用户
         $users = $this->prepareModels();
+        
+        // 准备两个用户之间的双向关系
         $relations = $this->prepareRelationModels($users[0], $users[1]);
+        
+        // 第一个用户的主动关系
         $relation = $relations[0];
+        
+        // 当前关系组应为空数组
         $groupsAttribute = $relation->groupsAttribute;
         $this->assertEquals('[]', $relation->$groupsAttribute);
+        
+        // 当前未分组用户应为 1，即对方
         $members = $relation->getNonGroupMembers();
         $this->assertEquals(1, count($members));
+        
+        // 新建一个组，在保存前，当前关系找不到该组。
         $group = $users[0]->createModel(UserRelationGroup::className(), ['content' => 'home']);
         $this->assertEmpty($relation->getGroupMembers($group));
-        $this->assertEmpty($relation->getGroup($group->guid));
-        //var_dump($group->attributes);
+        $this->assertEmpty(UserRelation::getGroup($group->guid));
         if ($group->save()) {
             $this->assertTrue(true);
         } else {
             var_dump($group->errors);
             $this->assertFalse(true);
         }
+        // 保存后也应当找不到，因为当前关系没有添加任何组。
+        $this->assertEmpty($relation->getGroupMembers($group));
+        // 不过
+        $this->assertNotEmpty(UserRelation::getGroup($group->guid));
+        
+        // 添加一个关系组，并获得添加后的关系组数组。
         $relationGroups = $relation->addGroup($group);
-        $this->assertNotEmpty($relationGroups);
+        
+        // 此时应该有 1 个元素，即 1 个组。
+        $this->assertEquals(1, count($relationGroups));
         $this->assertEquals($group->guid, $relationGroups[0]);
         $this->assertEquals($group->guid, $relation->groupGuids[0]);
         if ($relation->save()) {
@@ -163,10 +181,16 @@ class BaseUserRelationTest extends TestCase {
             var_dump($relation->errors);
             $this->assertFalse(true);
         }
+        // 删除成功
         $this->assertGreaterThanOrEqual(1, $group->delete());
-        /*
-        $this->assertEmpty($relation->groupGuids[0]);
-        */
+        // 虽然关系组删除了，但不会影响涉及到的关系，所以包含了被删除的关系组的关系，其关系组列表依然包含该关系组。
+        // 因此，此时直接获取关系组列表，被删除的组GUID依然在列表中。
+        $this->assertNotEmpty($relation->groupGuids);
+        // 如果要主动将失效的关系组剔除出关系组列表，可以在获取关系组列表时，强制检查有效性：
+        $this->assertEmpty($relation->getGroupGuids(true)); // 此时应该为空。
+        // 而且标明列表已经改变了。
+        $this->assertTrue($relation->blamesChanged);
+        
         $this->destroyModels($users);
         echo __METHOD__ . ":Done!\n";
     }
