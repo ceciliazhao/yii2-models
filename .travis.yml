@@ -46,7 +46,7 @@ before_script:
           PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
         fi
         
-script: phpunit --verbose $PHPUNIT_FLAGS
+script: phpunit --verbose --debug $PHPUNIT_FLAGS
 
 after_script:
     - |

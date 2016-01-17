@@ -71,14 +71,13 @@ class BaseUserRelationTest extends TestCase {
         $other = $users[1];
         $relations = $this->prepareBidirectionalRelationModels($user, $other);
         $this->destroyUsers($users);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
      * @depends testNew
      */
     public function testRemoveOne() {
-        echo __METHOD__ . ":Start!\n";
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
@@ -100,7 +99,7 @@ class BaseUserRelationTest extends TestCase {
         $this->assertEmpty($opposites);
 
         $this->destroyUsers($users);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
@@ -122,7 +121,7 @@ class BaseUserRelationTest extends TestCase {
             $this->assertTrue(false);
             var_dump($user->errors);
         }
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
@@ -139,7 +138,7 @@ class BaseUserRelationTest extends TestCase {
         $this->assertEquals(1, $relations[0]->$favoriteAttribute);
         $this->assertTrue($relations[0]->isFavorite);
         $this->destroyUsers($users);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
@@ -172,7 +171,7 @@ class BaseUserRelationTest extends TestCase {
 
         // 测试上限。
         $this->destroyUsers($users);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
@@ -238,7 +237,7 @@ class BaseUserRelationTest extends TestCase {
         $this->assertTrue($relation->blamesChanged);
 
         $this->destroyUsers($users);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
 }

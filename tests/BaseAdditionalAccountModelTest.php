@@ -34,7 +34,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $this->assertTrue($user->register([$aa]));
         $this->assertEquals(1, $aa->count());
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     /**
@@ -45,7 +45,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
         $this->assertFalse($aa->independentPassword);
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     /**
@@ -61,7 +61,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $this->assertStringStartsWith('$2y$' . $aa->passwordCost . '$', $aa->$passwordHashAttribute);
         $this->assertTrue($aa->validatePassword('123456'));
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     /**
@@ -72,7 +72,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
         $this->assertFalse($aa->enableLoginAttribute);
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     public function testEnableLogin() {
@@ -85,7 +85,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $enableLoginAttribute = $aa->enableLoginAttribute;
         $this->assertEquals(1, $aa->$enableLoginAttribute);
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     public function testRules() {
@@ -93,7 +93,7 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
         $this->validateRules($aa->rules());
         $this->assertTrue($user->deregister());
-        echo __METHOD__ . ":Done!\n";
+        
     }
     
     private function AdditionalAccountRules() {

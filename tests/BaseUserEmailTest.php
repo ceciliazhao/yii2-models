@@ -24,7 +24,7 @@ class BaseUserEmailTest extends TestCase {
 
     public function testInit() {
         //UserEmail::deleteAll();
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
     /**
@@ -59,7 +59,7 @@ class BaseUserEmailTest extends TestCase {
         // 此时应该找不到 $user 和 $email。
         $this->assertNull($user);
         $this->assertNull($email);
-        echo __METHOD__ . ":Done!\n";
+        
     }
 
 }
