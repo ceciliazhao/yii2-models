@@ -113,7 +113,7 @@ trait IDTrait {
         if ($this->idAttributeType == self::$idTypeInteger) {
             do {
                 $result = Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
-            } while ($this->checkIdExists($result));
+            } while ($this->checkIdExists((int)$result));
             return $result;
         }
         if ($this->idAttributeType == self::$idTypeString) {
@@ -138,7 +138,7 @@ trait IDTrait {
         if ($id == null) {
             return false;
         }
-        return (static::findOne([$this->idAttributeType => $id]) !== null);
+        return (static::findOne([$this->idAttribute => $id]) !== null);
     }
 
     /**
