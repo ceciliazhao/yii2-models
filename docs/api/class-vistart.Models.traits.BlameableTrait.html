@@ -179,7 +179,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#17-442" title="Go to source code">traits/BlameableTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#17-461" title="Go to source code">traits/BlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -661,6 +661,77 @@ array will be given.</p>
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getDescription" id="_getDescription">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getDescription">#</a>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#364-371" title="Go to source code">getDescription</a>( )</code>
+
+			<div class="description short">
+				<p>Set description.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Set description.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>description.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setDescription" id="_setDescription">
+
+			<td class="attributes"><code>
+				 public 
+				string|null
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setDescription">#</a>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#373-381" title="Go to source code">setDescription</a>( <span>string <var>$desc</var></span> )</code>
+
+			<div class="description short">
+				<p>Get description.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get description.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$desc</var></dt>
+						<dd>description.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string|null<br>description if enabled, or null if disabled.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="onContentChanged" id="_onContentChanged">
 
 			<td class="attributes"><code>
@@ -672,7 +743,7 @@ array will be given.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onContentChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#364-373" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#383-392" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>This event is triggered before the model update.
@@ -710,7 +781,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onGetCurrentUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#375-392" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#394-411" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Return the current user's GUID if current model doesn't specify the owner
@@ -754,7 +825,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitContentType">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#394-408" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#413-427" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize type of content. the first of element[index is 0] of
@@ -790,7 +861,7 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitDescription">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#410-423" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#429-442" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize description property with $initDescription.</p>
@@ -824,14 +895,14 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initBlameableEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#425-440" title="Go to source code">initBlameableEvents</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#444-459" title="Go to source code">initBlameableEvents</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Attach events associated with blameable model.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Attach events associated with blameable model.</p>
 
 
 

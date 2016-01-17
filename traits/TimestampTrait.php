@@ -35,7 +35,7 @@ trait TimestampTrait {
      * Set this property to false if you do not want to record the update time.
      */
     public $updatedAtAttribute = 'update_time';
-    
+
     /**
      * @var integer Determine the format of timestamp.
      */
@@ -71,6 +71,10 @@ trait TimestampTrait {
         return self::getCurrentDatetime($event);
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getTimestampBehaviors() {
         return [
             [
@@ -84,10 +88,20 @@ trait TimestampTrait {
 
     /**
      * 
+     * @return string
+     */
+    public function getCreatedAt() {
+        $createdAtAttribute = $this->createdAtAttribute;
+        return $this->$createdAtAttribute;
+    }
+
+    /**
+     * 
      * @return array
      */
     public function getCreatedAtRules() {
-        if (!$this->createdAtAttribute) return [];
+        if (!$this->createdAtAttribute)
+            return [];
         return [
             [[$this->createdAtAttribute], 'safe'],
         ];
@@ -98,7 +112,8 @@ trait TimestampTrait {
      * @return array
      */
     public function getUpdatedAtRules() {
-        if (!$this->updatedAtAttribute) return [];
+        if (!$this->updatedAtAttribute)
+            return [];
         return [
             [[$this->updatedAtAttribute], 'safe'],
         ];

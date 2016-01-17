@@ -47,6 +47,11 @@ trait AdditionalAccountTrait {
         return $this->$enableLoginAttribute > 0;
     }
 
+    /**
+     * 
+     * @param boolean $can
+     * @return integer
+     */
     public function setCanBeLogon($can) {
         if (!$this->enableLoginAttribute) {
             return;

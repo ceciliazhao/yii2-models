@@ -112,10 +112,7 @@ trait ConfirmationTrait {
      */
     public function getConfirmCode() {
         $confirmCodeAttribute = $this->confirmCodeAttribute;
-        if (!$confirmCodeAttribute) {
-            return null;
-        }
-        return $this->$confirmCodeAttribute;
+        return is_string($confirmCodeAttribute) ? $this->$confirmCodeAttribute : null;
     }
 
     /**
@@ -157,9 +154,7 @@ trait ConfirmationTrait {
      */
     public function getIsConfirmed() {
         $confirmationAttribute = $this->confirmationAttribute;
-        if (!$confirmationAttribute)
-            return true;
-        return $this->$confirmationAttribute > self::$confirmFalse;
+        return is_string($confirmationAttribute) ? $this->$confirmationAttribute > static::$confirmFalse : true;
     }
 
     /**
@@ -195,9 +190,7 @@ trait ConfirmationTrait {
      */
     public function getConfirmation() {
         $confirmationAttribute = $this->confirmationAttribute;
-        if (!$confirmationAttribute)
-            return null;
-        return $this->$confirmationAttribute;
+        return is_string($confirmationAttribute) ? $this->$confirmationAttribute : null;
     }
 
     /**

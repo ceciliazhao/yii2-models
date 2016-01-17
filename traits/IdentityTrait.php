@@ -35,27 +35,68 @@ trait IdentityTrait {
     public $accessTokenAttribute = 'access_token';
     private $_accessTokenRules = [];
 
+    /**
+     * 
+     * @param string|integer $id
+     * @return type
+     */
     public static function findIdentity($id) {
-        $self = (self::className());
-        return static::findOne([(new $self(['skipInit' => true]))->idAttribute => $id]);
+        $self = static::buildNoInitModel();
+        return static::findOne([$self->idAttribute => $id]);
     }
 
+    /**
+     * 
+     * @param string $guid
+     * @return type
+     */
     public static function findIdentityByGuid($guid) {
         return static::findOne($guid);
     }
 
+    /**
+     * 
+     * @param string $token
+     * @param type $type
+     * @return type
+     */
     public static function findIdentityByAccessToken($token, $type = NULL) {
-        return static::findOne(['access_token' => $token]);
+        $self = static::buildNoInitModel();
+        return static::findOne([$self->accessTokenAttribute => $token]);
     }
 
+    /**
+     * 
+     * @return string|null
+     */
     public function getAuthKey() {
-        return $this->auth_key;
+        $authKeyAttribute = $this->authKeyAttribute;
+        return is_string($authKeyAttribute) ? $this->$authKeyAttribute : null;
     }
 
+    /**
+     * 
+     * @param string $key
+     * @return string
+     */
+    public function setAuthKey($key) {
+        $authKeyAttribute = $this->authKeyAttribute;
+        return is_string($authKeyAttribute) ? $this->$authKeyAttribute = $key : null;
+    }
+
+    /**
+     * 
+     * @param string $authKey
+     * @return string
+     */
     public function validateAuthKey($authKey) {
-        return $this->auth_key === $authKey;
+        return $this->getAuthKey() === $authKey;
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getAuthKeyRules() {
         if (empty($this->_authKeyRules)) {
             $this->_authKeyRules = [
@@ -66,6 +107,10 @@ trait IdentityTrait {
         return $this->_authKeyRules;
     }
 
+    /**
+     * 
+     * @param array $rules
+     */
     public function setAuthKeyRules($rules) {
         if (!empty($rules) && is_array($rules)) {
             $this->_authKeyRules = $rules;
@@ -84,6 +129,29 @@ trait IdentityTrait {
         $sender->$authKeyAttribute = sha1(Yii::$app->security->generateRandomString());
     }
 
+    /**
+     * 
+     * @return string|null
+     */
+    public function getAccessToken() {
+        $accessTokenAttribute = $this->accessTokenAttribute;
+        return is_string($accessTokenAttribute) ? $this->$accessTokenAttribute : null;
+    }
+
+    /**
+     * 
+     * @param string $token
+     * @return string|null
+     */
+    public function setAccessToken($token) {
+        $accessTokenAttribute = $this->accessTokenAttribute;
+        return is_string($accessTokenAttribute) ? $this->$accessTokenAttribute = $token : null;
+    }
+
+    /**
+     * 
+     * @return array
+     */
     public function getAccessTokenRules() {
         if (empty($this->_accessTokenRules)) {
             $this->_accessTokenRules = [
@@ -94,6 +162,10 @@ trait IdentityTrait {
         return $this->_accessTokenRules;
     }
 
+    /**
+     * 
+     * @param array $rules
+     */
     public function setAccessTokenRules($rules) {
         if (!empty($rules) && is_array($rules)) {
             $this->_accessTokenRules = $rules;
@@ -114,7 +186,26 @@ trait IdentityTrait {
 
     /**
      * 
-     * @return type
+     * @return integer
+     */
+    public function getStatus() {
+        $statusAttribute = $this->statusAttribute;
+        return is_string($statusAttribute) ? $this->$statusAttribute : null;
+    }
+
+    /**
+     * 
+     * @param integer $status
+     * @return integer|null
+     */
+    public function setStatus($status) {
+        $statusAttribute = $this->statusAttribute;
+        return is_string($statusAttribute) ? $this->$statusAttribute = $status : null;
+    }
+
+    /**
+     * 
+     * @return array
      */
     public function getStatusRules() {
         if (empty($this->_statusRules)) {
@@ -128,7 +219,7 @@ trait IdentityTrait {
 
     /**
      * 
-     * @param type $rules
+     * @param array $rules
      */
     public function setStatusRules($rules) {
         if (!empty($rules) && is_array($rules)) {

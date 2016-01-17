@@ -66,19 +66,23 @@ trait IDTrait {
      */
     protected $idAttributeSafe = false;
 
+    /**
+     * 
+     * @return string|integer
+     */
     public function getId() {
         $idAttribute = $this->idAttribute;
-        if (is_string($idAttribute)) {
-            return $this->$idAttribute;
-        }
-        return null;
+        return is_string($idAttribute) ? $this->$idAttribute : null;
     }
 
+    /**
+     * 
+     * @param string|integer $id
+     * @return string|integer
+     */
     public function setId($id) {
         $idAttribute = $this->idAttribute;
-        if (is_string($idAttribute)) {
-            $this->$idAttribute = $id;
-        }
+        return is_string($idAttribute) ? $this->$idAttribute = $id : null;
     }
 
     /**
@@ -113,7 +117,7 @@ trait IDTrait {
         if ($this->idAttributeType == self::$idTypeInteger) {
             do {
                 $result = Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
-            } while ($this->checkIdExists((int)$result));
+            } while ($this->checkIdExists((int) $result));
             return $result;
         }
         if ($this->idAttributeType == self::$idTypeString) {

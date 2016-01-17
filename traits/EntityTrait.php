@@ -165,7 +165,7 @@ trait EntityTrait {
     }
 
     /**
-     * 
+     * Attach events associated with entity model.
      */
     protected function initEntityEvents() {
         $this->on(static::EVENT_INIT, [$this, 'onInitCache']);
@@ -190,7 +190,7 @@ trait EntityTrait {
             $sender->cachePrefix = $sender::className();
         }
     }
-    
+
     /**
      * 
      */

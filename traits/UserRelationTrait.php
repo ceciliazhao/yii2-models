@@ -82,7 +82,7 @@ trait UserRelationTrait {
      */
     public function getIsFavorite() {
         $favoriteAttribute = $this->favoriteAttribute;
-        return (int) $this->$favoriteAttribute > 0;
+        return is_string($favoriteAttribute) ? (int) $this->$favoriteAttribute > 0 : null;
     }
 
     /**
@@ -91,7 +91,7 @@ trait UserRelationTrait {
      */
     public function setIsFavorite($fav) {
         $favoriteAttribute = $this->favoriteAttribute;
-        $this->$favoriteAttribute = ($fav ? 1 : 0);
+        return is_string($favoriteAttribute) ? $this->$favoriteAttribute = ($fav ? 1 : 0) : null;
     }
 
     /**
@@ -110,6 +110,25 @@ trait UserRelationTrait {
             [[$this->bidirectionalTypeAttribute], 'integer'],
             [[$this->bidirectionalTypeAttribute], 'default', 'value' => static::$bidirectionalTypeNormal],
                 ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
+    }
+
+    /**
+     * Get remark.
+     * @return string remark.
+     */
+    public function getRemark() {
+        $remarkAttribute = $this->remarkAttribute;
+        return is_string($remarkAttribute) ? $this->$remarkAttribute : null;
+    }
+
+    /**
+     * Set remark.
+     * @param string $remark
+     * @return string remark.
+     */
+    public function setRemark($remark) {
+        $remarkAttribute = $this->remarkAttribute;
+        return is_string($remarkAttribute) ? $this->$remarkAttribute = $remark : null;
     }
 
     /**

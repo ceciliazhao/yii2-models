@@ -119,7 +119,7 @@ trait BlameableTrait {
      * Set this property to false if you do not want to record the updater ID.
      */
     public $updatedByAttribute = "user_guid";
-    
+
     /**
      * @var boolean Add combinated unique rule if assigned to true.
      */
@@ -263,7 +263,7 @@ trait BlameableTrait {
                 [$this->updatedByAttribute], 'safe',
             ];
         }
-        
+
         if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
             $rules [] = [
                 [$this->idAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
@@ -362,6 +362,25 @@ trait BlameableTrait {
     }
 
     /**
+     * Set description.
+     * @return string description.
+     */
+    public function getDescription() {
+        $descAttribute = $this->descriptionAttribute;
+        return is_string($descAttribute) ? $this->$descAttribute : null;
+    }
+
+    /**
+     * Get description.
+     * @param string $desc description.
+     * @return string|null description if enabled, or null if disabled.
+     */
+    public function setDescription($desc) {
+        $descAttribute = $this->descriptionAttribute;
+        return is_string($descAttribute) ? $this->$descAttribute = $desc : null;
+    }
+
+    /**
      * This event is triggered before the model update.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
@@ -423,7 +442,7 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Attach events associated with blameable model.
      */
     public function initBlameableEvents() {
         $this->on(static::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);

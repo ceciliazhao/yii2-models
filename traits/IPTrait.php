@@ -190,6 +190,10 @@ trait IPTrait {
         return $ipType;
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function getIpRules() {
         $rules = [];
         if ($this->enableIP & static::$ipv6) {

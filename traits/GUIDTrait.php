@@ -39,7 +39,7 @@ trait GUIDTrait {
         $sender = $event->sender;
         $guidAttribute = $sender->guidAttribute;
         if (is_string($guidAttribute)) {
-            $sender->$guidAttribute = self::GenerateGuid();
+            $sender->$guidAttribute = static::GenerateGuid();
         }
     }
 
@@ -61,6 +61,10 @@ trait GUIDTrait {
         return (self::findOne($uuid) !== null);
     }
 
+    /**
+     * Get the rules associated with guid attribute.
+     * @return array rules.
+     */
     public function getGuidRules() {
         $rules = [];
         if (is_string($this->guidAttribute)) {
@@ -73,19 +77,23 @@ trait GUIDTrait {
         return $rules;
     }
 
+    /**
+     * 
+     * @return string
+     */
     public function getGuid() {
         $guidAttribute = $this->guidAttribute;
-        if (is_string($guidAttribute)) {
-            return $this->$guidAttribute;
-        }
-        return null;
+        return is_string($guidAttribute) ? $this->$guidAttribute : null;
     }
-    
+
+    /**
+     * 
+     * @param string $guid
+     * @return string
+     */
     public function setGuid($guid) {
         $guidAttribute = $this->guidAttribute;
-        if (is_string($guidAttribute)) {
-            $this->$guidAttribute = $guid;
-        }
+        return is_string($guidAttribute) ? $this->$guidAttribute = $guid : null;
     }
 
 }

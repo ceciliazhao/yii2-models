@@ -107,6 +107,24 @@ trait RegistrationTrait {
     }
 
     /**
+     * Get source.
+     * @return string
+     */
+    public function getSource() {
+        $sourceAttribute = $this->sourceAttribute;
+        return is_string($sourceAttribute) ? $this->$sourceAttribute : null;
+    }
+
+    /**
+     * Set source.
+     * @param string $source
+     */
+    public function setSource($source) {
+        $sourceAttribute = $this->sourceAttribute;
+        return is_string($sourceAttribute) ? $this->$sourceAttribute = $source : null;
+    }
+
+    /**
      * Get the rules associated with source attribute.
      * @return array
      */
