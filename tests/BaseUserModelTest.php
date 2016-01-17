@@ -25,7 +25,6 @@ class BaseUserModelTest extends TestCase {
 
     public function testInit() {
         //User::deleteAll();
-        
     }
 
     /**
@@ -41,7 +40,6 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword('1234567', $user->$passwordHashAttribute));
-        
     }
 
     /**
@@ -54,7 +52,6 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $guidAttribute = $user->guidAttribute;
         $this->assertEquals($user->guid, $user->$guidAttribute);
-        
     }
 
     /**
@@ -65,7 +62,6 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotEmpty($user->id);
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
-        
     }
 
     /**
@@ -78,7 +74,6 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals($ipAddress, $user->ipAddress);
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
-        
     }
 
     /**
@@ -108,14 +103,12 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
-        
     }
 
     public function onResetPasswordFailed($event) {
         $sender = $event->sender;
         var_dump($sender->errors);
         $this->assertFalse(true);
-        
     }
 
     /**
@@ -131,7 +124,6 @@ class BaseUserModelTest extends TestCase {
         $passwordResetTokenAttribute = $user->passwordResetTokenAttribute;
         $user->resetPassword($password, $user->$passwordResetTokenAttribute);
         $user->deregister();
-        
     }
 
     /**
@@ -141,7 +133,6 @@ class BaseUserModelTest extends TestCase {
         $user = new User();
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
-        
     }
 
     /**
@@ -164,7 +155,6 @@ class BaseUserModelTest extends TestCase {
         $this->assertNotNull($user->$createdAtAttribute);
         $this->assertNotNull($user->$updatedAtAttribute);
         $this->assertTrue($user->deregister());
-        
     }
 
     /**
@@ -182,7 +172,6 @@ class BaseUserModelTest extends TestCase {
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(User::$statusActive, $user->$statusAttribute);
         $this->assertTrue($user->deregister());
-        
     }
 
     private function validatePassword($password, $hash) {
@@ -191,20 +180,24 @@ class BaseUserModelTest extends TestCase {
 
     /**
      * @depends testRegister
+     * @large
      */
     public function testNewUser256() {
-        //User::deleteAll();
-        //set_time_limit(1800);
-        /*
-          for ($i = 0; $i < 256; $i++) {
-          $password = '123456';
-          $user = new User(['password' => $password]);
-          if (!$user->register()) {
-          $this->assertFalse(true);
-          }
-          }
-          var_dump(User::find()->count()); */
-        
+        $users = [];
+        for ($i = 0; $i < 256; $i++) {
+            $password = '123456';
+            $user = new User(['password' => $password]);
+            $users[] = $user;
+            if (!$user->register()) {
+                $this->fail(($i + 1) . "\n" . $user->errors);
+            }
+        }
+        foreach ($users as $key => $user) {
+            if (!$user->deregister()) {
+                $this->fail($key . "\n" . $user->errors);
+            }
+        }
+        echo "$i\n";
     }
 
 }
