@@ -120,7 +120,7 @@ trait IdentityTrait {
         if (empty($this->_statusRules)) {
             $this->_statusRules = [
                 [[$this->statusAttribute], 'required'],
-                [[$this->statusAttribute], 'integer', 'min' => 0],
+                [[$this->statusAttribute], 'number', 'integerOnly' => true, 'min' => 0],
             ];
         }
         return $this->_statusRules;

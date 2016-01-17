@@ -163,7 +163,7 @@ trait IDTrait {
             ];
             if ($this->idAttributeType === self::$idTypeInteger) {
                 $rules[] = [
-                    [$this->idAttribute], 'integer',
+                    [$this->idAttribute], 'number', 'integerOnly' => true
                 ];
             }
             if ($this->idAttributeType === self::$idTypeString) {

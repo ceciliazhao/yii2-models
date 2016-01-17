@@ -198,14 +198,14 @@ trait IPTrait {
                 $this->ipAttribute2,
                 $this->ipAttribute3,
                 $this->ipAttribute4],
-                    'integer', 'min' => 0
+                    'number', 'integerOnly' => true, 'min' => 0
                 ],
             ];
         }
         if ($this->enableIP & static::$ipv4) {
             $rules = [
                 [[$this->ipAttribute1],
-                    'integer', 'min' => 0
+                    'number', 'integerOnly' => true, 'min' => 0
                 ],
             ];
         }

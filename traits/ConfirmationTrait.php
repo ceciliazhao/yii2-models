@@ -233,7 +233,7 @@ trait ConfirmationTrait {
             return [];
         }
         return [
-            [[$this->confirmationAttribute], 'integer', 'min' => 0],
+            [[$this->confirmationAttribute], 'number', 'integerOnly' => true, 'min' => 0],
             [[$this->confirmTimeAttribute], 'safe'],
         ];
     }
