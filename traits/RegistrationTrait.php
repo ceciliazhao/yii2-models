@@ -15,9 +15,9 @@ namespace vistart\Models\traits;
 use Yii;
 
 /**
- * Description of RegistrationTrait
+ * User features concerning registration.
  *
- * @property array $sourceRules
+ * @property array $sourceRules rules associated with source attribute.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -46,7 +46,7 @@ trait RegistrationTrait {
      * $eventRegisterFailed will be triggered when any errors occured.
      * @param array $associatedModels The models associated with user to be stored synchronously.
      * @return boolean Whether the registration succeeds or not.
-     * @throws \yii\db\IntegrityException
+     * @throws \yii\db\IntegrityException when inserting user and associated models failed.
      */
     public function register($associatedModels = []) {
         if (!$this->isNewRecord) {
@@ -75,27 +75,39 @@ trait RegistrationTrait {
     }
 
     /**
-     * Deregister current uset itself.
+     * Deregister current user itself.
      * It is equivalent to delete current user and its associated models. BUT it
      * deletes current user ONLY, the associated models will not be deleted
      * forwardly. So you should set the foreign key of associated models' table
      * referenced from primary key of user table, and their association mode is
      * 'on update cascade' and 'on delete cascade'.
+     * the $eventBeforeDeregister will be triggered before deregistration starts.
+     * if deregistration finished, the $eventAfterDeregister will be triggered. or
+     * $eventDeregisterFailed will be triggered when any errors occured.
      * @return boolean Whether deregistration succeeds or not.
+     * @throws \yii\db\IntegrityException when deleting user failed.
      */
     public function deregister() {
         $this->trigger(static::$eventBeforeDeregister);
-        $result = $this->delete();
-        if ($result == 1) {
-            $this->trigger(static::$eventAfterDeregister);
-        } else {
+        $transaction = $this->getDb()->beginTransaction();
+        try {
+            $result = $this->delete();
+            if ($result != 1) {
+                throw new \yii\db\IntegrityException('Deregistration Error(s) Occured.', $this->errors);
+            }
+            $transaction->commit();
+        } catch (\yii\db\Exception $ex) {
+            $transaction->rollBack();
+            Yii::warning($ex->errorInfo, 'user\deregister');
             $this->trigger(static::$eventDeregisterFailed);
+            return false;
         }
+        $this->trigger(static::$eventAfterDeregister);
         return $result == 1;
     }
 
     /**
-     * 
+     * Get the rules associated with source attribute.
      * @return array
      */
     public function getSourceRules() {
@@ -109,7 +121,7 @@ trait RegistrationTrait {
     }
 
     /**
-     * 
+     * Set the rules associated with source attribute.
      * @param array $rules
      */
     public function setSourceRules($rules) {
