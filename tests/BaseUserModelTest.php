@@ -18,6 +18,7 @@ use Yii;
 
 /**
  * Description of BaseUserModelTest
+ * 
  * @author vistart <i@vistart.name>
  * @since 2.0
  */
@@ -69,11 +70,46 @@ class BaseUserModelTest extends TestCase {
      */
     public function testIP() {
         $ipAddress = '::1';
-        $user = new User(['ipAddress' => $ipAddress]);
-        $this->assertEquals(true, $user->enableIP);
+        $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ip_all, $user->enableIP);
         $this->assertEquals($ipAddress, $user->ipAddress);
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
+        $this->assertTrue($user->deregister());
+        
+        $user = new User(['enableIP' => User::$ipv4, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ipv4, $user->enableIP);
+        $this->assertEquals(0, $user->ipAddress);
+        $this->assertTrue($user->deregister());
+        
+        $user = new User(['enableIP' => User::$ipv6, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ipv6, $user->enableIP);
+        $this->assertEquals($ipAddress, $user->ipAddress);
+        $this->assertTrue($user->deregister());
+        
+        $ipAddress = '127.0.0.1';
+        $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ip_all, $user->enableIP);
+        $this->assertEquals($ipAddress, $user->ipAddress);
+        $ipTypeAttribute = $user->ipTypeAttribute;
+        $this->assertEquals(Ip::IPv4, $user->$ipTypeAttribute);
+        $this->assertTrue($user->deregister());
+        
+        $user = new User(['enableIP' => User::$ipv4, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ipv4, $user->enableIP);
+        $this->assertEquals($ipAddress, $user->ipAddress);
+        $this->assertTrue($user->deregister());
+        
+        $user = new User(['enableIP' => User::$ipv6, 'ipAddress' => $ipAddress]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(User::$ipv6, $user->enableIP);
+        $this->assertEquals(0, $user->ipAddress);
+        $this->assertTrue($user->deregister());
     }
 
     /**

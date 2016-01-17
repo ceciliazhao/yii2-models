@@ -155,7 +155,7 @@
 				2.0<br>
 				<b>Proeprty:</b>
 				array $ipRules<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.IPTrait.html#18-161" title="Go to source code">traits/IPTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.IPTrait.html#18-220" title="Go to source code">traits/IPTrait.php</a>
 		<br>
 	</div>
 
@@ -175,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitIpAddress">#</a>
-			<code><a href="source-class-vistart.Models.traits.IPTrait.html#66-78" title="Go to source code">onInitIpAddress</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.IPTrait.html#87-99" title="Go to source code">onInitIpAddress</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -214,7 +214,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIpAddress">#</a>
-			<code><a href="source-class-vistart.Models.traits.IPTrait.html#80-109" title="Go to source code">getIpAddress</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IPTrait.html#101-129" title="Go to source code">getIpAddress</a>( )</code>
 
 			<div class="description short">
 				<p>Return the IP address.
@@ -255,7 +255,7 @@ IPv6 or Dotted decimal of IPv4).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setIpAddress">#</a>
-			<code><a href="source-class-vistart.Models.traits.IPTrait.html#111-144" title="Go to source code">setIpAddress</a>( <span>string <var>$ipAddress</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.IPTrait.html#157-191" title="Go to source code">setIpAddress</a>( <span>string <var>$ipAddress</var></span> )</code>
 
 			<div class="description short">
 				<p>Convert the IP address to integer, and store it(them) to ipAttribute*.
@@ -297,7 +297,7 @@ be skipped(return null).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIpRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.IPTrait.html#146-159" title="Go to source code">getIpRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IPTrait.html#193-218" title="Go to source code">getIpRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -334,25 +334,25 @@ be skipped(return null).</p>
 		<tr data-order="enableIP" id="$enableIP">
 			<td class="attributes"><code>
 				public  
-				string
+				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#27-34" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#27-33" title="Go to source code"><var>$enableIP</var></a>
 
 				<div class="description short">
-					<p>REQUIRED. Determine whether enableing the IP attributes and
-features. If you set this property to false, the ipAttribute* and
-ipTypeAttribute will be ignored, and getIpAddress &amp; setIpAddress will be
-skipped.</p>
+					<p>REQUIRED. Determine whether enabling the IP attributes and
+features, and IP address type if enabled.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>REQUIRED. Determine whether enableing the IP attributes and
-features. If you set this property to false, the ipAttribute* and
-ipTypeAttribute will be ignored, and getIpAddress &amp; setIpAddress will be
-skipped.</p>
+					<p>REQUIRED. Determine whether enabling the IP attributes and
+features, and IP address type if enabled.</p>
 
+						<h4>Version</h4>
+						<div class="list">
+								2.0<br>
+						</div>
 						<h4>Since</h4>
 						<div class="list">
 								1.1<br>
@@ -362,7 +362,109 @@ skipped.</p>
 			<td class="value">
 				<div>
 					<a href="#$enableIP" class="anchor">#</a>
-					<code><span class="php-keyword1">true</span></code>
+					<code><span class="php-num">0x03</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="no_ip" id="$no_ip">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.IPTrait.html#35-38" title="Go to source code"><var>$no_ip</var></a>
+
+				<div class="description short">
+					<p>Disable IP address features.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Disable IP address features.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$no_ip" class="anchor">#</a>
+					<code><span class="php-num">0x0</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="ipv4" id="$ipv4">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.IPTrait.html#40-43" title="Go to source code"><var>$ipv4</var></a>
+
+				<div class="description short">
+					<p>Only accept IPv4 address.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Only accept IPv4 address.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$ipv4" class="anchor">#</a>
+					<code><span class="php-num">0x1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="ipv6" id="$ipv6">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.IPTrait.html#45-48" title="Go to source code"><var>$ipv6</var></a>
+
+				<div class="description short">
+					<p>Only accept IPv6 address.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Only accept IPv6 address.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$ipv6" class="anchor">#</a>
+					<code><span class="php-num">0x2</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="ip_all" id="$ip_all">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.IPTrait.html#50-54" title="Go to source code"><var>$ip_all</var></a>
+
+				<div class="description short">
+					<p>Accept IPv4 and IPv6 address. Judge type of IP address
+automatically.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>Accept IPv4 and IPv6 address. Judge type of IP address
+automatically.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$ip_all" class="anchor">#</a>
+					<code><span class="php-num">0x3</span></code>
 				</div>
 			</td>
 		</tr>
@@ -373,16 +475,16 @@ skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#36-40" title="Go to source code"><var>$ipAttribute1</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#56-60" title="Go to source code"><var>$ipAttribute1</var></a>
 
 				<div class="description short">
 					<p>The attribute name that will receive the beginning 32 bits of
-IPv6, or 0 of IPv4. The default value is 'ip_1'.</p>
+IPv6, or IPv4. The default value is 'ip_1'.</p>
 				</div>
 
 				<div class="description detailed hidden">
 					<p>The attribute name that will receive the beginning 32 bits of
-IPv6, or 0 of IPv4. The default value is 'ip_1'.</p>
+IPv6, or IPv4. The default value is 'ip_1'.</p>
 
 				</div>
 			</td>
@@ -400,7 +502,7 @@ IPv6, or 0 of IPv4. The default value is 'ip_1'.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#42-46" title="Go to source code"><var>$ipAttribute2</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#62-66" title="Go to source code"><var>$ipAttribute2</var></a>
 
 				<div class="description short">
 					<p>The attribute name that will receive the 33 - 64 bits of IPv6,
@@ -427,7 +529,7 @@ or 0 of IPv4. The default value is 'ip_2'.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#48-52" title="Go to source code"><var>$ipAttribute3</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#68-72" title="Go to source code"><var>$ipAttribute3</var></a>
 
 				<div class="description short">
 					<p>The attribute name that will receive the 65 - 96 bits of IPv6,
@@ -454,16 +556,16 @@ or 0 of IPv4. The default value is 'ip_3'.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#54-58" title="Go to source code"><var>$ipAttribute4</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#74-78" title="Go to source code"><var>$ipAttribute4</var></a>
 
 				<div class="description short">
 					<p>The attribute name that will receive the last 32 bits of IPv6,
-or IPv4. The default value is 'ip_4'.</p>
+or 0 of IPv4. The default value is 'ip_4'.</p>
 				</div>
 
 				<div class="description detailed hidden">
 					<p>The attribute name that will receive the last 32 bits of IPv6,
-or IPv4. The default value is 'ip_4'.</p>
+or 0 of IPv4. The default value is 'ip_4'.</p>
 
 				</div>
 			</td>
@@ -481,16 +583,18 @@ or IPv4. The default value is 'ip_4'.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IPTrait.html#60-64" title="Go to source code"><var>$ipTypeAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.IPTrait.html#80-85" title="Go to source code"><var>$ipTypeAttribute</var></a>
 
 				<div class="description short">
 					<p>The attribute name that will receive the type of IP address.
-The default value is 'ip_type'.</p>
+The default value is 'ip_type'. If you assign $enableIP to $ip_all, this
+attribute is required.</p>
 				</div>
 
 				<div class="description detailed hidden">
 					<p>The attribute name that will receive the type of IP address.
-The default value is 'ip_type'.</p>
+The default value is 'ip_type'. If you assign $enableIP to $ip_all, this
+attribute is required.</p>
 
 				</div>
 			</td>
