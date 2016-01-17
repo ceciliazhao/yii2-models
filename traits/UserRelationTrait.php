@@ -19,6 +19,7 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * Note: Several methods associated with "inserting", "updating" and "removing" may
  * involve more DB operations, I strongly recommend those methods to be placed in
  * transaction execution, in order to ensure data consistency.
+ * 若使用关系组功能，则使用此 trait 的类必须与使用 UserRelationGroupTrait 的类配合使用。
  * @property array $groupGuids the guid array of all groups which owned by current relation.
  * @property-read array $allGroups
  * @property-read array $nonGroupMembers

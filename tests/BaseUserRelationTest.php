@@ -189,7 +189,7 @@ class BaseUserRelationTest extends TestCase {
         $relation = $relations[0];
 
         // 当前关系组应为空数组
-        $groupsAttribute = $relation->multipleBlameableAttribute;
+        $groupsAttribute = $relation->multiBlamesAttribute;
         $this->assertEquals('[]', $relation->$groupsAttribute);
 
         // 当前未分组用户应为 1，即对方
@@ -197,7 +197,7 @@ class BaseUserRelationTest extends TestCase {
         $this->assertEquals(1, count($members));
 
         // 新建一个组，在保存前，当前关系找不到该组。
-        $group = $users[0]->createModel(UserRelationGroup::className(), ['content' => 'home']);
+        $group = $users[0]->create(UserRelationGroup::className(), ['content' => 'home']);
         $this->assertEmpty($relation->getGroupMembers($group));
         $this->assertEmpty(UserRelation::getGroup($group->guid));
         if ($group->save()) {
@@ -214,7 +214,7 @@ class BaseUserRelationTest extends TestCase {
         // 添加一个关系组，并获得添加后的关系组数组。
         $relationGroups = $relation->addGroup($group);
         // 测试长度。
-        $mbAttribute = $relations[0]->multipleBlameableAttribute;
+        $mbAttribute = $relations[0]->multiBlamesAttribute;
         $this->assertEquals($relations[0]->getBlamesCount() * 39 + 1, strlen($relations[0]->$mbAttribute));
 
         // 此时应该有 1 个元素，即 1 个组。

@@ -128,7 +128,7 @@ trait BlameableTrait {
     /**
      * @var boolean|string The name of user class which own the current entity.
      * If this attribute is assigned to false, this feature will be skipped, and
-     * when you use createModel() method of UserTrait, it will be assigned with
+     * when you use create() method of UserTrait, it will be assigned with
      * current user class.
      */
     public $userClass;

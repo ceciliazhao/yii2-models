@@ -23,14 +23,14 @@ class BaseAdditionalAccountModelTest extends TestCase {
     
     private function prepareUser() {
         $user = new User(['password' => '123456']);
-        $aa = $user->createModel(AdditionalAccount::className());
+        $aa = $user->create(AdditionalAccount::className());
         $user->register([$aa]);
         return $user;
     }
     
     public function testInit() {
         $user = new User(['password' => '123456']);
-        $aa = $user->createModel(AdditionalAccount::className());
+        $aa = $user->create(AdditionalAccount::className());
         $this->assertTrue($user->register([$aa]));
         $this->assertEquals(1, $aa->count());
         $this->assertTrue($user->deregister());

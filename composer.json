@@ -15,8 +15,7 @@
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-redis": "^2.0",
         "yiisoft/yii2-gii": "*",
-        "vistart/yii2-helpers": "*",
-        "vistart/yii2-behaviors": "*"
+        "vistart/yii2-helpers": "*"
     },
     "autoload": {
         "psr-4": {

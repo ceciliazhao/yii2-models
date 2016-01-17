@@ -12,6 +12,7 @@
 
 namespace vistart\Models\traits;
 /**
+ * 使用此 trait 的类必须与使用 UserRelationTrait 的类配合使用。
  * $contentAttribute 关系组名称。
  * $contentTypeAttribute 关系组类型。
  * @version 2.0
@@ -26,7 +27,7 @@ trait UserRelationGroupTrait {
      * @param \vistart\Models\models\BaseUserModel $user
      */
     public static function add($user) {
-        $group = $user->createModel(static::className());
+        $group = $user->create(static::className());
         return $group->save();
     }
     
@@ -55,7 +56,9 @@ trait UserRelationGroupTrait {
         $relations = $relationClass::findOnesAllRelations($sender->$createdByAttribute);
         foreach ($relations as $relation) {
             $relation->removeGroup($groupGuid);
-            $relation->save();
+            if (!$relation->save() && (YII_ENV !== YII_ENV_PROD || YII_DEBUG)) {
+                $sender->recordWarnings();
+            }
         }
          */
     }

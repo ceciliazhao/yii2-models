@@ -13,7 +13,10 @@
 namespace vistart\Models\traits;
 
 /**
+ * Additional account features.
  * @property boolean $canBeLogon determines whether this account could be used for logging-in.
+ * @property-read array $enableLoginAttributeRules
+ * @property-read array $additionalAccountRules
  * @version 2.0
  * @author vistart <i@vistart.name>
  */

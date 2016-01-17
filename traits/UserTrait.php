@@ -31,7 +31,7 @@ trait UserTrait {
      * @param array $config name-value pairs that will be used to initialize
      * the object properties.
      */
-    public function createModel($className, $config = []) {
+    public function create($className, $config = []) {
         if (!isset($config['userClass'])) {
             $config['userClass'] = static::className();
         }

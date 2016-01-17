@@ -21,10 +21,10 @@ use vistart\Models\models\BaseUserRelationModel;
  */
 class UserRelation extends BaseUserRelationModel {
 
-    public $multipleBlameableAttribute = 'groups';
+    public $multiBlamesAttribute = 'groups';
 
     public function init() {
-        $this->multipleBlameableClass = UserRelationGroup::className();
+        $this->multiBlamesClass = UserRelationGroup::className();
         parent::init();
     }
 
