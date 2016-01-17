@@ -39,7 +39,7 @@ trait IDTrait {
      * @since 2.0
      */
     public $idAttributeType = 0;
-    
+
     /**
      * @var boolean 
      */
@@ -73,7 +73,7 @@ trait IDTrait {
         }
         return null;
     }
-    
+
     public function setId($id) {
         $idAttribute = $this->idAttribute;
         if (is_string($idAttribute)) {
@@ -111,7 +111,10 @@ trait IDTrait {
      */
     public function generateId() {
         if ($this->idAttributeType == self::$idTypeInteger) {
-            return Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
+            do {
+                $result = Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
+            } while ($this->checkIdExists($result));
+            return $result;
         }
         if ($this->idAttributeType == self::$idTypeString) {
             return $this->idAttributePrefix .
@@ -124,6 +127,18 @@ trait IDTrait {
             return null;
         }
         return false;
+    }
+
+    /**
+     * Check if $id existed.
+     * @param mixed $id
+     * @return boolean
+     */
+    public function checkIdExists($id) {
+        if ($id == null) {
+            return false;
+        }
+        return (static::findOne([$this->idAttributeType => $id]) !== null);
     }
 
     /**
