@@ -153,7 +153,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.IDTrait.html#18-187" title="Go to source code">traits/IDTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.IDTrait.html#18-190" title="Go to source code">traits/IDTrait.php</a>
 		<br>
 	</div>
 
@@ -244,16 +244,20 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitIdAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#88-109" title="Go to source code">onInitIdAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#88-112" title="Go to source code">onInitIdAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize the ID attribute with new generated ID.
+If the model's id is pre-assigned, then it will return directly.
+If the model's id is auto-increment, the id attribute will be marked safe.
 This method is ONLY used for being triggered by event. DO NOT call,
 override or modify it directly, unless you know the consequences.</p>
 			</div>
 
 			<div class="description detailed hidden">
 				<p>Initialize the ID attribute with new generated ID.
+If the model's id is pre-assigned, then it will return directly.
+If the model's id is auto-increment, the id attribute will be marked safe.
 This method is ONLY used for being triggered by event. DO NOT call,
 override or modify it directly, unless you know the consequences.</p>
 
@@ -286,7 +290,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_generateId">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#111-134" title="Go to source code">generateId</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#114-137" title="Go to source code">generateId</a>( )</code>
 
 			<div class="description short">
 				<p>Generate the ID. You can override this method to implement your own
@@ -321,7 +325,7 @@ generation algorithm.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_checkIdExists">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#136-146" title="Go to source code">checkIdExists</a>( <span>mixed <var>$id</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#139-149" title="Go to source code">checkIdExists</a>( <span>mixed <var>$id</var></span> )</code>
 
 			<div class="description short">
 				<p>Check if $id existed.</p>
@@ -359,7 +363,7 @@ generation algorithm.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getIdRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#148-185" title="Go to source code">getIdRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.IDTrait.html#151-188" title="Go to source code">getIdRules</a>( )</code>
 
 			<div class="description short">
 				

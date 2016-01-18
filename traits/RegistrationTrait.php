@@ -66,9 +66,13 @@ trait RegistrationTrait {
             $transaction->commit();
         } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
-            Yii::warning($ex->errorInfo, 'user\register');
             $this->trigger(static::$eventRegisterFailed);
-            return $ex;
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
+                Yii::error($ex->errorInfo, 'user\register');
+                return $ex;
+            }
+            Yii::warning($ex->errorInfo, 'user\register');
+            return false;
         }
         $this->trigger(static::$eventAfterRegister);
         return true;
@@ -101,8 +105,12 @@ trait RegistrationTrait {
             $transaction->commit();
         } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
-            Yii::warning($ex->errorInfo, 'user\deregister');
             $this->trigger(static::$eventDeregisterFailed);
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
+                Yii::error($ex->errorInfo, 'user\deregister');
+                return $ex;
+            }
+            Yii::warning($ex->errorInfo, 'user\deregister');
             return false;
         }
         $this->trigger(static::$eventAfterDeregister);

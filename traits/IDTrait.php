@@ -87,6 +87,8 @@ trait IDTrait {
 
     /**
      * Initialize the ID attribute with new generated ID.
+     * If the model's id is pre-assigned, then it will return directly.
+     * If the model's id is auto-increment, the id attribute will be marked safe.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
@@ -94,15 +96,16 @@ trait IDTrait {
      */
     public function onInitIdAttribute($event) {
         $sender = $event->sender;
-        if ($sender->idPreassigned || $sender->idAttributeType === self::$idTypeAutoIncrement) {
+        if ($sender->idPreassigned) {
+            return;
+        }
+        if ($sender->idAttributeType === self::$idTypeAutoIncrement) {
             $sender->idAttributeSafe = true;
             return;
         }
-        if ($sender->idAttribute !== false &&
-                is_string($sender->idAttribute) &&
+        if (is_string($sender->idAttribute) &&
                 is_int($sender->idAttributeLength) &&
-                $sender->idAttributeLength > 0 &&
-                $sender->idAttributeType != self::$idTypeAutoIncrement) {
+                $sender->idAttributeLength > 0) {
             $idAttribute = $sender->idAttribute;
             $sender->$idAttribute = $sender->generateId();
         }

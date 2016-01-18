@@ -82,4 +82,15 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
         parent::init();
     }
 
+    /**
+     * @inheritdoc
+     */
+    public static function instantiate($row) {
+        $self = static::buildNoInitModel();
+        if ($row[$self->idAttribute]) {
+            return new static(['idPreassigned' => true]);
+        }
+        return new static;
+    }
+
 }
