@@ -71,10 +71,16 @@ class BaseUserModelTest extends TestCase {
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
         $this->assertTrue($user->deregister());
+        
         $user = new User(['idPreassigned' => true, 'id' => 123456]);
         $this->assertTrue($user->register());
         $this->assertEquals(123456, $user->id);
         $this->assertTrue($user->deregister());
+        
+        $user = new User(['idPreassigned' => true, 'id' => 'abcdefg']);
+        $this->assertNotNull($user->register());
+        $this->assertNotEmpty($user->errors);
+        
         $user = new User(['id' => 123456]);
         $this->assertTrue($user->register());
         $this->assertNotEquals(123456, $user->id);
