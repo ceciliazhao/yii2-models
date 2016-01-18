@@ -25,7 +25,11 @@ use Yii;
 class BaseUserModelTest extends TestCase {
 
     public function testInit() {
-        //User::deleteAll();
+        $users = [];
+        for ($i = 0; $i < 3072; $i++) {
+            $users[] = new User();
+        }
+        $this->assertEquals(3072, count($users));
     }
 
     /**
@@ -33,7 +37,8 @@ class BaseUserModelTest extends TestCase {
      */
     public function testNewUser() {
         $user = new User();
-        $this->assertNotEmpty($user);
+        $this->assertNotNull($user);
+        $this->assertTrue($user->register());
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(1, $user->$statusAttribute);
         $password = '123456';
@@ -41,6 +46,7 @@ class BaseUserModelTest extends TestCase {
         $passwordHashAttribute = $user->passwordHashAttribute;
         $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
         $this->assertEquals(false, $this->validatePassword('1234567', $user->$passwordHashAttribute));
+        $this->assertTrue($user->deregister());
     }
 
     /**
@@ -60,9 +66,19 @@ class BaseUserModelTest extends TestCase {
      */
     public function testID() {
         $user = new User();
+        $this->assertTrue($user->register());
         $this->assertNotEmpty($user->id);
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
+        $this->assertTrue($user->deregister());
+        $user = new User(['idPreassigned' => true, 'id' => 123456]);
+        $this->assertTrue($user->register());
+        $this->assertEquals(123456, $user->id);
+        $this->assertTrue($user->deregister());
+        $user = new User(['id' => 123456]);
+        $this->assertTrue($user->register());
+        $this->assertNotEquals(123456, $user->id);
+        $this->assertTrue($user->deregister());
     }
 
     /**
@@ -77,19 +93,19 @@ class BaseUserModelTest extends TestCase {
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['enableIP' => User::$ipv4, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
         $this->assertEquals(User::$ipv4, $user->enableIP);
         $this->assertEquals(0, $user->ipAddress);
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['enableIP' => User::$ipv6, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
         $this->assertEquals(User::$ipv6, $user->enableIP);
         $this->assertEquals($ipAddress, $user->ipAddress);
         $this->assertTrue($user->deregister());
-        
+
         $ipAddress = '127.0.0.1';
         $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
@@ -98,13 +114,13 @@ class BaseUserModelTest extends TestCase {
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv4, $user->$ipTypeAttribute);
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['enableIP' => User::$ipv4, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
         $this->assertEquals(User::$ipv4, $user->enableIP);
         $this->assertEquals($ipAddress, $user->ipAddress);
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['enableIP' => User::$ipv6, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
         $this->assertEquals(User::$ipv6, $user->enableIP);
@@ -137,14 +153,18 @@ class BaseUserModelTest extends TestCase {
 
         $user->password = $password;
         $passwordHashAttribute = $user->passwordHashAttribute;
-        $this->assertEquals(true, $this->validatePassword($password, $user->$passwordHashAttribute));
-        $this->assertEquals(false, $this->validatePassword($password . ' ', $user->$passwordHashAttribute));
+        $this->assertTrue($this->validatePassword($password, $user->$passwordHashAttribute));
+        $this->assertFalse($this->validatePassword($password . ' ', $user->$passwordHashAttribute));
     }
 
     public function onResetPasswordFailed($event) {
         $sender = $event->sender;
         var_dump($sender->errors);
         $this->assertFalse(true);
+    }
+
+    private function validatePassword($password, $hash) {
+        return Yii::$app->security->validatePassword($password, $hash);
     }
 
     /**
@@ -168,7 +188,7 @@ class BaseUserModelTest extends TestCase {
     public function testStatus() {
         $user = new User();
         $statusAttribute = $user->statusAttribute;
-        $this->assertEquals(1, $user->$statusAttribute);
+        $this->assertEquals(User::$statusActive, $user->$statusAttribute);
     }
 
     /**
@@ -193,12 +213,21 @@ class BaseUserModelTest extends TestCase {
         $this->assertTrue($user->deregister());
     }
 
+    public $beforeRegisterEvent = '';
+    public $afterRegisterEvent = '';
+    public $beforeDeregisterEvent = '';
+    public $afterDeregisterEvent = '';
+
     /**
      * @depends testTimestamp
      */
     public function testRegister() {
         $user = new User();
+        $user->on(User::$eventBeforeRegister, [$this, 'onBeforeRegister']);
+        $user->on(User::$eventAfterRegister, [$this, 'onAfterRegister']);
         $this->assertTrue($user->register());
+        $this->assertEquals('beforeRegister', $this->beforeRegisterEvent);
+        $this->assertEquals('afterRegister', $this->afterRegisterEvent);
         $authKeyAttribute = $user->authKeyAttribute;
         $this->assertEquals(40, strlen($user->$authKeyAttribute));
         $accessTokenAttribute = $user->accessTokenAttribute;
@@ -207,11 +236,35 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals($user->sourceSelf, $user->$sourceAttribute);
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(User::$statusActive, $user->$statusAttribute);
+        $user->on(User::$eventBeforeDeregister, [$this, 'onBeforeDeregister']);
+        $user->on(User::$eventAfterDeregister, [$this, 'onAfterDeregister']);
         $this->assertTrue($user->deregister());
+        $this->assertEquals('beforeDeregister', $this->beforeDeregisterEvent);
+        $this->assertEquals('afterDeregister', $this->afterDeregisterEvent);
     }
 
-    private function validatePassword($password, $hash) {
-        return Yii::$app->security->validatePassword($password, $hash);
+    public function onBeforeRegister($event) {
+        $sender = $event->sender;
+        $this->assertInstanceOf(User::className(), $sender);
+        $this->beforeRegisterEvent = 'beforeRegister';
+    }
+
+    public function onAfterRegister($event) {
+        $sender = $event->sender;
+        $this->assertInstanceOf(User::className(), $sender);
+        $this->afterRegisterEvent = 'afterRegister';
+    }
+
+    public function onBeforeDeregister($event) {
+        $sender = $event->sender;
+        $this->assertInstanceOf(User::className(), $sender);
+        $this->beforeDeregisterEvent = 'beforeDeregister';
+    }
+
+    public function onAfterDeregister($event) {
+        $sender = $event->sender;
+        $this->assertInstanceOf(User::className(), $sender);
+        $this->afterDeregisterEvent = 'afterDeregister';
     }
 
     /**
