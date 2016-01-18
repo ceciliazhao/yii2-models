@@ -167,7 +167,7 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Get one user's all relations.
      * @param \vistart\Models\models\BaseUserModel $user
      * @return array
      */
@@ -176,7 +176,7 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Get one user's all relations.
      * @param srting $userGuid
      * @return array
      */
@@ -185,7 +185,7 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Initialize groups attribute.
      * @param \yii\base\Event $event
      */
     public function onInitGroups($event) {
@@ -194,15 +194,13 @@ trait UserRelationTrait {
     }
 
     /**
-     * 
+     * Initialize remark attribute.
      * @param \yii\base\Event $event
      */
     public function onInitRemark($event) {
         $sender = $event->sender;
         $remarkAttribute = $sender->remarkAttribute;
-        if (is_string($remarkAttribute)) {
-            $sender->$remarkAttribute = '';
-        }
+        is_string($remarkAttribute) ? $sender->$remarkAttribute = '' : null;
     }
 
     /**

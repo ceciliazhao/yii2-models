@@ -88,6 +88,9 @@ trait RegistrationTrait {
      * @throws \yii\db\IntegrityException when deleting user failed.
      */
     public function deregister() {
+        if ($this->isNewRecord) {
+            return false;
+        }
         $this->trigger(static::$eventBeforeDeregister);
         $transaction = $this->getDb()->beginTransaction();
         try {

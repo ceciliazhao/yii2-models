@@ -159,7 +159,7 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Get content.
      * @return mixed
      */
     public function getContent() {
@@ -177,7 +177,7 @@ trait BlameableTrait {
     }
 
     /**
-     * 
+     * Set content.
      * @param mixed $content
      */
     public function setContent($content) {
@@ -281,6 +281,9 @@ trait BlameableTrait {
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
             $rules[] = [
                 [$this->descriptionAttribute], 'string'
+            ];
+            $rules[] = [
+                [$this->descriptionAttribute], 'default', 'value' => $this->initDescription,
             ];
         }
         return $rules;

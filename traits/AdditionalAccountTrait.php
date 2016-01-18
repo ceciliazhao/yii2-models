@@ -39,6 +39,10 @@ trait AdditionalAccountTrait {
      */
     public $independentPassword = false;
 
+    /**
+     * 
+     * @return boolean
+     */
     public function getCanBeLogon() {
         if (!$this->enableLoginAttribute) {
             return false;
