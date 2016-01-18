@@ -30,6 +30,7 @@ trait UserTrait {
      * @param string $className Full qualified class name.
      * @param array $config name-value pairs that will be used to initialize
      * the object properties.
+     * @return $className
      */
     public function create($className, $config = []) {
         if (!isset($config['userClass'])) {
@@ -39,6 +40,21 @@ trait UserTrait {
         $createdByAttribute = $entity->createdByAttribute;
         $entity->$createdByAttribute = $this->guid;
         return $entity;
+    }
+
+    /**
+     * Find existed or create new model.
+     * @param string $className
+     * @param array $config
+     * @param array $condition
+     * @return $className
+     */
+    public function findOrCreate($className, $condition = [], $config = []) {
+        $model = $className::findOne($condition);
+        if (!$model) {
+            $model = $this->create($className, $config);
+        }
+        return $model;
     }
 
     /**

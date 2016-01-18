@@ -50,6 +50,10 @@ class BaseUserEmailTest extends TestCase {
         // 此时属于该用户的 email 应该只有一个。
         $this->assertEquals(1, $email->count());
         
+        $email_guid = $user->userEmails[0]->guid;
+        $email = $user->findOrCreate(UserEmail::className(), [$email->guidAttribute, $email_guid]);
+        $this->assertEquals($email_guid, $email->guid);
+        
         $guid = $user->guid;
         // 此处应该注销成功。
         $this->assertTrue($user->deregister());
