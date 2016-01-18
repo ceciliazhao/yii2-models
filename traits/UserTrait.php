@@ -49,7 +49,11 @@ trait UserTrait {
      * @param array $condition
      * @return $className
      */
-    public function findOrCreate($className, $condition = [], $config = []) {
+    public function findOneOrCreate($className, $condition = [], $config = []) {
+        $entity = new $className(['skipInit' => true]);
+        if (!isset($condition[$entity->createdByAttribute])) {
+            $condition[$entity->createdByAttribute] = $this->guid;
+        }
         $model = $className::findOne($condition);
         if (!$model) {
             $model = $this->create($className, $config);

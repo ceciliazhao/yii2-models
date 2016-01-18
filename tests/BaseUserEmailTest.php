@@ -51,7 +51,9 @@ class BaseUserEmailTest extends TestCase {
         $this->assertEquals(1, $email->count());
         
         $email_guid = $user->userEmails[0]->guid;
-        $email = $user->findOrCreate(UserEmail::className(), [$email->guidAttribute, $email_guid]);
+        $email = $user->findOneOrCreate(UserEmail::className());
+        $this->assertEquals($email_guid, $email->guid);
+        $email = $user->findOneOrCreate(UserEmail::className(), [$email->guidAttribute, $email_guid]);
         $this->assertEquals($email_guid, $email->guid);
         
         $guid = $user->guid;
