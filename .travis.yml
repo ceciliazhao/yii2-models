@@ -31,6 +31,7 @@ cache:
         - $HOME/.composer/cache
 
 install:
+    - travis_retry phpunit --selfupdate
     - travis_retry composer self-update && composer --version
     - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
     - export PATH="$HOME/.composer/vendor/bin/:$PATH"
@@ -39,6 +40,7 @@ install:
 before_script:
     - php -r "echo INTL_ICU_VERSION . \"\n\";"
     - php -v
+    - phpunit --version
     - mysql --version
     - mysql -uroot < tests/data/yii2-models.sql
         
