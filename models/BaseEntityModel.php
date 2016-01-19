@@ -28,11 +28,6 @@ abstract class BaseEntityModel extends ActiveRecord {
     use EntityTrait;
 
     /**
-     * @var string the name of query class or sub-class.
-     */
-    public $queryClass;
-
-    /**
      * Initialize new entity.
      */
     public function init() {

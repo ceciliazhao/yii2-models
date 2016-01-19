@@ -54,6 +54,11 @@ trait EntityTrait {
     public $skipInit = false;
 
     /**
+     * @var string the name of query class or sub-class.
+     */
+    public $queryClass;
+
+    /**
      * @return \static New self without any initializations.
      */
     public static function buildNoInitModel() {

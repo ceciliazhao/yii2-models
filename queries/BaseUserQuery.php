@@ -15,6 +15,7 @@ namespace vistart\Models\queries;
 /**
  * Description of BaseUserQuery
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 class BaseUserQuery extends BaseEntityQuery {

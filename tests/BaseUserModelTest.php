@@ -26,10 +26,22 @@ class BaseUserModelTest extends TestCase {
 
     public function testInit() {
         $users = [];
-        for ($i = 0; $i < 3072; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $users[] = new User();
         }
-        $this->assertEquals(3072, count($users));
+        foreach ($users as $key => $user) {
+            if ($user->register() !== true) {
+                unset($users[$key]);
+            }
+        }
+        $count = count($users);
+        echo ("$count users has been registered successfully.\n");
+        echo ("The success rate is " . $count / 10 . "%.");
+        foreach ($users as $user) {
+            if ($user->deregister() !== true) {
+                $this->assertTrue(false);
+            }
+        }
     }
 
     /**

@@ -30,6 +30,9 @@ abstract class BaseUserRelationModel extends BaseBlameableModel {
     public $updatedByAttribute = false;
 
     public function init() {
+        if (!is_string($this->queryClass)) {
+            $this->queryClass = \vistart\Models\queries\BaseUserRelationQuery::className();
+        }
         if ($this->skipInit)
             return;
         $this->initUserRelationEvents();

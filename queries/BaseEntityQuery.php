@@ -17,6 +17,7 @@ use vistart\Models\traits\EntityQueryTrait;
 /**
  * Description of BaseEntityQuery
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 class BaseEntityQuery extends \yii\db\ActiveQuery {

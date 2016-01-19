@@ -37,7 +37,7 @@ class BaseUserRelationTest extends TestCase {
         }
     }
 
-    private function prepareBidirectionalRelationModels($user, $other, $bi_type = null) {
+    private function prepareMutualRelationModels($user, $other, $bi_type = null) {
         $initRelation = UserRelation::buildNoInitModel();
         if (!$bi_type)
             $bi_type = UserRelation::$mutualTypeNormal;
@@ -55,7 +55,13 @@ class BaseUserRelationTest extends TestCase {
             $this->assertInstanceOf(UserRelation::className(), $opposite);
             $opposite = $relation->opposite;
             $this->assertInstanceOf(UserRelation::className(), $opposite);
+            $opposite = UserRelation::find()->opposite($user, $other);
+            $this->assertInstanceOf(UserRelation::className(), $opposite);
+
             $opposites = UserRelation::findAllOppositeRelations($user, $other);
+            $this->assertEquals(1, count($opposites));
+
+            $opposites = UserRelation::find()->opposites($user, [$other->guid]);
             $this->assertEquals(1, count($opposites));
         } else {
             var_dump($relation->rules());
@@ -69,7 +75,7 @@ class BaseUserRelationTest extends TestCase {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
-        $relations = $this->prepareBidirectionalRelationModels($user, $other);
+        $relations = $this->prepareMutualRelationModels($user, $other);
         $this->destroyUsers($users);
     }
 
@@ -83,14 +89,14 @@ class BaseUserRelationTest extends TestCase {
         echo "Initiator:" . $user->guid . "\n";
         echo "Recipient:" . $other->guid . "\n";
 
-        $this->prepareBidirectionalRelationModels($user, $other);
+        $this->prepareMutualRelationModels($user, $other);
         UserRelation::removeOneRelation($user, $other);
         $relations = UserRelation::findAllRelations($user, $other);
         $this->assertEmpty($relations);
         $opposites = UserRelation::findAllOppositeRelations($user, $other);
         $this->assertEmpty($opposites);
 
-        $relations = $this->prepareBidirectionalRelationModels($user, $other);
+        $relations = $this->prepareMutualRelationModels($user, $other);
         $this->assertEquals(1, $relations[0]->remove());
         $relations = UserRelation::findAllRelations($user, $other);
         $this->assertEmpty($relations);
@@ -107,7 +113,7 @@ class BaseUserRelationTest extends TestCase {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
-        $this->prepareBidirectionalRelationModels($user, $other);
+        $this->prepareMutualRelationModels($user, $other);
         if ($user->deregister()) {
             $this->assertTrue(true);
             $relations = UserRelation::findAllRelations($user, $other);
@@ -126,7 +132,7 @@ class BaseUserRelationTest extends TestCase {
      */
     public function testFavorite() {
         $users = $this->prepareUsers();
-        $relations = $this->prepareBidirectionalRelationModels($users[0], $users[1]);
+        $relations = $this->prepareMutualRelationModels($users[0], $users[1]);
         $favoriteAttribute = $relations[0]->favoriteAttribute;
         $this->assertEquals(0, $relations[0]->$favoriteAttribute);
         $this->assertFalse($relations[0]->isFavorite);
@@ -146,7 +152,7 @@ class BaseUserRelationTest extends TestCase {
         $other = $users[1];
 
         // 测试双向关系类型和重建。
-        $relations = $this->prepareBidirectionalRelationModels($user, $other, UserRelation::$mutualTypeNormal);
+        $relations = $this->prepareMutualRelationModels($user, $other, UserRelation::$mutualTypeNormal);
         $mutualTypeAttribute = $relations[0]->mutualTypeAttribute;
         $this->assertEquals(UserRelation::$mutualTypeNormal, $relations[0]->$mutualTypeAttribute);
         $rguid = $relations[0]->guid;
@@ -157,7 +163,7 @@ class BaseUserRelationTest extends TestCase {
         $rupdatetime = $relations[0]->$rupdatedAt;
         //$this->assertGreaterThanOrEqual(1, $relations[0]->remove());
         sleep(1); //延时一秒，测试修改。
-        $relations = $this->prepareBidirectionalRelationModels($user, $other, UserRelation::$mutualTypeSuspend);
+        $relations = $this->prepareMutualRelationModels($user, $other, UserRelation::$mutualTypeSuspend);
         $this->assertEquals($rguid, $relations[0]->guid);
         $this->assertEquals($oguid, $relations[1]->guid);
         $this->assertEquals($rcreatetime, $relations[0]->$rcreatedAt);
@@ -177,7 +183,7 @@ class BaseUserRelationTest extends TestCase {
         $users = $this->prepareUsers();
 
         // 准备两个用户之间的双向关系
-        $relations = $this->prepareBidirectionalRelationModels($users[0], $users[1]);
+        $relations = $this->prepareMutualRelationModels($users[0], $users[1]);
 
         // 第一个用户的主动关系
         $relation = $relations[0];
