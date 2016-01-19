@@ -96,7 +96,10 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-vistart.Models.queries.BaseBlameableQuery.html">BaseBlameableQuery</a></li>
 				<li class="active"><a href="class-vistart.Models.queries.BaseEntityQuery.html">BaseEntityQuery</a></li>
+				<li><a href="class-vistart.Models.queries.BaseMongoEntityQuery.html">BaseMongoEntityQuery</a></li>
+				<li><a href="class-vistart.Models.queries.BaseRedisEntityQuery.html">BaseRedisEntityQuery</a></li>
 				<li><a href="class-vistart.Models.queries.BaseUserQuery.html">BaseUserQuery</a></li>
 				<li><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">BaseUserRelationQuery</a></li>
 			</ul>
@@ -161,7 +164,7 @@ yii\db\ActiveQuery
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseEntityQuery.html#17-47" title="Go to source code">queries/BaseEntityQuery.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseEntityQuery.html#17-33" title="Go to source code">queries/BaseEntityQuery.php</a>
 		<br>
 	</div>
 
@@ -199,44 +202,6 @@ yii\db\ActiveQuery
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="id" id="_id">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_id">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseEntityQuery.html#34-46" title="Go to source code">id</a>( <span>string|integer|array <var>$id</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$id</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 			</table>
 		</div>
 
@@ -244,7 +209,11 @@ yii\db\ActiveQuery
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityQueryTrait.html#methods">vistart\Models\traits\EntityQueryTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_initNoModel">initNoModel()</a></code>
+				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_buildNoInitModel">buildNoInitModel()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_createdAtRange">createdAtRange()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_id">id()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_timeRange">timeRange()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityQueryTrait.html#_updatedAtRange">updatedAtRange()</a></code>
 			</p>
 		</div>
 

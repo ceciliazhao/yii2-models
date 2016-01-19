@@ -23,11 +23,58 @@ trait EntityQueryTrait
 
     public $noInitModel;
 
-    public function initNoModel()
+    public function buildNoInitModel()
     {
         if (empty($this->noInitModel) && is_string($this->modelClass)) {
             $modelClass = $this->modelClass;
             $this->noInitModel = $modelClass::buildNoInitModel();
         }
+    }
+
+    /**
+     * 
+     * @param string|integer|array $id
+     * @param false|string $like false, 'like', 'or like', 'not like', 'and like'.
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function id($id, $like = false)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->idAttribute)) {
+            return $this;
+        }
+        if ($like) {
+            return $this->andWhere([$like, $model->idAttribute, $id]);
+        }
+        return $this->andWhere([$model->idAttribute => $id]);
+    }
+
+    public function createdAtRange($start = null, $end = null)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->createdByAttribute)) {
+            return $this;
+        }
+        return static::timeRange($this, $model->createdByAttribute, $start, $end);
+    }
+
+    public function updatedAtRange($start = null, $end = null)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->updatedByAttribute)) {
+            return $this;
+        }
+        return static::timeRange($this, $model->updatedByAttribute, $start, $end);
+    }
+
+    protected static function timeRange($query, $attribute, $start = null, $end = null)
+    {
+        if (!empty($start)) {
+            $query = $query->andWhere(['>=', $attribute, $start]);
+        }
+        if (!empty($end)) {
+            $query = $query->andWhere(['<', $attribute, $end]);
+        }
+        return $query;
     }
 }

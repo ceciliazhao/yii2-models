@@ -27,21 +27,7 @@ class BaseEntityQuery extends \yii\db\ActiveQuery
 
     public function init()
     {
-        $this->initNoModel();
+        $this->buildNoInitModel();
         parent::init();
-    }
-
-    /**
-     * 
-     * @param string|integer|array $id
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function id($id)
-    {
-        $model = $this->noInitModel;
-        if (!is_string($model->idAttribute)) {
-            return $this;
-        }
-        return $this->andWhere([$model->idAttribute => $id]);
     }
 }

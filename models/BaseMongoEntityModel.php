@@ -12,6 +12,7 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\queries\BaseMongoEntityQuery;
 use vistart\Models\traits\EntityTrait;
 
 /**
@@ -35,5 +36,19 @@ abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
         }
         $this->initEntityEvents();
         parent::init();
+    }
+
+    /**
+     * @inheritdoc
+     * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
+     */
+    public static function find()
+    {
+        $self = static::buildNoInitModel();
+        if (!is_string($self->queryClass)) {
+            $self->queryClass = BaseMongoEntityQuery::className();
+        }
+        $queryClass = $self->queryClass;
+        return new $queryClass(get_called_class(), ['noInitModel' => $self]);
     }
 }

@@ -99,6 +99,7 @@
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-vistart.Models.traits.AdditionalAccountTrait.html">AdditionalAccountTrait</a></li>
+				<li><a href="class-vistart.Models.traits.BlameableQueryTrait.html">BlameableQueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.BlameableTrait.html">BlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.ConfirmationTrait.html">ConfirmationTrait</a></li>
 				<li class="active"><a href="class-vistart.Models.traits.EntityQueryTrait.html">EntityQueryTrait</a></li>
@@ -143,7 +144,9 @@
 	<div>
 		<h3>Direct Known Users</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.queries.BaseEntityQuery.html">vistart\Models\queries\BaseEntityQuery</a></code>
+			<code><a href="class-vistart.Models.queries.BaseEntityQuery.html">vistart\Models\queries\BaseEntityQuery</a></code>, 
+			<code><a href="class-vistart.Models.queries.BaseMongoEntityQuery.html">vistart\Models\queries\BaseMongoEntityQuery</a></code>, 
+			<code><a href="class-vistart.Models.queries.BaseRedisEntityQuery.html">vistart\Models\queries\BaseRedisEntityQuery</a></code>
 		</p>
 	</div>
 
@@ -165,7 +168,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityQueryTrait.html#15-33" title="Go to source code">traits/EntityQueryTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityQueryTrait.html#15-80" title="Go to source code">traits/EntityQueryTrait.php</a>
 		<br>
 	</div>
 
@@ -174,7 +177,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="initNoModel" id="_initNoModel">
+		<tr data-order="buildNoInitModel" id="_buildNoInitModel">
 
 			<td class="attributes"><code>
 				 public 
@@ -184,8 +187,135 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_initNoModel">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#26-32" title="Go to source code">initNoModel</a>( )</code>
+			<a class="anchor" href="#_buildNoInitModel">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#26-32" title="Go to source code">buildNoInitModel</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="id" id="_id">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_id">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#34-50" title="Go to source code">id</a>( <span>string|integer|array <var>$id</var></span>, <span>false|string <var>$like</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd></dd>
+						<dt><var>$like</var></dt>
+						<dd>false, 'like', 'or like', 'not like', 'and like'.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createdAtRange" id="_createdAtRange">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createdAtRange">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#52-59" title="Go to source code">createdAtRange</a>( <span> <var>$start</var> = <span class="php-keyword1">null</span></span>, <span> <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="updatedAtRange" id="_updatedAtRange">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updatedAtRange">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#61-68" title="Go to source code">updatedAtRange</a>( <span> <var>$start</var> = <span class="php-keyword1">null</span></span>, <span> <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="timeRange" id="_timeRange">
+
+			<td class="attributes"><code>
+				 protected static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_timeRange">#</a>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#70-79" title="Go to source code">timeRange</a>( <span> <var>$query</var></span>, <span> <var>$attribute</var></span>, <span> <var>$start</var> = <span class="php-keyword1">null</span></span>, <span> <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				

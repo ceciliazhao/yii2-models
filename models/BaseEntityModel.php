@@ -13,6 +13,7 @@
 namespace vistart\Models\models;
 
 use yii\db\ActiveRecord;
+use vistart\Models\queries\BaseEntityQuery;
 use vistart\Models\traits\EntityTrait;
 
 /**
@@ -66,10 +67,9 @@ abstract class BaseEntityModel extends ActiveRecord
      */
     public static function find()
     {
-        parent::find();
         $self = static::buildNoInitModel();
         if (!is_string($self->queryClass)) {
-            $self->queryClass = \vistart\Models\queries\BaseEntityQuery::className();
+            $self->queryClass = BaseEntityQuery::className();
         }
         $queryClass = $self->queryClass;
         return new $queryClass(get_called_class(), ['noInitModel' => $self]);

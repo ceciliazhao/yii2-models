@@ -24,6 +24,10 @@ class BaseMongoBlameableModel extends BaseMongoEntityModel
 
     use BlameableTrait;
 
+    /**
+     * Because every document has a `MongoId" class, this class is no longer needed GUID feature.
+     * @var boolean determines whether enable the GUID features.
+     */
     public $guidAttribute = false;
 
     public function attributes()
