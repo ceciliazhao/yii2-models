@@ -31,7 +31,7 @@ trait RegistrationTrait {
     public static $eventDeregisterFailed = "deregisterFailed";
     public $sourceAttribute = 'source';
     private $_sourceRules = [];
-    public $sourceSelf = '0';
+    public static $sourceSelf = '0';
 
     /**
      * Register new user.
@@ -168,7 +168,7 @@ trait RegistrationTrait {
     public function onInitSourceAttribute($event) {
         $sender = $event->sender;
         $sourceAttribute = $sender->sourceAttribute;
-        $sender->$sourceAttribute = $sender->sourceSelf;
+        $sender->$sourceAttribute = static::$sourceSelf;
     }
 
 }

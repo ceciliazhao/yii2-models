@@ -71,6 +71,9 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
      * statement at the end of your init() method.
      */
     public function init() {
+        if (!is_string($this->queryClass)) {
+            $this->queryClass = \vistart\Models\queries\BaseUserQuery::className();
+        }
         if ($this->skipInit)
             return;
         $this->on(self::$eventNewRecordCreated, [$this, 'onInitStatusAttribute']);
@@ -84,10 +87,13 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
 
     /**
      * @inheritdoc
+     * -------------
+     * if enable `$idAttribute` and $row[$idAttribute] set, the `idPreassigned`
+     * will be assigned to true.
      */
     public static function instantiate($row) {
         $self = static::buildNoInitModel();
-        if ($row[$self->idAttribute]) {
+        if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
             return new static(['idPreassigned' => true]);
         }
         return new static;

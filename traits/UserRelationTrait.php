@@ -55,18 +55,25 @@ trait UserRelationTrait {
      * @var string
      */
     public $remarkAttribute = 'remark';
+    public static $relationUni = 0;
+    public static $relationTwoway = 1;
+    public $relationType = 1;
+    public $relationTypes = [
+        0 => 'Uni',
+        1 => 'Two-way',
+    ];
 
     /**
      * @var string the attribute name of which determines the relation type.
      */
-    public $bidirectionalTypeAttribute = 'type';
-    public static $bidirectionalTypeNormal = 0x00;
-    public static $bidirectionalTypeSuspend = 0x01;
+    public $mutualTypeAttribute = 'type';
+    public static $mutualTypeNormal = 0x00;
+    public static $mutualTypeSuspend = 0x01;
 
     /**
      * @var array 
      */
-    public $bidirectionalTypes = [
+    public $mutualTypes = [
         0x00 => 'Normal',
         0x01 => 'Suspend',
     ];
@@ -107,8 +114,8 @@ trait UserRelationTrait {
      */
     public function getUserRelationRules() {
         return array_merge([
-            [[$this->bidirectionalTypeAttribute], 'integer'],
-            [[$this->bidirectionalTypeAttribute], 'default', 'value' => static::$bidirectionalTypeNormal],
+            [[$this->mutualTypeAttribute], 'integer'],
+            [[$this->mutualTypeAttribute], 'default', 'value' => static::$mutualTypeNormal],
                 ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
     }
 
@@ -159,7 +166,7 @@ trait UserRelationTrait {
      */
     public function getOtherGuidRules() {
         $rules = [
-            [[$this->otherGuidAttribute, $this->bidirectionalTypeAttribute], 'required'],
+            [[$this->otherGuidAttribute, $this->mutualTypeAttribute], 'required'],
             [[$this->otherGuidAttribute], 'string', 'max' => 36],
             [[$this->otherGuidAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->otherGuidAttribute, $this->createdByAttribute]],
         ];
@@ -238,8 +245,8 @@ trait UserRelationTrait {
      */
     public static function buildSuspendRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
-        $btAttribute = $relation->bidirectionalTypeAttribute;
-        $relation->$btAttribute = static::$bidirectionalTypeSuspend;
+        $btAttribute = $relation->mutualTypeAttribute;
+        $relation->$btAttribute = static::$mutualTypeSuspend;
         return $relation;
     }
 
@@ -252,8 +259,8 @@ trait UserRelationTrait {
      */
     public static function buildNormalRelation($user, $other) {
         $relation = static::buildRelation($user, $other);
-        $btAttribute = $relation->bidirectionalTypeAttribute;
-        $relation->$btAttribute = static::$bidirectionalTypeNormal;
+        $btAttribute = $relation->mutualTypeAttribute;
+        $relation->$btAttribute = static::$mutualTypeNormal;
         return $relation;
     }
 
@@ -297,9 +304,9 @@ trait UserRelationTrait {
     protected static function buildOppositeRelation($relation) {
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
-        $bidirectionalTypeAttribute = $relation->bidirectionalTypeAttribute;
+        $mutualTypeAttribute = $relation->mutualTypeAttribute;
         $opposite = static::buildRelationByUserGuid($relation->$otherGuidAttribute, $relation->$createdByAttribute);
-        $opposite->$bidirectionalTypeAttribute = $relation->$bidirectionalTypeAttribute;
+        $opposite->$mutualTypeAttribute = $relation->$mutualTypeAttribute;
         return $opposite;
     }
 

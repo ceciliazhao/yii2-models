@@ -71,16 +71,18 @@ class BaseUserModelTest extends TestCase {
         $idAttribute = $user->idAttribute;
         $this->assertEquals($user->id, $user->$idAttribute);
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['idPreassigned' => true, 'id' => 123456]);
         $this->assertTrue($user->register());
         $this->assertEquals(123456, $user->id);
+
+        $user = User::find()->id(123456)->one();
         $this->assertTrue($user->deregister());
-        
+
         $user = new User(['idPreassigned' => true, 'id' => 'abcdefg']);
         $this->assertNotNull($user->register());
         $this->assertNotEmpty($user->errors);
-        
+
         $user = new User(['id' => 123456]);
         $this->assertTrue($user->register());
         $this->assertNotEquals(123456, $user->id);
@@ -193,12 +195,43 @@ class BaseUserModelTest extends TestCase {
      */
     public function testStatus() {
         $user = new User();
+        $guidAttribute = $user->guidAttribute;
+        $guid = $user->guid;
+        $this->assertTrue($user->register());
+        $user = User::findOne($guid);
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(User::$statusActive, $user->$statusAttribute);
+
+        $user = User::find()->where([$guidAttribute => $guid])->active(User::$statusInactive)->one();
+        $this->assertNull($user);
+
+        $user = User::find()->where([$guidAttribute => $guid])->active(User::$statusActive)->one();
+        $this->assertInstanceOf(User::className(), $user);
+        $this->assertTrue($user->deregister());
     }
 
     /**
      * @depends testStatus
+     */
+    public function testSource() {
+        $user = new User();
+        $guid = $user->guid;
+        $guidAttribute = $user->guidAttribute;
+        $this->assertTrue($user->register());
+        $user = User::findOne($guid);
+        $sourceAttribute = $user->sourceAttribute;
+        $this->assertEquals(User::$sourceSelf, $user->$sourceAttribute);
+
+        $user = User::find()->where([$guidAttribute => $guid])->source('1')->one();
+        $this->assertNull($user);
+
+        $user = User::find()->where([$guidAttribute => $guid])->source()->one();
+        $this->assertInstanceOf(User::className(), $user);
+        $this->assertTrue($user->deregister());
+    }
+
+    /**
+     * @depends testSource
      */
     public function testTimestamp() {
         $user = new User();
@@ -239,7 +272,7 @@ class BaseUserModelTest extends TestCase {
         $accessTokenAttribute = $user->accessTokenAttribute;
         $this->assertEquals(40, strlen($user->$accessTokenAttribute));
         $sourceAttribute = $user->sourceAttribute;
-        $this->assertEquals($user->sourceSelf, $user->$sourceAttribute);
+        $this->assertEquals(User::$sourceSelf, $user->$sourceAttribute);
         $statusAttribute = $user->statusAttribute;
         $this->assertEquals(User::$statusActive, $user->$statusAttribute);
         $user->on(User::$eventBeforeDeregister, [$this, 'onBeforeDeregister']);
