@@ -11,7 +11,7 @@ matrix:
     allow_failures:
         - php: 5.4
         
-sudo: false
+sudo: true
 
 branches:
     except:
@@ -43,7 +43,7 @@ before_script:
     - mysql -uroot < tests/data/yii2-models.sql
     - |
         if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
-            wget phar.phpunit.de/phpunit.phar
+            travis_retry wget phar.phpunit.de/phpunit.phar
         fi
         
 script: 
