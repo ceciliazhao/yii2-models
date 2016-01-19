@@ -310,7 +310,7 @@ class BaseUserModelTest extends TestCase {
      * @depends testRegister
      * @large
      */
-    public function testNewUser256() {
+    public function atestNewUser256() {
         $users = [];
         for ($i = 0; $i < 256; $i++) {
             $password = '123456';

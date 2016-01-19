@@ -45,7 +45,6 @@ before_script:
         if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
             travis_retry wget https://phar.phpunit.de/phpunit.phar
             chmod +x phpunit.phar
-            mv -f phpunit.phar /usr/local/bin/phpunit
         fi
         
 script: 
