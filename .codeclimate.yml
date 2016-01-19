@@ -9,6 +9,7 @@ ratings:
         - components/**
         - models/**
         - traits/**
+        - queries/**
         
 engines:
     phpmd:
