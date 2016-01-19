@@ -92,7 +92,7 @@ trait PasswordTrait
     }
 
     /**
-     * 
+     * Get the rules associated with password reset token attribute.
      * @return array
      */
     public function getPasswordResetTokenRules()
@@ -107,7 +107,7 @@ trait PasswordTrait
     }
 
     /**
-     * 
+     * Set the rules associated with password reset token attribute.
      * @param type $rules
      */
     public function setPasswordResetTokenRules($rules)
@@ -150,7 +150,6 @@ trait PasswordTrait
 
     /**
      * Verifies a password against a hash.
-     * 
      * @param string $password The password to verify.
      * @return boolean whether the password is correct.
      */
@@ -172,13 +171,13 @@ trait PasswordTrait
      */
     public function setPassword($password)
     {
-        $passwordHashAttribute = $this->passwordHashAttribute;
-        $this->$passwordHashAttribute = Yii::$app->security->generatePasswordHash($password);
+        $phAttribute = $this->passwordHashAttribute;
+        $this->$phAttribute = Yii::$app->security->generatePasswordHash($password);
         $this->trigger(static::$eventAfterSetPassword);
     }
 
     /**
-     * 
+     * Apply new password.
      * @return boolean
      */
     public function applyNewPassword()
@@ -186,8 +185,8 @@ trait PasswordTrait
         if ($this->isNewRecord) {
             return false;
         }
-        $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
-        $this->$passwordResetTokenAttribute = static::generatePasswordResetToken();
+        $prtAttribute = $this->passwordResetTokenAttribute;
+        $this->$prtAttribute = static::generatePasswordResetToken();
         if (!$this->save()) {
             $this->trigger(static::$eventResetPasswordFailed);
             return false;
@@ -197,10 +196,11 @@ trait PasswordTrait
     }
 
     /**
-     * 
+     * Reset password with password reset token.
+     * It will validate password reset token, before reseting password.
      * @param string $password
      * @param string $token
-     * @return boolean
+     * @return boolean whether reset password successfully or not.
      */
     public function resetPassword($password, $token)
     {
@@ -251,7 +251,7 @@ trait PasswordTrait
     }
 
     /**
-     * 
+     * Initialize password reset token attribute.
      * @param \yii\base\Event $event
      */
     public function onInitPasswordResetToken($event)

@@ -197,7 +197,7 @@ trait IPTrait
     }
 
     /**
-     * 
+     * Get the rules associated with ip attributes.
      * @return array
      */
     public function getIpRules()

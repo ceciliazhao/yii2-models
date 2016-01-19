@@ -19,7 +19,7 @@ use Yii;
  * @property-read boolean $isConfirmed
  * @property integer $confirmation
  * @property-read array $confirmationRules
- * @property string $confirmCode the confirm code used for confirming the content. 
+ * @property string $confirmCode the confirm code used for confirming the content.
  * You can disable this attribute and create a new model for storing confirm code as
  * its low-frequency usage.
  * @version 2.0
@@ -29,17 +29,17 @@ trait ConfirmationTrait
 {
 
     /**
-     * @var int 
+     * @var int Unconfirmed.
      */
     public static $confirmFalse = 0;
 
     /**
-     * @var int 
+     * @var int Confirmed.
      */
     public static $confirmTrue = 1;
 
     /**
-     * @var string|boolean 
+     * @var string|false attribute name of confirmation, or false if disable confirmation features.
      */
     public $confirmationAttribute = false;
 
@@ -72,7 +72,7 @@ trait ConfirmationTrait
     public static $eventConfirmationSuceeded = "confirmationSucceeded";
 
     /**
-     * 
+     * Apply confirmation.
      * @return boolean
      * @throws \yii\base\NotSupportedException
      */
@@ -110,7 +110,7 @@ trait ConfirmationTrait
     }
 
     /**
-     * 
+     * Get confirm code.
      * @return string
      */
     public function getConfirmCode()
@@ -149,10 +149,11 @@ trait ConfirmationTrait
      */
     public function validateConfirmationCode($code)
     {
-        $confirmCodeAttribute = $this->confirmCodeAttribute;
-        if (!$confirmCodeAttribute)
+        $ccAttribute = $this->confirmCodeAttribute;
+        if (!$ccAttribute) {
             return true;
-        return $this->$confirmCodeAttribute === $code;
+        }
+        return $this->$ccAttribute === $code;
     }
 
     /**
@@ -161,8 +162,8 @@ trait ConfirmationTrait
      */
     public function getIsConfirmed()
     {
-        $confirmationAttribute = $this->confirmationAttribute;
-        return is_string($confirmationAttribute) ? $this->$confirmationAttribute > static::$confirmFalse : true;
+        $cAttribute = $this->confirmationAttribute;
+        return is_string($cAttribute) ? $this->$cAttribute > static::$confirmFalse : true;
     }
 
     /**
@@ -182,21 +183,21 @@ trait ConfirmationTrait
     }
 
     /**
-     * 
+     * Set confirmation.
      * @param mixed $value
      */
     public function setConfirmation($value)
     {
-        $confirmationAttribute = $this->confirmationAttribute;
-        if (!$confirmationAttribute) {
+        $cAttribute = $this->confirmationAttribute;
+        if (!$cAttribute) {
             return;
         }
-        $this->$confirmationAttribute = $value;
+        $this->$cAttribute = $value;
         $this->trigger(self::$eventConfirmationChanged);
     }
 
     /**
-     * 
+     * Get confirmation.
      * @return mixed
      */
     public function getConfirmation()
@@ -217,8 +218,9 @@ trait ConfirmationTrait
     {
         $sender = $event->sender;
         $cAttribute = $sender->confirmationAttribute;
-        if (!$cAttribute)
+        if (!$cAttribute) {
             return;
+        }
         if ($sender->isAttributeChanged($cAttribute)) {
             $sender->confirmCode = '';
             if ($sender->$cAttribute == self::$confirmFalse) {

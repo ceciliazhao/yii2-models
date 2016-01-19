@@ -31,7 +31,7 @@ use yii\caching\TagDependency;
  * @property array $blameableRules Get or set all the rules associated with
  * creator, updater, content and its ID, as well as all the inherited rules.
  * @property array $blameableBehaviors Get or set all the behaviors assoriated
- * with creator and updater, as well as all the inherited behaviors. 
+ * with creator and updater, as well as all the inherited behaviors.
  * @property-read array $descriptionRules Get description property rules.
  * @property-read mixed $content Content.
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
@@ -44,8 +44,8 @@ trait BlameableTrait
 
     use ConfirmationTrait;
 
-    private $_blameableRules = [];
-    private $_blameableBehaviors = [];
+    private $blameableRules = [];
+    private $blameableBehaviors = [];
 
     /**
      * @var boolean|string|array Specify the attribute(s) name of content(s). If
@@ -53,7 +53,6 @@ trait BlameableTrait
      * is multiple attributes associated with contents, you can assign their
      * names in array. If you don't want to use this feature, please assign
      * false.
-     * 
      * For example:
      * ```php
      * public $contentAttribute = 'comment'; // only one field named as 'comment'.
@@ -66,7 +65,6 @@ trait BlameableTrait
      * ```php
      * public $contentAttribute = false; // no need of this feature.
      * ```
-     * 
      * If you don't need this feature, you should add rules corresponding with
      * `content` in `rules()` method of your user model by yourself.
      */
@@ -170,8 +168,9 @@ trait BlameableTrait
     public function getContent()
     {
         $contentAttribute = $this->contentAttribute;
-        if ($contentAttribute === false)
+        if ($contentAttribute === false) {
             return null;
+        }
         if (is_array($contentAttribute)) {
             $content = [];
             foreach ($contentAttribute as $key => $value) {
@@ -189,8 +188,9 @@ trait BlameableTrait
     public function setContent($content)
     {
         $contentAttribute = $this->contentAttribute;
-        if ($contentAttribute === false)
+        if ($contentAttribute === false) {
             return;
+        }
         if (is_array($contentAttribute)) {
             foreach ($contentAttribute as $key => $value) {
                 $this->$value = $content[$key];
@@ -208,13 +208,14 @@ trait BlameableTrait
      */
     public function getContentCanBeEdited()
     {
-        if ($this->contentAttribute === false)
+        if ($this->contentAttribute === false) {
             return false;
+        }
         throw new \yii\base\NotSupportedException("This method is not implemented.");
     }
 
     /**
-     * 
+     * Check it has been ever edited.
      * @return boolean Whether this content has ever been edited.
      */
     public function hasEverEdited()
@@ -235,11 +236,11 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableRules = $cache->get($this->cachePrefix . static::$cacheKeyBlameableRules);
+            $this->blameableRules = $cache->get($this->cachePrefix . static::$cacheKeyBlameableRules);
         }
         // 若当前规则不为空，且是数组，则认为是规则数组，直接返回。
-        if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
-            return $this->_blameableRules;
+        if (!empty($this->blameableRules) && is_array($this->blameableRules)) {
+            return $this->blameableRules;
         }
 
         // 父类规则与确认规则合并。
@@ -247,14 +248,10 @@ trait BlameableTrait
             TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityRules]);
         }
         $rules = array_merge(
-                parent::rules(),
-                $this->getConfirmationRules(),
-                $this->getBlameableAttributeRules(),
-                $this->getDescriptionRules(),
-                $this->getContentRules()
+                parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
         );
         $this->setBlameableRules($rules);
-        return $this->_blameableRules;
+        return $this->blameableRules;
     }
 
     /**
@@ -281,7 +278,9 @@ trait BlameableTrait
 
         if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
             $rules [] = [
-                [$this->idAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
+                [$this->idAttribute, $this->createdByAttribute],
+                'unique',
+                'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
             ];
         }
         return $rules;
@@ -337,10 +336,10 @@ trait BlameableTrait
      */
     protected function setBlameableRules($rules = [])
     {
-        $this->_blameableRules = $rules;
+        $this->blameableRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->_blameableRules);
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->blameableRules);
         }
     }
 
@@ -353,9 +352,9 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
+            $this->blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
         }
-        if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
+        if (empty($this->blameableBehaviors) || !is_array($this->blameableBehaviors)) {
             if ($cache) {
                 TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
             }
@@ -368,7 +367,7 @@ trait BlameableTrait
             ];
             $this->setBlameableBehaviors($behaviors);
         }
-        return $this->_blameableBehaviors;
+        return $this->blameableBehaviors;
     }
 
     /**
@@ -377,10 +376,10 @@ trait BlameableTrait
      */
     protected function setBlameableBehaviors($behaviors = [])
     {
-        $this->_blameableBehaviors = $behaviors;
+        $this->blameableBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->_blameableBehaviors);
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->blameableBehaviors);
         }
     }
 
@@ -449,7 +448,9 @@ trait BlameableTrait
             return;
         }
         $contentTypeAttribute = $sender->contentTypeAttribute;
-        if (!isset($sender->$contentTypeAttribute) && !empty($sender->contentTypes) && is_array($sender->contentTypes)) {
+        if (!isset($sender->$contentTypeAttribute) &&
+                !empty($sender->contentTypes) &&
+                is_array($sender->contentTypes)) {
             $sender->$contentTypeAttribute = $sender->contentTypes[0];
         }
     }

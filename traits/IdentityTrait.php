@@ -30,25 +30,25 @@ trait IdentityTrait
     public static $statusActive = 1;
     public static $statusInactive = 0;
     public $statusAttribute = 'status';
-    private $_statusRules = [];
+    private $statusRules = [];
     public $authKeyAttribute = 'auth_key';
-    private $_authKeyRules = [];
+    private $authKeyRules = [];
     public $accessTokenAttribute = 'access_token';
-    private $_accessTokenRules = [];
+    private $accessTokenRules = [];
 
     /**
-     * 
+     * Finds an identity by the given ID.
      * @param string|integer $id
      * @return type
      */
-    public static function findIdentity($id)
+    public static function findIdentity($identity)
     {
         $self = static::buildNoInitModel();
-        return static::findOne([$self->idAttribute => $id]);
+        return static::findOne([$self->idAttribute => $identity]);
     }
 
     /**
-     * 
+     * Finds an identity by the given GUID.
      * @param string $guid
      * @return type
      */
@@ -58,12 +58,12 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Finds an identity by the given token.
      * @param string $token
      * @param type $type
      * @return type
      */
-    public static function findIdentityByAccessToken($token, $type = NULL)
+    public static function findIdentityByAccessToken($token, $type = null)
     {
         $self = static::buildNoInitModel();
         return static::findOne([$self->accessTokenAttribute => $token]);
@@ -106,13 +106,13 @@ trait IdentityTrait
      */
     public function getAuthKeyRules()
     {
-        if (empty($this->_authKeyRules)) {
-            $this->_authKeyRules = [
+        if (empty($this->authKeyRules)) {
+            $this->authKeyRules = [
                 [[$this->authKeyAttribute], 'required'],
                 [[$this->authKeyAttribute], 'string', 'max' => 40],
             ];
         }
-        return $this->_authKeyRules;
+        return $this->authKeyRules;
     }
 
     /**
@@ -122,7 +122,7 @@ trait IdentityTrait
     public function setAuthKeyRules($rules)
     {
         if (!empty($rules) && is_array($rules)) {
-            $this->_authKeyRules = $rules;
+            $this->authKeyRules = $rules;
         }
     }
 
@@ -166,13 +166,13 @@ trait IdentityTrait
      */
     public function getAccessTokenRules()
     {
-        if (empty($this->_accessTokenRules)) {
-            $this->_accessTokenRules = [
+        if (empty($this->accessTokenRules)) {
+            $this->accessTokenRules = [
                 [[$this->accessTokenAttribute], 'required'],
                 [[$this->accessTokenAttribute], 'string', 'max' => 40],
             ];
         }
-        return $this->_accessTokenRules;
+        return $this->accessTokenRules;
     }
 
     /**
@@ -182,7 +182,7 @@ trait IdentityTrait
     public function setAccessTokenRules($rules)
     {
         if (!empty($rules) && is_array($rules)) {
-            $this->_accessTokenRules = $rules;
+            $this->accessTokenRules = $rules;
         }
     }
 
@@ -226,13 +226,13 @@ trait IdentityTrait
      */
     public function getStatusRules()
     {
-        if (empty($this->_statusRules)) {
-            $this->_statusRules = [
+        if (empty($this->statusRules)) {
+            $this->statusRules = [
                 [[$this->statusAttribute], 'required'],
                 [[$this->statusAttribute], 'number', 'integerOnly' => true, 'min' => 0],
             ];
         }
-        return $this->_statusRules;
+        return $this->statusRules;
     }
 
     /**
@@ -242,7 +242,7 @@ trait IdentityTrait
     public function setStatusRules($rules)
     {
         if (!empty($rules) && is_array($rules)) {
-            $this->_statusRules = $rules;
+            $this->statusRules = $rules;
         }
     }
 
