@@ -7,7 +7,7 @@
  * |___//_//____/  /_/ /_/ |_||_|     |_|
  * @link http://vistart.name/
  * @copyright Copyright (c) 2016 vistart
- * @license http://vistart.name/license/ 
+ * @license http://vistart.name/license/
  */
 
 namespace vistart\Models\models;
@@ -15,9 +15,8 @@ namespace vistart\Models\models;
 use vistart\Models\traits\BlameableTrait;
 
 /**
- * BaseBlameableEntityModel automatically fills the specified attributes with 
+ * BaseBlameableEntityModel automatically fills the specified attributes with
  * the current user's GUID.
- * 
  * For example:<br/>
  * ~~~php
  * * @property string $comment
@@ -32,7 +31,7 @@ use vistart\Models\traits\BlameableTrait;
  *     {
  *         $rules = [
  *             [['comment'], 'required'],
- *             [['comment'], 'string', 'max' => 140], 
+ *             [['comment'], 'string', 'max' => 140],
  *         ];
  *         return array_merge(parent::rules(), $rules);
  *     }
@@ -50,13 +49,15 @@ use vistart\Models\traits\BlameableTrait;
  *         ];
  *     }
  * }
- * 
+ * ~~~
  * Well, when you're signed-in, you can save a new `Example` instance:
+ * ~~~php
  * $example = new Example();
  * $example->comment = 'New Comment.';
  * $example->save();
- * 
+ * ~~~
  * or update an existing one:
+ * ~~~php
  * $example = Example::find()
  *                   ->where([$this->createdByAttribute => $user_uuid])
  *                   ->one();
@@ -66,7 +67,6 @@ use vistart\Models\traits\BlameableTrait;
  *     $example->save();
  * }
  * ~~~
- * 
  * @property array createdByAttributeRules the whole validation rules of 
  * creator attribute only, except of combination rules.
  * @property array updatedByAttributeRules the whole validation rules of 
@@ -81,12 +81,13 @@ abstract class BaseBlameableModel extends BaseEntityModel
     use BlameableTrait;
 
     /**
-     * 
+     * Initialize the blameable model.
      */
     public function init()
     {
-        if ($this->skipInit)
+        if ($this->skipInit) {
             return;
+        }
         $this->initBlameableEvents();
         parent::init();
     }

@@ -54,12 +54,14 @@ use Yii;
  * @since 2.0
  * @author vistart <i@vistart.name>
  */
-class SSOIdentity extends \yii\web\User {
+class SSOIdentity extends \yii\web\User
+{
 
     public $ssoDomain = 'sso';
     public $loginUrl = ['sso/login'];
 
-    public function loginRequired($checkAjax = true) {
+    public function loginRequired($checkAjax = true)
+    {
         $request = Yii::$app->getRequest();
 
         if ($this->enableSession && (!$checkAjax || !$request->getIsAjax())) {
@@ -74,5 +76,4 @@ class SSOIdentity extends \yii\web\User {
         }
         throw new ForbiddenHttpException(Yii::t('yii', 'Login Required'));
     }
-
 }

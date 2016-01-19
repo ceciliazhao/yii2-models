@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use yii\behaviors\BlameableBehavior;
+use yii\caching\TagDependency;
 
 /**
  * 该 Trait 用于处理属于用户的实例。包括以下功能：
@@ -243,10 +244,14 @@ trait BlameableTrait
 
         // 父类规则与确认规则合并。
         if ($cache) {
-            \yii\caching\TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityRules]);
+            TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityRules]);
         }
         $rules = array_merge(
-                parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
+                parent::rules(),
+                $this->getConfirmationRules(),
+                $this->getBlameableAttributeRules(),
+                $this->getDescriptionRules(),
+                $this->getContentRules()
         );
         $this->setBlameableRules($rules);
         return $this->_blameableRules;
@@ -352,7 +357,7 @@ trait BlameableTrait
         }
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
             if ($cache) {
-                \yii\caching\TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
+                TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
             }
             $behaviors = parent::behaviors();
             $behaviors[] = [

@@ -70,7 +70,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get auth key.
      * @return string|null
      */
     public function getAuthKey()
@@ -80,7 +80,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set auth key.
      * @param string $key
      * @return string
      */
@@ -91,7 +91,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Validate the auth key.
      * @param string $authKey
      * @return string
      */
@@ -101,7 +101,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get the rules associated with auth key attribute.
      * @return array
      */
     public function getAuthKeyRules()
@@ -116,7 +116,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set the rules associated with auth key attribute.
      * @param array $rules
      */
     public function setAuthKeyRules($rules)
@@ -127,7 +127,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Initialize the auth key attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
@@ -140,7 +140,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get access token.
      * @return string|null
      */
     public function getAccessToken()
@@ -150,7 +150,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set access token.
      * @param string $token
      * @return string|null
      */
@@ -161,7 +161,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get the rules associated with access token attribute.
      * @return array
      */
     public function getAccessTokenRules()
@@ -176,7 +176,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set the rules associated with access token attribute.
      * @param array $rules
      */
     public function setAccessTokenRules($rules)
@@ -187,7 +187,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Initialize the access token attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
@@ -200,7 +200,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get status.
      * @return integer
      */
     public function getStatus()
@@ -210,7 +210,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set status.
      * @param integer $status
      * @return integer|null
      */
@@ -221,7 +221,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Get the rules associated with status attribute.
      * @return array
      */
     public function getStatusRules()
@@ -236,7 +236,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Set the rules associated with status attribute.
      * @param array $rules
      */
     public function setStatusRules($rules)
@@ -247,7 +247,7 @@ trait IdentityTrait
     }
 
     /**
-     * 
+     * Initialize the status attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event

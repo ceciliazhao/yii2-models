@@ -133,7 +133,16 @@
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></td>
 	<td><p>BaseBlameableEntityModel automatically fills the specified attributes with
-the current user's GUID.</p></td>
+the current user's GUID.
+For example:<br/>
+~~~php
+* @property string $comment
+class Comment extends BaseBlameableEntityModel
+{
+    public static function tableName()
+    {
+        return <table_name>;
+    }</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></td>

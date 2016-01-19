@@ -177,8 +177,8 @@
 </span><span id="29" class="l"><a href="#29"> 29 </a>
 </span><span id="30" class="l"><a href="#30"> 30 </a>    <span class="php-comment">/**
 </span></span><span id="31" class="l"><a href="#31"> 31 </a><span class="php-comment">     * Get the opposite relation.
-</span></span><span id="32" class="l"><a href="#32"> 32 </a><span class="php-comment">     * @param BaseUserModel|string $user
-</span></span><span id="33" class="l"><a href="#33"> 33 </a><span class="php-comment">     * @param BaseUserModel|string $other
+</span></span><span id="32" class="l"><a href="#32"> 32 </a><span class="php-comment">     * @param BaseUserModel|string $user initiator
+</span></span><span id="33" class="l"><a href="#33"> 33 </a><span class="php-comment">     * @param BaseUserModel|string $other recipient.
 </span></span><span id="34" class="l"><a href="#34"> 34 </a><span class="php-comment">     * @param Connection $db
 </span></span><span id="35" class="l"><a href="#35"> 35 </a><span class="php-comment">     * @return BaseUserRelationModel
 </span></span><span id="36" class="l"><a href="#36"> 36 </a><span class="php-comment">     */</span>
@@ -204,10 +204,10 @@
 </span><span id="56" class="l"><a href="#56"> 56 </a>
 </span><span id="57" class="l"><a href="#57"> 57 </a>    <span class="php-comment">/**
 </span></span><span id="58" class="l"><a href="#58"> 58 </a><span class="php-comment">     * Get all the opposites.
-</span></span><span id="59" class="l"><a href="#59"> 59 </a><span class="php-comment">     * @param string $user
-</span></span><span id="60" class="l"><a href="#60"> 60 </a><span class="php-comment">     * @param array $otherGuids
+</span></span><span id="59" class="l"><a href="#59"> 59 </a><span class="php-comment">     * @param string $user initator.
+</span></span><span id="60" class="l"><a href="#60"> 60 </a><span class="php-comment">     * @param array $others all recipients.
 </span></span><span id="61" class="l"><a href="#61"> 61 </a><span class="php-comment">     * @param Connection $db
-</span></span><span id="62" class="l"><a href="#62"> 62 </a><span class="php-comment">     * @return array
+</span></span><span id="62" class="l"><a href="#62"> 62 </a><span class="php-comment">     * @return array array of BaseUserRelationModel instances.
 </span></span><span id="63" class="l"><a href="#63"> 63 </a><span class="php-comment">     */</span>
 </span><span id="64" class="l"><a href="#64"> 64 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> opposites(<span class="php-var">$user</span>, <span class="php-var">$others</span> = [], <span class="php-var">$db</span> = <span class="php-keyword1">null</span>)
 </span><span id="65" class="l"><a href="#65"> 65 </a>    {

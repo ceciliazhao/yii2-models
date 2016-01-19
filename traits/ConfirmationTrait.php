@@ -134,8 +134,8 @@ trait ConfirmationTrait
     }
 
     /**
-     * 
-     * @return string
+     * Generate confirmation code.
+     * @return string code
      */
     public function generateConfirmationCode()
     {
@@ -188,8 +188,9 @@ trait ConfirmationTrait
     public function setConfirmation($value)
     {
         $confirmationAttribute = $this->confirmationAttribute;
-        if (!$confirmationAttribute)
+        if (!$confirmationAttribute) {
             return;
+        }
         $this->$confirmationAttribute = $value;
         $this->trigger(self::$eventConfirmationChanged);
     }
@@ -200,8 +201,8 @@ trait ConfirmationTrait
      */
     public function getConfirmation()
     {
-        $confirmationAttribute = $this->confirmationAttribute;
-        return is_string($confirmationAttribute) ? $this->$confirmationAttribute : null;
+        $cAttribute = $this->confirmationAttribute;
+        return is_string($cAttribute) ? $this->$cAttribute : null;
     }
 
     /**
@@ -215,12 +216,12 @@ trait ConfirmationTrait
     public function onConfirmationChanged($event)
     {
         $sender = $event->sender;
-        $confirmationAttribute = $sender->confirmationAttribute;
-        if (!$confirmationAttribute)
+        $cAttribute = $sender->confirmationAttribute;
+        if (!$cAttribute)
             return;
-        if ($sender->isAttributeChanged($confirmationAttribute)) {
+        if ($sender->isAttributeChanged($cAttribute)) {
             $sender->confirmCode = '';
-            if ($sender->$confirmationAttribute == self::$confirmFalse) {
+            if ($sender->$cAttribute == self::$confirmFalse) {
                 $sender->trigger(self::$eventConfirmationCanceled);
                 return;
             }
@@ -250,8 +251,9 @@ trait ConfirmationTrait
     protected function resetConfirmation()
     {
         $contentAttribute = $this->contentAttribute;
-        if (!$contentAttribute)
+        if (!$contentAttribute) {
             return;
+        }
         if (is_array($contentAttribute)) {
             foreach ($contentAttribute as $attribute) {
                 if ($this->isAttributeChanged($attribute)) {
@@ -269,9 +271,13 @@ trait ConfirmationTrait
      */
     protected function resetOthersConfirmation()
     {
-        if (!$this->confirmationAttribute || empty($this->userClass))
+        if (!$this->confirmationAttribute || empty($this->userClass)) {
             return;
-        $contents = self::find()->where([$this->contentAttribute => $this->content])->andWhere(['not', $this->createdByAttribute, $this->creator])->all();
+        }
+        $contents = self::find()
+                ->where([$this->contentAttribute => $this->content])
+                ->andWhere(['not', $this->createdByAttribute, $this->creator])
+                ->all();
         foreach ($contents as $content) {
             $content->confirmation = self::$confirmFalse;
             $content->save();

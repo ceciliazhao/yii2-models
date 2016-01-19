@@ -76,8 +76,9 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
         if (!is_string($this->queryClass)) {
             $this->queryClass = \vistart\Models\queries\BaseUserQuery::className();
         }
-        if ($this->skipInit)
+        if ($this->skipInit) {
             return;
+        }
         $this->on(self::$eventNewRecordCreated, [$this, 'onInitStatusAttribute']);
         $this->on(self::$eventNewRecordCreated, [$this, 'onInitSourceAttribute']);
         $this->on(self::$eventNewRecordCreated, [$this, 'onInitAuthKey']);

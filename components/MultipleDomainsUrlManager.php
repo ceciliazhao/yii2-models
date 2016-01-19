@@ -18,6 +18,7 @@ namespace vistart\Models\components;
  * @since 2.0
  * @author vistart <i@vistart.name>
  */
-class MultipleDomainsUrlManager extends \yii\web\UrlManager {
+class MultipleDomainsUrlManager extends \yii\web\UrlManager
+{
     //put your code here
 }

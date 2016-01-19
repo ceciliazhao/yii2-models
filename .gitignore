@@ -43,6 +43,8 @@ Temporary Items
 .apdisk
 *.xlsx
 *.vsdx
+*.~xlsx
+*.~vsdx
 /nbproject/private/
 /tmp/
 /tests/runtime/

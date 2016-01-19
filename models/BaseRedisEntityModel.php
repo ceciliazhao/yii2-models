@@ -30,8 +30,9 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
      */
     public function init()
     {
-        if ($this->skipInit)
+        if ($this->skipInit) {
             return;
+        }
         $this->initEntityEvents();
         parent::init();
     }

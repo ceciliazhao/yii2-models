@@ -21,7 +21,8 @@ use Yii;
  * @since 2.0
  * @author vistart <i@vistart.name>
  */
-class MultipleDomainsManager extends \yii\base\Component {
+class MultipleDomainsManager extends \yii\base\Component
+{
 
     /**
      * @var string the base domain.
@@ -97,7 +98,7 @@ class MultipleDomainsManager extends \yii\base\Component {
      * @var array 
      */
     public $subDomains = [];
-    
+
     /**
      * @var string Current sub-domain name. If current sub-domain does not exist
      * in `$this->subDomains`, return `Yii::$app->urlManager` instead.
@@ -109,7 +110,8 @@ class MultipleDomainsManager extends \yii\base\Component {
      * @param string $subdomain
      * @return \yii\web\UrlManager
      */
-    public function get($subdomain = '') {
+    public function get($subdomain = '')
+    {
         if (!isset($this->subDomains[$subdomain])) {
             return null;
         }
@@ -128,13 +130,13 @@ class MultipleDomainsManager extends \yii\base\Component {
         }
         return Yii::createObject($subDomainConfig['component']);
     }
-    
+
     /**
      * Get URL Manager of current domain web application.
      * @return \yii\web\UrlManager
      */
-    public function getCurrent() {
-        return $this->get($this->currentDomain) ?: Yii::$app->urlManager;
+    public function getCurrent()
+    {
+        return $this->get($this->currentDomain) ? : Yii::$app->urlManager;
     }
-
 }

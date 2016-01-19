@@ -35,8 +35,9 @@ abstract class BaseUserRelationModel extends BaseBlameableModel
         if (!is_string($this->queryClass)) {
             $this->queryClass = \vistart\Models\queries\BaseUserRelationQuery::className();
         }
-        if ($this->skipInit)
+        if ($this->skipInit) {
             return;
+        }
         $this->initUserRelationEvents();
         parent::init();
     }

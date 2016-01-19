@@ -218,7 +218,7 @@
 </span><span id="70" class="l"><a href="#70"> 70 </a>    }
 </span><span id="71" class="l"><a href="#71"> 71 </a>
 </span><span id="72" class="l"><a href="#72"> 72 </a>    <span class="php-comment">/**
-</span></span><span id="73" class="l"><a href="#73"> 73 </a><span class="php-comment">     * 
+</span></span><span id="73" class="l"><a href="#73"> 73 </a><span class="php-comment">     * Get auth key.
 </span></span><span id="74" class="l"><a href="#74"> 74 </a><span class="php-comment">     * @return string|null
 </span></span><span id="75" class="l"><a href="#75"> 75 </a><span class="php-comment">     */</span>
 </span><span id="76" class="l"><a href="#76"> 76 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAuthKey()
@@ -228,7 +228,7 @@
 </span><span id="80" class="l"><a href="#80"> 80 </a>    }
 </span><span id="81" class="l"><a href="#81"> 81 </a>
 </span><span id="82" class="l"><a href="#82"> 82 </a>    <span class="php-comment">/**
-</span></span><span id="83" class="l"><a href="#83"> 83 </a><span class="php-comment">     * 
+</span></span><span id="83" class="l"><a href="#83"> 83 </a><span class="php-comment">     * Set auth key.
 </span></span><span id="84" class="l"><a href="#84"> 84 </a><span class="php-comment">     * @param string $key
 </span></span><span id="85" class="l"><a href="#85"> 85 </a><span class="php-comment">     * @return string
 </span></span><span id="86" class="l"><a href="#86"> 86 </a><span class="php-comment">     */</span>
@@ -239,7 +239,7 @@
 </span><span id="91" class="l"><a href="#91"> 91 </a>    }
 </span><span id="92" class="l"><a href="#92"> 92 </a>
 </span><span id="93" class="l"><a href="#93"> 93 </a>    <span class="php-comment">/**
-</span></span><span id="94" class="l"><a href="#94"> 94 </a><span class="php-comment">     * 
+</span></span><span id="94" class="l"><a href="#94"> 94 </a><span class="php-comment">     * Validate the auth key.
 </span></span><span id="95" class="l"><a href="#95"> 95 </a><span class="php-comment">     * @param string $authKey
 </span></span><span id="96" class="l"><a href="#96"> 96 </a><span class="php-comment">     * @return string
 </span></span><span id="97" class="l"><a href="#97"> 97 </a><span class="php-comment">     */</span>
@@ -249,7 +249,7 @@
 </span><span id="101" class="l"><a href="#101">101 </a>    }
 </span><span id="102" class="l"><a href="#102">102 </a>
 </span><span id="103" class="l"><a href="#103">103 </a>    <span class="php-comment">/**
-</span></span><span id="104" class="l"><a href="#104">104 </a><span class="php-comment">     * 
+</span></span><span id="104" class="l"><a href="#104">104 </a><span class="php-comment">     * Get the rules associated with auth key attribute.
 </span></span><span id="105" class="l"><a href="#105">105 </a><span class="php-comment">     * @return array
 </span></span><span id="106" class="l"><a href="#106">106 </a><span class="php-comment">     */</span>
 </span><span id="107" class="l"><a href="#107">107 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAuthKeyRules()
@@ -264,7 +264,7 @@
 </span><span id="116" class="l"><a href="#116">116 </a>    }
 </span><span id="117" class="l"><a href="#117">117 </a>
 </span><span id="118" class="l"><a href="#118">118 </a>    <span class="php-comment">/**
-</span></span><span id="119" class="l"><a href="#119">119 </a><span class="php-comment">     * 
+</span></span><span id="119" class="l"><a href="#119">119 </a><span class="php-comment">     * Set the rules associated with auth key attribute.
 </span></span><span id="120" class="l"><a href="#120">120 </a><span class="php-comment">     * @param array $rules
 </span></span><span id="121" class="l"><a href="#121">121 </a><span class="php-comment">     */</span>
 </span><span id="122" class="l"><a href="#122">122 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setAuthKeyRules(<span class="php-var">$rules</span>)
@@ -275,7 +275,7 @@
 </span><span id="127" class="l"><a href="#127">127 </a>    }
 </span><span id="128" class="l"><a href="#128">128 </a>
 </span><span id="129" class="l"><a href="#129">129 </a>    <span class="php-comment">/**
-</span></span><span id="130" class="l"><a href="#130">130 </a><span class="php-comment">     * 
+</span></span><span id="130" class="l"><a href="#130">130 </a><span class="php-comment">     * Initialize the auth key attribute.
 </span></span><span id="131" class="l"><a href="#131">131 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
 </span></span><span id="132" class="l"><a href="#132">132 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
 </span></span><span id="133" class="l"><a href="#133">133 </a><span class="php-comment">     * @param \yii\base\Event $event
@@ -288,7 +288,7 @@
 </span><span id="140" class="l"><a href="#140">140 </a>    }
 </span><span id="141" class="l"><a href="#141">141 </a>
 </span><span id="142" class="l"><a href="#142">142 </a>    <span class="php-comment">/**
-</span></span><span id="143" class="l"><a href="#143">143 </a><span class="php-comment">     * 
+</span></span><span id="143" class="l"><a href="#143">143 </a><span class="php-comment">     * Get access token.
 </span></span><span id="144" class="l"><a href="#144">144 </a><span class="php-comment">     * @return string|null
 </span></span><span id="145" class="l"><a href="#145">145 </a><span class="php-comment">     */</span>
 </span><span id="146" class="l"><a href="#146">146 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAccessToken()
@@ -298,7 +298,7 @@
 </span><span id="150" class="l"><a href="#150">150 </a>    }
 </span><span id="151" class="l"><a href="#151">151 </a>
 </span><span id="152" class="l"><a href="#152">152 </a>    <span class="php-comment">/**
-</span></span><span id="153" class="l"><a href="#153">153 </a><span class="php-comment">     * 
+</span></span><span id="153" class="l"><a href="#153">153 </a><span class="php-comment">     * Set access token.
 </span></span><span id="154" class="l"><a href="#154">154 </a><span class="php-comment">     * @param string $token
 </span></span><span id="155" class="l"><a href="#155">155 </a><span class="php-comment">     * @return string|null
 </span></span><span id="156" class="l"><a href="#156">156 </a><span class="php-comment">     */</span>
@@ -309,7 +309,7 @@
 </span><span id="161" class="l"><a href="#161">161 </a>    }
 </span><span id="162" class="l"><a href="#162">162 </a>
 </span><span id="163" class="l"><a href="#163">163 </a>    <span class="php-comment">/**
-</span></span><span id="164" class="l"><a href="#164">164 </a><span class="php-comment">     * 
+</span></span><span id="164" class="l"><a href="#164">164 </a><span class="php-comment">     * Get the rules associated with access token attribute.
 </span></span><span id="165" class="l"><a href="#165">165 </a><span class="php-comment">     * @return array
 </span></span><span id="166" class="l"><a href="#166">166 </a><span class="php-comment">     */</span>
 </span><span id="167" class="l"><a href="#167">167 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getAccessTokenRules()
@@ -324,7 +324,7 @@
 </span><span id="176" class="l"><a href="#176">176 </a>    }
 </span><span id="177" class="l"><a href="#177">177 </a>
 </span><span id="178" class="l"><a href="#178">178 </a>    <span class="php-comment">/**
-</span></span><span id="179" class="l"><a href="#179">179 </a><span class="php-comment">     * 
+</span></span><span id="179" class="l"><a href="#179">179 </a><span class="php-comment">     * Set the rules associated with access token attribute.
 </span></span><span id="180" class="l"><a href="#180">180 </a><span class="php-comment">     * @param array $rules
 </span></span><span id="181" class="l"><a href="#181">181 </a><span class="php-comment">     */</span>
 </span><span id="182" class="l"><a href="#182">182 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setAccessTokenRules(<span class="php-var">$rules</span>)
@@ -335,7 +335,7 @@
 </span><span id="187" class="l"><a href="#187">187 </a>    }
 </span><span id="188" class="l"><a href="#188">188 </a>
 </span><span id="189" class="l"><a href="#189">189 </a>    <span class="php-comment">/**
-</span></span><span id="190" class="l"><a href="#190">190 </a><span class="php-comment">     * 
+</span></span><span id="190" class="l"><a href="#190">190 </a><span class="php-comment">     * Initialize the access token attribute.
 </span></span><span id="191" class="l"><a href="#191">191 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
 </span></span><span id="192" class="l"><a href="#192">192 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
 </span></span><span id="193" class="l"><a href="#193">193 </a><span class="php-comment">     * @param \yii\base\Event $event
@@ -348,7 +348,7 @@
 </span><span id="200" class="l"><a href="#200">200 </a>    }
 </span><span id="201" class="l"><a href="#201">201 </a>
 </span><span id="202" class="l"><a href="#202">202 </a>    <span class="php-comment">/**
-</span></span><span id="203" class="l"><a href="#203">203 </a><span class="php-comment">     * 
+</span></span><span id="203" class="l"><a href="#203">203 </a><span class="php-comment">     * Get status.
 </span></span><span id="204" class="l"><a href="#204">204 </a><span class="php-comment">     * @return integer
 </span></span><span id="205" class="l"><a href="#205">205 </a><span class="php-comment">     */</span>
 </span><span id="206" class="l"><a href="#206">206 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getStatus()
@@ -358,7 +358,7 @@
 </span><span id="210" class="l"><a href="#210">210 </a>    }
 </span><span id="211" class="l"><a href="#211">211 </a>
 </span><span id="212" class="l"><a href="#212">212 </a>    <span class="php-comment">/**
-</span></span><span id="213" class="l"><a href="#213">213 </a><span class="php-comment">     * 
+</span></span><span id="213" class="l"><a href="#213">213 </a><span class="php-comment">     * Set status.
 </span></span><span id="214" class="l"><a href="#214">214 </a><span class="php-comment">     * @param integer $status
 </span></span><span id="215" class="l"><a href="#215">215 </a><span class="php-comment">     * @return integer|null
 </span></span><span id="216" class="l"><a href="#216">216 </a><span class="php-comment">     */</span>
@@ -369,7 +369,7 @@
 </span><span id="221" class="l"><a href="#221">221 </a>    }
 </span><span id="222" class="l"><a href="#222">222 </a>
 </span><span id="223" class="l"><a href="#223">223 </a>    <span class="php-comment">/**
-</span></span><span id="224" class="l"><a href="#224">224 </a><span class="php-comment">     * 
+</span></span><span id="224" class="l"><a href="#224">224 </a><span class="php-comment">     * Get the rules associated with status attribute.
 </span></span><span id="225" class="l"><a href="#225">225 </a><span class="php-comment">     * @return array
 </span></span><span id="226" class="l"><a href="#226">226 </a><span class="php-comment">     */</span>
 </span><span id="227" class="l"><a href="#227">227 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getStatusRules()
@@ -384,7 +384,7 @@
 </span><span id="236" class="l"><a href="#236">236 </a>    }
 </span><span id="237" class="l"><a href="#237">237 </a>
 </span><span id="238" class="l"><a href="#238">238 </a>    <span class="php-comment">/**
-</span></span><span id="239" class="l"><a href="#239">239 </a><span class="php-comment">     * 
+</span></span><span id="239" class="l"><a href="#239">239 </a><span class="php-comment">     * Set the rules associated with status attribute.
 </span></span><span id="240" class="l"><a href="#240">240 </a><span class="php-comment">     * @param array $rules
 </span></span><span id="241" class="l"><a href="#241">241 </a><span class="php-comment">     */</span>
 </span><span id="242" class="l"><a href="#242">242 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setStatusRules(<span class="php-var">$rules</span>)
@@ -395,7 +395,7 @@
 </span><span id="247" class="l"><a href="#247">247 </a>    }
 </span><span id="248" class="l"><a href="#248">248 </a>
 </span><span id="249" class="l"><a href="#249">249 </a>    <span class="php-comment">/**
-</span></span><span id="250" class="l"><a href="#250">250 </a><span class="php-comment">     * 
+</span></span><span id="250" class="l"><a href="#250">250 </a><span class="php-comment">     * Initialize the status attribute.
 </span></span><span id="251" class="l"><a href="#251">251 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
 </span></span><span id="252" class="l"><a href="#252">252 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
 </span></span><span id="253" class="l"><a href="#253">253 </a><span class="php-comment">     * @param \yii\base\Event $event
