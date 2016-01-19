@@ -43,7 +43,7 @@ before_script:
     - mysql -uroot < tests/data/yii2-models.sql
     - |
         if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
-            travis_retry https://wget phar.phpunit.de/phpunit.phar
+            travis_retry https://wget.phar.phpunit.de/phpunit.phar
             chmod +x phpunit.phar
             mv -f phpunit.phar /usr/local/bin/phpunit
         fi
