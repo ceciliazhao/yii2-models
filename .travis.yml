@@ -39,7 +39,6 @@ install:
 before_script:
     - php -r "echo INTL_ICU_VERSION . \"\n\";"
     - php -v
-    - phpunit --version
     - mysql --version
     - mysql -uroot < tests/data/yii2-models.sql
     - |
@@ -47,4 +46,9 @@ before_script:
             wget phar.phpunit.de/phpunit.phar
         fi
         
-script: php phpunit.phar --verbose --debug
+script: 
+    if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
+        php phpunit.phar --verbose --debug
+    else
+        phpunit --verbose --debug
+    fi
