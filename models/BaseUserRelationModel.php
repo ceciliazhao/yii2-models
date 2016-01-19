@@ -20,7 +20,8 @@ use vistart\Models\traits\UserRelationTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserRelationModel extends BaseBlameableModel {
+abstract class BaseUserRelationModel extends BaseBlameableModel
+{
 
     use UserRelationTrait;
 
@@ -29,7 +30,8 @@ abstract class BaseUserRelationModel extends BaseBlameableModel {
     public $contentAttribute = false;
     public $updatedByAttribute = false;
 
-    public function init() {
+    public function init()
+    {
         if (!is_string($this->queryClass)) {
             $this->queryClass = \vistart\Models\queries\BaseUserRelationQuery::className();
         }
@@ -38,5 +40,4 @@ abstract class BaseUserRelationModel extends BaseBlameableModel {
         $this->initUserRelationEvents();
         parent::init();
     }
-
 }

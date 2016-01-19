@@ -23,7 +23,8 @@ use vistart\Models\traits\UserRelationGroupTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserRelationGroupModel extends BaseBlameableModel {
+abstract class BaseUserRelationGroupModel extends BaseBlameableModel
+{
 
     use UserRelationGroupTrait;
 
@@ -33,11 +34,11 @@ abstract class BaseUserRelationGroupModel extends BaseBlameableModel {
     public $updatedAtAttribute = false;
     public $updatedByAttribute = false;
 
-    public function init() {
+    public function init()
+    {
         if ($this->skipInit)
             return;
         $this->initUserRelationGroupEvents();
         parent::init();
     }
-
 }

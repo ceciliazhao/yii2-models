@@ -21,9 +21,11 @@ use vistart\Models\tests\data\ar\UserRelationGroup;
  *
  * @author vistart <i@vistart.name>
  */
-class BaseUserRelationTest extends TestCase {
+class BaseUserRelationTest extends TestCase
+{
 
-    private function prepareUsers() {
+    private function prepareUsers()
+    {
         $user = new User(['password' => '123456']);
         $other_user = new User(['password' => '123456']);
         $this->assertTrue($user->register());
@@ -31,13 +33,15 @@ class BaseUserRelationTest extends TestCase {
         return [$user, $other_user];
     }
 
-    private function destroyUsers($users = []) {
+    private function destroyUsers($users = [])
+    {
         foreach ($users as $user) {
             $this->assertTrue($user->deregister());
         }
     }
 
-    private function prepareMutualRelationModels($user, $other, $bi_type = null) {
+    private function prepareMutualRelationModels($user, $other, $bi_type = null)
+    {
         $initRelation = UserRelation::buildNoInitModel();
         if (!$bi_type)
             $bi_type = UserRelation::$mutualTypeNormal;
@@ -61,7 +65,7 @@ class BaseUserRelationTest extends TestCase {
             $opposites = UserRelation::findAllOppositeRelations($user, $other);
             $this->assertEquals(1, count($opposites));
 
-            $opposites = UserRelation::find()->opposites($user, [$other->guid]);
+            $opposites = UserRelation::find()->opposites($user);
             $this->assertEquals(1, count($opposites));
         } else {
             var_dump($relation->rules());
@@ -71,7 +75,8 @@ class BaseUserRelationTest extends TestCase {
         return [$relation, $opposite];
     }
 
-    public function testNew() {
+    public function testNew()
+    {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
@@ -82,7 +87,8 @@ class BaseUserRelationTest extends TestCase {
     /**
      * @depends testNew
      */
-    public function testRemoveOne() {
+    public function testRemoveOne()
+    {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
@@ -109,7 +115,8 @@ class BaseUserRelationTest extends TestCase {
     /**
      * @depends testRemoveOne
      */
-    public function testDeregisterOne() {
+    public function testDeregisterOne()
+    {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
@@ -130,7 +137,8 @@ class BaseUserRelationTest extends TestCase {
     /**
      * @depends testDeregisterOne
      */
-    public function testFavorite() {
+    public function testFavorite()
+    {
         $users = $this->prepareUsers();
         $relations = $this->prepareMutualRelationModels($users[0], $users[1]);
         $favoriteAttribute = $relations[0]->favoriteAttribute;
@@ -146,7 +154,8 @@ class BaseUserRelationTest extends TestCase {
     /**
      * @depends testFavorite
      */
-    public function testRelation() {
+    public function testRelation()
+    {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
@@ -178,7 +187,8 @@ class BaseUserRelationTest extends TestCase {
     /**
      * @depends testRelation
      */
-    public function testRelationGroup() {
+    public function testRelationGroup()
+    {
         // 准备两个用户
         $users = $this->prepareUsers();
 
@@ -197,13 +207,22 @@ class BaseUserRelationTest extends TestCase {
         $this->assertEquals(1, count($members));
 
         // 新建一个组，在保存前，当前关系找不到该组。
-        $group = $users[0]->create(UserRelationGroup::className(), ['content' => 'home']);
+        $group = $users[0]->create(UserRelationGroup::className(), ['content' => 'classmate']);
+        $group1 = $users[0]->create(UserRelationGroup::className(), ['content' => 'relative']);
         $this->assertEmpty($relation->getGroupMembers($group));
         $this->assertEmpty(UserRelation::getGroup($group->guid));
+        $this->assertEmpty($relation->getGroupMembers($group1));
+        $this->assertEmpty(UserRelation::getGroup($group1->guid));
         if ($group->save()) {
             $this->assertTrue(true);
         } else {
             var_dump($group->errors);
+            $this->assertFalse(true);
+        }
+        if ($group1->save()) {
+            $this->assertTrue(true);
+        } else {
+            var_dump($group1->errors);
             $this->assertFalse(true);
         }
         // 保存后也应当找不到，因为当前关系没有添加任何组。
@@ -215,29 +234,72 @@ class BaseUserRelationTest extends TestCase {
         $relationGroups = $relation->addGroup($group);
         // 测试长度。
         $mbAttribute = $relations[0]->multiBlamesAttribute;
-        $this->assertEquals($relations[0]->getBlamesCount() * 39 + 1, strlen($relations[0]->$mbAttribute));
+        $this->assertEquals($relations[0]->getGroupsCount() * 39 + 1, strlen($relations[0]->$mbAttribute));
 
         // 此时应该有 1 个元素，即 1 个组。
         $this->assertEquals(1, count($relationGroups));
         $this->assertEquals($group->guid, $relationGroups[0]);
         $this->assertEquals($group->guid, $relation->groupGuids[0]);
+
+        // 再添加一个组，并获得添加后的关系组数组。
+        $relationGroups = $relation->addGroup($group1);
+        $this->assertEquals($relations[0]->getGroupsCount() * 39 + 1, strlen($relations[0]->$mbAttribute));
+
+        // 此时应该有 2 个元素，即 2 个组。
+        $this->assertEquals(2, count($relationGroups));
+        $this->assertEquals($group1->guid, $relationGroups[1]);
+        $this->assertEquals($group1->guid, $relation->groupGuids[1]);
+
         if ($relation->save()) {
             $this->assertTrue(true);
         } else {
             var_dump($relation->errors);
             $this->assertFalse(true);
         }
+
+        $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
+        $query = $baseQuery->groups($relation->groupGuids[0]);
+        $commandQuery = clone $query;
+        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        $this->assertEquals(1, count($query->all()));
+
+        $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
+        $query = $baseQuery->groups($relation->groupGuids[1]);
+        $commandQuery = clone $query;
+        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        $this->assertEquals(1, count($query->all()));
+
+        $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
+        $query = $baseQuery->groups($relation->groupGuids);
+        $commandQuery = clone $query;
+        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        $this->assertEquals(1, count($query->all()));
+
+        $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
+        $query = $baseQuery->groups("g");
+        $this->assertEquals(0, count($query->all()));
+
+        $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
+        $query = $baseQuery->groups();
+        $this->assertEquals(0, count($query->all()));
+
         // 删除成功
         $this->assertGreaterThanOrEqual(1, $group->delete());
+        $this->assertGreaterThanOrEqual(1, $group1->delete());
         // 虽然关系组删除了，但不会影响涉及到的关系，所以包含了被删除的关系组的关系，其关系组列表依然包含该关系组。
         // 因此，此时直接获取关系组列表，被删除的组GUID依然在列表中。
         $this->assertNotEmpty($relation->groupGuids);
         // 如果要主动将失效的关系组剔除出关系组列表，可以在获取关系组列表时，强制检查有效性：
-        $this->assertEmpty($relation->getGroupGuids(true)); // 此时应该为空。
+        $groups = $relation->getGroupGuids(true);
+        $this->assertEmpty($groups); // 此时应该为空。
+
+        $query = UserRelation::find()->groups($groups)->all();
+        // 此时未分组关系应该有一个。
+        $this->assertEquals(1, count($query));
+
         // 而且标明列表已经改变了。
         $this->assertTrue($relation->blamesChanged);
 
         $this->destroyUsers($users);
     }
-
 }

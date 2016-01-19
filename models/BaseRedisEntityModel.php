@@ -20,18 +20,19 @@ use vistart\Models\traits\EntityTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord {
+abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
+{
 
     use EntityTrait;
 
     /**
      * Initialize new entity.
      */
-    public function init() {
+    public function init()
+    {
         if ($this->skipInit)
             return;
         $this->initEntityEvents();
         parent::init();
     }
-
 }

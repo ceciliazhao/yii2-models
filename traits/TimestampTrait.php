@@ -22,7 +22,8 @@ use yii\behaviors\TimestampBehavior;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait TimestampTrait {
+trait TimestampTrait
+{
 
     /**
      * @var string the attribute that will receive datetime value
@@ -49,7 +50,8 @@ trait TimestampTrait {
      * @return string Date & Time.
      * @since 1.1
      */
-    public static function getCurrentDatetime($event) {
+    public static function getCurrentDatetime($event)
+    {
         $sender = $event->sender;
         if ($sender->timeFormat === self::$timeFormatDatetime) {
             return date('Y-m-d H:i:s');
@@ -67,7 +69,8 @@ trait TimestampTrait {
      * @return string Date & Time.
      * @since 1.1
      */
-    public function onUpdateCurrentDatetime($event) {
+    public function onUpdateCurrentDatetime($event)
+    {
         return self::getCurrentDatetime($event);
     }
 
@@ -75,7 +78,8 @@ trait TimestampTrait {
      * 
      * @return array
      */
-    public function getTimestampBehaviors() {
+    public function getTimestampBehaviors()
+    {
         return [
             [
                 'class' => TimestampBehavior::className(),
@@ -90,7 +94,8 @@ trait TimestampTrait {
      * 
      * @return string
      */
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         $createdAtAttribute = $this->createdAtAttribute;
         return $this->$createdAtAttribute;
     }
@@ -99,7 +104,8 @@ trait TimestampTrait {
      * 
      * @return array
      */
-    public function getCreatedAtRules() {
+    public function getCreatedAtRules()
+    {
         if (!$this->createdAtAttribute)
             return [];
         return [
@@ -111,12 +117,12 @@ trait TimestampTrait {
      * 
      * @return array
      */
-    public function getUpdatedAtRules() {
+    public function getUpdatedAtRules()
+    {
         if (!$this->updatedAtAttribute)
             return [];
         return [
             [[$this->updatedAtAttribute], 'safe'],
         ];
     }
-
 }

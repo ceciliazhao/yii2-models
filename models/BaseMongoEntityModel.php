@@ -20,18 +20,19 @@ use vistart\Models\traits\EntityTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord {
+abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
+{
 
     use EntityTrait;
 
     /**
      * Initialize new entity.
      */
-    public function init() {
+    public function init()
+    {
         if ($this->skipInit)
             return;
         $this->initEntityEvents();
         parent::init();
     }
-
 }

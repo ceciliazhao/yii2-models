@@ -26,7 +26,7 @@ class BaseUserModelTest extends TestCase {
 
     public function testInit() {
         $users = [];
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $users[] = new User();
         }
         foreach ($users as $key => $user) {
@@ -36,7 +36,7 @@ class BaseUserModelTest extends TestCase {
         }
         $count = count($users);
         echo ("$count users has been registered successfully.\n");
-        echo ("The success rate is " . $count / 10 . "%.");
+        echo ("The success rate is " . $count . "%.");
         foreach ($users as $user) {
             if ($user->deregister() !== true) {
                 $this->assertTrue(false);

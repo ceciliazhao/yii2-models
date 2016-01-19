@@ -18,14 +18,16 @@ namespace vistart\Models\queries;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseUserQuery extends BaseEntityQuery {
+class BaseUserQuery extends BaseEntityQuery
+{
 
     /**
      * 
      * @param integer $active
      * @return \vistart\Models\queries\BaseUserQuery
      */
-    public function active($active) {
+    public function active($active)
+    {
         $model = $this->noInitModel;
         if (!is_string($model->statusAttribute)) {
             return $this;
@@ -35,10 +37,11 @@ class BaseUserQuery extends BaseEntityQuery {
 
     /**
      * 
-     * @param string $source
+     * @param null|string|array $source
      * @return \vistart\Models\queries\BaseUserQuery
      */
-    public function source($source = null) {
+    public function source($source = null)
+    {
         $model = $this->noInitModel;
         if (!is_string($model->sourceAttribute)) {
             return $this;
@@ -49,18 +52,4 @@ class BaseUserQuery extends BaseEntityQuery {
         }
         return $this->andWhere([$model->sourceAttribute => $source]);
     }
-
-    /**
-     * 
-     * @param integer $id
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function id($id) {
-        $model = $this->noInitModel;
-        if (!is_string($model->idAttribute)) {
-            return $this;
-        }
-        return $this->andWhere([$model->idAttribute => (int) $id]);
-    }
-
 }

@@ -19,7 +19,8 @@ use vistart\Models\traits\AdditionalAccountTrait;
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseAdditionalAccountModel extends BaseBlameableModel {
+abstract class BaseAdditionalAccountModel extends BaseBlameableModel
+{
 
     use AdditionalAccountTrait;
 
@@ -32,8 +33,8 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return array_merge($this->getAdditionalAccountRules(), parent::rules());
     }
-
 }

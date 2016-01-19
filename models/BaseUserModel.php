@@ -58,7 +58,8 @@ use vistart\Models\traits\UserTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserModel extends BaseEntityModel implements \yii\web\IdentityInterface {
+abstract class BaseUserModel extends BaseEntityModel implements \yii\web\IdentityInterface
+{
 
     use UserTrait;
 
@@ -70,7 +71,8 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
      * If you want to modify or override this method, you should add `parent::init()`
      * statement at the end of your init() method.
      */
-    public function init() {
+    public function init()
+    {
         if (!is_string($this->queryClass)) {
             $this->queryClass = \vistart\Models\queries\BaseUserQuery::className();
         }
@@ -91,12 +93,12 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
      * if enable `$idAttribute` and $row[$idAttribute] set, the `idPreassigned`
      * will be assigned to true.
      */
-    public static function instantiate($row) {
+    public static function instantiate($row)
+    {
         $self = static::buildNoInitModel();
         if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
             return new static(['idPreassigned' => true]);
         }
         return new static;
     }
-
 }

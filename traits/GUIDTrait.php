@@ -21,7 +21,8 @@ use vistart\Helpers\Number;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait GUIDTrait {
+trait GUIDTrait
+{
 
     /**
      * @var string REQUIRED. The attribute that will receive the GUID value.
@@ -35,7 +36,8 @@ trait GUIDTrait {
      * @param \yii\base\Event $event
      * @since 1.1
      */
-    public function onInitGuidAttribute($event) {
+    public function onInitGuidAttribute($event)
+    {
         $sender = $event->sender;
         $guidAttribute = $sender->guidAttribute;
         if (is_string($guidAttribute)) {
@@ -48,7 +50,8 @@ trait GUIDTrait {
      * table, if existed, it will regenerate one.
      * @return string the generated GUID.
      */
-    public static function GenerateGuid() {
+    public static function GenerateGuid()
+    {
         return Number::guid();
     }
 
@@ -57,7 +60,8 @@ trait GUIDTrait {
      * @param string $uuid the GUID to be checked.
      * @return boolean Whether the $guid exists or not.
      */
-    public static function CheckGuidExists($uuid) {
+    public static function CheckGuidExists($uuid)
+    {
         return (self::findOne($uuid) !== null);
     }
 
@@ -65,7 +69,8 @@ trait GUIDTrait {
      * Get the rules associated with guid attribute.
      * @return array rules.
      */
-    public function getGuidRules() {
+    public function getGuidRules()
+    {
         $rules = [];
         if (is_string($this->guidAttribute)) {
             $rules = [
@@ -81,7 +86,8 @@ trait GUIDTrait {
      * 
      * @return string
      */
-    public function getGuid() {
+    public function getGuid()
+    {
         $guidAttribute = $this->guidAttribute;
         return is_string($guidAttribute) ? $this->$guidAttribute : null;
     }
@@ -91,9 +97,9 @@ trait GUIDTrait {
      * @param string $guid
      * @return string
      */
-    public function setGuid($guid) {
+    public function setGuid($guid)
+    {
         $guidAttribute = $this->guidAttribute;
         return is_string($guidAttribute) ? $this->$guidAttribute = $guid : null;
     }
-
 }

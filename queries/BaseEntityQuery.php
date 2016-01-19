@@ -20,13 +20,28 @@ use vistart\Models\traits\EntityQueryTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseEntityQuery extends \yii\db\ActiveQuery {
+class BaseEntityQuery extends \yii\db\ActiveQuery
+{
 
     use EntityQueryTrait;
 
-    public function init() {
+    public function init()
+    {
         $this->initNoModel();
         parent::init();
     }
 
+    /**
+     * 
+     * @param string|integer|array $id
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function id($id)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->idAttribute)) {
+            return $this;
+        }
+        return $this->andWhere([$model->idAttribute => $id]);
+    }
 }

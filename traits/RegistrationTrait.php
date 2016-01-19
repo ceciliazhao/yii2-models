@@ -21,7 +21,8 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait RegistrationTrait {
+trait RegistrationTrait
+{
 
     public static $eventAfterRegister = "afterRegister";
     public static $eventBeforeRegister = "beforeRegister";
@@ -48,7 +49,8 @@ trait RegistrationTrait {
      * @return boolean Whether the registration succeeds or not.
      * @throws \yii\db\IntegrityException when inserting user and associated models failed.
      */
-    public function register($associatedModels = []) {
+    public function register($associatedModels = [])
+    {
         if (!$this->isNewRecord) {
             return false;
         }
@@ -91,7 +93,8 @@ trait RegistrationTrait {
      * @return boolean Whether deregistration succeeds or not.
      * @throws \yii\db\IntegrityException when deleting user failed.
      */
-    public function deregister() {
+    public function deregister()
+    {
         if ($this->isNewRecord) {
             return false;
         }
@@ -121,7 +124,8 @@ trait RegistrationTrait {
      * Get source.
      * @return string
      */
-    public function getSource() {
+    public function getSource()
+    {
         $sourceAttribute = $this->sourceAttribute;
         return is_string($sourceAttribute) ? $this->$sourceAttribute : null;
     }
@@ -130,7 +134,8 @@ trait RegistrationTrait {
      * Set source.
      * @param string $source
      */
-    public function setSource($source) {
+    public function setSource($source)
+    {
         $sourceAttribute = $this->sourceAttribute;
         return is_string($sourceAttribute) ? $this->$sourceAttribute = $source : null;
     }
@@ -139,7 +144,8 @@ trait RegistrationTrait {
      * Get the rules associated with source attribute.
      * @return array
      */
-    public function getSourceRules() {
+    public function getSourceRules()
+    {
         if (empty($this->_sourceRules)) {
             $this->_sourceRules = [
                 [[$this->sourceAttribute], 'required'],
@@ -153,7 +159,8 @@ trait RegistrationTrait {
      * Set the rules associated with source attribute.
      * @param array $rules
      */
-    public function setSourceRules($rules) {
+    public function setSourceRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_sourceRules = $rules;
         }
@@ -165,10 +172,10 @@ trait RegistrationTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onInitSourceAttribute($event) {
+    public function onInitSourceAttribute($event)
+    {
         $sender = $event->sender;
         $sourceAttribute = $sender->sourceAttribute;
         $sender->$sourceAttribute = static::$sourceSelf;
     }
-
 }

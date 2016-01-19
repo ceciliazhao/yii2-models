@@ -22,7 +22,8 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait IPTrait {
+trait IPTrait
+{
 
     /**
      * @var integer REQUIRED. Determine whether enabling the IP attributes and 
@@ -91,7 +92,8 @@ trait IPTrait {
      * @param \yii\base\Event $event
      * @since 1.1
      */
-    public function onInitIpAddress($event) {
+    public function onInitIpAddress($event)
+    {
         $sender = $event->sender;
         if ($sender->enableIP && empty($sender->ipAddress)) {
             $sender->ipAddress = Yii::$app->request->userIP;
@@ -106,7 +108,8 @@ trait IPTrait {
      * IPv6 or Dotted decimal of IPv4).
      * @return string|integer|null
      */
-    public function getIpAddress() {
+    public function getIpAddress()
+    {
         if (!$this->enableIP) {
             return null;
         }
@@ -132,7 +135,8 @@ trait IPTrait {
      * Get the IPv4 address.
      * @return string
      */
-    private function getIpv4Address() {
+    private function getIpv4Address()
+    {
         $ipAttribute1 = $this->ipAttribute1;
         return Ip::long2ip($this->$ipAttribute1);
     }
@@ -141,7 +145,8 @@ trait IPTrait {
      * Get the IPv6 address.
      * @return string
      */
-    private function getIpv6Address() {
+    private function getIpv6Address()
+    {
         $ipAttribute1 = $this->ipAttribute1;
         $ipAttribute2 = $this->ipAttribute2;
         $ipAttribute3 = $this->ipAttribute3;
@@ -161,7 +166,8 @@ trait IPTrait {
      * @param string $ipAddress the significantly IP address.
      * @return string|integer|null Integer when succeeded to convert.
      */
-    public function setIpAddress($ipAddress) {
+    public function setIpAddress($ipAddress)
+    {
         if (!$ipAddress || !$this->enableIP) {
             return null;
         }
@@ -194,7 +200,8 @@ trait IPTrait {
      * 
      * @return array
      */
-    public function getIpRules() {
+    public function getIpRules()
+    {
         $rules = [];
         if ($this->enableIP & static::$ipv6) {
             $rules = [
@@ -220,5 +227,4 @@ trait IPTrait {
         }
         return $rules;
     }
-
 }

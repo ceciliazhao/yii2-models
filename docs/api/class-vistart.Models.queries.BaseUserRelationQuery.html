@@ -164,7 +164,7 @@ yii\db\ActiveQuery
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#19-56" title="Go to source code">queries/BaseUserRelationQuery.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#19-143" title="Go to source code">queries/BaseUserRelationQuery.php</a>
 		<br>
 	</div>
 
@@ -184,14 +184,14 @@ yii\db\ActiveQuery
 
 			<td class="name"><div>
 			<a class="anchor" href="#_opposite">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#29-39" title="Go to source code">opposite</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$other</var></span>, <span>yii\db\Connection <var>$db</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#30-55" title="Go to source code">opposite</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span>, <span>yii\db\Connection <var>$db</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Get the opposite one.</p>
+				<p>Get the opposite relation.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get the opposite one.</p>
+				<p>Get the opposite relation.</p>
 
 
 					<h4>Parameters</h4>
@@ -219,14 +219,14 @@ yii\db\ActiveQuery
 
 			<td class="attributes"><code>
 				 public 
-				<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_opposites">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#41-54" title="Go to source code">opposites</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span>array <var>$otherGuids</var></span>, <span>yii\db\Connection <var>$db</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#57-88" title="Go to source code">opposites</a>( <span>string <var>$user</var></span>, <span>array <var>$others</var> = []</span>, <span>yii\db\Connection <var>$db</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get all the opposites.</p>
@@ -240,15 +240,136 @@ yii\db\ActiveQuery
 					<div class="list"><dl>
 						<dt><var>$user</var></dt>
 						<dd></dd>
-						<dt><var>$otherGuids</var></dt>
-						<dd></dd>
+						<dt><var>$others</var></dt>
+						<dd>$otherGuids</dd>
 						<dt><var>$db</var></dt>
 						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initiators" id="_initiators">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_initiators">#</a>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#90-104" title="Go to source code">initiators</a>( <span>string|array <var>$guids</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Specify initiators.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Specify initiators.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$guids</var></dt>
+						<dd><p>the guid of initiator if string, or guid array
+of initiators if array.</p></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code><br>$this
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="recipients" id="_recipients">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_recipients">#</a>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#106-120" title="Go to source code">recipients</a>( <span>string|array <var>$guids</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Specify recipients.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Specify recipients.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$guids</var></dt>
+						<dd><p>the guid of recipient if string, or guid array
+of recipients if array.</p></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code><br>$this
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="groups" id="_groups">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_groups">#</a>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#122-142" title="Go to source code">groups</a>( <span>string|array <var>$groups</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Specify groups.
+This method will be skipped if not enable the group features (<code>$multiBlamesAttribute = false</code>).</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Specify groups.
+This method will be skipped if not enable the group features (<code>$multiBlamesAttribute = false</code>).</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$groups</var></dt>
+						<dd><p>the guid of group If string, or guid array of
+groups if array. If you want to get ungrouped relation(s), please assign
+null or empty array, or if you do not want to delimit group(s), please do
+not access this method.</p></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code><br>$this
 					</div>
 
 
@@ -263,6 +384,7 @@ yii\db\ActiveQuery
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.queries.BaseEntityQuery.html#methods">vistart\Models\queries\BaseEntityQuery</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.queries.BaseEntityQuery.html#_id">id()</a></code>, 
 				<code><a href="class-vistart.Models.queries.BaseEntityQuery.html#_init">init()</a></code>
 			</p>
 		</div>

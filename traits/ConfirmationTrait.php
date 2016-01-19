@@ -25,13 +25,14 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait ConfirmationTrait {
+trait ConfirmationTrait
+{
 
     /**
      * @var int 
      */
     public static $confirmFalse = 0;
-    
+
     /**
      * @var int 
      */
@@ -75,7 +76,8 @@ trait ConfirmationTrait {
      * @return boolean
      * @throws \yii\base\NotSupportedException
      */
-    public function applyConfirmation() {
+    public function applyConfirmation()
+    {
         if (!$this->confirmCodeAttribute) {
             throw new \yii\base\NotSupportedException('This method is not implemented.');
         }
@@ -89,7 +91,8 @@ trait ConfirmationTrait {
      * 
      * @param string $code
      */
-    public function setConfirmCode($code) {
+    public function setConfirmCode($code)
+    {
         if (!$this->confirmCodeAttribute) {
             return;
         }
@@ -110,7 +113,8 @@ trait ConfirmationTrait {
      * 
      * @return string
      */
-    public function getConfirmCode() {
+    public function getConfirmCode()
+    {
         $confirmCodeAttribute = $this->confirmCodeAttribute;
         return is_string($confirmCodeAttribute) ? $this->$confirmCodeAttribute : null;
     }
@@ -120,7 +124,8 @@ trait ConfirmationTrait {
      * @param string $code
      * @return boolean
      */
-    public function confirm($code) {
+    public function confirm($code)
+    {
         if (!$this->confirmationAttribute || !$this->validateConfirmationCode($code)) {
             return false;
         }
@@ -132,7 +137,8 @@ trait ConfirmationTrait {
      * 
      * @return string
      */
-    public function generateConfirmationCode() {
+    public function generateConfirmationCode()
+    {
         return substr(sha1(Yii::$app->security->generateRandomString()), 0, 8);
     }
 
@@ -141,7 +147,8 @@ trait ConfirmationTrait {
      * @param string $code
      * @return boolean Whether the confirmation code is valid.
      */
-    public function validateConfirmationCode($code) {
+    public function validateConfirmationCode($code)
+    {
         $confirmCodeAttribute = $this->confirmCodeAttribute;
         if (!$confirmCodeAttribute)
             return true;
@@ -152,7 +159,8 @@ trait ConfirmationTrait {
      * Get confirmation status of current model.
      * @return boolean Whether current model has been confirmed.
      */
-    public function getIsConfirmed() {
+    public function getIsConfirmed()
+    {
         $confirmationAttribute = $this->confirmationAttribute;
         return is_string($confirmationAttribute) ? $this->$confirmationAttribute > static::$confirmFalse : true;
     }
@@ -163,7 +171,8 @@ trait ConfirmationTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onInitConfirmation($event) {
+    public function onInitConfirmation($event)
+    {
         $sender = $event->sender;
         if (!$sender->confirmationAttribute) {
             return;
@@ -176,7 +185,8 @@ trait ConfirmationTrait {
      * 
      * @param mixed $value
      */
-    public function setConfirmation($value) {
+    public function setConfirmation($value)
+    {
         $confirmationAttribute = $this->confirmationAttribute;
         if (!$confirmationAttribute)
             return;
@@ -188,7 +198,8 @@ trait ConfirmationTrait {
      * 
      * @return mixed
      */
-    public function getConfirmation() {
+    public function getConfirmation()
+    {
         $confirmationAttribute = $this->confirmationAttribute;
         return is_string($confirmationAttribute) ? $this->$confirmationAttribute : null;
     }
@@ -201,7 +212,8 @@ trait ConfirmationTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onConfirmationChanged($event) {
+    public function onConfirmationChanged($event)
+    {
         $sender = $event->sender;
         $confirmationAttribute = $sender->confirmationAttribute;
         if (!$confirmationAttribute)
@@ -221,7 +233,8 @@ trait ConfirmationTrait {
      * 
      * @return array
      */
-    public function getConfirmationRules() {
+    public function getConfirmationRules()
+    {
         if (!$this->confirmationAttribute) {
             return [];
         }
@@ -234,7 +247,8 @@ trait ConfirmationTrait {
     /**
      * When the content changed, reset confirmation status.
      */
-    protected function resetConfirmation() {
+    protected function resetConfirmation()
+    {
         $contentAttribute = $this->contentAttribute;
         if (!$contentAttribute)
             return;
@@ -253,7 +267,8 @@ trait ConfirmationTrait {
     /**
      * Reset others' confirmation when the others own the same content.
      */
-    protected function resetOthersConfirmation() {
+    protected function resetOthersConfirmation()
+    {
         if (!$this->confirmationAttribute || empty($this->userClass))
             return;
         $contents = self::find()->where([$this->contentAttribute => $this->content])->andWhere(['not', $this->createdByAttribute, $this->creator])->all();
@@ -262,5 +277,4 @@ trait ConfirmationTrait {
             $content->save();
         }
     }
-
 }

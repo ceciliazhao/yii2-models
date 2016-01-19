@@ -18,15 +18,16 @@ namespace vistart\Models\traits;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait EntityQueryTrait {
+trait EntityQueryTrait
+{
 
     public $noInitModel;
 
-    public function initNoModel() {
+    public function initNoModel()
+    {
         if (empty($this->noInitModel) && is_string($this->modelClass)) {
             $modelClass = $this->modelClass;
             $this->noInitModel = $modelClass::buildNoInitModel();
         }
     }
-
 }

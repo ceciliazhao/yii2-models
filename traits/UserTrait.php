@@ -18,7 +18,8 @@ namespace vistart\Models\traits;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait UserTrait {
+trait UserTrait
+{
 
     use PasswordTrait,
         RegistrationTrait,
@@ -32,7 +33,8 @@ trait UserTrait {
      * the object properties.
      * @return $className
      */
-    public function create($className, $config = []) {
+    public function create($className, $config = [])
+    {
         if (!isset($config['userClass'])) {
             $config['userClass'] = static::className();
         }
@@ -49,7 +51,8 @@ trait UserTrait {
      * @param array $condition
      * @return $className
      */
-    public function findOneOrCreate($className, $condition = [], $config = []) {
+    public function findOneOrCreate($className, $condition = [], $config = [])
+    {
         $entity = new $className(['skipInit' => true]);
         if (!isset($condition[$entity->createdByAttribute])) {
             $condition[$entity->createdByAttribute] = $this->guid;
@@ -65,8 +68,8 @@ trait UserTrait {
      * Get all rules with current user properties.
      * @return array all rules.
      */
-    public function rules() {
+    public function rules()
+    {
         return array_merge(parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules);
     }
-
 }

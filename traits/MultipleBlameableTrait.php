@@ -56,7 +56,8 @@ use yii\web\JsonParser;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait MultipleBlameableTrait {
+trait MultipleBlameableTrait
+{
 
     /**
      * @var string 
@@ -88,7 +89,8 @@ trait MultipleBlameableTrait {
      * 
      * @return array
      */
-    public function getMultipleBlameableAttributeRules() {
+    public function getMultipleBlameableAttributeRules()
+    {
         return is_string($this->multiBlamesAttribute) ? [
             [[$this->multiBlamesAttribute], 'required'],
             [[$this->multiBlamesAttribute], 'string', 'max' => $this->blamesLimit * 39 + 1],
@@ -103,7 +105,8 @@ trait MultipleBlameableTrait {
      * @throws \yii\base\InvalidParamException when blame has existed.
      * @throws \yii\base\InvalidCallException when limit has been reached.
      */
-    public function addBlameByGuid($blameGuid) {
+    public function addBlameByGuid($blameGuid)
+    {
         if (!is_string($this->multiBlamesAttribute)) {
             return false;
         }
@@ -124,7 +127,8 @@ trait MultipleBlameableTrait {
      * @param [multiBlamesClass] $blame
      * @return false|array
      */
-    public function addBlame($blame) {
+    public function addBlame($blame)
+    {
         return $this->addBlameByGuid($blame->guid);
     }
 
@@ -133,7 +137,8 @@ trait MultipleBlameableTrait {
      * @param string $blameGuid
      * @return false|array
      */
-    public function removeBlameByGuid($blameGuid) {
+    public function removeBlameByGuid($blameGuid)
+    {
         if (!is_string($this->multiBlamesAttribute)) {
             return false;
         }
@@ -150,14 +155,16 @@ trait MultipleBlameableTrait {
      * @param [multiBlamesClass] $blame
      * @return false|array all guids in json format.
      */
-    public function removeBlame($blame) {
+    public function removeBlame($blame)
+    {
         return $this->removeBlamedByGuid($blame->guid);
     }
 
     /**
      * Remove all blames.
      */
-    public function removeAllBlames() {
+    public function removeAllBlames()
+    {
         $this->setBlameGuids();
     }
 
@@ -165,7 +172,8 @@ trait MultipleBlameableTrait {
      * Count the blames.
      * @return integer
      */
-    public function getBlamesCount() {
+    public function getBlamesCount()
+    {
         return count($this->getBlameGuids(true));
     }
 
@@ -174,7 +182,8 @@ trait MultipleBlameableTrait {
      * @param boolean $checkValid determines whether checking the blame is valid.
      * @return array all guids in json format.
      */
-    public function getBlameGuids($checkValid = false) {
+    public function getBlameGuids($checkValid = false)
+    {
         $multiBlamesAttribute = $this->multiBlamesAttribute;
         if ($multiBlamesAttribute === false) {
             return [];
@@ -191,7 +200,8 @@ trait MultipleBlameableTrait {
      * 
      * @param \vistart\Models\events\MultipleBlameableEvent $event
      */
-    public function onBlamesChanged($event) {
+    public function onBlamesChanged($event)
+    {
         $sender = $event->sender;
         $sender->blamesChanged = $event->blamesChanged;
     }
@@ -201,7 +211,8 @@ trait MultipleBlameableTrait {
      * @param array $guids guid array of blames.
      * @return array guid array of blames unset invalid.
      */
-    protected function unsetInvalidBlames($guids) {
+    protected function unsetInvalidBlames($guids)
+    {
         $checkedGuids = Number::unsetInvalidUuids($guids);
         $multiBlamesClass = $this->multiBlamesClass;
         foreach ($checkedGuids as $key => $guid) {
@@ -221,7 +232,8 @@ trait MultipleBlameableTrait {
      * @param boolean $checkValid determines whether checking the blame is valid.
      * @return false|array all guids.
      */
-    public function setBlameGuids($guids = [], $checkValid = true) {
+    public function setBlameGuids($guids = [], $checkValid = true)
+    {
         if (!is_array($guids) || $this->multiBlamesAttribute === false) {
             return null;
         }
@@ -238,7 +250,8 @@ trait MultipleBlameableTrait {
      * @param string $blameGuid
      * @return [multiBlamesClass]
      */
-    public static function getBlame($blameGuid) {
+    public static function getBlame($blameGuid)
+    {
         $self = static::buildNoInitModel();
         if (empty($self->multiBlamesClass) || !is_string($self->multiBlamesClass) || $self->multiBlamesAttribute === false) {
             return null;
@@ -252,7 +265,8 @@ trait MultipleBlameableTrait {
      * @param [multiBlamesClass] $blame
      * @return array
      */
-    public function getBlameds($blame) {
+    public function getBlameds($blame)
+    {
         $blameds = static::getBlame($blame->guid);
         if (empty($blameds)) {
             return null;
@@ -266,7 +280,8 @@ trait MultipleBlameableTrait {
      * Get all the blames of record.
      * @return array all blames.
      */
-    public function getAllBlames() {
+    public function getAllBlames()
+    {
         if (empty($this->multiBlamesClass) ||
                 !is_string($this->multiBlamesClass) ||
                 $this->multiBlamesAttribute === false) {
@@ -281,20 +296,26 @@ trait MultipleBlameableTrait {
      * Get all records which without any blames.
      * @return array all non-blameds.
      */
-    public function getNonBlameds() {
+    public function getNonBlameds()
+    {
         $createdByAttribute = $this->createdByAttribute;
-        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->multiBlamesAttribute => json_encode([])])->all();
+        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->multiBlamesAttribute => static::getEmptyBlamesJson()])->all();
     }
 
     /**
      * 
      * @param \yii\base\Event $event
      */
-    public function onInitBlamesLimit($event) {
+    public function onInitBlamesLimit($event)
+    {
         $sender = $event->sender;
         if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 10) {
             $sender->blamesLimit = 10;
         }
     }
 
+    public static function getEmptyBlamesJson()
+    {
+        return json_encode([]);
+    }
 }

@@ -38,7 +38,8 @@ use yii\behaviors\BlameableBehavior;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait BlameableTrait {
+trait BlameableTrait
+{
 
     use ConfirmationTrait;
 
@@ -138,14 +139,16 @@ trait BlameableTrait {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return $this->getBlameableRules();
     }
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return $this->getBlameableBehaviors();
     }
 
@@ -153,7 +156,8 @@ trait BlameableTrait {
      * Get total of contents which owned by their owner.
      * @return integer
      */
-    public function count() {
+    public function count()
+    {
         $createdByAttribute = $this->createdByAttribute;
         return static::find()->where([$createdByAttribute => $this->$createdByAttribute])->count();
     }
@@ -162,7 +166,8 @@ trait BlameableTrait {
      * Get content.
      * @return mixed
      */
-    public function getContent() {
+    public function getContent()
+    {
         $contentAttribute = $this->contentAttribute;
         if ($contentAttribute === false)
             return null;
@@ -180,7 +185,8 @@ trait BlameableTrait {
      * Set content.
      * @param mixed $content
      */
-    public function setContent($content) {
+    public function setContent($content)
+    {
         $contentAttribute = $this->contentAttribute;
         if ($contentAttribute === false)
             return;
@@ -199,7 +205,8 @@ trait BlameableTrait {
      * @return boolean
      * @throws \yii\base\NotSupportedException
      */
-    public function getContentCanBeEdited() {
+    public function getContentCanBeEdited()
+    {
         if ($this->contentAttribute === false)
             return false;
         throw new \yii\base\NotSupportedException("This method is not implemented.");
@@ -209,7 +216,8 @@ trait BlameableTrait {
      * 
      * @return boolean Whether this content has ever been edited.
      */
-    public function hasEverEdited() {
+    public function hasEverEdited()
+    {
         $createdAtAttribute = $this->createdByAttribute;
         $updatedAtAttribute = $this->updatedByAttribute;
         if (!$createdAtAttribute || !$updatedAtAttribute) {
@@ -222,7 +230,8 @@ trait BlameableTrait {
      * Get the rules associated with content to be blamed.
      * @return array rules.
      */
-    public function getBlameableRules() {
+    public function getBlameableRules()
+    {
         $cache = $this->getCache();
         if ($cache) {
             $this->_blameableRules = $cache->get($this->cachePrefix . static::$cacheKeyBlameableRules);
@@ -248,7 +257,8 @@ trait BlameableTrait {
      * and `idAttribute`-`createdByAttribute` combination unique.
      * @return array rules.
      */
-    public function getBlameableAttributeRules() {
+    public function getBlameableAttributeRules()
+    {
         $rules = [];
         // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
         if (!is_string($this->createdByAttribute) || empty($this->createdByAttribute)) {
@@ -276,7 +286,8 @@ trait BlameableTrait {
      * Get the rules associated with `description` attribute.
      * @return array rules.
      */
-    public function getDescriptionRules() {
+    public function getDescriptionRules()
+    {
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
             $rules[] = [
@@ -293,7 +304,8 @@ trait BlameableTrait {
      * Get the rules associated with `content` and `contentType` attributes.
      * @return array rules.
      */
-    public function getContentRules() {
+    public function getContentRules()
+    {
         if (!$this->contentAttribute) {
             return [];
         }
@@ -318,7 +330,8 @@ trait BlameableTrait {
      * Set blameable rules.
      * @param array $rules
      */
-    protected function setBlameableRules($rules = []) {
+    protected function setBlameableRules($rules = [])
+    {
         $this->_blameableRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
@@ -331,7 +344,8 @@ trait BlameableTrait {
      * array will be given.
      * @return array
      */
-    public function getBlameableBehaviors() {
+    public function getBlameableBehaviors()
+    {
         $cache = $this->getCache();
         if ($cache) {
             $this->_blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
@@ -356,7 +370,8 @@ trait BlameableTrait {
      * Set blameable behaviors.
      * @param array $behaviors
      */
-    protected function setBlameableBehaviors($behaviors = []) {
+    protected function setBlameableBehaviors($behaviors = [])
+    {
         $this->_blameableBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
@@ -368,7 +383,8 @@ trait BlameableTrait {
      * Set description.
      * @return string description.
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         $descAttribute = $this->descriptionAttribute;
         return is_string($descAttribute) ? $this->$descAttribute : null;
     }
@@ -378,7 +394,8 @@ trait BlameableTrait {
      * @param string $desc description.
      * @return string|null description if enabled, or null if disabled.
      */
-    public function setDescription($desc) {
+    public function setDescription($desc)
+    {
         $descAttribute = $this->descriptionAttribute;
         return is_string($descAttribute) ? $this->$descAttribute = $desc : null;
     }
@@ -389,7 +406,8 @@ trait BlameableTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onContentChanged($event) {
+    public function onContentChanged($event)
+    {
         $sender = $event->sender;
         $sender->resetConfirmation();
     }
@@ -402,7 +420,8 @@ trait BlameableTrait {
      * @param \yii\base\Event $event
      * @return string the GUID of current user or the owner.
      */
-    public function onGetCurrentUserGuid($event) {
+    public function onGetCurrentUserGuid($event)
+    {
         if (isset($event->sender->attributes[$event->sender->createdByAttribute])) {
             return $event->sender->attributes[$event->sender->createdByAttribute];
         }
@@ -418,7 +437,8 @@ trait BlameableTrait {
      * $contentTypes will be used.
      * @param \yii\base\Event $event
      */
-    public function onInitContentType($event) {
+    public function onInitContentType($event)
+    {
         $sender = $event->sender;
         if (!isset($sender->contentTypeAttribute) || !is_string($sender->contentTypeAttribute)) {
             return;
@@ -433,7 +453,8 @@ trait BlameableTrait {
      * Initialize description property with $initDescription.
      * @param \yii\base\Event $event
      */
-    public function onInitDescription($event) {
+    public function onInitDescription($event)
+    {
         $sender = $event->sender;
         if (!isset($sender->descriptionAttribute) || !is_string($sender->descriptionAttribute)) {
             return;
@@ -447,7 +468,8 @@ trait BlameableTrait {
     /**
      * Attach events associated with blameable model.
      */
-    public function initBlameableEvents() {
+    public function initBlameableEvents()
+    {
         $this->on(static::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);
         $this->on(static::$eventNewRecordCreated, [$this, "onInitConfirmation"]);
         $contentTypeAttribute = $this->contentTypeAttribute;
@@ -460,5 +482,4 @@ trait BlameableTrait {
         }
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
     }
-
 }

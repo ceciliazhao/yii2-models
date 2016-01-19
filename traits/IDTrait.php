@@ -22,7 +22,8 @@ use vistart\Helpers\Number;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait IDTrait {
+trait IDTrait
+{
 
     /**
      * @var string OPTIONAL.The attribute that will receive the IDentifier No.
@@ -70,7 +71,8 @@ trait IDTrait {
      * 
      * @return string|integer
      */
-    public function getId() {
+    public function getId()
+    {
         $idAttribute = $this->idAttribute;
         return is_string($idAttribute) ? $this->$idAttribute : null;
     }
@@ -80,7 +82,8 @@ trait IDTrait {
      * @param string|integer $id
      * @return string|integer
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $idAttribute = $this->idAttribute;
         return is_string($idAttribute) ? $this->$idAttribute = $id : null;
     }
@@ -94,7 +97,8 @@ trait IDTrait {
      * @param \yii\base\Event $event
      * @since 1.1
      */
-    public function onInitIdAttribute($event) {
+    public function onInitIdAttribute($event)
+    {
         $sender = $event->sender;
         if ($sender->idPreassigned) {
             return;
@@ -116,7 +120,8 @@ trait IDTrait {
      * generation algorithm.
      * @return string the generated ID.
      */
-    public function generateId() {
+    public function generateId()
+    {
         if ($this->idAttributeType == self::$idTypeInteger) {
             do {
                 $result = Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
@@ -141,7 +146,8 @@ trait IDTrait {
      * @param mixed $id
      * @return boolean
      */
-    public function checkIdExists($id) {
+    public function checkIdExists($id)
+    {
         if ($id == null) {
             return false;
         }
@@ -152,7 +158,8 @@ trait IDTrait {
      * 
      * @return array
      */
-    public function getIdRules() {
+    public function getIdRules()
+    {
         if ($this->idAttribute == false) {
             return [];
         }
@@ -186,5 +193,4 @@ trait IDTrait {
         }
         return [];
     }
-
 }

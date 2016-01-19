@@ -22,7 +22,8 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait EntityTrait {
+trait EntityTrait
+{
 
     use GUIDTrait,
         IDTrait,
@@ -61,7 +62,8 @@ trait EntityTrait {
     /**
      * @return \static New self without any initializations.
      */
-    public static function buildNoInitModel() {
+    public static function buildNoInitModel()
+    {
         return new static(['skipInit' => true]);
     }
 
@@ -72,7 +74,8 @@ trait EntityTrait {
      * consequences.
      * @return type
      */
-    public function rules() {
+    public function rules()
+    {
         return $this->getEntityRules();
     }
 
@@ -83,7 +86,8 @@ trait EntityTrait {
      * consequences.
      * @return type
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return $this->getEntityBehaviors();
     }
 
@@ -92,7 +96,8 @@ trait EntityTrait {
      * given.
      * @return \yii\caching\Cache cache component.
      */
-    protected function getCache() {
+    protected function getCache()
+    {
         $cacheId = $this->cacheId;
         return empty($cacheId) ? null : Yii::$app->$cacheId;
     }
@@ -101,7 +106,8 @@ trait EntityTrait {
      * 
      * @return array
      */
-    public function getEntityRules() {
+    public function getEntityRules()
+    {
         $cache = $this->getCache();
         if ($cache) {
             $this->_entityRules = $cache->get($this->cachePrefix . static::$cacheKeyEntityRules);
@@ -117,7 +123,8 @@ trait EntityTrait {
      * 
      * @param array $rules
      */
-    protected function setEntityRules($rules = []) {
+    protected function setEntityRules($rules = [])
+    {
         $this->_entityRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
@@ -130,7 +137,8 @@ trait EntityTrait {
      * 
      * @return array
      */
-    public function getEntityBehaviors() {
+    public function getEntityBehaviors()
+    {
         $cache = $this->getCache();
         if ($cache) {
             $this->_entityBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyEntityBehaviors);
@@ -145,7 +153,8 @@ trait EntityTrait {
      * 
      * @param array $behaviors
      */
-    protected function setEntityBehaviors($behaviors) {
+    protected function setEntityBehaviors($behaviors)
+    {
         $this->_entityBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
@@ -161,7 +170,8 @@ trait EntityTrait {
      * @return boolean whether the value is successfully stored into cache. if
      * cache component was not configured, then return false directly.
      */
-    public function resetCacheKey($cacheKey, $value = false) {
+    public function resetCacheKey($cacheKey, $value = false)
+    {
         $cache = $this->getCache();
         if ($cache) {
             return $this->getCache()->set($cacheKey, $value);
@@ -172,7 +182,8 @@ trait EntityTrait {
     /**
      * Attach events associated with entity model.
      */
-    protected function initEntityEvents() {
+    protected function initEntityEvents()
+    {
         $this->on(static::EVENT_INIT, [$this, 'onInitCache']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
@@ -186,7 +197,8 @@ trait EntityTrait {
      * 
      * @param \yii\base\Event $event
      */
-    public function onInitCache($event) {
+    public function onInitCache($event)
+    {
         $sender = $event->sender;
         $data = $event->data;
         if (isset($data['prefix'])) {
@@ -199,10 +211,10 @@ trait EntityTrait {
     /**
      * 
      */
-    protected function recordWarnings() {
+    protected function recordWarnings()
+    {
         if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
             Yii::warning($this->errors);
         }
     }
-
 }

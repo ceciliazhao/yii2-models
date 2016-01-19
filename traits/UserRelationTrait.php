@@ -30,7 +30,8 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait UserRelationTrait {
+trait UserRelationTrait
+{
 
     use mb {
         mb::addBlame as addGroup;
@@ -87,7 +88,8 @@ trait UserRelationTrait {
      * 
      * @return boolean
      */
-    public function getIsFavorite() {
+    public function getIsFavorite()
+    {
         $favoriteAttribute = $this->favoriteAttribute;
         return is_string($favoriteAttribute) ? (int) $this->$favoriteAttribute > 0 : null;
     }
@@ -96,7 +98,8 @@ trait UserRelationTrait {
      * 
      * @param boolean $fav
      */
-    public function setIsFavorite($fav) {
+    public function setIsFavorite($fav)
+    {
         $favoriteAttribute = $this->favoriteAttribute;
         return is_string($favoriteAttribute) ? $this->$favoriteAttribute = ($fav ? 1 : 0) : null;
     }
@@ -104,7 +107,8 @@ trait UserRelationTrait {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return array_merge(parent::rules(), $this->getUserRelationRules());
     }
 
@@ -112,7 +116,8 @@ trait UserRelationTrait {
      * Validation rules associated with user relation.
      * @return array
      */
-    public function getUserRelationRules() {
+    public function getUserRelationRules()
+    {
         return array_merge([
             [[$this->mutualTypeAttribute], 'integer'],
             [[$this->mutualTypeAttribute], 'default', 'value' => static::$mutualTypeNormal],
@@ -123,7 +128,8 @@ trait UserRelationTrait {
      * Get remark.
      * @return string remark.
      */
-    public function getRemark() {
+    public function getRemark()
+    {
         $remarkAttribute = $this->remarkAttribute;
         return is_string($remarkAttribute) ? $this->$remarkAttribute : null;
     }
@@ -133,7 +139,8 @@ trait UserRelationTrait {
      * @param string $remark
      * @return string remark.
      */
-    public function setRemark($remark) {
+    public function setRemark($remark)
+    {
         $remarkAttribute = $this->remarkAttribute;
         return is_string($remarkAttribute) ? $this->$remarkAttribute = $remark : null;
     }
@@ -142,7 +149,8 @@ trait UserRelationTrait {
      * Validation rules associated with remark attribute.
      * @return array rules.
      */
-    public function getRemarkRules() {
+    public function getRemarkRules()
+    {
         return is_string($this->remarkAttribute) ? [
             [[$this->remarkAttribute], 'string'],
             [[$this->remarkAttribute], 'default', 'value' => ''],
@@ -153,7 +161,8 @@ trait UserRelationTrait {
      * Validation rules associated with favorites attribute.
      * @return array
      */
-    public function getFavoriteRules() {
+    public function getFavoriteRules()
+    {
         return is_string($this->favoriteAttribute) ? [
             [[$this->favoriteAttribute], 'boolean'],
             [[$this->favoriteAttribute], 'default', 'value' => 0],
@@ -164,7 +173,8 @@ trait UserRelationTrait {
      * Validation rules associated with other guid attribute.
      * @return array
      */
-    public function getOtherGuidRules() {
+    public function getOtherGuidRules()
+    {
         $rules = [
             [[$this->otherGuidAttribute, $this->mutualTypeAttribute], 'required'],
             [[$this->otherGuidAttribute], 'string', 'max' => 36],
@@ -178,7 +188,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $user
      * @return array
      */
-    public static function findOnesAllRelations($user) {
+    public static function findOnesAllRelations($user)
+    {
         return static::findOnesAllRelationsByUserGuid($user->guid);
     }
 
@@ -187,7 +198,8 @@ trait UserRelationTrait {
      * @param srting $userGuid
      * @return array
      */
-    public static function findOnesAllRelationsByUserGuid($userGuid) {
+    public static function findOnesAllRelationsByUserGuid($userGuid)
+    {
         return static::findOne([$this->createdByAttribute => $userGuid]);
     }
 
@@ -195,7 +207,8 @@ trait UserRelationTrait {
      * Initialize groups attribute.
      * @param \yii\base\Event $event
      */
-    public function onInitGroups($event) {
+    public function onInitGroups($event)
+    {
         $sender = $event->sender;
         $sender->removeAllGroups();
     }
@@ -204,7 +217,8 @@ trait UserRelationTrait {
      * Initialize remark attribute.
      * @param \yii\base\Event $event
      */
-    public function onInitRemark($event) {
+    public function onInitRemark($event)
+    {
         $sender = $event->sender;
         $remarkAttribute = $sender->remarkAttribute;
         is_string($remarkAttribute) ? $sender->$remarkAttribute = '' : null;
@@ -213,7 +227,8 @@ trait UserRelationTrait {
     /**
      * Attach events associated with user relation.
      */
-    public function initUserRelationEvents() {
+    public function initUserRelationEvents()
+    {
         $this->on(static::EVENT_INIT, [$this, 'onInitBlamesLimit']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitGroups']);
         $this->on(static::$eventNewRecordCreated, [$this, 'onInitRemark']);
@@ -227,13 +242,14 @@ trait UserRelationTrait {
      * Get opposite relation to self.
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    public function getOpposite() {
+    public function getOpposite()
+    {
         if ($this->isNewRecord) {
             return null;
         }
         $createdByAttribute = $this->createdByAttribute;
         $otherGuidAttribute = $this->otherGuidAttribute;
-        return static::findOneRelationByUserGuid($this->$otherGuidAttribute, $this->$createdByAttribute);
+        return static::find()->opposite($this->$createdByAttribute, $this->$otherGuidAttribute);
     }
 
     /**
@@ -243,7 +259,8 @@ trait UserRelationTrait {
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
-    public static function buildSuspendRelation($user, $other) {
+    public static function buildSuspendRelation($user, $other)
+    {
         $relation = static::buildRelation($user, $other);
         $btAttribute = $relation->mutualTypeAttribute;
         $relation->$btAttribute = static::$mutualTypeSuspend;
@@ -257,7 +274,8 @@ trait UserRelationTrait {
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
-    public static function buildNormalRelation($user, $other) {
+    public static function buildNormalRelation($user, $other)
+    {
         $relation = static::buildRelation($user, $other);
         $btAttribute = $relation->mutualTypeAttribute;
         $relation->$btAttribute = static::$mutualTypeNormal;
@@ -272,7 +290,8 @@ trait UserRelationTrait {
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
-    protected static function buildRelation($user, $other) {
+    protected static function buildRelation($user, $other)
+    {
         return static::buildRelationByUserGuid($user->guid, $other->guid);
     }
 
@@ -284,7 +303,8 @@ trait UserRelationTrait {
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
-    protected static function buildRelationByUserGuid($userGuid, $otherGuid) {
+    protected static function buildRelationByUserGuid($userGuid, $otherGuid)
+    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
@@ -301,7 +321,8 @@ trait UserRelationTrait {
      * @param type $relation
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    protected static function buildOppositeRelation($relation) {
+    protected static function buildOppositeRelation($relation)
+    {
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
         $mutualTypeAttribute = $relation->mutualTypeAttribute;
@@ -316,7 +337,8 @@ trait UserRelationTrait {
      * is unsuccessful for some reason. Note that it is possible the number of relations
      * removed is 0, even though the remove execution is successful.
      */
-    public function remove() {
+    public function remove()
+    {
         return $this->delete();
     }
 
@@ -326,7 +348,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return integer|false
      */
-    public static function removeOneRelation($user, $other) {
+    public static function removeOneRelation($user, $other)
+    {
         return static::removeOneRelationByUserGuid($user->guid, $other->guid);
     }
 
@@ -339,7 +362,8 @@ trait UserRelationTrait {
      * is unsuccessful for some reason. Note that it is possible the number of relations
      * removed is 0, even though the remove execution is successful.
      */
-    public static function removeOneRelationByUserGuid($userGuid, $otherGuid) {
+    public static function removeOneRelationByUserGuid($userGuid, $otherGuid)
+    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
@@ -353,7 +377,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return integer The number of relations removed.
      */
-    public static function removeAllRelations($user, $other) {
+    public static function removeAllRelations($user, $other)
+    {
         return static::removeAllRelationsByUserGuid($user->guid, $other->guid);
     }
 
@@ -363,7 +388,8 @@ trait UserRelationTrait {
      * @param string $otherGuid
      * @return integer The number of relations removed.
      */
-    public static function removeAllRelationsByUserGuid($userGuid, $otherGuid) {
+    public static function removeAllRelationsByUserGuid($userGuid, $otherGuid)
+    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
@@ -376,7 +402,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    public static function findOneRelation($user, $other) {
+    public static function findOneRelation($user, $other)
+    {
         return static::findOneRelationByUserGuid($user->guid, $other->guid);
     }
 
@@ -386,7 +413,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    public static function findOneOppositeRelation($user, $other) {
+    public static function findOneOppositeRelation($user, $other)
+    {
         return static::findOneRelationByUserGuid($other->guid, $user->guid);
     }
 
@@ -396,7 +424,8 @@ trait UserRelationTrait {
      * @param string $otherGuid
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    public static function findOneOppositeRelationByUserGuid($userGuid, $otherGuid) {
+    public static function findOneOppositeRelationByUserGuid($userGuid, $otherGuid)
+    {
         return static::findOneRelationByUserGuid($otherGuid, $userGuid);
     }
 
@@ -406,7 +435,8 @@ trait UserRelationTrait {
      * @param string $otherGuid
      * @return \vistart\Models\models\BaseUserRelationModel
      */
-    public static function findOneRelationByUserGuid($userGuid, $otherGuid) {
+    public static function findOneRelationByUserGuid($userGuid, $otherGuid)
+    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
@@ -419,7 +449,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return array
      */
-    public static function findAllRelations($user, $other) {
+    public static function findAllRelations($user, $other)
+    {
         return static::findAllRelationsByUserGuid($user->guid, $other->guid);
     }
 
@@ -429,7 +460,8 @@ trait UserRelationTrait {
      * @param \vistart\Models\models\BaseUserModel $other
      * @return array
      */
-    public static function findAllOppositeRelations($user, $other) {
+    public static function findAllOppositeRelations($user, $other)
+    {
         return static::findAllRelationsByUserGuid($other->guid, $user->guid);
     }
 
@@ -439,7 +471,8 @@ trait UserRelationTrait {
      * @param string $otherGuid
      * @return array
      */
-    public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid) {
+    public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid)
+    {
         return static::findAllRelationsByUserGuid($otherGuid, $userGuid);
     }
 
@@ -449,7 +482,8 @@ trait UserRelationTrait {
      * @param string $otherGuid
      * @return array
      */
-    public static function findAllRelationsByUserGuid($userGuid, $otherGuid) {
+    public static function findAllRelationsByUserGuid($userGuid, $otherGuid)
+    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
@@ -462,7 +496,8 @@ trait UserRelationTrait {
      * simultaneously after new relation inserted,
      * @param \yii\base\Event $event
      */
-    public function onInsertRelation($event) {
+    public function onInsertRelation($event)
+    {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
@@ -478,7 +513,8 @@ trait UserRelationTrait {
      * simultaneously after existed relation removed.
      * @param \yii\base\Event $event
      */
-    public function onUpdateRelation($event) {
+    public function onUpdateRelation($event)
+    {
         $sender = $event->sender;
         $opposite = static::buildOppositeRelation($sender);
         $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
@@ -494,7 +530,8 @@ trait UserRelationTrait {
      * simultaneously after existed relation removed.
      * @param \yii\base\Event $event
      */
-    public function onDeleteRelation($event) {
+    public function onDeleteRelation($event)
+    {
         $sender = $event->sender;
         $createdByAttribute = $sender->createdByAttribute;
         $otherGuidAttribute = $sender->otherGuidAttribute;
@@ -502,5 +539,4 @@ trait UserRelationTrait {
         static::removeAllRelationsByUserGuid($sender->$otherGuidAttribute, $sender->$createdByAttribute);
         $sender->on(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
     }
-
 }

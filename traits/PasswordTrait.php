@@ -23,7 +23,8 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait PasswordTrait {
+trait PasswordTrait
+{
 
     public static $eventAfterSetPassword = "afterSetPassword";
     public static $eventBeforeValidatePassword = "beforeValidatePassword";
@@ -66,7 +67,8 @@ trait PasswordTrait {
      * Get rules of password hash.
      * @return array password hash rules.
      */
-    public function getPasswordHashRules() {
+    public function getPasswordHashRules()
+    {
         if ($this->passwordHashStrategy == 'crypt') {
             $this->passwordHashAttributeLength = 60;
         }
@@ -82,7 +84,8 @@ trait PasswordTrait {
      * Set rules of password hash.
      * @param array $rules password hash rules.
      */
-    public function setPasswordHashRules($rules) {
+    public function setPasswordHashRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_passwordHashRules = $rules;
         }
@@ -92,7 +95,8 @@ trait PasswordTrait {
      * 
      * @return array
      */
-    public function getPasswordResetTokenRules() {
+    public function getPasswordResetTokenRules()
+    {
         if (empty($this->_passwordResetTokenRules) || !is_array($this->_passwordResetTokenRules)) {
             $this->_passwordResetTokenRules = [
                 [[$this->passwordResetTokenAttribute], 'string', 'length' => 40],
@@ -106,7 +110,8 @@ trait PasswordTrait {
      * 
      * @param type $rules
      */
-    public function setPasswordResetTokenRules($rules) {
+    public function setPasswordResetTokenRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_passwordResetTokenRules = $rules;
         }
@@ -137,7 +142,8 @@ trait PasswordTrait {
      * the output is always 60 ASCII characters, when set to 'password_hash' the output length
      * might increase in future versions of PHP (http://php.net/manual/en/function.password-hash.php)
      */
-    public function generatePasswordHash($password) {
+    public function generatePasswordHash($password)
+    {
         Yii::$app->security->passwordHashStrategy = $this->passwordHashStrategy;
         return Yii::$app->security->generatePasswordHash($password, $this->passwordCost);
     }
@@ -148,7 +154,8 @@ trait PasswordTrait {
      * @param string $password The password to verify.
      * @return boolean whether the password is correct.
      */
-    public function validatePassword($password) {
+    public function validatePassword($password)
+    {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $result = Yii::$app->security->validatePassword($password, $this->$passwordHashAttribute);
         if ($result) {
@@ -163,7 +170,8 @@ trait PasswordTrait {
      * Set new password.
      * @param string $password the new password to be set.
      */
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $passwordHashAttribute = $this->passwordHashAttribute;
         $this->$passwordHashAttribute = Yii::$app->security->generatePasswordHash($password);
         $this->trigger(static::$eventAfterSetPassword);
@@ -173,7 +181,8 @@ trait PasswordTrait {
      * 
      * @return boolean
      */
-    public function applyNewPassword() {
+    public function applyNewPassword()
+    {
         if ($this->isNewRecord) {
             return false;
         }
@@ -193,7 +202,8 @@ trait PasswordTrait {
      * @param string $token
      * @return boolean
      */
-    public function resetPassword($password, $token) {
+    public function resetPassword($password, $token)
+    {
         if (!$this->validatePasswordResetToken($token)) {
             return false;
         }
@@ -213,7 +223,8 @@ trait PasswordTrait {
      * Generate password reset token.
      * @return string
      */
-    public static function generatePasswordResetToken() {
+    public static function generatePasswordResetToken()
+    {
         return sha1(Yii::$app->security->generateRandomString());
     }
 
@@ -222,7 +233,8 @@ trait PasswordTrait {
      * The auth key and access token should be regenerated if new password has applied.
      * @param \yii\base\Event $event
      */
-    public function onAfterSetNewPassword($event) {
+    public function onAfterSetNewPassword($event)
+    {
         $this->onInitAuthKey($event);
         $this->onInitAccessToken($event);
     }
@@ -232,7 +244,8 @@ trait PasswordTrait {
      * @param string $token
      * @return boolean
      */
-    protected function validatePasswordResetToken($token) {
+    protected function validatePasswordResetToken($token)
+    {
         $passwordResetTokenAttribute = $this->passwordResetTokenAttribute;
         return $this->$passwordResetTokenAttribute === $token;
     }
@@ -241,10 +254,10 @@ trait PasswordTrait {
      * 
      * @param \yii\base\Event $event
      */
-    public function onInitPasswordResetToken($event) {
+    public function onInitPasswordResetToken($event)
+    {
         $sender = $event->sender;
         $passwordResetTokenAttribute = $sender->passwordResetTokenAttribute;
         $sender->$passwordResetTokenAttribute = '';
     }
-
 }

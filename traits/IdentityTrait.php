@@ -24,7 +24,8 @@ use Yii;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait IdentityTrait {
+trait IdentityTrait
+{
 
     public static $statusActive = 1;
     public static $statusInactive = 0;
@@ -40,7 +41,8 @@ trait IdentityTrait {
      * @param string|integer $id
      * @return type
      */
-    public static function findIdentity($id) {
+    public static function findIdentity($id)
+    {
         $self = static::buildNoInitModel();
         return static::findOne([$self->idAttribute => $id]);
     }
@@ -50,7 +52,8 @@ trait IdentityTrait {
      * @param string $guid
      * @return type
      */
-    public static function findIdentityByGuid($guid) {
+    public static function findIdentityByGuid($guid)
+    {
         return static::findOne($guid);
     }
 
@@ -60,7 +63,8 @@ trait IdentityTrait {
      * @param type $type
      * @return type
      */
-    public static function findIdentityByAccessToken($token, $type = NULL) {
+    public static function findIdentityByAccessToken($token, $type = NULL)
+    {
         $self = static::buildNoInitModel();
         return static::findOne([$self->accessTokenAttribute => $token]);
     }
@@ -69,7 +73,8 @@ trait IdentityTrait {
      * 
      * @return string|null
      */
-    public function getAuthKey() {
+    public function getAuthKey()
+    {
         $authKeyAttribute = $this->authKeyAttribute;
         return is_string($authKeyAttribute) ? $this->$authKeyAttribute : null;
     }
@@ -79,7 +84,8 @@ trait IdentityTrait {
      * @param string $key
      * @return string
      */
-    public function setAuthKey($key) {
+    public function setAuthKey($key)
+    {
         $authKeyAttribute = $this->authKeyAttribute;
         return is_string($authKeyAttribute) ? $this->$authKeyAttribute = $key : null;
     }
@@ -89,7 +95,8 @@ trait IdentityTrait {
      * @param string $authKey
      * @return string
      */
-    public function validateAuthKey($authKey) {
+    public function validateAuthKey($authKey)
+    {
         return $this->getAuthKey() === $authKey;
     }
 
@@ -97,7 +104,8 @@ trait IdentityTrait {
      * 
      * @return array
      */
-    public function getAuthKeyRules() {
+    public function getAuthKeyRules()
+    {
         if (empty($this->_authKeyRules)) {
             $this->_authKeyRules = [
                 [[$this->authKeyAttribute], 'required'],
@@ -111,7 +119,8 @@ trait IdentityTrait {
      * 
      * @param array $rules
      */
-    public function setAuthKeyRules($rules) {
+    public function setAuthKeyRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_authKeyRules = $rules;
         }
@@ -123,7 +132,8 @@ trait IdentityTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onInitAuthKey($event) {
+    public function onInitAuthKey($event)
+    {
         $sender = $event->sender;
         $authKeyAttribute = $sender->authKeyAttribute;
         $sender->$authKeyAttribute = sha1(Yii::$app->security->generateRandomString());
@@ -133,7 +143,8 @@ trait IdentityTrait {
      * 
      * @return string|null
      */
-    public function getAccessToken() {
+    public function getAccessToken()
+    {
         $accessTokenAttribute = $this->accessTokenAttribute;
         return is_string($accessTokenAttribute) ? $this->$accessTokenAttribute : null;
     }
@@ -143,7 +154,8 @@ trait IdentityTrait {
      * @param string $token
      * @return string|null
      */
-    public function setAccessToken($token) {
+    public function setAccessToken($token)
+    {
         $accessTokenAttribute = $this->accessTokenAttribute;
         return is_string($accessTokenAttribute) ? $this->$accessTokenAttribute = $token : null;
     }
@@ -152,7 +164,8 @@ trait IdentityTrait {
      * 
      * @return array
      */
-    public function getAccessTokenRules() {
+    public function getAccessTokenRules()
+    {
         if (empty($this->_accessTokenRules)) {
             $this->_accessTokenRules = [
                 [[$this->accessTokenAttribute], 'required'],
@@ -166,7 +179,8 @@ trait IdentityTrait {
      * 
      * @param array $rules
      */
-    public function setAccessTokenRules($rules) {
+    public function setAccessTokenRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_accessTokenRules = $rules;
         }
@@ -178,7 +192,8 @@ trait IdentityTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onInitAccessToken($event) {
+    public function onInitAccessToken($event)
+    {
         $sender = $event->sender;
         $accessTokenAttribute = $sender->accessTokenAttribute;
         $sender->$accessTokenAttribute = sha1(Yii::$app->security->generateRandomString());
@@ -188,7 +203,8 @@ trait IdentityTrait {
      * 
      * @return integer
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         $statusAttribute = $this->statusAttribute;
         return is_string($statusAttribute) ? $this->$statusAttribute : null;
     }
@@ -198,7 +214,8 @@ trait IdentityTrait {
      * @param integer $status
      * @return integer|null
      */
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $statusAttribute = $this->statusAttribute;
         return is_string($statusAttribute) ? $this->$statusAttribute = $status : null;
     }
@@ -207,7 +224,8 @@ trait IdentityTrait {
      * 
      * @return array
      */
-    public function getStatusRules() {
+    public function getStatusRules()
+    {
         if (empty($this->_statusRules)) {
             $this->_statusRules = [
                 [[$this->statusAttribute], 'required'],
@@ -221,7 +239,8 @@ trait IdentityTrait {
      * 
      * @param array $rules
      */
-    public function setStatusRules($rules) {
+    public function setStatusRules($rules)
+    {
         if (!empty($rules) && is_array($rules)) {
             $this->_statusRules = $rules;
         }
@@ -233,10 +252,10 @@ trait IdentityTrait {
      * override or modify it directly, unless you know the consequences.
      * @param \yii\base\Event $event
      */
-    public function onInitStatusAttribute($event) {
+    public function onInitStatusAttribute($event)
+    {
         $sender = $event->sender;
         $statusAttribute = $sender->statusAttribute;
         $sender->$statusAttribute = self::$statusActive;
     }
-
 }

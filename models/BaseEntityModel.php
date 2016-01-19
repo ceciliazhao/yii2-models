@@ -23,14 +23,16 @@ use vistart\Models\traits\EntityTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseEntityModel extends ActiveRecord {
+abstract class BaseEntityModel extends ActiveRecord
+{
 
     use EntityTrait;
 
     /**
      * Initialize new entity.
      */
-    public function init() {
+    public function init()
+    {
         if ($this->skipInit)
             return;
         $this->initEntityEvents();
@@ -45,7 +47,8 @@ abstract class BaseEntityModel extends ActiveRecord {
      * @return boolean true if all checks pass.
      * @throws \yii\base\NotSupportedException
      */
-    public function checkAttributes() {
+    public function checkAttributes()
+    {
         if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
             if (!is_string($this->idAttribute) && empty($this->idAttribute) &&
                     !is_string($this->guidAttribute) && empty($this->guidAttribute)) {
@@ -59,7 +62,8 @@ abstract class BaseEntityModel extends ActiveRecord {
      * @inheritdoc
      * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
      */
-    public static function find() {
+    public static function find()
+    {
         parent::find();
         $self = static::buildNoInitModel();
         if (!is_string($self->queryClass)) {
@@ -68,5 +72,4 @@ abstract class BaseEntityModel extends ActiveRecord {
         $queryClass = $self->queryClass;
         return new $queryClass(get_called_class(), ['noInitModel' => $self]);
     }
-
 }

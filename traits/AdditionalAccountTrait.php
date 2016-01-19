@@ -20,7 +20,8 @@ namespace vistart\Models\traits;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-trait AdditionalAccountTrait {
+trait AdditionalAccountTrait
+{
 
     use PasswordTrait;
 
@@ -43,7 +44,8 @@ trait AdditionalAccountTrait {
      * 
      * @return boolean
      */
-    public function getCanBeLogon() {
+    public function getCanBeLogon()
+    {
         if (!$this->enableLoginAttribute) {
             return false;
         }
@@ -56,7 +58,8 @@ trait AdditionalAccountTrait {
      * @param boolean $can
      * @return integer
      */
-    public function setCanBeLogon($can) {
+    public function setCanBeLogon($can)
+    {
         if (!$this->enableLoginAttribute) {
             return;
         }
@@ -68,7 +71,8 @@ trait AdditionalAccountTrait {
      * 
      * @return array
      */
-    public function getEnableLoginAttributeRules() {
+    public function getEnableLoginAttributeRules()
+    {
         return $this->enableLoginAttribute && is_string($this->enableLoginAttribute) ? [
             [[$this->enableLoginAttribute], 'boolean'],
             [[$this->enableLoginAttribute], 'default', 'value' => true],
@@ -79,12 +83,12 @@ trait AdditionalAccountTrait {
      * 
      * @return array
      */
-    public function getAdditionalAccountRules() {
+    public function getAdditionalAccountRules()
+    {
         $rules = $this->getEnableLoginAttributeRules();
         if ($this->independentPassword) {
             $rules = array_merge($rules, $this->getPasswordHashRules());
         }
         return $rules;
     }
-
 }

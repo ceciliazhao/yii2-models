@@ -19,16 +19,19 @@ use Yii;
  * 
  * @author vistart <i@vistart.name>
  */
-class MultipleDomainsManagerTest extends TestCase {
+class MultipleDomainsManagerTest extends TestCase
+{
 
-    public function testInit() {
+    public function testInit()
+    {
         //UserEmail::deleteAll();
     }
 
     /**
      * @depends testInit
      */
-    public function testNew() {
+    public function testNew()
+    {
         $MultipleDomainsManager = new MultipleDomainsManager();
         $urlManager = $MultipleDomainsManager->current;
         $myUrlManager = $MultipleDomainsManager->get('my');
@@ -38,5 +41,4 @@ class MultipleDomainsManagerTest extends TestCase {
         $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
         $this->assertEquals('/logout', $loginUrlManager->createUrl('/site/logout'));
     }
-
 }
