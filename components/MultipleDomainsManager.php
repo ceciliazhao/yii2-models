@@ -34,14 +34,14 @@ class MultipleDomainsManager extends \yii\base\Component
      *     'component' => <URL Manager Component Configuration Array>,
      *     'schema' => 'http'(default) or 'https',
      * ]
-     * 
      * For example:
      * ```php
      * $baseDomain = 'example.com';
      * $subDomains = [
      *    '' => [
      *         'component' => [
-     *             'class' => 'yii\web\UrlManager', // `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.
+     *              // `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.
+     *             'class' => 'yii\web\UrlManager',
      *             'enablePrettyUrl' => true,
      *             'showScriptName' => false,
      *             'suffix' => '.html',
@@ -95,7 +95,7 @@ class MultipleDomainsManager extends \yii\base\Component
      *     ],
      * ];
      * ```
-     * @var array 
+     * @var array array of sub-domains.
      */
     public $subDomains = [];
 
@@ -106,7 +106,7 @@ class MultipleDomainsManager extends \yii\base\Component
     public $currentDomain = '';
 
     /**
-     * 
+     * Get UrlManager component of specified sub-domain application.
      * @param string $subdomain
      * @return \yii\web\UrlManager
      */
@@ -126,7 +126,10 @@ class MultipleDomainsManager extends \yii\base\Component
             if (!isset($subDomainConfig['schema'])) {
                 $subDomainConfig['schema'] = 'http';
             }
-            $subDomainConfig['component']['hostInfo'] = $subDomainConfig['schema'] . "://" . ($subdomain === '' ? '' : "$subdomain.") . $this->baseDomain;
+            $subDomainConfig['component']['hostInfo'] = $subDomainConfig['schema'] . // 'http' or 'https'
+                    "://" .                                                          // delimiter
+                    ($subdomain === '' ? '' : "$subdomain.") .                       // attach subdomain
+                    $this->baseDomain;                                               // base domain
         }
         return Yii::createObject($subDomainConfig['component']);
     }

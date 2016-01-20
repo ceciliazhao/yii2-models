@@ -16,7 +16,6 @@ use vistart\Models\traits\UserTrait;
 
 /**
  * The abstract BaseUserModel is used for user identity class.
- * 
  * For example, you should create a table for user model before you want to
  * define a User class used for representing a user. Then, you can use base
  * user model generator to generate a new user model, like following:
@@ -26,7 +25,6 @@ use vistart\Models\traits\UserTrait;
  *     public static function tableName() {
  *         return <table_name>;
  *     }
- * 
  *     public static function attributeLabels() {
  *         return [
  *             <All labels.>
@@ -42,7 +40,6 @@ use vistart\Models\traits\UserTrait;
  * $user = new User(['password' => '123456']);
  * $user->register();
  * ~~~
- * 
  * If there is not only one user instance to be stored in database, but also
  * other associated models, such as Profile class, should be stored
  * synchronously, you can prepare their models and give them to parameter of
@@ -53,7 +50,6 @@ use vistart\Models\traits\UserTrait;
  * ~~~
  * Note: you should supplement `get<ModelName>()` method(s) by yourself, or by
  * generator.
- * 
  * @see vistart\Models\models\BaseEntityModel
  * @version 2.0
  * @author vistart <i@vistart.name>

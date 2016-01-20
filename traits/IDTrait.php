@@ -36,7 +36,7 @@ trait IDTrait
     public static $idTypeAutoIncrement = 2;
 
     /**
-     * @var integer 
+     * @var integer type of id attribute.
      * @since 2.0
      */
     public $idAttributeType = 0;
@@ -68,7 +68,7 @@ trait IDTrait
     protected $idAttributeSafe = false;
 
     /**
-     * 
+     * Get id.
      * @return string|integer
      */
     public function getId()
@@ -78,7 +78,7 @@ trait IDTrait
     }
 
     /**
-     * 
+     * Set id.
      * @param string|integer $id
      * @return string|integer
      */
@@ -116,7 +116,7 @@ trait IDTrait
     }
 
     /**
-     * Generate the ID. You can override this method to implement your own 
+     * Generate the ID. You can override this method to implement your own
      * generation algorithm.
      * @return string the generated ID.
      */
@@ -155,7 +155,7 @@ trait IDTrait
     }
 
     /**
-     * 
+     * Get the rules associated with id attribute.
      * @return array
      */
     public function getIdRules()

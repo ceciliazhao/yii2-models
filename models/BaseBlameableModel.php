@@ -26,7 +26,6 @@ use vistart\Models\traits\BlameableTrait;
  *     {
  *         return <table_name>;
  *     }
- * 
  *     public function rules()
  *     {
  *         $rules = [
@@ -35,13 +34,11 @@ use vistart\Models\traits\BlameableTrait;
  *         ];
  *         return array_merge(parent::rules(), $rules);
  *     }
- * 
  *     public function behaviors()
  *     {
  *         $behaviors = <Your Behaviors>;
  *         return array_merge(parent::behaviors(), $behaviors);
  *     }
- * 
  *     public function attributeLabels()
  *     {
  *         return [
@@ -67,9 +64,9 @@ use vistart\Models\traits\BlameableTrait;
  *     $example->save();
  * }
  * ~~~
- * @property array createdByAttributeRules the whole validation rules of 
+ * @property array createdByAttributeRules the whole validation rules of
  * creator attribute only, except of combination rules.
- * @property array updatedByAttributeRules the whole validation rules of 
+ * @property array updatedByAttributeRules the whole validation rules of
  * creator attribute only, except of combination rules.
  * @since 1.1
  * @version 2.0

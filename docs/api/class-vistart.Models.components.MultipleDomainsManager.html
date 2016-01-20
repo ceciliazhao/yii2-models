@@ -153,7 +153,7 @@ yii\base\Component
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.components.MultipleDomainsManager.html#17-142" title="Go to source code">components/MultipleDomainsManager.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.components.MultipleDomainsManager.html#17-145" title="Go to source code">components/MultipleDomainsManager.php</a>
 		<br>
 	</div>
 
@@ -173,14 +173,14 @@ yii\base\Component
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#108-132" title="Go to source code">get</a>( <span>string <var>$subdomain</var> = <span class="php-quote">''</span></span> )</code>
+			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#108-135" title="Go to source code">get</a>( <span>string <var>$subdomain</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Get UrlManager component of specified sub-domain application.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get UrlManager component of specified sub-domain application.</p>
 
 
 					<h4>Parameters</h4>
@@ -211,7 +211,7 @@ yii\base\Component
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCurrent">#</a>
-			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#134-141" title="Go to source code">getCurrent</a>( )</code>
+			<code><a href="source-class-vistart.Models.components.MultipleDomainsManager.html#137-144" title="Go to source code">getCurrent</a>( )</code>
 
 			<div class="description short">
 				<p>Get URL Manager of current domain web application.</p>
@@ -287,17 +287,76 @@ yii\base\Component
 					<p><Sub Domain Name> => [
     'component' => <URL Manager Component Configuration Array>,
     'schema' => 'http'(default) or 'https',
-]</p>
+]
+For example:</p>
+
+<pre><span class="php-var">$baseDomain</span> = <span class="php-quote">'example.com'</span>;
+<span class="php-var">$subDomains</span> = [
+   <span class="php-quote">''</span> =&gt; [
+        <span class="php-quote">'component'</span> =&gt; [
+             <span class="php-comment">// `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.</span>
+            <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'yii\web\UrlManager'</span>,
+            <span class="php-quote">'enablePrettyUrl'</span> =&gt; <span class="php-keyword1">true</span>,
+            <span class="php-quote">'showScriptName'</span> =&gt; <span class="php-keyword1">false</span>,
+            <span class="php-quote">'suffix'</span> =&gt; <span class="php-quote">'.html'</span>,
+            <span class="php-comment">// the other properties...</span>
+        ],
+        <span class="php-quote">'schema'</span> =&gt; <span class="php-quote">'http'</span>, <span class="php-comment">// `schema` could be ignored as it is 'http'.</span>
+    ],
+    <span class="php-quote">'my'</span> =&gt; [
+        <span class="php-quote">'component'</span> =&gt; [
+            <span class="php-quote">'enablePrettyUrl'</span> =&gt; <span class="php-keyword1">true</span>,
+            <span class="php-quote">'showScriptName'</span> =&gt; <span class="php-keyword1">false</span>,
+            <span class="php-quote">'suffix'</span> =&gt; <span class="php-quote">'.html'</span>,
+            <span class="php-quote">'rules'</span> =&gt; [
+                <span class="php-quote">'posts/&lt;year:\d{4}&gt;/&lt;category&gt;'</span> =&gt; <span class="php-quote">'post/index'</span>,
+                <span class="php-quote">'posts'</span> =&gt; <span class="php-quote">'post/index'</span>,
+                <span class="php-quote">'post/&lt;id:\d+&gt;'</span> =&gt; <span class="php-quote">'post/view'</span>,
+            ],
+        ],
+        <span class="php-quote">'schema'</span> =&gt; <span class="php-quote">'https'</span>,
+    ],
+    <span class="php-quote">'sso'</span> =&gt; [
+        <span class="php-quote">'component'</span> =&gt; [
+            <span class="php-quote">'enablePrettyUrl'</span> =&gt; <span class="php-keyword1">true</span>,
+            <span class="php-quote">'showScriptName'</span> =&gt; <span class="php-keyword1">false</span>,
+            <span class="php-quote">'rules'</span> =&gt; [
+                <span class="php-quote">''</span> =&gt; <span class="php-quote">'sso/login'</span>,
+                <span class="php-quote">'logout'</span> =&gt; <span class="php-quote">'sso/logout'</span>,
+            ],
+        ],
+        <span class="php-quote">'schema'</span> =&gt; <span class="php-quote">'https'</span>,
+    ],
+];</pre>
+
+<p>and you can configure the <code>config/web.php</code> (basic template) or <code>config/main.php</code> (advanced template)
+<code>components</code> section to add an element named <code>multipleDomainsManager</code>:</p>
+
+<pre><span class="php-var">$config</span> = [
+    ...
+    <span class="php-quote">'components'</span> =&gt; [
+        ...
+        <span class="php-quote">'multipleDomainsManager'</span> =&gt; [
+            <span class="php-quote">'baseDomain'</span> =&gt; <span class="php-quote">'example.com'</span>,
+            <span class="php-quote">'subDomains'</span> =&gt; [
+                <span class="php-quote">'my'</span> =&gt; [
+                    <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager component configuration <span class="php-keyword2">file</span>&gt;),
+                ],
+                ...
+            ],
+        ],
+        ...
+    ],
+];</pre>
 				</div>
 
 				<div class="description detailed hidden">
 					<p><Sub Domain Name> => [ 'component' => <URL Manager Component Configuration Array>, 'schema' => 'http'(default) or 'https',
-]</p>
-
-<p>For example:</p>
+]
+For example:</p>
 
 <pre><span class="php-var">$baseDomain</span> = <span class="php-quote">'example.com'</span>;
-<span class="php-var">$subDomains</span> = [ <span class="php-quote">''</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'yii\web\UrlManager'</span>, <span class="php-comment">// `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`. 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', // the other properties... ], 'schema' =&gt; 'http', // `schema` could be ignored as it is 'http'. ], 'my' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', 'rules' =&gt; [ 'posts/&lt;year:\d{4}&gt;/&lt;category&gt;' =&gt; 'post/index', 'posts' =&gt; 'post/index', 'post/&lt;id:\d+&gt;' =&gt; 'post/view', ], ], 'schema' =&gt; 'https', ], 'sso' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'rules' =&gt; [ '' =&gt; 'sso/login', 'logout' =&gt; 'sso/logout', ], ], 'schema' =&gt; 'https', ],</span>
+<span class="php-var">$subDomains</span> = [ <span class="php-quote">''</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; [ <span class="php-comment">// `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`. 'class' =&gt; 'yii\web\UrlManager', 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', // the other properties... ], 'schema' =&gt; 'http', // `schema` could be ignored as it is 'http'. ], 'my' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'suffix' =&gt; '.html', 'rules' =&gt; [ 'posts/&lt;year:\d{4}&gt;/&lt;category&gt;' =&gt; 'post/index', 'posts' =&gt; 'post/index', 'post/&lt;id:\d+&gt;' =&gt; 'post/view', ], ], 'schema' =&gt; 'https', ], 'sso' =&gt; [ 'component' =&gt; [ 'enablePrettyUrl' =&gt; true, 'showScriptName' =&gt; false, 'rules' =&gt; [ '' =&gt; 'sso/login', 'logout' =&gt; 'sso/logout', ], ], 'schema' =&gt; 'https', ],</span>
 ];</pre>
 
 <p>and you can configure the <code>config/web.php</code> (basic template) or <code>config/main.php</code> (advanced template)

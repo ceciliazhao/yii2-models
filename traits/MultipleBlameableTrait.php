@@ -36,7 +36,6 @@ use yii\web\JsonParser;
  * checking the validity of blames.
  * </li>
  * </ol>
- * 
  * Notice:
  * <ol>
  * <li>You must specify two properties: $multiBlamesClass and $multiBlamesAttribute.
@@ -60,12 +59,12 @@ trait MultipleBlameableTrait
 {
 
     /**
-     * @var string 
+     * @var string class name of multiple blameable class.
      */
     public $multiBlamesClass = '';
 
     /**
-     * @var string 
+     * @var string name of multiple blameable attribute.
      */
     public $multiBlamesAttribute = 'blames';
 
@@ -76,7 +75,7 @@ trait MultipleBlameableTrait
     public $blamesLimit = 10;
 
     /**
-     * @var boolean 
+     * @var boolean determines whether blames list has been changed.
      */
     public $blamesChanged = false;
 
@@ -86,8 +85,8 @@ trait MultipleBlameableTrait
     public static $eventMultipleBlamesChanged = 'multipleBlamesChanged';
 
     /**
-     * 
-     * @return array
+     * Get the rules associated with multiple blameable attribute.
+     * @return array rules.
      */
     public function getMultipleBlameableAttributeRules()
     {
@@ -197,7 +196,7 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * 
+     * Event triggered when blames list changed.
      * @param \vistart\Models\events\MultipleBlameableEvent $event
      */
     public function onBlamesChanged($event)
@@ -303,7 +302,7 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * 
+     * Initialize blames limit.
      * @param \yii\base\Event $event
      */
     public function onInitBlamesLimit($event)
@@ -314,6 +313,10 @@ trait MultipleBlameableTrait
         }
     }
 
+    /**
+     * Get the json of empty blames array.
+     * @return string
+     */
     public static function getEmptyBlamesJson()
     {
         return json_encode([]);

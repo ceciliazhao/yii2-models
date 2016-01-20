@@ -135,15 +135,55 @@
 	<td class="name"><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></td>
 	<td><p>BaseBlameableEntityModel automatically fills the specified attributes with
 the current user's GUID.
-For example:<br/>
-~~~php
-* @property string $comment
+For example:<br/></p>
+
+<pre><code class="php">* @property string $comment
 class Comment extends BaseBlameableEntityModel
 {
     public static function tableName()
     {
-        return <table_name>;
-    }</p></td>
+        return &lt;table_name&gt;;
+    }
+    public function rules()
+    {
+        $rules = [
+            [['comment'], 'required'],
+            [['comment'], 'string', 'max' =&gt; 140],
+        ];
+        return array_merge(parent::rules(), $rules);
+    }
+    public function behaviors()
+    {
+        $behaviors = &lt;Your Behaviors&gt;;
+        return array_merge(parent::behaviors(), $behaviors);
+    }
+    public function attributeLabels()
+    {
+        return [
+            ...
+        ];
+    }
+}
+</code></pre>
+
+<p>Well, when you're signed-in, you can save a new <code>Example</code> instance:</p>
+
+<pre><code class="php">$example = new Example();
+$example-&gt;comment = 'New Comment.';
+$example-&gt;save();
+</code></pre>
+
+<p>or update an existing one:</p>
+
+<pre><code class="php">$example = Example::find()
+                  -&gt;where([$this-&gt;createdByAttribute =&gt; $user_uuid])
+                  -&gt;one();
+if ($example)
+{
+    $example-&gt;comment = 'Updated Comment.';
+    $example-&gt;save();
+}
+</code></pre></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></td>
@@ -170,7 +210,23 @@ simultaneously, and you should set at least one of them as primary key.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></td>
-	<td>The abstract BaseUserModel is used for user identity class.</td>
+	<td><p>The abstract BaseUserModel is used for user identity class.
+For example, you should create a table for user model before you want to
+define a User class used for representing a user. Then, you can use base
+user model generator to generate a new user model, like following:</p>
+
+<pre><code class="php">* @property string $guid
+class User extends \vistart\Models\models\BaseUserModel {
+    public static function tableName() {
+        return &lt;table_name&gt;;
+    }
+    public static function attributeLabels() {
+        return [
+            &lt;All labels.&gt;
+        ];
+    }
+}
+</code></pre></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></td>

@@ -35,7 +35,7 @@ trait EntityTrait
 
     /**
      * @var string cache key and tag prefix. the prefix is usually set to full
-     * qualified class name. 
+     * qualified class name.
      */
     public $cachePrefix = '';
     public static $eventNewRecordCreated = 'newRecordCreated';
@@ -128,13 +128,17 @@ trait EntityTrait
         $this->_entityRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->cachePrefix . static::$cacheTagEntityRules]]);
+            $tagDependency = new \yii\caching\TagDependency(
+                    ['tags' =>
+                [$this->cachePrefix . static::$cacheTagEntityRules]
+                    ]
+            );
             $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $rules, 0, $tagDependency);
         }
     }
 
     /**
-     * 
+     * Get the entity behaviors.
      * @return array
      */
     public function getEntityBehaviors()
@@ -150,7 +154,7 @@ trait EntityTrait
     }
 
     /**
-     * 
+     * Set the entity behaviors.
      * @param array $behaviors
      */
     protected function setEntityBehaviors($behaviors)
@@ -158,7 +162,8 @@ trait EntityTrait
         $this->_entityBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->cachePrefix . static::$cacheTagEntityBehaviors]]);
+            $tagDependencyConfig = ['tags' => [$this->cachePrefix . static::$cacheTagEntityBehaviors]];
+            $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
             $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $behaviors, 0, $tagDependency);
         }
     }
@@ -194,7 +199,7 @@ trait EntityTrait
     }
 
     /**
-     * 
+     * Initialize the cache prefix.
      * @param \yii\base\Event $event
      */
     public function onInitCache($event)
@@ -209,7 +214,7 @@ trait EntityTrait
     }
 
     /**
-     * 
+     * Record warnings.
      */
     protected function recordWarnings()
     {

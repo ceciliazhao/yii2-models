@@ -131,11 +131,7 @@ For example:<br/></p>
 
 <pre><code class="php">* @property string $comment
 class Comment extends BaseBlameableEntityModel
-{ public static function tableName() { return &lt;table_name&gt;; }
-
-public function rules() { $rules = [ [['comment'], 'required'], [['comment'], 'string', 'max' =&gt; 140], ]; return array_merge(parent::rules(), $rules); }
- public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); }
- public function attributeLabels() { return [ ... ]; }
+{ public static function tableName() { return &lt;table_name&gt;; } public function rules() { $rules = [ [['comment'], 'required'], [['comment'], 'string', 'max' =&gt; 140], ]; return array_merge(parent::rules(), $rules); } public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); } public function attributeLabels() { return [ ... ]; }
 }
 </code></pre>
 
@@ -207,7 +203,7 @@ yii\db\ActiveRecord
 				2.0<br>
 				<b>Since:</b>
 				1.1<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableModel.html#17-94" title="Go to source code">models/BaseBlameableModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableModel.html#17-91" title="Go to source code">models/BaseBlameableModel.php</a>
 		<br>
 	</div>
 
@@ -227,7 +223,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#83-93" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#80-90" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize the blameable model.</p>
