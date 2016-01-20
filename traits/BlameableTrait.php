@@ -131,7 +131,9 @@ trait BlameableTrait
      */
     public $userClass;
     public static $cacheKeyBlameableRules = 'blameable_rules';
+    public static $cacheTagBlameableRules = 'tag_blameable_rules';
     public static $cacheKeyBlameableBehaviors = 'blameable_behaviors';
+    public static $cacheTagBlameableBehaviors = 'tag_blameable_behaviors';
 
     /**
      * @inheritdoc
@@ -337,7 +339,12 @@ trait BlameableTrait
         $this->blameableRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->blameableRules);
+            $tagDependency = new \yii\caching\TagDependency(
+                    ['tags' =>
+                [$this->cachePrefix . static::$cacheTagBlameableRules]
+                    ]
+            );
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $this->blameableRules, 0, $tagDependency);
         }
     }
 
@@ -377,7 +384,9 @@ trait BlameableTrait
         $this->blameableBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->blameableBehaviors);
+            $tagDependencyConfig = ['tags' => [$this->cachePrefix . static::$cacheTagBlameableBehaviors]];
+            $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
+            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $this->blameableBehaviors, 0, $tagDependency);
         }
     }
 

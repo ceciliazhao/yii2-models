@@ -58,11 +58,11 @@ trait UserRelationTrait
      * @var string
      */
     public $remarkAttribute = 'remark';
-    public static $relationUni = 0;
+    public static $relationSingle = 0;
     public static $relationMutual = 1;
     public $relationType = 1;
     public $relationTypes = [
-        0 => 'Uni',
+        0 => 'Single',
         1 => 'Mutual',
     ];
 
@@ -76,7 +76,7 @@ trait UserRelationTrait
     /**
      * @var array 
      */
-    public $mutualTypes = [
+    public static $mutualTypes = [
         0x00 => 'Normal',
         0x01 => 'Suspend',
     ];
@@ -120,10 +120,14 @@ trait UserRelationTrait
      */
     public function getUserRelationRules()
     {
-        return array_merge([
-            [[$this->mutualTypeAttribute], 'integer'],
-            [[$this->mutualTypeAttribute], 'default', 'value' => static::$mutualTypeNormal],
-                ], $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
+        $rules = [];
+        if ($this->relationType == static::$relationMutual) {
+            $rules = [
+                [[$this->mutualTypeAttribute], 'in', 'range' => array_keys(static::$mutualTypes)],
+                [[$this->mutualTypeAttribute], 'default', 'value' => static::$mutualTypeNormal],
+            ];
+        }
+        return array_merge($rules, $this->getRemarkRules(), $this->getFavoriteRules(), $this->getGroupsRules(), $this->getOtherGuidRules());
     }
 
     /**
@@ -178,43 +182,11 @@ trait UserRelationTrait
     public function getOtherGuidRules()
     {
         $rules = [
-            [[$this->otherGuidAttribute, $this->mutualTypeAttribute], 'required'],
+            [[$this->otherGuidAttribute], 'required'],
             [[$this->otherGuidAttribute], 'string', 'max' => 36],
             [[$this->otherGuidAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->otherGuidAttribute, $this->createdByAttribute]],
         ];
         return $rules;
-    }
-
-    /**
-     * Get user's or users' all relations, or by specified groups.
-     * @param BaseUserModel|string|array $user Initiator or its GUID, or Initiators or their GUIDs.
-     * @param BaseUserRelationGroupModel|string|array|null $groups UserRelationGroup or its guid, or array of them. If you do not want to delimit the groups, please assign null.
-     * @return array all eligible relations
-     */
-    public static function findOnesAllRelations($user, $groups = null)
-    {
-        return static::find()->initiators($user)->groups($groups)->all();
-    }
-
-    /**
-     * Initialize groups attribute.
-     * @param \yii\base\Event $event
-     */
-    public function onInitGroups($event)
-    {
-        $sender = $event->sender;
-        $sender->removeAllGroups();
-    }
-
-    /**
-     * Initialize remark attribute.
-     * @param \yii\base\Event $event
-     */
-    public function onInitRemark($event)
-    {
-        $sender = $event->sender;
-        $remarkAttribute = $sender->remarkAttribute;
-        is_string($remarkAttribute) ? $sender->$remarkAttribute = '' : null;
     }
 
     /**
@@ -246,7 +218,7 @@ trait UserRelationTrait
     }
 
     /**
-     * Build a suspend relation.
+     * Build a suspend mutual relation, not support single relation.
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
@@ -270,8 +242,10 @@ trait UserRelationTrait
     public static function buildNormalRelation($user, $other)
     {
         $relation = static::buildRelation($user, $other);
-        $btAttribute = $relation->mutualTypeAttribute;
-        $relation->$btAttribute = static::$mutualTypeNormal;
+        if ($relation->relationType == static::$relationMutual) {
+            $btAttribute = $relation->mutualTypeAttribute;
+            $relation->$btAttribute = static::$mutualTypeNormal;
+        }
         return $relation;
     }
 
@@ -301,13 +275,16 @@ trait UserRelationTrait
     }
 
     /**
-     * Build opposite relation throughout the current relation. The opposite
-     * relation will be given if existed.
+     * Build opposite mutual relation throughout the current relation, not support
+     * single relation. The opposite relation will be given if existed.
      * @param \vistart\Models\models\BaseUserRelationModel $relation
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildOppositeRelation($relation)
     {
+        if ($relation->relationType == static::$relationSingle) {
+            return null;
+        }
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
         $mutualTypeAttribute = $relation->mutualTypeAttribute;
@@ -375,6 +352,38 @@ trait UserRelationTrait
     }
 
     /**
+     * Get user's or users' all relations, or by specified groups.
+     * @param BaseUserModel|string|array $user Initiator or its GUID, or Initiators or their GUIDs.
+     * @param BaseUserRelationGroupModel|string|array|null $groups UserRelationGroup or its guid, or array of them. If you do not want to delimit the groups, please assign null.
+     * @return array all eligible relations
+     */
+    public static function findOnesAllRelations($user, $groups = null)
+    {
+        return static::find()->initiators($user)->groups($groups)->all();
+    }
+
+    /**
+     * Initialize groups attribute.
+     * @param \yii\base\Event $event
+     */
+    public function onInitGroups($event)
+    {
+        $sender = $event->sender;
+        $sender->removeAllGroups();
+    }
+
+    /**
+     * Initialize remark attribute.
+     * @param \yii\base\Event $event
+     */
+    public function onInitRemark($event)
+    {
+        $sender = $event->sender;
+        $remarkAttribute = $sender->remarkAttribute;
+        is_string($remarkAttribute) ? $sender->$remarkAttribute = '' : null;
+    }
+
+    /**
      * The event triggered after insert new relation.
      * The opposite relation should be inserted without triggering events
      * simultaneously after new relation inserted,
@@ -383,12 +392,14 @@ trait UserRelationTrait
     public function onInsertRelation($event)
     {
         $sender = $event->sender;
-        $opposite = static::buildOppositeRelation($sender);
-        $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
-        if (!$opposite->save()) {
-            $opposite->recordWarnings();
+        if ($sender->relationType == static::$relationMutual) {
+            $opposite = static::buildOppositeRelation($sender);
+            $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
+            if (!$opposite->save()) {
+                $opposite->recordWarnings();
+            }
+            $opposite->on(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
         }
-        $opposite->on(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
     }
 
     /**
@@ -400,12 +411,14 @@ trait UserRelationTrait
     public function onUpdateRelation($event)
     {
         $sender = $event->sender;
-        $opposite = static::buildOppositeRelation($sender);
-        $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
-        if (!$opposite->save()) {
-            $opposite->recordWarnings();
+        if ($sender->relationType == static::$relationMutual) {
+            $opposite = static::buildOppositeRelation($sender);
+            $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
+            if (!$opposite->save()) {
+                $opposite->recordWarnings();
+            }
+            $opposite->on(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
         }
-        $opposite->on(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
     }
 
     /**
@@ -417,10 +430,12 @@ trait UserRelationTrait
     public function onDeleteRelation($event)
     {
         $sender = $event->sender;
-        $createdByAttribute = $sender->createdByAttribute;
-        $otherGuidAttribute = $sender->otherGuidAttribute;
-        $sender->off(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
-        static::removeAllRelations($sender->$otherGuidAttribute, $sender->$createdByAttribute);
-        $sender->on(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
+        if ($sender->relationType == static::$relationMutual) {
+            $createdByAttribute = $sender->createdByAttribute;
+            $otherGuidAttribute = $sender->otherGuidAttribute;
+            $sender->off(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
+            static::removeAllRelations($sender->$otherGuidAttribute, $sender->$createdByAttribute);
+            $sender->on(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\User;
 use vistart\Models\tests\data\ar\UserRelation;
+use vistart\Models\tests\data\ar\UserSingleRelation;
 use vistart\Models\tests\data\ar\UserRelationGroup;
 
 /**
@@ -40,9 +41,23 @@ class BaseUserRelationTest extends TestCase
         }
     }
 
+    private function prepareSingleRelationModels($user, $other)
+    {
+        $relation = UserSingleRelation::buildNormalRelation($user, $other);
+        if ($relation->save()) {
+            $this->assertTrue(true);
+            $opposite = UserSingleRelation::find()->opposite($user, $other);
+            $this->assertNull($opposite);
+        } else {
+            var_dump($relation->rules());
+            var_dump($relation->errors);
+            $this->fail('Single Relation Save Failed.');
+        }
+        return $relation;
+    }
+
     private function prepareMutualRelationModels($user, $other, $bi_type = null)
     {
-        $initRelation = UserRelation::buildNoInitModel();
         if (!$bi_type)
             $bi_type = UserRelation::$mutualTypeNormal;
         switch ($bi_type) {
@@ -67,7 +82,7 @@ class BaseUserRelationTest extends TestCase
         } else {
             var_dump($relation->rules());
             var_dump($relation->errors);
-            $this->assertTrue(false);
+            $this->fail('Mutual Relation Save Failed.');
         }
         return [$relation, $opposite];
     }
@@ -137,7 +152,20 @@ class BaseUserRelationTest extends TestCase
     /**
      * @depends testFavorite
      */
-    public function testRelation()
+    public function testSingleRelation()
+    {
+        $users = $this->prepareUsers();
+        $user = $users[0];
+        $other = $users[1];
+        
+        $relation = $this->prepareSingleRelationModels($user, $other);
+        $this->destroyUsers($users);
+    }
+
+    /**
+     *  @depends testSingleRelation
+     */
+    public function testMutualRelation()
     {
         $users = $this->prepareUsers();
         $user = $users[0];
@@ -168,7 +196,7 @@ class BaseUserRelationTest extends TestCase
     }
 
     /**
-     * @depends testRelation
+     * @depends testMutualRelation
      */
     public function testRelationGroup()
     {

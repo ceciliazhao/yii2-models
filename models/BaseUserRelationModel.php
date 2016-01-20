@@ -13,6 +13,7 @@
 namespace vistart\Models\models;
 
 use vistart\Models\traits\UserRelationTrait;
+use vistart\Models\queries\BaseUserRelationQuery;
 
 /**
  * 该类帮助用户定义用户关系。
@@ -33,7 +34,7 @@ abstract class BaseUserRelationModel extends BaseBlameableModel
     public function init()
     {
         if (!is_string($this->queryClass)) {
-            $this->queryClass = \vistart\Models\queries\BaseUserRelationQuery::className();
+            $this->queryClass = BaseUserRelationQuery::className();
         }
         if ($this->skipInit) {
             return;

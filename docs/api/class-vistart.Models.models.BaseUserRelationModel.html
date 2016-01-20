@@ -179,7 +179,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#17-44" title="Go to source code">models/BaseUserRelationModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#18-45" title="Go to source code">models/BaseUserRelationModel.php</a>
 		<br>
 	</div>
 
@@ -199,7 +199,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#33-43" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#34-44" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize the blameable model.</p>
@@ -265,7 +265,6 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#methods">vistart\Models\traits\MultipleBlameableTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addBlame()</a></code>, 
-				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlameByGuid">addBlameByGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addGroup()</a>(as addGroup())</code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllBlames()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllGroups()</a>(as getAllGroups())</code>, 
@@ -288,7 +287,6 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllBlames()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllGroups()</a>(as removeAllGroups())</code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeBlame()</a></code>, 
-				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlameByGuid">removeBlameByGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeGroup()</a>(as removeGroup())</code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setBlameGuids()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setGroupGuids()</a>(as setGroupGuids())</code>, 
@@ -416,7 +414,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#28" title="Go to source code"><var>$idAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL.The attribute that will receive the IDentifier No.
@@ -447,7 +445,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#30" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of confirmation, or false if disable confirmation features.</p>
@@ -472,7 +470,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#30" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -533,7 +531,7 @@ For example:</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#32" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.
@@ -576,6 +574,8 @@ Set this property to false if you do not want to record the updater ID.</p>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableBehaviors"><var>$cacheKeyBlameableBehaviors</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableBehaviors"><var>$cacheTagBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableRules"><var>$cacheTagBlameableRules</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 
@@ -596,9 +596,9 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$mutualTypes"><var>$mutualTypes</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationMutual"><var>$relationMutual</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationSingle"><var>$relationSingle</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationType"><var>$relationType</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationTypes"><var>$relationTypes</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$relationUni"><var>$relationUni</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.UserRelationTrait.html#$remarkAttribute"><var>$remarkAttribute</var></a></code>
 			</p>
 		</div>

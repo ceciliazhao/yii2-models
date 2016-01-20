@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-15 23:10:59
+-- Generation Time: 2016-01-20 14:45:23
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -27,14 +27,14 @@ USE `yii2-models`;
 --
 -- 表的结构 `user`
 --
--- 创建时间： 2016-01-11 12:58:55
--- 最后更新： 2016-01-15 14:55:22
+-- 创建时间： 2016-01-18 07:13:52
+-- 最后更新： 2016-01-20 06:45:01
 --
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `guid` varchar(36) NOT NULL,
-  `id` int(14) UNSIGNED NOT NULL DEFAULT '0',
+  `id` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `pass_hash` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 表的结构 `user_additional_account`
 --
 -- 创建时间： 2016-01-11 17:21:48
--- 最后更新： 2016-01-15 14:55:00
+-- 最后更新： 2016-01-20 06:44:42
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-14 08:30:22
--- 最后更新： 2016-01-15 14:55:00
+-- 最后更新： 2016-01-20 06:44:42
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 -- 表的结构 `user_relation`
 --
 -- 创建时间： 2016-01-15 11:31:11
--- 最后更新： 2016-01-15 14:55:22
+-- 最后更新： 2016-01-20 06:45:01
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-15 13:54:14
--- 最后更新： 2016-01-15 14:55:22
+-- 最后更新： 2016-01-20 06:45:01
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -149,6 +149,35 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
   KEY `relation_group_user_guid_fkey` (`user_guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user_single_relation`
+--
+-- 创建时间： 2016-01-20 06:12:18
+-- 最后更新： 2016-01-20 06:44:57
+--
+
+DROP TABLE IF EXISTS `user_single_relation`;
+CREATE TABLE IF NOT EXISTS `user_single_relation` (
+  `guid` varchar(36) NOT NULL,
+  `user_guid` varchar(36) NOT NULL,
+  `remark` varchar(255) NOT NULL DEFAULT '',
+  `other_guid` varchar(36) NOT NULL,
+  `favorite` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_2` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_3` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
+  `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `groups` text NOT NULL,
+  PRIMARY KEY (`guid`),
+  UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`) USING BTREE,
+  KEY `relation_other_guid_fkey` (`other_guid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -179,6 +208,13 @@ ALTER TABLE `user_relation`
 --
 ALTER TABLE `user_relation_group`
   ADD CONSTRAINT `relation_group_user_guid_fkey` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `user_single_relation`
+--
+ALTER TABLE `user_single_relation`
+  ADD CONSTRAINT `user_single_relation_ibfk_1` FOREIGN KEY (`other_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_single_relation_ibfk_2` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

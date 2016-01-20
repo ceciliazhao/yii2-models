@@ -98,16 +98,21 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * Add specified blame. It will do check blames valid before setting.
-     * @param string $blameGuid
-     * @return false|array blames after adding $blameGuid, or false if disable this feature.
-     * @throws \yii\base\InvalidParamException when blame has existed.
-     * @throws \yii\base\InvalidCallException when limit has been reached.
+     * Add specified blame.
+     * @param [multiBlamesClass]|string $blame
+     * @return false|array
      */
-    public function addBlameByGuid($blameGuid)
+    public function addBlame($blame)
     {
         if (!is_string($this->multiBlamesAttribute)) {
             return false;
+        }
+        $blameGuid = '';
+        if (is_string($blame)) {
+            $blameGuid = $blame;
+        }
+        if ($blame instanceof $this->multiBlamesClass) {
+            $blameGuid = $blame->guid;
         }
         $blameGuids = $this->getBlameGuids(true);
         if (array_search($blameGuid, $blameGuids)) {
@@ -122,24 +127,21 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * Add specified blame.
-     * @param [multiBlamesClass] $blame
-     * @return false|array
-     */
-    public function addBlame($blame)
-    {
-        return $this->addBlameByGuid($blame->guid);
-    }
-
-    /**
      * Remove specified blame.
-     * @param string $blameGuid
-     * @return false|array
+     * @param [multiBlamesClass] $blame
+     * @return false|array all guids in json format.
      */
-    public function removeBlameByGuid($blameGuid)
+    public function removeBlame($blame)
     {
         if (!is_string($this->multiBlamesAttribute)) {
             return false;
+        }
+        $blameGuid = '';
+        if (is_string($blame)) {
+            $blameGuid = $blame;
+        }
+        if ($blame instanceof $this->multiBlamesClass) {
+            $blameGuid = $blame->guid;
         }
         $blameGuids = $this->getBlameGuids(true);
         if (($key = array_search($blameGuid, $blameGuids)) !== false) {
@@ -147,16 +149,6 @@ trait MultipleBlameableTrait
             $this->setBlameGuids($blameGuids);
         }
         return $this->getBlameGuids();
-    }
-
-    /**
-     * Remove specified blame.
-     * @param [multiBlamesClass] $blame
-     * @return false|array all guids in json format.
-     */
-    public function removeBlame($blame)
-    {
-        return $this->removeBlamedByGuid($blame->guid);
     }
 
     /**
