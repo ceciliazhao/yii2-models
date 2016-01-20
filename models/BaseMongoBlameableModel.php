@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -29,6 +29,7 @@ class BaseMongoBlameableModel extends BaseMongoEntityModel
      * @var boolean determines whether enable the GUID features.
      */
     public $guidAttribute = false;
+    public $idAttribute = '_id';
 
     public function attributes()
     {

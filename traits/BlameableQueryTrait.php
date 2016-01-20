@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -21,6 +21,11 @@ namespace vistart\Models\traits;
 trait BlameableQueryTrait
 {
 
+    /**
+     * Specify confirmation.
+     * @param boolean $isConfirmed
+     * @return $this
+     */
     public function confirmed($isConfirmed = true)
     {
         $model = $this->noInitModel;
@@ -30,6 +35,12 @@ trait BlameableQueryTrait
         return $this->andWhere([$model->confirmationAttribute => $isConfirmed]);
     }
 
+    /**
+     * Specify content.
+     * @param mixed $content
+     * @param false|string $like false, 'like', 'or like', 'not like', 'or not like'.
+     * @return $this
+     */
     public function content($content, $like = false)
     {
         $model = $this->noInitModel;

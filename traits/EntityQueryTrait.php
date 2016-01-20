@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -23,6 +23,9 @@ trait EntityQueryTrait
 
     public $noInitModel;
 
+    /**
+     * Build model without any initializations.
+     */
     public function buildNoInitModel()
     {
         if (empty($this->noInitModel) && is_string($this->modelClass)) {
@@ -32,10 +35,10 @@ trait EntityQueryTrait
     }
 
     /**
-     * 
+     * Specify id attribute.
      * @param string|integer|array $id
-     * @param false|string $like false, 'like', 'or like', 'not like', 'and like'.
-     * @return \vistart\Models\queries\BaseUserQuery
+     * @param false|string $like false, 'like', 'or like', 'not like', 'or not like'.
+     * @return $this
      */
     public function id($id, $like = false)
     {
@@ -49,6 +52,12 @@ trait EntityQueryTrait
         return $this->andWhere([$model->idAttribute => $id]);
     }
 
+    /**
+     * Specify create time range.
+     * @param string $start
+     * @param string $end
+     * @return $this
+     */
     public function createdAtRange($start = null, $end = null)
     {
         $model = $this->noInitModel;
@@ -58,6 +67,12 @@ trait EntityQueryTrait
         return static::timeRange($this, $model->createdByAttribute, $start, $end);
     }
 
+    /**
+     * Specify update time range.
+     * @param string $start
+     * @param string $end
+     * @return $this
+     */
     public function updatedAtRange($start = null, $end = null)
     {
         $model = $this->noInitModel;
@@ -67,6 +82,14 @@ trait EntityQueryTrait
         return static::timeRange($this, $model->updatedByAttribute, $start, $end);
     }
 
+    /**
+     * Specify time range.
+     * @param \yii\db\ActiveQuery $query
+     * @param string $attribute
+     * @param string $start
+     * @param string $end
+     * @return $this
+     */
     protected static function timeRange($query, $attribute, $start = null, $end = null)
     {
         if (!empty($start)) {

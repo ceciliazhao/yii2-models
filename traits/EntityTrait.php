@@ -217,4 +217,15 @@ trait EntityTrait
             Yii::warning($this->errors);
         }
     }
+
+    public function __toString()
+    {
+        if (is_string($this->guidAttribute)) {
+            return $this->guid;
+        }
+        if (is_string($this->idAttribute)) {
+            return $this->id;
+        }
+        return null;
+    }
 }

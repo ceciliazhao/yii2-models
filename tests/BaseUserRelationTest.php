@@ -62,9 +62,6 @@ class BaseUserRelationTest extends TestCase
             $opposite = UserRelation::find()->opposite($user, $other);
             $this->assertInstanceOf(UserRelation::className(), $opposite);
 
-            $opposites = UserRelation::findAllOppositeRelations($user, $other);
-            $this->assertEquals(1, count($opposites));
-
             $opposites = UserRelation::find()->opposites($user);
             $this->assertEquals(1, count($opposites));
         } else {
@@ -92,22 +89,12 @@ class BaseUserRelationTest extends TestCase
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
-        echo "Initiator:" . $user->guid . "\n";
-        echo "Recipient:" . $other->guid . "\n";
 
         $this->prepareMutualRelationModels($user, $other);
         UserRelation::removeOneRelation($user, $other);
-        $relations = UserRelation::findAllRelations($user, $other);
-        $this->assertEmpty($relations);
-        $opposites = UserRelation::findAllOppositeRelations($user, $other);
-        $this->assertEmpty($opposites);
 
         $relations = $this->prepareMutualRelationModels($user, $other);
         $this->assertEquals(1, $relations[0]->remove());
-        $relations = UserRelation::findAllRelations($user, $other);
-        $this->assertEmpty($relations);
-        $opposites = UserRelation::findAllOppositeRelations($user, $other);
-        $this->assertEmpty($opposites);
 
         $this->destroyUsers($users);
     }
@@ -123,10 +110,6 @@ class BaseUserRelationTest extends TestCase
         $this->prepareMutualRelationModels($user, $other);
         if ($user->deregister()) {
             $this->assertTrue(true);
-            $relations = UserRelation::findAllRelations($user, $other);
-            $this->assertEmpty($relations);
-            $opposites = UserRelation::findAllOppositeRelations($user, $other);
-            $this->assertEmpty($opposites);
             $this->assertTrue($other->deregister());
         } else {
             $this->assertTrue(false);

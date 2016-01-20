@@ -12,6 +12,7 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\models\BaseUserModel;
 use vistart\Models\traits\MultipleBlameableTrait as mb;
 
 /**
@@ -45,6 +46,7 @@ trait UserRelationTrait
         mb::getNonBlameds as getNonGroupMembers;
         mb::getBlamesCount as getGroupsCount;
         mb::getMultipleBlameableAttributeRules as getGroupsRules;
+        mb::getEmptyBlamesJson as getEmptyGroupJson;
     }
 
     /**
@@ -57,11 +59,11 @@ trait UserRelationTrait
      */
     public $remarkAttribute = 'remark';
     public static $relationUni = 0;
-    public static $relationTwoway = 1;
+    public static $relationMutual = 1;
     public $relationType = 1;
     public $relationTypes = [
         0 => 'Uni',
-        1 => 'Two-way',
+        1 => 'Mutual',
     ];
 
     /**
@@ -85,7 +87,7 @@ trait UserRelationTrait
     public $favoriteAttribute = 'favorite';
 
     /**
-     * 
+     * Get whether this relation is favorite or not.
      * @return boolean
      */
     public function getIsFavorite()
@@ -95,7 +97,7 @@ trait UserRelationTrait
     }
 
     /**
-     * 
+     * Set favorite.
      * @param boolean $fav
      */
     public function setIsFavorite($fav)
@@ -114,7 +116,7 @@ trait UserRelationTrait
 
     /**
      * Validation rules associated with user relation.
-     * @return array
+     * @return array rules.
      */
     public function getUserRelationRules()
     {
@@ -159,7 +161,7 @@ trait UserRelationTrait
 
     /**
      * Validation rules associated with favorites attribute.
-     * @return array
+     * @return array rules.
      */
     public function getFavoriteRules()
     {
@@ -171,7 +173,7 @@ trait UserRelationTrait
 
     /**
      * Validation rules associated with other guid attribute.
-     * @return array
+     * @return array rules.
      */
     public function getOtherGuidRules()
     {
@@ -184,23 +186,14 @@ trait UserRelationTrait
     }
 
     /**
-     * Get one user's all relations.
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @return array
+     * Get user's or users' all relations, or by specified groups.
+     * @param BaseUserModel|string|array $user Initiator or its GUID, or Initiators or their GUIDs.
+     * @param BaseUserRelationGroupModel|string|array|null $groups UserRelationGroup or its guid, or array of them. If you do not want to delimit the groups, please assign null.
+     * @return array all eligible relations
      */
-    public static function findOnesAllRelations($user)
+    public static function findOnesAllRelations($user, $groups = null)
     {
-        return static::findOnesAllRelationsByUserGuid($user->guid);
-    }
-
-    /**
-     * Get one user's all relations.
-     * @param srting $userGuid
-     * @return array
-     */
-    public static function findOnesAllRelationsByUserGuid($userGuid)
-    {
-        return static::findOne([$this->createdByAttribute => $userGuid]);
+        return static::find()->initiators($user)->groups($groups)->all();
     }
 
     /**
@@ -254,8 +247,8 @@ trait UserRelationTrait
 
     /**
      * Build a suspend relation.
-     * @param type $user Initiator
-     * @param type $other Recipient
+     * @param BaseUserModel|string $user Initiator or its GUID.
+     * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
@@ -269,8 +262,8 @@ trait UserRelationTrait
 
     /**
      * Build a normal relation.
-     * @param type $user Initiator
-     * @param type $other Recipient
+     * @param BaseUserModel|string $user Initiator or its GUID.
+     * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
@@ -284,33 +277,25 @@ trait UserRelationTrait
 
     /**
      * Build relation between initiator and recipient.
-     * @see buildRelationByUserGuid
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
+     * @param BaseUserModel|string $user Initiator or its GUID.
+     * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
      * given if exists, or return a new relation.
      */
     protected static function buildRelation($user, $other)
     {
-        return static::buildRelationByUserGuid($user->guid, $other->guid);
-    }
-
-    /**
-     * Build relation between initiator whose guid is $userGuid and recipient
-     * whose guid is $otherGuid. 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
-     * given if exists, or return a new relation.
-     */
-    protected static function buildRelationByUserGuid($userGuid, $otherGuid)
-    {
-        $rni = static::buildNoInitModel();
-        $createdByAttribute = $rni->createdByAttribute;
-        $otherGuidAttribute = $rni->otherGuidAttribute;
-        $relation = static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
+        $relation = static::find()->initiators($user)->recipients($other)->one();
         if (!$relation) {
-            $relation = new static([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
+            $rni = static::buildNoInitModel();
+            $createdByAttribute = $rni->createdByAttribute;
+            $otherGuidAttribute = $rni->otherGuidAttribute;
+            if ($user instanceof BaseUserModel) {
+                $user = $user->guid;
+            }
+            if ($other instanceof BaseUserModel) {
+                $other = $other->guid;
+            }
+            $relation = new static([$createdByAttribute => $user, $otherGuidAttribute => $other]);
         }
         return $relation;
     }
@@ -318,7 +303,7 @@ trait UserRelationTrait
     /**
      * Build opposite relation throughout the current relation. The opposite
      * relation will be given if existed.
-     * @param type $relation
+     * @param \vistart\Models\models\BaseUserRelationModel $relation
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildOppositeRelation($relation)
@@ -326,7 +311,7 @@ trait UserRelationTrait
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
         $mutualTypeAttribute = $relation->mutualTypeAttribute;
-        $opposite = static::buildRelationByUserGuid($relation->$otherGuidAttribute, $relation->$createdByAttribute);
+        $opposite = static::buildRelation($relation->$otherGuidAttribute, $relation->$createdByAttribute);
         $opposite->$mutualTypeAttribute = $relation->$mutualTypeAttribute;
         return $opposite;
     }
@@ -343,151 +328,50 @@ trait UserRelationTrait
     }
 
     /**
-     * Remove first relation between initiator and recipient.
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
-     * @return integer|false
+     * Remove first relation between initiator(s) and recipient(s).
+     * @param BaseUserModel|string|array $user Initiator or its guid, or array of them.
+     * @param BaseUserModel|string|array $other Recipient or its guid, or array of them.
+     * @return integer|false The number of relations removed.
      */
     public static function removeOneRelation($user, $other)
     {
-        return static::removeOneRelationByUserGuid($user->guid, $other->guid);
+        return static::find()->initiators($user)->recipients($other)->one()->delete();
     }
 
     /**
-     * Remove first relation between initiator whose guid is $userGuid and
-     * recipient whose $guid is $otherGuid.
-     * @param string $userGuid Initiator's guid.
-     * @param string $otherGuid Recipient's guid.
-     * @return integer|false The number of relations removed, or false if the remove
-     * is unsuccessful for some reason. Note that it is possible the number of relations
-     * removed is 0, even though the remove execution is successful.
-     */
-    public static function removeOneRelationByUserGuid($userGuid, $otherGuid)
-    {
-        $rni = static::buildNoInitModel();
-        $createdByAttribute = $rni->createdByAttribute;
-        $otherGuidAttribute = $rni->otherGuidAttribute;
-        $relation = static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
-        return $relation->delete();
-    }
-
-    /**
-     * 
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
+     * Remove all relations between initiator(s) and recipient(s).
+     * @param BaseUserModel|string|array $user Initiator or its guid, or array of them.
+     * @param BaseUserModel|string|array $other Recipient or its guid, or array of them.
      * @return integer The number of relations removed.
      */
     public static function removeAllRelations($user, $other)
     {
-        return static::removeAllRelationsByUserGuid($user->guid, $other->guid);
-    }
-
-    /**
-     * 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return integer The number of relations removed.
-     */
-    public static function removeAllRelationsByUserGuid($userGuid, $otherGuid)
-    {
         $rni = static::buildNoInitModel();
         $createdByAttribute = $rni->createdByAttribute;
         $otherGuidAttribute = $rni->otherGuidAttribute;
-        return static::deleteAll([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
+        return static::deleteAll([$createdByAttribute => $user, $otherGuidAttribute => $other]);
     }
 
     /**
-     * 
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
+     * Get first relation between initiator(s) and recipient(s).
+     * @param BaseUserModel|string|array $user Initiator or its guid, or array of them.
+     * @param BaseUserModel|string|array $other Recipient or its guid, or array of them.
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneRelation($user, $other)
     {
-        return static::findOneRelationByUserGuid($user->guid, $other->guid);
+        return static::find()->initiators($user)->recipients($other)->one();
     }
 
     /**
-     * 
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
+     * Get first opposite relation between initiator(s) and recipient(s).
+     * @param BaseUserModel|string $user Initiator or its guid, or array of them.
+     * @param BaseUserModel|string $other Recipient or its guid, or array of them.
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     public static function findOneOppositeRelation($user, $other)
     {
-        return static::findOneRelationByUserGuid($other->guid, $user->guid);
-    }
-
-    /**
-     * 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return \vistart\Models\models\BaseUserRelationModel
-     */
-    public static function findOneOppositeRelationByUserGuid($userGuid, $otherGuid)
-    {
-        return static::findOneRelationByUserGuid($otherGuid, $userGuid);
-    }
-
-    /**
-     * 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return \vistart\Models\models\BaseUserRelationModel
-     */
-    public static function findOneRelationByUserGuid($userGuid, $otherGuid)
-    {
-        $rni = static::buildNoInitModel();
-        $createdByAttribute = $rni->createdByAttribute;
-        $otherGuidAttribute = $rni->otherGuidAttribute;
-        return static::findOne([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
-    }
-
-    /**
-     * 
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
-     * @return array
-     */
-    public static function findAllRelations($user, $other)
-    {
-        return static::findAllRelationsByUserGuid($user->guid, $other->guid);
-    }
-
-    /**
-     * 
-     * @param \vistart\Models\models\BaseUserModel $user
-     * @param \vistart\Models\models\BaseUserModel $other
-     * @return array
-     */
-    public static function findAllOppositeRelations($user, $other)
-    {
-        return static::findAllRelationsByUserGuid($other->guid, $user->guid);
-    }
-
-    /**
-     * 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return array
-     */
-    public static function findAllOppositeRelationsByUserGuid($userGuid, $otherGuid)
-    {
-        return static::findAllRelationsByUserGuid($otherGuid, $userGuid);
-    }
-
-    /**
-     * 
-     * @param string $userGuid
-     * @param string $otherGuid
-     * @return array
-     */
-    public static function findAllRelationsByUserGuid($userGuid, $otherGuid)
-    {
-        $rni = static::buildNoInitModel();
-        $createdByAttribute = $rni->createdByAttribute;
-        $otherGuidAttribute = $rni->otherGuidAttribute;
-        return static::findAll([$createdByAttribute => $userGuid, $otherGuidAttribute => $otherGuid]);
+        return static::find()->initiators($other)->recipients($user)->one();
     }
 
     /**
@@ -536,7 +420,7 @@ trait UserRelationTrait
         $createdByAttribute = $sender->createdByAttribute;
         $otherGuidAttribute = $sender->otherGuidAttribute;
         $sender->off(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
-        static::removeAllRelationsByUserGuid($sender->$otherGuidAttribute, $sender->$createdByAttribute);
+        static::removeAllRelations($sender->$otherGuidAttribute, $sender->$createdByAttribute);
         $sender->on(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);
     }
 }

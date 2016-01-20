@@ -25,7 +25,6 @@ use yii\caching\TagDependency;
  * 6.上次更新用户 GUID；
  * 7.确认功能由 ConfirmationTrait 提供；
  * 8.实例功能由 EntityTrait 提供。
- * 
  * @property-read array $blameableAttributeRules Get all rules associated with
  * blameable.
  * @property array $blameableRules Get or set all the rules associated with
@@ -85,7 +84,6 @@ trait BlameableTrait
      * @var boolean|array Specify the logic type of content, not data type. If
      * your content doesn't need this feature. please specify false. If the
      * $contentAttribute is specified to false, this attribute will be skipped.
-     * 
      * ```php
      * public $contentTypes = [
      *     'public',
