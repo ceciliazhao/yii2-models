@@ -82,6 +82,9 @@ abstract class BaseBlameableModel extends BaseEntityModel
      */
     public function init()
     {
+        if (!is_string($this->queryClass)) {
+            $this->queryClass = \vistart\Models\queries\BaseBlameableQuery::className();
+        }
         if ($this->skipInit) {
             return;
         }

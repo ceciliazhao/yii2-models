@@ -31,7 +31,13 @@ class BaseAdditionalAccountModelTest extends TestCase {
     public function testInit() {
         $user = new User(['password' => '123456']);
         $aa = $user->create(AdditionalAccount::className());
-        $this->assertTrue($user->register([$aa]));
+        if ($result = $user->register([$aa]) === true) {
+            $this->assertTrue($result);
+        } else {
+            var_dump($result);
+            $this->fail();
+        }
+        var_dump(AdditionalAccount::find());
         $this->assertEquals(1, $aa->count());
         $this->assertTrue($user->deregister());
         

@@ -22,9 +22,11 @@ use Yii;
  * @author vistart <i@vistart.name>
  * @since 2.0
  */
-class BaseUserModelTest extends TestCase {
+class BaseUserModelTest extends TestCase
+{
 
-    public function testInit() {
+    public function testInit()
+    {
         $users = [];
         for ($i = 0; $i < 100; $i++) {
             $users[] = new User();
@@ -47,7 +49,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testInit
      */
-    public function testNewUser() {
+    public function testNewUser()
+    {
         $user = new User();
         $this->assertNotNull($user);
         $this->assertTrue($user->register());
@@ -64,7 +67,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testNewUser
      */
-    public function testGUID() {
+    public function testGUID()
+    {
         $user = new User();
         $this->assertNotEmpty($user->guid);
 
@@ -76,7 +80,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testGUID
      */
-    public function testID() {
+    public function testID()
+    {
         $user = new User();
         $this->assertTrue($user->register());
         $this->assertNotEmpty($user->id);
@@ -104,7 +109,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testID
      */
-    public function testIP() {
+    public function testIP()
+    {
         $ipAddress = '::1';
         $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
@@ -151,7 +157,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testIP
      */
-    public function testPassword() {
+    public function testPassword()
+    {
         $password = '123456';
         $user = new User();
         $this->assertTrue($user->hasEventHandlers(User::$eventAfterSetPassword));
@@ -177,20 +184,23 @@ class BaseUserModelTest extends TestCase {
         $this->assertFalse($this->validatePassword($password . ' ', $user->$passwordHashAttribute));
     }
 
-    public function onResetPasswordFailed($event) {
+    public function onResetPasswordFailed($event)
+    {
         $sender = $event->sender;
         var_dump($sender->errors);
         $this->assertFalse(true);
     }
 
-    private function validatePassword($password, $hash) {
+    private function validatePassword($password, $hash)
+    {
         return Yii::$app->security->validatePassword($password, $hash);
     }
 
     /**
      * @depends testPassword
      */
-    public function testPasswordResetToken() {
+    public function testPasswordResetToken()
+    {
         $password = '123456';
         $user = new User(['password' => $password]);
         $user->on(User::$eventResetPasswordFailed, [$this, 'onResetPasswordFailed']);
@@ -205,7 +215,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testPasswordResetToken
      */
-    public function testStatus() {
+    public function testStatus()
+    {
         $user = new User();
         $guidAttribute = $user->guidAttribute;
         $guid = $user->guid;
@@ -225,7 +236,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testStatus
      */
-    public function testSource() {
+    public function testSource()
+    {
         $user = new User();
         $guid = $user->guid;
         $guidAttribute = $user->guidAttribute;
@@ -245,7 +257,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testSource
      */
-    public function testTimestamp() {
+    public function testTimestamp()
+    {
         $user = new User();
         $createdAtAttribute = $user->createdAtAttribute;
         $updatedAtAttribute = $user->updatedAtAttribute;
@@ -272,7 +285,8 @@ class BaseUserModelTest extends TestCase {
     /**
      * @depends testTimestamp
      */
-    public function testRegister() {
+    public function testRegister()
+    {
         $user = new User();
         $user->on(User::$eventBeforeRegister, [$this, 'onBeforeRegister']);
         $user->on(User::$eventAfterRegister, [$this, 'onAfterRegister']);
@@ -294,25 +308,29 @@ class BaseUserModelTest extends TestCase {
         $this->assertEquals('afterDeregister', $this->afterDeregisterEvent);
     }
 
-    public function onBeforeRegister($event) {
+    public function onBeforeRegister($event)
+    {
         $sender = $event->sender;
         $this->assertInstanceOf(User::className(), $sender);
         $this->beforeRegisterEvent = 'beforeRegister';
     }
 
-    public function onAfterRegister($event) {
+    public function onAfterRegister($event)
+    {
         $sender = $event->sender;
         $this->assertInstanceOf(User::className(), $sender);
         $this->afterRegisterEvent = 'afterRegister';
     }
 
-    public function onBeforeDeregister($event) {
+    public function onBeforeDeregister($event)
+    {
         $sender = $event->sender;
         $this->assertInstanceOf(User::className(), $sender);
         $this->beforeDeregisterEvent = 'beforeDeregister';
     }
 
-    public function onAfterDeregister($event) {
+    public function onAfterDeregister($event)
+    {
         $sender = $event->sender;
         $this->assertInstanceOf(User::className(), $sender);
         $this->afterDeregisterEvent = 'afterDeregister';
@@ -322,7 +340,8 @@ class BaseUserModelTest extends TestCase {
      * @depends testRegister
      * @large
      */
-    public function atestNewUser256() {
+    public function atestNewUser256()
+    {
         $users = [];
         for ($i = 0; $i < 256; $i++) {
             $password = '123456';
@@ -339,5 +358,4 @@ class BaseUserModelTest extends TestCase {
         }
         echo "$i\n";
     }
-
 }

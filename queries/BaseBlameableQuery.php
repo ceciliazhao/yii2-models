@@ -12,7 +12,6 @@
 
 namespace vistart\Models\queries;
 
-use vistart\Models\models\BaseEntityModel;
 use vistart\Models\traits\BlameableQueryTrait;
 
 /**
@@ -21,7 +20,7 @@ use vistart\Models\traits\BlameableQueryTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseBlameableQuery extends BaseEntityModel
+class BaseBlameableQuery extends BaseEntityQuery
 {
 
     use BlameableQueryTrait;
