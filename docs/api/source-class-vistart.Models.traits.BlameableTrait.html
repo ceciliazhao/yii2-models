@@ -517,7 +517,7 @@
 </span><span id="364" class="l"><a href="#364">364 </a>                TagDependency::invalidate(<span class="php-var">$cache</span>, [<span class="php-var">$this</span>-&gt;cachePrefix . <span class="php-keyword1">static</span>::<span class="php-var">$cacheTagEntityBehaviors</span>]);
 </span><span id="365" class="l"><a href="#365">365 </a>            }
 </span><span id="366" class="l"><a href="#366">366 </a>            <span class="php-var">$behaviors</span> = parent::behaviors();
-</span><span id="367" class="l"><a href="#367">367 </a>            <span class="php-var">$behaviors</span>[] = [
+</span><span id="367" class="l"><a href="#367">367 </a>            <span class="php-var">$behaviors</span>[<span class="php-quote">'blameable'</span>] = [
 </span><span id="368" class="l"><a href="#368">368 </a>                <span class="php-quote">'class'</span> =&gt; BlameableBehavior::className(),
 </span><span id="369" class="l"><a href="#369">369 </a>                <span class="php-quote">'createdByAttribute'</span> =&gt; <span class="php-var">$this</span>-&gt;createdByAttribute,
 </span><span id="370" class="l"><a href="#370">370 </a>                <span class="php-quote">'updatedByAttribute'</span> =&gt; <span class="php-var">$this</span>-&gt;updatedByAttribute,

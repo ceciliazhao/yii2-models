@@ -89,6 +89,15 @@ trait IDTrait
     }
 
     /**
+     * Attach `onInitGuidAttribute` event.
+     * @param string $eventName
+     */
+    protected function attachInitIdEvent($eventName)
+    {
+        $this->on($eventName, [$this, 'onInitIdAttribute']);
+    }
+
+    /**
      * Initialize the ID attribute with new generated ID.
      * If the model's id is pre-assigned, then it will return directly.
      * If the model's id is auto-increment, the id attribute will be marked safe.

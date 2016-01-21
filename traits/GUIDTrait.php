@@ -30,6 +30,15 @@ trait GUIDTrait
     public $guidAttribute = 'guid';
 
     /**
+     * Attach `onInitGuidAttribute` event.
+     * @param string $eventName
+     */
+    protected function attachInitGuidEvent($eventName)
+    {
+        $this->on($eventName, [$this, 'onInitGuidAttribute']);
+    }
+
+    /**
      * Initialize the GUID attribute with new generated GUID.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
@@ -57,12 +66,12 @@ trait GUIDTrait
 
     /**
      * Check if the $uuid existed in current database table.
-     * @param string $uuid the GUID to be checked.
+     * @param string $guid the GUID to be checked.
      * @return boolean Whether the $guid exists or not.
      */
-    public static function CheckGuidExists($uuid)
+    public static function CheckGuidExists($guid)
     {
-        return (self::findOne($uuid) !== null);
+        return (self::findOne($guid) !== null);
     }
 
     /**

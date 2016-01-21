@@ -86,6 +86,15 @@ trait IPTrait
     public $ipTypeAttribute = 'ip_type';
 
     /**
+     * Attach `onInitGuidAttribute` event.
+     * @param string $eventName
+     */
+    protected function attachInitIpEvent($eventName)
+    {
+        $this->on($eventName, [$this, 'onInitIpAddress']);
+    }
+
+    /**
      * Initialize ip attributes.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.

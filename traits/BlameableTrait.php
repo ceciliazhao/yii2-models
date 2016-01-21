@@ -364,7 +364,7 @@ trait BlameableTrait
                 TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
             }
             $behaviors = parent::behaviors();
-            $behaviors[] = [
+            $behaviors['blameable'] = [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => $this->createdByAttribute,
                 'updatedByAttribute' => $this->updatedByAttribute,

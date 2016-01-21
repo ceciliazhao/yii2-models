@@ -58,7 +58,7 @@ trait EntityQueryTrait
      * @param string $end
      * @return $this
      */
-    public function createdAtRange($start = null, $end = null)
+    public function createdAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
         if (!is_string($model->createdByAttribute)) {
@@ -73,7 +73,7 @@ trait EntityQueryTrait
      * @param string $end
      * @return $this
      */
-    public function updatedAtRange($start = null, $end = null)
+    public function updatedAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
         if (!is_string($model->updatedByAttribute)) {

@@ -159,7 +159,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.GUIDTrait.html#17-105" title="Go to source code">traits/GUIDTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.GUIDTrait.html#17-114" title="Go to source code">traits/GUIDTrait.php</a>
 		<br>
 	</div>
 
@@ -168,6 +168,40 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="attachInitGuidEvent" id="_attachInitGuidEvent">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_attachInitGuidEvent">#</a>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#32-39" title="Go to source code">attachInitGuidEvent</a>( <span>string <var>$eventName</var></span> )</code>
+
+			<div class="description short">
+				<p>Attach <code>onInitGuidAttribute</code> event.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Attach <code>onInitGuidAttribute</code> event.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$eventName</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="onInitGuidAttribute" id="_onInitGuidAttribute">
 
 			<td class="attributes"><code>
@@ -179,7 +213,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitGuidAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#32-46" title="Go to source code">onInitGuidAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#41-55" title="Go to source code">onInitGuidAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize the GUID attribute with new generated GUID.
@@ -221,7 +255,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GenerateGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#48-56" title="Go to source code">GenerateGuid</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#57-65" title="Go to source code">GenerateGuid</a>( )</code>
 
 			<div class="description short">
 				<p>Generate GUID. It will check if the generated GUID existed in database
@@ -256,7 +290,7 @@ table, if existed, it will regenerate one.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_CheckGuidExists">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#58-66" title="Go to source code">CheckGuidExists</a>( <span>string <var>$uuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#67-75" title="Go to source code">CheckGuidExists</a>( <span>string <var>$guid</var></span> )</code>
 
 			<div class="description short">
 				<p>Check if the $uuid existed in current database table.</p>
@@ -268,7 +302,7 @@ table, if existed, it will regenerate one.</p>
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$uuid</var></dt>
+						<dt><var>$guid</var></dt>
 						<dd>the GUID to be checked.</dd>
 					</dl></div>
 
@@ -294,7 +328,7 @@ table, if existed, it will regenerate one.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGuidRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#68-83" title="Go to source code">getGuidRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#77-92" title="Go to source code">getGuidRules</a>( )</code>
 
 			<div class="description short">
 				<p>Get the rules associated with guid attribute.</p>
@@ -327,7 +361,7 @@ table, if existed, it will regenerate one.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#85-93" title="Go to source code">getGuid</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#94-102" title="Go to source code">getGuid</a>( )</code>
 
 			<div class="description short">
 				
@@ -360,7 +394,7 @@ table, if existed, it will regenerate one.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#95-104" title="Go to source code">setGuid</a>( <span>string <var>$guid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.GUIDTrait.html#104-113" title="Go to source code">setGuid</a>( <span>string <var>$guid</var></span> )</code>
 
 			<div class="description short">
 				

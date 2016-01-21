@@ -190,9 +190,9 @@ trait EntityTrait
     protected function initEntityEvents()
     {
         $this->on(static::EVENT_INIT, [$this, 'onInitCache']);
-        $this->on(static::$eventNewRecordCreated, [$this, 'onInitGuidAttribute']);
-        $this->on(static::$eventNewRecordCreated, [$this, 'onInitIdAttribute']);
-        $this->on(static::$eventNewRecordCreated, [$this, 'onInitIpAddress']);
+        $this->attachInitGuidEvent(static::$eventNewRecordCreated);
+        $this->attachInitIdEvent(static::$eventNewRecordCreated);
+        $this->attachInitIpEvent(static::$eventNewRecordCreated);
         if ($this->isNewRecord) {
             $this->trigger(static::$eventNewRecordCreated);
         }
