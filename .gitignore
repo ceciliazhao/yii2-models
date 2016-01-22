@@ -45,6 +45,7 @@ Temporary Items
 *.vsdx
 *.~xlsx
 *.~vsdx
-/nbproject/private/
-/tmp/
-/tests/runtime/
+/nbproject/private
+/tmp
+/tests/runtime
+/vendor
