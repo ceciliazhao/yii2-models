@@ -37,7 +37,6 @@ class BaseAdditionalAccountModelTest extends TestCase {
             var_dump($result);
             $this->fail();
         }
-        var_dump(AdditionalAccount::find());
         $this->assertEquals(1, $aa->count());
         $this->assertTrue($user->deregister());
         
