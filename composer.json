@@ -21,11 +21,5 @@
         "psr-4": {
             "vistart\\Models\\": ""
         }
-    },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "https://github.com/vistart/yii2-models"
-        }
-    ]
+    }
 }
