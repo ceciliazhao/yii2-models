@@ -433,8 +433,9 @@ trait BlameableTrait
      */
     public function onGetCurrentUserGuid($event)
     {
-        if (isset($event->sender->attributes[$event->sender->createdByAttribute])) {
-            return $event->sender->attributes[$event->sender->createdByAttribute];
+        $sender = $event->sender;
+        if (isset($sender->attributes[$sender->createdByAttribute])) {
+            return $sender->attributes[$sender->createdByAttribute];
         }
         $identity = \Yii::$app->user->identity;
         if ($identity) {

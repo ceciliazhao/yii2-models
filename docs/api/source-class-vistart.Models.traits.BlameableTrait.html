@@ -104,6 +104,7 @@
 				<li><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">vistart\Models\models\BaseAdditionalAccountModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseBlameableModel.html">vistart\Models\models\BaseBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseEntityModel.html">vistart\Models\models\BaseEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMetaModel.html">vistart\Models\models\BaseMetaModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">vistart\Models\models\BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">vistart\Models\models\BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">vistart\Models\models\BaseRedisBlameableModel</a></li>
@@ -586,70 +587,71 @@
 </span></span><span id="433" class="l"><a href="#433">433 </a><span class="php-comment">     */</span>
 </span><span id="434" class="l"><a href="#434">434 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onGetCurrentUserGuid(<span class="php-var">$event</span>)
 </span><span id="435" class="l"><a href="#435">435 </a>    {
-</span><span id="436" class="l"><a href="#436">436 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$event</span>-&gt;sender-&gt;attributes[<span class="php-var">$event</span>-&gt;sender-&gt;createdByAttribute])) {
-</span><span id="437" class="l"><a href="#437">437 </a>            <span class="php-keyword1">return</span> <span class="php-var">$event</span>-&gt;sender-&gt;attributes[<span class="php-var">$event</span>-&gt;sender-&gt;createdByAttribute];
-</span><span id="438" class="l"><a href="#438">438 </a>        }
-</span><span id="439" class="l"><a href="#439">439 </a>        <span class="php-var">$identity</span> = \Yii::<span class="php-var">$app</span>-&gt;user-&gt;identity;
-</span><span id="440" class="l"><a href="#440">440 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$identity</span>) {
-</span><span id="441" class="l"><a href="#441">441 </a>            <span class="php-var">$identityGuidAttribute</span> = <span class="php-var">$identity</span>-&gt;guidAttribute;
-</span><span id="442" class="l"><a href="#442">442 </a>            <span class="php-keyword1">return</span> <span class="php-var">$identity</span>-&gt;<span class="php-var">$identityGuidAttribute</span>;
-</span><span id="443" class="l"><a href="#443">443 </a>        }
-</span><span id="444" class="l"><a href="#444">444 </a>    }
-</span><span id="445" class="l"><a href="#445">445 </a>
-</span><span id="446" class="l"><a href="#446">446 </a>    <span class="php-comment">/**
-</span></span><span id="447" class="l"><a href="#447">447 </a><span class="php-comment">     * Initialize type of content. the first of element[index is 0] of
-</span></span><span id="448" class="l"><a href="#448">448 </a><span class="php-comment">     * $contentTypes will be used.
-</span></span><span id="449" class="l"><a href="#449">449 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="450" class="l"><a href="#450">450 </a><span class="php-comment">     */</span>
-</span><span id="451" class="l"><a href="#451">451 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitContentType(<span class="php-var">$event</span>)
-</span><span id="452" class="l"><a href="#452">452 </a>    {
-</span><span id="453" class="l"><a href="#453">453 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="454" class="l"><a href="#454">454 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute)) {
-</span><span id="455" class="l"><a href="#455">455 </a>            <span class="php-keyword1">return</span>;
-</span><span id="456" class="l"><a href="#456">456 </a>        }
-</span><span id="457" class="l"><a href="#457">457 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypeAttribute;
-</span><span id="458" class="l"><a href="#458">458 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span>) &amp;&amp;
-</span><span id="459" class="l"><a href="#459">459 </a>                !<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;contentTypes) &amp;&amp;
-</span><span id="460" class="l"><a href="#460">460 </a>                <span class="php-keyword2">is_array</span>(<span class="php-var">$sender</span>-&gt;contentTypes)) {
-</span><span id="461" class="l"><a href="#461">461 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypes[<span class="php-num">0</span>];
-</span><span id="462" class="l"><a href="#462">462 </a>        }
-</span><span id="463" class="l"><a href="#463">463 </a>    }
-</span><span id="464" class="l"><a href="#464">464 </a>
-</span><span id="465" class="l"><a href="#465">465 </a>    <span class="php-comment">/**
-</span></span><span id="466" class="l"><a href="#466">466 </a><span class="php-comment">     * Initialize description property with $initDescription.
-</span></span><span id="467" class="l"><a href="#467">467 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="468" class="l"><a href="#468">468 </a><span class="php-comment">     */</span>
-</span><span id="469" class="l"><a href="#469">469 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitDescription(<span class="php-var">$event</span>)
-</span><span id="470" class="l"><a href="#470">470 </a>    {
-</span><span id="471" class="l"><a href="#471">471 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="472" class="l"><a href="#472">472 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute)) {
-</span><span id="473" class="l"><a href="#473">473 </a>            <span class="php-keyword1">return</span>;
-</span><span id="474" class="l"><a href="#474">474 </a>        }
-</span><span id="475" class="l"><a href="#475">475 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;descriptionAttribute;
-</span><span id="476" class="l"><a href="#476">476 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
-</span><span id="477" class="l"><a href="#477">477 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;initDescription;
-</span><span id="478" class="l"><a href="#478">478 </a>        }
-</span><span id="479" class="l"><a href="#479">479 </a>    }
-</span><span id="480" class="l"><a href="#480">480 </a>
-</span><span id="481" class="l"><a href="#481">481 </a>    <span class="php-comment">/**
-</span></span><span id="482" class="l"><a href="#482">482 </a><span class="php-comment">     * Attach events associated with blameable model.
-</span></span><span id="483" class="l"><a href="#483">483 </a><span class="php-comment">     */</span>
-</span><span id="484" class="l"><a href="#484">484 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> initBlameableEvents()
-</span><span id="485" class="l"><a href="#485">485 </a>    {
-</span><span id="486" class="l"><a href="#486">486 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventConfirmationChanged</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onConfirmationChanged&quot;</span>]);
-</span><span id="487" class="l"><a href="#487">487 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitConfirmation&quot;</span>]);
-</span><span id="488" class="l"><a href="#488">488 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$this</span>-&gt;contentTypeAttribute;
-</span><span id="489" class="l"><a href="#489">489 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$contentTypeAttribute</span>)) {
-</span><span id="490" class="l"><a href="#490">490 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitContentType&quot;</span>]);
-</span><span id="491" class="l"><a href="#491">491 </a>        }
-</span><span id="492" class="l"><a href="#492">492 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$this</span>-&gt;descriptionAttribute;
-</span><span id="493" class="l"><a href="#493">493 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
-</span><span id="494" class="l"><a href="#494">494 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onInitDescription'</span>]);
-</span><span id="495" class="l"><a href="#495">495 </a>        }
-</span><span id="496" class="l"><a href="#496">496 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_BEFORE_UPDATE, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onContentChanged&quot;</span>]);
-</span><span id="497" class="l"><a href="#497">497 </a>    }
-</span><span id="498" class="l"><a href="#498">498 </a>}
-</span><span id="499" class="l"><a href="#499">499 </a></span></code></pre>
+</span><span id="436" class="l"><a href="#436">436 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="437" class="l"><a href="#437">437 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute])) {
+</span><span id="438" class="l"><a href="#438">438 </a>            <span class="php-keyword1">return</span> <span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute];
+</span><span id="439" class="l"><a href="#439">439 </a>        }
+</span><span id="440" class="l"><a href="#440">440 </a>        <span class="php-var">$identity</span> = \Yii::<span class="php-var">$app</span>-&gt;user-&gt;identity;
+</span><span id="441" class="l"><a href="#441">441 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$identity</span>) {
+</span><span id="442" class="l"><a href="#442">442 </a>            <span class="php-var">$identityGuidAttribute</span> = <span class="php-var">$identity</span>-&gt;guidAttribute;
+</span><span id="443" class="l"><a href="#443">443 </a>            <span class="php-keyword1">return</span> <span class="php-var">$identity</span>-&gt;<span class="php-var">$identityGuidAttribute</span>;
+</span><span id="444" class="l"><a href="#444">444 </a>        }
+</span><span id="445" class="l"><a href="#445">445 </a>    }
+</span><span id="446" class="l"><a href="#446">446 </a>
+</span><span id="447" class="l"><a href="#447">447 </a>    <span class="php-comment">/**
+</span></span><span id="448" class="l"><a href="#448">448 </a><span class="php-comment">     * Initialize type of content. the first of element[index is 0] of
+</span></span><span id="449" class="l"><a href="#449">449 </a><span class="php-comment">     * $contentTypes will be used.
+</span></span><span id="450" class="l"><a href="#450">450 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="451" class="l"><a href="#451">451 </a><span class="php-comment">     */</span>
+</span><span id="452" class="l"><a href="#452">452 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitContentType(<span class="php-var">$event</span>)
+</span><span id="453" class="l"><a href="#453">453 </a>    {
+</span><span id="454" class="l"><a href="#454">454 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="455" class="l"><a href="#455">455 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute)) {
+</span><span id="456" class="l"><a href="#456">456 </a>            <span class="php-keyword1">return</span>;
+</span><span id="457" class="l"><a href="#457">457 </a>        }
+</span><span id="458" class="l"><a href="#458">458 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypeAttribute;
+</span><span id="459" class="l"><a href="#459">459 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span>) &amp;&amp;
+</span><span id="460" class="l"><a href="#460">460 </a>                !<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;contentTypes) &amp;&amp;
+</span><span id="461" class="l"><a href="#461">461 </a>                <span class="php-keyword2">is_array</span>(<span class="php-var">$sender</span>-&gt;contentTypes)) {
+</span><span id="462" class="l"><a href="#462">462 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypes[<span class="php-num">0</span>];
+</span><span id="463" class="l"><a href="#463">463 </a>        }
+</span><span id="464" class="l"><a href="#464">464 </a>    }
+</span><span id="465" class="l"><a href="#465">465 </a>
+</span><span id="466" class="l"><a href="#466">466 </a>    <span class="php-comment">/**
+</span></span><span id="467" class="l"><a href="#467">467 </a><span class="php-comment">     * Initialize description property with $initDescription.
+</span></span><span id="468" class="l"><a href="#468">468 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="469" class="l"><a href="#469">469 </a><span class="php-comment">     */</span>
+</span><span id="470" class="l"><a href="#470">470 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitDescription(<span class="php-var">$event</span>)
+</span><span id="471" class="l"><a href="#471">471 </a>    {
+</span><span id="472" class="l"><a href="#472">472 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="473" class="l"><a href="#473">473 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute)) {
+</span><span id="474" class="l"><a href="#474">474 </a>            <span class="php-keyword1">return</span>;
+</span><span id="475" class="l"><a href="#475">475 </a>        }
+</span><span id="476" class="l"><a href="#476">476 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;descriptionAttribute;
+</span><span id="477" class="l"><a href="#477">477 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
+</span><span id="478" class="l"><a href="#478">478 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;initDescription;
+</span><span id="479" class="l"><a href="#479">479 </a>        }
+</span><span id="480" class="l"><a href="#480">480 </a>    }
+</span><span id="481" class="l"><a href="#481">481 </a>
+</span><span id="482" class="l"><a href="#482">482 </a>    <span class="php-comment">/**
+</span></span><span id="483" class="l"><a href="#483">483 </a><span class="php-comment">     * Attach events associated with blameable model.
+</span></span><span id="484" class="l"><a href="#484">484 </a><span class="php-comment">     */</span>
+</span><span id="485" class="l"><a href="#485">485 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> initBlameableEvents()
+</span><span id="486" class="l"><a href="#486">486 </a>    {
+</span><span id="487" class="l"><a href="#487">487 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventConfirmationChanged</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onConfirmationChanged&quot;</span>]);
+</span><span id="488" class="l"><a href="#488">488 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitConfirmation&quot;</span>]);
+</span><span id="489" class="l"><a href="#489">489 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$this</span>-&gt;contentTypeAttribute;
+</span><span id="490" class="l"><a href="#490">490 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$contentTypeAttribute</span>)) {
+</span><span id="491" class="l"><a href="#491">491 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitContentType&quot;</span>]);
+</span><span id="492" class="l"><a href="#492">492 </a>        }
+</span><span id="493" class="l"><a href="#493">493 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$this</span>-&gt;descriptionAttribute;
+</span><span id="494" class="l"><a href="#494">494 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
+</span><span id="495" class="l"><a href="#495">495 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onInitDescription'</span>]);
+</span><span id="496" class="l"><a href="#496">496 </a>        }
+</span><span id="497" class="l"><a href="#497">497 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_BEFORE_UPDATE, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onContentChanged&quot;</span>]);
+</span><span id="498" class="l"><a href="#498">498 </a>    }
+</span><span id="499" class="l"><a href="#499">499 </a>}
+</span><span id="500" class="l"><a href="#500">500 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
@@ -657,6 +659,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?4a180203a96e45bf3c4b7485ad0523252ddadf1b"></script>
+<script src="elementlist.js?11669f5c71877a3b8d7fd436f6e3c87a91062de3"></script>
 </body>
 </html>
