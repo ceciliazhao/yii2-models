@@ -42,7 +42,8 @@ trait IDTrait
     public $idAttributeType = 0;
 
     /**
-     * @var boolean 
+     * @var boolean Determines whether its id has been pre-assigned. It will not
+     * generate or assign ID if true.
      */
     public $idPreassigned = false;
 
@@ -54,9 +55,9 @@ trait IDTrait
     public $idAttributePrefix = '';
 
     /**
-     * @var integer OPTIONAL. The length of id attribute value.
-     * If you set $idAttribute to false or ID type to Auto Increment, this
-     * property will be ignored.
+     * @var integer OPTIONAL. The length of id attribute value, and max length
+     * of this attribute in rules. If you set $idAttribute to false or ID type
+     * to Auto Increment, this property will be ignored.
      * @since 1.1
      */
     public $idAttributeLength = 4;
@@ -191,7 +192,7 @@ trait IDTrait
             }
             if ($this->idAttributeType === self::$idTypeString) {
                 $rules[] = [[$this->idAttribute], 'string',
-                    'length' => $this->idAttributeLength,];
+                    'max' => $this->idAttributeLength,];
             }
             if ($this->idAttributeType === self::$idTypeAutoIncrement) {
                 $rules[] = [
