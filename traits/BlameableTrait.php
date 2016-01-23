@@ -229,6 +229,24 @@ trait BlameableTrait
     }
 
     /**
+     * Get blameable rules cache key.
+     * @return string cache key.
+     */
+    public function getBlameableRulesCacheKey()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheKeyBlameableRules;
+    }
+
+    /**
+     * Get blameable rules cache tag.
+     * @return string cache tag
+     */
+    public function getBlameableRulesCacheTag()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheTagBlameableRules;
+    }
+
+    /**
      * Get the rules associated with content to be blamed.
      * @return array rules.
      */
@@ -236,7 +254,7 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableRules = $cache->get($this->cachePrefix . static::$cacheKeyBlameableRules);
+            $this->_blameableRules = $cache->get($this->getBlameableRulesCacheKey());
         }
         // 若当前规则不为空，且是数组，则认为是规则数组，直接返回。
         if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
@@ -245,7 +263,7 @@ trait BlameableTrait
 
         // 父类规则与确认规则合并。
         if ($cache) {
-            TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityRules]);
+            TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
                 parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules()
@@ -346,11 +364,29 @@ trait BlameableTrait
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(
                     ['tags' =>
-                [$this->cachePrefix . static::$cacheTagBlameableRules]
+                [$this->getBlameableRulesCacheTag()]
                     ]
             );
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableRules, $rules, 0, $tagDependency);
+            $cache->set($this->getBlameableRulesCacheKey(), $rules, 0, $tagDependency);
         }
+    }
+
+    /**
+     * Get blameable behaviors cache key.
+     * @return string cache key.
+     */
+    public function getBlameableBehaviorsCacheKey()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheKeyBlameableBehaviors;
+    }
+
+    /**
+     * Get blameable behaviors cache tag.
+     * @return string cache tag.
+     */
+    public function getBlameableBehaviorsCacheTag()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheTagBlameableBehaviors;
     }
 
     /**
@@ -362,11 +398,11 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyBlameableBehaviors);
+            $this->_blameableBehaviors = $cache->get($this->getBlameableBehaviorsCacheKey());
         }
         if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
             if ($cache) {
-                TagDependency::invalidate($cache, [$this->cachePrefix . static::$cacheTagEntityBehaviors]);
+                TagDependency::invalidate($cache, [$this->getEntityBehaviorsCacheTag()]);
             }
             $behaviors = parent::behaviors();
             $behaviors['blameable'] = [
@@ -389,9 +425,9 @@ trait BlameableTrait
         $this->_blameableBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependencyConfig = ['tags' => [$this->cachePrefix . static::$cacheTagBlameableBehaviors]];
+            $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
-            $cache->set($this->cachePrefix . static::$cacheKeyBlameableBehaviors, $behaviors, 0, $tagDependency);
+            $cache->set($this->getBlameableBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
         }
     }
 

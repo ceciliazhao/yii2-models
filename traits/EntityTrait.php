@@ -103,14 +103,32 @@ trait EntityTrait
     }
 
     /**
-     * 
-     * @return array
+     * Get entity rules cache key.
+     * @return string cache key.
+     */
+    public function getEntityRulesCacheKey()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheKeyEntityRules;
+    }
+
+    /**
+     * Get entity rules cache tag.
+     * @return string cache tag.
+     */
+    public function getEntityRulesCacheTag()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheTagEntityRules;
+    }
+
+    /**
+     * Get entity rules.
+     * @return array rules.
      */
     public function getEntityRules()
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_entityRules = $cache->get($this->cachePrefix . static::$cacheKeyEntityRules);
+            $this->_entityRules = $cache->get($this->getEntityRulesCacheKey());
         }
         if (empty($this->_entityRules) || !is_array($this->_entityRules)) {
             $rules = array_merge($this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules());
@@ -120,8 +138,8 @@ trait EntityTrait
     }
 
     /**
-     * 
-     * @param array $rules
+     * Set entity rules.
+     * @param array $rules.
      */
     protected function setEntityRules($rules = [])
     {
@@ -130,11 +148,29 @@ trait EntityTrait
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(
                     ['tags' =>
-                [$this->cachePrefix . static::$cacheTagEntityRules]
+                [$this->getEntityRulesCacheTag()]
                     ]
             );
-            $cache->set($this->cachePrefix . static::$cacheKeyEntityRules, $rules, 0, $tagDependency);
+            $cache->set($this->getEntityRulesCacheKey(), $rules, 0, $tagDependency);
         }
+    }
+
+    /**
+     * Get entity behaviors cache key.
+     * @return string cache key.
+     */
+    public function getEntityBehaviorsCacheKey()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheKeyEntityBehaviors;
+    }
+
+    /**
+     * Get entity behaviors cache tag.
+     * @return string cache tag.
+     */
+    public function getEntityBehaviorsCacheTag()
+    {
+        return static::className() . $this->cachePrefix . static::$cacheTagEntityBehaviors;
     }
 
     /**
@@ -145,7 +181,7 @@ trait EntityTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_entityBehaviors = $cache->get($this->cachePrefix . static::$cacheKeyEntityBehaviors);
+            $this->_entityBehaviors = $cache->get($this->getEntityBehaviorsCacheKey());
         }
         if (empty($this->_entityBehaviors) || !is_array($this->_entityBehaviors)) {
             $this->setEntityBehaviors($this->getTimestampBehaviors());
@@ -162,9 +198,9 @@ trait EntityTrait
         $this->_entityBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependencyConfig = ['tags' => [$this->cachePrefix . static::$cacheTagEntityBehaviors]];
+            $tagDependencyConfig = ['tags' => [$this->getEntityBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
-            $cache->set($this->cachePrefix . static::$cacheKeyEntityBehaviors, $behaviors, 0, $tagDependency);
+            $cache->set($this->getEntityBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
         }
     }
 
@@ -223,6 +259,10 @@ trait EntityTrait
         }
     }
 
+    /**
+     * Get guid or id. if neither disabled, return null.
+     * @return string
+     */
     public function __toString()
     {
         if (is_string($this->guidAttribute)) {
