@@ -83,19 +83,4 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
         $this->on(self::$eventAfterSetPassword, [$this, 'onAfterSetNewPassword']);
         parent::init();
     }
-
-    /**
-     * @inheritdoc
-     * -------------
-     * if enable `$idAttribute` and $row[$idAttribute] set, the `idPreassigned`
-     * will be assigned to true.
-     */
-    public static function instantiate($row)
-    {
-        $self = static::buildNoInitModel();
-        if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
-            return new static(['idPreassigned' => true]);
-        }
-        return new static;
-    }
 }

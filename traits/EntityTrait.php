@@ -273,4 +273,19 @@ trait EntityTrait
         }
         return null;
     }
+
+    /**
+     * @inheritdoc
+     * -------------
+     * if enable `$idAttribute` and $row[$idAttribute] set, the `idPreassigned`
+     * will be assigned to true.
+     */
+    public static function instantiate($row)
+    {
+        $self = static::buildNoInitModel();
+        if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
+            return new static(['idPreassigned' => true]);
+        }
+        return new static;
+    }
 }
