@@ -106,8 +106,9 @@ trait TimestampTrait
      */
     public function getCreatedAtRules()
     {
-        if (!$this->createdAtAttribute)
+        if (!$this->createdAtAttribute) {
             return [];
+        }
         return [
             [[$this->createdAtAttribute], 'safe'],
         ];
@@ -119,8 +120,9 @@ trait TimestampTrait
      */
     public function getUpdatedAtRules()
     {
-        if (!$this->updatedAtAttribute)
+        if (!$this->updatedAtAttribute) {
             return [];
+        }
         return [
             [[$this->updatedAtAttribute], 'safe'],
         ];
