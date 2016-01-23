@@ -315,8 +315,13 @@ trait BlameableTrait
         }
         $rules = [];
         $rules[] = [[$this->contentAttribute], 'required'];
-        if ($this->contentAttributeRule && is_array($this->contentAttributeRule)) {
-            $rules[] = array_merge([$this->contentAttribute], $this->contentAttributeRule);
+        if ($this->contentAttributeRule) {
+            if (is_string($this->contentAttributeRule)) {
+                $this->contentAttributeRule = [$this->contentAttributeRule];
+            }
+            if (is_array($this->contentAttributeRule)) {
+                $rules[] = array_merge([$this->contentAttribute], $this->contentAttributeRule);
+            }
         }
 
         if (!$this->contentTypeAttribute) {
