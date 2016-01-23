@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait vistart\Models\traits\BlameableQueryTrait</title>
+	<title>Trait vistart\Models\traits\QueryTrait</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -99,7 +99,7 @@
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-vistart.Models.traits.AdditionalAccountTrait.html">AdditionalAccountTrait</a></li>
-				<li class="active"><a href="class-vistart.Models.traits.BlameableQueryTrait.html">BlameableQueryTrait</a></li>
+				<li><a href="class-vistart.Models.traits.BlameableQueryTrait.html">BlameableQueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.BlameableTrait.html">BlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.ConfirmationTrait.html">ConfirmationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.EntityQueryTrait.html">EntityQueryTrait</a></li>
@@ -110,7 +110,7 @@
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
-				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
@@ -129,22 +129,13 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait BlameableQueryTrait</h1>
+	<h1>Trait QueryTrait</h1>
 
 
 	<div class="description">
-	<p>Description of BlameableQueryTrait</p>
+	<p>Description of QueryTrait</p>
 	</div>
 
-	<dl class="tree well">
-		<dd style="padding-left:0px">
-<b><span>vistart\Models\traits\BlameableQueryTrait</span></b>			
-			
-			 uses 
-					<a href="class-vistart.Models.traits.QueryTrait.html"><span>vistart\Models\traits\QueryTrait</span></a>
-			
-		</dd>
-	</dl>
 
 
 
@@ -154,16 +145,11 @@
 	<div>
 		<h3>Direct Known Users</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.queries.BaseBlameableQuery.html">vistart\Models\queries\BaseBlameableQuery</a></code>
+			<code><a href="class-vistart.Models.traits.BlameableQueryTrait.html">vistart\Models\traits\BlameableQueryTrait</a></code>, 
+			<code><a href="class-vistart.Models.traits.EntityQueryTrait.html">vistart\Models\traits\EntityQueryTrait</a></code>
 		</p>
 	</div>
 
-	<div>
-		<h3>Indirect Known Users</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
-		</p>
-	</div>
 
 	<div class="alert alert-info">
 		
@@ -175,7 +161,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableQueryTrait.html#15-51" title="Go to source code">traits/BlameableQueryTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.QueryTrait.html#15-60" title="Go to source code">traits/QueryTrait.php</a>
 		<br>
 	</div>
 
@@ -184,36 +170,40 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="confirmed" id="_confirmed">
+		<tr data-order="likeCondition" id="_likeCondition">
 
 			<td class="attributes"><code>
-				 public 
-				
+				 protected 
+				type
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_confirmed">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableQueryTrait.html#26-38" title="Go to source code">confirmed</a>( <span>boolean <var>$isConfirmed</var> = <span class="php-keyword1">true</span></span> )</code>
+			<a class="anchor" href="#_likeCondition">#</a>
+			<code><a href="source-class-vistart.Models.traits.QueryTrait.html#24-40" title="Go to source code">likeCondition</a>( <span>type <var>$value</var></span>, <span>type <var>$attribute</var></span>, <span>type <var>$like</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				<p>Specify confirmation.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Specify confirmation.</p>
+				
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$isConfirmed</var></dt>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+						<dt><var>$attribute</var></dt>
+						<dd></dd>
+						<dt><var>$like</var></dt>
 						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<br>$this
+						type
 					</div>
 
 
@@ -222,33 +212,37 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="content" id="_content">
+		<tr data-order="range" id="_range">
 
 			<td class="attributes"><code>
-				 public 
+				 protected static
 				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_content">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableQueryTrait.html#40-50" title="Go to source code">content</a>( <span>mixed <var>$content</var></span>, <span>false|string <var>$like</var> = <span class="php-keyword1">false</span></span> )</code>
+			<a class="anchor" href="#_range">#</a>
+			<code><a href="source-class-vistart.Models.traits.QueryTrait.html#42-59" title="Go to source code">range</a>( <span>yii\db\ActiveQuery <var>$query</var></span>, <span>string <var>$attribute</var></span>, <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Specify content.</p>
+				<p>Specify range.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Specify content.</p>
+				<p>Specify range.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$content</var></dt>
+						<dt><var>$query</var></dt>
 						<dd></dd>
-						<dt><var>$like</var></dt>
-						<dd>false, 'like', 'or like', 'not like', 'or not like'.</dd>
+						<dt><var>$attribute</var></dt>
+						<dd></dd>
+						<dt><var>$start</var></dt>
+						<dd></dd>
+						<dt><var>$end</var></dt>
+						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -266,13 +260,6 @@
 		</div>
 
 
-		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.QueryTrait.html#methods">vistart\Models\traits\QueryTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.QueryTrait.html#_likeCondition">likeCondition()</a></code>, 
-				<code><a href="class-vistart.Models.traits.QueryTrait.html#_range">range()</a></code>
-			</p>
-		</div>
 
 
 

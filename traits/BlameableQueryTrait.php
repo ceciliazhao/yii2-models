@@ -21,6 +21,8 @@ namespace vistart\Models\traits;
 trait BlameableQueryTrait
 {
 
+    use QueryTrait;
+
     /**
      * Specify confirmation.
      * @param boolean $isConfirmed
@@ -44,12 +46,6 @@ trait BlameableQueryTrait
     public function content($content, $like = false)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->contentAttribute)) {
-            return $this;
-        }
-        if ($like) {
-            return $this->andWhere([$like, $model->contentAttribute, $content]);
-        }
-        return $this->andWhere([$model->contentAttribute => $content]);
+        return $this->likeCondition($content, $model->contentAttribute, $like);
     }
 }

@@ -21,6 +21,8 @@ namespace vistart\Models\traits;
 trait EntityQueryTrait
 {
 
+    use QueryTrait;
+
     public $noInitModel;
 
     /**
@@ -43,13 +45,7 @@ trait EntityQueryTrait
     public function id($id, $like = false)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->idAttribute)) {
-            return $this;
-        }
-        if ($like) {
-            return $this->andWhere([$like, $model->idAttribute, $id]);
-        }
-        return $this->andWhere([$model->idAttribute => $id]);
+        return $this->likeCondition($id, $model->idAttribute, $like);
     }
 
     /**
@@ -64,7 +60,7 @@ trait EntityQueryTrait
         if (!is_string($model->createdByAttribute)) {
             return $this;
         }
-        return static::timeRange($this, $model->createdByAttribute, $start, $end);
+        return static::range($this, $model->createdByAttribute, $start, $end);
     }
 
     /**
@@ -79,25 +75,6 @@ trait EntityQueryTrait
         if (!is_string($model->updatedByAttribute)) {
             return $this;
         }
-        return static::timeRange($this, $model->updatedByAttribute, $start, $end);
-    }
-
-    /**
-     * Specify time range.
-     * @param \yii\db\ActiveQuery $query
-     * @param string $attribute
-     * @param string $start
-     * @param string $end
-     * @return $this
-     */
-    protected static function timeRange($query, $attribute, $start = null, $end = null)
-    {
-        if (!empty($start)) {
-            $query = $query->andWhere(['>=', $attribute, $start]);
-        }
-        if (!empty($end)) {
-            $query = $query->andWhere(['<', $attribute, $end]);
-        }
-        return $query;
+        return static::range($this, $model->updatedByAttribute, $start, $end);
     }
 }

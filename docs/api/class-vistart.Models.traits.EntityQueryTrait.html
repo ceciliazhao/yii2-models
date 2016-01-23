@@ -110,6 +110,7 @@
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
+				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
@@ -135,6 +136,15 @@
 	<p>Description of EntityQueryTrait</p>
 	</div>
 
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+<b><span>vistart\Models\traits\EntityQueryTrait</span></b>			
+			
+			 uses 
+					<a href="class-vistart.Models.traits.QueryTrait.html"><span>vistart\Models\traits\QueryTrait</span></a>
+			
+		</dd>
+	</dl>
 
 
 
@@ -169,7 +179,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityQueryTrait.html#15-103" title="Go to source code">traits/EntityQueryTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.EntityQueryTrait.html#15-80" title="Go to source code">traits/EntityQueryTrait.php</a>
 		<br>
 	</div>
 
@@ -189,7 +199,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_buildNoInitModel">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#26-35" title="Go to source code">buildNoInitModel</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#28-37" title="Go to source code">buildNoInitModel</a>( )</code>
 
 			<div class="description short">
 				<p>Build model without any initializations.</p>
@@ -218,7 +228,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_id">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#37-53" title="Go to source code">id</a>( <span>string|integer|array <var>$id</var></span>, <span>false|string <var>$like</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#39-49" title="Go to source code">id</a>( <span>string|integer|array <var>$id</var></span>, <span>false|string <var>$like</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Specify id attribute.</p>
@@ -258,7 +268,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createdAt">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#55-68" title="Go to source code">createdAt</a>( <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#51-64" title="Go to source code">createdAt</a>( <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Specify create time range.</p>
@@ -298,7 +308,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updatedAt">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#70-83" title="Go to source code">updatedAt</a>( <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#66-79" title="Go to source code">updatedAt</a>( <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Specify update time range.</p>
@@ -310,50 +320,6 @@
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$start</var></dt>
-						<dd></dd>
-						<dt><var>$end</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						<br>$this
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="timeRange" id="_timeRange">
-
-			<td class="attributes"><code>
-				 protected static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_timeRange">#</a>
-			<code><a href="source-class-vistart.Models.traits.EntityQueryTrait.html#85-102" title="Go to source code">timeRange</a>( <span>yii\db\ActiveQuery <var>$query</var></span>, <span>string <var>$attribute</var></span>, <span>string <var>$start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$end</var> = <span class="php-keyword1">null</span></span> )</code>
-
-			<div class="description short">
-				<p>Specify time range.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Specify time range.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$query</var></dt>
-						<dd></dd>
-						<dt><var>$attribute</var></dt>
-						<dd></dd>
 						<dt><var>$start</var></dt>
 						<dd></dd>
 						<dt><var>$end</var></dt>
@@ -375,6 +341,13 @@
 		</div>
 
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.QueryTrait.html#methods">vistart\Models\traits\QueryTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.QueryTrait.html#_likeCondition">likeCondition()</a></code>, 
+				<code><a href="class-vistart.Models.traits.QueryTrait.html#_range">range()</a></code>
+			</p>
+		</div>
 
 
 
@@ -394,7 +367,7 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.EntityQueryTrait.html#24" title="Go to source code"><var>$noInitModel</var></a>
+					<a href="source-class-vistart.Models.traits.EntityQueryTrait.html#26" title="Go to source code"><var>$noInitModel</var></a>
 
 				<div class="description short">
 					

@@ -24,7 +24,7 @@ use yii\db\Connection;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseUserRelationQuery extends BaseEntityQuery
+class BaseUserRelationQuery extends BaseBlameableQuery
 {
 
     /**
