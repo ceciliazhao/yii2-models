@@ -47,7 +47,7 @@ trait BlameableQueryTrait
         if (!is_string($model->contentAttribute)) {
             return $this;
         }
-        if (!$like) {
+        if ($like) {
             return $this->andWhere([$like, $model->contentAttribute, $content]);
         }
         return $this->andWhere([$model->contentAttribute => $content]);
