@@ -30,10 +30,10 @@ trait SelfBlameableTrait
         0 => 'root',
         1 => 'parent',
     ];
-    public static $onUpdateNoAction = 0;
-    public static $onUpdateRestrict = 1;
-    public static $onUpdateCascade = 2;
-    public static $onUpdateSetNull = 3;
+    public static $onNoAction = 0;
+    public static $onRestrict = 1;
+    public static $onCascade = 2;
+    public static $onSetNull = 3;
     public static $onUpdateTypes = [
         0 => 'on action',
         1 => 'restrict',
@@ -42,6 +42,7 @@ trait SelfBlameableTrait
     ];
     public $onDeleteType = 2;
     public $onUpdateType = 2;
+    public $throwRestrictException = false;
 
     public function getSelfBlameableRules()
     {
@@ -67,8 +68,9 @@ trait SelfBlameableTrait
 
     /**
      * 
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      * @return boolean
+     * @throws \yii\db\IntegrityException
      */
     public function onDeleteChildren($event)
     {
@@ -77,16 +79,19 @@ trait SelfBlameableTrait
             return true;
         }
         switch ($sender->onDeleteType) {
-            case static::$onUpdateNoAction:
+            case static::$onNoAction:
                 $event->isValid = true;
                 break;
-            case static::$onUpdateRestrict:
+            case static::$onRestrict:
                 $event->isValid = $sender->getChildren() === null;
+                if ($this->throwRestrictException) {
+                    throw new \yii\db\IntegrityException('Delete restrict.');
+                }
                 break;
-            case static::$onUpdateCascade:
+            case static::$onCascade:
                 $event->isValid = $sender->deleteChildren();
                 break;
-            case static::$onUpdateSetNull:
+            case static::$onSetNull:
                 $event->isValid = $sender->updateChildren(null);
                 break;
         }
@@ -94,8 +99,9 @@ trait SelfBlameableTrait
 
     /**
      * 
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      * @return boolean
+     * @throws \yii\db\IntegrityException
      */
     public function onUpdateChildren($event)
     {
@@ -104,16 +110,19 @@ trait SelfBlameableTrait
             return true;
         }
         switch ($sender->onUpdateType) {
-            case static::$onUpdateNoAction:
+            case static::$onNoAction:
                 $event->isValid = true;
                 break;
-            case static::$onUpdateRestrict:
-                $event->isValid = $sender->getChildren() === null;
+            case static::$onRestrict:
+                $event->isValid = $sender->getChildren(true) === null;
+                if ($this->throwRestrictException) {
+                    throw new \yii\db\IntegrityException('Update restrict.');
+                }
                 break;
-            case static::onUpdateCascade:
+            case static::$onCascade:
                 $event->isValid = $sender->updateChildren();
                 break;
-            case static::onUpdateSetNull:
+            case static::$onSetNull:
                 $event->isValid = $sender->updateChildren(null);
                 break;
         }
@@ -121,11 +130,13 @@ trait SelfBlameableTrait
 
     /**
      * Get children, not grandchildren.
-     * @return static[]
+     * @param boolean $old
+     * @return type
      */
-    public function getChildren()
+    public function getChildren($old = false)
     {
-        return static::find()->where([$this->parentAttribute => $this->guid, $this->parentTypeAttribute => static::$parentParent])->all();
+        $guid = $old ? $this->getOldAttribute($this->guidAttribute) : $this->guid;
+        return static::find()->where([$this->parentAttribute => $guid, $this->parentTypeAttribute => static::$parentParent])->all();
     }
 
     /**
@@ -136,7 +147,7 @@ trait SelfBlameableTrait
      */
     public function updateChildren($value = false)
     {
-        $children = $this->getChildren();
+        $children = $this->getChildren(true);
         if (empty($children)) {
             return true;
         }
@@ -201,7 +212,7 @@ trait SelfBlameableTrait
 
     /**
      * 
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      * @return boolean
      */
     public function onParentGuidChanged($event)
