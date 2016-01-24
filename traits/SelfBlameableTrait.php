@@ -63,27 +63,40 @@ trait SelfBlameableTrait
      * @var boolean indicates whether throw exception or not when restriction occured on updating or deleting operation.
      */
     public $throwRestrictException = false;
+    public $managerAttribute = false;
 
     public function getSelfBlameableRules()
     {
         if (!is_string($this->parentAttribute)) {
             return [];
         }
-        return [
+        $rules = [
             [[$this->parentAttribute], 'string', 'max' => 36],
             [[$this->parentTypeAttribute], 'in', 'range' => array_keys(static::$parentTypes)],
             [[$this->parentTypeAttribute], 'default', 'value' => 0],
             [[$this->parentTypeAttribute], 'required'],
         ];
+        if (is_string($this->managerAttribute)) {
+            $rules[] = [
+                $this->managerAttribute, 'string', 'max' => 36,
+            ];
+        }
+        return $rules;
     }
 
     /**
      * Bear a child.
+     * @param array $config
      * @return static
      */
-    public function bear()
+    public function bear($config = [])
     {
-        return new static([$this->parentAttribute => $this->guid, $this->parentTypeAttribute => static::$parentParent]);
+        if (isset($config['class'])) {
+            unset($config['class']);
+        }
+        $config[$this->parentAttribute] = $this->guid;
+        $config[$this->parentTypeAttribute] = static::$parentParent;
+        return new static($config);
     }
 
     /**
