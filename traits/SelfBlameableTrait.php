@@ -35,7 +35,7 @@ trait SelfBlameableTrait
     public static $parentNone = 0;
     public static $parentParent = 1;
     public static $parentTypes = [
-        0 => 'root',
+        0 => 'none',
         1 => 'parent',
     ];
     public static $onNoAction = 0;
@@ -63,7 +63,6 @@ trait SelfBlameableTrait
      * @var boolean indicates whether throw exception or not when restriction occured on updating or deleting operation.
      */
     public $throwRestrictException = false;
-    public $managerAttribute = false;
 
     public function getSelfBlameableRules()
     {
@@ -76,11 +75,6 @@ trait SelfBlameableTrait
             [[$this->parentTypeAttribute], 'default', 'value' => 0],
             [[$this->parentTypeAttribute], 'required'],
         ];
-        if (is_string($this->managerAttribute)) {
-            $rules[] = [
-                $this->managerAttribute, 'string', 'max' => 36,
-            ];
-        }
         return $rules;
     }
 
