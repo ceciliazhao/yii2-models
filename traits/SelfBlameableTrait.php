@@ -16,6 +16,9 @@ namespace vistart\Models\traits;
  * Description of SelfBlameableTrait
  *
  * This trait require GUIDTrait enabled.
+ * @property-read static $parent
+ * @property-read array $children
+ * @property-read array $oldChildren
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -100,7 +103,7 @@ trait SelfBlameableTrait
                 $event->isValid = true;
                 break;
             case static::$onRestrict:
-                $event->isValid = $sender->getChildren() === null;
+                $event->isValid = $sender->children === null;
                 if ($this->throwRestrictException) {
                     throw new \yii\db\IntegrityException('Delete restrict.');
                 }
@@ -131,7 +134,7 @@ trait SelfBlameableTrait
                 $event->isValid = true;
                 break;
             case static::$onRestrict:
-                $event->isValid = $sender->getChildren(true) === null;
+                $event->isValid = $sender->getOldChildren() === null;
                 if ($this->throwRestrictException) {
                     throw new \yii\db\IntegrityException('Update restrict.');
                 }
@@ -146,14 +149,30 @@ trait SelfBlameableTrait
     }
 
     /**
-     * Get children, not grandchildren.
-     * @param boolean $old
-     * @return type
+     * 
+     * @return \yii\db\ActiveQuery
      */
-    public function getChildren($old = false)
+    public function getParent()
     {
-        $guid = $old ? $this->getOldAttribute($this->guidAttribute) : $this->guid;
-        return static::find()->where([$this->parentAttribute => $guid])->all();
+        return $this->hasOne(static::className(), [$this->guidAttribute => $this->parentAttribute]);
+    }
+
+    /**
+     * 
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChildren()
+    {
+        return $this->hasMany(static::className(), [$this->parentAttribute => $this->guidAttribute])->inverseOf('parent');
+    }
+
+    /**
+     * 
+     * @return static[]
+     */
+    public function getOldChildren()
+    {
+        return static::find()->where([$this->parentAttribute => $this->getOldAttribute($this->guidAttribute)])->all();
     }
 
     /**
@@ -167,7 +186,7 @@ trait SelfBlameableTrait
      */
     public function updateChildren($value = false)
     {
-        $children = $this->getChildren(true);
+        $children = $this->getOldChildren();
         if (empty($children)) {
             return true;
         }
@@ -208,7 +227,7 @@ trait SelfBlameableTrait
      */
     public function deleteChildren()
     {
-        $children = $this->getChildren();
+        $children = $this->children;
         if (empty($children)) {
             return true;
         }

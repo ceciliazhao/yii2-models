@@ -163,7 +163,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#15-254" title="Go to source code">traits/SelfBlameableTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#15-273" title="Go to source code">traits/SelfBlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -183,7 +183,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSelfBlameableRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#61-70" title="Go to source code">getSelfBlameableRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#64-73" title="Go to source code">getSelfBlameableRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -212,7 +212,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bear">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#72-84" title="Go to source code">bear</a>( <span>array <var>$config</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#75-87" title="Go to source code">bear</a>( <span>array <var>$config</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Bear a child.</p>
@@ -250,7 +250,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onDeleteChildren">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#86-115" title="Go to source code">onDeleteChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#89-118" title="Go to source code">onDeleteChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -292,7 +292,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onUpdateChildren">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#117-146" title="Go to source code">onUpdateChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#120-149" title="Go to source code">onUpdateChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -323,36 +323,97 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="getParent" id="_getParent">
+
+			<td class="attributes"><code>
+				 public 
+				yii\db\ActiveQuery
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getParent">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#151-158" title="Go to source code">getParent</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						yii\db\ActiveQuery
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="getChildren" id="_getChildren">
 
 			<td class="attributes"><code>
 				 public 
-				type
+				yii\db\ActiveQuery
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getChildren">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#148-157" title="Go to source code">getChildren</a>( <span>boolean <var>$old</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#160-167" title="Go to source code">getChildren</a>( )</code>
 
 			<div class="description short">
-				<p>Get children, not grandchildren.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get children, not grandchildren.</p>
+				
 
 
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$old</var></dt>
-						<dd></dd>
-					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						type
+						yii\db\ActiveQuery
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOldChildren" id="_getOldChildren">
+
+			<td class="attributes"><code>
+				 public 
+				static[]
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOldChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#169-176" title="Go to source code">getOldChildren</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						static[]
 					</div>
 
 
@@ -372,7 +433,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateChildren">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#159-200" title="Go to source code">updateChildren</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#178-219" title="Go to source code">updateChildren</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Update all children, not grandchildren.</p>
@@ -417,7 +478,7 @@ environment or enable debug mode, it will return exception.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteChildren">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#202-233" title="Go to source code">deleteChildren</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#221-252" title="Go to source code">deleteChildren</a>( )</code>
 
 			<div class="description short">
 				<p>Delete all children, not grandchildren.</p>
@@ -456,7 +517,7 @@ environment or enable debug mode, it will return exception.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onParentGuidChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#235-247" title="Go to source code">onParentGuidChanged</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#254-266" title="Go to source code">onParentGuidChanged</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Update children's parent attribute.
@@ -496,7 +557,7 @@ Event triggered before updating.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initSelfBlameableEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#249-253" title="Go to source code">initSelfBlameableEvents</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#268-272" title="Go to source code">initSelfBlameableEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -537,7 +598,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#25-28" title="Go to source code"><var>$parentAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#28-31" title="Go to source code"><var>$parentAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of which store the parent's guid.</p>
@@ -562,7 +623,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#29" title="Go to source code"><var>$parentNone</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#32" title="Go to source code"><var>$parentNone</var></a>
 
 				<div class="description short">
 					
@@ -587,7 +648,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#30" title="Go to source code"><var>$parentParent</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#33" title="Go to source code"><var>$parentParent</var></a>
 
 				<div class="description short">
 					
@@ -612,7 +673,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#31-34" title="Go to source code"><var>$parentTypes</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#34-37" title="Go to source code"><var>$parentTypes</var></a>
 
 				<div class="description short">
 					
@@ -640,7 +701,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#35" title="Go to source code"><var>$onNoAction</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#38" title="Go to source code"><var>$onNoAction</var></a>
 
 				<div class="description short">
 					
@@ -665,7 +726,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#36" title="Go to source code"><var>$onRestrict</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#39" title="Go to source code"><var>$onRestrict</var></a>
 
 				<div class="description short">
 					
@@ -690,7 +751,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#37" title="Go to source code"><var>$onCascade</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#40" title="Go to source code"><var>$onCascade</var></a>
 
 				<div class="description short">
 					
@@ -715,7 +776,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#38" title="Go to source code"><var>$onSetNull</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#41" title="Go to source code"><var>$onSetNull</var></a>
 
 				<div class="description short">
 					
@@ -740,7 +801,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#39-44" title="Go to source code"><var>$onUpdateTypes</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#42-47" title="Go to source code"><var>$onUpdateTypes</var></a>
 
 				<div class="description short">
 					
@@ -770,7 +831,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#46-49" title="Go to source code"><var>$onDeleteType</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#49-52" title="Go to source code"><var>$onDeleteType</var></a>
 
 				<div class="description short">
 					<p>indicates the on delete type. default to cascade.</p>
@@ -795,7 +856,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#51-54" title="Go to source code"><var>$onUpdateType</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#54-57" title="Go to source code"><var>$onUpdateType</var></a>
 
 				<div class="description short">
 					<p>indicates the on update type. default to cascade.</p>
@@ -820,7 +881,7 @@ Event triggered before updating.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#56-59" title="Go to source code"><var>$throwRestrictException</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#59-62" title="Go to source code"><var>$throwRestrictException</var></a>
 
 				<div class="description short">
 					<p>indicates whether throw exception or not when restriction occured on updating or deleting operation.</p>
@@ -843,6 +904,68 @@ Event triggered before updating.</p>
 
 
 
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties</h3></div>
+			<table class="summary table table-bordered table-striped properties" id="magicProperties">
+		<tr data-order="parent" id="m$parent">
+			<td class="attributes"><code>
+				public  read-only
+				static
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#19" title="Go to source code"><var>$parent</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="children" id="m$children">
+			<td class="attributes"><code>
+				public  read-only
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#20" title="Go to source code"><var>$children</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="oldChildren" id="m$oldChildren">
+			<td class="attributes"><code>
+				public  read-only
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#21" title="Go to source code"><var>$oldChildren</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 
