@@ -22,7 +22,15 @@ namespace vistart\Models\traits;
 trait SelfBlameableTrait
 {
 
+    /**
+     * @var false|string attribute name of which store the parent's guid.
+     */
     public $parentAttribute = false;
+
+    /**
+     * @var string attribute name of which determines the parent type. If enable
+     * parentAttribute feature, this attribute must be specified.
+     */
     public $parentTypeAttribute;
     public static $parentNone = 0;
     public static $parentParent = 1;
@@ -40,8 +48,20 @@ trait SelfBlameableTrait
         2 => 'cascade',
         3 => 'set null',
     ];
+
+    /**
+     * @var integer indicates the on delete type. default to cascade.
+     */
     public $onDeleteType = 2;
+
+    /**
+     * @var integer indicates the on update type. default to cascade.
+     */
     public $onUpdateType = 2;
+
+    /**
+     * @var boolean indicates whether throw exception or not when restriction occured on updating or deleting operation.
+     */
     public $throwRestrictException = false;
 
     public function getSelfBlameableRules()
@@ -140,9 +160,12 @@ trait SelfBlameableTrait
     }
 
     /**
-     * 
-     * @param mixed $value
-     * @return \yii\db\IntegrityException|boolean
+     * Update all children, not grandchildren.
+     * @param mixed $value set guid if false, set empty string if empty() return
+     * true, otherwise set it to $parentAttribute.
+     * @return \yii\db\IntegrityException|boolean true if all update operations
+     * succeeded to execute, or false if anyone of them failed. If not production
+     * environment or enable debug mode, it will return exception.
      * @throws \yii\db\IntegrityException
      */
     public function updateChildren($value = false)
@@ -180,8 +203,10 @@ trait SelfBlameableTrait
     }
 
     /**
-     * 
-     * @return \yii\db\IntegrityException|boolean
+     * Delete all children, not grandchildren.
+     * @return \yii\db\IntegrityException|boolean true if all delete operations
+     * succeeded to execute, or false if anyone of them failed. If not production
+     * environment or enable debug mode, it will return exception.
      * @throws \yii\db\IntegrityException
      */
     public function deleteChildren()
@@ -211,7 +236,8 @@ trait SelfBlameableTrait
     }
 
     /**
-     * 
+     * Update children's parent attribute.
+     * Event triggered before updating.
      * @param \yii\base\ModelEvent $event
      * @return boolean
      */
