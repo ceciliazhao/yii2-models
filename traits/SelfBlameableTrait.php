@@ -24,11 +24,10 @@ trait SelfBlameableTrait
 
     public $parentAttribute = false;
     public $parentTypeAttribute;
-    public $root = true;
     public static $parentNone = 0;
     public static $parentParent = 1;
     public static $parentTypes = [
-        0 => 'none',
+        0 => 'root',
         1 => 'parent',
     ];
     public static $onUpdateNoAction = 0;
@@ -41,16 +40,26 @@ trait SelfBlameableTrait
         2 => 'cascade',
         3 => 'set null',
     ];
-    public $onDeleteType = 0;
-    public $onUpdateType = 0;
+    public $onDeleteType = 2;
+    public $onUpdateType = 2;
 
     public function getSelfBlameableRules()
     {
         if (!is_string($this->parentAttribute)) {
             return [];
         }
+        return [
+            [[$this->parentAttribute], 'string', 'max' => 36],
+            [[$this->parentTypeAttribute], 'in', 'range' => array_keys(static::$parentTypes)],
+            [[$this->parentTypeAttribute], 'default', 'value' => 0],
+            [[$this->parentTypeAttribute], 'required'],
+        ];
     }
 
+    /**
+     * Bear a child.
+     * @return static
+     */
     public function bear()
     {
         return new static([$this->parentAttribute => $this->guid, $this->parentTypeAttribute => static::$parentParent]);
@@ -119,6 +128,12 @@ trait SelfBlameableTrait
         return static::find()->where([$this->parentAttribute => $this->guid, $this->parentTypeAttribute => static::$parentParent])->all();
     }
 
+    /**
+     * 
+     * @param mixed $value
+     * @return \yii\db\IntegrityException|boolean
+     * @throws \yii\db\IntegrityException
+     */
     public function updateChildren($value = false)
     {
         $children = $this->getChildren();
@@ -144,15 +159,20 @@ trait SelfBlameableTrait
         } catch (\yii\db\IntegrityException $ex) {
             $transaction->rollBack();
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
-                Yii::error($ex->errorInfo, 'selfblame\update');
+                Yii::error($ex->errorInfo, static::className() . '\update');
                 return $ex;
             }
-            Yii::warning($ex->errorInfo, 'selfblame\update');
+            Yii::warning($ex->errorInfo, static::className() . '\update');
             return false;
         }
         return true;
     }
 
+    /**
+     * 
+     * @return \yii\db\IntegrityException|boolean
+     * @throws \yii\db\IntegrityException
+     */
     public function deleteChildren()
     {
         $children = $this->getChildren();
@@ -170,32 +190,31 @@ trait SelfBlameableTrait
         } catch (\yii\db\IntegrityException $ex) {
             $transaction->rollBack();
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
-                Yii::error($ex->errorInfo, 'selfblame\delete');
+                Yii::error($ex->errorInfo, static::className() . '\delete');
                 return $ex;
             }
-            Yii::warning($ex->errorInfo, 'selfblame\delete');
+            Yii::warning($ex->errorInfo, static::className() . '\delete');
             return false;
         }
         return true;
     }
 
+    /**
+     * 
+     * @param \yii\base\Event $event
+     * @return boolean
+     */
     public function onParentGuidChanged($event)
     {
         $sender = $event->sender;
-        if ($this->isAttributeChanged($sender->guid)) {
-            switch ($event->data) {
-                case 'update':
-                    return $this->onUpdateChildren($event);
-                case 'delete':
-                    return $this->onDeleteChildren($event);
-            }
-            return false;
+        if ($sender->isAttributeChanged($sender->guidAttribute)) {
+            return $sender->onUpdateChildren($event);
         }
     }
 
     protected function initSelfBlameableEvents()
     {
-        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentGuidChanged'], 'update');
-        $this->on(static::EVENT_BEFORE_DELETE, [$this, 'onParentGuidChanged'], 'delete');
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentGuidChanged']);
+        $this->on(static::EVENT_BEFORE_DELETE, [$this, 'onDeleteChildren']);
     }
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-20 14:45:23
+-- Generation Time: 2016-01-24 13:51:00
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -28,7 +28,7 @@ USE `yii2-models`;
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-18 07:13:52
--- 最后更新： 2016-01-20 06:45:01
+-- 最后更新： 2016-01-24 05:40:00
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 表的结构 `user_additional_account`
 --
 -- 创建时间： 2016-01-11 17:21:48
--- 最后更新： 2016-01-20 06:44:42
+-- 最后更新： 2016-01-24 05:40:00
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -79,10 +79,42 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `user_comment`
+--
+-- 创建时间： 2016-01-24 05:07:09
+-- 最后更新： 2016-01-24 05:40:00
+--
+
+DROP TABLE IF EXISTS `user_comment`;
+CREATE TABLE IF NOT EXISTS `user_comment` (
+  `guid` varchar(36) NOT NULL,
+  `id` varchar(4) NOT NULL,
+  `parent_guid` varchar(36) NOT NULL DEFAULT '',
+  `parent_type` tinyint(3) UNSIGNED NOT NULL,
+  `user_guid` varchar(36) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_2` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_3` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
+  `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `confirm_code` varchar(8) NOT NULL DEFAULT '',
+  `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  PRIMARY KEY (`guid`),
+  UNIQUE KEY `user_coment_id_unique` (`id`,`user_guid`) USING BTREE,
+  KEY `user_comment_fkey` (`user_guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-14 08:30:22
--- 最后更新： 2016-01-20 06:44:42
+-- 最后更新： 2016-01-24 05:39:37
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -107,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 -- 表的结构 `user_relation`
 --
 -- 创建时间： 2016-01-15 11:31:11
--- 最后更新： 2016-01-20 06:45:01
+-- 最后更新： 2016-01-24 05:39:55
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -137,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-15 13:54:14
--- 最后更新： 2016-01-20 06:45:01
+-- 最后更新： 2016-01-24 05:39:55
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -157,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
 -- 表的结构 `user_single_relation`
 --
 -- 创建时间： 2016-01-20 06:12:18
--- 最后更新： 2016-01-20 06:44:57
+-- 最后更新： 2016-01-24 05:39:51
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
@@ -189,6 +221,12 @@ CREATE TABLE IF NOT EXISTS `user_single_relation` (
 --
 ALTER TABLE `user_additional_account`
   ADD CONSTRAINT `user_additional_account_ibfk_1` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `user_comment`
+--
+ALTER TABLE `user_comment`
+  ADD CONSTRAINT `user_comment_fkey` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 限制表 `user_email`
