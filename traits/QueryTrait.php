@@ -23,10 +23,10 @@ trait QueryTrait
 
     /**
      * 
-     * @param type $value
-     * @param type $attribute
-     * @param type $like
-     * @return type
+     * @param mixed $value
+     * @param string $attribute
+     * @param string|false $like
+     * @return $this
      */
     protected function likeCondition($value, $attribute, $like = false)
     {

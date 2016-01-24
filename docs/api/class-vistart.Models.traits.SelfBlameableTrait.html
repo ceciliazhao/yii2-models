@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait vistart\Models\traits\IDTrait</title>
+	<title>Trait vistart\Models\traits\SelfBlameableTrait</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -106,13 +106,13 @@
 				<li><a href="class-vistart.Models.traits.EntityTrait.html">EntityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.GUIDTrait.html">GUIDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
-				<li class="active"><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
+				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
-				<li><a href="class-vistart.Models.traits.SelfBlameableTrait.html">SelfBlameableTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.SelfBlameableTrait.html">SelfBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></li>
@@ -130,11 +130,13 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait IDTrait</h1>
+	<h1>Trait SelfBlameableTrait</h1>
 
 
 	<div class="description">
-	<p>Entity features concerning ID.</p>
+	<p>Description of SelfBlameableTrait</p>
+
+<p>This trait require GUIDTrait enabled.</p>
 	</div>
 
 
@@ -146,7 +148,7 @@
 	<div>
 		<h3>Direct Known Users</h3>
 		<p class="elementList">
-			<code><a href="class-vistart.Models.traits.EntityTrait.html">vistart\Models\traits\EntityTrait</a></code>
+			<code><a href="class-vistart.Models.traits.BlameableTrait.html">vistart\Models\traits\BlameableTrait</a></code>
 		</p>
 	</div>
 
@@ -161,7 +163,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.IDTrait.html#18-206" title="Go to source code">traits/IDTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#15-201" title="Go to source code">traits/SelfBlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -170,112 +172,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="getId" id="_getId">
-
-			<td class="attributes"><code>
-				 public 
-				string|integer
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getId">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#71-79" title="Go to source code">getId</a>( )</code>
-
-			<div class="description short">
-				<p>Get id.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get id.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						string|integer
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="setId" id="_setId">
-
-			<td class="attributes"><code>
-				 public 
-				string|integer
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_setId">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#81-90" title="Go to source code">setId</a>( <span>string|integer <var>$id</var></span> )</code>
-
-			<div class="description short">
-				<p>Set id.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Set id.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$id</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						string|integer
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="attachInitIdEvent" id="_attachInitIdEvent">
-
-			<td class="attributes"><code>
-				 protected 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_attachInitIdEvent">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#92-99" title="Go to source code">attachInitIdEvent</a>( <span>string <var>$eventName</var></span> )</code>
-
-			<div class="description short">
-				<p>Attach <code>onInitGuidAttribute</code> event.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Attach <code>onInitGuidAttribute</code> event.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$eventName</var></dt>
-						<dd></dd>
-					</dl></div>
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="onInitIdAttribute" id="_onInitIdAttribute">
+		<tr data-order="getSelfBlameableRules" id="_getSelfBlameableRules">
 
 			<td class="attributes"><code>
 				 public 
@@ -285,70 +182,47 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_onInitIdAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#101-126" title="Go to source code">onInitIdAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<a class="anchor" href="#_getSelfBlameableRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#47-52" title="Go to source code">getSelfBlameableRules</a>( )</code>
 
 			<div class="description short">
-				<p>Initialize the ID attribute with new generated ID.
-If the model's id is pre-assigned, then it will return directly.
-If the model's id is auto-increment, the id attribute will be marked safe.
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Initialize the ID attribute with new generated ID.
-If the model's id is pre-assigned, then it will return directly.
-If the model's id is auto-increment, the id attribute will be marked safe.
-This method is ONLY used for being triggered by event. DO NOT call,
-override or modify it directly, unless you know the consequences.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$event</var></dt>
-						<dd></dd>
-					</dl></div>
+				
 
 
 
-					<h4>Since</h4>
-					<div class="list">
-							1.1<br>
-					</div>
+
+
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="generateId" id="_generateId">
+		<tr data-order="bear" id="_bear">
 
 			<td class="attributes"><code>
 				 public 
-				string
+				
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_generateId">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#128-152" title="Go to source code">generateId</a>( )</code>
+			<a class="anchor" href="#_bear">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#54-57" title="Go to source code">bear</a>( )</code>
 
 			<div class="description short">
-				<p>Generate the ID. You can override this method to implement your own
-generation algorithm.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Generate the ID. You can override this method to implement your own
-generation algorithm.</p>
+				
 
 
 
-					<h4>Returns</h4>
-					<div class="list">
-						string<br>the generated ID.
-					</div>
 
 
 
@@ -356,7 +230,7 @@ generation algorithm.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="checkIdExists" id="_checkIdExists">
+		<tr data-order="onDeleteChildren" id="_onDeleteChildren">
 
 			<td class="attributes"><code>
 				 public 
@@ -366,20 +240,20 @@ generation algorithm.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_checkIdExists">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#154-165" title="Go to source code">checkIdExists</a>( <span>mixed <var>$id</var></span> )</code>
+			<a class="anchor" href="#_onDeleteChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#59-84" title="Go to source code">onDeleteChildren</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
-				<p>Check if $id existed.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Check if $id existed.</p>
+				
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$id</var></dt>
+						<dt><var>$event</var></dt>
 						<dd></dd>
 					</dl></div>
 
@@ -394,32 +268,186 @@ generation algorithm.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getIdRules" id="_getIdRules">
+		<tr data-order="onUpdateChildren" id="_onUpdateChildren">
 
 			<td class="attributes"><code>
 				 public 
-				array
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getIdRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.IDTrait.html#167-205" title="Go to source code">getIdRules</a>( )</code>
+			<a class="anchor" href="#_onUpdateChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#86-111" title="Go to source code">onUpdateChildren</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
-				<p>Get the rules associated with id attribute.</p>
+				
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get the rules associated with id attribute.</p>
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getChildren" id="_getChildren">
+
+			<td class="attributes"><code>
+				 public 
+				static[]
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#113-120" title="Go to source code">getChildren</a>( )</code>
+
+			<div class="description short">
+				<p>Get children, not grandchildren.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get children, not grandchildren.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						static[]
 					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="updateChildren" id="_updateChildren">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#122-154" title="Go to source code">updateChildren</a>( <span> <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deleteChildren" id="_deleteChildren">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deleteChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#156-180" title="Go to source code">deleteChildren</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onParentGuidChanged" id="_onParentGuidChanged">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onParentGuidChanged">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#182-194" title="Go to source code">onParentGuidChanged</a>( <span> <var>$event</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initSelfBlameableEvents" id="_initSelfBlameableEvents">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_initSelfBlameableEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#196-200" title="Go to source code">initSelfBlameableEvents</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
 
 
 
@@ -443,45 +471,89 @@ generation algorithm.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="idAttribute" id="$idAttribute">
+		<tr data-order="parentAttribute" id="$parentAttribute">
 			<td class="attributes"><code>
 				public  
-				string
+				boolean
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#28-33" title="Go to source code"><var>$idAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#25" title="Go to source code"><var>$parentAttribute</var></a>
 
 				<div class="description short">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
+					
 
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'id'</span></code>
+					<a href="#$parentAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idTypeString" id="$idTypeString">
+		<tr data-order="parentTypeAttribute" id="$parentTypeAttribute">
+			<td class="attributes"><code>
+				public  
+				
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#26" title="Go to source code"><var>$parentTypeAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentTypeAttribute" class="anchor">#</a>
+					<code></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="root" id="$root">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#27" title="Go to source code"><var>$root</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$root" class="anchor">#</a>
+					<code><span class="php-keyword1">true</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="parentNone" id="$parentNone">
 			<td class="attributes"><code>
 				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#34" title="Go to source code"><var>$idTypeString</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#28" title="Go to source code"><var>$parentNone</var></a>
 
 				<div class="description short">
 					
@@ -494,19 +566,19 @@ You can set this property to false if you don't use this feature.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idTypeString" class="anchor">#</a>
+					<a href="#$parentNone" class="anchor">#</a>
 					<code><span class="php-num">0</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idTypeInteger" id="$idTypeInteger">
+		<tr data-order="parentParent" id="$parentParent">
 			<td class="attributes"><code>
 				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#35" title="Go to source code"><var>$idTypeInteger</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#29" title="Go to source code"><var>$parentParent</var></a>
 
 				<div class="description short">
 					
@@ -519,19 +591,47 @@ You can set this property to false if you don't use this feature.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idTypeInteger" class="anchor">#</a>
+					<a href="#$parentParent" class="anchor">#</a>
 					<code><span class="php-num">1</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idTypeAutoIncrement" id="$idTypeAutoIncrement">
+		<tr data-order="parentTypes" id="$parentTypes">
+			<td class="attributes"><code>
+				public static 
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#30-33" title="Go to source code"><var>$parentTypes</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentTypes" class="anchor">#</a>
+					<code>[
+    <span class="php-num">0</span> =&gt; <span class="php-quote">'none'</span>,
+    <span class="php-num">1</span> =&gt; <span class="php-quote">'parent'</span>,
+]</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onUpdateNoAction" id="$onUpdateNoAction">
 			<td class="attributes"><code>
 				public static 
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#36" title="Go to source code"><var>$idTypeAutoIncrement</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#34" title="Go to source code"><var>$onUpdateNoAction</var></a>
 
 				<div class="description short">
 					
@@ -544,176 +644,149 @@ You can set this property to false if you don't use this feature.</p>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idTypeAutoIncrement" class="anchor">#</a>
-					<code><span class="php-num">2</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="idAttributeType" id="$idAttributeType">
-			<td class="attributes"><code>
-				public  
-				integer
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#38-42" title="Go to source code"><var>$idAttributeType</var></a>
-
-				<div class="description short">
-					<p>type of id attribute.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>type of id attribute.</p>
-
-						<h4>Since</h4>
-						<div class="list">
-								2.0<br>
-						</div>
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$idAttributeType" class="anchor">#</a>
+					<a href="#$onUpdateNoAction" class="anchor">#</a>
 					<code><span class="php-num">0</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idPreassigned" id="$idPreassigned">
+		<tr data-order="onUpdateRestrict" id="$onUpdateRestrict">
 			<td class="attributes"><code>
-				public  
-				boolean
+				public static 
+				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#44-48" title="Go to source code"><var>$idPreassigned</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#35" title="Go to source code"><var>$onUpdateRestrict</var></a>
 
 				<div class="description short">
-					<p>Determines whether its id has been pre-assigned. It will not
-generate or assign ID if true.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>Determines whether its id has been pre-assigned. It will not
-generate or assign ID if true.</p>
+					
 
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idPreassigned" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
+					<a href="#$onUpdateRestrict" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttributePrefix" id="$idAttributePrefix">
+		<tr data-order="onUpdateCascade" id="$onUpdateCascade">
 			<td class="attributes"><code>
-				public  
-				string
+				public static 
+				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#50-55" title="Go to source code"><var>$idAttributePrefix</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#36" title="Go to source code"><var>$onUpdateCascade</var></a>
 
 				<div class="description short">
-					<p>The prefix of ID. When ID type is Auto Increment, this feature
-is skipped.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>The prefix of ID. When ID type is Auto Increment, this feature
-is skipped.</p>
+					
 
-						<h4>Since</h4>
-						<div class="list">
-								2.0<br>
-						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idAttributePrefix" class="anchor">#</a>
-					<code><span class="php-quote">''</span></code>
+					<a href="#$onUpdateCascade" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttributeLength" id="$idAttributeLength">
+		<tr data-order="onUpdateSetNull" id="$onUpdateSetNull">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#37" title="Go to source code"><var>$onUpdateSetNull</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onUpdateSetNull" class="anchor">#</a>
+					<code><span class="php-num">3</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onUpdateTypes" id="$onUpdateTypes">
+			<td class="attributes"><code>
+				public static 
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#38-43" title="Go to source code"><var>$onUpdateTypes</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onUpdateTypes" class="anchor">#</a>
+					<code>[
+    <span class="php-num">0</span> =&gt; <span class="php-quote">'on action'</span>,
+    <span class="php-num">1</span> =&gt; <span class="php-quote">'restrict'</span>,
+    <span class="php-num">2</span> =&gt; <span class="php-quote">'cascade'</span>,
+    <span class="php-num">3</span> =&gt; <span class="php-quote">'set null'</span>,
+]</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onDeleteType" id="$onDeleteType">
 			<td class="attributes"><code>
 				public  
 				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#57-63" title="Go to source code"><var>$idAttributeLength</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#44" title="Go to source code"><var>$onDeleteType</var></a>
 
 				<div class="description short">
-					<p>OPTIONAL. The length of id attribute value, and max length
-of this attribute in rules. If you set $idAttribute to false or ID type
-to Auto Increment, this property will be ignored.</p>
+					
 				</div>
 
 				<div class="description detailed hidden">
-					<p>OPTIONAL. The length of id attribute value, and max length
-of this attribute in rules. If you set $idAttribute to false or ID type
-to Auto Increment, this property will be ignored.</p>
+					
 
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$idAttributeLength" class="anchor">#</a>
-					<code><span class="php-num">4</span></code>
+					<a href="#$onDeleteType" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="idAttributeSafe" id="$idAttributeSafe">
-			<td class="attributes"><code>
-				protected  
-				boolean
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#65-69" title="Go to source code"><var>$idAttributeSafe</var></a>
-
-				<div class="description short">
-					<p>Determine whether the ID is safe for validation.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>Determine whether the ID is safe for validation.</p>
-
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$idAttributeSafe" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
-			</table>
-		</div>
-
-
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h3>Magic properties</h3></div>
-			<table class="summary table table-bordered table-striped properties" id="magicProperties">
-		<tr data-order="id" id="m$id">
+		<tr data-order="onUpdateType" id="$onUpdateType">
 			<td class="attributes"><code>
 				public  
-				mixed
+				integer
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#21" title="Go to source code"><var>$id</var></a>
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#45" title="Go to source code"><var>$onUpdateType</var></a>
 
 				<div class="description short">
 					
@@ -724,28 +797,18 @@ to Auto Increment, this property will be ignored.</p>
 
 				</div>
 			</td>
-		</tr>
-		<tr data-order="idRules" id="m$idRules">
-			<td class="attributes"><code>
-				public  read-only
-				array
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.IDTrait.html#20" title="Go to source code"><var>$idRules</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
+			<td class="value">
+				<div>
+					<a href="#$onUpdateType" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
 				</div>
 			</td>
 		</tr>
 			</table>
 		</div>
+
+
+
 
 
 

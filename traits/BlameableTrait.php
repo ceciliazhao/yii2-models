@@ -41,7 +41,8 @@ use yii\caching\TagDependency;
 trait BlameableTrait
 {
 
-    use ConfirmationTrait;
+    use ConfirmationTrait,
+        SelfBlameableTrait;
 
     private $_blameableRules = [];
     private $_blameableBehaviors = [];
@@ -536,5 +537,6 @@ trait BlameableTrait
             $this->on(static::$eventNewRecordCreated, [$this, 'onInitDescription']);
         }
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
+        $this->initSelfBlameableEvents();
     }
 }
