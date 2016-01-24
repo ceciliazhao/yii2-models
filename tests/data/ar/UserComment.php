@@ -21,7 +21,6 @@ class UserComment extends \vistart\Models\models\BaseBlameableModel
 {
 
     public $parentAttribute = 'parent_guid';
-    public $parentTypeAttribute = 'parent_type';
 
     public static function tableName()
     {

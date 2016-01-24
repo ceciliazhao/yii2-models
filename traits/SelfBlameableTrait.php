@@ -26,12 +26,6 @@ trait SelfBlameableTrait
      * @var false|string attribute name of which store the parent's guid.
      */
     public $parentAttribute = false;
-
-    /**
-     * @var string attribute name of which determines the parent type. If enable
-     * parentAttribute feature, this attribute must be specified.
-     */
-    public $parentTypeAttribute;
     public static $parentNone = 0;
     public static $parentParent = 1;
     public static $parentTypes = [
@@ -71,9 +65,6 @@ trait SelfBlameableTrait
         }
         $rules = [
             [[$this->parentAttribute], 'string', 'max' => 36],
-            [[$this->parentTypeAttribute], 'in', 'range' => array_keys(static::$parentTypes)],
-            [[$this->parentTypeAttribute], 'default', 'value' => 0],
-            [[$this->parentTypeAttribute], 'required'],
         ];
         return $rules;
     }
@@ -89,7 +80,6 @@ trait SelfBlameableTrait
             unset($config['class']);
         }
         $config[$this->parentAttribute] = $this->guid;
-        $config[$this->parentTypeAttribute] = static::$parentParent;
         return new static($config);
     }
 
@@ -163,7 +153,7 @@ trait SelfBlameableTrait
     public function getChildren($old = false)
     {
         $guid = $old ? $this->getOldAttribute($this->guidAttribute) : $this->guid;
-        return static::find()->where([$this->parentAttribute => $guid, $this->parentTypeAttribute => static::$parentParent])->all();
+        return static::find()->where([$this->parentAttribute => $guid])->all();
     }
 
     /**

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-24 13:51:00
+-- Generation Time: 2016-01-24 19:56:25
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -28,7 +28,7 @@ USE `yii2-models`;
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-18 07:13:52
--- 最后更新： 2016-01-24 05:40:00
+-- 最后更新： 2016-01-24 11:55:45
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 表的结构 `user_additional_account`
 --
 -- 创建时间： 2016-01-11 17:21:48
--- 最后更新： 2016-01-24 05:40:00
+-- 最后更新： 2016-01-24 11:55:19
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 --
 -- 表的结构 `user_comment`
 --
--- 创建时间： 2016-01-24 05:07:09
--- 最后更新： 2016-01-24 05:40:00
+-- 创建时间： 2016-01-24 11:49:13
+-- 最后更新： 2016-01-24 11:55:26
 --
 
 DROP TABLE IF EXISTS `user_comment`;
@@ -90,7 +90,6 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
   `guid` varchar(36) NOT NULL,
   `id` varchar(4) NOT NULL,
   `parent_guid` varchar(36) NOT NULL DEFAULT '',
-  `parent_type` tinyint(3) UNSIGNED NOT NULL,
   `user_guid` varchar(36) NOT NULL,
   `content` varchar(255) NOT NULL,
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
@@ -114,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-14 08:30:22
--- 最后更新： 2016-01-24 05:39:37
+-- 最后更新： 2016-01-24 11:55:26
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -139,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 -- 表的结构 `user_relation`
 --
 -- 创建时间： 2016-01-15 11:31:11
--- 最后更新： 2016-01-24 05:39:55
+-- 最后更新： 2016-01-24 11:55:45
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -169,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-15 13:54:14
--- 最后更新： 2016-01-24 05:39:55
+-- 最后更新： 2016-01-24 11:55:45
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -189,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
 -- 表的结构 `user_single_relation`
 --
 -- 创建时间： 2016-01-20 06:12:18
--- 最后更新： 2016-01-24 05:39:51
+-- 最后更新： 2016-01-24 11:55:41
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
