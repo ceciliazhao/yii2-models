@@ -15,7 +15,6 @@ namespace vistart\Models\traits;
 /**
  * Description of SelfBlameableTrait
  *
- * This trait require GUIDTrait enabled.
  * @property-read static $parent
  * @property-read array $children
  * @property-read array $oldChildren
@@ -29,6 +28,17 @@ trait SelfBlameableTrait
      * @var false|string attribute name of which store the parent's guid.
      */
     public $parentAttribute = false;
+
+    /**
+     * @var string|array rule name and parameters of parent attribute, as well
+     * as self referenced ID attribute.
+     */
+    public $parentAttributeRule = ['string', 'max' => 36];
+
+    /**
+     * @var string self referenced ID attribute.
+     */
+    public $refIdAttribute = 'guid';
     public static $parentNone = 0;
     public static $parentParent = 1;
     public static $parentTypes = [
@@ -66,8 +76,11 @@ trait SelfBlameableTrait
         if (!is_string($this->parentAttribute)) {
             return [];
         }
+        if (is_string($this->parentAttributeRule)) {
+            $this->parentAttributeRule = [$this->parentAttributeRule];
+        }
         $rules = [
-            [[$this->parentAttribute], 'string', 'max' => 36],
+            array_merge([$this->parentAttribute], $this->parentAttributeRule),
         ];
         return $rules;
     }
@@ -82,15 +95,16 @@ trait SelfBlameableTrait
         if (isset($config['class'])) {
             unset($config['class']);
         }
-        $config[$this->parentAttribute] = $this->guid;
+        $refIdAttribute = $this->refIdAttribute;
+        $config[$this->parentAttribute] = $this->$refIdAttribute;
         return new static($config);
     }
 
     /**
-     * 
+     * Event triggered before deleting itself.
      * @param \yii\base\ModelEvent $event
-     * @return boolean
-     * @throws \yii\db\IntegrityException
+     * @return boolean true if parentAttribute not specified.
+     * @throws \yii\db\IntegrityException throw if $throwRestrictException is true when $onDeleteType is on restrict.
      */
     public function onDeleteChildren($event)
     {
@@ -99,13 +113,10 @@ trait SelfBlameableTrait
             return true;
         }
         switch ($sender->onDeleteType) {
-            case static::$onNoAction:
-                $event->isValid = true;
-                break;
             case static::$onRestrict:
                 $event->isValid = $sender->children === null;
                 if ($this->throwRestrictException) {
-                    throw new \yii\db\IntegrityException('Delete restrict.');
+                    throw new \yii\db\IntegrityException('Delete restricted.');
                 }
                 break;
             case static::$onCascade:
@@ -114,14 +125,18 @@ trait SelfBlameableTrait
             case static::$onSetNull:
                 $event->isValid = $sender->updateChildren(null);
                 break;
+            case static::$onNoAction:
+            default:
+                $event->isValid = true;
+                break;
         }
     }
 
     /**
-     * 
+     * Event triggered before updating itself.
      * @param \yii\base\ModelEvent $event
-     * @return boolean
-     * @throws \yii\db\IntegrityException
+     * @return boolean true if parentAttribute not specified.
+     * @throws \yii\db\IntegrityException throw if $throwRestrictException is true when $onUpdateType is on restrict.
      */
     public function onUpdateChildren($event)
     {
@@ -130,13 +145,10 @@ trait SelfBlameableTrait
             return true;
         }
         switch ($sender->onUpdateType) {
-            case static::$onNoAction:
-                $event->isValid = true;
-                break;
             case static::$onRestrict:
                 $event->isValid = $sender->getOldChildren() === null;
                 if ($this->throwRestrictException) {
-                    throw new \yii\db\IntegrityException('Update restrict.');
+                    throw new \yii\db\IntegrityException('Update restricted.');
                 }
                 break;
             case static::$onCascade:
@@ -145,44 +157,51 @@ trait SelfBlameableTrait
             case static::$onSetNull:
                 $event->isValid = $sender->updateChildren(null);
                 break;
+            case static::$onNoAction:
+            default:
+                $event->isValid = true;
+                break;
         }
     }
 
     /**
-     * 
+     * Get parent query.
+     * Or get parent instance if access by magic property.
      * @return \yii\db\ActiveQuery
      */
     public function getParent()
     {
-        return $this->hasOne(static::className(), [$this->guidAttribute => $this->parentAttribute]);
+        return $this->hasOne(static::className(), [$this->refIdAttribute => $this->parentAttribute]);
     }
 
     /**
-     * 
+     * Get children query.
+     * Or get children instances if access magic property.
      * @return \yii\db\ActiveQuery
      */
     public function getChildren()
     {
-        return $this->hasMany(static::className(), [$this->parentAttribute => $this->guidAttribute])->inverseOf('parent');
+        return $this->hasMany(static::className(), [$this->parentAttribute => $this->refIdAttribute])->inverseOf('parent');
     }
 
     /**
-     * 
+     * Get children which parent attribute point to the my old guid.
      * @return static[]
      */
     public function getOldChildren()
     {
-        return static::find()->where([$this->parentAttribute => $this->getOldAttribute($this->guidAttribute)])->all();
+        return static::find()->where([$this->parentAttribute => $this->getOldAttribute($this->refIdAttribute)])->all();
     }
 
     /**
      * Update all children, not grandchildren.
+     * If onUpdateType is on cascade, the children will be updated automatically.
      * @param mixed $value set guid if false, set empty string if empty() return
      * true, otherwise set it to $parentAttribute.
      * @return \yii\db\IntegrityException|boolean true if all update operations
      * succeeded to execute, or false if anyone of them failed. If not production
      * environment or enable debug mode, it will return exception.
-     * @throws \yii\db\IntegrityException
+     * @throws \yii\db\IntegrityException throw if anyone update failed.
      */
     public function updateChildren($value = false)
     {
@@ -195,7 +214,8 @@ trait SelfBlameableTrait
         try {
             foreach ($children as $child) {
                 if ($value === false) {
-                    $child->$parentAttribute = $this->guid;
+                    $refIdAttribute = $this->refIdAttribute;
+                    $child->$parentAttribute = $this->$refIdAttribute;
                 } elseif (empty($value)) {
                     $child->$parentAttribute = '';
                 } else {
@@ -220,10 +240,13 @@ trait SelfBlameableTrait
 
     /**
      * Delete all children, not grandchildren.
+     * If onDeleteType is on cascade, the children will be deleted automatically.
+     * If onDeleteType is on restrict and contains children, the deletion will
+     * be restricted.
      * @return \yii\db\IntegrityException|boolean true if all delete operations
      * succeeded to execute, or false if anyone of them failed. If not production
      * environment or enable debug mode, it will return exception.
-     * @throws \yii\db\IntegrityException
+     * @throws \yii\db\IntegrityException throw if anyone delete failed.
      */
     public function deleteChildren()
     {
@@ -257,17 +280,17 @@ trait SelfBlameableTrait
      * @param \yii\base\ModelEvent $event
      * @return boolean
      */
-    public function onParentGuidChanged($event)
+    public function onParentRefIdChanged($event)
     {
         $sender = $event->sender;
-        if ($sender->isAttributeChanged($sender->guidAttribute)) {
+        if ($sender->isAttributeChanged($sender->refIdAttribute)) {
             return $sender->onUpdateChildren($event);
         }
     }
 
     protected function initSelfBlameableEvents()
     {
-        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentGuidChanged']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentRefIdChanged']);
         $this->on(static::EVENT_BEFORE_DELETE, [$this, 'onDeleteChildren']);
     }
 }

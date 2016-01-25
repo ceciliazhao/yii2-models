@@ -121,7 +121,7 @@ class BaseUserCommentTest extends TestCase
             $result = $comment->delete();
             $this->fail();
         } catch (\yii\db\IntegrityException $ex) {
-            $this->assertEquals('Delete restrict.', $ex->getMessage());
+            $this->assertEquals('Delete restricted.', $ex->getMessage());
         }
         $sub = UserComment::find()->id($subComment->id)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
@@ -232,7 +232,7 @@ class BaseUserCommentTest extends TestCase
             $result = $comment->save();
             $this->fail();
         } catch (\yii\db\IntegrityException $ex) {
-            $this->assertEquals('Update restrict.', $ex->getMessage());
+            $this->assertEquals('Update restricted.', $ex->getMessage());
         }
         $sub = UserComment::find()->id($subComment->id)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
