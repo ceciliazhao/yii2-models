@@ -74,7 +74,7 @@ trait UserRelationTrait
     public static $mutualTypeSuspend = 0x01;
 
     /**
-     * @var array 
+     * @var array Mutual types.
      */
     public static $mutualTypes = [
         0x00 => 'Normal',

@@ -44,8 +44,8 @@ trait BlameableTrait
     use ConfirmationTrait,
         SelfBlameableTrait;
 
-    private $_blameableRules = [];
-    private $_blameableBehaviors = [];
+    private $blameableLocalRules = [];
+    private $blameableLocalBehaviors = [];
 
     /**
      * @var boolean|string|array Specify the attribute(s) name of content(s). If
@@ -255,11 +255,11 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableRules = $cache->get($this->getBlameableRulesCacheKey());
+            $this->blameableLocalRules = $cache->get($this->getBlameableRulesCacheKey());
         }
         // 若当前规则不为空，且是数组，则认为是规则数组，直接返回。
-        if (!empty($this->_blameableRules) && is_array($this->_blameableRules)) {
-            return $this->_blameableRules;
+        if (!empty($this->blameableLocalRules) && is_array($this->blameableLocalRules)) {
+            return $this->blameableLocalRules;
         }
 
         // 父类规则与确认规则合并。
@@ -270,7 +270,7 @@ trait BlameableTrait
                 parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
-        return $this->_blameableRules;
+        return $this->blameableLocalRules;
     }
 
     /**
@@ -360,7 +360,7 @@ trait BlameableTrait
      */
     protected function setBlameableRules($rules = [])
     {
-        $this->_blameableRules = $rules;
+        $this->blameableLocalRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(
@@ -399,9 +399,9 @@ trait BlameableTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_blameableBehaviors = $cache->get($this->getBlameableBehaviorsCacheKey());
+            $this->blameableLocalBehaviors = $cache->get($this->getBlameableBehaviorsCacheKey());
         }
-        if (empty($this->_blameableBehaviors) || !is_array($this->_blameableBehaviors)) {
+        if (empty($this->blameableLocalBehaviors) || !is_array($this->blameableLocalBehaviors)) {
             if ($cache) {
                 TagDependency::invalidate($cache, [$this->getEntityBehaviorsCacheTag()]);
             }
@@ -414,7 +414,7 @@ trait BlameableTrait
             ];
             $this->setBlameableBehaviors($behaviors);
         }
-        return $this->_blameableBehaviors;
+        return $this->blameableLocalBehaviors;
     }
 
     /**
@@ -423,7 +423,7 @@ trait BlameableTrait
      */
     protected function setBlameableBehaviors($behaviors = [])
     {
-        $this->_blameableBehaviors = $behaviors;
+        $this->blameableLocalBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];

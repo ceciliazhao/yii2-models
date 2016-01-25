@@ -18,6 +18,7 @@ namespace vistart\Models\traits;
  * @property-read static $parent
  * @property-read array $children
  * @property-read array $oldChildren
+ * @property array $selfBlameableRules
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -70,19 +71,36 @@ trait SelfBlameableTrait
      * @var boolean indicates whether throw exception or not when restriction occured on updating or deleting operation.
      */
     public $throwRestrictException = false;
+    private $selfLocalBlameableRules = [];
 
+    /**
+     * Get rules associated with self blameable attribute.
+     * @return array rules.
+     */
     public function getSelfBlameableRules()
     {
         if (!is_string($this->parentAttribute)) {
             return [];
         }
+        if (empty($this->selfLocalBlameableRules) || !is_array($this->selfLocalBlameableRules)) {
+            return $this->selfLocalBlameableRules;
+        }
         if (is_string($this->parentAttributeRule)) {
             $this->parentAttributeRule = [$this->parentAttributeRule];
         }
-        $rules = [
+        $this->selfLocalBlameableRules = [
             array_merge([$this->parentAttribute], $this->parentAttributeRule),
         ];
-        return $rules;
+        return $this->selfLocalBlameableRules;
+    }
+
+    /**
+     * Set rules associated with self blameable attribute.
+     * @param array $rules rules.
+     */
+    public function setSelfBlameableRules($rules = [])
+    {
+        $this->selfLocalBlameableRules = $rules;
     }
 
     /**

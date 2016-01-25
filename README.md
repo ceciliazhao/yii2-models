@@ -42,4 +42,16 @@ class Example extends BaseEntityModel
 ...
 }
 ```
+
+further detailed usage seen in code file notes.
+
+Contact Us
+----------
+
+[![Join the chat at https://gitter.im/vistart/yii2-models](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vistart/yii2-models?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+If you have any problems or good ideas about yii2-models, please discuss there, or send an email to i@vistart.name. Thank you!
+
+If you want to send an email with your issues, please briefly introduce yourself first, for instance including your title and github homepage.
+
 [![yii2-models](https://img.shields.io/badge/Powered_by-vistart-green.svg?style=flat)](https://vistart.name)

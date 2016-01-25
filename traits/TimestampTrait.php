@@ -75,8 +75,8 @@ trait TimestampTrait
     }
 
     /**
-     * 
-     * @return array
+     * Behaviors associated with timestamp.
+     * @return array behaviors
      */
     public function getTimestampBehaviors()
     {
@@ -91,8 +91,8 @@ trait TimestampTrait
     }
 
     /**
-     * 
-     * @return string
+     * Get createdAtAttribute.
+     * @return string timestamp
      */
     public function getCreatedAt()
     {
@@ -101,8 +101,8 @@ trait TimestampTrait
     }
 
     /**
-     * 
-     * @return array
+     * Get rules associated with createdAtAttribute.
+     * @return array rules
      */
     public function getCreatedAtRules()
     {
@@ -115,8 +115,8 @@ trait TimestampTrait
     }
 
     /**
-     * 
-     * @return array
+     * Get rules associated with updatedAtAttribute.
+     * @return array rules
      */
     public function getUpdatedAtRules()
     {

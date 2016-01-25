@@ -30,8 +30,8 @@ trait EntityTrait
         IPTrait,
         TimestampTrait;
 
-    private $_entityRules = [];
-    private $_entityBehaviors = [];
+    private $entityLocalRules = [];
+    private $entityLocalBehaviors = [];
 
     /**
      * @var string cache key and tag prefix. the prefix is usually set to full
@@ -128,13 +128,13 @@ trait EntityTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_entityRules = $cache->get($this->getEntityRulesCacheKey());
+            $this->entityLocalRules = $cache->get($this->getEntityRulesCacheKey());
         }
-        if (empty($this->_entityRules) || !is_array($this->_entityRules)) {
+        if (empty($this->entityLocalRules) || !is_array($this->entityLocalRules)) {
             $rules = array_merge($this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules());
             $this->setEntityRules($rules);
         }
-        return $this->_entityRules;
+        return $this->entityLocalRules;
     }
 
     /**
@@ -143,7 +143,7 @@ trait EntityTrait
      */
     protected function setEntityRules($rules = [])
     {
-        $this->_entityRules = $rules;
+        $this->entityLocalRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(
@@ -181,12 +181,12 @@ trait EntityTrait
     {
         $cache = $this->getCache();
         if ($cache) {
-            $this->_entityBehaviors = $cache->get($this->getEntityBehaviorsCacheKey());
+            $this->entityLocalBehaviors = $cache->get($this->getEntityBehaviorsCacheKey());
         }
-        if (empty($this->_entityBehaviors) || !is_array($this->_entityBehaviors)) {
+        if (empty($this->entityLocalBehaviors) || !is_array($this->entityLocalBehaviors)) {
             $this->setEntityBehaviors($this->getTimestampBehaviors());
         }
-        return $this->_entityBehaviors;
+        return $this->entityLocalBehaviors;
     }
 
     /**
@@ -195,7 +195,7 @@ trait EntityTrait
      */
     protected function setEntityBehaviors($behaviors)
     {
-        $this->_entityBehaviors = $behaviors;
+        $this->entityLocalBehaviors = $behaviors;
         $cache = $this->getCache();
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getEntityBehaviorsCacheTag()]];

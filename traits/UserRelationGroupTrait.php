@@ -35,7 +35,7 @@ trait UserRelationGroupTrait
     }
 
     /**
-     * 
+     * Attach events associated with user relation group.
      */
     public function initUserRelationGroupEvents()
     {
