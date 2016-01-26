@@ -65,8 +65,7 @@ abstract class BaseMetaModel extends BaseBlameableModel
     public function onInitBlameGuid($event)
     {
         $sender = $event->sender;
-        if (empty($sender->blameGuid))
-        {
+        if (empty($sender->blameGuid)) {
             throw new \yii\base\InvalidConfigException('Empty blame guid is not allowed.');
         }
         $createdByAttribute = $sender->createdByAttribute;

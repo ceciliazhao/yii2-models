@@ -22,7 +22,6 @@ use vistart\Models\traits\EntityQueryTrait;
  */
 class BaseEntityQuery extends \yii\db\ActiveQuery
 {
-
     use EntityQueryTrait;
 
     public function init()

@@ -53,12 +53,10 @@ trait TimestampTrait
     public static function getCurrentDatetime($event)
     {
         $sender = $event->sender;
-        if ($sender->timeFormat === self::$timeFormatDatetime)
-        {
+        if ($sender->timeFormat === self::$timeFormatDatetime) {
             return date('Y-m-d H:i:s');
         }
-        if ($sender->timeFormat === self::$timeFormatTimestamp)
-        {
+        if ($sender->timeFormat === self::$timeFormatTimestamp) {
             return time();
         }
     }
@@ -108,8 +106,7 @@ trait TimestampTrait
      */
     public function getCreatedAtRules()
     {
-        if (!$this->createdAtAttribute)
-        {
+        if (!$this->createdAtAttribute) {
             return [];
         }
         return [
@@ -123,8 +120,7 @@ trait TimestampTrait
      */
     public function getUpdatedAtRules()
     {
-        if (!$this->updatedAtAttribute)
-        {
+        if (!$this->updatedAtAttribute) {
             return [];
         }
         return [

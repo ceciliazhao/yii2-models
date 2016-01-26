@@ -23,7 +23,6 @@ use vistart\Models\traits\EntityTrait;
  */
 abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
 {
-
     use EntityTrait;
 
     /**
@@ -31,8 +30,7 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
      */
     public function init()
     {
-        if ($this->skipInit)
-        {
+        if ($this->skipInit) {
             return;
         }
         $this->initEntityEvents();
@@ -46,8 +44,7 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
     public static function find()
     {
         $self = static::buildNoInitModel();
-        if (!is_string($self->queryClass))
-        {
+        if (!is_string($self->queryClass)) {
             $self->queryClass = BaseRedisEntityQuery::className();
         }
         $queryClass = $self->queryClass;

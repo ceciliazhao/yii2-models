@@ -51,32 +51,25 @@ trait RegistrationTrait
      */
     public function register($associatedModels = [])
     {
-        if (!$this->isNewRecord)
-        {
+        if (!$this->isNewRecord) {
             return false;
         }
         $this->trigger(static::$eventBeforeRegister);
         $transaction = $this->getDb()->beginTransaction();
-        try
-        {
-            if (!$this->save())
-            {
+        try {
+            if (!$this->save()) {
                 throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $this->errors);
             }
-            foreach ($associatedModels as $model)
-            {
-                if (!$model->save())
-                {
+            foreach ($associatedModels as $model) {
+                if (!$model->save()) {
                     throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $model->errors);
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\Exception $ex)
-        {
+        } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
             $this->trigger(static::$eventRegisterFailed);
-            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD)
-            {
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
                 Yii::error($ex->errorInfo, static::className() . '\register');
                 return $ex;
             }
@@ -102,26 +95,21 @@ trait RegistrationTrait
      */
     public function deregister()
     {
-        if ($this->isNewRecord)
-        {
+        if ($this->isNewRecord) {
             return false;
         }
         $this->trigger(static::$eventBeforeDeregister);
         $transaction = $this->getDb()->beginTransaction();
-        try
-        {
+        try {
             $result = $this->delete();
-            if ($result != 1)
-            {
+            if ($result != 1) {
                 throw new \yii\db\IntegrityException('Deregistration Error(s) Occured.', $this->errors);
             }
             $transaction->commit();
-        } catch (\yii\db\Exception $ex)
-        {
+        } catch (\yii\db\Exception $ex) {
             $transaction->rollBack();
             $this->trigger(static::$eventDeregisterFailed);
-            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD)
-            {
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
                 Yii::error($ex->errorInfo, static::className() . '\deregister');
                 return $ex;
             }
@@ -158,8 +146,7 @@ trait RegistrationTrait
      */
     public function getSourceRules()
     {
-        if (empty($this->_sourceRules))
-        {
+        if (empty($this->_sourceRules)) {
             $this->_sourceRules = [
                 [[$this->sourceAttribute], 'required'],
                 [[$this->sourceAttribute], 'string'],
@@ -174,8 +161,7 @@ trait RegistrationTrait
      */
     public function setSourceRules($rules)
     {
-        if (!empty($rules) && is_array($rules))
-        {
+        if (!empty($rules) && is_array($rules)) {
             $this->_sourceRules = $rules;
         }
     }

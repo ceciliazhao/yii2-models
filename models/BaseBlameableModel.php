@@ -74,7 +74,6 @@ use vistart\Models\traits\BlameableTrait;
  */
 abstract class BaseBlameableModel extends BaseEntityModel
 {
-
     use BlameableTrait;
 
     /**
@@ -82,12 +81,10 @@ abstract class BaseBlameableModel extends BaseEntityModel
      */
     public function init()
     {
-        if (!is_string($this->queryClass))
-        {
+        if (!is_string($this->queryClass)) {
             $this->queryClass = \vistart\Models\queries\BaseBlameableQuery::className();
         }
-        if ($this->skipInit)
-        {
+        if ($this->skipInit) {
             return;
         }
         $this->initBlameableEvents();

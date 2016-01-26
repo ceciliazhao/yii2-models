@@ -22,7 +22,6 @@ use vistart\Models\traits\EntityQueryTrait;
  */
 class BaseRedisEntityQuery extends \yii\redis\ActiveQuery
 {
-
     use EntityQueryTrait;
 
     public function init()

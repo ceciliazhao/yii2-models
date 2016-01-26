@@ -22,7 +22,6 @@ use vistart\Models\traits\EntityQueryTrait;
  */
 class BaseMongoEntityQuery extends yii\mongodb\ActiveQuery
 {
-
     use EntityQueryTrait;
 
     public function init()

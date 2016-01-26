@@ -25,7 +25,6 @@ use vistart\Models\traits\UserRelationGroupTrait;
  */
 abstract class BaseUserRelationGroupModel extends BaseBlameableModel
 {
-
     use UserRelationGroupTrait;
 
     public $confirmationAttribute = false;
@@ -36,8 +35,7 @@ abstract class BaseUserRelationGroupModel extends BaseBlameableModel
 
     public function init()
     {
-        if ($this->skipInit)
-        {
+        if ($this->skipInit) {
             return;
         }
         $this->initUserRelationGroupEvents();

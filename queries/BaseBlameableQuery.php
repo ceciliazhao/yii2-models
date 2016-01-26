@@ -22,6 +22,5 @@ use vistart\Models\traits\BlameableQueryTrait;
  */
 class BaseBlameableQuery extends BaseEntityQuery
 {
-
     use BlameableQueryTrait;
 }

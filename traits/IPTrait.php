@@ -104,8 +104,7 @@ trait IPTrait
     public function onInitIpAddress($event)
     {
         $sender = $event->sender;
-        if ($sender->enableIP && empty($sender->ipAddress))
-        {
+        if ($sender->enableIP && empty($sender->ipAddress)) {
             $sender->ipAddress = Yii::$app->request->userIP;
         }
     }
@@ -120,28 +119,22 @@ trait IPTrait
      */
     public function getIpAddress()
     {
-        if (!$this->enableIP)
-        {
+        if (!$this->enableIP) {
             return null;
         }
-        if ($this->enableIP & static::$ip_all)
-        {
+        if ($this->enableIP & static::$ip_all) {
             $ipTypeAttribute = $this->ipTypeAttribute;
-            if ($this->$ipTypeAttribute == Ip::IPv4)
-            {
+            if ($this->$ipTypeAttribute == Ip::IPv4) {
                 return $this->getIpv4Address();
             }
-            if ($this->$ipTypeAttribute == Ip::IPv6)
-            {
+            if ($this->$ipTypeAttribute == Ip::IPv6) {
                 return $this->getIpv6Address();
             }
         } else
-        if ($this->enableIP & static::$ipv4)
-        {
+        if ($this->enableIP & static::$ipv4) {
             return $this->getIpv4Address();
         } else
-        if ($this->enableIP & static::$ipv6)
-        {
+        if ($this->enableIP & static::$ipv6) {
             return $this->getIpv6Address();
         }
         return null;
@@ -184,18 +177,15 @@ trait IPTrait
      */
     public function setIpAddress($ipAddress)
     {
-        if (!$ipAddress || !$this->enableIP)
-        {
+        if (!$ipAddress || !$this->enableIP) {
             return null;
         }
         $ipType = Ip::judgeIPtype($ipAddress);
-        if ($ipType == Ip::IPv4 && $this->enableIP & static::$ipv4)
-        {
+        if ($ipType == Ip::IPv4 && $this->enableIP & static::$ipv4) {
             $ipAttribute1 = $this->ipAttribute1;
             $this->$ipAttribute1 = Ip::ip2long($ipAddress);
         } else
-        if ($ipType == Ip::IPv6 && $this->enableIP & static::$ipv6)
-        {
+        if ($ipType == Ip::IPv6 && $this->enableIP & static::$ipv6) {
             $ips = Ip::splitIPv6(Ip::IPv6toLong($ipAddress));
             $ipAttribute1 = $this->ipAttribute1;
             $ipAttribute2 = $this->ipAttribute2;
@@ -205,12 +195,10 @@ trait IPTrait
             $this->$ipAttribute2 = bindec($ips[1]);
             $this->$ipAttribute3 = bindec($ips[2]);
             $this->$ipAttribute4 = bindec($ips[3]);
-        } else
-        {
+        } else {
             return 0;
         }
-        if ($this->enableIP & static::$ip_all)
-        {
+        if ($this->enableIP & static::$ip_all) {
             $ipTypeAttribute = $this->ipTypeAttribute;
             $this->$ipTypeAttribute = $ipType;
         }
@@ -224,8 +212,7 @@ trait IPTrait
     public function getIpRules()
     {
         $rules = [];
-        if ($this->enableIP & static::$ipv6)
-        {
+        if ($this->enableIP & static::$ipv6) {
             $rules = [
                 [[$this->ipAttribute1,
                 $this->ipAttribute2,
@@ -235,16 +222,14 @@ trait IPTrait
                 ],
             ];
         }
-        if ($this->enableIP & static::$ipv4)
-        {
+        if ($this->enableIP & static::$ipv4) {
             $rules = [
                 [[$this->ipAttribute1],
                     'number', 'integerOnly' => true, 'min' => 0
                 ],
             ];
         }
-        if ($this->enableIP & static::$ip_all)
-        {
+        if ($this->enableIP & static::$ip_all) {
             $rules[] = [
                 [$this->ipTypeAttribute], 'in', 'range' => [Ip::IPv4, Ip::IPv6],
             ];

@@ -20,7 +20,6 @@ namespace vistart\Models\traits;
  */
 trait BlameableQueryTrait
 {
-
     use QueryTrait;
 
     /**
@@ -31,8 +30,7 @@ trait BlameableQueryTrait
     public function confirmed($isConfirmed = true)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->confirmationAttribute))
-        {
+        if (!is_string($model->confirmationAttribute)) {
             return $this;
         }
         return $this->andWhere([$model->confirmationAttribute => $isConfirmed]);
@@ -60,12 +58,10 @@ trait BlameableQueryTrait
     public function parentGuid($guid)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->parentAttribute))
-        {
+        if (!is_string($model->parentAttribute)) {
             return $this;
         }
-        if (empty($guid))
-        {
+        if (empty($guid)) {
             return $this->andWhere([$model->parentAttribute => '']);
         }
         return $this->andWhere([$model->parentAttribute => $guid]);

@@ -21,7 +21,6 @@ use vistart\Models\traits\AdditionalAccountTrait;
  */
 abstract class BaseAdditionalAccountModel extends BaseBlameableModel
 {
-
     use AdditionalAccountTrait;
 
     public $enableIP = false;

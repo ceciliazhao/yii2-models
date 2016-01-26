@@ -21,7 +21,6 @@ use vistart\Models\traits\BlameableTrait;
  */
 class BaseMongoBlameableModel extends BaseMongoEntityModel
 {
-
     use BlameableTrait;
 
     /**

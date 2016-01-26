@@ -30,12 +30,10 @@ trait QueryTrait
      */
     protected function likeCondition($value, $attribute, $like = false)
     {
-        if (!is_string($attribute))
-        {
+        if (!is_string($attribute)) {
             return $this;
         }
-        if ($like)
-        {
+        if ($like) {
             return $this->andWhere([$like, $attribute, $value]);
         }
         return $this->andWhere([$attribute => $value]);
@@ -51,12 +49,10 @@ trait QueryTrait
      */
     protected static function range($query, $attribute, $start = null, $end = null)
     {
-        if (!empty($start))
-        {
+        if (!empty($start)) {
             $query = $query->andWhere(['>=', $attribute, $start]);
         }
-        if (!empty($end))
-        {
+        if (!empty($end)) {
             $query = $query->andWhere(['<', $attribute, $end]);
         }
         return $query;

@@ -106,8 +106,7 @@ trait IdentityTrait
      */
     public function getAuthKeyRules()
     {
-        if (empty($this->authKeyRules))
-        {
+        if (empty($this->authKeyRules)) {
             $this->authKeyRules = [
                 [[$this->authKeyAttribute], 'required'],
                 [[$this->authKeyAttribute], 'string', 'max' => 40],
@@ -122,8 +121,7 @@ trait IdentityTrait
      */
     public function setAuthKeyRules($rules)
     {
-        if (!empty($rules) && is_array($rules))
-        {
+        if (!empty($rules) && is_array($rules)) {
             $this->authKeyRules = $rules;
         }
     }
@@ -168,8 +166,7 @@ trait IdentityTrait
      */
     public function getAccessTokenRules()
     {
-        if (empty($this->accessTokenRules))
-        {
+        if (empty($this->accessTokenRules)) {
             $this->accessTokenRules = [
                 [[$this->accessTokenAttribute], 'required'],
                 [[$this->accessTokenAttribute], 'string', 'max' => 40],
@@ -184,8 +181,7 @@ trait IdentityTrait
      */
     public function setAccessTokenRules($rules)
     {
-        if (!empty($rules) && is_array($rules))
-        {
+        if (!empty($rules) && is_array($rules)) {
             $this->accessTokenRules = $rules;
         }
     }
@@ -230,8 +226,7 @@ trait IdentityTrait
      */
     public function getStatusRules()
     {
-        if (empty($this->statusRules))
-        {
+        if (empty($this->statusRules)) {
             $this->statusRules = [
                 [[$this->statusAttribute], 'required'],
                 [[$this->statusAttribute], 'number', 'integerOnly' => true, 'min' => 0],
@@ -246,8 +241,7 @@ trait IdentityTrait
      */
     public function setStatusRules($rules)
     {
-        if (!empty($rules) && is_array($rules))
-        {
+        if (!empty($rules) && is_array($rules)) {
             $this->statusRules = $rules;
         }
     }

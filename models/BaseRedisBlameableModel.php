@@ -19,6 +19,5 @@ namespace vistart\Models\models;
  */
 class BaseRedisBlameableModel extends BaseRedisEntityModel
 {
-
     use BlameableTrait;
 }

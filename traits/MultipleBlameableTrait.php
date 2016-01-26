@@ -104,26 +104,21 @@ trait MultipleBlameableTrait
      */
     public function addBlame($blame)
     {
-        if (!is_string($this->multiBlamesAttribute))
-        {
+        if (!is_string($this->multiBlamesAttribute)) {
             return false;
         }
         $blameGuid = '';
-        if (is_string($blame))
-        {
+        if (is_string($blame)) {
             $blameGuid = $blame;
         }
-        if ($blame instanceof $this->multiBlamesClass)
-        {
+        if ($blame instanceof $this->multiBlamesClass) {
             $blameGuid = $blame->guid;
         }
         $blameGuids = $this->getBlameGuids(true);
-        if (array_search($blameGuid, $blameGuids))
-        {
+        if (array_search($blameGuid, $blameGuids)) {
             throw new \yii\base\InvalidParamException('the blame has existed.');
         }
-        if ($this->getBlamesCount() >= $this->blamesLimit)
-        {
+        if ($this->getBlamesCount() >= $this->blamesLimit) {
             throw new \yii\base\InvalidCallException("the limit($this->blamesLimit) of blames has been reached.");
         }
         $blameGuids[] = $blameGuid;
@@ -138,22 +133,18 @@ trait MultipleBlameableTrait
      */
     public function removeBlame($blame)
     {
-        if (!is_string($this->multiBlamesAttribute))
-        {
+        if (!is_string($this->multiBlamesAttribute)) {
             return false;
         }
         $blameGuid = '';
-        if (is_string($blame))
-        {
+        if (is_string($blame)) {
             $blameGuid = $blame;
         }
-        if ($blame instanceof $this->multiBlamesClass)
-        {
+        if ($blame instanceof $this->multiBlamesClass) {
             $blameGuid = $blame->guid;
         }
         $blameGuids = $this->getBlameGuids(true);
-        if (($key = array_search($blameGuid, $blameGuids)) !== false)
-        {
+        if (($key = array_search($blameGuid, $blameGuids)) !== false) {
             unset($blameGuids[$key]);
             $this->setBlameGuids($blameGuids);
         }
@@ -185,14 +176,12 @@ trait MultipleBlameableTrait
     public function getBlameGuids($checkValid = false)
     {
         $multiBlamesAttribute = $this->multiBlamesAttribute;
-        if ($multiBlamesAttribute === false)
-        {
+        if ($multiBlamesAttribute === false) {
             return [];
         }
         $jsonParser = new JsonParser();
         $guids = $jsonParser->parse($this->$multiBlamesAttribute, true);
-        if ($checkValid)
-        {
+        if ($checkValid) {
             $guids = $this->unsetInvalidBlames($guids);
         }
         return $guids;
@@ -217,11 +206,9 @@ trait MultipleBlameableTrait
     {
         $checkedGuids = Number::unsetInvalidUuids($guids);
         $multiBlamesClass = $this->multiBlamesClass;
-        foreach ($checkedGuids as $key => $guid)
-        {
+        foreach ($checkedGuids as $key => $guid) {
             $blame = $multiBlamesClass::findOne($guid);
-            if (!$blame)
-            {
+            if (!$blame) {
                 unset($checkedGuids[$key]);
             }
         }
@@ -238,12 +225,10 @@ trait MultipleBlameableTrait
      */
     public function setBlameGuids($guids = [], $checkValid = true)
     {
-        if (!is_array($guids) || $this->multiBlamesAttribute === false)
-        {
+        if (!is_array($guids) || $this->multiBlamesAttribute === false) {
             return null;
         }
-        if ($checkValid)
-        {
+        if ($checkValid) {
             $guids = $this->unsetInvalidBlames($guids);
         }
         $multiBlamesAttribute = $this->multiBlamesAttribute;
@@ -259,8 +244,7 @@ trait MultipleBlameableTrait
     public static function getBlame($blameGuid)
     {
         $self = static::buildNoInitModel();
-        if (empty($self->multiBlamesClass) || !is_string($self->multiBlamesClass) || $self->multiBlamesAttribute === false)
-        {
+        if (empty($self->multiBlamesClass) || !is_string($self->multiBlamesClass) || $self->multiBlamesAttribute === false) {
             return null;
         }
         $mbClass = $self->multiBlamesClass;
@@ -275,8 +259,7 @@ trait MultipleBlameableTrait
     public function getBlameds($blame)
     {
         $blameds = static::getBlame($blame->guid);
-        if (empty($blameds))
-        {
+        if (empty($blameds)) {
             return null;
         }
         $createdByAttribute = $this->createdByAttribute;
@@ -292,8 +275,7 @@ trait MultipleBlameableTrait
     {
         if (empty($this->multiBlamesClass) ||
                 !is_string($this->multiBlamesClass) ||
-                $this->multiBlamesAttribute === false)
-        {
+                $this->multiBlamesAttribute === false) {
             return null;
         }
         $multiBlamesClass = $this->multiBlamesClass;
@@ -318,8 +300,7 @@ trait MultipleBlameableTrait
     public function onInitBlamesLimit($event)
     {
         $sender = $event->sender;
-        if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 10)
-        {
+        if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 10) {
             $sender->blamesLimit = 10;
         }
     }

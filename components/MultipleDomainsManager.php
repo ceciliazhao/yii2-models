@@ -112,23 +112,18 @@ class MultipleDomainsManager extends \yii\base\Component
      */
     public function get($subdomain = '')
     {
-        if (!isset($this->subDomains[$subdomain]))
-        {
+        if (!isset($this->subDomains[$subdomain])) {
             return null;
         }
         $subDomainConfig = $this->subDomains[$subdomain];
-        if (!isset($subDomainConfig['component']))
-        {
+        if (!isset($subDomainConfig['component'])) {
             return null;
         }
-        if (!isset($subDomainConfig['component']['class']))
-        {
+        if (!isset($subDomainConfig['component']['class'])) {
             $subDomainConfig['component']['class'] = MultipleDomainsUrlManager::className();
         }
-        if (!isset($subDomainConfig['component']['hostInfo']))
-        {
-            if (!isset($subDomainConfig['schema']))
-            {
+        if (!isset($subDomainConfig['component']['hostInfo'])) {
+            if (!isset($subDomainConfig['schema'])) {
                 $subDomainConfig['schema'] = 'http';
             }
             $subDomainConfig['component']['hostInfo'] = $subDomainConfig['schema'] . // 'http' or 'https'
