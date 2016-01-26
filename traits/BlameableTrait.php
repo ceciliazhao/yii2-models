@@ -266,7 +266,9 @@ trait BlameableTrait
             TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-                parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
+            parent::rules(), $this->getConfirmationRules(),
+            $this->getBlameableAttributeRules(), $this->getDescriptionRules(),
+            $this->getContentRules(), $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
@@ -284,22 +286,15 @@ trait BlameableTrait
         if (!is_string($this->createdByAttribute) || empty($this->createdByAttribute)) {
             throw new \yii\base\NotSupportedException('You must assign the creator.');
         }
-        $rules[] = [
-            [$this->createdByAttribute], 'safe',
-        ];
+        $rules[] = [ [$this->createdByAttribute], 'safe',];
 
         if (is_string($this->updatedByAttribute) && !empty($this->updatedByAttribute)) {
-            $rules[] = [
-                [$this->updatedByAttribute], 'safe',
-            ];
+            $rules[] = [ [$this->updatedByAttribute], 'safe',];
         }
 
         if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
-            $rules [] = [
-                [$this->idAttribute, $this->createdByAttribute],
-                'unique',
-                'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
-            ];
+            $rules [] = [[$this->idAttribute, $this->createdByAttribute],
+                'unique', 'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],];
         }
         return $rules;
     }
@@ -312,12 +307,8 @@ trait BlameableTrait
     {
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
-            $rules[] = [
-                [$this->descriptionAttribute], 'string'
-            ];
-            $rules[] = [
-                [$this->descriptionAttribute], 'default', 'value' => $this->initDescription,
-            ];
+            $rules[] = [[$this->descriptionAttribute], 'string'];
+            $rules[] = [ [$this->descriptionAttribute], 'default', 'value' => $this->initDescription,];
         }
         return $rules;
     }
@@ -338,7 +329,8 @@ trait BlameableTrait
                 $this->contentAttributeRule = [$this->contentAttributeRule];
             }
             if (is_array($this->contentAttributeRule)) {
-                $rules[] = array_merge([$this->contentAttribute], $this->contentAttributeRule);
+                $rules[] = array_merge([$this->contentAttribute],
+                    $this->contentAttributeRule);
             }
         }
 
@@ -362,12 +354,9 @@ trait BlameableTrait
         $this->blameableLocalRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependency = new \yii\caching\TagDependency(
-                    ['tags' =>
-                [$this->getBlameableRulesCacheTag()]
-                    ]
-            );
-            $cache->set($this->getBlameableRulesCacheKey(), $rules, 0, $tagDependency);
+            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->getBlameableRulesCacheTag()]]);
+            $cache->set($this->getBlameableRulesCacheKey(), $rules, 0,
+                $tagDependency);
         }
     }
 
@@ -402,14 +391,16 @@ trait BlameableTrait
         }
         if (empty($this->blameableLocalBehaviors) || !is_array($this->blameableLocalBehaviors)) {
             if ($cache) {
-                TagDependency::invalidate($cache, [$this->getEntityBehaviorsCacheTag()]);
+                TagDependency::invalidate($cache,
+                    [$this->getEntityBehaviorsCacheTag()]);
             }
             $behaviors = parent::behaviors();
             $behaviors['blameable'] = [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => $this->createdByAttribute,
                 'updatedByAttribute' => $this->updatedByAttribute,
-                'value' => [$this, 'onGetCurrentUserGuid'],
+                'value' => [$this,
+                    'onGetCurrentUserGuid'],
             ];
             $this->setBlameableBehaviors($behaviors);
         }
@@ -427,7 +418,8 @@ trait BlameableTrait
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
-            $cache->set($this->getBlameableBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
+            $cache->set($this->getBlameableBehaviorsCacheKey(), $behaviors, 0,
+                $tagDependency);
         }
     }
 
@@ -498,8 +490,8 @@ trait BlameableTrait
         }
         $contentTypeAttribute = $sender->contentTypeAttribute;
         if (!isset($sender->$contentTypeAttribute) &&
-                !empty($sender->contentTypes) &&
-                is_array($sender->contentTypes)) {
+            !empty($sender->contentTypes) &&
+            is_array($sender->contentTypes)) {
             $sender->$contentTypeAttribute = $sender->contentTypes[0];
         }
     }
@@ -525,15 +517,18 @@ trait BlameableTrait
      */
     public function initBlameableEvents()
     {
-        $this->on(static::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);
+        $this->on(static::$eventConfirmationChanged,
+            [$this, "onConfirmationChanged"]);
         $this->on(static::$eventNewRecordCreated, [$this, "onInitConfirmation"]);
         $contentTypeAttribute = $this->contentTypeAttribute;
         if (!isset($this->$contentTypeAttribute)) {
-            $this->on(static::$eventNewRecordCreated, [$this, "onInitContentType"]);
+            $this->on(static::$eventNewRecordCreated,
+                [$this, "onInitContentType"]);
         }
         $descriptionAttribute = $this->descriptionAttribute;
         if (!isset($this->$descriptionAttribute)) {
-            $this->on(static::$eventNewRecordCreated, [$this, 'onInitDescription']);
+            $this->on(static::$eventNewRecordCreated,
+                [$this, 'onInitDescription']);
         }
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
         $this->initSelfBlameableEvents();
