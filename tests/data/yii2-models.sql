@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-24 19:56:25
+-- Generation Time: 2016-01-26 14:56:47
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `yii2-models`
 --
-CREATE DATABASE IF NOT EXISTS `yii2-models` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `yii2-models` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `yii2-models`;
 
 -- --------------------------------------------------------
@@ -27,13 +27,12 @@ USE `yii2-models`;
 --
 -- 表的结构 `user`
 --
--- 创建时间： 2016-01-18 07:13:52
--- 最后更新： 2016-01-24 11:55:45
+-- 创建时间： 2016-01-26 06:52:46
 --
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `guid` varchar(36) NOT NULL,
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000',
   `id` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `pass_hash` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
@@ -43,55 +42,53 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ip_3` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
-  `auth_key` varchar(40) NOT NULL DEFAULT '',
-  `access_token` varchar(40) NOT NULL DEFAULT '',
-  `password_reset_token` varchar(40) NOT NULL DEFAULT '',
+  `auth_key` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `access_token` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `password_reset_token` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `source` varchar(255) NOT NULL DEFAULT '0',
+  `source` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_id_unique` (`id`),
   UNIQUE KEY `user_auth_key_unique` (`auth_key`) USING BTREE,
   UNIQUE KEY `user_access_token_unique` (`access_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_additional_account`
 --
--- 创建时间： 2016-01-11 17:21:48
--- 最后更新： 2016-01-24 11:55:19
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
 CREATE TABLE IF NOT EXISTS `user_additional_account` (
-  `guid` varchar(36) NOT NULL,
-  `user_guid` varchar(36) NOT NULL,
-  `id` varchar(8) NOT NULL,
-  `pass_hash` varchar(60) NOT NULL DEFAULT '',
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pass_hash` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `enable_login` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_comment`
 --
--- 创建时间： 2016-01-24 11:49:13
--- 最后更新： 2016-01-24 11:55:26
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_comment`;
 CREATE TABLE IF NOT EXISTS `user_comment` (
-  `guid` varchar(36) NOT NULL,
-  `id` varchar(4) NOT NULL,
-  `parent_guid` varchar(36) NOT NULL DEFAULT '',
-  `user_guid` varchar(36) NOT NULL,
-  `content` varchar(255) NOT NULL,
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `parent_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -100,53 +97,51 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
   `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
   `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `confirm_code` varchar(8) NOT NULL DEFAULT '',
+  `confirm_code` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_coment_id_unique` (`id`,`user_guid`) USING BTREE,
   KEY `user_comment_fkey` (`user_guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_email`
 --
--- 创建时间： 2016-01-14 08:30:22
--- 最后更新： 2016-01-24 11:55:26
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_email`;
 CREATE TABLE IF NOT EXISTS `user_email` (
-  `guid` varchar(36) NOT NULL,
-  `user_guid` varchar(36) NOT NULL,
-  `id` varchar(8) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
-  `confirm_code` varchar(8) NOT NULL,
+  `confirm_code` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_relation`
 --
--- 创建时间： 2016-01-15 11:31:11
--- 最后更新： 2016-01-24 11:55:45
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_relation`;
 CREATE TABLE IF NOT EXISTS `user_relation` (
-  `guid` varchar(36) NOT NULL,
-  `user_guid` varchar(36) NOT NULL,
-  `remark` varchar(255) NOT NULL DEFAULT '',
-  `other_guid` varchar(36) NOT NULL,
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `other_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `favorite` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -156,47 +151,45 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
   `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
-  `groups` text NOT NULL,
+  `groups` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`),
   KEY `relation_other_guid_fkey` (`other_guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_relation_group`
 --
--- 创建时间： 2016-01-15 13:54:14
--- 最后更新： 2016-01-24 11:55:45
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
 CREATE TABLE IF NOT EXISTS `user_relation_group` (
-  `guid` varchar(36) NOT NULL,
-  `user_guid` varchar(36) NOT NULL,
-  `content` varchar(255) NOT NULL DEFAULT '' COMMENT 'group name',
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'group name',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
   KEY `relation_group_user_guid_fkey` (`user_guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `user_single_relation`
 --
--- 创建时间： 2016-01-20 06:12:18
--- 最后更新： 2016-01-24 11:55:41
+-- 创建时间： 2016-01-26 06:56:20
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
 CREATE TABLE IF NOT EXISTS `user_single_relation` (
-  `guid` varchar(36) NOT NULL,
-  `user_guid` varchar(36) NOT NULL,
-  `remark` varchar(255) NOT NULL DEFAULT '',
-  `other_guid` varchar(36) NOT NULL,
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `other_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `favorite` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `ip_2` int(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -205,11 +198,11 @@ CREATE TABLE IF NOT EXISTS `user_single_relation` (
   `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
-  `groups` text NOT NULL,
+  `groups` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`) USING BTREE,
   KEY `relation_other_guid_fkey` (`other_guid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 限制导出的表
