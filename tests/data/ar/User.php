@@ -16,7 +16,8 @@ use Yii;
 
 /**
  * Description of ActiveRecord
- *
+ * @property-read UserEmail[] $userEmails
+ * @property-read AdditionalAccount[] $additionalAccounts
  * @author vistart <i@vistart.name>
  * @since 2.0
  */
@@ -59,7 +60,11 @@ class User extends \vistart\Models\models\BaseUserModel {
      * @return \yii\db\ActiveQuery
      */
     public function getUserEmails() {
-        return $this->hasMany(UserEmail::className(), ['user_guid' => 'guid']);
+        return $this->hasMany(UserEmail::className(), ['user_guid' => 'guid'])->inverseOf('user');
+    }
+    
+    public function getAdditionalAccounts() {
+        return $this->hasMany(AdditionalAccount::className(), ['user_guid' => 'guid'])->inverseOf('user');
     }
 
     /*

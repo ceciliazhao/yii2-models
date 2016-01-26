@@ -59,5 +59,10 @@ class UserEmail extends \vistart\Models\models\BaseBlameableModel {
             'confirm_time' => Yii::t('app', 'Confirm Time'),
         ];
     }
+    
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['guid' => 'user_guid']);
+    }
 
 }

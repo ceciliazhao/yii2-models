@@ -73,7 +73,7 @@ trait BlameableTrait
      * @var array built-in validator name or validatation method name and
      * additional parameters.
      */
-    public $contentAttributeRule = null;
+    public $contentAttributeRule = ['string', 'max' => 255];
 
     /**
      * @var boolean|string Specify the field which stores the type of content.

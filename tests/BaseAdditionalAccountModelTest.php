@@ -14,75 +14,98 @@ namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\AdditionalAccount;
 use vistart\Models\tests\data\ar\User;
+
 /**
  * Description of BaseAdditionalAccountModelTest
  *
  * @author vistart <i@vistart.name>
  */
-class BaseAdditionalAccountModelTest extends TestCase {
-    
-    private function prepareUser() {
+class BaseAdditionalAccountModelTest extends TestCase
+{
+
+    private function prepareUser()
+    {
         $user = new User(['password' => '123456']);
-        $aa = $user->create(AdditionalAccount::className());
+        $aa = $this->prepareModel($user);
         $user->register([$aa]);
         return $user;
     }
-    
-    public function testInit() {
+
+    private function prepareModel($user, $config = ['content' => 'self'])
+    {
+        $aa = $user->create(AdditionalAccount::className(), $config);
+        return $aa;
+    }
+
+    public function testInit()
+    {
         $user = new User(['password' => '123456']);
-        $aa = $user->create(AdditionalAccount::className());
-        if ($result = $user->register([$aa]) === true) {
+        $aa = $user->create(AdditionalAccount::className(), ['content' => 'self']);
+        $result = $user->register([$aa]);
+        if ($result === true) {
             $this->assertTrue($result);
         } else {
-            var_dump($result);
+            var_dump($aa->errors);
             $this->fail();
         }
         $this->assertEquals(1, $aa->count());
         $this->assertTrue($user->deregister());
-        
     }
-    
+
     /**
      * @depends testInit
      */
-    public function testNonPassword() {
+    public function testNonPassword()
+    {
         $user = $this->prepareUser();
-        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $aa = $user->additionalAccounts[0];
         $this->assertFalse($aa->independentPassword);
         $this->assertTrue($user->deregister());
-        
     }
-    
+
     /**
      * @depends testNonPassword
      */
-    public function testPassword() {
+    public function testPassword()
+    {
         $user = $this->prepareUser();
-        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $aa = $user->additionalAccounts[0];
+        $aa->delete();
+        $aa = $this->prepareModel($user, ['content' => 'self', 'independentPassword' => true]);
+        $this->assertTrue($aa->save());
         $aa->passwordHashAttribute = 'pass_hash';
         $aa->password = '123456';
-        $this->assertTrue($aa->save());
+        $result = $aa->save();
+        if ($result) {
+            $this->assertTrue($result);
+        } else {
+            var_dump($aa->errors);
+            $this->fail();
+        }
         $passwordHashAttribute = $aa->passwordHashAttribute;
         $this->assertStringStartsWith('$2y$' . $aa->passwordCost . '$', $aa->$passwordHashAttribute);
         $this->assertTrue($aa->validatePassword('123456'));
         $this->assertTrue($user->deregister());
-        
     }
-    
+
     /**
      * @depends testPassword
      */
-    public function testDisableLogin() {
+    public function testDisableLogin()
+    {
         $user = $this->prepareUser();
-        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $aa = $user->additionalAccounts[0];
         $this->assertFalse($aa->enableLoginAttribute);
         $this->assertTrue($user->deregister());
-        
     }
-    
-    public function testEnableLogin() {
+
+    /**
+     * @depends testDisableLogin
+     */
+    public function testEnableLogin()
+    {
         $user = $this->prepareUser();
-        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $aa = $user->additionalAccounts[0];
         $aa->enableLoginAttribute = 'enable_login';
         $this->assertFalse($aa->canBeLogon);
         $aa->canBeLogon = true;
@@ -90,30 +113,36 @@ class BaseAdditionalAccountModelTest extends TestCase {
         $enableLoginAttribute = $aa->enableLoginAttribute;
         $this->assertEquals(1, $aa->$enableLoginAttribute);
         $this->assertTrue($user->deregister());
-        
     }
-    
-    public function testRules() {
+
+    /**
+     * @depends testEnableLogin
+     */
+    public function testRules()
+    {
         $user = $this->prepareUser();
-        $aa = AdditionalAccount::findOne(['user_guid' => $user->guid]);
+        $aa = $user->additionalAccounts[0];
         $this->validateRules($aa->rules());
         $this->assertTrue($user->deregister());
-        
     }
-    
-    private function AdditionalAccountRules() {
+
+    private function AdditionalAccountRules()
+    {
         return [
             [['guid'], 'required'],
             [['guid'], 'unique'],
             [['guid'], 'string', 'max' => 36],
         ];
     }
-    
-    private function validateRules($rules) {
+
+    private function validateRules($rules)
+    {
         foreach ($rules as $key => $rule) {
             $this->assertTrue(is_array($rule));
             if (is_array($rule[0])) {
+                
             } elseif (is_string($rule[0])) {
+                
             } else {
                 // 只有可能是字符串或数组，不可能为其他类型。
                 $this->assertTrue(false);

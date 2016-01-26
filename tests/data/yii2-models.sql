@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-26 14:56:47
+-- Generation Time: 2016-01-26 16:56:15
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.17
 
@@ -28,6 +28,7 @@ USE `yii2-models`;
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-26 06:52:46
+-- 最后更新： 2016-01-26 08:55:44
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -58,7 +59,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 -- 表的结构 `user_additional_account`
 --
--- 创建时间： 2016-01-26 06:56:20
+-- 创建时间： 2016-01-26 08:38:03
+-- 最后更新： 2016-01-26 08:55:20
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -68,6 +70,16 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
   `id` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `pass_hash` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `enable_login` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `content` tinyint(3) UNSIGNED NOT NULL,
+  `source` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'User source',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_1` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_2` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_3` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_4` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_type` tinyint(3) UNSIGNED NOT NULL DEFAULT '4',
+  `confirmed` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
@@ -80,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 -- 表的结构 `user_comment`
 --
 -- 创建时间： 2016-01-26 06:56:20
+-- 最后更新： 2016-01-26 08:55:27
 --
 
 DROP TABLE IF EXISTS `user_comment`;
@@ -110,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-26 06:56:20
+-- 最后更新： 2016-01-26 08:55:27
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -134,6 +148,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 -- 表的结构 `user_relation`
 --
 -- 创建时间： 2016-01-26 06:56:20
+-- 最后更新： 2016-01-26 08:55:44
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -163,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-26 06:56:20
+-- 最后更新： 2016-01-26 08:55:44
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -182,6 +198,7 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
 -- 表的结构 `user_single_relation`
 --
 -- 创建时间： 2016-01-26 06:56:20
+-- 最后更新： 2016-01-26 08:55:40
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;

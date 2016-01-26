@@ -23,11 +23,17 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel
 {
     use AdditionalAccountTrait;
 
-    public $enableIP = false;
-    public $confirmationAttribute = false;
-    public $contentAttribute = false;
-    public $descriptionAttribute = false;
+    public $idAttributeLength = 8;
     public $updatedByAttribute = false;
+    public $contentAttribute = 'content'; // 账户名称
+    public $contentTypeAttribute = 'source';  // 账户来源
+    public $contentTypes = [
+        0 => 'self',
+        1 => 'third-party',
+    ];
+    public $confirmationAttribute = 'confirmed';
+    public $confirmCodeAttribute = false;
+    public $descriptionAttribute = 'description';
 
     /**
      * @inheritdoc

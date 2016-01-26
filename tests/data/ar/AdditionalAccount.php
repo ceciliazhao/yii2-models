@@ -17,8 +17,16 @@ namespace vistart\Models\tests\data\ar;
  *
  * @author vistart <i@vistart.name>
  */
-class AdditionalAccount extends \vistart\Models\models\BaseAdditionalAccountModel {
-    public static function tableName() {
+class AdditionalAccount extends \vistart\Models\models\BaseAdditionalAccountModel
+{
+
+    public static function tableName()
+    {
         return '{{user_additional_account}}';
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['guid' => 'user_guid']);
     }
 }
