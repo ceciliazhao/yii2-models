@@ -263,16 +263,10 @@ trait BlameableTrait
 
         // 父类规则与确认规则合并。
         if ($cache) {
-            TagDependency::invalidate($cache,
-                [$this->getEntityRulesCacheTag()]);
+            TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-            parent::rules(),
-            $this->getConfirmationRules(),
-            $this->getBlameableAttributeRules(),
-            $this->getDescriptionRules(),
-            $this->getContentRules(),
-            $this->getSelfBlameableRules()
+            parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
@@ -353,8 +347,7 @@ trait BlameableTrait
                 $this->contentAttributeRule = [$this->contentAttributeRule];
             }
             if (is_array($this->contentAttributeRule)) {
-                $rules[] = array_merge([$this->contentAttribute],
-                    $this->contentAttributeRule);
+                $rules[] = array_merge([$this->contentAttribute], $this->contentAttributeRule);
             }
         }
 
@@ -384,10 +377,7 @@ trait BlameableTrait
         $cache = $this->getCache();
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->getBlameableRulesCacheTag()]]);
-            $cache->set($this->getBlameableRulesCacheKey(),
-                $rules,
-                0,
-                $tagDependency);
+            $cache->set($this->getBlameableRulesCacheKey(), $rules, 0, $tagDependency);
         }
     }
 
@@ -422,8 +412,7 @@ trait BlameableTrait
         }
         if (empty($this->blameableLocalBehaviors) || !is_array($this->blameableLocalBehaviors)) {
             if ($cache) {
-                TagDependency::invalidate($cache,
-                    [$this->getEntityBehaviorsCacheTag()]);
+                TagDependency::invalidate($cache, [$this->getEntityBehaviorsCacheTag()]);
             }
             $behaviors = parent::behaviors();
             $behaviors['blameable'] = [
@@ -449,10 +438,7 @@ trait BlameableTrait
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
-            $cache->set($this->getBlameableBehaviorsCacheKey(),
-                $behaviors,
-                0,
-                $tagDependency);
+            $cache->set($this->getBlameableBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
         }
     }
 
@@ -550,27 +536,17 @@ trait BlameableTrait
      */
     public function initBlameableEvents()
     {
-        $this->on(static::$eventConfirmationChanged,
-            [$this,
-            "onConfirmationChanged"]);
-        $this->on(static::$eventNewRecordCreated,
-            [$this,
-            "onInitConfirmation"]);
+        $this->on(static::$eventConfirmationChanged, [$this, "onConfirmationChanged"]);
+        $this->on(static::$eventNewRecordCreated, [$this, "onInitConfirmation"]);
         $contentTypeAttribute = $this->contentTypeAttribute;
         if (!isset($this->$contentTypeAttribute)) {
-            $this->on(static::$eventNewRecordCreated,
-                [$this,
-                "onInitContentType"]);
+            $this->on(static::$eventNewRecordCreated, [$this, "onInitContentType"]);
         }
         $descriptionAttribute = $this->descriptionAttribute;
         if (!isset($this->$descriptionAttribute)) {
-            $this->on(static::$eventNewRecordCreated,
-                [$this,
-                'onInitDescription']);
+            $this->on(static::$eventNewRecordCreated, [$this, 'onInitDescription']);
         }
-        $this->on(static::EVENT_BEFORE_UPDATE,
-            [$this,
-            "onContentChanged"]);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
         $this->initSelfBlameableEvents();
     }
 }
