@@ -34,7 +34,8 @@ abstract class BaseEntityModel extends ActiveRecord
      */
     public function init()
     {
-        if ($this->skipInit) {
+        if ($this->skipInit)
+        {
             return;
         }
         $this->initEntityEvents();
@@ -51,9 +52,11 @@ abstract class BaseEntityModel extends ActiveRecord
      */
     public function checkAttributes()
     {
-        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
+        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG)
+        {
             if (!is_string($this->idAttribute) && empty($this->idAttribute) &&
-                    !is_string($this->guidAttribute) && empty($this->guidAttribute)) {
+                    !is_string($this->guidAttribute) && empty($this->guidAttribute))
+            {
                 $errorInfo = 'ID and GUID attributes are not be disabled simultaneously in relational database.';
                 throw new \yii\base\NotSupportedException($errorInfo);
             }
@@ -68,7 +71,8 @@ abstract class BaseEntityModel extends ActiveRecord
     public static function find()
     {
         $self = static::buildNoInitModel();
-        if (!is_string($self->queryClass)) {
+        if (!is_string($self->queryClass))
+        {
             $self->queryClass = BaseEntityQuery::className();
         }
         $queryClass = $self->queryClass;

@@ -18,6 +18,9 @@ namespace vistart\Models\events;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class MultipleBlameableEvent extends \yii\base\Event {
+class MultipleBlameableEvent extends \yii\base\Event
+{
+
     public $blamesChanged = true;
+
 }

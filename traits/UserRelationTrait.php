@@ -121,7 +121,8 @@ trait UserRelationTrait
     public function getUserRelationRules()
     {
         $rules = [];
-        if ($this->relationType == static::$relationMutual) {
+        if ($this->relationType == static::$relationMutual)
+        {
             $rules = [
                 [[$this->mutualTypeAttribute], 'in', 'range' => array_keys(static::$mutualTypes)],
                 [[$this->mutualTypeAttribute], 'default', 'value' => static::$mutualTypeNormal],
@@ -209,7 +210,8 @@ trait UserRelationTrait
      */
     public function getOpposite()
     {
-        if ($this->isNewRecord) {
+        if ($this->isNewRecord)
+        {
             return null;
         }
         $createdByAttribute = $this->createdByAttribute;
@@ -242,7 +244,8 @@ trait UserRelationTrait
     public static function buildNormalRelation($user, $other)
     {
         $relation = static::buildRelation($user, $other);
-        if ($relation->relationType == static::$relationMutual) {
+        if ($relation->relationType == static::$relationMutual)
+        {
             $btAttribute = $relation->mutualTypeAttribute;
             $relation->$btAttribute = static::$mutualTypeNormal;
         }
@@ -259,14 +262,17 @@ trait UserRelationTrait
     protected static function buildRelation($user, $other)
     {
         $relation = static::find()->initiators($user)->recipients($other)->one();
-        if (!$relation) {
+        if (!$relation)
+        {
             $rni = static::buildNoInitModel();
             $createdByAttribute = $rni->createdByAttribute;
             $otherGuidAttribute = $rni->otherGuidAttribute;
-            if ($user instanceof BaseUserModel) {
+            if ($user instanceof BaseUserModel)
+            {
                 $user = $user->guid;
             }
-            if ($other instanceof BaseUserModel) {
+            if ($other instanceof BaseUserModel)
+            {
                 $other = $other->guid;
             }
             $relation = new static([$createdByAttribute => $user, $otherGuidAttribute => $other]);
@@ -282,7 +288,8 @@ trait UserRelationTrait
      */
     protected static function buildOppositeRelation($relation)
     {
-        if ($relation->relationType == static::$relationSingle) {
+        if ($relation->relationType == static::$relationSingle)
+        {
             return null;
         }
         $createdByAttribute = $relation->createdByAttribute;
@@ -392,10 +399,12 @@ trait UserRelationTrait
     public function onInsertRelation($event)
     {
         $sender = $event->sender;
-        if ($sender->relationType == static::$relationMutual) {
+        if ($sender->relationType == static::$relationMutual)
+        {
             $opposite = static::buildOppositeRelation($sender);
             $opposite->off(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
-            if (!$opposite->save()) {
+            if (!$opposite->save())
+            {
                 $opposite->recordWarnings();
             }
             $opposite->on(static::EVENT_AFTER_INSERT, [$opposite, 'onInsertRelation']);
@@ -411,10 +420,12 @@ trait UserRelationTrait
     public function onUpdateRelation($event)
     {
         $sender = $event->sender;
-        if ($sender->relationType == static::$relationMutual) {
+        if ($sender->relationType == static::$relationMutual)
+        {
             $opposite = static::buildOppositeRelation($sender);
             $opposite->off(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
-            if (!$opposite->save()) {
+            if (!$opposite->save())
+            {
                 $opposite->recordWarnings();
             }
             $opposite->on(static::EVENT_AFTER_UPDATE, [$opposite, 'onUpdateRelation']);
@@ -430,7 +441,8 @@ trait UserRelationTrait
     public function onDeleteRelation($event)
     {
         $sender = $event->sender;
-        if ($sender->relationType == static::$relationMutual) {
+        if ($sender->relationType == static::$relationMutual)
+        {
             $createdByAttribute = $sender->createdByAttribute;
             $otherGuidAttribute = $sender->otherGuidAttribute;
             $sender->off(static::EVENT_AFTER_DELETE, [$sender, 'onDeleteRelation']);

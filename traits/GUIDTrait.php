@@ -49,7 +49,8 @@ trait GUIDTrait
     {
         $sender = $event->sender;
         $guidAttribute = $sender->guidAttribute;
-        if (is_string($guidAttribute)) {
+        if (is_string($guidAttribute))
+        {
             $sender->$guidAttribute = static::GenerateGuid();
         }
     }
@@ -81,7 +82,8 @@ trait GUIDTrait
     public function getGuidRules()
     {
         $rules = [];
-        if (is_string($this->guidAttribute)) {
+        if (is_string($this->guidAttribute))
+        {
             $rules = [
                 [[$this->guidAttribute], 'required',],
                 [[$this->guidAttribute], 'unique',],

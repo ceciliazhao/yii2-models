@@ -127,10 +127,12 @@ trait EntityTrait
     public function getEntityRules()
     {
         $cache = $this->getCache();
-        if ($cache) {
+        if ($cache)
+        {
             $this->entityLocalRules = $cache->get($this->getEntityRulesCacheKey());
         }
-        if (empty($this->entityLocalRules) || !is_array($this->entityLocalRules)) {
+        if (empty($this->entityLocalRules) || !is_array($this->entityLocalRules))
+        {
             $rules = array_merge($this->getGuidRules(), $this->getIdRules(), $this->getCreatedAtRules(), $this->getUpdatedAtRules(), $this->getIpRules());
             $this->setEntityRules($rules);
         }
@@ -145,7 +147,8 @@ trait EntityTrait
     {
         $this->entityLocalRules = $rules;
         $cache = $this->getCache();
-        if ($cache) {
+        if ($cache)
+        {
             $tagDependency = new \yii\caching\TagDependency(
                     ['tags' =>
                 [$this->getEntityRulesCacheTag()]
@@ -180,10 +183,12 @@ trait EntityTrait
     public function getEntityBehaviors()
     {
         $cache = $this->getCache();
-        if ($cache) {
+        if ($cache)
+        {
             $this->entityLocalBehaviors = $cache->get($this->getEntityBehaviorsCacheKey());
         }
-        if (empty($this->entityLocalBehaviors) || !is_array($this->entityLocalBehaviors)) {
+        if (empty($this->entityLocalBehaviors) || !is_array($this->entityLocalBehaviors))
+        {
             $this->setEntityBehaviors($this->getTimestampBehaviors());
         }
         return $this->entityLocalBehaviors;
@@ -197,7 +202,8 @@ trait EntityTrait
     {
         $this->entityLocalBehaviors = $behaviors;
         $cache = $this->getCache();
-        if ($cache) {
+        if ($cache)
+        {
             $tagDependencyConfig = ['tags' => [$this->getEntityBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
             $cache->set($this->getEntityBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
@@ -214,7 +220,8 @@ trait EntityTrait
     public function resetCacheKey($cacheKey, $value = false)
     {
         $cache = $this->getCache();
-        if ($cache) {
+        if ($cache)
+        {
             return $this->getCache()->set($cacheKey, $value);
         }
         return false;
@@ -229,7 +236,8 @@ trait EntityTrait
         $this->attachInitGuidEvent(static::$eventNewRecordCreated);
         $this->attachInitIdEvent(static::$eventNewRecordCreated);
         $this->attachInitIpEvent(static::$eventNewRecordCreated);
-        if ($this->isNewRecord) {
+        if ($this->isNewRecord)
+        {
             $this->trigger(static::$eventNewRecordCreated);
         }
     }
@@ -242,9 +250,11 @@ trait EntityTrait
     {
         $sender = $event->sender;
         $data = $event->data;
-        if (isset($data['prefix'])) {
+        if (isset($data['prefix']))
+        {
             $sender->cachePrefix = $data['prefix'];
-        } else {
+        } else
+        {
             $sender->cachePrefix = $sender::className();
         }
     }
@@ -254,7 +264,8 @@ trait EntityTrait
      */
     protected function recordWarnings()
     {
-        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
+        if (YII_ENV !== YII_ENV_PROD || YII_DEBUG)
+        {
             Yii::warning($this->errors);
         }
     }
@@ -265,10 +276,12 @@ trait EntityTrait
      */
     public function __toString()
     {
-        if (is_string($this->guidAttribute)) {
+        if (is_string($this->guidAttribute))
+        {
             return $this->guid;
         }
-        if (is_string($this->idAttribute)) {
+        if (is_string($this->idAttribute))
+        {
             return $this->id;
         }
         return null;
@@ -283,7 +296,8 @@ trait EntityTrait
     public static function instantiate($row)
     {
         $self = static::buildNoInitModel();
-        if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
+        if (isset($self->idAttribute) && isset($row[$self->idAttribute]))
+        {
             return new static(['idPreassigned' => true]);
         }
         return new static;

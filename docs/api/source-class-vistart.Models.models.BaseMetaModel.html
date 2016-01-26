@@ -186,7 +186,7 @@
 </span><span id="30" class="l"><a href="#30">30 </a>    <span class="php-keyword1">public</span> <span class="php-var">$contentAttributeRule</span> = [<span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">255</span>];
 </span><span id="31" class="l"><a href="#31">31 </a>    <span class="php-keyword1">public</span> <span class="php-var">$updatedByAttribute</span> = <span class="php-keyword1">false</span>;
 </span><span id="32" class="l"><a href="#32">32 </a>    <span class="php-keyword1">public</span> <span class="php-var">$confirmationAttribute</span> = <span class="php-keyword1">false</span>;
-</span><span id="33" class="l"><a href="#33">33 </a>    
+</span><span id="33" class="l"><a href="#33">33 </a>
 </span><span id="34" class="l"><a href="#34">34 </a>    <span class="php-comment">/**
 </span></span><span id="35" class="l"><a href="#35">35 </a><span class="php-comment">     * Store the guid of blame.
 </span></span><span id="36" class="l"><a href="#36">36 </a><span class="php-comment">     * @var string 
@@ -221,14 +221,15 @@
 </span><span id="65" class="l"><a href="#65">65 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitBlameGuid(<span class="php-var">$event</span>)
 </span><span id="66" class="l"><a href="#66">66 </a>    {
 </span><span id="67" class="l"><a href="#67">67 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="68" class="l"><a href="#68">68 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;blameGuid)) {
-</span><span id="69" class="l"><a href="#69">69 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\base\InvalidConfigException(<span class="php-quote">'Empty blame guid is not allowed.'</span>);
-</span><span id="70" class="l"><a href="#70">70 </a>        }
-</span><span id="71" class="l"><a href="#71">71 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;createdByAttribute;
-</span><span id="72" class="l"><a href="#72">72 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;blameGuid;
-</span><span id="73" class="l"><a href="#73">73 </a>    }
-</span><span id="74" class="l"><a href="#74">74 </a>}
-</span><span id="75" class="l"><a href="#75">75 </a></span></code></pre>
+</span><span id="68" class="l"><a href="#68">68 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;blameGuid))
+</span><span id="69" class="l"><a href="#69">69 </a>        {
+</span><span id="70" class="l"><a href="#70">70 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\base\InvalidConfigException(<span class="php-quote">'Empty blame guid is not allowed.'</span>);
+</span><span id="71" class="l"><a href="#71">71 </a>        }
+</span><span id="72" class="l"><a href="#72">72 </a>        <span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;createdByAttribute;
+</span><span id="73" class="l"><a href="#73">73 </a>        <span class="php-var">$sender</span>-&gt;<span class="php-var">$createdByAttribute</span> = <span class="php-var">$sender</span>-&gt;blameGuid;
+</span><span id="74" class="l"><a href="#74">74 </a>    }
+</span><span id="75" class="l"><a href="#75">75 </a>}
+</span><span id="76" class="l"><a href="#76">76 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

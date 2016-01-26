@@ -51,7 +51,8 @@ class BaseUserRelationQuery extends BaseBlameableQuery
     {
         $model = $this->noInitModel;
         $query = $this->andWhere([$model->otherGuidAttribute => $user]);
-        if (!empty($others)) {
+        if (!empty($others))
+        {
             $query = $query->andWhere([$model->createdByAttribute => array_values($others)]);
         }
         return $query->all($database);
@@ -65,7 +66,8 @@ class BaseUserRelationQuery extends BaseBlameableQuery
      */
     public function initiators($users = [])
     {
-        if (empty($users)) {
+        if (empty($users))
+        {
             return $this;
         }
         $model = $this->noInitModel;
@@ -80,7 +82,8 @@ class BaseUserRelationQuery extends BaseBlameableQuery
      */
     public function recipients($users = [])
     {
-        if (empty($users)) {
+        if (empty($users))
+        {
             return $this;
         }
         $model = $this->noInitModel;
@@ -98,14 +101,17 @@ class BaseUserRelationQuery extends BaseBlameableQuery
      */
     public function groups($groups = [])
     {
-        if ($groups === null) {
+        if ($groups === null)
+        {
             return $this;
         }
         $model = $this->noInitModel;
-        if (!is_string($model->multiBlamesAttribute)) {
+        if (!is_string($model->multiBlamesAttribute))
+        {
             return $this;
         }
-        if (empty($groups)) {
+        if (empty($groups))
+        {
             return $this->andWhere([$model->multiBlamesAttribute => BaseUserRelationModel::getEmptyGroupJson()]);
         }
         return $this->andWhere(['or like', $model->multiBlamesAttribute, $groups]);

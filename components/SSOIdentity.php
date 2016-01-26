@@ -64,12 +64,15 @@ class SSOIdentity extends \yii\web\User
     {
         $request = Yii::$app->getRequest();
 
-        if ($this->enableSession && (!$checkAjax || !$request->getIsAjax())) {
+        if ($this->enableSession && (!$checkAjax || !$request->getIsAjax()))
+        {
             $this->setReturnUrl($request->getAbsoluteUrl());
         }
-        if ($this->loginUrl !== null) {
+        if ($this->loginUrl !== null)
+        {
             $loginUrl = (array) $this->loginUrl;
-            if ($loginUrl[0] !== Yii::$app->requestedRoute) {
+            if ($loginUrl[0] !== Yii::$app->requestedRoute)
+            {
                 $ssoUrlManager = Yii::$app->multipleDomainsManager->get($this->ssoDomain);
                 return Yii::$app->getResponse()->redirect($ssoUrlManager->createAbsoluteUrl($this->loginUrl));
             }

@@ -69,10 +69,12 @@ trait PasswordTrait
      */
     public function getPasswordHashRules()
     {
-        if ($this->passwordHashStrategy == 'crypt') {
+        if ($this->passwordHashStrategy == 'crypt')
+        {
             $this->passwordHashAttributeLength = 60;
         }
-        if (empty($this->passwordHashRules) || !is_array($this->passwordHashRules)) {
+        if (empty($this->passwordHashRules) || !is_array($this->passwordHashRules))
+        {
             $this->passwordHashRules = [
                 [[$this->passwordHashAttribute], 'string', 'max' => $this->passwordHashAttributeLength],
             ];
@@ -86,7 +88,8 @@ trait PasswordTrait
      */
     public function setPasswordHashRules($rules)
     {
-        if (!empty($rules) && is_array($rules)) {
+        if (!empty($rules) && is_array($rules))
+        {
             $this->passwordHashRules = $rules;
         }
     }
@@ -97,7 +100,8 @@ trait PasswordTrait
      */
     public function getPasswordResetTokenRules()
     {
-        if (empty($this->passwordResetTokenRules) || !is_array($this->passwordResetTokenRules)) {
+        if (empty($this->passwordResetTokenRules) || !is_array($this->passwordResetTokenRules))
+        {
             $this->passwordResetTokenRules = [
                 [[$this->passwordResetTokenAttribute], 'string', 'length' => 40],
                 [[$this->passwordResetTokenAttribute], 'unique'],
@@ -112,7 +116,8 @@ trait PasswordTrait
      */
     public function setPasswordResetTokenRules($rules)
     {
-        if (!empty($rules) && is_array($rules)) {
+        if (!empty($rules) && is_array($rules))
+        {
             $this->passwordResetTokenRules = $rules;
         }
     }
@@ -157,7 +162,8 @@ trait PasswordTrait
     {
         $phAttribute = $this->passwordHashAttribute;
         $result = Yii::$app->security->validatePassword($password, $this->$phAttribute);
-        if ($result) {
+        if ($result)
+        {
             $this->trigger(static::$eventValidatePasswordSucceeded);
             return $result;
         }
@@ -182,12 +188,14 @@ trait PasswordTrait
      */
     public function applyNewPassword()
     {
-        if ($this->isNewRecord) {
+        if ($this->isNewRecord)
+        {
             return false;
         }
         $prtAttribute = $this->passwordResetTokenAttribute;
         $this->$prtAttribute = static::generatePasswordResetToken();
-        if (!$this->save()) {
+        if (!$this->save())
+        {
             $this->trigger(static::$eventResetPasswordFailed);
             return false;
         }
@@ -204,14 +212,16 @@ trait PasswordTrait
      */
     public function resetPassword($password, $token)
     {
-        if (!$this->validatePasswordResetToken($token)) {
+        if (!$this->validatePasswordResetToken($token))
+        {
             return false;
         }
         $this->trigger(static::$eventBeforeResetPassword);
         $this->password = $password;
         $prtAttribute = $this->passwordResetTokenAttribute;
         $this->$prtAttribute = '';
-        if (!$this->save()) {
+        if (!$this->save())
+        {
             $this->trigger(static::$eventResetPasswordFailed);
             return false;
         }

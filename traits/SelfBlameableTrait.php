@@ -79,13 +79,16 @@ trait SelfBlameableTrait
      */
     public function getSelfBlameableRules()
     {
-        if (!is_string($this->parentAttribute)) {
+        if (!is_string($this->parentAttribute))
+        {
             return [];
         }
-        if (empty($this->selfLocalBlameableRules) || !is_array($this->selfLocalBlameableRules)) {
+        if (empty($this->selfLocalBlameableRules) || !is_array($this->selfLocalBlameableRules))
+        {
             return $this->selfLocalBlameableRules;
         }
-        if (is_string($this->parentAttributeRule)) {
+        if (is_string($this->parentAttributeRule))
+        {
             $this->parentAttributeRule = [$this->parentAttributeRule];
         }
         $this->selfLocalBlameableRules = [
@@ -110,7 +113,8 @@ trait SelfBlameableTrait
      */
     public function bear($config = [])
     {
-        if (isset($config['class'])) {
+        if (isset($config['class']))
+        {
             unset($config['class']);
         }
         $refIdAttribute = $this->refIdAttribute;
@@ -127,13 +131,16 @@ trait SelfBlameableTrait
     public function onDeleteChildren($event)
     {
         $sender = $event->sender;
-        if (!is_string($sender->parentAttribute)) {
+        if (!is_string($sender->parentAttribute))
+        {
             return true;
         }
-        switch ($sender->onDeleteType) {
+        switch ($sender->onDeleteType)
+        {
             case static::$onRestrict:
                 $event->isValid = $sender->children === null;
-                if ($this->throwRestrictException) {
+                if ($this->throwRestrictException)
+                {
                     throw new \yii\db\IntegrityException('Delete restricted.');
                 }
                 break;
@@ -159,13 +166,16 @@ trait SelfBlameableTrait
     public function onUpdateChildren($event)
     {
         $sender = $event->sender;
-        if (!is_string($sender->parentAttribute)) {
+        if (!is_string($sender->parentAttribute))
+        {
             return true;
         }
-        switch ($sender->onUpdateType) {
+        switch ($sender->onUpdateType)
+        {
             case static::$onRestrict:
                 $event->isValid = $sender->getOldChildren() === null;
-                if ($this->throwRestrictException) {
+                if ($this->throwRestrictException)
+                {
                     throw new \yii\db\IntegrityException('Update restricted.');
                 }
                 break;
@@ -224,29 +234,38 @@ trait SelfBlameableTrait
     public function updateChildren($value = false)
     {
         $children = $this->getOldChildren();
-        if (empty($children)) {
+        if (empty($children))
+        {
             return true;
         }
         $parentAttribute = $this->parentAttribute;
         $transaction = $this->getDb()->beginTransaction();
-        try {
-            foreach ($children as $child) {
-                if ($value === false) {
+        try
+        {
+            foreach ($children as $child)
+            {
+                if ($value === false)
+                {
                     $refIdAttribute = $this->refIdAttribute;
                     $child->$parentAttribute = $this->$refIdAttribute;
-                } elseif (empty($value)) {
+                } elseif (empty($value))
+                {
                     $child->$parentAttribute = '';
-                } else {
+                } else
+                {
                     $child->$parentAttribute = $value;
                 }
-                if (!$child->save()) {
+                if (!$child->save())
+                {
                     throw new \yii\db\IntegrityException('Update failed:' . $child->errors);
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\IntegrityException $ex) {
+        } catch (\yii\db\IntegrityException $ex)
+        {
             $transaction->rollBack();
-            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD)
+            {
                 Yii::error($ex->errorInfo, static::className() . '\update');
                 return $ex;
             }
@@ -269,20 +288,26 @@ trait SelfBlameableTrait
     public function deleteChildren()
     {
         $children = $this->children;
-        if (empty($children)) {
+        if (empty($children))
+        {
             return true;
         }
         $transaction = $this->getDb()->beginTransaction();
-        try {
-            foreach ($children as $child) {
-                if (!$child->delete()) {
+        try
+        {
+            foreach ($children as $child)
+            {
+                if (!$child->delete())
+                {
                     throw new \yii\db\IntegrityException('Delete failed:' . $child->errors);
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\IntegrityException $ex) {
+        } catch (\yii\db\IntegrityException $ex)
+        {
             $transaction->rollBack();
-            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
+            if (YII_DEBUG || YII_ENV !== YII_ENV_PROD)
+            {
                 Yii::error($ex->errorInfo, static::className() . '\delete');
                 return $ex;
             }
@@ -301,7 +326,8 @@ trait SelfBlameableTrait
     public function onParentRefIdChanged($event)
     {
         $sender = $event->sender;
-        if ($sender->isAttributeChanged($sender->refIdAttribute)) {
+        if ($sender->isAttributeChanged($sender->refIdAttribute))
+        {
             return $sender->onUpdateChildren($event);
         }
     }

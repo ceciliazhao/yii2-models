@@ -110,16 +110,19 @@ trait IDTrait
     public function onInitIdAttribute($event)
     {
         $sender = $event->sender;
-        if ($sender->idPreassigned) {
+        if ($sender->idPreassigned)
+        {
             return;
         }
-        if ($sender->idAttributeType === self::$idTypeAutoIncrement) {
+        if ($sender->idAttributeType === self::$idTypeAutoIncrement)
+        {
             $sender->idAttributeSafe = true;
             return;
         }
         if (is_string($sender->idAttribute) &&
                 is_int($sender->idAttributeLength) &&
-                $sender->idAttributeLength > 0) {
+                $sender->idAttributeLength > 0)
+        {
             $idAttribute = $sender->idAttribute;
             $sender->$idAttribute = $sender->generateId();
         }
@@ -132,20 +135,24 @@ trait IDTrait
      */
     public function generateId()
     {
-        if ($this->idAttributeType == self::$idTypeInteger) {
-            do {
+        if ($this->idAttributeType == self::$idTypeInteger)
+        {
+            do
+            {
                 $result = Number::randomNumber($this->idAttributePrefix, $this->idAttributeLength);
             } while ($this->checkIdExists((int) $result));
             return $result;
         }
-        if ($this->idAttributeType == self::$idTypeString) {
+        if ($this->idAttributeType == self::$idTypeString)
+        {
             return $this->idAttributePrefix .
                     Yii::$app->security->generateRandomString(
                             $this->idAttributeLength - strlen($this->idAttributePrefix
                             )
             );
         }
-        if ($this->idAttributeType == self::$idTypeAutoIncrement) {
+        if ($this->idAttributeType == self::$idTypeAutoIncrement)
+        {
             return null;
         }
         return false;
@@ -158,7 +165,8 @@ trait IDTrait
      */
     public function checkIdExists($id)
     {
-        if ($id == null) {
+        if ($id == null)
+        {
             return false;
         }
         return (static::findOne([$this->idAttribute => $id]) !== null);
@@ -170,31 +178,37 @@ trait IDTrait
      */
     public function getIdRules()
     {
-        if ($this->idAttribute == false) {
+        if ($this->idAttribute == false)
+        {
             return [];
         }
-        if ($this->idAttributeSafe) {
+        if ($this->idAttributeSafe)
+        {
             return [
                 [[$this->idAttribute], 'safe'],
             ];
         }
         if (is_string($this->idAttribute) &&
                 is_int($this->idAttributeLength) &&
-                $this->idAttributeLength > 0) {
+                $this->idAttributeLength > 0)
+        {
             $rules = [
                 [[$this->idAttribute], 'required'],
                 [[$this->idAttribute], 'unique'],
             ];
-            if ($this->idAttributeType === self::$idTypeInteger) {
+            if ($this->idAttributeType === self::$idTypeInteger)
+            {
                 $rules[] = [
                     [$this->idAttribute], 'number', 'integerOnly' => true
                 ];
             }
-            if ($this->idAttributeType === self::$idTypeString) {
+            if ($this->idAttributeType === self::$idTypeString)
+            {
                 $rules[] = [[$this->idAttribute], 'string',
                     'max' => $this->idAttributeLength,];
             }
-            if ($this->idAttributeType === self::$idTypeAutoIncrement) {
+            if ($this->idAttributeType === self::$idTypeAutoIncrement)
+            {
                 $rules[] = [
                     [$this->idAttribute], 'safe',
                 ];

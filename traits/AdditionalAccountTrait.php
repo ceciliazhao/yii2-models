@@ -46,7 +46,8 @@ trait AdditionalAccountTrait
      */
     public function getCanBeLogon()
     {
-        if (!$this->enableLoginAttribute) {
+        if (!$this->enableLoginAttribute)
+        {
             return false;
         }
         $enableLoginAttribute = $this->enableLoginAttribute;
@@ -60,7 +61,8 @@ trait AdditionalAccountTrait
      */
     public function setCanBeLogon($can)
     {
-        if (!$this->enableLoginAttribute) {
+        if (!$this->enableLoginAttribute)
+        {
             return;
         }
         $enableLoginAttribute = $this->enableLoginAttribute;
@@ -86,7 +88,8 @@ trait AdditionalAccountTrait
     public function getAdditionalAccountRules()
     {
         $rules = $this->getEnableLoginAttributeRules();
-        if ($this->independentPassword) {
+        if ($this->independentPassword)
+        {
             $rules = array_merge($rules, $this->getPasswordHashRules());
         }
         return $rules;

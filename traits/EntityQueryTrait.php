@@ -30,7 +30,8 @@ trait EntityQueryTrait
      */
     public function buildNoInitModel()
     {
-        if (empty($this->noInitModel) && is_string($this->modelClass)) {
+        if (empty($this->noInitModel) && is_string($this->modelClass))
+        {
             $modelClass = $this->modelClass;
             $this->noInitModel = $modelClass::buildNoInitModel();
         }
@@ -57,7 +58,8 @@ trait EntityQueryTrait
     public function createdAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->createdByAttribute)) {
+        if (!is_string($model->createdByAttribute))
+        {
             return $this;
         }
         return static::range($this, $model->createdByAttribute, $start, $end);
@@ -72,7 +74,8 @@ trait EntityQueryTrait
     public function updatedAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->updatedByAttribute)) {
+        if (!is_string($model->updatedByAttribute))
+        {
             return $this;
         }
         return static::range($this, $model->updatedByAttribute, $start, $end);

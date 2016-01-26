@@ -29,7 +29,8 @@ class BaseUserQuery extends BaseEntityQuery
     public function active($active)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->statusAttribute)) {
+        if (!is_string($model->statusAttribute))
+        {
             return $this;
         }
         return $this->andWhere([$model->statusAttribute => $active]);
@@ -43,10 +44,12 @@ class BaseUserQuery extends BaseEntityQuery
     public function source($source = null)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->sourceAttribute)) {
+        if (!is_string($model->sourceAttribute))
+        {
             return $this;
         }
-        if (!is_string($source)) {
+        if (!is_string($source))
+        {
             $modelClass = $this->modelClass;
             $source = $modelClass::$sourceSelf;
         }

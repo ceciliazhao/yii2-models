@@ -33,10 +33,12 @@ abstract class BaseUserRelationModel extends BaseBlameableModel
 
     public function init()
     {
-        if (!is_string($this->queryClass)) {
+        if (!is_string($this->queryClass))
+        {
             $this->queryClass = BaseUserRelationQuery::className();
         }
-        if ($this->skipInit) {
+        if ($this->skipInit)
+        {
             return;
         }
         $this->initUserRelationEvents();

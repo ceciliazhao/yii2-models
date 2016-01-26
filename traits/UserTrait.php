@@ -35,7 +35,8 @@ trait UserTrait
      */
     public function create($className, $config = [])
     {
-        if (!isset($config['userClass'])) {
+        if (!isset($config['userClass']))
+        {
             $config['userClass'] = static::className();
         }
         $entity = new $className($config);
@@ -54,11 +55,13 @@ trait UserTrait
     public function findOneOrCreate($className, $condition = [], $config = [])
     {
         $entity = new $className(['skipInit' => true]);
-        if (!isset($condition[$entity->createdByAttribute])) {
+        if (!isset($condition[$entity->createdByAttribute]))
+        {
             $condition[$entity->createdByAttribute] = $this->guid;
         }
         $model = $className::findOne($condition);
-        if (!$model) {
+        if (!$model)
+        {
             $model = $this->create($className, $config);
         }
         return $model;

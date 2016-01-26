@@ -31,7 +31,8 @@ trait BlameableQueryTrait
     public function confirmed($isConfirmed = true)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->confirmationAttribute)) {
+        if (!is_string($model->confirmationAttribute))
+        {
             return $this;
         }
         return $this->andWhere([$model->confirmationAttribute => $isConfirmed]);
@@ -47,5 +48,26 @@ trait BlameableQueryTrait
     {
         $model = $this->noInitModel;
         return $this->likeCondition($content, $model->contentAttribute, $like);
+    }
+
+    /**
+     * Specify parent.
+     * @param array|string $guid parent guid or array of them. non-parent if
+     * empty. If you don't want to specify parent, please do not access this
+     * method.
+     * @return $this
+     */
+    public function parentGuid($guid)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->parentAttribute))
+        {
+            return $this;
+        }
+        if (empty($guid))
+        {
+            return $this->andWhere([$model->parentAttribute => '']);
+        }
+        return $this->andWhere([$model->parentAttribute => $guid]);
     }
 }

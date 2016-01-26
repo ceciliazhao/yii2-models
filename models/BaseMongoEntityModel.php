@@ -31,7 +31,8 @@ abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
      */
     public function init()
     {
-        if ($this->skipInit) {
+        if ($this->skipInit)
+        {
             return;
         }
         $this->initEntityEvents();
@@ -45,7 +46,8 @@ abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
     public static function find()
     {
         $self = static::buildNoInitModel();
-        if (!is_string($self->queryClass)) {
+        if (!is_string($self->queryClass))
+        {
             $self->queryClass = BaseMongoEntityQuery::className();
         }
         $queryClass = $self->queryClass;
