@@ -17,7 +17,6 @@ use vistart\Models\queries\BaseUserRelationQuery;
 
 /**
  * 该类帮助用户定义用户关系。
- * 
  * @version 2.0
  * @author vistart <i@vistart.name>
  */

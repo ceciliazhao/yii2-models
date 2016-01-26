@@ -13,7 +13,7 @@
 namespace vistart\Models\traits;
 
 /**
- * Description of EntityQueryTrait
+ * This trait is used for building entity query class for entity model.
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -64,7 +64,7 @@ trait EntityQueryTrait
 
     /**
      * Specify update time range.
-     * @param string $start
+     * @param string $start 
      * @param string $end
      * @return $this
      */

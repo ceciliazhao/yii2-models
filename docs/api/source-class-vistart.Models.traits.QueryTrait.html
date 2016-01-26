@@ -169,7 +169,7 @@
 </span><span id="13" class="l"><a href="#13">13 </a><span class="php-keyword1">namespace</span> vistart\Models\traits;
 </span><span id="14" class="l"><a href="#14">14 </a>
 </span><span id="15" class="l"><a href="#15">15 </a><span class="php-comment">/**
-</span></span><span id="16" class="l"><a href="#16">16 </a><span class="php-comment"> * Description of QueryTrait
+</span></span><span id="16" class="l"><a href="#16">16 </a><span class="php-comment"> * This trait attach two base condition.
 </span></span><span id="17" class="l"><a href="#17">17 </a><span class="php-comment"> *
 </span></span><span id="18" class="l"><a href="#18">18 </a><span class="php-comment"> * @version 2.0
 </span></span><span id="19" class="l"><a href="#19">19 </a><span class="php-comment"> * @author vistart &lt;i@vistart.name&gt;
@@ -178,7 +178,7 @@
 </span><span id="22" class="l"><a href="#22">22 </a>{
 </span><span id="23" class="l"><a href="#23">23 </a>
 </span><span id="24" class="l"><a href="#24">24 </a>    <span class="php-comment">/**
-</span></span><span id="25" class="l"><a href="#25">25 </a><span class="php-comment">     * 
+</span></span><span id="25" class="l"><a href="#25">25 </a><span class="php-comment">     * Attach like condition.
 </span></span><span id="26" class="l"><a href="#26">26 </a><span class="php-comment">     * @param mixed $value
 </span></span><span id="27" class="l"><a href="#27">27 </a><span class="php-comment">     * @param string $attribute
 </span></span><span id="28" class="l"><a href="#28">28 </a><span class="php-comment">     * @param string|false $like
@@ -196,12 +196,12 @@
 </span><span id="40" class="l"><a href="#40">40 </a>    }
 </span><span id="41" class="l"><a href="#41">41 </a>
 </span><span id="42" class="l"><a href="#42">42 </a>    <span class="php-comment">/**
-</span></span><span id="43" class="l"><a href="#43">43 </a><span class="php-comment">     * Specify range.
+</span></span><span id="43" class="l"><a href="#43">43 </a><span class="php-comment">     * Specify range wilth $attribute to $query.
 </span></span><span id="44" class="l"><a href="#44">44 </a><span class="php-comment">     * @param \yii\db\ActiveQuery $query
 </span></span><span id="45" class="l"><a href="#45">45 </a><span class="php-comment">     * @param string $attribute
 </span></span><span id="46" class="l"><a href="#46">46 </a><span class="php-comment">     * @param string $start
 </span></span><span id="47" class="l"><a href="#47">47 </a><span class="php-comment">     * @param string $end
-</span></span><span id="48" class="l"><a href="#48">48 </a><span class="php-comment">     * @return $this
+</span></span><span id="48" class="l"><a href="#48">48 </a><span class="php-comment">     * @return $query
 </span></span><span id="49" class="l"><a href="#49">49 </a><span class="php-comment">     */</span>
 </span><span id="50" class="l"><a href="#50">50 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <span class="php-keyword2">range</span>(<span class="php-var">$query</span>, <span class="php-var">$attribute</span>, <span class="php-var">$start</span> = <span class="php-keyword1">null</span>, <span class="php-var">$end</span> = <span class="php-keyword1">null</span>)
 </span><span id="51" class="l"><a href="#51">51 </a>    {

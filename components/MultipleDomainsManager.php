@@ -127,9 +127,9 @@ class MultipleDomainsManager extends \yii\base\Component
                 $subDomainConfig['schema'] = 'http';
             }
             $subDomainConfig['component']['hostInfo'] = $subDomainConfig['schema'] . // 'http' or 'https'
-                    "://" . // delimiter
-                    ($subdomain === '' ? '' : "$subdomain.") . // attach subdomain
-                    $this->baseDomain;                                               // base domain
+                "://" . // delimiter
+                ($subdomain === '' ? '' : "$subdomain.") . // attach subdomain
+                $this->baseDomain;                                               // base domain
         }
         return Yii::createObject($subDomainConfig['component']);
     }

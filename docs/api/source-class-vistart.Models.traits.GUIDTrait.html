@@ -206,7 +206,7 @@
 </span><span id="50" class="l"><a href="#50"> 50 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
 </span><span id="51" class="l"><a href="#51"> 51 </a>        <span class="php-var">$guidAttribute</span> = <span class="php-var">$sender</span>-&gt;guidAttribute;
 </span><span id="52" class="l"><a href="#52"> 52 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_string</span>(<span class="php-var">$guidAttribute</span>)) {
-</span><span id="53" class="l"><a href="#53"> 53 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$guidAttribute</span> = <span class="php-keyword1">static</span>::GenerateGuid();
+</span><span id="53" class="l"><a href="#53"> 53 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$guidAttribute</span> = <span class="php-keyword1">static</span>::generateGuid();
 </span><span id="54" class="l"><a href="#54"> 54 </a>        }
 </span><span id="55" class="l"><a href="#55"> 55 </a>    }
 </span><span id="56" class="l"><a href="#56"> 56 </a>
@@ -215,7 +215,7 @@
 </span></span><span id="59" class="l"><a href="#59"> 59 </a><span class="php-comment">     * table, if existed, it will regenerate one.
 </span></span><span id="60" class="l"><a href="#60"> 60 </a><span class="php-comment">     * @return string the generated GUID.
 </span></span><span id="61" class="l"><a href="#61"> 61 </a><span class="php-comment">     */</span>
-</span><span id="62" class="l"><a href="#62"> 62 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> GenerateGuid()
+</span><span id="62" class="l"><a href="#62"> 62 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> generateGuid()
 </span><span id="63" class="l"><a href="#63"> 63 </a>    {
 </span><span id="64" class="l"><a href="#64"> 64 </a>        <span class="php-keyword1">return</span> Number::guid();
 </span><span id="65" class="l"><a href="#65"> 65 </a>    }
@@ -225,7 +225,7 @@
 </span></span><span id="69" class="l"><a href="#69"> 69 </a><span class="php-comment">     * @param string $guid the GUID to be checked.
 </span></span><span id="70" class="l"><a href="#70"> 70 </a><span class="php-comment">     * @return boolean Whether the $guid exists or not.
 </span></span><span id="71" class="l"><a href="#71"> 71 </a><span class="php-comment">     */</span>
-</span><span id="72" class="l"><a href="#72"> 72 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> CheckGuidExists(<span class="php-var">$guid</span>)
+</span><span id="72" class="l"><a href="#72"> 72 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> checkGuidExists(<span class="php-var">$guid</span>)
 </span><span id="73" class="l"><a href="#73"> 73 </a>    {
 </span><span id="74" class="l"><a href="#74"> 74 </a>        <span class="php-keyword1">return</span> (self::findOne(<span class="php-var">$guid</span>) !== <span class="php-keyword1">null</span>);
 </span><span id="75" class="l"><a href="#75"> 75 </a>    }
@@ -248,7 +248,7 @@
 </span><span id="92" class="l"><a href="#92"> 92 </a>    }
 </span><span id="93" class="l"><a href="#93"> 93 </a>
 </span><span id="94" class="l"><a href="#94"> 94 </a>    <span class="php-comment">/**
-</span></span><span id="95" class="l"><a href="#95"> 95 </a><span class="php-comment">     * 
+</span></span><span id="95" class="l"><a href="#95"> 95 </a><span class="php-comment">     * Get guid, in spite of guid attribute name.
 </span></span><span id="96" class="l"><a href="#96"> 96 </a><span class="php-comment">     * @return string
 </span></span><span id="97" class="l"><a href="#97"> 97 </a><span class="php-comment">     */</span>
 </span><span id="98" class="l"><a href="#98"> 98 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getGuid()
@@ -258,7 +258,7 @@
 </span><span id="102" class="l"><a href="#102">102 </a>    }
 </span><span id="103" class="l"><a href="#103">103 </a>
 </span><span id="104" class="l"><a href="#104">104 </a>    <span class="php-comment">/**
-</span></span><span id="105" class="l"><a href="#105">105 </a><span class="php-comment">     * 
+</span></span><span id="105" class="l"><a href="#105">105 </a><span class="php-comment">     * Set guid, in spite of guid attribute name.
 </span></span><span id="106" class="l"><a href="#106">106 </a><span class="php-comment">     * @param string $guid
 </span></span><span id="107" class="l"><a href="#107">107 </a><span class="php-comment">     * @return string
 </span></span><span id="108" class="l"><a href="#108">108 </a><span class="php-comment">     */</span>

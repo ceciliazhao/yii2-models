@@ -20,7 +20,6 @@ use yii\web\JsonParser;
  * 一个模型的某个属性可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反
  * 了关系型数据库第一范式，因此此 trait 只适用于责任者属性修改不频繁的场景，在开
  * 发时必须严格测试数据一致性，并同时考量性能。
- * 
  * Basic Principles:
  * <ol>
  * <li>when adding blame, it will check whether each of blames including to be
@@ -51,7 +50,6 @@ use yii\web\JsonParser;
  * @property-read array $allBlames
  * @property-read array $nonBlameds
  * @property-read integer $blamesCount
- * 
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -94,7 +92,7 @@ trait MultipleBlameableTrait
             [[$this->multiBlamesAttribute], 'required'],
             [[$this->multiBlamesAttribute], 'string', 'max' => $this->blamesLimit * 39 + 1],
             [[$this->multiBlamesAttribute], 'default', 'value' => '[]'],
-                ] : [];
+            ] : [];
     }
 
     /**
@@ -237,7 +235,7 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * 
+     * Get blame.
      * @param string $blameGuid
      * @return [multiBlamesClass]
      */
@@ -264,7 +262,7 @@ trait MultipleBlameableTrait
         }
         $createdByAttribute = $this->createdByAttribute;
         return static::find()->where([$createdByAttribute => $this->$createdByAttribute])
-                        ->andWhere(['like', $this->multiBlamesAttribute, $blame->guid])->all();
+                ->andWhere(['like', $this->multiBlamesAttribute, $blame->guid])->all();
     }
 
     /**
@@ -274,8 +272,8 @@ trait MultipleBlameableTrait
     public function getAllBlames()
     {
         if (empty($this->multiBlamesClass) ||
-                !is_string($this->multiBlamesClass) ||
-                $this->multiBlamesAttribute === false) {
+            !is_string($this->multiBlamesClass) ||
+            $this->multiBlamesAttribute === false) {
             return null;
         }
         $multiBlamesClass = $this->multiBlamesClass;

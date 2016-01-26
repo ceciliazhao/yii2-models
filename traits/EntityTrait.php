@@ -138,7 +138,7 @@ trait EntityTrait
 
     /**
      * Set entity rules.
-     * @param array $rules.
+     * @param array $rules
      */
     protected function setEntityRules($rules = [])
     {
@@ -146,9 +146,7 @@ trait EntityTrait
         $cache = $this->getCache();
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(
-                    ['tags' =>
-                [$this->getEntityRulesCacheTag()]
-                    ]
+                ['tags' => [$this->getEntityRulesCacheTag()]]
             );
             $cache->set($this->getEntityRulesCacheKey(), $rules, 0, $tagDependency);
         }

@@ -140,11 +140,18 @@
 	<table class="summary table table-bordered table-striped" id="traits">
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.AdditionalAccountTrait.html">AdditionalAccountTrait</a></td>
-	<td>Additional account features.</td>
+	<td><p>Additional account features. This trait should be used in blameable model or
+its extended class.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.BlameableQueryTrait.html">BlameableQueryTrait</a></td>
-	<td>Description of BlameableQueryTrait</td>
+	<td><p>This trait is used for building blameable query class for blameable model,
+which would be attached three conditions.
+For example:</p>
+
+<pre><span class="php-keyword1">class</span> BlameableQuery {
+    <span class="php-keyword1">use</span> BlameableQueryTrait;
+}</pre></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.BlameableTrait.html">BlameableTrait</a></td>
@@ -164,7 +171,7 @@
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.EntityQueryTrait.html">EntityQueryTrait</a></td>
-	<td>Description of EntityQueryTrait</td>
+	<td>This trait is used for building entity query class for entity model.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.EntityTrait.html">EntityTrait</a></td>
@@ -191,7 +198,35 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 	<td class="name"><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></td>
 	<td><p>一个模型的某个属性可能对应多个责任者，该 trait 用于处理此种情况。此种情况违反
 了关系型数据库第一范式，因此此 trait 只适用于责任者属性修改不频繁的场景，在开
-发时必须严格测试数据一致性，并同时考量性能。</p></td>
+发时必须严格测试数据一致性，并同时考量性能。
+Basic Principles:</p>
+
+<ol>
+<li>when adding blame, it will check whether each of blames including to be
+added is valid.
+</li>
+<li>when removing blame, as well as counting, getting or setting list of them,
+it will also check whether each of blames is valid.
+</li>
+<li>By default, once blame was deleted, the guid of it is not removed from
+list of blames immediately. It will check blame if valid when adding, removing,
+counting, getting and setting it. You can define a blame model and attach it
+events triggered when inserting, updating and deleting a blame, then disable
+checking the validity of blames.
+</li>
+</ol>
+
+<p>Notice:</p>
+
+<ol>
+<li>You must specify two properties: $multiBlamesClass and $multiBlamesAttribute.
+<ul>
+<li>$multiBlamesClass specify the class name of blame.</li>
+<li>$multiBlamesAttribute specify the field name of blames.</li>
+</ul>
+</li>
+<li>You should rename each name of following methods to be needed optionally.</li>
+</ol></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></td>
@@ -199,7 +234,7 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></td>
-	<td>Description of QueryTrait</td>
+	<td>This trait attach two base condition.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></td>

@@ -13,7 +13,8 @@
 namespace vistart\Models\traits;
 
 /**
- * Additional account features.
+ * Additional account features. This trait should be used in blameable model or
+ * its extended class.
  * @property boolean $canBeLogon determines whether this account could be used for logging-in.
  * @property-read array $enableLoginAttributeRules
  * @property-read array $additionalAccountRules
@@ -40,7 +41,7 @@ trait AdditionalAccountTrait
     public $independentPassword = false;
 
     /**
-     * 
+     * Get this additional account could be used for logging-in.
      * @return boolean
      */
     public function getCanBeLogon()
@@ -53,7 +54,7 @@ trait AdditionalAccountTrait
     }
 
     /**
-     * 
+     * Set this additional accunt could be used for logging-in.
      * @param boolean $can
      * @return integer
      */
@@ -67,20 +68,22 @@ trait AdditionalAccountTrait
     }
 
     /**
-     * 
-     * @return array
+     * Get rules associated with enable login attribute.
+     * If enable login feature by this additional account, it will return the rules
+     * with true by default.
+     * @return array rules.
      */
     public function getEnableLoginAttributeRules()
     {
         return $this->enableLoginAttribute && is_string($this->enableLoginAttribute) ? [
             [[$this->enableLoginAttribute], 'boolean'],
             [[$this->enableLoginAttribute], 'default', 'value' => true],
-                ] : [];
+            ] : [];
     }
 
     /**
-     * 
-     * @return array
+     * Get rules associated with additional account attributes.
+     * @return array rules.
      */
     public function getAdditionalAccountRules()
     {

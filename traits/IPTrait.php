@@ -36,7 +36,7 @@ trait IPTrait
     /**
      * @var integer Disable IP address features.
      */
-    public static $no_ip = 0x0;
+    public static $noIp = 0x0;
 
     /**
      * @var integer Only accept IPv4 address.
@@ -52,7 +52,7 @@ trait IPTrait
      * @var integer Accept IPv4 and IPv6 address. Judge type of IP address
      * automatically.
      */
-    public static $ip_all = 0x3;
+    public static $ipAll = 0x3;
 
     /**
      * @var string The attribute name that will receive the beginning 32 bits of
@@ -80,7 +80,7 @@ trait IPTrait
 
     /**
      * @var string The attribute name that will receive the type of IP address.
-     * The default value is 'ip_type'. If you assign $enableIP to $ip_all, this
+     * The default value is 'ip_type'. If you assign $enableIP to $ipAll, this
      * attribute is required.
      */
     public $ipTypeAttribute = 'ip_type';
@@ -122,7 +122,7 @@ trait IPTrait
         if (!$this->enableIP) {
             return null;
         }
-        if ($this->enableIP & static::$ip_all) {
+        if ($this->enableIP & static::$ipAll) {
             $ipTypeAttribute = $this->ipTypeAttribute;
             if ($this->$ipTypeAttribute == Ip::IPv4) {
                 return $this->getIpv4Address();
@@ -161,10 +161,10 @@ trait IPTrait
         $ipAttribute3 = $this->ipAttribute3;
         $ipAttribute4 = $this->ipAttribute4;
         return Ip::LongtoIPv6(Ip::populateIPv6([
-                            $this->$ipAttribute1,
-                            $this->$ipAttribute2,
-                            $this->$ipAttribute3,
-                            $this->$ipAttribute4
+                    $this->$ipAttribute1,
+                    $this->$ipAttribute2,
+                    $this->$ipAttribute3,
+                    $this->$ipAttribute4
         ]));
     }
 
@@ -198,7 +198,7 @@ trait IPTrait
         } else {
             return 0;
         }
-        if ($this->enableIP & static::$ip_all) {
+        if ($this->enableIP & static::$ipAll) {
             $ipTypeAttribute = $this->ipTypeAttribute;
             $this->$ipTypeAttribute = $ipType;
         }
@@ -215,9 +215,9 @@ trait IPTrait
         if ($this->enableIP & static::$ipv6) {
             $rules = [
                 [[$this->ipAttribute1,
-                $this->ipAttribute2,
-                $this->ipAttribute3,
-                $this->ipAttribute4],
+                    $this->ipAttribute2,
+                    $this->ipAttribute3,
+                    $this->ipAttribute4],
                     'number', 'integerOnly' => true, 'min' => 0
                 ],
             ];
@@ -229,7 +229,7 @@ trait IPTrait
                 ],
             ];
         }
-        if ($this->enableIP & static::$ip_all) {
+        if ($this->enableIP & static::$ipAll) {
             $rules[] = [
                 [$this->ipTypeAttribute], 'in', 'range' => [Ip::IPv4, Ip::IPv6],
             ];

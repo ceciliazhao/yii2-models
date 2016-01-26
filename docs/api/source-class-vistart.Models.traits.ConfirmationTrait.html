@@ -220,7 +220,7 @@
 </span><span id="64" class="l"><a href="#64"> 64 </a>    <span class="php-keyword1">public</span> <span class="php-var">$confirmTimeAttribute</span> = <span class="php-quote">'confirm_time'</span>;
 </span><span id="65" class="l"><a href="#65"> 65 </a>
 </span><span id="66" class="l"><a href="#66"> 66 </a>    <span class="php-comment">/**
-</span></span><span id="67" class="l"><a href="#67"> 67 </a><span class="php-comment">     * @var string 
+</span></span><span id="67" class="l"><a href="#67"> 67 </a><span class="php-comment">     * @var string initialization confirm time.
 </span></span><span id="68" class="l"><a href="#68"> 68 </a><span class="php-comment">     */</span>
 </span><span id="69" class="l"><a href="#69"> 69 </a>    <span class="php-keyword1">public</span> <span class="php-var">$initConfirmTime</span> = <span class="php-quote">'1970-01-01 00:00:00'</span>;
 </span><span id="70" class="l"><a href="#70"> 70 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$eventConfirmationChanged</span> = <span class="php-quote">&quot;confirmationChanged&quot;</span>;
@@ -244,7 +244,7 @@
 </span><span id="88" class="l"><a href="#88"> 88 </a>    }
 </span><span id="89" class="l"><a href="#89"> 89 </a>
 </span><span id="90" class="l"><a href="#90"> 90 </a>    <span class="php-comment">/**
-</span></span><span id="91" class="l"><a href="#91"> 91 </a><span class="php-comment">     * 
+</span></span><span id="91" class="l"><a href="#91"> 91 </a><span class="php-comment">     * Set confirm code.
 </span></span><span id="92" class="l"><a href="#92"> 92 </a><span class="php-comment">     * @param string $code
 </span></span><span id="93" class="l"><a href="#93"> 93 </a><span class="php-comment">     */</span>
 </span><span id="94" class="l"><a href="#94"> 94 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setConfirmCode(<span class="php-var">$code</span>)
@@ -326,7 +326,7 @@
 </span></span><span id="170" class="l"><a href="#170">170 </a><span class="php-comment">     * Initialize the confirmation status.
 </span></span><span id="171" class="l"><a href="#171">171 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
 </span></span><span id="172" class="l"><a href="#172">172 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
-</span></span><span id="173" class="l"><a href="#173">173 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="173" class="l"><a href="#173">173 </a><span class="php-comment">     * @param \yii\base\ModelEvent $event
 </span></span><span id="174" class="l"><a href="#174">174 </a><span class="php-comment">     */</span>
 </span><span id="175" class="l"><a href="#175">175 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitConfirmation(<span class="php-var">$event</span>)
 </span><span id="176" class="l"><a href="#176">176 </a>    {
@@ -368,7 +368,7 @@
 </span></span><span id="212" class="l"><a href="#212">212 </a><span class="php-comment">     * or the confirm_time will be assigned to initConfirmTime.
 </span></span><span id="213" class="l"><a href="#213">213 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
 </span></span><span id="214" class="l"><a href="#214">214 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
-</span></span><span id="215" class="l"><a href="#215">215 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="215" class="l"><a href="#215">215 </a><span class="php-comment">     * @param \yii\base\ModelEvent $event
 </span></span><span id="216" class="l"><a href="#216">216 </a><span class="php-comment">     */</span>
 </span><span id="217" class="l"><a href="#217">217 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onConfirmationChanged(<span class="php-var">$event</span>)
 </span><span id="218" class="l"><a href="#218">218 </a>    {
@@ -389,60 +389,61 @@
 </span><span id="233" class="l"><a href="#233">233 </a>    }
 </span><span id="234" class="l"><a href="#234">234 </a>
 </span><span id="235" class="l"><a href="#235">235 </a>    <span class="php-comment">/**
-</span></span><span id="236" class="l"><a href="#236">236 </a><span class="php-comment">     * 
-</span></span><span id="237" class="l"><a href="#237">237 </a><span class="php-comment">     * @return array
-</span></span><span id="238" class="l"><a href="#238">238 </a><span class="php-comment">     */</span>
-</span><span id="239" class="l"><a href="#239">239 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getConfirmationRules()
-</span><span id="240" class="l"><a href="#240">240 </a>    {
-</span><span id="241" class="l"><a href="#241">241 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;confirmationAttribute) {
-</span><span id="242" class="l"><a href="#242">242 </a>            <span class="php-keyword1">return</span> [];
-</span><span id="243" class="l"><a href="#243">243 </a>        }
-</span><span id="244" class="l"><a href="#244">244 </a>        <span class="php-keyword1">return</span> [
-</span><span id="245" class="l"><a href="#245">245 </a>            [[<span class="php-var">$this</span>-&gt;confirmationAttribute], <span class="php-quote">'number'</span>, <span class="php-quote">'integerOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'min'</span> =&gt; <span class="php-num">0</span>],
-</span><span id="246" class="l"><a href="#246">246 </a>            [[<span class="php-var">$this</span>-&gt;confirmTimeAttribute], <span class="php-quote">'safe'</span>],
-</span><span id="247" class="l"><a href="#247">247 </a>        ];
-</span><span id="248" class="l"><a href="#248">248 </a>    }
-</span><span id="249" class="l"><a href="#249">249 </a>
-</span><span id="250" class="l"><a href="#250">250 </a>    <span class="php-comment">/**
-</span></span><span id="251" class="l"><a href="#251">251 </a><span class="php-comment">     * When the content changed, reset confirmation status.
-</span></span><span id="252" class="l"><a href="#252">252 </a><span class="php-comment">     */</span>
-</span><span id="253" class="l"><a href="#253">253 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> resetConfirmation()
-</span><span id="254" class="l"><a href="#254">254 </a>    {
-</span><span id="255" class="l"><a href="#255">255 </a>        <span class="php-var">$contentAttribute</span> = <span class="php-var">$this</span>-&gt;contentAttribute;
-</span><span id="256" class="l"><a href="#256">256 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$contentAttribute</span>) {
-</span><span id="257" class="l"><a href="#257">257 </a>            <span class="php-keyword1">return</span>;
-</span><span id="258" class="l"><a href="#258">258 </a>        }
-</span><span id="259" class="l"><a href="#259">259 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_array</span>(<span class="php-var">$contentAttribute</span>)) {
-</span><span id="260" class="l"><a href="#260">260 </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$contentAttribute</span> <span class="php-keyword1">as</span> <span class="php-var">$attribute</span>) {
-</span><span id="261" class="l"><a href="#261">261 </a>                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;isAttributeChanged(<span class="php-var">$attribute</span>)) {
-</span><span id="262" class="l"><a href="#262">262 </a>                    <span class="php-var">$this</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
-</span><span id="263" class="l"><a href="#263">263 </a>                    <span class="php-keyword1">break</span>;
-</span><span id="264" class="l"><a href="#264">264 </a>                }
-</span><span id="265" class="l"><a href="#265">265 </a>            }
-</span><span id="266" class="l"><a href="#266">266 </a>        } <span class="php-keyword1">elseif</span> (<span class="php-var">$this</span>-&gt;isAttributeChanged(<span class="php-var">$contentAttribute</span>)) {
-</span><span id="267" class="l"><a href="#267">267 </a>            <span class="php-var">$this</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
-</span><span id="268" class="l"><a href="#268">268 </a>        }
-</span><span id="269" class="l"><a href="#269">269 </a>    }
-</span><span id="270" class="l"><a href="#270">270 </a>
-</span><span id="271" class="l"><a href="#271">271 </a>    <span class="php-comment">/**
-</span></span><span id="272" class="l"><a href="#272">272 </a><span class="php-comment">     * Reset others' confirmation when the others own the same content.
-</span></span><span id="273" class="l"><a href="#273">273 </a><span class="php-comment">     */</span>
-</span><span id="274" class="l"><a href="#274">274 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> resetOthersConfirmation()
-</span><span id="275" class="l"><a href="#275">275 </a>    {
-</span><span id="276" class="l"><a href="#276">276 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;confirmationAttribute || <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;userClass)) {
-</span><span id="277" class="l"><a href="#277">277 </a>            <span class="php-keyword1">return</span>;
-</span><span id="278" class="l"><a href="#278">278 </a>        }
-</span><span id="279" class="l"><a href="#279">279 </a>        <span class="php-var">$contents</span> = self::find()
-</span><span id="280" class="l"><a href="#280">280 </a>                -&gt;where([<span class="php-var">$this</span>-&gt;contentAttribute =&gt; <span class="php-var">$this</span>-&gt;content])
-</span><span id="281" class="l"><a href="#281">281 </a>                -&gt;andWhere([<span class="php-quote">'not'</span>, <span class="php-var">$this</span>-&gt;createdByAttribute, <span class="php-var">$this</span>-&gt;creator])
-</span><span id="282" class="l"><a href="#282">282 </a>                -&gt;all();
-</span><span id="283" class="l"><a href="#283">283 </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$contents</span> <span class="php-keyword1">as</span> <span class="php-var">$content</span>) {
-</span><span id="284" class="l"><a href="#284">284 </a>            <span class="php-var">$content</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
-</span><span id="285" class="l"><a href="#285">285 </a>            <span class="php-var">$content</span>-&gt;save();
-</span><span id="286" class="l"><a href="#286">286 </a>        }
-</span><span id="287" class="l"><a href="#287">287 </a>    }
-</span><span id="288" class="l"><a href="#288">288 </a>}
-</span><span id="289" class="l"><a href="#289">289 </a></span></code></pre>
+</span></span><span id="236" class="l"><a href="#236">236 </a><span class="php-comment">     * Get rules associated with confirmation attributes.
+</span></span><span id="237" class="l"><a href="#237">237 </a><span class="php-comment">     * if not enable confirmation feature, it will return empty array.
+</span></span><span id="238" class="l"><a href="#238">238 </a><span class="php-comment">     * @return array
+</span></span><span id="239" class="l"><a href="#239">239 </a><span class="php-comment">     */</span>
+</span><span id="240" class="l"><a href="#240">240 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getConfirmationRules()
+</span><span id="241" class="l"><a href="#241">241 </a>    {
+</span><span id="242" class="l"><a href="#242">242 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;confirmationAttribute) {
+</span><span id="243" class="l"><a href="#243">243 </a>            <span class="php-keyword1">return</span> [];
+</span><span id="244" class="l"><a href="#244">244 </a>        }
+</span><span id="245" class="l"><a href="#245">245 </a>        <span class="php-keyword1">return</span> [
+</span><span id="246" class="l"><a href="#246">246 </a>            [[<span class="php-var">$this</span>-&gt;confirmationAttribute], <span class="php-quote">'number'</span>, <span class="php-quote">'integerOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'min'</span> =&gt; <span class="php-num">0</span>],
+</span><span id="247" class="l"><a href="#247">247 </a>            [[<span class="php-var">$this</span>-&gt;confirmTimeAttribute], <span class="php-quote">'safe'</span>],
+</span><span id="248" class="l"><a href="#248">248 </a>        ];
+</span><span id="249" class="l"><a href="#249">249 </a>    }
+</span><span id="250" class="l"><a href="#250">250 </a>
+</span><span id="251" class="l"><a href="#251">251 </a>    <span class="php-comment">/**
+</span></span><span id="252" class="l"><a href="#252">252 </a><span class="php-comment">     * When the content changed, reset confirmation status.
+</span></span><span id="253" class="l"><a href="#253">253 </a><span class="php-comment">     */</span>
+</span><span id="254" class="l"><a href="#254">254 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> resetConfirmation()
+</span><span id="255" class="l"><a href="#255">255 </a>    {
+</span><span id="256" class="l"><a href="#256">256 </a>        <span class="php-var">$contentAttribute</span> = <span class="php-var">$this</span>-&gt;contentAttribute;
+</span><span id="257" class="l"><a href="#257">257 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$contentAttribute</span>) {
+</span><span id="258" class="l"><a href="#258">258 </a>            <span class="php-keyword1">return</span>;
+</span><span id="259" class="l"><a href="#259">259 </a>        }
+</span><span id="260" class="l"><a href="#260">260 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_array</span>(<span class="php-var">$contentAttribute</span>)) {
+</span><span id="261" class="l"><a href="#261">261 </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$contentAttribute</span> <span class="php-keyword1">as</span> <span class="php-var">$attribute</span>) {
+</span><span id="262" class="l"><a href="#262">262 </a>                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;isAttributeChanged(<span class="php-var">$attribute</span>)) {
+</span><span id="263" class="l"><a href="#263">263 </a>                    <span class="php-var">$this</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
+</span><span id="264" class="l"><a href="#264">264 </a>                    <span class="php-keyword1">break</span>;
+</span><span id="265" class="l"><a href="#265">265 </a>                }
+</span><span id="266" class="l"><a href="#266">266 </a>            }
+</span><span id="267" class="l"><a href="#267">267 </a>        } <span class="php-keyword1">elseif</span> (<span class="php-var">$this</span>-&gt;isAttributeChanged(<span class="php-var">$contentAttribute</span>)) {
+</span><span id="268" class="l"><a href="#268">268 </a>            <span class="php-var">$this</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
+</span><span id="269" class="l"><a href="#269">269 </a>        }
+</span><span id="270" class="l"><a href="#270">270 </a>    }
+</span><span id="271" class="l"><a href="#271">271 </a>
+</span><span id="272" class="l"><a href="#272">272 </a>    <span class="php-comment">/**
+</span></span><span id="273" class="l"><a href="#273">273 </a><span class="php-comment">     * Reset others' confirmation when the others own the same content.
+</span></span><span id="274" class="l"><a href="#274">274 </a><span class="php-comment">     */</span>
+</span><span id="275" class="l"><a href="#275">275 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> resetOthersConfirmation()
+</span><span id="276" class="l"><a href="#276">276 </a>    {
+</span><span id="277" class="l"><a href="#277">277 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;confirmationAttribute || <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;userClass)) {
+</span><span id="278" class="l"><a href="#278">278 </a>            <span class="php-keyword1">return</span>;
+</span><span id="279" class="l"><a href="#279">279 </a>        }
+</span><span id="280" class="l"><a href="#280">280 </a>        <span class="php-var">$contents</span> = self::find()
+</span><span id="281" class="l"><a href="#281">281 </a>            -&gt;where([<span class="php-var">$this</span>-&gt;contentAttribute =&gt; <span class="php-var">$this</span>-&gt;content])
+</span><span id="282" class="l"><a href="#282">282 </a>            -&gt;andWhere([<span class="php-quote">'not'</span>, <span class="php-var">$this</span>-&gt;createdByAttribute, <span class="php-var">$this</span>-&gt;creator])
+</span><span id="283" class="l"><a href="#283">283 </a>            -&gt;all();
+</span><span id="284" class="l"><a href="#284">284 </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$contents</span> <span class="php-keyword1">as</span> <span class="php-var">$content</span>) {
+</span><span id="285" class="l"><a href="#285">285 </a>            <span class="php-var">$content</span>-&gt;confirmation = self::<span class="php-var">$confirmFalse</span>;
+</span><span id="286" class="l"><a href="#286">286 </a>            <span class="php-var">$content</span>-&gt;save();
+</span><span id="287" class="l"><a href="#287">287 </a>        }
+</span><span id="288" class="l"><a href="#288">288 </a>    }
+</span><span id="289" class="l"><a href="#289">289 </a>}
+</span><span id="290" class="l"><a href="#290">290 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

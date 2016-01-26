@@ -159,7 +159,7 @@ trait UserRelationTrait
         return is_string($this->remarkAttribute) ? [
             [[$this->remarkAttribute], 'string'],
             [[$this->remarkAttribute], 'default', 'value' => ''],
-                ] : [];
+            ] : [];
     }
 
     /**
@@ -171,7 +171,7 @@ trait UserRelationTrait
         return is_string($this->favoriteAttribute) ? [
             [[$this->favoriteAttribute], 'boolean'],
             [[$this->favoriteAttribute], 'default', 'value' => 0],
-                ] : [];
+            ] : [];
     }
 
     /**

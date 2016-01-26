@@ -80,13 +80,13 @@ trait IDTrait
 
     /**
      * Set id.
-     * @param string|integer $id
+     * @param string|integer $identity
      * @return string|integer
      */
-    public function setId($id)
+    public function setId($identity)
     {
         $idAttribute = $this->idAttribute;
-        return is_string($idAttribute) ? $this->$idAttribute = $id : null;
+        return is_string($idAttribute) ? $this->$idAttribute = $identity : null;
     }
 
     /**
@@ -118,8 +118,8 @@ trait IDTrait
             return;
         }
         if (is_string($sender->idAttribute) &&
-                is_int($sender->idAttributeLength) &&
-                $sender->idAttributeLength > 0) {
+            is_int($sender->idAttributeLength) &&
+            $sender->idAttributeLength > 0) {
             $idAttribute = $sender->idAttribute;
             $sender->$idAttribute = $sender->generateId();
         }
@@ -140,10 +140,7 @@ trait IDTrait
         }
         if ($this->idAttributeType == self::$idTypeString) {
             return $this->idAttributePrefix .
-                    Yii::$app->security->generateRandomString(
-                            $this->idAttributeLength - strlen($this->idAttributePrefix
-                            )
-            );
+                Yii::$app->security->generateRandomString($this->idAttributeLength - strlen($this->idAttributePrefix));
         }
         if ($this->idAttributeType == self::$idTypeAutoIncrement) {
             return null;
@@ -152,16 +149,16 @@ trait IDTrait
     }
 
     /**
-     * Check if $id existed.
-     * @param mixed $id
+     * Check if $identity existed.
+     * @param mixed $identity
      * @return boolean
      */
-    public function checkIdExists($id)
+    public function checkIdExists($identity)
     {
-        if ($id == null) {
+        if ($identity == null) {
             return false;
         }
-        return (static::findOne([$this->idAttribute => $id]) !== null);
+        return (static::findOne([$this->idAttribute => $identity]) !== null);
     }
 
     /**
@@ -179,8 +176,8 @@ trait IDTrait
             ];
         }
         if (is_string($this->idAttribute) &&
-                is_int($this->idAttributeLength) &&
-                $this->idAttributeLength > 0) {
+            is_int($this->idAttributeLength) &&
+            $this->idAttributeLength > 0) {
             $rules = [
                 [[$this->idAttribute], 'required'],
                 [[$this->idAttribute], 'unique'],

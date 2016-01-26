@@ -132,7 +132,38 @@ This class does not apply to the basic template, otherwise you know consequenses
 <tr>
 	<td class="name"><a href="class-vistart.Models.components.SSOIdentity.html">SSOIdentity</a></td>
 	<td><p>Description of SSOIdentity
-This component needs MultipleDomainsManager component.</p></td>
+This component needs MultipleDomainsManager component.
+Usage:
+config/web.php (basic template) or config/main.php (advanced template):</p>
+
+<pre><span class="php-var">$config</span> = [
+    ...
+    <span class="php-quote">'components'</span> =&gt; [
+        ...
+        <span class="php-quote">'multipleDomainsManager'</span> =&gt; [
+             <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;,
+        ],
+        <span class="php-quote">'user'</span> =&gt; [
+            <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'vistart\Models\components\SSOIdentity'</span>,
+            <span class="php-quote">'enableAutoLogin'</span> =&gt; <span class="php-keyword1">true</span>,
+            <span class="php-quote">'identityClass'</span> =&gt; &lt;User Identity <span class="php-keyword1">Class</span>&gt;,
+            <span class="php-quote">'identityCookie'</span> =&gt; [
+                <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>,
+                <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>,
+                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property.</span>
+            ],
+        ],
+        <span class="php-quote">'session'</span> =&gt; [
+            ...
+            <span class="php-quote">'cookieParams'</span> =&gt; [
+                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property.</span>
+                <span class="php-quote">'lifetime'</span> =&gt; <span class="php-num">0</span>,
+            ],
+            ...
+        ],
+        ...
+    ],
+];</pre></td>
 </tr>
 	</table>
 </div>

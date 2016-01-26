@@ -119,9 +119,8 @@
 
 	<div class="description">
 	<p>Description of SSOIdentity
-This component needs MultipleDomainsManager component.</p>
-
-<p>Usage:
+This component needs MultipleDomainsManager component.
+Usage:
 config/web.php (basic template) or config/main.php (advanced template):</p>
 
 <pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;, ], <span class="php-quote">'user'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'vistart\Models\components\SSOIdentity'</span>, <span class="php-quote">'enableAutoLogin'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'identityClass'</span> =&gt; &lt;User Identity <span class="php-keyword1">Class</span>&gt;, <span class="php-quote">'identityCookie'</span> =&gt; [ <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>, <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property. ], ], 'session' =&gt; [ ... 'cookieParams' =&gt; [ 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multiple Domains Manager's `baseDomain` property. 'lifetime' =&gt; 0, ], ... ], ... ],</span>
@@ -159,7 +158,7 @@ yii\web\User
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Since:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.components.SSOIdentity.html#17-79" title="Go to source code">components/SSOIdentity.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.components.SSOIdentity.html#17-77" title="Go to source code">components/SSOIdentity.php</a>
 		<br>
 	</div>
 
@@ -179,7 +178,7 @@ yii\web\User
 
 			<td class="name"><div>
 			<a class="anchor" href="#_loginRequired">#</a>
-			<code><a href="source-class-vistart.Models.components.SSOIdentity.html#63-78" title="Go to source code">loginRequired</a>( <span> <var>$checkAjax</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-vistart.Models.components.SSOIdentity.html#61-76" title="Go to source code">loginRequired</a>( <span> <var>$checkAjax</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				
@@ -220,7 +219,7 @@ yii\web\User
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.components.SSOIdentity.html#60" title="Go to source code"><var>$ssoDomain</var></a>
+					<a href="source-class-vistart.Models.components.SSOIdentity.html#58" title="Go to source code"><var>$ssoDomain</var></a>
 
 				<div class="description short">
 					
@@ -245,7 +244,7 @@ yii\web\User
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.components.SSOIdentity.html#61" title="Go to source code"><var>$loginUrl</var></a>
+					<a href="source-class-vistart.Models.components.SSOIdentity.html#59" title="Go to source code"><var>$loginUrl</var></a>
 
 				<div class="description short">
 					

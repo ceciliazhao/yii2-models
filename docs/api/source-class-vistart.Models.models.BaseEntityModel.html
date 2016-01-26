@@ -208,7 +208,7 @@
 </span><span id="52" class="l"><a href="#52">52 </a>    {
 </span><span id="53" class="l"><a href="#53">53 </a>        <span class="php-keyword1">if</span> (YII_ENV !== YII_ENV_PROD || YII_DEBUG) {
 </span><span id="54" class="l"><a href="#54">54 </a>            <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;idAttribute) &amp;&amp; <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;idAttribute) &amp;&amp;
-</span><span id="55" class="l"><a href="#55">55 </a>                    !<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;guidAttribute) &amp;&amp; <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;guidAttribute)) {
+</span><span id="55" class="l"><a href="#55">55 </a>                !<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;guidAttribute) &amp;&amp; <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;guidAttribute)) {
 </span><span id="56" class="l"><a href="#56">56 </a>                <span class="php-var">$errorInfo</span> = <span class="php-quote">'ID and GUID attributes are not be disabled simultaneously in relational database.'</span>;
 </span><span id="57" class="l"><a href="#57">57 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\base\NotSupportedException(<span class="php-var">$errorInfo</span>);
 </span><span id="58" class="l"><a href="#58">58 </a>            }

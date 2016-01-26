@@ -50,7 +50,7 @@ trait GUIDTrait
         $sender = $event->sender;
         $guidAttribute = $sender->guidAttribute;
         if (is_string($guidAttribute)) {
-            $sender->$guidAttribute = static::GenerateGuid();
+            $sender->$guidAttribute = static::generateGuid();
         }
     }
 
@@ -59,7 +59,7 @@ trait GUIDTrait
      * table, if existed, it will regenerate one.
      * @return string the generated GUID.
      */
-    public static function GenerateGuid()
+    public static function generateGuid()
     {
         return Number::guid();
     }
@@ -69,7 +69,7 @@ trait GUIDTrait
      * @param string $guid the GUID to be checked.
      * @return boolean Whether the $guid exists or not.
      */
-    public static function CheckGuidExists($guid)
+    public static function checkGuidExists($guid)
     {
         return (self::findOne($guid) !== null);
     }
@@ -92,7 +92,7 @@ trait GUIDTrait
     }
 
     /**
-     * 
+     * Get guid, in spite of guid attribute name.
      * @return string
      */
     public function getGuid()
@@ -102,7 +102,7 @@ trait GUIDTrait
     }
 
     /**
-     * 
+     * Set guid, in spite of guid attribute name.
      * @param string $guid
      * @return string
      */

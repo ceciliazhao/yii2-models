@@ -112,9 +112,9 @@ class BaseUserModelTest extends TestCase
     public function testIP()
     {
         $ipAddress = '::1';
-        $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
+        $user = new User(['enableIP' => User::$ipAll, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
-        $this->assertEquals(User::$ip_all, $user->enableIP);
+        $this->assertEquals(User::$ipAll, $user->enableIP);
         $this->assertEquals($ipAddress, $user->ipAddress);
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv6, $user->$ipTypeAttribute);
@@ -133,9 +133,9 @@ class BaseUserModelTest extends TestCase
         $this->assertTrue($user->deregister());
 
         $ipAddress = '127.0.0.1';
-        $user = new User(['enableIP' => User::$ip_all, 'ipAddress' => $ipAddress]);
+        $user = new User(['enableIP' => User::$ipAll, 'ipAddress' => $ipAddress]);
         $this->assertTrue($user->register());
-        $this->assertEquals(User::$ip_all, $user->enableIP);
+        $this->assertEquals(User::$ipAll, $user->enableIP);
         $this->assertEquals($ipAddress, $user->ipAddress);
         $ipTypeAttribute = $user->ipTypeAttribute;
         $this->assertEquals(Ip::IPv4, $user->$ipTypeAttribute);

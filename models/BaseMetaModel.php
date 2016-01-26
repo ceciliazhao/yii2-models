@@ -58,7 +58,7 @@ abstract class BaseMetaModel extends BaseBlameableModel
     }
 
     /**
-     * 
+     * Initialize blame's guid.
      * @param \yii\base\Event $event
      * @throws \yii\base\InvalidConfigException
      */

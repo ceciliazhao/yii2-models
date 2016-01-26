@@ -64,7 +64,7 @@ trait ConfirmationTrait
     public $confirmTimeAttribute = 'confirm_time';
 
     /**
-     * @var string 
+     * @var string initialization confirm time.
      */
     public $initConfirmTime = '1970-01-01 00:00:00';
     public static $eventConfirmationChanged = "confirmationChanged";
@@ -88,7 +88,7 @@ trait ConfirmationTrait
     }
 
     /**
-     * 
+     * Set confirm code.
      * @param string $code
      */
     public function setConfirmCode($code)
@@ -170,7 +170,7 @@ trait ConfirmationTrait
      * Initialize the confirmation status.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      */
     public function onInitConfirmation($event)
     {
@@ -212,7 +212,7 @@ trait ConfirmationTrait
      * or the confirm_time will be assigned to initConfirmTime.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      */
     public function onConfirmationChanged($event)
     {
@@ -233,7 +233,8 @@ trait ConfirmationTrait
     }
 
     /**
-     * 
+     * Get rules associated with confirmation attributes.
+     * if not enable confirmation feature, it will return empty array.
      * @return array
      */
     public function getConfirmationRules()
@@ -277,9 +278,9 @@ trait ConfirmationTrait
             return;
         }
         $contents = self::find()
-                ->where([$this->contentAttribute => $this->content])
-                ->andWhere(['not', $this->createdByAttribute, $this->creator])
-                ->all();
+            ->where([$this->contentAttribute => $this->content])
+            ->andWhere(['not', $this->createdByAttribute, $this->creator])
+            ->all();
         foreach ($contents as $content) {
             $content->confirmation = self::$confirmFalse;
             $content->save();

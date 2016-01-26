@@ -192,7 +192,7 @@
 </span><span id="36" class="l"><a href="#36"> 36 </a>    <span class="php-comment">/**
 </span></span><span id="37" class="l"><a href="#37"> 37 </a><span class="php-comment">     * @var integer Disable IP address features.
 </span></span><span id="38" class="l"><a href="#38"> 38 </a><span class="php-comment">     */</span>
-</span><span id="39" class="l"><a href="#39"> 39 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$no_ip</span> = <span class="php-num">0x0</span>;
+</span><span id="39" class="l"><a href="#39"> 39 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$noIp</span> = <span class="php-num">0x0</span>;
 </span><span id="40" class="l"><a href="#40"> 40 </a>
 </span><span id="41" class="l"><a href="#41"> 41 </a>    <span class="php-comment">/**
 </span></span><span id="42" class="l"><a href="#42"> 42 </a><span class="php-comment">     * @var integer Only accept IPv4 address.
@@ -208,7 +208,7 @@
 </span></span><span id="52" class="l"><a href="#52"> 52 </a><span class="php-comment">     * @var integer Accept IPv4 and IPv6 address. Judge type of IP address
 </span></span><span id="53" class="l"><a href="#53"> 53 </a><span class="php-comment">     * automatically.
 </span></span><span id="54" class="l"><a href="#54"> 54 </a><span class="php-comment">     */</span>
-</span><span id="55" class="l"><a href="#55"> 55 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$ip_all</span> = <span class="php-num">0x3</span>;
+</span><span id="55" class="l"><a href="#55"> 55 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var">$ipAll</span> = <span class="php-num">0x3</span>;
 </span><span id="56" class="l"><a href="#56"> 56 </a>
 </span><span id="57" class="l"><a href="#57"> 57 </a>    <span class="php-comment">/**
 </span></span><span id="58" class="l"><a href="#58"> 58 </a><span class="php-comment">     * @var string The attribute name that will receive the beginning 32 bits of
@@ -236,7 +236,7 @@
 </span><span id="80" class="l"><a href="#80"> 80 </a>
 </span><span id="81" class="l"><a href="#81"> 81 </a>    <span class="php-comment">/**
 </span></span><span id="82" class="l"><a href="#82"> 82 </a><span class="php-comment">     * @var string The attribute name that will receive the type of IP address.
-</span></span><span id="83" class="l"><a href="#83"> 83 </a><span class="php-comment">     * The default value is 'ip_type'. If you assign $enableIP to $ip_all, this
+</span></span><span id="83" class="l"><a href="#83"> 83 </a><span class="php-comment">     * The default value is 'ip_type'. If you assign $enableIP to $ipAll, this
 </span></span><span id="84" class="l"><a href="#84"> 84 </a><span class="php-comment">     * attribute is required.
 </span></span><span id="85" class="l"><a href="#85"> 85 </a><span class="php-comment">     */</span>
 </span><span id="86" class="l"><a href="#86"> 86 </a>    <span class="php-keyword1">public</span> <span class="php-var">$ipTypeAttribute</span> = <span class="php-quote">'ip_type'</span>;
@@ -278,7 +278,7 @@
 </span><span id="122" class="l"><a href="#122">122 </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;enableIP) {
 </span><span id="123" class="l"><a href="#123">123 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
 </span><span id="124" class="l"><a href="#124">124 </a>        }
-</span><span id="125" class="l"><a href="#125">125 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ip_all</span>) {
+</span><span id="125" class="l"><a href="#125">125 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ipAll</span>) {
 </span><span id="126" class="l"><a href="#126">126 </a>            <span class="php-var">$ipTypeAttribute</span> = <span class="php-var">$this</span>-&gt;ipTypeAttribute;
 </span><span id="127" class="l"><a href="#127">127 </a>            <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;<span class="php-var">$ipTypeAttribute</span> == Ip::IPv4) {
 </span><span id="128" class="l"><a href="#128">128 </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getIpv4Address();
@@ -317,10 +317,10 @@
 </span><span id="161" class="l"><a href="#161">161 </a>        <span class="php-var">$ipAttribute3</span> = <span class="php-var">$this</span>-&gt;ipAttribute3;
 </span><span id="162" class="l"><a href="#162">162 </a>        <span class="php-var">$ipAttribute4</span> = <span class="php-var">$this</span>-&gt;ipAttribute4;
 </span><span id="163" class="l"><a href="#163">163 </a>        <span class="php-keyword1">return</span> Ip::LongtoIPv6(Ip::populateIPv6([
-</span><span id="164" class="l"><a href="#164">164 </a>                            <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute1</span>,
-</span><span id="165" class="l"><a href="#165">165 </a>                            <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute2</span>,
-</span><span id="166" class="l"><a href="#166">166 </a>                            <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute3</span>,
-</span><span id="167" class="l"><a href="#167">167 </a>                            <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute4</span>
+</span><span id="164" class="l"><a href="#164">164 </a>                    <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute1</span>,
+</span><span id="165" class="l"><a href="#165">165 </a>                    <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute2</span>,
+</span><span id="166" class="l"><a href="#166">166 </a>                    <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute3</span>,
+</span><span id="167" class="l"><a href="#167">167 </a>                    <span class="php-var">$this</span>-&gt;<span class="php-var">$ipAttribute4</span>
 </span><span id="168" class="l"><a href="#168">168 </a>        ]));
 </span><span id="169" class="l"><a href="#169">169 </a>    }
 </span><span id="170" class="l"><a href="#170">170 </a>
@@ -354,7 +354,7 @@
 </span><span id="198" class="l"><a href="#198">198 </a>        } <span class="php-keyword1">else</span> {
 </span><span id="199" class="l"><a href="#199">199 </a>            <span class="php-keyword1">return</span> <span class="php-num">0</span>;
 </span><span id="200" class="l"><a href="#200">200 </a>        }
-</span><span id="201" class="l"><a href="#201">201 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ip_all</span>) {
+</span><span id="201" class="l"><a href="#201">201 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ipAll</span>) {
 </span><span id="202" class="l"><a href="#202">202 </a>            <span class="php-var">$ipTypeAttribute</span> = <span class="php-var">$this</span>-&gt;ipTypeAttribute;
 </span><span id="203" class="l"><a href="#203">203 </a>            <span class="php-var">$this</span>-&gt;<span class="php-var">$ipTypeAttribute</span> = <span class="php-var">$ipType</span>;
 </span><span id="204" class="l"><a href="#204">204 </a>        }
@@ -371,9 +371,9 @@
 </span><span id="215" class="l"><a href="#215">215 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ipv6</span>) {
 </span><span id="216" class="l"><a href="#216">216 </a>            <span class="php-var">$rules</span> = [
 </span><span id="217" class="l"><a href="#217">217 </a>                [[<span class="php-var">$this</span>-&gt;ipAttribute1,
-</span><span id="218" class="l"><a href="#218">218 </a>                <span class="php-var">$this</span>-&gt;ipAttribute2,
-</span><span id="219" class="l"><a href="#219">219 </a>                <span class="php-var">$this</span>-&gt;ipAttribute3,
-</span><span id="220" class="l"><a href="#220">220 </a>                <span class="php-var">$this</span>-&gt;ipAttribute4],
+</span><span id="218" class="l"><a href="#218">218 </a>                    <span class="php-var">$this</span>-&gt;ipAttribute2,
+</span><span id="219" class="l"><a href="#219">219 </a>                    <span class="php-var">$this</span>-&gt;ipAttribute3,
+</span><span id="220" class="l"><a href="#220">220 </a>                    <span class="php-var">$this</span>-&gt;ipAttribute4],
 </span><span id="221" class="l"><a href="#221">221 </a>                    <span class="php-quote">'number'</span>, <span class="php-quote">'integerOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'min'</span> =&gt; <span class="php-num">0</span>
 </span><span id="222" class="l"><a href="#222">222 </a>                ],
 </span><span id="223" class="l"><a href="#223">223 </a>            ];
@@ -385,7 +385,7 @@
 </span><span id="229" class="l"><a href="#229">229 </a>                ],
 </span><span id="230" class="l"><a href="#230">230 </a>            ];
 </span><span id="231" class="l"><a href="#231">231 </a>        }
-</span><span id="232" class="l"><a href="#232">232 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ip_all</span>) {
+</span><span id="232" class="l"><a href="#232">232 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;enableIP &amp; <span class="php-keyword1">static</span>::<span class="php-var">$ipAll</span>) {
 </span><span id="233" class="l"><a href="#233">233 </a>            <span class="php-var">$rules</span>[] = [
 </span><span id="234" class="l"><a href="#234">234 </a>                [<span class="php-var">$this</span>-&gt;ipTypeAttribute], <span class="php-quote">'in'</span>, <span class="php-quote">'range'</span> =&gt; [Ip::IPv4, Ip::IPv6],
 </span><span id="235" class="l"><a href="#235">235 </a>            ];

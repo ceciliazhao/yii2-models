@@ -13,7 +13,14 @@
 namespace vistart\Models\traits;
 
 /**
- * Description of BlameableQueryTrait
+ * This trait is used for building blameable query class for blameable model,
+ * which would be attached three conditions.
+ * For example:
+ * ```php
+ * class BlameableQuery {
+ *     use BlameableQueryTrait;
+ * }
+ * ```
  *
  * @version 2.0
  * @author vistart <i@vistart.name>

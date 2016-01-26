@@ -13,7 +13,7 @@
 namespace vistart\Models\traits;
 
 /**
- * Description of QueryTrait
+ * This trait attach two base condition.
  *
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -22,7 +22,7 @@ trait QueryTrait
 {
 
     /**
-     * 
+     * Attach like condition.
      * @param mixed $value
      * @param string $attribute
      * @param string|false $like
@@ -40,12 +40,12 @@ trait QueryTrait
     }
 
     /**
-     * Specify range.
+     * Specify range wilth $attribute to $query.
      * @param \yii\db\ActiveQuery $query
      * @param string $attribute
      * @param string $start
      * @param string $end
-     * @return $this
+     * @return $query
      */
     protected static function range($query, $attribute, $start = null, $end = null)
     {

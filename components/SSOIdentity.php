@@ -17,7 +17,6 @@ use Yii;
 /**
  * Description of SSOIdentity
  * This component needs MultipleDomainsManager component.
- * 
  * Usage:
  * config/web.php (basic template) or config/main.php (advanced template):
  * ```php
@@ -49,7 +48,6 @@ use Yii;
  *         ...
  *     ],
  * ];
- * 
  * ```
  * @since 2.0
  * @author vistart <i@vistart.name>
