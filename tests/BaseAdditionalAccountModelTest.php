@@ -27,11 +27,13 @@ class BaseAdditionalAccountModelTest extends TestCase
     {
         $user = new User(['password' => '123456']);
         $aa = $this->prepareModel($user);
+        $content = $aa->content;
         $user->register([$aa]);
+        $this->assertEquals($content, $user->additionalAccounts[0]->content);
         return $user;
     }
 
-    private function prepareModel($user, $config = ['content' => 'self'])
+    private function prepareModel($user, $config = ['content' => 0])
     {
         $aa = $user->create(AdditionalAccount::className(), $config);
         return $aa;
@@ -40,7 +42,7 @@ class BaseAdditionalAccountModelTest extends TestCase
     public function testInit()
     {
         $user = new User(['password' => '123456']);
-        $aa = $user->create(AdditionalAccount::className(), ['content' => 'self']);
+        $aa = $user->create(AdditionalAccount::className(), ['content' => 0]);
         $result = $user->register([$aa]);
         if ($result === true) {
             $this->assertTrue($result);
@@ -71,7 +73,7 @@ class BaseAdditionalAccountModelTest extends TestCase
         $user = $this->prepareUser();
         $aa = $user->additionalAccounts[0];
         $aa->delete();
-        $aa = $this->prepareModel($user, ['content' => 'self', 'independentPassword' => true]);
+        $aa = $this->prepareModel($user, ['content' => 0, 'independentPassword' => true]);
         $this->assertTrue($aa->save());
         $aa->passwordHashAttribute = 'pass_hash';
         $aa->password = '123456';

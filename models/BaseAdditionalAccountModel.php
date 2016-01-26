@@ -25,7 +25,8 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel
 
     public $idAttributeLength = 8;
     public $updatedByAttribute = false;
-    public $contentAttribute = 'content'; // 账户名称
+    public $contentAttribute = 'content'; // 账户类型，具体类型请自定义。
+    public $contentAttributeRule = ['integer', 'min' => 0];
     public $contentTypeAttribute = 'source';  // 账户来源
     public $contentTypes = [
         0 => 'self',
