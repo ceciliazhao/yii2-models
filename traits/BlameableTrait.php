@@ -264,15 +264,15 @@ trait BlameableTrait
         // 父类规则与确认规则合并。
         if ($cache) {
             TagDependency::invalidate($cache,
-            [$this->getEntityRulesCacheTag()]);
+                [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-        parent::rules(),
-        $this->getConfirmationRules(),
-        $this->getBlameableAttributeRules(),
-        $this->getDescriptionRules(),
-        $this->getContentRules(),
-        $this->getSelfBlameableRules()
+            parent::rules(),
+            $this->getConfirmationRules(),
+            $this->getBlameableAttributeRules(),
+            $this->getDescriptionRules(),
+            $this->getContentRules(),
+            $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
@@ -291,20 +291,24 @@ trait BlameableTrait
             throw new \yii\base\NotSupportedException('You must assign the creator.');
         }
         $rules[] = [
-            [$this->createdByAttribute], 'safe',
+            [$this->createdByAttribute],
+            'safe',
         ];
 
         if (is_string($this->updatedByAttribute) && !empty($this->updatedByAttribute)) {
             $rules[] = [
-                [$this->updatedByAttribute], 'safe',
+                [$this->updatedByAttribute],
+                'safe',
             ];
         }
 
         if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
             $rules [] = [
-                [$this->idAttribute, $this->createdByAttribute],
+                [$this->idAttribute,
+                    $this->createdByAttribute],
                 'unique',
-                'targetAttribute' => [$this->idAttribute, $this->createdByAttribute],
+                'targetAttribute' => [$this->idAttribute,
+                    $this->createdByAttribute],
             ];
         }
         return $rules;
@@ -319,10 +323,13 @@ trait BlameableTrait
         $rules = [];
         if (is_string($this->descriptionAttribute) && !empty($this->descriptionAttribute)) {
             $rules[] = [
-                [$this->descriptionAttribute], 'string'
+                [$this->descriptionAttribute],
+                'string'
             ];
             $rules[] = [
-                [$this->descriptionAttribute], 'default', 'value' => $this->initDescription,
+                [$this->descriptionAttribute],
+                'default',
+                'value' => $this->initDescription,
             ];
         }
         return $rules;
@@ -338,14 +345,16 @@ trait BlameableTrait
             return [];
         }
         $rules = [];
-        $rules[] = [[$this->contentAttribute], 'required'];
+        $rules[] = [[
+            $this->contentAttribute],
+            'required'];
         if ($this->contentAttributeRule) {
             if (is_string($this->contentAttributeRule)) {
                 $this->contentAttributeRule = [$this->contentAttributeRule];
             }
             if (is_array($this->contentAttributeRule)) {
                 $rules[] = array_merge([$this->contentAttribute],
-                $this->contentAttributeRule);
+                    $this->contentAttributeRule);
             }
         }
 
@@ -354,8 +363,13 @@ trait BlameableTrait
         }
 
         if (is_array($this->contentTypes) && !empty($this->contentTypes)) {
-            $rules[] = [[$this->contentTypeAttribute], 'required'];
-            $rules[] = [[$this->contentTypeAttribute], 'in', 'range' => array_keys($this->contentTypes)];
+            $rules[] = [[
+                $this->contentTypeAttribute],
+                'required'];
+            $rules[] = [[
+                $this->contentTypeAttribute],
+                'in',
+                'range' => array_keys($this->contentTypes)];
         }
         return $rules;
     }
@@ -371,9 +385,9 @@ trait BlameableTrait
         if ($cache) {
             $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->getBlameableRulesCacheTag()]]);
             $cache->set($this->getBlameableRulesCacheKey(),
-            $rules,
-            0,
-            $tagDependency);
+                $rules,
+                0,
+                $tagDependency);
         }
     }
 
@@ -409,14 +423,15 @@ trait BlameableTrait
         if (empty($this->blameableLocalBehaviors) || !is_array($this->blameableLocalBehaviors)) {
             if ($cache) {
                 TagDependency::invalidate($cache,
-                [$this->getEntityBehaviorsCacheTag()]);
+                    [$this->getEntityBehaviorsCacheTag()]);
             }
             $behaviors = parent::behaviors();
             $behaviors['blameable'] = [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => $this->createdByAttribute,
                 'updatedByAttribute' => $this->updatedByAttribute,
-                'value' => [$this, 'onGetCurrentUserGuid'],
+                'value' => [$this,
+                    'onGetCurrentUserGuid'],
             ];
             $this->setBlameableBehaviors($behaviors);
         }
@@ -435,9 +450,9 @@ trait BlameableTrait
             $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];
             $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
             $cache->set($this->getBlameableBehaviorsCacheKey(),
-            $behaviors,
-            0,
-            $tagDependency);
+                $behaviors,
+                0,
+                $tagDependency);
         }
     }
 
@@ -490,8 +505,8 @@ trait BlameableTrait
         }
         $identity = \Yii::$app->user->identity;
         if ($identity) {
-            $identityGuidAttribute = $identity->guidAttribute;
-            return $identity->$identityGuidAttribute;
+            $igAttribute = $identity->guidAttribute;
+            return $identity->$igAttribute;
         }
     }
 
@@ -508,8 +523,8 @@ trait BlameableTrait
         }
         $contentTypeAttribute = $sender->contentTypeAttribute;
         if (!isset($sender->$contentTypeAttribute) &&
-        !empty($sender->contentTypes) &&
-        is_array($sender->contentTypes)) {
+            !empty($sender->contentTypes) &&
+            is_array($sender->contentTypes)) {
             $sender->$contentTypeAttribute = $sender->contentTypes[0];
         }
     }
@@ -536,21 +551,26 @@ trait BlameableTrait
     public function initBlameableEvents()
     {
         $this->on(static::$eventConfirmationChanged,
-        [$this, "onConfirmationChanged"]);
+            [$this,
+            "onConfirmationChanged"]);
         $this->on(static::$eventNewRecordCreated,
-        [$this, "onInitConfirmation"]);
+            [$this,
+            "onInitConfirmation"]);
         $contentTypeAttribute = $this->contentTypeAttribute;
         if (!isset($this->$contentTypeAttribute)) {
             $this->on(static::$eventNewRecordCreated,
-            [$this, "onInitContentType"]);
+                [$this,
+                "onInitContentType"]);
         }
         $descriptionAttribute = $this->descriptionAttribute;
         if (!isset($this->$descriptionAttribute)) {
             $this->on(static::$eventNewRecordCreated,
-            [$this, 'onInitDescription']);
+                [$this,
+                'onInitDescription']);
         }
         $this->on(static::EVENT_BEFORE_UPDATE,
-        [$this, "onContentChanged"]);
+            [$this,
+            "onContentChanged"]);
         $this->initSelfBlameableEvents();
     }
 }
