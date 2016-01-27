@@ -28,6 +28,16 @@ or add
 
 to the require section of your `composer.json` file.
 
+If you want to use Redis or MongoDB ActiveRecord, plaase add
+```
+"yiisoft/yii2-redis": "*"
+```
+or
+```
+"yiisoft/yii2-mongodb": "*"
+```
+to the require section of your `composer.json` file by yourself.
+
 
 Usage
 -----

@@ -86,7 +86,7 @@ class MultipleDomainsManager extends \yii\base\Component
      *             'baseDomain' => 'example.com',
      *             'subDomains' => [
      *                 'my' => [
-     *                     'component' => require(<the path of 'my' web application UrlManager component configuration file>),
+     *                     'component' => require(<the path of 'my' web application UrlManager config file>),
      *                 ],
      *                 ...
      *             ],

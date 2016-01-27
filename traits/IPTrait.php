@@ -26,7 +26,7 @@ trait IPTrait
 {
 
     /**
-     * @var integer REQUIRED. Determine whether enabling the IP attributes and 
+     * @var integer REQUIRED. Determine whether enabling the IP attributes and
      * features, and IP address type if enabled.
      * @since 1.1
      * @version 2.0

@@ -340,7 +340,7 @@ For example:</p>
             <span class="php-quote">'baseDomain'</span> =&gt; <span class="php-quote">'example.com'</span>,
             <span class="php-quote">'subDomains'</span> =&gt; [
                 <span class="php-quote">'my'</span> =&gt; [
-                    <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager component configuration <span class="php-keyword2">file</span>&gt;),
+                    <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager config <span class="php-keyword2">file</span>&gt;),
                 ],
                 ...
             ],
@@ -362,7 +362,7 @@ For example:</p>
 <p>and you can configure the <code>config/web.php</code> (basic template) or <code>config/main.php</code> (advanced template)
 <code>components</code> section to add an element named <code>multipleDomainsManager</code>:</p>
 
-<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; <span class="php-quote">'example.com'</span>, <span class="php-quote">'subDomains'</span> =&gt; [ <span class="php-quote">'my'</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager component configuration <span class="php-keyword2">file</span>&gt;), ], ... ], ], ... ],
+<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; <span class="php-quote">'example.com'</span>, <span class="php-quote">'subDomains'</span> =&gt; [ <span class="php-quote">'my'</span> =&gt; [ <span class="php-quote">'component'</span> =&gt; <span class="php-keyword1">require</span>(&lt;the path of <span class="php-quote">'my'</span> web application UrlManager config <span class="php-keyword2">file</span>&gt;), ], ... ], ], ... ],
 ];</pre>
 
 				</div>

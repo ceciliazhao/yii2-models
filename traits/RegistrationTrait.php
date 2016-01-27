@@ -63,7 +63,7 @@ trait RegistrationTrait
     public static $sourceSelf = '0';
     
     /**
-     * @var string auth manager component id. 
+     * @var string auth manager component id.
      */
     public $authManagerId = 'authManager';
 
