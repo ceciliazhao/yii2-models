@@ -36,6 +36,18 @@ trait EntityQueryTrait
     }
 
     /**
+     * Specify guid attribute.
+     * @param string|array $guid
+     * @param false|string $like false, 'like', 'or like', 'not like', 'or not like'.
+     * @return $this
+     */
+    public function guid($guid, $like = false)
+    {
+        $model = $this->noInitModel;
+        return $this->likeCondition($guid, $model->guidAttribute, $like);
+    }
+
+    /**
      * Specify id attribute.
      * @param string|integer|array $id
      * @param false|string $like false, 'like', 'or like', 'not like', 'or not like'.
