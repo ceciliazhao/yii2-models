@@ -91,14 +91,14 @@ trait EntityTrait
     }
 
     /**
-     * Get cache component. If cache component is not configured, null will be
-     * given.
+     * Get cache component. If cache component is not configured, Yii::$app->cache
+     * will be given.
      * @return \yii\caching\Cache cache component.
      */
     protected function getCache()
     {
         $cacheId = $this->cacheId;
-        return empty($cacheId) ? null : Yii::$app->$cacheId;
+        return empty($cacheId) ? Yii::$app->cache : Yii::$app->$cacheId;
     }
 
     /**

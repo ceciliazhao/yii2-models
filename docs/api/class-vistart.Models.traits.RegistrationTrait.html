@@ -161,7 +161,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.RegistrationTrait.html#17-181" title="Go to source code">traits/RegistrationTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.RegistrationTrait.html#17-241" title="Go to source code">traits/RegistrationTrait.php</a>
 		<br>
 	</div>
 
@@ -170,6 +170,41 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getAuthManager" id="_getAuthManager">
+
+			<td class="attributes"><code>
+				 public 
+				yii\rbac\BaseManager
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAuthManager">#</a>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#70-79" title="Go to source code">getAuthManager</a>( )</code>
+
+			<div class="description short">
+				<p>Get auth manager. If auth manager not configured, Yii::$app->authManager
+will be given.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get auth manager. If auth manager not configured, Yii::$app->authManager
+will be given.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						yii\rbac\BaseManager
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="register" id="_register">
 
 			<td class="attributes"><code>
@@ -181,7 +216,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_register">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#37-81" title="Go to source code">register</a>( <span>array <var>$associatedModels</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#81-141" title="Go to source code">register</a>( <span>array <var>$associatedModels</var> = []</span>, <span>string|array <var>$authRoles</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Register new user.
@@ -189,6 +224,8 @@ It is equivalent to store the current user and its associated models into
 database synchronously. The registration will be terminated immediately
 if any errors occur in the process, and all the earlier steps succeeded
 are rolled back.
+If auth manager configured, and auth role(s) provided, it(they) will be
+assigned to user after registration.
 If current user is not a new one(isNewRecord = false), the registration
 will be skipped and return false.
 The $eventBeforeRegister will be triggered before registration starts.
@@ -202,6 +239,8 @@ It is equivalent to store the current user and its associated models into
 database synchronously. The registration will be terminated immediately
 if any errors occur in the process, and all the earlier steps succeeded
 are rolled back.
+If auth manager configured, and auth role(s) provided, it(they) will be
+assigned to user after registration.
 If current user is not a new one(isNewRecord = false), the registration
 will be skipped and return false.
 The $eventBeforeRegister will be triggered before registration starts.
@@ -213,6 +252,8 @@ $eventRegisterFailed will be triggered when any errors occured.</p>
 					<div class="list"><dl>
 						<dt><var>$associatedModels</var></dt>
 						<dd>The models associated with user to be stored synchronously.</dd>
+						<dt><var>$authRoles</var></dt>
+						<dd>auth name, auth instance, auth name array or auth instance array.</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -241,7 +282,7 @@ $eventRegisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deregister">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#83-121" title="Go to source code">deregister</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#143-181" title="Go to source code">deregister</a>( )</code>
 
 			<div class="description short">
 				<p>Deregister current user itself.
@@ -294,7 +335,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSource">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#123-131" title="Go to source code">getSource</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#183-191" title="Go to source code">getSource</a>( )</code>
 
 			<div class="description short">
 				<p>Get source.</p>
@@ -327,7 +368,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setSource">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#133-141" title="Go to source code">setSource</a>( <span>string <var>$source</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#193-201" title="Go to source code">setSource</a>( <span>string <var>$source</var></span> )</code>
 
 			<div class="description short">
 				<p>Set source.</p>
@@ -361,7 +402,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getSourceRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#143-156" title="Go to source code">getSourceRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#203-216" title="Go to source code">getSourceRules</a>( )</code>
 
 			<div class="description short">
 				<p>Get the rules associated with source attribute.</p>
@@ -374,7 +415,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						array<br>rules.
 					</div>
 
 
@@ -394,7 +435,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setSourceRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#158-167" title="Go to source code">setSourceRules</a>( <span>array <var>$rules</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#218-227" title="Go to source code">setSourceRules</a>( <span>array <var>$rules</var></span> )</code>
 
 			<div class="description short">
 				<p>Set the rules associated with source attribute.</p>
@@ -428,7 +469,7 @@ $eventDeregisterFailed will be triggered when any errors occured.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitSourceAttribute">#</a>
-			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#169-180" title="Go to source code">onInitSourceAttribute</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.RegistrationTrait.html#229-240" title="Go to source code">onInitSourceAttribute</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize the source attribute with $sourceSelf.
@@ -478,7 +519,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#27" title="Go to source code"><var>$eventAfterRegister</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#27-30" title="Go to source code"><var>$eventAfterRegister</var></a>
 
 				<div class="description short">
 					
@@ -487,6 +528,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered after user is registered successfully.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -503,7 +548,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#28" title="Go to source code"><var>$eventBeforeRegister</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#32-35" title="Go to source code"><var>$eventBeforeRegister</var></a>
 
 				<div class="description short">
 					
@@ -512,6 +557,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered before registration.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -528,7 +577,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#29" title="Go to source code"><var>$eventRegisterFailed</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#37-40" title="Go to source code"><var>$eventRegisterFailed</var></a>
 
 				<div class="description short">
 					
@@ -537,6 +586,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered when registration failed.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -553,7 +606,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#30" title="Go to source code"><var>$eventAfterDeregister</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#42-45" title="Go to source code"><var>$eventAfterDeregister</var></a>
 
 				<div class="description short">
 					
@@ -562,6 +615,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered after user is deregistered successfully.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -578,7 +635,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#31" title="Go to source code"><var>$eventBeforeDeregister</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#47-50" title="Go to source code"><var>$eventBeforeDeregister</var></a>
 
 				<div class="description short">
 					
@@ -587,6 +644,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered before deregistration.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -603,7 +664,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#32" title="Go to source code"><var>$eventDeregisterFailed</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#52-55" title="Go to source code"><var>$eventDeregisterFailed</var></a>
 
 				<div class="description short">
 					
@@ -612,6 +673,10 @@ override or modify it directly, unless you know the consequences.</p>
 				<div class="description detailed hidden">
 					
 
+						<h4>Event</h4>
+						<div class="list">
+								Event an event that is triggered when deregistration failed.<br>
+						</div>
 				</div>
 			</td>
 			<td class="value">
@@ -628,14 +693,16 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#33" title="Go to source code"><var>$sourceAttribute</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#57-61" title="Go to source code"><var>$sourceAttribute</var></a>
 
 				<div class="description short">
-					
+					<p>name of attribute which store the source. if you don't want to
+record source, please assign false.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					
+					<p>name of attribute which store the source. if you don't want to
+record source, please assign false.</p>
 
 				</div>
 			</td>
@@ -653,7 +720,7 @@ override or modify it directly, unless you know the consequences.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#35" title="Go to source code"><var>$sourceSelf</var></a>
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#63" title="Go to source code"><var>$sourceSelf</var></a>
 
 				<div class="description short">
 					
@@ -668,6 +735,31 @@ override or modify it directly, unless you know the consequences.</p>
 				<div>
 					<a href="#$sourceSelf" class="anchor">#</a>
 					<code><span class="php-quote">'0'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="authManagerId" id="$authManagerId">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.RegistrationTrait.html#65-68" title="Go to source code"><var>$authManagerId</var></a>
+
+				<div class="description short">
+					<p>auth manager component id.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>auth manager component id.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$authManagerId" class="anchor">#</a>
+					<code><span class="php-quote">'authManager'</span></code>
 				</div>
 			</td>
 		</tr>

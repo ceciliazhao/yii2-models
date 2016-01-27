@@ -17,6 +17,19 @@ use vistart\Models\traits\AdditionalAccountTrait;
 /**
  * Description of BaseAdditionalAccountModel
  *
+ * Default settings:
+ * - enable GUID.
+ * - enable ID, random string, with 8 characters.
+ * - enable IP, accept all IP address.
+ * - enable createdAtAttribute.
+ * - enable content, and its rule is integer.
+ * - enable confirmation, but confirm code.
+ * - enable description.
+ * the content attribute is used for recording the login-type of account, e.g. ID
+ * , email or any other format.
+ * the content type attribute is used for recording the account source, e.g. register
+ * from self, or any other account provider.
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 abstract class BaseAdditionalAccountModel extends BaseBlameableModel

@@ -24,15 +24,59 @@ use Yii;
 trait RegistrationTrait
 {
 
+    /**
+     * @event Event an event that is triggered after user is registered successfully.
+     */
     public static $eventAfterRegister = "afterRegister";
+    
+    /**
+     * @event Event an event that is triggered before registration.
+     */
     public static $eventBeforeRegister = "beforeRegister";
+    
+    /**
+     * @event Event an event that is triggered when registration failed.
+     */
     public static $eventRegisterFailed = "registerFailed";
+    
+    /**
+     * @event Event an event that is triggered after user is deregistered successfully.
+     */
     public static $eventAfterDeregister = "afterDeregister";
+    
+    /**
+     * @event Event an event that is triggered before deregistration.
+     */
     public static $eventBeforeDeregister = "beforeDeregister";
+    
+    /**
+     * @event Event an event that is triggered when deregistration failed.
+     */
     public static $eventDeregisterFailed = "deregisterFailed";
+    
+    /**
+     * @var string name of attribute which store the source. if you don't want to
+     * record source, please assign false.
+     */
     public $sourceAttribute = 'source';
     private $_sourceRules = [];
     public static $sourceSelf = '0';
+    
+    /**
+     * @var string auth manager component id. 
+     */
+    public $authManagerId = 'authManager';
+
+    /**
+     * Get auth manager. If auth manager not configured, Yii::$app->authManager
+     * will be given.
+     * @return \yii\rbac\BaseManager
+     */
+    public function getAuthManager()
+    {
+        $authManagerId = $this->authManagerId;
+        return empty($authManagerId) ? Yii::$app->authManager : Yii::$app->$authManagerId;
+    }
 
     /**
      * Register new user.
@@ -40,16 +84,19 @@ trait RegistrationTrait
      * database synchronously. The registration will be terminated immediately
      * if any errors occur in the process, and all the earlier steps succeeded
      * are rolled back.
+     * If auth manager configured, and auth role(s) provided, it(they) will be
+     * assigned to user after registration.
      * If current user is not a new one(isNewRecord = false), the registration
      * will be skipped and return false.
      * The $eventBeforeRegister will be triggered before registration starts.
      * If registration finished, the $eventAfterRegister will be triggered. or
      * $eventRegisterFailed will be triggered when any errors occured.
      * @param array $associatedModels The models associated with user to be stored synchronously.
+     * @param string|array $authRoles auth name, auth instance, auth name array or auth instance array.
      * @return boolean Whether the registration succeeds or not.
      * @throws \yii\db\IntegrityException when inserting user and associated models failed.
      */
-    public function register($associatedModels = [])
+    public function register($associatedModels = [], $authRoles = [])
     {
         if (!$this->isNewRecord) {
             return false;
@@ -59,6 +106,19 @@ trait RegistrationTrait
         try {
             if (!$this->save()) {
                 throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $this->errors);
+            }
+            if ($authManager = $this->getAuthManager() && !empty($authRoles)) {
+                if (is_string($authRoles) || $authRoles instanceof \yii\rbac\Role || !is_array($authRoles)) {
+                    $authRoles = [$authRoles];
+                }
+                foreach ($authRoles as $role) {
+                    if (is_string($role)) {
+                        $role = $authManager->getRole($role);
+                    }
+                    if ($role instanceof \yii\rbac\Role) {
+                        $authManager->assign($role, $this->guid);
+                    }
+                }
             }
             foreach ($associatedModels as $model) {
                 if (!$model->save()) {
@@ -142,7 +202,7 @@ trait RegistrationTrait
 
     /**
      * Get the rules associated with source attribute.
-     * @return array
+     * @return array rules.
      */
     public function getSourceRules()
     {
@@ -170,7 +230,7 @@ trait RegistrationTrait
      * Initialize the source attribute with $sourceSelf.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      */
     public function onInitSourceAttribute($event)
     {

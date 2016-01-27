@@ -127,6 +127,19 @@
 
 	<div class="description">
 	<p>Description of BaseAdditionalAccountModel</p>
+
+<p>Default settings:
+- enable GUID.
+- enable ID, random string, with 8 characters.
+- enable IP, accept all IP address.
+- enable createdAtAttribute.
+- enable content, and its rule is integer.
+- enable confirmation, but confirm code.
+- enable description.
+the content attribute is used for recording the login-type of account, e.g. ID
+, email or any other format.
+the content type attribute is used for recording the account source, e.g. register
+from self, or any other account provider.</p>
 	</div>
 
 	<dl class="tree well">
@@ -178,7 +191,9 @@ yii\db\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#17-46" title="Go to source code">models/BaseAdditionalAccountModel.php</a>
+				<b>Version:</b>
+				2.0<br>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#17-59" title="Go to source code">models/BaseAdditionalAccountModel.php</a>
 		<br>
 	</div>
 
@@ -198,7 +213,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#39-45" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#52-58" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				
@@ -415,7 +430,7 @@ yii\db\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#26" title="Go to source code"><var>$idAttributeLength</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#39" title="Go to source code"><var>$idAttributeLength</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL. The length of id attribute value, and max length
@@ -448,7 +463,7 @@ to Auto Increment, this property will be ignored.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#27" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#40" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.
@@ -475,7 +490,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#28" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#41" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -536,7 +551,7 @@ For example:</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#29" title="Go to source code"><var>$contentAttributeRule</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#42" title="Go to source code"><var>$contentAttributeRule</var></a>
 
 				<div class="description short">
 					<p>built-in validator name or validatation method name and
@@ -563,7 +578,7 @@ additional parameters.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#30" title="Go to source code"><var>$contentTypeAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#43" title="Go to source code"><var>$contentTypeAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the field which stores the type of content.</p>
@@ -588,7 +603,7 @@ additional parameters.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#31-34" title="Go to source code"><var>$contentTypes</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#44-47" title="Go to source code"><var>$contentTypes</var></a>
 
 				<div class="description short">
 					<p>Specify the logic type of content, not data type. If
@@ -629,7 +644,7 @@ $contentAttribute is specified to false, this attribute will be skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#35" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#48" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of confirmation, or false if disable confirmation features.</p>
@@ -654,7 +669,7 @@ $contentAttribute is specified to false, this attribute will be skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#36" title="Go to source code"><var>$confirmCodeAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#49" title="Go to source code"><var>$confirmCodeAttribute</var></a>
 
 				<div class="description short">
 					<p>This attribute specify the name of confirm_code attribute, if
@@ -683,7 +698,7 @@ if $confirmationAttribute is empty or false, this attribute will be skipped.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#37" title="Go to source code"><var>$descriptionAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseAdditionalAccountModel.html#50" title="Go to source code"><var>$descriptionAttribute</var></a>
 
 				<div class="description short">
 					<p>This attribute speicfy the name of description

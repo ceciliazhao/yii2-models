@@ -27,7 +27,6 @@ abstract class BaseMetaModel extends BaseBlameableModel
     public $updatedAtAttribute = false;
     public $enableIP = false;
     public $contentAttribute = 'value';
-    public $contentAttributeRule = ['string', 'max' => 255];
     public $updatedByAttribute = false;
     public $confirmationAttribute = false;
 
