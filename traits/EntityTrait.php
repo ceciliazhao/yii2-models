@@ -285,4 +285,70 @@ trait EntityTrait
         }
         return new static;
     }
+
+    /**
+     * unset entity attributes.
+     * @return array result.
+     */
+    public function unsetSelfFields()
+    {
+        return static::unsetFields($this->attributes, $this->enabledFields());
+    }
+
+    /**
+     * unset fields of array.
+     * @param array $array
+     * @param array $fields
+     * @return array
+     */
+    public static function unsetFields($array, $fields = null)
+    {
+        if (!is_array($array)) {
+            $fields = [];
+        }
+        foreach ($array as $key => $value) {
+            if (is_string($key) && in_array($key, $fields)) {
+                unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
+    /**
+     * Get enabled fields.
+     * @return array
+     */
+    public function enabledFields()
+    {
+        $fields = [];
+        if (is_string($this->guidAttribute)) {
+            $fields[] = $this->guidAttribute;
+        }
+
+        if (is_string($this->idAttribute)) {
+            $fields[] = $this->idAttribute;
+        }
+
+        if (is_string($this->createdAtAttribute)) {
+            $fields[] = $this->createdAtAttribute;
+        }
+
+        if (is_string($this->updatedAtAttribute)) {
+            $fields[] = $this->updatedAtAttribute;
+        }
+        switch ($this->enableIP) {
+            case static::$ipAll:
+                $fields[] = $this->ipTypeAttribute;
+            case static::$ipv6:
+                $fields[] = $this->ipAttribute2;
+                $fields[] = $this->ipAttribute3;
+                $fields[] = $this->ipAttribute4;
+            case static::$ipv4:
+                $fields[] = $this->ipAttribute1;
+            case static::$noIp:
+            default:
+                break;
+        }
+        return $fields;
+    }
 }
