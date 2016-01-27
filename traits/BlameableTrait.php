@@ -35,6 +35,7 @@ use yii\caching\TagDependency;
  * @property-read mixed $content Content.
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
  * @property-read array $contentRules Get content rules.
+ * @property-read \vistart\Models\models\BaseUserModel $user
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -465,7 +466,7 @@ trait BlameableTrait
 
     /**
      * Get blame.
-     * @return \vistart\Models\models\BaseUserModel user.
+     * @return \vistart\Models\queries\BaseUserQuery user.
      */
     public function getUser()
     {
