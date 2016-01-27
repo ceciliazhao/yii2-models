@@ -266,12 +266,7 @@ trait BlameableTrait
             TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-            parent::rules(),
-            $this->getConfirmationRules(),
-            $this->getBlameableAttributeRules(),
-            $this->getDescriptionRules(),
-            $this->getContentRules(),
-            $this->getSelfBlameableRules()
+            parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
@@ -466,6 +461,17 @@ trait BlameableTrait
     {
         $descAttribute = $this->descriptionAttribute;
         return is_string($descAttribute) ? $this->$descAttribute = $desc : null;
+    }
+
+    /**
+     * Get blame.
+     * @return \vistart\Models\models\BaseUserModel user.
+     */
+    public function getUser()
+    {
+        $userClass = $this->userClass;
+        $model = $userClass::buildNoInitModel();
+        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->createdByAttribute]);
     }
 
     /**
