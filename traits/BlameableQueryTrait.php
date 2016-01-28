@@ -101,4 +101,17 @@ trait BlameableQueryTrait
         }
         return $this->andWhere([$model->updatedByAttribute => $guid]);
     }
+
+    /**
+     * Attach current identity to createdBy condition.
+     * @return $this
+     */
+    public function byIdentity()
+    {
+        $identity = \Yii::$app->user->identity;
+        if (!$identity || !$identity->canGetProperty('guid')) {
+            return $this;
+        }
+        return $this->createdBy($identity->guid);
+    }
 }
