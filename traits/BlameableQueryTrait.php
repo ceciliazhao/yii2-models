@@ -73,4 +73,32 @@ trait BlameableQueryTrait
         }
         return $this->andWhere([$model->parentAttribute => $guid]);
     }
+
+    /**
+     * Specify creator(s).
+     * @param string|array $guid
+     * @return $this
+     */
+    public function createdBy($guid)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->createdByAttribute)) {
+            return $this;
+        }
+        return $this->andWhere([$model->createdByAttribute => $guid]);
+    }
+
+    /**
+     * Specify last updater(s).
+     * @param string|array $guid
+     * @return $this
+     */
+    public function updatedBy($guid)
+    {
+        $model = $this->noInitModel;
+        if (!is_string($model->updatedByAttribute)) {
+            return $this;
+        }
+        return $this->andWhere([$model->updatedByAttribute => $guid]);
+    }
 }
