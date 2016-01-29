@@ -1,8 +1,8 @@
+imports:
+    - php
+
 tools:
     external_code_coverage:
-        timeout: 1800
+        timeout: 900
     php_sim: false
     php_cpd: false
-filter:
-    excluded_paths:
-        - tests/*
