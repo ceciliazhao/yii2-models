@@ -20,7 +20,7 @@ use vistart\Models\traits\EntityQueryTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseMongoEntityQuery extends yii\mongodb\ActiveQuery
+class BaseMongoEntityQuery extends \yii\mongodb\ActiveQuery
 {
     use EntityQueryTrait;
 

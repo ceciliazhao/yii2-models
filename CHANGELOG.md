@@ -6,6 +6,14 @@
 
 - Chg: create() method can load default value after model was created. (vistart)
 
+#### models/BaseRedisBlameableModel.php
+
+- Fix: add missing namespace. (vistart)
+
+#### queries/BaseMongoEntityQuery.php
+
+- Fix: fix typo in namespace. (vistart)
+
 ### 2.0.0 under development
 
 - Bug #11: 8 problems. (yuanyuancin)

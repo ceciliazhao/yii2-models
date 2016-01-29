@@ -12,6 +12,8 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\traits\BlameableTrait;
+
 /**
  * Description of BaseRedisBlameableModel
  *
