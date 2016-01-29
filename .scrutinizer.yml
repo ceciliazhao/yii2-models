@@ -1,5 +1,5 @@
 tools:
-    external_code_coverate:
+    external_code_coverage:
         timeout: 1800
     php_sim: false
     php_cpd: false
