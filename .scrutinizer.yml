@@ -1,13 +1,8 @@
-build:
-    environment:
-        php:
-            version: 5.5.25
-            ini:
-                'date.timezone': 'Asia/Shanghai'
-        
-        apache2:
-            modules: ['rewrite']
-            
+tools:
+    external_code_coverate:
+        timeout: 1800
+    php_sim: false
+    php_cpd: false
 filter:
     excluded_paths:
         - tests/*
