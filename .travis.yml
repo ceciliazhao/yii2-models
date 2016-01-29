@@ -31,15 +31,19 @@ cache:
         - $HOME/.composer/cache
 
 install:
+    - phpenv config-add tests/data/php.ini
     - travis_retry composer self-update && composer --version
     - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
     - travis_retry composer require "yiisoft/yii2-redis:*"
     - |
         if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
+            phpenv config-add tests/data/php5.6.ini
             travis_retry composer require "yiisoft/yii2-mongodb:*"
         elif [ $TRAVIS_PHP_VERSION = '5.5' ]; then
+            phpenv config-add tests/data/php5.6.ini
             travis_retry composer require "yiisoft/yii2-mongodb:*"
         elif [ $TRAVIS_PHP_VERSION = '5.4' ]; then
+            phpenv config-add tests/data/php5.6.ini
             travis_retry composer require "yiisoft/yii2-mongodb:*"
         fi
     - phpenv config-add tests/data/php.ini
@@ -49,15 +53,7 @@ install:
 before_script:
     - php -r "echo INTL_ICU_VERSION . \"\n\";"
     - php -v
-    - |
-        if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
-            phpenv config-add tests/data/php5.6.ini
-        elif [ $TRAVIS_PHP_VERSION = '5.5' ]; then
-            phpenv config-add tests/data/php5.6.ini
-        elif [ $TRAVIS_PHP_VERSION = '5.4' ]; then
-            phpenv config-add tests/data/php5.6.ini
-        fi
-    - phpenv config-add tests/data/php.ini
+    - php -m
     - mysql --version
     - mysql -uroot < tests/data/yii2-models.sql
     - |
