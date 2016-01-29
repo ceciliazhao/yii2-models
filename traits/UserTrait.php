@@ -30,9 +30,13 @@ trait UserTrait
      * @param string $className Full qualified class name.
      * @param array $config name-value pairs that will be used to initialize
      * the object properties.
+     * @param boolean $loadDefault Determines whether loading default values
+     * after entity model created.
+     * @param boolean $skipIfSet whether existing value should be preserved.
+     * This will only set defaults for attributes that are `null`.
      * @return $className
      */
-    public function create($className, $config = [])
+    public function create($className, $config = [], $loadDefault = true, $skipIfSet = true)
     {
         if (!isset($config['userClass'])) {
             $config['userClass'] = static::className();
@@ -40,14 +44,17 @@ trait UserTrait
         $entity = new $className($config);
         $createdByAttribute = $entity->createdByAttribute;
         $entity->$createdByAttribute = $this->guid;
+        if ($loadDefault) {
+            $entity->loadDefaultValues($skipIfSet);
+        }
         return $entity;
     }
 
     /**
      * Find existed or create new model.
      * @param string $className
-     * @param array $config
      * @param array $condition
+     * @param array $config
      * @return $className
      */
     public function findOneOrCreate($className, $condition = [], $config = [])
@@ -69,6 +76,8 @@ trait UserTrait
      */
     public function rules()
     {
-        return array_merge(parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules);
+        return array_merge(
+            parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules
+        );
     }
 }

@@ -174,7 +174,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserTrait.html#15-74" title="Go to source code">traits/UserTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserTrait.html#15-81" title="Go to source code">traits/UserTrait.php</a>
 		<br>
 	</div>
 
@@ -194,7 +194,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#27-44" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#27-51" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span>, <span>boolean <var>$loadDefault</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$skipIfSet</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				<p>Create new entity model associated with current user.
@@ -213,6 +213,12 @@ if $config does not specify <code>userClass</code> property, self will be assign
 						<dt><var>$config</var></dt>
 						<dd><p>name-value pairs that will be used to initialize
 the object properties.</p></dd>
+						<dt><var>$loadDefault</var></dt>
+						<dd><p>Determines whether loading default values
+after entity model created.</p></dd>
+						<dt><var>$skipIfSet</var></dt>
+						<dd><p>whether existing value should be preserved.
+This will only set defaults for attributes that are <code>null</code>.</p></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -237,7 +243,7 @@ the object properties.</p></dd>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneOrCreate">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#46-64" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#53-71" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Find existed or create new model.</p>
@@ -252,9 +258,9 @@ the object properties.</p></dd>
 						<dt><var>$className</var></dt>
 						<dd></dd>
 						<dt><var>$condition</var></dt>
-						<dd>$config</dd>
+						<dd></dd>
 						<dt><var>$config</var></dt>
-						<dd>$condition</dd>
+						<dd></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -279,7 +285,7 @@ the object properties.</p></dd>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#66-73" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#73-80" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				<p>Get all rules with current user properties.</p>

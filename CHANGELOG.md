@@ -1,8 +1,12 @@
-Base Models for Yii 2 Applications
-==================================
+## Base Models for Yii 2 Applications
 
-2.0.0 under development
------------------------
+### since 2.0.0-alpha1 released
+
+#### traits/UserTrait.php
+
+- Chg: create() method can load default value after model was created. (vistart)
+
+### 2.0.0 under development
 
 - Bug #11: 8 problems. (yuanyuancin)
 - Bug #11: deregister() of RegistrationTrait has referenced wrong event names. (yuanyuancin)
