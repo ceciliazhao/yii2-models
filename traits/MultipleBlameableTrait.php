@@ -132,11 +132,12 @@ trait MultipleBlameableTrait
     public static function createBlame($user, $config = [])
     {
         if (!($user instanceof \vistart\Models\models\BaseUserModel)) {
-            throw new \yii\base\InvalidParamException('the type of user instance must be BaseUserModel or its extended class.');
+            $message = 'the type of user instance must be BaseUserModel or its extended class.';
+            throw new \yii\base\InvalidParamException($message);
         }
         $mbClass = static::buildNoInitModel();
-        $mb = $mbClass->multiBlamesClass;
-        return $user->create($mb::className(), $config);
+        $mbi = $mbClass->multiBlamesClass;
+        return $user->create($mbi::className(), $config);
     }
 
     /**
@@ -175,8 +176,8 @@ trait MultipleBlameableTrait
         if ($blame instanceof $this->multiBlamesClass) {
             $blameGuid = $blame->guid;
         }
-        if (($mb = static::getBlame($blameGuid)) !== null) {
-            return $this->addBlame($mb);
+        if (($mbi = static::getBlame($blameGuid)) !== null) {
+            return $this->addBlame($mbi);
         }
         return false;
     }
@@ -268,7 +269,8 @@ trait MultipleBlameableTrait
             }
         }
         $diff = array_diff($guids, $checkedGuids);
-        $this->trigger(static::$eventMultipleBlamesChanged, new MultipleBlameableEvent(['blamesChanged' => !empty($diff)]));
+        $eventName = static::$eventMultipleBlamesChanged;
+        $this->trigger($eventName, new MultipleBlameableEvent(['blamesChanged' => !empty($diff)]));
         return $checkedGuids;
     }
 
@@ -307,10 +309,10 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * 
-     * @param type $blameGuid
-     * @param type $user
-     * @return type
+     * Get or create blame.
+     * @param string|array $blameGuid
+     * @param \vistart\Models\models\BaseUserClass $user
+     * @return [multiBlamesClass]|null
      */
     public static function getOrCreateBlame($blameGuid, $user = null)
     {
@@ -365,7 +367,11 @@ trait MultipleBlameableTrait
     public function getNonBlameds()
     {
         $createdByAttribute = $this->createdByAttribute;
-        return static::find()->where([$createdByAttribute => $this->$createdByAttribute, $this->multiBlamesAttribute => static::getEmptyBlamesJson()])->all();
+        $cond = [
+            $createdByAttribute => $this->$createdByAttribute,
+            $this->multiBlamesAttribute => static::getEmptyBlamesJson()
+        ];
+        return static::find()->where($cond)->all();
     }
 
     /**

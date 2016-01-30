@@ -83,7 +83,13 @@ trait UserTrait
     public function rules()
     {
         return array_merge(
-            parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules
+            parent::rules(),
+            $this->passwordHashRules,
+            $this->passwordResetTokenRules,
+            $this->sourceRules,
+            $this->statusRules,
+            $this->authKeyRules,
+            $this->accessTokenRules
         );
     }
 }
