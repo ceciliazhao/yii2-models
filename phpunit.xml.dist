@@ -8,7 +8,7 @@
          timeoutForLargeTests="1200"
          verbose="true">
     <testsuites>
-        <testsuite name="Test Suite">
+        <testsuite name="Common">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

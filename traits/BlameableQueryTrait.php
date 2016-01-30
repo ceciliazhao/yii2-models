@@ -85,6 +85,9 @@ trait BlameableQueryTrait
         if (!is_string($model->createdByAttribute)) {
             return $this;
         }
+        if ($guid instanceof \vistart\Models\models\BaseUserModel) {
+            $guid = $guid->guid;
+        }
         return $this->andWhere([$model->createdByAttribute => $guid]);
     }
 
@@ -98,6 +101,9 @@ trait BlameableQueryTrait
         $model = $this->noInitModel;
         if (!is_string($model->updatedByAttribute)) {
             return $this;
+        }
+        if ($guid instanceof \vistart\Models\models\BaseUserModel) {
+            $guid = $guid->guid;
         }
         return $this->andWhere([$model->updatedByAttribute => $guid]);
     }

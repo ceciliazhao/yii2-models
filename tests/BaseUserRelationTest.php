@@ -91,6 +91,9 @@ class BaseUserRelationTest extends TestCase
     {
         $users = $this->prepareUsers();
         $user = $users[0];
+        $relation = $user->create(UserRelation::className());
+        $opposite = $relation->opposite;
+        $this->assertNull($opposite);
         $other = $users[1];
         $relations = $this->prepareMutualRelationModels($user, $other);
         $this->destroyUsers($users);
@@ -135,7 +138,7 @@ class BaseUserRelationTest extends TestCase
     /**
      * @depends testDeregisterOne
      */
-    public function testFavorite()
+    public function testFavoriteAndRemark()
     {
         $users = $this->prepareUsers();
         $relations = $this->prepareMutualRelationModels($users[0], $users[1]);
@@ -146,19 +149,50 @@ class BaseUserRelationTest extends TestCase
         $this->assertTrue($relations[0]->save());
         $this->assertEquals(1, $relations[0]->$favoriteAttribute);
         $this->assertTrue($relations[0]->isFavorite);
+        $this->assertEmpty($relations[0]->remark);
+        $relations[0]->remark = 'favorite';
+        $this->assertTrue($relations[0]->save());
+        $this->assertEquals('favorite', $relations[0]->remark);
         $this->destroyUsers($users);
     }
 
     /**
-     * @depends testFavorite
+     * @depends testFavoriteAndRemark
      */
     public function testSingleRelation()
     {
         $users = $this->prepareUsers();
         $user = $users[0];
         $other = $users[1];
-        
+
         $relation = $this->prepareSingleRelationModels($user, $other);
+        $this->assertFalse($relation->isNewRecord);
+        $r = UserSingleRelation::findOneRelation($user, $other);
+        $this->assertEquals($relation->guid, $r->guid);
+        $createdAtAttribute = $relation->createdAtAttribute;
+        //$updatedAtAttribute = $relation->updatedAtAttribute;
+        $previous = date("Y-m-d H:i:s", strtotime($relation->$createdAtAttribute . '-1 second'));
+        $next = date("Y-m-d H:i:s", strtotime($relation->$createdAtAttribute . '+1 second'));
+        $query = UserSingleRelation::find()->createdAt($previous, $next)->initiators($user)->recipients($other);
+        //echo $query->createCommand()->getRawSql();
+        $r = UserSingleRelation::find()->createdAt($previous, $next)->initiators($user)->recipients($other)->one();
+        $this->assertInstanceOf(UserSingleRelation::className(), $r);
+        $this->assertEquals($relation->guid, $r->guid);
+        $r = UserSingleRelation::find()->updatedAt($previous, $next)->initiators($user)->recipients($other)->one();
+        $this->assertInstanceOf(UserSingleRelation::className(), $r);
+        $this->assertEquals($relation->guid, $r->guid);
+        $r = UserSingleRelation::find()->createdAt($next)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
+        $r = UserSingleRelation::find()->createdAt(null, $previous)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
+        $r = UserSingleRelation::find()->createdAt($next, $previous)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
+        $r = UserSingleRelation::find()->updatedAt($next)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
+        $r = UserSingleRelation::find()->updatedAt(null, $previous)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
+        $r = UserSingleRelation::find()->updatedAt($next, $previous)->initiators($user)->recipients($other)->one();
+        $this->assertNull($r);
         $this->destroyUsers($users);
     }
 
@@ -271,19 +305,19 @@ class BaseUserRelationTest extends TestCase
         $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
         $query = $baseQuery->groups($relation->groupGuids[0]);
         $commandQuery = clone $query;
-        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        //echo $commandQuery->createCommand()->getRawSql() . "\n";
         $this->assertEquals(1, count($query->all()));
 
         $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
         $query = $baseQuery->groups($relation->groupGuids[1]);
         $commandQuery = clone $query;
-        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        //echo $commandQuery->createCommand()->getRawSql() . "\n";
         $this->assertEquals(1, count($query->all()));
 
         $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);
         $query = $baseQuery->groups($relation->groupGuids);
         $commandQuery = clone $query;
-        echo $commandQuery->createCommand()->getRawSql() . "\n";
+        //echo $commandQuery->createCommand()->getRawSql() . "\n";
         $this->assertEquals(1, count($query->all()));
 
         $baseQuery = UserRelation::find()->initiators($users[0]->guid)->recipients($users[1]->guid);

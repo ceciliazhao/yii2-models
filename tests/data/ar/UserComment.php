@@ -27,4 +27,12 @@ class UserComment extends \vistart\Models\models\BaseBlameableModel
     {
         return '{{%user_comment}}';
     }
+    
+    /**
+     * Friendly to IDE.
+     * @return \vistart\Models\queries\BaseBlameableQuery
+     */
+    public static function find(){
+        return parent::find();
+    }
 }

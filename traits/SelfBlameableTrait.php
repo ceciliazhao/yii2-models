@@ -71,7 +71,7 @@ trait SelfBlameableTrait
      * @var boolean indicates whether throw exception or not when restriction occured on updating or deleting operation.
      */
     public $throwRestrictException = false;
-    private $selfLocalBlameableRules = [];
+    private $localSelfBlameableRules = [];
 
     /**
      * Get rules associated with self blameable attribute.
@@ -82,16 +82,16 @@ trait SelfBlameableTrait
         if (!is_string($this->parentAttribute)) {
             return [];
         }
-        if (empty($this->selfLocalBlameableRules) || !is_array($this->selfLocalBlameableRules)) {
-            return $this->selfLocalBlameableRules;
+        if (!empty($this->localSelfBlameableRules) && is_array($this->localSelfBlameableRules)) {
+            return $this->localSelfBlameableRules;
         }
         if (is_string($this->parentAttributeRule)) {
             $this->parentAttributeRule = [$this->parentAttributeRule];
         }
-        $this->selfLocalBlameableRules = [
+        $this->localSelfBlameableRules = [
             array_merge([$this->parentAttribute], $this->parentAttributeRule),
         ];
-        return $this->selfLocalBlameableRules;
+        return $this->localSelfBlameableRules;
     }
 
     /**
@@ -100,7 +100,7 @@ trait SelfBlameableTrait
      */
     public function setSelfBlameableRules($rules = [])
     {
-        $this->selfLocalBlameableRules = $rules;
+        $this->localSelfBlameableRules = $rules;
     }
 
     /**

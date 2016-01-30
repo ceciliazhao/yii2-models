@@ -57,7 +57,7 @@ trait UserTrait
      * @param array $config
      * @return $className
      */
-    public function findOneOrCreate($className, $condition = [], $config = [])
+    public function findOneOrCreate($className, $condition = [], $config = null)
     {
         $entity = new $className(['skipInit' => true]);
         if (!isset($condition[$entity->createdByAttribute])) {
@@ -65,6 +65,9 @@ trait UserTrait
         }
         $model = $className::findOne($condition);
         if (!$model) {
+            if ($config === null || !is_array($config)) {
+                $config = $condition;
+            }
             $model = $this->create($className, $config);
         }
         return $model;

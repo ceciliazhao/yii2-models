@@ -39,7 +39,7 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
+     * @return \vistart\Models\queries\BaseRedisEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
      */
     public static function find()
     {
@@ -49,5 +49,10 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
         }
         $queryClass = $self->queryClass;
         return new $queryClass(get_called_class(), ['noInitModel' => $self]);
+    }
+
+    public function attributes()
+    {
+        return $this->enabledFields();
     }
 }

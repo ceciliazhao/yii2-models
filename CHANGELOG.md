@@ -2,9 +2,32 @@
 
 ### since 2.0.0-alpha1 released
 
+#### trait/BlameableQueryTrait.php
+
+- Enh: createdBy() and updatedBy() conditions support base user model instance. (vistart)
+
+#### trait/EntityQueryTrait.php
+
+- Fix: createdAt() and updatedAt() conditions reference error attributes. (vistart)
+
+#### trait/SelfBlameableTrait.php
+
+- Chg: private self blameable rules name changed. It doesn't matter with logic. (vistart)
+
 #### traits/UserTrait.php
 
 - Chg: create() method can load default value after model was created. (vistart)
+- Chg: findOneOrCreate() method's third parameter defaults to null. (vistart)
+- Enh: findOneOrCreate() method will take the query condition to the config if $config is null or not a array. (vistart)
+
+#### models/BaseMongoEntityModel.php
+
+- Chg: $idAttribute will be assigned '_id' in init() method. (vistart)
+- Enh: Defaults to take enabledFields() to attributes(). (vistart)
+
+#### models/BaseRedisEntityModel.php
+
+- Enh: Defaults to take enabledFields() to attributes(). (vistart)
 
 #### models/BaseRedisBlameableModel.php
 

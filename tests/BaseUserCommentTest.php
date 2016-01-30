@@ -52,7 +52,7 @@ class BaseUserCommentTest extends TestCase
      */
     private function prepareSubComment($comment)
     {
-        $sub = $comment->bear();
+        $sub = $comment->bear(['class' => 1]);
         $createdByAttribute = $sub->createdByAttribute;
         $sub->$createdByAttribute = $comment->$createdByAttribute;
         $sub->content = 'sub';
@@ -76,6 +76,11 @@ class BaseUserCommentTest extends TestCase
             var_dump($subComment->errors);
             $this->fail();
         }
+        $rules = [
+            [[$subComment->parentAttribute], 'string'],
+        ];
+        $subComment->selfBlameableRules = $rules;
+        $this->assertEquals($rules, $subComment->selfBlameableRules);
         $this->assertEquals(1, count($comment->getChildren()));
         $this->assertTrue($user->deregister());
     }
@@ -91,10 +96,10 @@ class BaseUserCommentTest extends TestCase
         $comment->save();
         $subComment->save();
         if ($comment->delete()) {
-            $query = UserComment::find()->id($subComment->id);
+            $query = UserComment::find()->id($subComment->id)->createdBy($user);
             $copy = clone $query;
-            var_dump($copy->createCommand()->getRawSql());
-            $sub = UserComment::find()->id($subComment->id)->one();
+            //var_dump($copy->createCommand()->getRawSql());
+            $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
             $this->assertNull($sub);
         } else {
             var_dump($comment->errors);
@@ -123,7 +128,7 @@ class BaseUserCommentTest extends TestCase
         } catch (\yii\db\IntegrityException $ex) {
             $this->assertEquals('Delete restricted.', $ex->getMessage());
         }
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $this->assertTrue($user->deregister());
 
@@ -137,7 +142,7 @@ class BaseUserCommentTest extends TestCase
         if ($comment->delete()) {
             $this->fail();
         }
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $this->assertTrue($user->deregister());
     }
@@ -160,7 +165,7 @@ class BaseUserCommentTest extends TestCase
             var_dump($comment->errors);
             $this->fail();
         }
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals($subComment->$parentAttribute, $sub->$parentAttribute);
@@ -185,7 +190,7 @@ class BaseUserCommentTest extends TestCase
             var_dump($comment->errors);
             $this->fail();
         }
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals('', $sub->$parentAttribute);
@@ -205,7 +210,7 @@ class BaseUserCommentTest extends TestCase
 
         $comment->guid = UserComment::GenerateGuid();
         $this->assertTrue($comment->save());
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals($comment->guid, $sub->$parentAttribute);
@@ -234,7 +239,7 @@ class BaseUserCommentTest extends TestCase
         } catch (\yii\db\IntegrityException $ex) {
             $this->assertEquals('Update restricted.', $ex->getMessage());
         }
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals($comment->getOldAttribute($comment->guidAttribute), $sub->$parentAttribute);
@@ -257,7 +262,7 @@ class BaseUserCommentTest extends TestCase
         $guid = $comment->guid;
         $comment->guid = UserComment::GenerateGuid();
         $comment->save();
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals($guid, $sub->$parentAttribute);
@@ -279,7 +284,7 @@ class BaseUserCommentTest extends TestCase
 
         $comment->guid = UserComment::GenerateGuid();
         $comment->save();
-        $sub = UserComment::find()->id($subComment->id)->one();
+        $sub = UserComment::find()->id($subComment->id)->createdBy($user)->one();
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals('', $sub->$parentAttribute);

@@ -37,8 +37,7 @@ class BaseUserModelTest extends TestCase
             }
         }
         $count = count($users);
-        echo ("$count users has been registered successfully.\n");
-        echo ("The success rate is " . $count . "%.");
+        echo ("$count( / 100) users has been registered successfully.\n");
         foreach ($users as $user) {
             if ($user->deregister() !== true) {
                 $this->assertTrue(false);
@@ -93,7 +92,7 @@ class BaseUserModelTest extends TestCase
         $this->assertTrue($user->register());
         $this->assertEquals(123456, $user->id);
 
-        $user = User::find()->id(123456)->one();
+        $user = User::find()->id(123456, 'like')->one();
         $this->assertTrue($user->deregister());
 
         $user = new User(['idPreassigned' => true, 'id' => 'abcdefg']);

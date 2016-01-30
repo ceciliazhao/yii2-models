@@ -68,10 +68,10 @@ trait EntityQueryTrait
     public function createdAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->createdByAttribute)) {
+        if (!is_string($model->createdAtAttribute)) {
             return $this;
         }
-        return static::range($this, $model->createdByAttribute, $start, $end);
+        return static::range($this, $model->createdAtAttribute, $start, $end);
     }
 
     /**
@@ -83,9 +83,9 @@ trait EntityQueryTrait
     public function updatedAt($start = null, $end = null)
     {
         $model = $this->noInitModel;
-        if (!is_string($model->updatedByAttribute)) {
+        if (!is_string($model->updatedAtAttribute)) {
             return $this;
         }
-        return static::range($this, $model->updatedByAttribute, $start, $end);
+        return static::range($this, $model->updatedAtAttribute, $start, $end);
     }
 }

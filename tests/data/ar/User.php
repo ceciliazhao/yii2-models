@@ -67,11 +67,12 @@ class User extends \vistart\Models\models\BaseUserModel {
         return $this->hasMany(AdditionalAccount::className(), ['user_guid' => 'guid'])->inverseOf('user');
     }
 
-    /*
-      public static $db;
-
-      public static function getDb() {
-      return self::$db;
-      }
+    /**
+     * Friendly to IDE.
+     * @return \vistart\Models\queries\BaseUserQuery
      */
+    public static function find()
+    {
+        return parent::find();
+    }
 }

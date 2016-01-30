@@ -36,7 +36,7 @@ class BaseUserEmailTest extends TestCase {
         $this->assertNotNull($email);
         
         $user = new User();
-        $email = $user->create(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
+        $email = $user->findOneOrCreate(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
         // 此时不应该为 null
         $this->assertNotNull($email);
         // 与用户一同注册

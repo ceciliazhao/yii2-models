@@ -30,13 +30,19 @@ $config = [
             'charset' => 'utf8',
         ],
     ],
+    'redis' => [
+        'class' => 'yii\redis\Connection',
+        'hostname' => 'localhost',
+        'port' => 6379,
+        'database' => 0,
+    ],
+    'mongodb' => [
+        'class' => 'yii\mongodb\Connection',
+        'dsn' => "mongodb://user:123456@localhost:27017/yii2-models",
+    ],
     'cache' => [
         'class' => 'yii\redis\Cache',
-        'redis' => [
-            'hostname' => 'localhost',
-            'port' => 6379,
-            'database' => 0,
-        ],
+        'redis' => 'redis',
         'keyPrefix' => 'test_',
     ],
 ];
