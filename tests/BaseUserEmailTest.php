@@ -20,21 +20,29 @@ use Yii;
  * 
  * @author vistart <i@vistart.name>
  */
-class BaseUserEmailTest extends TestCase {
+class BaseUserEmailTest extends TestCase
+{
 
-    public function testInit() {
+    /**
+     * @group email
+     * @group blameable
+     */
+    public function testInit()
+    {
         //UserEmail::deleteAll();
-        
     }
 
     /**
      * @depends testInit
+     * @group email
+     * @group blameable
      */
-    public function testNew() {
+    public function testNew()
+    {
         $email = new UserEmail();
         // 此时不应该为 null
         $this->assertNotNull($email);
-        
+
         $user = new User();
         $email = $user->findOneOrCreate(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
         // 此时不应该为 null
@@ -49,23 +57,40 @@ class BaseUserEmailTest extends TestCase {
         $this->assertInstanceOf(UserEmail::className(), $user->userEmails[0]);
         // 此时属于该用户的 email 应该只有一个。
         $this->assertEquals(1, $email->count());
-        
+
         $email_guid = $user->userEmails[0]->guid;
         $email = $user->findOneOrCreate(UserEmail::className());
         $this->assertEquals($email_guid, $email->guid);
         $email = $user->findOneOrCreate(UserEmail::className(), [$email->guidAttribute, $email_guid]);
         $this->assertEquals($email_guid, $email->guid);
-        
+
         $guid = $user->guid;
         // 此处应该注销成功。
         $this->assertTrue($user->deregister());
         $user = User::findOne($guid);
         $email = UserEmail::findOne(['user_guid' => $guid]);
-        
+
         // 此时应该找不到 $user 和 $email。
         $this->assertNull($user);
         $this->assertNull($email);
-        
     }
 
+    /**
+     * @depends testNew
+     * @group email
+     * @group blameable
+     */
+    public function testCreatorandUpdate()
+    {
+        $user = new User();
+        $email = $user->findOneOrCreate(UserEmail::className(), ['email' => 'i@vistart.name', 'type' => UserEmail::TYPE_HOME]);
+        // 此时不应该为 null
+        $this->assertNotNull($email);
+        // 与用户一同注册
+        $this->assertTrue($user->register([$email]));
+        $this->assertNotNull($email->user);
+        $this->assertNull($email->updater);
+        // 此处应该注销成功。
+        $this->assertTrue($user->deregister());
+    }
 }

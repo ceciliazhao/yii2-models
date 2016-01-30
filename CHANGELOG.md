@@ -2,6 +2,10 @@
 
 ### since 2.0.0-alpha1 released
 
+#### traits/BlameableTrait.php
+
+- Add: getUpdater() method for getting the user who updated this model recently. (vistart)
+
 #### traits/BlameableQueryTrait.php
 
 - Enh: createdBy() and updatedBy() conditions support base user model instance. (vistart)

@@ -36,6 +36,7 @@ use yii\caching\TagDependency;
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
  * @property-read array $contentRules Get content rules.
  * @property-read \vistart\Models\models\BaseUserModel $user
+ * @property-read \vistart\Models\models\BaseUserModel $updater
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -478,6 +479,16 @@ trait BlameableTrait
         $userClass = $this->userClass;
         $model = $userClass::buildNoInitModel();
         return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->createdByAttribute]);
+    }
+
+    public function getUpdater()
+    {
+        if (!is_string($this->updatedByAttribute)) {
+            return null;
+        }
+        $userClass = $this->userClass;
+        $model = $userClass::buildNoInitModel();
+        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->updatedByAttribute]);
     }
 
     /**
