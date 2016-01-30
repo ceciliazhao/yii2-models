@@ -32,6 +32,6 @@ class RedisEntityTest extends TestCase
         $query = RedisEntity::find()->id($entity->id);
         $query1 = clone $query;
         $this->assertInstanceOf(RedisEntity::className(), $query1->one());
-        $this->assertTrue($entity->delete());
+        $this->assertEquals(1, $entity->delete());
     }
 }

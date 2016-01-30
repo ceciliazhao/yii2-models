@@ -32,6 +32,6 @@ class MongoEntityTest extends MongoTestCase
         $query = MongoEntity::find()->guid($entity->guid);
         $query1 = clone $query;
         $this->assertInstanceOf(MongoEntity::className(), $query1->one());
-        $this->assertTrue($entity->delete());
+        $this->assertEquals(1, $entity->delete());
     }
 }
