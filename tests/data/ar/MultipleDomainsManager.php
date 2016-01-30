@@ -17,12 +17,13 @@ namespace vistart\Models\tests\data\ar;
  *
  * @author i
  */
-class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsManager {
+class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsManager
+{
+
     /**
      * @var string the base domain.
      */
     public $baseDomain = 'yii2-models.vistart';
-    
     public $currentDomain = '';
 
     /**
@@ -33,7 +34,7 @@ class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsM
      * @var array 
      */
     public $subDomains = [
-       '' => [
+        '' => [
             'component' => [
                 'class' => 'yii\web\UrlManager', // `class` could be ignored as it is `yii\web\UrlManager`.
                 'enablePrettyUrl' => true,
@@ -66,5 +67,13 @@ class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsM
             ],
             'schema' => 'https',
         ],
+        'm' => [
+        ],
+        'mh' => [
+            'component' => [
+                'enablePrettyUrl' => true,
+            ],
+        ],
     ];
+
 }

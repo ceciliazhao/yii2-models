@@ -2,11 +2,11 @@
 
 ### since 2.0.0-alpha1 released
 
-#### trait/BlameableQueryTrait.php
+#### traits/BlameableQueryTrait.php
 
 - Enh: createdBy() and updatedBy() conditions support base user model instance. (vistart)
 
-#### trait/EntityQueryTrait.php
+#### traits/EntityQueryTrait.php
 
 - Fix: createdAt() and updatedAt() conditions reference error attributes. (vistart)
 
@@ -19,6 +19,18 @@
 - Chg: create() method can load default value after model was created. (vistart)
 - Chg: findOneOrCreate() method's third parameter defaults to null. (vistart)
 - Enh: findOneOrCreate() method will take the query condition to the config if $config is null or not a array. (vistart)
+- Chg: create() method will unset `class` of config array. (vistart)
+
+#### traits/UserRelationTrait.php
+
+- Chg: specify `userClass` property in buildRelation() method. (vistart)
+- Add: createGroup(), addOrCreateGroup() and getOrCreateGroup() method. see detail in MultipleBlameableTrait.php (vistart)
+
+#### traits/MultipleBlameableTrait.php
+
+- Add: createBlame() method for create blame instance. (vistart)
+- Add: addOrCreateBlame() method for add blame or create one before adding if it didn't exist. (vistart)
+- Add: getOrCreateBlame() method for get blame or create one before returning if it didn't exist. (vistart)
 
 #### models/BaseMongoEntityModel.php
 
@@ -36,6 +48,10 @@
 #### queries/BaseMongoEntityQuery.php
 
 - Fix: fix typo in namespace. (vistart)
+
+#### components/SSOIdentity.php
+
+- Fix: ForbiddenHttpException reference missing. (vistart)
 
 ### 2.0.0 under development
 

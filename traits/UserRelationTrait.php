@@ -35,9 +35,12 @@ trait UserRelationTrait
 {
     use mb {
         mb::addBlame as addGroup;
+        mb::createBlame as createGroup;
+        mb::addOrCreateBlame as addOrCreateGroup;
         mb::removeBlame as removeGroup;
         mb::removeAllBlames as removeAllGroups;
         mb::getBlame as getGroup;
+        mb::getOrCreateBlame as getOrCreateGroup;
         mb::getBlameds as getGroupMembers;
         mb::getBlameGuids as getGroupGuids;
         mb::setBlameGuids as setGroupGuids;
@@ -262,13 +265,15 @@ trait UserRelationTrait
             $rni = static::buildNoInitModel();
             $createdByAttribute = $rni->createdByAttribute;
             $otherGuidAttribute = $rni->otherGuidAttribute;
+            $userClass = $rni->userClass;
             if ($user instanceof BaseUserModel) {
+                $userClass = $userClass ? : get_class($user);
                 $user = $user->guid;
             }
             if ($other instanceof BaseUserModel) {
                 $other = $other->guid;
             }
-            $relation = new static([$createdByAttribute => $user, $otherGuidAttribute => $other]);
+            $relation = new static([$createdByAttribute => $user, $otherGuidAttribute => $other, 'userClass' => $userClass]);
         }
         return $relation;
     }

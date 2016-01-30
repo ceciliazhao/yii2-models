@@ -25,6 +25,10 @@ use vistart\Models\tests\data\ar\UserRelationGroup;
 class BaseUserRelationTest extends TestCase
 {
 
+    /**
+     * 
+     * @return User[]
+     */
     private function prepareUsers()
     {
         $user = new User(['password' => '123456']);
@@ -41,6 +45,12 @@ class BaseUserRelationTest extends TestCase
         }
     }
 
+    /**
+     * 
+     * @param User $user
+     * @param User $other
+     * @return UserSingleRelation
+     */
     private function prepareSingleRelationModels($user, $other)
     {
         $relation = UserSingleRelation::buildNormalRelation($user, $other);
@@ -56,6 +66,13 @@ class BaseUserRelationTest extends TestCase
         return $relation;
     }
 
+    /**
+     * 
+     * @param User $user
+     * @param User $other
+     * @param type $bi_type
+     * @return UserRelation[]
+     */
     private function prepareMutualRelationModels($user, $other, $bi_type = null)
     {
         if (!$bi_type)
@@ -87,6 +104,9 @@ class BaseUserRelationTest extends TestCase
         return [$relation, $opposite];
     }
 
+    /**
+     * @group relation
+     */
     public function testNew()
     {
         $users = $this->prepareUsers();
@@ -101,6 +121,7 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testNew
+     * @group relation
      */
     public function testRemoveOne()
     {
@@ -119,6 +140,7 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testRemoveOne
+     * @group relation
      */
     public function testDeregisterOne()
     {
@@ -137,6 +159,7 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testDeregisterOne
+     * @group relation
      */
     public function testFavoriteAndRemark()
     {
@@ -158,6 +181,7 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testFavoriteAndRemark
+     * @group relation
      */
     public function testSingleRelation()
     {
@@ -197,7 +221,8 @@ class BaseUserRelationTest extends TestCase
     }
 
     /**
-     *  @depends testSingleRelation
+     * @depends testSingleRelation
+     * @group relation
      */
     public function testMutualRelation()
     {
@@ -231,6 +256,7 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testMutualRelation
+     * @group relation
      */
     public function testRelationGroup()
     {
@@ -345,6 +371,34 @@ class BaseUserRelationTest extends TestCase
         // 而且标明列表已经改变了。
         $this->assertTrue($relation->blamesChanged);
 
+        $this->destroyUsers($users);
+    }
+
+    /**
+     * @depends testRelationGroup
+     * @group relation
+     */
+    public function testMultiRelationGroups()
+    {
+        $users = $this->prepareUsers();
+        $user = $users[0];
+        $other = $users[1];
+        $relations = $this->prepareMutualRelationModels($user, $other);
+        $relation = $relations[0];
+        $group = ['content' => 'new group'];
+        $groups = $relation->addOrCreateGroup($group);
+        $this->assertTrue(is_array($groups));
+        $this->assertTrue(in_array($group->guid, $groups));
+        $g = UserRelation::getGroup($group->guid);
+        $createdByAttribute = $g->createdByAttribute;
+        $this->assertEquals($user->guid, $g->$createdByAttribute);
+        $groups = $relation->removeGroup($group);
+        $this->assertFalse(in_array($group->guid, $groups));
+        $groups = $relation->removeGroup($group->guid);
+        $this->assertFalse(in_array($group->guid, $groups));
+        $groups = $relation->getAllGroups();
+        $this->assertNotEmpty($groups);
+        $this->assertEquals($group->guid, $groups[0]->guid);
         $this->destroyUsers($users);
     }
 }

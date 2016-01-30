@@ -45,6 +45,9 @@ $config = [
         'redis' => 'redis',
         'keyPrefix' => 'test_',
     ],
+    'multipleDomainsManager' => [
+        'class' => 'vistart\Models\tests\data\ar\MultipleDomainsManager',
+    ],
 ];
 
 if (is_file(__DIR__ . '/config.local.php')) {

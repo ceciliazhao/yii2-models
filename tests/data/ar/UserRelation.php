@@ -34,4 +34,13 @@ class UserRelation extends BaseUserRelationModel
     {
         return '{{%user_relation}}';
     }
+
+    /**
+     * 
+     * @return \vistart\Models\queries\BaseUserRelationQuery
+     */
+    public static function find()
+    {
+        return parent::find();
+    }
 }

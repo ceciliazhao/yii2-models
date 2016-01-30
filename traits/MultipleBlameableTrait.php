@@ -125,6 +125,63 @@ trait MultipleBlameableTrait
     }
 
     /**
+     * Create blame.
+     * @param \vistart\Models\models\BaseUserModel $user who will own this blame.
+     * @param array $config blame class config array.
+     */
+    public static function createBlame($user, $config = [])
+    {
+        if (!($user instanceof \vistart\Models\models\BaseUserModel)) {
+            throw new \yii\base\InvalidParamException('the type of user instance must be BaseUserModel or its extended class.');
+        }
+        $mbClass = static::buildNoInitModel();
+        $mb = $mbClass->multiBlamesClass;
+        return $user->create($mb::className(), $config);
+    }
+
+    /**
+     * Add specified blame, or create it before adding if it didn't exist.
+     * @param [multiBlamesClass]|string|array $blame If this is string or
+     * [multiBlamesClass] instance, and the it existed, then will add it. If it
+     * didn't exist, and this is a array, it will be regarded as config array.
+     * Notice, This parameter passed by reference, so it must be a variable!
+     * @param \vistart\Models\models\BaseUserModel $user whose blame.
+     * If null, it will take this blameable model's user.
+     * @return false|array false if blame created failed or not enable this feature.
+     * blames guid array if created and added successfully.
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\base\InvalidParamException
+     * @see addBlame()
+     */
+    public function addOrCreateBlame(&$blame = null, $user = null)
+    {
+        if (!is_string($this->multiBlamesClass)) {
+            throw new \yii\base\InvalidConfigException('$multiBlamesClass must be specified if you want to use multiple blameable features.');
+        }
+        if (is_array($blame)) {
+            if ($user == null) {
+                $user = $this->user;
+            }
+            $blame = static::getOrCreateBlame($blame, $user);
+            if (!$blame->save()) {
+                return false;
+            }
+            return $this->addBlame($blame->guid);
+        }
+        $blameGuid = '';
+        if (is_string($blame)) {
+            $blameGuid = $blame;
+        }
+        if ($blame instanceof $this->multiBlamesClass) {
+            $blameGuid = $blame->guid;
+        }
+        if (($mb = static::getBlame($blameGuid)) !== null) {
+            return $this->addBlame($mb);
+        }
+        return false;
+    }
+
+    /**
      * Remove specified blame.
      * @param [multiBlamesClass] $blame
      * @return false|array all guids in json format.
@@ -247,6 +304,26 @@ trait MultipleBlameableTrait
         }
         $mbClass = $self->multiBlamesClass;
         return $mbClass::findOne($blameGuid);
+    }
+
+    /**
+     * 
+     * @param type $blameGuid
+     * @param type $user
+     * @return type
+     */
+    public static function getOrCreateBlame($blameGuid, $user = null)
+    {
+        if (is_string($blameGuid)) {
+            $blameGuid = static::getBlame($blameGuid);
+            if ($blameGuid !== null) {
+                return $blameGuid;
+            }
+        }
+        if (is_array($blameGuid)) {
+            return static::createBlame($user, $blameGuid);
+        }
+        return null;
     }
 
     /**

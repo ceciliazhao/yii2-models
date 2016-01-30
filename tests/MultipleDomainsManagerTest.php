@@ -22,6 +22,9 @@ use Yii;
 class MultipleDomainsManagerTest extends TestCase
 {
 
+    /**
+     * @group md
+     */
     public function testInit()
     {
         //UserEmail::deleteAll();
@@ -29,16 +32,52 @@ class MultipleDomainsManagerTest extends TestCase
 
     /**
      * @depends testInit
+     * @group md
      */
     public function testNew()
     {
-        $MultipleDomainsManager = new MultipleDomainsManager();
+        $MultipleDomainsManager = \Yii::$app->multipleDomainsManager;
         $urlManager = $MultipleDomainsManager->current;
         $myUrlManager = $MultipleDomainsManager->get('my');
+        $miUrlManager = $MultipleDomainsManager->get('mi');
+        $this->assertNull($miUrlManager);
+        $mUrlManager = $MultipleDomainsManager->get('m');
+        $this->assertNull($mUrlManager);
+        $mhUrlManager = $MultipleDomainsManager->get('mh');
+        $this->assertNotNull($mhUrlManager);
         $loginUrlManager = $MultipleDomainsManager->get('login');
         $this->assertEquals('/site/index.html', $urlManager->createUrl('/site/index'));
         $this->assertEquals('/posts.html', $myUrlManager->createUrl('/post/index'));
         $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
         $this->assertEquals('/logout', $loginUrlManager->createUrl('/site/logout'));
+    }
+
+    /**
+     * @depends testNew
+     * @group md
+     */
+    public function testSSO()
+    {
+        $sso = \Yii::$app->user;
+        \Yii::$app->request->hostInfo = 'vistart.name';
+        \Yii::$app->request->url = '/';
+        $sso->ssoDomain = 'login';
+        $sso->loginUrl = '';
+        $this->assertInstanceOf(\yii\web\Response::className(), $sso->loginRequired());
+        $sso->loginUrl = null;
+        try {
+            $sso->loginRequired();
+            $this->fail();
+        } catch (\yii\web\ForbiddenHttpException $ex) {
+            $this->assertEquals(Yii::t('yii', 'Login Required'), $ex->getMessage());
+        }
+        $sso->loginUrl = 'sso/login';
+        \Yii::$app->requestedRoute = 'sso/login';
+        try {
+            $sso->loginRequired();
+            $this->fail();
+        } catch (\yii\web\ForbiddenHttpException $ex) {
+            $this->assertEquals(Yii::t('yii', 'Login Required'), $ex->getMessage());
+        }
     }
 }

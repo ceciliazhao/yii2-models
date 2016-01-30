@@ -13,6 +13,7 @@
 namespace vistart\Models\components;
 
 use Yii;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Description of SSOIdentity

@@ -41,6 +41,9 @@ trait UserTrait
         if (!isset($config['userClass'])) {
             $config['userClass'] = static::className();
         }
+        if (isset($config['class'])) {
+            unset($config['class']);
+        }
         $entity = new $className($config);
         $createdByAttribute = $entity->createdByAttribute;
         $entity->$createdByAttribute = $this->guid;
