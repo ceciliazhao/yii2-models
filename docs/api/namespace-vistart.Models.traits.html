@@ -162,8 +162,7 @@ For example:</p>
 4.归属用户 GUID；
 5.创建用户 GUID；
 6.上次更新用户 GUID；
-7.确认功能由 ConfirmationTrait 提供；
-8.实例功能由 EntityTrait 提供。</p></td>
+7.Confirmation features, provided by [[ConfirmationTrait]];</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.ConfirmationTrait.html">ConfirmationTrait</a></td>
@@ -260,7 +259,8 @@ $contentTypeAttribute 关系组类型。</p></td>
 Note: Several methods associated with "inserting", "updating" and "removing" may
 involve more DB operations, I strongly recommend those methods to be placed in
 transaction execution, in order to ensure data consistency.
-若使用关系组功能，则使用此 trait 的类必须与使用 UserRelationGroupTrait 的类配合使用。</p></td>
+If you want to use group feature, the class used [[UserRelationGroupTrait]]
+must be used coordinately.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserTrait.html">UserTrait</a></td>

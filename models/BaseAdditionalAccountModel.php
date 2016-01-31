@@ -15,7 +15,7 @@ namespace vistart\Models\models;
 use vistart\Models\traits\AdditionalAccountTrait;
 
 /**
- * Description of BaseAdditionalAccountModel
+ * This abstract class helps you build additional account class.
  *
  * Default settings:
  * - enable GUID.
@@ -38,9 +38,9 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel
 
     public $idAttributeLength = 8;
     public $updatedByAttribute = false;
-    public $contentAttribute = 'content'; // 账户类型，具体类型请自定义。
+    public $contentAttribute = 'content'; // Account type, types defined by yourself.
     public $contentAttributeRule = ['integer', 'min' => 0];
-    public $contentTypeAttribute = 'source';  // 账户来源
+    public $contentTypeAttribute = 'source';  // Where did this account origin from, defined by yourself.
     public $contentTypes = [
         0 => 'self',
         1 => 'third-party',

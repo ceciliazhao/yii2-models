@@ -15,23 +15,22 @@ namespace vistart\Models\models;
 use vistart\Models\traits\BlameableTrait;
 
 /**
- * BaseBlameableEntityModel automatically fills the specified attributes with
+ * BaseBlameableModel automatically fills the specified attributes with
  * the current user's GUID.
  * For example:<br/>
  * ~~~php
  * * @property string $comment
- * class Comment extends BaseBlameableEntityModel
+ * class Comment extends BaseBlameableModel
  * {
+ *     public $contentAttribute = 'commment';
+ *     public $contentAttributeRule = ['string', 'max' => 140];
  *     public static function tableName()
  *     {
  *         return <table_name>;
  *     }
  *     public function rules()
  *     {
- *         $rules = [
- *             [['comment'], 'required'],
- *             [['comment'], 'string', 'max' => 140],
- *         ];
+ *         $rules = <Your Rules>;
  *         return array_merge(parent::rules(), $rules);
  *     }
  *     public function behaviors()
@@ -47,21 +46,19 @@ use vistart\Models\traits\BlameableTrait;
  *     }
  * }
  * ~~~
- * Well, when you're signed-in, you can save a new `Example` instance:
+ * Well, when you're signed-in, you can create and save a new `Comment` instance:
  * ~~~php
- * $example = new Example();
- * $example->comment = 'New Comment.';
- * $example->save();
+ * $comment = new Comment();
+ * $comment->comment = 'New Comment.';
+ * $comment->save();
  * ~~~
  * or update an existing one:
  * ~~~php
- * $example = Example::find()
- *                   ->where([$this->createdByAttribute => $user_uuid])
- *                   ->one();
- * if ($example)
+ * $comment = Comment::findByIdentity()->one();
+ * if ($comment)
  * {
- *     $example->comment = 'Updated Comment.';
- *     $example->save();
+ *     $comment->comment = 'Updated Comment.';
+ *     $comment->save();
  * }
  * ~~~
  * @property array createdByAttributeRules the whole validation rules of
@@ -78,6 +75,7 @@ abstract class BaseBlameableModel extends BaseEntityModel
 
     /**
      * Initialize the blameable model.
+     * If query class is not specified, [[BaseBlameableQuery]] will be taken.
      */
     public function init()
     {
@@ -92,7 +90,7 @@ abstract class BaseBlameableModel extends BaseEntityModel
     }
 
     /**
-     * Get the query class.
+     * Get the query class with specified identity.
      * @param \vistart\Models\models\BaseUserModel $identity
      * @return \vistart\Models\queries\BaseBlameableQuery
      */

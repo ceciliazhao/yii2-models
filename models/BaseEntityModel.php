@@ -62,7 +62,11 @@ abstract class BaseEntityModel extends ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
+     * ------------
+     * This static method will take $queryClass property to query class. If it is
+     * not a string, The [[BaseEntityQuery]] will be taken.
+     * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]]
+     * or its extended class instance.
      */
     public static function find()
     {

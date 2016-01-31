@@ -130,27 +130,26 @@
 	<table class="summary table table-bordered table-striped" id="classes">
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseAdditionalAccountModel.html">BaseAdditionalAccountModel</a></td>
-	<td>Description of BaseAdditionalAccountModel</td>
+	<td>This abstract class helps you build additional account class.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseBlameableModel.html">BaseBlameableModel</a></td>
-	<td><p>BaseBlameableEntityModel automatically fills the specified attributes with
+	<td><p>BaseBlameableModel automatically fills the specified attributes with
 the current user's GUID.
 For example:<br/></p>
 
 <pre><code class="php">* @property string $comment
-class Comment extends BaseBlameableEntityModel
+class Comment extends BaseBlameableModel
 {
+    public $contentAttribute = 'commment';
+    public $contentAttributeRule = ['string', 'max' =&gt; 140];
     public static function tableName()
     {
         return &lt;table_name&gt;;
     }
     public function rules()
     {
-        $rules = [
-            [['comment'], 'required'],
-            [['comment'], 'string', 'max' =&gt; 140],
-        ];
+        $rules = &lt;Your Rules&gt;;
         return array_merge(parent::rules(), $rules);
     }
     public function behaviors()
@@ -167,22 +166,20 @@ class Comment extends BaseBlameableEntityModel
 }
 </code></pre>
 
-<p>Well, when you're signed-in, you can save a new <code>Example</code> instance:</p>
+<p>Well, when you're signed-in, you can create and save a new <code>Comment</code> instance:</p>
 
-<pre><code class="php">$example = new Example();
-$example-&gt;comment = 'New Comment.';
-$example-&gt;save();
+<pre><code class="php">$comment = new Comment();
+$comment-&gt;comment = 'New Comment.';
+$comment-&gt;save();
 </code></pre>
 
 <p>or update an existing one:</p>
 
-<pre><code class="php">$example = Example::find()
-                  -&gt;where([$this-&gt;createdByAttribute =&gt; $user_uuid])
-                  -&gt;one();
-if ($example)
+<pre><code class="php">$comment = Comment::findByIdentity()-&gt;one();
+if ($comment)
 {
-    $example-&gt;comment = 'Updated Comment.';
-    $example-&gt;save();
+    $comment-&gt;comment = 'Updated Comment.';
+    $comment-&gt;save();
 }
 </code></pre></td>
 </tr>
@@ -239,7 +236,9 @@ class User extends \vistart\Models\models\BaseUserModel {
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></td>
-	<td>该类帮助用户定义用户关系。</td>
+	<td><p>This abstract class helps you build user relation model.
+If you want to use group feature, the BaseUserRelationGroup's extended class
+must be used coordinately.</p></td>
 </tr>
 	</table>
 </div>

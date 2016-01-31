@@ -126,28 +126,28 @@
 
 
 	<div class="description">
-	<p>BaseBlameableEntityModel automatically fills the specified attributes with
+	<p>BaseBlameableModel automatically fills the specified attributes with
 the current user's GUID.
 For example:<br/></p>
 
 <pre><code class="php">* @property string $comment
-class Comment extends BaseBlameableEntityModel
-{ public static function tableName() { return &lt;table_name&gt;; } public function rules() { $rules = [ [['comment'], 'required'], [['comment'], 'string', 'max' =&gt; 140], ]; return array_merge(parent::rules(), $rules); } public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); } public function attributeLabels() { return [ ... ]; }
+class Comment extends BaseBlameableModel
+{ public $contentAttribute = 'commment'; public $contentAttributeRule = ['string', 'max' =&gt; 140]; public static function tableName() { return &lt;table_name&gt;; } public function rules() { $rules = &lt;Your Rules&gt;; return array_merge(parent::rules(), $rules); } public function behaviors() { $behaviors = &lt;Your Behaviors&gt;; return array_merge(parent::behaviors(), $behaviors); } public function attributeLabels() { return [ ... ]; }
 }
 </code></pre>
 
-<p>Well, when you're signed-in, you can save a new <code>Example</code> instance:</p>
+<p>Well, when you're signed-in, you can create and save a new <code>Comment</code> instance:</p>
 
-<pre><code class="php">$example = new Example();
-$example-&gt;comment = 'New Comment.';
-$example-&gt;save();
+<pre><code class="php">$comment = new Comment();
+$comment-&gt;comment = 'New Comment.';
+$comment-&gt;save();
 </code></pre>
 
 <p>or update an existing one:</p>
 
-<pre><code class="php">$example = Example::find() -&gt;where([$this-&gt;createdByAttribute =&gt; $user_uuid]) -&gt;one();
-if ($example)
-{ $example-&gt;comment = 'Updated Comment.'; $example-&gt;save();
+<pre><code class="php">$comment = Comment::findByIdentity()-&gt;one();
+if ($comment)
+{ $comment-&gt;comment = 'Updated Comment.'; $comment-&gt;save();
 }
 </code></pre>
 	</div>
@@ -205,7 +205,7 @@ yii\db\ActiveRecord
 				2.0<br>
 				<b>Since:</b>
 				1.1<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableModel.html#17-103" title="Go to source code">models/BaseBlameableModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseBlameableModel.html#17-101" title="Go to source code">models/BaseBlameableModel.php</a>
 		<br>
 	</div>
 
@@ -225,14 +225,16 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#79-92" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#76-90" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				<p>Initialize the blameable model.</p>
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Initialize the blameable model.</p>
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 
 
 
@@ -256,14 +258,14 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findByIdentity">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#94-102" title="Go to source code">findByIdentity</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$identity</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.models.BaseBlameableModel.html#92-100" title="Go to source code">findByIdentity</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$identity</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Get the query class.</p>
+				<p>Get the query class with specified identity.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get the query class.</p>
+				<p>Get the query class with specified identity.</p>
 
 
 					<h4>Parameters</h4>

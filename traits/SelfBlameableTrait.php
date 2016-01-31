@@ -16,8 +16,8 @@ namespace vistart\Models\traits;
  * Description of SelfBlameableTrait
  *
  * @property-read static $parent
- * @property-read array $children
- * @property-read array $oldChildren
+ * @property-read static[] $children
+ * @property-read static[] $oldChildren
  * @property array $selfBlameableRules
  * @version 2.0
  * @author vistart <i@vistart.name>

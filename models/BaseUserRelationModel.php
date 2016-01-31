@@ -16,7 +16,9 @@ use vistart\Models\traits\UserRelationTrait;
 use vistart\Models\queries\BaseUserRelationQuery;
 
 /**
- * 该类帮助用户定义用户关系。
+ * This abstract class helps you build user relation model.
+ * If you want to use group feature, the BaseUserRelationGroup's extended class
+ * must be used coordinately.
  * @version 2.0
  * @author vistart <i@vistart.name>
  */

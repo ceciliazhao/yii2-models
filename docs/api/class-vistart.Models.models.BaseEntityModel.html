@@ -181,7 +181,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#19-76" title="Go to source code">models/BaseEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseEntityModel.html#19-80" title="Go to source code">models/BaseEntityModel.php</a>
 		<br>
 	</div>
 
@@ -271,7 +271,7 @@ method runs when environment is not production or disable debug mode.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_find">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#63-75" title="Go to source code">find</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseEntityModel.html#63-79" title="Go to source code">find</a>( )</code>
 
 			<div class="description short">
 				
@@ -284,12 +284,17 @@ method runs when environment is not production or disable debug mode.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						vistart\Models\models\BaseEntityQuery<br>the newly created [[BaseEntityQuery]] or its sub-class instance.
+						vistart\Models\models\BaseEntityQuery<br><p>the newly created [[BaseEntityQuery]]
+or its extended class instance.</p>
 					</div>
 
 
 					<h4>Inheritdoc</h4>
 					<div class="list">
+							<hr />
+
+<p>This static method will take $queryClass property to query class. If it is
+not a string, The [[BaseEntityQuery]] will be taken.</p><br>
 					</div>
 
 

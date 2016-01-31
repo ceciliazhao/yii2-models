@@ -23,8 +23,7 @@ use yii\caching\TagDependency;
  * 4.归属用户 GUID；
  * 5.创建用户 GUID；
  * 6.上次更新用户 GUID；
- * 7.确认功能由 ConfirmationTrait 提供；
- * 8.实例功能由 EntityTrait 提供。
+ * 7.Confirmation features, provided by [[ConfirmationTrait]];
  * @property-read array $blameableAttributeRules Get all rules associated with
  * blameable.
  * @property array $blameableRules Get or set all the rules associated with
