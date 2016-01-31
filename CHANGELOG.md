@@ -9,6 +9,7 @@
 #### traits/BlameableQueryTrait.php
 
 - Enh: createdBy() and updatedBy() conditions support base user model instance. (vistart)
+- Enh: byIdentity condition supports specifying identity. (vistart)
 
 #### traits/EntityQueryTrait.php
 
@@ -35,6 +36,10 @@
 - Add: createBlame() method for create blame instance. (vistart)
 - Add: addOrCreateBlame() method for add blame or create one before adding if it didn't exist. (vistart)
 - Add: getOrCreateBlame() method for get blame or create one before returning if it didn't exist. (vistart)
+
+#### models/BaseBlameableModel.php
+
+- Add: findByIdentity() method for getting the query with specified identity condition. (vistart)
 
 #### models/BaseMongoEntityModel.php
 

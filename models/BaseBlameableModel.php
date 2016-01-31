@@ -90,4 +90,14 @@ abstract class BaseBlameableModel extends BaseEntityModel
         $this->initBlameableEvents();
         parent::init();
     }
+
+    /**
+     * Get the query class.
+     * @param \vistart\Models\models\BaseUserModel $identity
+     * @return \vistart\Models\queries\BaseBlameableQuery
+     */
+    public static function findByIdentity($identity = null)
+    {
+        return static::find()->byIdentity($identity);
+    }
 }

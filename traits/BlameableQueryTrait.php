@@ -110,11 +110,14 @@ trait BlameableQueryTrait
 
     /**
      * Attach current identity to createdBy condition.
+     * @param \vistart\Models\models\BaseUserModel $identity
      * @return $this
      */
-    public function byIdentity()
+    public function byIdentity($identity = null)
     {
-        $identity = \Yii::$app->user->identity;
+        if (!$identity) {
+            $identity = \Yii::$app->user->identity;
+        }
         if (!$identity || !$identity->canGetProperty('guid')) {
             return $this;
         }
