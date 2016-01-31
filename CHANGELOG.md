@@ -15,7 +15,7 @@
 
 - Fix: createdAt() and updatedAt() conditions reference error attributes. (vistart)
 
-#### trait/SelfBlameableTrait.php
+#### traits/SelfBlameableTrait.php
 
 - Chg: private self blameable rules name changed. It doesn't matter with logic. (vistart)
 
