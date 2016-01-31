@@ -423,7 +423,7 @@
 </span><span id="267" class="l"><a href="#267">267 </a>            <span class="php-var">$otherGuidAttribute</span> = <span class="php-var">$rni</span>-&gt;otherGuidAttribute;
 </span><span id="268" class="l"><a href="#268">268 </a>            <span class="php-var">$userClass</span> = <span class="php-var">$rni</span>-&gt;userClass;
 </span><span id="269" class="l"><a href="#269">269 </a>            <span class="php-keyword1">if</span> (<span class="php-var">$user</span> <span class="php-keyword1">instanceof</span> BaseUserModel) {
-</span><span id="270" class="l"><a href="#270">270 </a>                <span class="php-var">$userClass</span> = <span class="php-var">$userClass</span> ? : <span class="php-keyword2">get_class</span>(<span class="php-var">$user</span>);
+</span><span id="270" class="l"><a href="#270">270 </a>                <span class="php-var">$userClass</span> = <span class="php-var">$userClass</span> ? : <span class="php-var">$user</span>-&gt;className();
 </span><span id="271" class="l"><a href="#271">271 </a>                <span class="php-var">$user</span> = <span class="php-var">$user</span>-&gt;guid;
 </span><span id="272" class="l"><a href="#272">272 </a>            }
 </span><span id="273" class="l"><a href="#273">273 </a>            <span class="php-keyword1">if</span> (<span class="php-var">$other</span> <span class="php-keyword1">instanceof</span> BaseUserModel) {

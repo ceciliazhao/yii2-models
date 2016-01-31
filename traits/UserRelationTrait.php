@@ -267,7 +267,7 @@ trait UserRelationTrait
             $otherGuidAttribute = $rni->otherGuidAttribute;
             $userClass = $rni->userClass;
             if ($user instanceof BaseUserModel) {
-                $userClass = $userClass ? : get_class($user);
+                $userClass = $userClass ? : $user->className();
                 $user = $user->guid;
             }
             if ($other instanceof BaseUserModel) {
