@@ -61,6 +61,7 @@
 #### components/SSOIdentity.php
 
 - Fix: ForbiddenHttpException reference missing. (vistart)
+- Add: support specifying MultipleDomainsManager component ID. (vistart)
 
 ### 2.0.0 under development
 

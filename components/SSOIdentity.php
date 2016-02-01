@@ -58,6 +58,7 @@ class SSOIdentity extends \yii\web\User
 
     public $ssoDomain = 'sso';
     public $loginUrl = ['sso/login'];
+    public $multipleDomainsManagerId = 'multipleDomainsManager';
 
     public function loginRequired($checkAjax = true)
     {
@@ -69,10 +70,19 @@ class SSOIdentity extends \yii\web\User
         if ($this->loginUrl !== null) {
             $loginUrl = (array) $this->loginUrl;
             if ($loginUrl[0] !== Yii::$app->requestedRoute) {
-                $ssoUrlManager = Yii::$app->multipleDomainsManager->get($this->ssoDomain);
+                $ssoUrlManager = $this->getMultipleDomainsManager()->get($this->ssoDomain);
                 return Yii::$app->getResponse()->redirect($ssoUrlManager->createAbsoluteUrl($this->loginUrl));
             }
         }
         throw new ForbiddenHttpException(Yii::t('yii', 'Login Required'));
+    }
+
+    protected function getMultipleDomainsManager()
+    {
+        if (is_string($this->multipleDomainsManagerId)) {
+            $mdId = $this->multipleDomainsManagerId;
+            return Yii::$app->$mdId;
+        }
+        return Yii::$app->multipleDomainsManager;
     }
 }
