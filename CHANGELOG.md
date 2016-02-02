@@ -63,7 +63,16 @@
 #### components/SSOIdentity.php
 
 - Fix: ForbiddenHttpException reference missing. (vistart)
-- Add: support specifying MultipleDomainsManager component ID. (vistart)
+- Add: support specifying MultiDomainsManager component ID. (vistart)
+- Chg: rename getMultipleDomainsManager() with getMultiDomainsManager(). (vistart)
+
+#### components/MultipleDomainsManager.php -> MultiDomainsManager.php
+
+- Chg: rename with `MultiDomainsManager`. (vistart)
+
+#### components/MultipleDomainsUrlManager.php -> MultiDomainsUrlManager.php
+
+- Chg: rename with `MultiDomainsUrlManager`. (vistart)
 
 ### 2.0.0 under development
 

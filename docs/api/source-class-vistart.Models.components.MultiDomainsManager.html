@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 
-	<title>File components/MultipleDomainsManager.php</title>
+	<title>File components/MultiDomainsManager.php</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -96,8 +96,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vistart.Models.components.MultipleDomainsManager.html">vistart\Models\components\MultipleDomainsManager</a></li>
-				<li><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">vistart\Models\components\MultipleDomainsUrlManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsManager.html">vistart\Models\components\MultiDomainsManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsUrlManager.html">vistart\Models\components\MultiDomainsUrlManager</a></li>
 				<li><a href="class-vistart.Models.components.SSOIdentity.html">vistart\Models\components\SSOIdentity</a></li>
 				<li><a href="class-vistart.Models.events.MultipleBlameableEvent.html">vistart\Models\events\MultipleBlameableEvent</a></li>
 				<li><a href="class-vistart.Models.gii.baseUserModel.Generator.html">vistart\Models\gii\baseUserModel\Generator</a></li>
@@ -171,13 +171,13 @@
 </span><span id="15" class="l"><a href="#15"> 15 </a><span class="php-keyword1">use</span> Yii;
 </span><span id="16" class="l"><a href="#16"> 16 </a>
 </span><span id="17" class="l"><a href="#17"> 17 </a><span class="php-comment">/**
-</span></span><span id="18" class="l"><a href="#18"> 18 </a><span class="php-comment"> * MultipleDomainsManager is used to process multiple domains web application.
+</span></span><span id="18" class="l"><a href="#18"> 18 </a><span class="php-comment"> * MultiDomainsManager is used to process multi-domains web application.
 </span></span><span id="19" class="l"><a href="#19"> 19 </a><span class="php-comment"> * This class does not apply to the basic template, otherwise you know consequenses.
 </span></span><span id="20" class="l"><a href="#20"> 20 </a><span class="php-comment"> * @property-read \yii\web\UrlManager $current
 </span></span><span id="21" class="l"><a href="#21"> 21 </a><span class="php-comment"> * @since 2.0
 </span></span><span id="22" class="l"><a href="#22"> 22 </a><span class="php-comment"> * @author vistart &lt;i@vistart.name&gt;
 </span></span><span id="23" class="l"><a href="#23"> 23 </a><span class="php-comment"> */</span>
-</span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-keyword1">class</span> MultipleDomainsManager <span class="php-keyword1">extends</span> \yii\base\Component
+</span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-keyword1">class</span> MultiDomainsManager <span class="php-keyword1">extends</span> \yii\base\Component
 </span><span id="25" class="l"><a href="#25"> 25 </a>{
 </span><span id="26" class="l"><a href="#26"> 26 </a>
 </span><span id="27" class="l"><a href="#27"> 27 </a>    <span class="php-comment">/**
@@ -196,7 +196,7 @@
 </span></span><span id="40" class="l"><a href="#40"> 40 </a><span class="php-comment">     * $subDomains = [
 </span></span><span id="41" class="l"><a href="#41"> 41 </a><span class="php-comment">     *    '' =&gt; [
 </span></span><span id="42" class="l"><a href="#42"> 42 </a><span class="php-comment">     *         'component' =&gt; [
-</span></span><span id="43" class="l"><a href="#43"> 43 </a><span class="php-comment">     *              // `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.
+</span></span><span id="43" class="l"><a href="#43"> 43 </a><span class="php-comment">     *              // `class` could be ignored as it is `vistart\Models\components\MultiDomainsUrlManager`.
 </span></span><span id="44" class="l"><a href="#44"> 44 </a><span class="php-comment">     *             'class' =&gt; 'yii\web\UrlManager',
 </span></span><span id="45" class="l"><a href="#45"> 45 </a><span class="php-comment">     *             'enablePrettyUrl' =&gt; true,
 </span></span><span id="46" class="l"><a href="#46"> 46 </a><span class="php-comment">     *             'showScriptName' =&gt; false,
@@ -232,13 +232,13 @@
 </span></span><span id="76" class="l"><a href="#76"> 76 </a><span class="php-comment">     * ];
 </span></span><span id="77" class="l"><a href="#77"> 77 </a><span class="php-comment">     * ```
 </span></span><span id="78" class="l"><a href="#78"> 78 </a><span class="php-comment">     * and you can configure the `config/web.php` (basic template) or `config/main.php` (advanced template)
-</span></span><span id="79" class="l"><a href="#79"> 79 </a><span class="php-comment">     * `components` section to add an element named `multipleDomainsManager`:
+</span></span><span id="79" class="l"><a href="#79"> 79 </a><span class="php-comment">     * `components` section to add an element named `multiDomainsManager`:
 </span></span><span id="80" class="l"><a href="#80"> 80 </a><span class="php-comment">     * ```php
 </span></span><span id="81" class="l"><a href="#81"> 81 </a><span class="php-comment">     * $config = [
 </span></span><span id="82" class="l"><a href="#82"> 82 </a><span class="php-comment">     *     ...
 </span></span><span id="83" class="l"><a href="#83"> 83 </a><span class="php-comment">     *     'components' =&gt; [
 </span></span><span id="84" class="l"><a href="#84"> 84 </a><span class="php-comment">     *         ...
-</span></span><span id="85" class="l"><a href="#85"> 85 </a><span class="php-comment">     *         'multipleDomainsManager' =&gt; [
+</span></span><span id="85" class="l"><a href="#85"> 85 </a><span class="php-comment">     *         'multiDomainsManager' =&gt; [
 </span></span><span id="86" class="l"><a href="#86"> 86 </a><span class="php-comment">     *             'baseDomain' =&gt; 'example.com',
 </span></span><span id="87" class="l"><a href="#87"> 87 </a><span class="php-comment">     *             'subDomains' =&gt; [
 </span></span><span id="88" class="l"><a href="#88"> 88 </a><span class="php-comment">     *                 'my' =&gt; [
@@ -276,7 +276,7 @@
 </span><span id="120" class="l"><a href="#120">120 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
 </span><span id="121" class="l"><a href="#121">121 </a>        }
 </span><span id="122" class="l"><a href="#122">122 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$subDomainConfig</span>[<span class="php-quote">'component'</span>][<span class="php-quote">'class'</span>])) {
-</span><span id="123" class="l"><a href="#123">123 </a>            <span class="php-var">$subDomainConfig</span>[<span class="php-quote">'component'</span>][<span class="php-quote">'class'</span>] = MultipleDomainsUrlManager::className();
+</span><span id="123" class="l"><a href="#123">123 </a>            <span class="php-var">$subDomainConfig</span>[<span class="php-quote">'component'</span>][<span class="php-quote">'class'</span>] = MultiDomainsUrlManager::className();
 </span><span id="124" class="l"><a href="#124">124 </a>        }
 </span><span id="125" class="l"><a href="#125">125 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$subDomainConfig</span>[<span class="php-quote">'component'</span>][<span class="php-quote">'hostInfo'</span>])) {
 </span><span id="126" class="l"><a href="#126">126 </a>            <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$subDomainConfig</span>[<span class="php-quote">'schema'</span>])) {
@@ -307,6 +307,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?ed69b474f3ee6511bc5cb1d44517fbabcf2dbb38"></script>
+<script src="elementlist.js?3a1d6a97eac0a2676be701576e95711469259cbc"></script>
 </body>
 </html>

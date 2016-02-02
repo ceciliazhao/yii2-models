@@ -105,13 +105,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
             $this->markTestSkipped('No mysql server connection configured.');
         }
         $connection = new Connection($params);
-        $md = self::getParam('multipleDomainsManager');
+        $md = self::getParam('multiDomainsManager');
         $redis = self::getParam('redis');
         $cacheParams = self::getParam('cache');/*
         if ($cacheParams === null) {
             $this->markTestSkipped('No cache component configured.');;
         }*/
-        $this->mockWebApplication(['components' => ['redis' => $redis, 'multipleDomainsManager' => $md, 'db' => $connection, 'cache' => $cacheParams]]);
+        $this->mockWebApplication(['components' => ['redis' => $redis, 'multiDomainsManager' => $md, 'db' => $connection, 'cache' => $cacheParams]]);
 
         parent::setUp();
     }

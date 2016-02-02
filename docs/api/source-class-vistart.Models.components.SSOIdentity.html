@@ -96,8 +96,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vistart.Models.components.MultipleDomainsManager.html">vistart\Models\components\MultipleDomainsManager</a></li>
-				<li><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">vistart\Models\components\MultipleDomainsUrlManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsManager.html">vistart\Models\components\MultiDomainsManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsUrlManager.html">vistart\Models\components\MultiDomainsUrlManager</a></li>
 				<li><a href="class-vistart.Models.components.SSOIdentity.html">vistart\Models\components\SSOIdentity</a></li>
 				<li><a href="class-vistart.Models.events.MultipleBlameableEvent.html">vistart\Models\events\MultipleBlameableEvent</a></li>
 				<li><a href="class-vistart.Models.gii.baseUserModel.Generator.html">vistart\Models\gii\baseUserModel\Generator</a></li>
@@ -173,7 +173,7 @@
 </span><span id="17" class="l"><a href="#17">17 </a>
 </span><span id="18" class="l"><a href="#18">18 </a><span class="php-comment">/**
 </span></span><span id="19" class="l"><a href="#19">19 </a><span class="php-comment"> * Description of SSOIdentity
-</span></span><span id="20" class="l"><a href="#20">20 </a><span class="php-comment"> * This component needs MultipleDomainsManager component.
+</span></span><span id="20" class="l"><a href="#20">20 </a><span class="php-comment"> * This component needs MultiDomainsManager component.
 </span></span><span id="21" class="l"><a href="#21">21 </a><span class="php-comment"> * Usage:
 </span></span><span id="22" class="l"><a href="#22">22 </a><span class="php-comment"> * config/web.php (basic template) or config/main.php (advanced template):
 </span></span><span id="23" class="l"><a href="#23">23 </a><span class="php-comment"> * ```php
@@ -181,7 +181,7 @@
 </span></span><span id="25" class="l"><a href="#25">25 </a><span class="php-comment"> *     ...
 </span></span><span id="26" class="l"><a href="#26">26 </a><span class="php-comment"> *     'components' =&gt; [
 </span></span><span id="27" class="l"><a href="#27">27 </a><span class="php-comment"> *         ...
-</span></span><span id="28" class="l"><a href="#28">28 </a><span class="php-comment"> *         'multipleDomainsManager' =&gt; [
+</span></span><span id="28" class="l"><a href="#28">28 </a><span class="php-comment"> *         'multiDomainsManager' =&gt; [
 </span></span><span id="29" class="l"><a href="#29">29 </a><span class="php-comment"> *              'baseDomain' =&gt; &lt;Base Domain&gt;,
 </span></span><span id="30" class="l"><a href="#30">30 </a><span class="php-comment"> *         ],
 </span></span><span id="31" class="l"><a href="#31">31 </a><span class="php-comment"> *         'user' =&gt; [
@@ -191,13 +191,13 @@
 </span></span><span id="35" class="l"><a href="#35">35 </a><span class="php-comment"> *             'identityCookie' =&gt; [
 </span></span><span id="36" class="l"><a href="#36">36 </a><span class="php-comment"> *                 'name' =&gt; '_identity',
 </span></span><span id="37" class="l"><a href="#37">37 </a><span class="php-comment"> *                 'httpOnly' =&gt; true,
-</span></span><span id="38" class="l"><a href="#38">38 </a><span class="php-comment"> *                 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multiple Domains Manager's `baseDomain` property.
+</span></span><span id="38" class="l"><a href="#38">38 </a><span class="php-comment"> *                 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multi-Domains Manager's `baseDomain` property.
 </span></span><span id="39" class="l"><a href="#39">39 </a><span class="php-comment"> *             ],
 </span></span><span id="40" class="l"><a href="#40">40 </a><span class="php-comment"> *         ],
 </span></span><span id="41" class="l"><a href="#41">41 </a><span class="php-comment"> *         'session' =&gt; [
 </span></span><span id="42" class="l"><a href="#42">42 </a><span class="php-comment"> *             ...
 </span></span><span id="43" class="l"><a href="#43">43 </a><span class="php-comment"> *             'cookieParams' =&gt; [
-</span></span><span id="44" class="l"><a href="#44">44 </a><span class="php-comment"> *                 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multiple Domains Manager's `baseDomain` property.
+</span></span><span id="44" class="l"><a href="#44">44 </a><span class="php-comment"> *                 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multi-Domains Manager's `baseDomain` property.
 </span></span><span id="45" class="l"><a href="#45">45 </a><span class="php-comment"> *                 'lifetime' =&gt; 0,
 </span></span><span id="46" class="l"><a href="#46">46 </a><span class="php-comment"> *             ],
 </span></span><span id="47" class="l"><a href="#47">47 </a><span class="php-comment"> *             ...
@@ -214,7 +214,7 @@
 </span><span id="58" class="l"><a href="#58">58 </a>
 </span><span id="59" class="l"><a href="#59">59 </a>    <span class="php-keyword1">public</span> <span class="php-var">$ssoDomain</span> = <span class="php-quote">'sso'</span>;
 </span><span id="60" class="l"><a href="#60">60 </a>    <span class="php-keyword1">public</span> <span class="php-var">$loginUrl</span> = [<span class="php-quote">'sso/login'</span>];
-</span><span id="61" class="l"><a href="#61">61 </a>    <span class="php-keyword1">public</span> <span class="php-var">$multipleDomainsManagerId</span> = <span class="php-quote">'multipleDomainsManager'</span>;
+</span><span id="61" class="l"><a href="#61">61 </a>    <span class="php-keyword1">public</span> <span class="php-var">$multiDomainsManagerId</span> = <span class="php-quote">'multiDomainsManager'</span>;
 </span><span id="62" class="l"><a href="#62">62 </a>
 </span><span id="63" class="l"><a href="#63">63 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> loginRequired(<span class="php-var">$checkAjax</span> = <span class="php-keyword1">true</span>)
 </span><span id="64" class="l"><a href="#64">64 </a>    {
@@ -226,20 +226,20 @@
 </span><span id="70" class="l"><a href="#70">70 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;loginUrl !== <span class="php-keyword1">null</span>) {
 </span><span id="71" class="l"><a href="#71">71 </a>            <span class="php-var">$loginUrl</span> = (<span class="php-keyword1">array</span>) <span class="php-var">$this</span>-&gt;loginUrl;
 </span><span id="72" class="l"><a href="#72">72 </a>            <span class="php-keyword1">if</span> (<span class="php-var">$loginUrl</span>[<span class="php-num">0</span>] !== Yii::<span class="php-var">$app</span>-&gt;requestedRoute) {
-</span><span id="73" class="l"><a href="#73">73 </a>                <span class="php-var">$ssoUrlManager</span> = <span class="php-var">$this</span>-&gt;getMultipleDomainsManager()-&gt;get(<span class="php-var">$this</span>-&gt;ssoDomain);
+</span><span id="73" class="l"><a href="#73">73 </a>                <span class="php-var">$ssoUrlManager</span> = <span class="php-var">$this</span>-&gt;getMultiDomainsManager()-&gt;get(<span class="php-var">$this</span>-&gt;ssoDomain);
 </span><span id="74" class="l"><a href="#74">74 </a>                <span class="php-keyword1">return</span> Yii::<span class="php-var">$app</span>-&gt;getResponse()-&gt;redirect(<span class="php-var">$ssoUrlManager</span>-&gt;createAbsoluteUrl(<span class="php-var">$this</span>-&gt;loginUrl));
 </span><span id="75" class="l"><a href="#75">75 </a>            }
 </span><span id="76" class="l"><a href="#76">76 </a>        }
 </span><span id="77" class="l"><a href="#77">77 </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> ForbiddenHttpException(Yii::t(<span class="php-quote">'yii'</span>, <span class="php-quote">'Login Required'</span>));
 </span><span id="78" class="l"><a href="#78">78 </a>    }
 </span><span id="79" class="l"><a href="#79">79 </a>
-</span><span id="80" class="l"><a href="#80">80 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> getMultipleDomainsManager()
+</span><span id="80" class="l"><a href="#80">80 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> getMultiDomainsManager()
 </span><span id="81" class="l"><a href="#81">81 </a>    {
-</span><span id="82" class="l"><a href="#82">82 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;multipleDomainsManagerId)) {
-</span><span id="83" class="l"><a href="#83">83 </a>            <span class="php-var">$mdId</span> = <span class="php-var">$this</span>-&gt;multipleDomainsManagerId;
+</span><span id="82" class="l"><a href="#82">82 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;multiDomainsManagerId)) {
+</span><span id="83" class="l"><a href="#83">83 </a>            <span class="php-var">$mdId</span> = <span class="php-var">$this</span>-&gt;multiDomainsManagerId;
 </span><span id="84" class="l"><a href="#84">84 </a>            <span class="php-keyword1">return</span> Yii::<span class="php-var">$app</span>-&gt;<span class="php-var">$mdId</span>;
 </span><span id="85" class="l"><a href="#85">85 </a>        }
-</span><span id="86" class="l"><a href="#86">86 </a>        <span class="php-keyword1">return</span> Yii::<span class="php-var">$app</span>-&gt;multipleDomainsManager;
+</span><span id="86" class="l"><a href="#86">86 </a>        <span class="php-keyword1">return</span> Yii::<span class="php-var">$app</span>-&gt;multiDomainsManager;
 </span><span id="87" class="l"><a href="#87">87 </a>    }
 </span><span id="88" class="l"><a href="#88">88 </a>}
 </span><span id="89" class="l"><a href="#89">89 </a></span></code></pre>
@@ -250,6 +250,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?ed69b474f3ee6511bc5cb1d44517fbabcf2dbb38"></script>
+<script src="elementlist.js?3a1d6a97eac0a2676be701576e95711469259cbc"></script>
 </body>
 </html>

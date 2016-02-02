@@ -96,8 +96,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vistart.Models.components.MultipleDomainsManager.html">MultipleDomainsManager</a></li>
-				<li><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">MultipleDomainsUrlManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsManager.html">MultiDomainsManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsUrlManager.html">MultiDomainsUrlManager</a></li>
 				<li class="active"><a href="class-vistart.Models.components.SSOIdentity.html">SSOIdentity</a></li>
 			</ul>
 
@@ -119,11 +119,11 @@
 
 	<div class="description">
 	<p>Description of SSOIdentity
-This component needs MultipleDomainsManager component.
+This component needs MultiDomainsManager component.
 Usage:
 config/web.php (basic template) or config/main.php (advanced template):</p>
 
-<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multipleDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;, ], <span class="php-quote">'user'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'vistart\Models\components\SSOIdentity'</span>, <span class="php-quote">'enableAutoLogin'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'identityClass'</span> =&gt; &lt;User Identity <span class="php-keyword1">Class</span>&gt;, <span class="php-quote">'identityCookie'</span> =&gt; [ <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>, <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property. ], ], 'session' =&gt; [ ... 'cookieParams' =&gt; [ 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multiple Domains Manager's `baseDomain` property. 'lifetime' =&gt; 0, ], ... ], ... ],</span>
+<pre><span class="php-var">$config</span> = [ ... <span class="php-quote">'components'</span> =&gt; [ ... <span class="php-quote">'multiDomainsManager'</span> =&gt; [ <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;, ], <span class="php-quote">'user'</span> =&gt; [ <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'vistart\Models\components\SSOIdentity'</span>, <span class="php-quote">'enableAutoLogin'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'identityClass'</span> =&gt; &lt;User Identity <span class="php-keyword1">Class</span>&gt;, <span class="php-quote">'identityCookie'</span> =&gt; [ <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>, <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>, <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multi-Domains Manager's `baseDomain` property. ], ], 'session' =&gt; [ ... 'cookieParams' =&gt; [ 'domain' =&gt; '.' . &lt;Base Domain&gt;,    // same as Multi-Domains Manager's `baseDomain` property. 'lifetime' =&gt; 0, ], ... ], ... ],</span>
 ];</pre>
 	</div>
 
@@ -196,7 +196,7 @@ yii\web\User
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getMultipleDomainsManager" id="_getMultipleDomainsManager">
+		<tr data-order="getMultiDomainsManager" id="_getMultiDomainsManager">
 
 			<td class="attributes"><code>
 				 protected 
@@ -206,8 +206,8 @@ yii\web\User
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getMultipleDomainsManager">#</a>
-			<code><a href="source-class-vistart.Models.components.SSOIdentity.html#80-87" title="Go to source code">getMultipleDomainsManager</a>( )</code>
+			<a class="anchor" href="#_getMultiDomainsManager">#</a>
+			<code><a href="source-class-vistart.Models.components.SSOIdentity.html#80-87" title="Go to source code">getMultiDomainsManager</a>( )</code>
 
 			<div class="description short">
 				
@@ -291,14 +291,14 @@ yii\web\User
 				</div>
 			</td>
 		</tr>
-		<tr data-order="multipleDomainsManagerId" id="$multipleDomainsManagerId">
+		<tr data-order="multiDomainsManagerId" id="$multiDomainsManagerId">
 			<td class="attributes"><code>
 				public  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.components.SSOIdentity.html#61" title="Go to source code"><var>$multipleDomainsManagerId</var></a>
+					<a href="source-class-vistart.Models.components.SSOIdentity.html#61" title="Go to source code"><var>$multiDomainsManagerId</var></a>
 
 				<div class="description short">
 					
@@ -311,8 +311,8 @@ yii\web\User
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$multipleDomainsManagerId" class="anchor">#</a>
-					<code><span class="php-quote">'multipleDomainsManager'</span></code>
+					<a href="#$multiDomainsManagerId" class="anchor">#</a>
+					<code><span class="php-quote">'multiDomainsManager'</span></code>
 				</div>
 			</td>
 		</tr>

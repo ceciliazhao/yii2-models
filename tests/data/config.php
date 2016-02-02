@@ -45,8 +45,8 @@ $config = [
         'redis' => 'redis',
         'keyPrefix' => 'test_',
     ],
-    'multipleDomainsManager' => [
-        'class' => 'vistart\Models\tests\data\ar\MultipleDomainsManager',
+    'multiDomainsManager' => [
+        'class' => 'vistart\Models\tests\data\ar\MultiDomainsManager',
     ],
 ];
 

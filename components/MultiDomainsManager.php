@@ -15,13 +15,13 @@ namespace vistart\Models\components;
 use Yii;
 
 /**
- * MultipleDomainsManager is used to process multiple domains web application.
+ * MultiDomainsManager is used to process multi-domains web application.
  * This class does not apply to the basic template, otherwise you know consequenses.
  * @property-read \yii\web\UrlManager $current
  * @since 2.0
  * @author vistart <i@vistart.name>
  */
-class MultipleDomainsManager extends \yii\base\Component
+class MultiDomainsManager extends \yii\base\Component
 {
 
     /**
@@ -40,7 +40,7 @@ class MultipleDomainsManager extends \yii\base\Component
      * $subDomains = [
      *    '' => [
      *         'component' => [
-     *              // `class` could be ignored as it is `vistart\Models\components\MultipleDomainsUrlManager`.
+     *              // `class` could be ignored as it is `vistart\Models\components\MultiDomainsUrlManager`.
      *             'class' => 'yii\web\UrlManager',
      *             'enablePrettyUrl' => true,
      *             'showScriptName' => false,
@@ -76,13 +76,13 @@ class MultipleDomainsManager extends \yii\base\Component
      * ];
      * ```
      * and you can configure the `config/web.php` (basic template) or `config/main.php` (advanced template)
-     * `components` section to add an element named `multipleDomainsManager`:
+     * `components` section to add an element named `multiDomainsManager`:
      * ```php
      * $config = [
      *     ...
      *     'components' => [
      *         ...
-     *         'multipleDomainsManager' => [
+     *         'multiDomainsManager' => [
      *             'baseDomain' => 'example.com',
      *             'subDomains' => [
      *                 'my' => [
@@ -120,7 +120,7 @@ class MultipleDomainsManager extends \yii\base\Component
             return null;
         }
         if (!isset($subDomainConfig['component']['class'])) {
-            $subDomainConfig['component']['class'] = MultipleDomainsUrlManager::className();
+            $subDomainConfig['component']['class'] = MultiDomainsUrlManager::className();
         }
         if (!isset($subDomainConfig['component']['hostInfo'])) {
             if (!isset($subDomainConfig['schema'])) {

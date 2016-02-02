@@ -95,8 +95,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vistart.Models.components.MultipleDomainsManager.html">MultipleDomainsManager</a></li>
-				<li><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">MultipleDomainsUrlManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsManager.html">MultiDomainsManager</a></li>
+				<li><a href="class-vistart.Models.components.MultiDomainsUrlManager.html">MultiDomainsUrlManager</a></li>
 				<li><a href="class-vistart.Models.components.SSOIdentity.html">SSOIdentity</a></li>
 			</ul>
 
@@ -121,18 +121,18 @@
     <div class="panel-heading"><h2>Classes summary</h2></div>
 	<table class="summary table table-bordered table-striped" id="classes">
 <tr>
-	<td class="name"><a href="class-vistart.Models.components.MultipleDomainsManager.html">MultipleDomainsManager</a></td>
-	<td><p>MultipleDomainsManager is used to process multiple domains web application.
+	<td class="name"><a href="class-vistart.Models.components.MultiDomainsManager.html">MultiDomainsManager</a></td>
+	<td><p>MultiDomainsManager is used to process multi-domains web application.
 This class does not apply to the basic template, otherwise you know consequenses.</p></td>
 </tr>
 <tr>
-	<td class="name"><a href="class-vistart.Models.components.MultipleDomainsUrlManager.html">MultipleDomainsUrlManager</a></td>
-	<td>Description of MultipleDomainsUrlManager</td>
+	<td class="name"><a href="class-vistart.Models.components.MultiDomainsUrlManager.html">MultiDomainsUrlManager</a></td>
+	<td>Description of MultiDomainsUrlManager</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.components.SSOIdentity.html">SSOIdentity</a></td>
 	<td><p>Description of SSOIdentity
-This component needs MultipleDomainsManager component.
+This component needs MultiDomainsManager component.
 Usage:
 config/web.php (basic template) or config/main.php (advanced template):</p>
 
@@ -140,7 +140,7 @@ config/web.php (basic template) or config/main.php (advanced template):</p>
     ...
     <span class="php-quote">'components'</span> =&gt; [
         ...
-        <span class="php-quote">'multipleDomainsManager'</span> =&gt; [
+        <span class="php-quote">'multiDomainsManager'</span> =&gt; [
              <span class="php-quote">'baseDomain'</span> =&gt; &lt;Base Domain&gt;,
         ],
         <span class="php-quote">'user'</span> =&gt; [
@@ -150,13 +150,13 @@ config/web.php (basic template) or config/main.php (advanced template):</p>
             <span class="php-quote">'identityCookie'</span> =&gt; [
                 <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'_identity'</span>,
                 <span class="php-quote">'httpOnly'</span> =&gt; <span class="php-keyword1">true</span>,
-                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property.</span>
+                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multi-Domains Manager's `baseDomain` property.</span>
             ],
         ],
         <span class="php-quote">'session'</span> =&gt; [
             ...
             <span class="php-quote">'cookieParams'</span> =&gt; [
-                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multiple Domains Manager's `baseDomain` property.</span>
+                <span class="php-quote">'domain'</span> =&gt; <span class="php-quote">'.'</span> . &lt;Base Domain&gt;,    <span class="php-comment">// same as Multi-Domains Manager's `baseDomain` property.</span>
                 <span class="php-quote">'lifetime'</span> =&gt; <span class="php-num">0</span>,
             ],
             ...
@@ -180,6 +180,6 @@ config/web.php (basic template) or config/main.php (advanced template):</p>
 	</div>
 </div>
 <script src="resources/combined.js?817463edc1862b5d012a0395fdd108ec176c2d33"></script>
-<script src="elementlist.js?ed69b474f3ee6511bc5cb1d44517fbabcf2dbb38"></script>
+<script src="elementlist.js?3a1d6a97eac0a2676be701576e95711469259cbc"></script>
 </body>
 </html>

@@ -13,11 +13,11 @@
 namespace vistart\Models\tests\data\ar;
 
 /**
- * Description of MultipleDomainsManager
+ * Description of MultiDomainsManager
  *
- * @author i
+ * @author vistart <i@vistart.name>
  */
-class MultipleDomainsManager extends \vistart\Models\components\MultipleDomainsManager
+class MultiDomainsManager extends \vistart\Models\components\MultiDomainsManager
 {
 
     /**

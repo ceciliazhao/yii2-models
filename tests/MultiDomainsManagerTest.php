@@ -12,14 +12,14 @@
 
 namespace vistart\Models\tests;
 
-use vistart\Models\tests\data\ar\MultipleDomainsManager;
+use vistart\Models\tests\data\ar\MultiDomainsManager;
 use Yii;
 
 /**
  * 
  * @author vistart <i@vistart.name>
  */
-class MultipleDomainsManagerTest extends TestCase
+class MultiDomainsManagerTest extends TestCase
 {
 
     /**
@@ -36,16 +36,16 @@ class MultipleDomainsManagerTest extends TestCase
      */
     public function testNew()
     {
-        $MultipleDomainsManager = \Yii::$app->multipleDomainsManager;
-        $urlManager = $MultipleDomainsManager->current;
-        $myUrlManager = $MultipleDomainsManager->get('my');
-        $miUrlManager = $MultipleDomainsManager->get('mi');
+        $MultiDomainsManager = \Yii::$app->multiDomainsManager;
+        $urlManager = $MultiDomainsManager->current;
+        $myUrlManager = $MultiDomainsManager->get('my');
+        $miUrlManager = $MultiDomainsManager->get('mi');
         $this->assertNull($miUrlManager);
-        $mUrlManager = $MultipleDomainsManager->get('m');
+        $mUrlManager = $MultiDomainsManager->get('m');
         $this->assertNull($mUrlManager);
-        $mhUrlManager = $MultipleDomainsManager->get('mh');
+        $mhUrlManager = $MultiDomainsManager->get('mh');
         $this->assertNotNull($mhUrlManager);
-        $loginUrlManager = $MultipleDomainsManager->get('login');
+        $loginUrlManager = $MultiDomainsManager->get('login');
         $this->assertEquals('/site/index.html', $urlManager->createUrl('/site/index'));
         $this->assertEquals('/posts.html', $myUrlManager->createUrl('/post/index'));
         $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
@@ -79,5 +79,12 @@ class MultipleDomainsManagerTest extends TestCase
         } catch (\yii\web\ForbiddenHttpException $ex) {
             $this->assertEquals(Yii::t('yii', 'Login Required'), $ex->getMessage());
         }
+        
+        $sso->loginUrl = '';
+        $sso->multiDomainsManagerId = '';
+        $this->assertInstanceOf(\yii\web\Response::className(), $sso->loginRequired());
+
+        $sso->multiDomainsManagerId = null;
+        $this->assertInstanceOf(\yii\web\Response::className(), $sso->loginRequired());
     }
 }

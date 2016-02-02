@@ -17,7 +17,7 @@ use yii\web\ForbiddenHttpException;
 
 /**
  * Description of SSOIdentity
- * This component needs MultipleDomainsManager component.
+ * This component needs MultiDomainsManager component.
  * Usage:
  * config/web.php (basic template) or config/main.php (advanced template):
  * ```php
@@ -25,7 +25,7 @@ use yii\web\ForbiddenHttpException;
  *     ...
  *     'components' => [
  *         ...
- *         'multipleDomainsManager' => [
+ *         'multiDomainsManager' => [
  *              'baseDomain' => <Base Domain>,
  *         ],
  *         'user' => [
@@ -35,13 +35,13 @@ use yii\web\ForbiddenHttpException;
  *             'identityCookie' => [
  *                 'name' => '_identity',
  *                 'httpOnly' => true,
- *                 'domain' => '.' . <Base Domain>,    // same as Multiple Domains Manager's `baseDomain` property.
+ *                 'domain' => '.' . <Base Domain>,    // same as Multi-Domains Manager's `baseDomain` property.
  *             ],
  *         ],
  *         'session' => [
  *             ...
  *             'cookieParams' => [
- *                 'domain' => '.' . <Base Domain>,    // same as Multiple Domains Manager's `baseDomain` property.
+ *                 'domain' => '.' . <Base Domain>,    // same as Multi-Domains Manager's `baseDomain` property.
  *                 'lifetime' => 0,
  *             ],
  *             ...
@@ -58,7 +58,7 @@ class SSOIdentity extends \yii\web\User
 
     public $ssoDomain = 'sso';
     public $loginUrl = ['sso/login'];
-    public $multipleDomainsManagerId = 'multipleDomainsManager';
+    public $multiDomainsManagerId = 'multiDomainsManager';
 
     public function loginRequired($checkAjax = true)
     {
@@ -70,19 +70,19 @@ class SSOIdentity extends \yii\web\User
         if ($this->loginUrl !== null) {
             $loginUrl = (array) $this->loginUrl;
             if ($loginUrl[0] !== Yii::$app->requestedRoute) {
-                $ssoUrlManager = $this->getMultipleDomainsManager()->get($this->ssoDomain);
+                $ssoUrlManager = $this->getMultiDomainsManager()->get($this->ssoDomain);
                 return Yii::$app->getResponse()->redirect($ssoUrlManager->createAbsoluteUrl($this->loginUrl));
             }
         }
         throw new ForbiddenHttpException(Yii::t('yii', 'Login Required'));
     }
 
-    protected function getMultipleDomainsManager()
+    protected function getMultiDomainsManager()
     {
-        if (is_string($this->multipleDomainsManagerId)) {
-            $mdId = $this->multipleDomainsManagerId;
+        if (!empty($this->multiDomainsManagerId) && is_string($this->multiDomainsManagerId)) {
+            $mdId = $this->multiDomainsManagerId;
             return Yii::$app->$mdId;
         }
-        return Yii::$app->multipleDomainsManager;
+        return Yii::$app->multiDomainsManager;
     }
 }
