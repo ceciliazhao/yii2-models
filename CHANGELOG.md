@@ -69,6 +69,7 @@
 #### components/MultipleDomainsManager.php -> MultiDomainsManager.php
 
 - Chg: rename with `MultiDomainsManager`. (vistart)
+- Chg: rename config parameter of sub-domain. (vistart)
 
 #### components/MultipleDomainsUrlManager.php -> MultiDomainsUrlManager.php
 

@@ -32,7 +32,7 @@ class MultiDomainsManager extends \yii\base\Component
     /**
      * <Sub Domain Name> => [
      *     'component' => <URL Manager Component Configuration Array>,
-     *     'schema' => 'http'(default) or 'https',
+     *     'scheme' => 'http'(default) or 'https',
      * ]
      * For example:
      * ```php
@@ -47,7 +47,7 @@ class MultiDomainsManager extends \yii\base\Component
      *             'suffix' => '.html',
      *             // the other properties...
      *         ],
-     *         'schema' => 'http', // `schema` could be ignored as it is 'http'.
+     *         'scheme' => 'http', // `scheme` could be ignored as it is 'http'.
      *     ],
      *     'my' => [
      *         'component' => [
@@ -60,7 +60,7 @@ class MultiDomainsManager extends \yii\base\Component
      *                 'post/<id:\d+>' => 'post/view',
      *             ],
      *         ],
-     *         'schema' => 'https',
+     *         'scheme' => 'https',
      *     ],
      *     'sso' => [
      *         'component' => [
@@ -71,7 +71,7 @@ class MultiDomainsManager extends \yii\base\Component
      *                 'logout' => 'sso/logout',
      *             ],
      *         ],
-     *         'schema' => 'https',
+     *         'scheme' => 'https',
      *     ],
      * ];
      * ```
@@ -95,7 +95,7 @@ class MultiDomainsManager extends \yii\base\Component
      *     ],
      * ];
      * ```
-     * @var array array of sub-domains.
+     * @var MultiDomainsUrlManager[] array of sub-domain instances.
      */
     public $subDomains = [];
 
@@ -123,10 +123,10 @@ class MultiDomainsManager extends \yii\base\Component
             $subDomainConfig['component']['class'] = MultiDomainsUrlManager::className();
         }
         if (!isset($subDomainConfig['component']['hostInfo'])) {
-            if (!isset($subDomainConfig['schema'])) {
-                $subDomainConfig['schema'] = 'http';
+            if (!isset($subDomainConfig['scheme'])) {
+                $subDomainConfig['scheme'] = 'http';
             }
-            $subDomainConfig['component']['hostInfo'] = $subDomainConfig['schema'] . // 'http' or 'https'
+            $subDomainConfig['component']['hostInfo'] = $subDomainConfig['scheme'] . // 'http' or 'https'
                 "://" . // delimiter
                 ($subdomain === '' ? '' : "$subdomain.") . // attach subdomain
                 $this->baseDomain;                                               // base domain
@@ -136,7 +136,7 @@ class MultiDomainsManager extends \yii\base\Component
 
     /**
      * Get URL Manager of current domain web application.
-     * @return \yii\web\UrlManager
+     * @return MultiDomainsUrlManager url manager instance.
      */
     public function getCurrent()
     {

@@ -29,7 +29,7 @@ class MultiDomainsManager extends \vistart\Models\components\MultiDomainsManager
     /**
      * <Sub Domain Name> => [
      *     'component' => <URL Manager Component Configuration Array>,
-     *     'schema' => 'http'(default) or 'https',
+     *     'scheme' => 'http'(default) or 'https',
      * ]
      * @var array 
      */
@@ -41,7 +41,7 @@ class MultiDomainsManager extends \vistart\Models\components\MultiDomainsManager
                 'showScriptName' => false,
                 'suffix' => '.html',
             ],
-            'schema' => 'http', // `schema` could be ignored as it is 'http'.
+            'scheme' => 'http', // `scheme` could be ignored as it is 'http'.
         ],
         'my' => [
             'component' => [
@@ -54,7 +54,7 @@ class MultiDomainsManager extends \vistart\Models\components\MultiDomainsManager
                     'post/<id:\d+>' => 'post/view',
                 ],
             ],
-            'schema' => 'https',
+            'scheme' => 'https',
         ],
         'login' => [
             'component' => [
@@ -65,7 +65,7 @@ class MultiDomainsManager extends \vistart\Models\components\MultiDomainsManager
                     'logout' => 'site/logout',
                 ],
             ],
-            'schema' => 'https',
+            'scheme' => 'https',
         ],
         'm' => [
         ],

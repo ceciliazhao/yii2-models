@@ -44,8 +44,10 @@ class MultiDomainsManagerTest extends TestCase
         $mUrlManager = $MultiDomainsManager->get('m');
         $this->assertNull($mUrlManager);
         $mhUrlManager = $MultiDomainsManager->get('mh');
+        $this->assertEquals((isset($MultiDomainsManager->subDomains['mh']['scheme']) ? $MultiDomainsManager->subDomains['mh']['scheme'] : 'http') . '://' . 'mh.' . $MultiDomainsManager->baseDomain, $mhUrlManager->hostInfo);
         $this->assertNotNull($mhUrlManager);
         $loginUrlManager = $MultiDomainsManager->get('login');
+        $this->assertEquals((isset($MultiDomainsManager->subDomains['login']['scheme']) ? $MultiDomainsManager->subDomains['login']['scheme'] : 'http')  . '://' . 'login.' . $MultiDomainsManager->baseDomain, $loginUrlManager->hostInfo);
         $this->assertEquals('/site/index.html', $urlManager->createUrl('/site/index'));
         $this->assertEquals('/posts.html', $myUrlManager->createUrl('/post/index'));
         $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
