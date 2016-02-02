@@ -27,7 +27,7 @@ class MultiDomainsManagerTest extends TestCase
      */
     public function testInit()
     {
-        //UserEmail::deleteAll();
+        
     }
 
     /**
@@ -47,7 +47,7 @@ class MultiDomainsManagerTest extends TestCase
         $this->assertEquals((isset($MultiDomainsManager->subDomains['mh']['scheme']) ? $MultiDomainsManager->subDomains['mh']['scheme'] : 'http') . '://' . 'mh.' . $MultiDomainsManager->baseDomain, $mhUrlManager->hostInfo);
         $this->assertNotNull($mhUrlManager);
         $loginUrlManager = $MultiDomainsManager->get('login');
-        $this->assertEquals((isset($MultiDomainsManager->subDomains['login']['scheme']) ? $MultiDomainsManager->subDomains['login']['scheme'] : 'http')  . '://' . 'login.' . $MultiDomainsManager->baseDomain, $loginUrlManager->hostInfo);
+        $this->assertEquals((isset($MultiDomainsManager->subDomains['login']['scheme']) ? $MultiDomainsManager->subDomains['login']['scheme'] : 'http') . '://' . 'login.' . $MultiDomainsManager->baseDomain, $loginUrlManager->hostInfo);
         $this->assertEquals('/site/index.html', $urlManager->createUrl('/site/index'));
         $this->assertEquals('/posts.html', $myUrlManager->createUrl('/post/index'));
         $this->assertEquals('/', $loginUrlManager->createUrl('/site/login'));
@@ -81,7 +81,7 @@ class MultiDomainsManagerTest extends TestCase
         } catch (\yii\web\ForbiddenHttpException $ex) {
             $this->assertEquals(Yii::t('yii', 'Login Required'), $ex->getMessage());
         }
-        
+
         $sso->loginUrl = '';
         $sso->multiDomainsManagerId = '';
         $this->assertInstanceOf(\yii\web\Response::className(), $sso->loginRequired());
