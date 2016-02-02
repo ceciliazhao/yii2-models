@@ -261,12 +261,13 @@ trait UserRelationTrait
      */
     protected static function buildRelation($user, $other)
     {
-        $relation = static::find()->initiators($user)->recipients($other)->one();
+        $relationQuery = static::find()->initiators($user)->recipients($other);
+        $noInit = $relationQuery->noInitModel;
+        $relation = $relationQuery->one();
         if (!$relation) {
-            $rni = static::buildNoInitModel();
-            $createdByAttribute = $rni->createdByAttribute;
-            $otherGuidAttribute = $rni->otherGuidAttribute;
-            $userClass = $rni->userClass;
+            $createdByAttribute = $noInit->createdByAttribute;
+            $otherGuidAttribute = $noInit->otherGuidAttribute;
+            $userClass = $noInit->userClass;
             if ($user instanceof BaseUserModel) {
                 $userClass = $userClass ? : $user->className();
                 $user = $user->guid;
@@ -280,21 +281,25 @@ trait UserRelationTrait
     }
 
     /**
-     * Build opposite mutual relation throughout the current relation, not support
-     * single relation. The opposite relation will be given if existed.
+     * Build opposite relation throughout the current relation. The opposite
+     * relation will be given if existed.
      * @param \vistart\Models\models\BaseUserRelationModel $relation
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     protected static function buildOppositeRelation($relation)
     {
-        if ($relation->relationType == static::$relationSingle) {
+        if (!$relation) {
             return null;
         }
         $createdByAttribute = $relation->createdByAttribute;
         $otherGuidAttribute = $relation->otherGuidAttribute;
-        $mutualTypeAttribute = $relation->mutualTypeAttribute;
         $opposite = static::buildRelation($relation->$otherGuidAttribute, $relation->$createdByAttribute);
-        $opposite->$mutualTypeAttribute = $relation->$mutualTypeAttribute;
+        if ($relation->relationType == static::$relationSingle) {
+            $opposite->relationType = static::$relationSingle;
+        } elseif ($relation->relationType == static::$relationMutual) {
+            $mutualTypeAttribute = $relation->mutualTypeAttribute;
+            $opposite->$mutualTypeAttribute = $relation->$mutualTypeAttribute;
+        }
         return $opposite;
     }
 

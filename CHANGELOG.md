@@ -30,6 +30,8 @@
 
 - Chg: specify `userClass` property in buildRelation() method. (vistart)
 - Add: createGroup(), addOrCreateGroup() and getOrCreateGroup() method. see detail in MultipleBlameableTrait.php (vistart)
+- Enh: buildRelation() method will reuse the query's no init model. (vistart)
+- Chg: buildOppositeRelation() method will not be skipped if its type is single relation. (vistart)
 
 #### traits/MultipleBlameableTrait.php
 
