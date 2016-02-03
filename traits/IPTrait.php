@@ -84,6 +84,25 @@ trait IPTrait
      * attribute is required.
      */
     public $ipTypeAttribute = 'ip_type';
+    public $requestId = 'request';
+
+    /**
+     * 
+     * @return \yii\web\Request
+     */
+    protected function getWebRequest()
+    {
+        $requestId = $this->requestId;
+        if (!empty($requestId) && is_string($requestId)) {
+            $request = Yii::$app->$requestId;
+        } else {
+            $request = Yii::$app->request;
+        }
+        if ($request instanceof \yii\web\Request) {
+            return $request;
+        }
+        return null;
+    }
 
     /**
      * Attach `onInitGuidAttribute` event.
@@ -104,8 +123,10 @@ trait IPTrait
     public function onInitIpAddress($event)
     {
         $sender = $event->sender;
-        if ($sender->enableIP && empty($sender->ipAddress)) {
-            $sender->ipAddress = Yii::$app->request->userIP;
+        /* @var $sender \vistart\Models\models\BaseEntityModel */
+        $request = $sender->getWebRequest();
+        if ($sender->enableIP && $request && empty($sender->ipAddress)) {
+            $sender->ipAddress = $request->userIP;
         }
     }
 

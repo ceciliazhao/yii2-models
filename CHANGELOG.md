@@ -2,6 +2,11 @@
 
 ### since 2.0.0-alpha1 released
 
+#### traits/IPTrait.php
+
+- Add: `$request` property enables to specify request component ID. (vistart)
+- Chg: getWebRequest() method will return web request component, if it is console one, then will return null. (vistart)
+
 #### traits/BlameableTrait.php
 
 - Add: getUpdater() method for getting the user who updated this model recently. (vistart)
