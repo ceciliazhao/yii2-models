@@ -30,6 +30,7 @@
 - Chg: findOneOrCreate() method's third parameter defaults to null. (vistart)
 - Enh: findOneOrCreate() method will take the query condition to the config if $config is null or not a array. (vistart)
 - Chg: create() method will unset `class` of config array. (vistart)
+- Chg: loadDefaultValue() method executed if it exists. (vistart)
 
 #### traits/UserRelationTrait.php
 

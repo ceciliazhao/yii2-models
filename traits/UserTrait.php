@@ -47,7 +47,7 @@ trait UserTrait
         $entity = new $className($config);
         $createdByAttribute = $entity->createdByAttribute;
         $entity->$createdByAttribute = $this->guid;
-        if ($loadDefault) {
+        if ($loadDefault && method_exists($entity, 'loadDefaultValues')) {
             $entity->loadDefaultValues($skipIfSet);
         }
         return $entity;
