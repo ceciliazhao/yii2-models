@@ -87,7 +87,8 @@ trait IPTrait
     public $requestId = 'request';
 
     /**
-     * 
+     * Get web request component. if $requestId not specified, Yii::$app->request
+     * will be taken.
      * @return \yii\web\Request
      */
     protected function getWebRequest()
