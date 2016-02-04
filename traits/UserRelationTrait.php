@@ -90,6 +90,12 @@ trait UserRelationTrait
     public $favoriteAttribute = 'favorite';
 
     /**
+     * Permit to build self relation.
+     * @var boolean 
+     */
+    public $relationSelf = false;
+
+    /**
      * Get whether this relation is favorite or not.
      * @return boolean
      */
@@ -257,7 +263,8 @@ trait UserRelationTrait
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
-     * given if exists, or return a new relation.
+     * given if exists, or return a new relation. Or return null if not allowed
+     * to build self relation,
      */
     protected static function buildRelation($user, $other)
     {
@@ -274,6 +281,9 @@ trait UserRelationTrait
             }
             if ($other instanceof BaseUserModel) {
                 $other = $other->guid;
+            }
+            if (!$noInit->relationSelf && $user == $other) {
+                return null;
             }
             $relation = new static([$createdByAttribute => $user, $otherGuidAttribute => $other, 'userClass' => $userClass]);
         }

@@ -190,7 +190,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#18-579" title="Go to source code">traits/BlameableTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.BlameableTrait.html#18-587" title="Go to source code">traits/BlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -886,14 +886,18 @@ array will be given.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUser">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#472-481" title="Go to source code">getUser</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#472-483" title="Go to source code">getUser</a>( )</code>
 
 			<div class="description short">
-				<p>Get blame.</p>
+				<p>Get blame who owned this blameable model.
+NOTICE! This method will not check whether <code>$userClass</code> exists. You should
+specify it in <code>init()</code> method.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get blame.</p>
+				<p>Get blame who owned this blameable model.
+NOTICE! This method will not check whether <code>$userClass</code> exists. You should
+specify it in <code>init()</code> method.</p>
 
 
 
@@ -912,24 +916,32 @@ array will be given.</p>
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUpdater">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#483-491" title="Go to source code">getUpdater</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#485-499" title="Go to source code">getUpdater</a>( )</code>
 
 			<div class="description short">
-				
+				<p>Get updater who updated this blameable model recently.
+NOTICE! This method will not check whether <code>$userClass</code> exists. You should
+specify it in <code>init()</code> method.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get updater who updated this blameable model recently.
+NOTICE! This method will not check whether <code>$userClass</code> exists. You should
+specify it in <code>init()</code> method.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code><br>user.
+					</div>
 
 
 
@@ -948,7 +960,7 @@ array will be given.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onContentChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#493-503" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#501-511" title="Go to source code">onContentChanged</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>This event is triggered before the model update.
@@ -986,7 +998,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onGetCurrentUserGuid">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#505-524" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#513-532" title="Go to source code">onGetCurrentUserGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Return the current user's GUID if current model doesn't specify the owner
@@ -1030,7 +1042,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitContentType">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#526-543" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#534-551" title="Go to source code">onInitContentType</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize type of content. the first of element[index is 0] of
@@ -1066,7 +1078,7 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitDescription">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#545-559" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#553-567" title="Go to source code">onInitDescription</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize description property with $initDescription.</p>
@@ -1100,7 +1112,7 @@ $contentTypes will be used.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initBlameableEvents">#</a>
-			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#561-578" title="Go to source code">initBlameableEvents</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.BlameableTrait.html#569-586" title="Go to source code">initBlameableEvents</a>( )</code>
 
 			<div class="description short">
 				<p>Attach events associated with blameable model.</p>

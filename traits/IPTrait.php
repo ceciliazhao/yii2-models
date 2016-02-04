@@ -84,10 +84,14 @@ trait IPTrait
      * attribute is required.
      */
     public $ipTypeAttribute = 'ip_type';
+
+    /**
+     * @var string Request component ID.
+     */
     public $requestId = 'request';
 
     /**
-     * Get web request component. if $requestId not specified, Yii::$app->request
+     * Get web request component. if `$requestId` not specified, Yii::$app->request
      * will be taken.
      * @return \yii\web\Request
      */

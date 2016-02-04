@@ -470,7 +470,9 @@ trait BlameableTrait
     }
 
     /**
-     * Get blame.
+     * Get blame who owned this blameable model.
+     * NOTICE! This method will not check whether `$userClass` exists. You should
+     * specify it in `init()` method.
      * @return \vistart\Models\queries\BaseUserQuery user.
      */
     public function getUser()
@@ -480,6 +482,12 @@ trait BlameableTrait
         return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->createdByAttribute]);
     }
 
+    /**
+     * Get updater who updated this blameable model recently.
+     * NOTICE! This method will not check whether `$userClass` exists. You should
+     * specify it in `init()` method.
+     * @return \vistart\Models\queries\BaseUserQuery user.
+     */
     public function getUpdater()
     {
         if (!is_string($this->updatedByAttribute)) {

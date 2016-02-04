@@ -626,114 +626,122 @@
 </span><span id="470" class="l"><a href="#470">470 </a>    }
 </span><span id="471" class="l"><a href="#471">471 </a>
 </span><span id="472" class="l"><a href="#472">472 </a>    <span class="php-comment">/**
-</span></span><span id="473" class="l"><a href="#473">473 </a><span class="php-comment">     * Get blame.
-</span></span><span id="474" class="l"><a href="#474">474 </a><span class="php-comment">     * @return \vistart\Models\queries\BaseUserQuery user.
-</span></span><span id="475" class="l"><a href="#475">475 </a><span class="php-comment">     */</span>
-</span><span id="476" class="l"><a href="#476">476 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUser()
-</span><span id="477" class="l"><a href="#477">477 </a>    {
-</span><span id="478" class="l"><a href="#478">478 </a>        <span class="php-var">$userClass</span> = <span class="php-var">$this</span>-&gt;userClass;
-</span><span id="479" class="l"><a href="#479">479 </a>        <span class="php-var">$model</span> = <span class="php-var">$userClass</span>::buildNoInitModel();
-</span><span id="480" class="l"><a href="#480">480 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasOne(<span class="php-var">$userClass</span>::className(), [<span class="php-var">$model</span>-&gt;guidAttribute =&gt; <span class="php-var">$this</span>-&gt;createdByAttribute]);
-</span><span id="481" class="l"><a href="#481">481 </a>    }
-</span><span id="482" class="l"><a href="#482">482 </a>
-</span><span id="483" class="l"><a href="#483">483 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUpdater()
-</span><span id="484" class="l"><a href="#484">484 </a>    {
-</span><span id="485" class="l"><a href="#485">485 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;updatedByAttribute)) {
-</span><span id="486" class="l"><a href="#486">486 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
-</span><span id="487" class="l"><a href="#487">487 </a>        }
-</span><span id="488" class="l"><a href="#488">488 </a>        <span class="php-var">$userClass</span> = <span class="php-var">$this</span>-&gt;userClass;
-</span><span id="489" class="l"><a href="#489">489 </a>        <span class="php-var">$model</span> = <span class="php-var">$userClass</span>::buildNoInitModel();
-</span><span id="490" class="l"><a href="#490">490 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasOne(<span class="php-var">$userClass</span>::className(), [<span class="php-var">$model</span>-&gt;guidAttribute =&gt; <span class="php-var">$this</span>-&gt;updatedByAttribute]);
-</span><span id="491" class="l"><a href="#491">491 </a>    }
-</span><span id="492" class="l"><a href="#492">492 </a>
-</span><span id="493" class="l"><a href="#493">493 </a>    <span class="php-comment">/**
-</span></span><span id="494" class="l"><a href="#494">494 </a><span class="php-comment">     * This event is triggered before the model update.
-</span></span><span id="495" class="l"><a href="#495">495 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
-</span></span><span id="496" class="l"><a href="#496">496 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
-</span></span><span id="497" class="l"><a href="#497">497 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="498" class="l"><a href="#498">498 </a><span class="php-comment">     */</span>
-</span><span id="499" class="l"><a href="#499">499 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onContentChanged(<span class="php-var">$event</span>)
-</span><span id="500" class="l"><a href="#500">500 </a>    {
-</span><span id="501" class="l"><a href="#501">501 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="502" class="l"><a href="#502">502 </a>        <span class="php-var">$sender</span>-&gt;resetConfirmation();
-</span><span id="503" class="l"><a href="#503">503 </a>    }
-</span><span id="504" class="l"><a href="#504">504 </a>
-</span><span id="505" class="l"><a href="#505">505 </a>    <span class="php-comment">/**
-</span></span><span id="506" class="l"><a href="#506">506 </a><span class="php-comment">     * Return the current user's GUID if current model doesn't specify the owner
-</span></span><span id="507" class="l"><a href="#507">507 </a><span class="php-comment">     * yet, or return the owner's GUID if current model has been specified.
-</span></span><span id="508" class="l"><a href="#508">508 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
-</span></span><span id="509" class="l"><a href="#509">509 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
-</span></span><span id="510" class="l"><a href="#510">510 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="511" class="l"><a href="#511">511 </a><span class="php-comment">     * @return string the GUID of current user or the owner.
-</span></span><span id="512" class="l"><a href="#512">512 </a><span class="php-comment">     */</span>
-</span><span id="513" class="l"><a href="#513">513 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onGetCurrentUserGuid(<span class="php-var">$event</span>)
-</span><span id="514" class="l"><a href="#514">514 </a>    {
-</span><span id="515" class="l"><a href="#515">515 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="516" class="l"><a href="#516">516 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute])) {
-</span><span id="517" class="l"><a href="#517">517 </a>            <span class="php-keyword1">return</span> <span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute];
-</span><span id="518" class="l"><a href="#518">518 </a>        }
-</span><span id="519" class="l"><a href="#519">519 </a>        <span class="php-var">$identity</span> = \Yii::<span class="php-var">$app</span>-&gt;user-&gt;identity;
-</span><span id="520" class="l"><a href="#520">520 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$identity</span>) {
-</span><span id="521" class="l"><a href="#521">521 </a>            <span class="php-var">$igAttribute</span> = <span class="php-var">$identity</span>-&gt;guidAttribute;
-</span><span id="522" class="l"><a href="#522">522 </a>            <span class="php-keyword1">return</span> <span class="php-var">$identity</span>-&gt;<span class="php-var">$igAttribute</span>;
-</span><span id="523" class="l"><a href="#523">523 </a>        }
-</span><span id="524" class="l"><a href="#524">524 </a>    }
-</span><span id="525" class="l"><a href="#525">525 </a>
-</span><span id="526" class="l"><a href="#526">526 </a>    <span class="php-comment">/**
-</span></span><span id="527" class="l"><a href="#527">527 </a><span class="php-comment">     * Initialize type of content. the first of element[index is 0] of
-</span></span><span id="528" class="l"><a href="#528">528 </a><span class="php-comment">     * $contentTypes will be used.
-</span></span><span id="529" class="l"><a href="#529">529 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="530" class="l"><a href="#530">530 </a><span class="php-comment">     */</span>
-</span><span id="531" class="l"><a href="#531">531 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitContentType(<span class="php-var">$event</span>)
-</span><span id="532" class="l"><a href="#532">532 </a>    {
-</span><span id="533" class="l"><a href="#533">533 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="534" class="l"><a href="#534">534 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute)) {
-</span><span id="535" class="l"><a href="#535">535 </a>            <span class="php-keyword1">return</span>;
-</span><span id="536" class="l"><a href="#536">536 </a>        }
-</span><span id="537" class="l"><a href="#537">537 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypeAttribute;
-</span><span id="538" class="l"><a href="#538">538 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span>) &amp;&amp;
-</span><span id="539" class="l"><a href="#539">539 </a>            !<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;contentTypes) &amp;&amp;
-</span><span id="540" class="l"><a href="#540">540 </a>            <span class="php-keyword2">is_array</span>(<span class="php-var">$sender</span>-&gt;contentTypes)) {
-</span><span id="541" class="l"><a href="#541">541 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypes[<span class="php-num">0</span>];
-</span><span id="542" class="l"><a href="#542">542 </a>        }
-</span><span id="543" class="l"><a href="#543">543 </a>    }
-</span><span id="544" class="l"><a href="#544">544 </a>
-</span><span id="545" class="l"><a href="#545">545 </a>    <span class="php-comment">/**
-</span></span><span id="546" class="l"><a href="#546">546 </a><span class="php-comment">     * Initialize description property with $initDescription.
-</span></span><span id="547" class="l"><a href="#547">547 </a><span class="php-comment">     * @param \yii\base\Event $event
-</span></span><span id="548" class="l"><a href="#548">548 </a><span class="php-comment">     */</span>
-</span><span id="549" class="l"><a href="#549">549 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitDescription(<span class="php-var">$event</span>)
-</span><span id="550" class="l"><a href="#550">550 </a>    {
-</span><span id="551" class="l"><a href="#551">551 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
-</span><span id="552" class="l"><a href="#552">552 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute)) {
-</span><span id="553" class="l"><a href="#553">553 </a>            <span class="php-keyword1">return</span>;
-</span><span id="554" class="l"><a href="#554">554 </a>        }
-</span><span id="555" class="l"><a href="#555">555 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;descriptionAttribute;
-</span><span id="556" class="l"><a href="#556">556 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
-</span><span id="557" class="l"><a href="#557">557 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;initDescription;
-</span><span id="558" class="l"><a href="#558">558 </a>        }
-</span><span id="559" class="l"><a href="#559">559 </a>    }
-</span><span id="560" class="l"><a href="#560">560 </a>
-</span><span id="561" class="l"><a href="#561">561 </a>    <span class="php-comment">/**
-</span></span><span id="562" class="l"><a href="#562">562 </a><span class="php-comment">     * Attach events associated with blameable model.
-</span></span><span id="563" class="l"><a href="#563">563 </a><span class="php-comment">     */</span>
-</span><span id="564" class="l"><a href="#564">564 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> initBlameableEvents()
-</span><span id="565" class="l"><a href="#565">565 </a>    {
-</span><span id="566" class="l"><a href="#566">566 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventConfirmationChanged</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onConfirmationChanged&quot;</span>]);
-</span><span id="567" class="l"><a href="#567">567 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitConfirmation&quot;</span>]);
-</span><span id="568" class="l"><a href="#568">568 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$this</span>-&gt;contentTypeAttribute;
-</span><span id="569" class="l"><a href="#569">569 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$contentTypeAttribute</span>)) {
-</span><span id="570" class="l"><a href="#570">570 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitContentType&quot;</span>]);
-</span><span id="571" class="l"><a href="#571">571 </a>        }
-</span><span id="572" class="l"><a href="#572">572 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$this</span>-&gt;descriptionAttribute;
-</span><span id="573" class="l"><a href="#573">573 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
-</span><span id="574" class="l"><a href="#574">574 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onInitDescription'</span>]);
-</span><span id="575" class="l"><a href="#575">575 </a>        }
-</span><span id="576" class="l"><a href="#576">576 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_BEFORE_UPDATE, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onContentChanged&quot;</span>]);
-</span><span id="577" class="l"><a href="#577">577 </a>        <span class="php-var">$this</span>-&gt;initSelfBlameableEvents();
-</span><span id="578" class="l"><a href="#578">578 </a>    }
-</span><span id="579" class="l"><a href="#579">579 </a>}
-</span><span id="580" class="l"><a href="#580">580 </a></span></code></pre>
+</span></span><span id="473" class="l"><a href="#473">473 </a><span class="php-comment">     * Get blame who owned this blameable model.
+</span></span><span id="474" class="l"><a href="#474">474 </a><span class="php-comment">     * NOTICE! This method will not check whether `$userClass` exists. You should
+</span></span><span id="475" class="l"><a href="#475">475 </a><span class="php-comment">     * specify it in `init()` method.
+</span></span><span id="476" class="l"><a href="#476">476 </a><span class="php-comment">     * @return \vistart\Models\queries\BaseUserQuery user.
+</span></span><span id="477" class="l"><a href="#477">477 </a><span class="php-comment">     */</span>
+</span><span id="478" class="l"><a href="#478">478 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUser()
+</span><span id="479" class="l"><a href="#479">479 </a>    {
+</span><span id="480" class="l"><a href="#480">480 </a>        <span class="php-var">$userClass</span> = <span class="php-var">$this</span>-&gt;userClass;
+</span><span id="481" class="l"><a href="#481">481 </a>        <span class="php-var">$model</span> = <span class="php-var">$userClass</span>::buildNoInitModel();
+</span><span id="482" class="l"><a href="#482">482 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasOne(<span class="php-var">$userClass</span>::className(), [<span class="php-var">$model</span>-&gt;guidAttribute =&gt; <span class="php-var">$this</span>-&gt;createdByAttribute]);
+</span><span id="483" class="l"><a href="#483">483 </a>    }
+</span><span id="484" class="l"><a href="#484">484 </a>
+</span><span id="485" class="l"><a href="#485">485 </a>    <span class="php-comment">/**
+</span></span><span id="486" class="l"><a href="#486">486 </a><span class="php-comment">     * Get updater who updated this blameable model recently.
+</span></span><span id="487" class="l"><a href="#487">487 </a><span class="php-comment">     * NOTICE! This method will not check whether `$userClass` exists. You should
+</span></span><span id="488" class="l"><a href="#488">488 </a><span class="php-comment">     * specify it in `init()` method.
+</span></span><span id="489" class="l"><a href="#489">489 </a><span class="php-comment">     * @return \vistart\Models\queries\BaseUserQuery user.
+</span></span><span id="490" class="l"><a href="#490">490 </a><span class="php-comment">     */</span>
+</span><span id="491" class="l"><a href="#491">491 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUpdater()
+</span><span id="492" class="l"><a href="#492">492 </a>    {
+</span><span id="493" class="l"><a href="#493">493 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;updatedByAttribute)) {
+</span><span id="494" class="l"><a href="#494">494 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
+</span><span id="495" class="l"><a href="#495">495 </a>        }
+</span><span id="496" class="l"><a href="#496">496 </a>        <span class="php-var">$userClass</span> = <span class="php-var">$this</span>-&gt;userClass;
+</span><span id="497" class="l"><a href="#497">497 </a>        <span class="php-var">$model</span> = <span class="php-var">$userClass</span>::buildNoInitModel();
+</span><span id="498" class="l"><a href="#498">498 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;hasOne(<span class="php-var">$userClass</span>::className(), [<span class="php-var">$model</span>-&gt;guidAttribute =&gt; <span class="php-var">$this</span>-&gt;updatedByAttribute]);
+</span><span id="499" class="l"><a href="#499">499 </a>    }
+</span><span id="500" class="l"><a href="#500">500 </a>
+</span><span id="501" class="l"><a href="#501">501 </a>    <span class="php-comment">/**
+</span></span><span id="502" class="l"><a href="#502">502 </a><span class="php-comment">     * This event is triggered before the model update.
+</span></span><span id="503" class="l"><a href="#503">503 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
+</span></span><span id="504" class="l"><a href="#504">504 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
+</span></span><span id="505" class="l"><a href="#505">505 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="506" class="l"><a href="#506">506 </a><span class="php-comment">     */</span>
+</span><span id="507" class="l"><a href="#507">507 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onContentChanged(<span class="php-var">$event</span>)
+</span><span id="508" class="l"><a href="#508">508 </a>    {
+</span><span id="509" class="l"><a href="#509">509 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="510" class="l"><a href="#510">510 </a>        <span class="php-var">$sender</span>-&gt;resetConfirmation();
+</span><span id="511" class="l"><a href="#511">511 </a>    }
+</span><span id="512" class="l"><a href="#512">512 </a>
+</span><span id="513" class="l"><a href="#513">513 </a>    <span class="php-comment">/**
+</span></span><span id="514" class="l"><a href="#514">514 </a><span class="php-comment">     * Return the current user's GUID if current model doesn't specify the owner
+</span></span><span id="515" class="l"><a href="#515">515 </a><span class="php-comment">     * yet, or return the owner's GUID if current model has been specified.
+</span></span><span id="516" class="l"><a href="#516">516 </a><span class="php-comment">     * This method is ONLY used for being triggered by event. DO NOT call,
+</span></span><span id="517" class="l"><a href="#517">517 </a><span class="php-comment">     * override or modify it directly, unless you know the consequences.
+</span></span><span id="518" class="l"><a href="#518">518 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="519" class="l"><a href="#519">519 </a><span class="php-comment">     * @return string the GUID of current user or the owner.
+</span></span><span id="520" class="l"><a href="#520">520 </a><span class="php-comment">     */</span>
+</span><span id="521" class="l"><a href="#521">521 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onGetCurrentUserGuid(<span class="php-var">$event</span>)
+</span><span id="522" class="l"><a href="#522">522 </a>    {
+</span><span id="523" class="l"><a href="#523">523 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="524" class="l"><a href="#524">524 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute])) {
+</span><span id="525" class="l"><a href="#525">525 </a>            <span class="php-keyword1">return</span> <span class="php-var">$sender</span>-&gt;attributes[<span class="php-var">$sender</span>-&gt;createdByAttribute];
+</span><span id="526" class="l"><a href="#526">526 </a>        }
+</span><span id="527" class="l"><a href="#527">527 </a>        <span class="php-var">$identity</span> = \Yii::<span class="php-var">$app</span>-&gt;user-&gt;identity;
+</span><span id="528" class="l"><a href="#528">528 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$identity</span>) {
+</span><span id="529" class="l"><a href="#529">529 </a>            <span class="php-var">$igAttribute</span> = <span class="php-var">$identity</span>-&gt;guidAttribute;
+</span><span id="530" class="l"><a href="#530">530 </a>            <span class="php-keyword1">return</span> <span class="php-var">$identity</span>-&gt;<span class="php-var">$igAttribute</span>;
+</span><span id="531" class="l"><a href="#531">531 </a>        }
+</span><span id="532" class="l"><a href="#532">532 </a>    }
+</span><span id="533" class="l"><a href="#533">533 </a>
+</span><span id="534" class="l"><a href="#534">534 </a>    <span class="php-comment">/**
+</span></span><span id="535" class="l"><a href="#535">535 </a><span class="php-comment">     * Initialize type of content. the first of element[index is 0] of
+</span></span><span id="536" class="l"><a href="#536">536 </a><span class="php-comment">     * $contentTypes will be used.
+</span></span><span id="537" class="l"><a href="#537">537 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="538" class="l"><a href="#538">538 </a><span class="php-comment">     */</span>
+</span><span id="539" class="l"><a href="#539">539 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitContentType(<span class="php-var">$event</span>)
+</span><span id="540" class="l"><a href="#540">540 </a>    {
+</span><span id="541" class="l"><a href="#541">541 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="542" class="l"><a href="#542">542 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;contentTypeAttribute)) {
+</span><span id="543" class="l"><a href="#543">543 </a>            <span class="php-keyword1">return</span>;
+</span><span id="544" class="l"><a href="#544">544 </a>        }
+</span><span id="545" class="l"><a href="#545">545 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypeAttribute;
+</span><span id="546" class="l"><a href="#546">546 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span>) &amp;&amp;
+</span><span id="547" class="l"><a href="#547">547 </a>            !<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;contentTypes) &amp;&amp;
+</span><span id="548" class="l"><a href="#548">548 </a>            <span class="php-keyword2">is_array</span>(<span class="php-var">$sender</span>-&gt;contentTypes)) {
+</span><span id="549" class="l"><a href="#549">549 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$sender</span>-&gt;contentTypes[<span class="php-num">0</span>];
+</span><span id="550" class="l"><a href="#550">550 </a>        }
+</span><span id="551" class="l"><a href="#551">551 </a>    }
+</span><span id="552" class="l"><a href="#552">552 </a>
+</span><span id="553" class="l"><a href="#553">553 </a>    <span class="php-comment">/**
+</span></span><span id="554" class="l"><a href="#554">554 </a><span class="php-comment">     * Initialize description property with $initDescription.
+</span></span><span id="555" class="l"><a href="#555">555 </a><span class="php-comment">     * @param \yii\base\Event $event
+</span></span><span id="556" class="l"><a href="#556">556 </a><span class="php-comment">     */</span>
+</span><span id="557" class="l"><a href="#557">557 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> onInitDescription(<span class="php-var">$event</span>)
+</span><span id="558" class="l"><a href="#558">558 </a>    {
+</span><span id="559" class="l"><a href="#559">559 </a>        <span class="php-var">$sender</span> = <span class="php-var">$event</span>-&gt;sender;
+</span><span id="560" class="l"><a href="#560">560 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute) || !<span class="php-keyword2">is_string</span>(<span class="php-var">$sender</span>-&gt;descriptionAttribute)) {
+</span><span id="561" class="l"><a href="#561">561 </a>            <span class="php-keyword1">return</span>;
+</span><span id="562" class="l"><a href="#562">562 </a>        }
+</span><span id="563" class="l"><a href="#563">563 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;descriptionAttribute;
+</span><span id="564" class="l"><a href="#564">564 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
+</span><span id="565" class="l"><a href="#565">565 </a>            <span class="php-var">$sender</span>-&gt;<span class="php-var">$descriptionAttribute</span> = <span class="php-var">$sender</span>-&gt;initDescription;
+</span><span id="566" class="l"><a href="#566">566 </a>        }
+</span><span id="567" class="l"><a href="#567">567 </a>    }
+</span><span id="568" class="l"><a href="#568">568 </a>
+</span><span id="569" class="l"><a href="#569">569 </a>    <span class="php-comment">/**
+</span></span><span id="570" class="l"><a href="#570">570 </a><span class="php-comment">     * Attach events associated with blameable model.
+</span></span><span id="571" class="l"><a href="#571">571 </a><span class="php-comment">     */</span>
+</span><span id="572" class="l"><a href="#572">572 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> initBlameableEvents()
+</span><span id="573" class="l"><a href="#573">573 </a>    {
+</span><span id="574" class="l"><a href="#574">574 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventConfirmationChanged</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onConfirmationChanged&quot;</span>]);
+</span><span id="575" class="l"><a href="#575">575 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitConfirmation&quot;</span>]);
+</span><span id="576" class="l"><a href="#576">576 </a>        <span class="php-var">$contentTypeAttribute</span> = <span class="php-var">$this</span>-&gt;contentTypeAttribute;
+</span><span id="577" class="l"><a href="#577">577 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$contentTypeAttribute</span>)) {
+</span><span id="578" class="l"><a href="#578">578 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onInitContentType&quot;</span>]);
+</span><span id="579" class="l"><a href="#579">579 </a>        }
+</span><span id="580" class="l"><a href="#580">580 </a>        <span class="php-var">$descriptionAttribute</span> = <span class="php-var">$this</span>-&gt;descriptionAttribute;
+</span><span id="581" class="l"><a href="#581">581 </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$descriptionAttribute</span>)) {
+</span><span id="582" class="l"><a href="#582">582 </a>            <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::<span class="php-var">$eventNewRecordCreated</span>, [<span class="php-var">$this</span>, <span class="php-quote">'onInitDescription'</span>]);
+</span><span id="583" class="l"><a href="#583">583 </a>        }
+</span><span id="584" class="l"><a href="#584">584 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_BEFORE_UPDATE, [<span class="php-var">$this</span>, <span class="php-quote">&quot;onContentChanged&quot;</span>]);
+</span><span id="585" class="l"><a href="#585">585 </a>        <span class="php-var">$this</span>-&gt;initSelfBlameableEvents();
+</span><span id="586" class="l"><a href="#586">586 </a>    }
+</span><span id="587" class="l"><a href="#587">587 </a>}
+</span><span id="588" class="l"><a href="#588">588 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
