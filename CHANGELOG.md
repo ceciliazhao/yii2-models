@@ -32,6 +32,10 @@
 - Chg: create() method will unset `class` of config array. (vistart)
 - Chg: loadDefaultValue() method executed if it exists. (vistart)
 
+#### traits/IdentityTrait.php
+
+- Chg: onInitStatusAttribute() event will skip to init the status attribute if status was not empty. (vistart)
+
 #### traits/UserRelationTrait.php
 
 - Chg: specify `userClass` property in buildRelation() method. (vistart)

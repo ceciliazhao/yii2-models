@@ -256,6 +256,8 @@ trait IdentityTrait
     {
         $sender = $event->sender;
         $statusAttribute = $sender->statusAttribute;
-        $sender->$statusAttribute = self::$statusActive;
+        if (empty($sender->$statusAttribute)) {
+            $sender->$statusAttribute = self::$statusActive;
+        }
     }
 }
