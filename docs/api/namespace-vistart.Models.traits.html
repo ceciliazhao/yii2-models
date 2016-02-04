@@ -256,7 +256,9 @@ $contentTypeAttribute 关系组类型。</p></td>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></td>
 	<td><p>Relation features.
-Note: Several methods associated with "inserting", "updating" and "removing" may
+This trait should be used in user relation model which is extended from BaseBlameableModel,
+and is specified <code>$userClass</code> property.
+Notice: Several methods associated with "inserting", "updating" and "removing" may
 involve more DB operations, I strongly recommend those methods to be placed in
 transaction execution, in order to ensure data consistency.
 If you want to use group feature, the class used [[UserRelationGroupTrait]]

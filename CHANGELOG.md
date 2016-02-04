@@ -43,6 +43,7 @@
 - Enh: buildRelation() method will reuse the query's no init model. (vistart)
 - Chg: buildOppositeRelation() method will not be skipped if its type is single relation. (vistart)
 - Add: `$relationSelf` property, determines whether permits to build self relation. If not, and initiator is same as recipient, null will be given. (vistart)
+- Add: getInitiator() and getRecipient() queries and `$initiator`, `$recipient` magic properties. (vistart)
 
 #### traits/MultipleBlameableTrait.php
 

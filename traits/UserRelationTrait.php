@@ -17,7 +17,9 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
 
 /**
  * Relation features.
- * Note: Several methods associated with "inserting", "updating" and "removing" may
+ * This trait should be used in user relation model which is extended from BaseBlameableModel,
+ * and is specified `$userClass` property.
+ * Notice: Several methods associated with "inserting", "updating" and "removing" may
  * involve more DB operations, I strongly recommend those methods to be placed in
  * transaction execution, in order to ensure data consistency.
  * If you want to use group feature, the class used [[UserRelationGroupTrait]]
@@ -28,6 +30,8 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * @property-read integer $groupsCount
  * @property-read array $groupsRules
  * @property boolean $isFavorite
+ * @property-read \vistart\Models\models\BaseUserModel $initiator
+ * @property-read \vistart\Models\models\BaseUserModel $recipient
  * @property-read \vistart\Models\models\BaseUserRelationModel $opposite
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -121,6 +125,29 @@ trait UserRelationTrait
     public function rules()
     {
         return array_merge(parent::rules(), $this->getUserRelationRules());
+    }
+
+    /**
+     * Get initiator.
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function getInitiator()
+    {
+        return $this->getUser();
+    }
+
+    /**
+     * Get recipient.
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function getRecipient()
+    {
+        if (!is_string($this->otherGuidAttribute)) {
+            return null;
+        }
+        $userClass = $this->userClass;
+        $model = $userClass::buildNoInitModel();
+        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->otherGuidAttribute]);
     }
 
     /**
@@ -374,7 +401,8 @@ trait UserRelationTrait
     /**
      * Get user's or users' all relations, or by specified groups.
      * @param BaseUserModel|string|array $user Initiator or its GUID, or Initiators or their GUIDs.
-     * @param BaseUserRelationGroupModel|string|array|null $groups UserRelationGroup or its guid, or array of them. If you do not want to delimit the groups, please assign null.
+     * @param BaseUserRelationGroupModel|string|array|null $groups UserRelationGroup
+     * or its guid, or array of them. If you do not want to delimit the groups, please assign null.
      * @return array all eligible relations
      */
     public static function findOnesAllRelations($user, $groups = null)
