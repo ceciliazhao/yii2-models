@@ -52,6 +52,20 @@ abstract class BaseAdditionalAccountModel extends BaseBlameableModel
     /**
      * @inheritdoc
      */
+    public function init()
+    {
+        if (!is_string($this->queryClass)) {
+            $this->queryClass = \vistart\Models\queries\BaseBlameableQuery::className();
+        }
+        if ($this->skipInit) {
+            return;
+        }
+        parent::init();
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return array_merge($this->getAdditionalAccountRules(), parent::rules());

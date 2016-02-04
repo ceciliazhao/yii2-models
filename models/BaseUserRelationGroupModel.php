@@ -15,10 +15,10 @@ namespace vistart\Models\models;
 use vistart\Models\traits\UserRelationGroupTrait;
 
 /**
- * 该类帮助用户定义关系组。
+ * This abstract class is used for building user relation group.
  *
- * $contentAttribute 关系组名称。
- * $contentTypeAttribute 关系组类型。
+ * $contentAttribute name of user relation group.
+ * $contentTypeAttribute type of user relation group.
  * 
  * @version 2.0
  * @author vistart <i@vistart.name>
@@ -35,6 +35,9 @@ abstract class BaseUserRelationGroupModel extends BaseBlameableModel
 
     public function init()
     {
+        if (!is_string($this->queryClass)) {
+            $this->queryClass = \vistart\Models\queries\BaseBlameableQuery::className();
+        }
         if ($this->skipInit) {
             return;
         }

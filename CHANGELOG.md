@@ -68,6 +68,14 @@
 
 - Fix: add missing namespace. (vistart)
 
+#### models/BaseUserRelationGroupModel.php
+
+- Fix: add missing initialization of `$queryClass`. (vistart)
+
+#### models/BaseAdditionalAccountModel.php
+
+- Fix: add missing initialization of `$queryClass`. (vistart)
+
 #### queries/BaseMongoEntityQuery.php
 
 - Fix: fix typo in namespace. (vistart)
