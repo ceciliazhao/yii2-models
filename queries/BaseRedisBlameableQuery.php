@@ -19,7 +19,7 @@ use vistart\Models\traits\BlameableQueryTrait;
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseRedisBlameableQuery extends BaseRedisEntityQuery
+class BaseRedisBlameableQuery extends BaseRedisEntityQuery
 {
     use BlameableQueryTrait;
 }

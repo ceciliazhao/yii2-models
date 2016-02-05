@@ -19,7 +19,7 @@ use vistart\Models\traits\BlameableQueryTrait;
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseMongoBlameableQuery extends BaseMongoEntityQuery
+class BaseMongoBlameableQuery extends BaseMongoEntityQuery
 {
     use BlameableQueryTrait;
 }
