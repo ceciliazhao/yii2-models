@@ -60,6 +60,10 @@
 - Chg: $idAttribute will be assigned '_id' in init() method. (vistart)
 - Enh: Defaults to take enabledFields() to attributes(). (vistart)
 
+#### models/BaseMongoBlameableModel.php
+
+- Add: `init()` method. (vistart)
+
 #### models/BaseRedisEntityModel.php
 
 - Enh: Defaults to take enabledFields() to attributes(). (vistart)
@@ -67,6 +71,7 @@
 #### models/BaseRedisBlameableModel.php
 
 - Fix: add missing namespace. (vistart)
+- Add: `init()` method. (vistart)
 
 #### models/BaseUserRelationGroupModel.php
 
@@ -79,6 +84,14 @@
 #### queries/BaseMongoEntityQuery.php
 
 - Fix: fix typo in namespace. (vistart)
+
+#### queries/BaseMongoBlameableQuery.php
+
+- Add: new. (vistart)
+
+#### queries/BaseRedisBlameableQuery.php
+
+- Add: new. (vistart)
 
 #### components/SSOIdentity.php
 

@@ -169,7 +169,7 @@ yii\mongodb\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#17-40" title="Go to source code">models/BaseMongoBlameableModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#17-66" title="Go to source code">models/BaseMongoBlameableModel.php</a>
 		<br>
 	</div>
 
@@ -178,6 +178,77 @@ yii\mongodb\ActiveRecord
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="init" id="_init">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_init">#</a>
+			<code><a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#26-40" title="Go to source code">init</a>( )</code>
+
+			<div class="description short">
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
+
+
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_init">vistart\Models\models\BaseMongoEntityModel::init</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findByIdentity" id="_findByIdentity">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-vistart.Models.queries.BaseBlameableQuery.html">vistart\Models\queries\BaseBlameableQuery</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findByIdentity">#</a>
+			<code><a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#42-50" title="Go to source code">findByIdentity</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$identity</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Get the query class with specified identity.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get the query class with specified identity.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$identity</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-vistart.Models.queries.BaseBlameableQuery.html">vistart\Models\queries\BaseBlameableQuery</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="attributes" id="_attributes">
 
 			<td class="attributes"><code>
@@ -189,7 +260,7 @@ yii\mongodb\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_attributes">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#33-39" title="Go to source code">attributes</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#59-65" title="Go to source code">attributes</a>( )</code>
 
 			<div class="description short">
 				
@@ -215,8 +286,7 @@ yii\mongodb\ActiveRecord
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseMongoEntityModel.html#methods">vistart\Models\models\BaseMongoEntityModel</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_find">find()</a></code>, 
-				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_init">init()</a></code>
+				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_find">find()</a></code>
 			</p>
 		</div>
 
@@ -377,7 +447,7 @@ yii\mongodb\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#26-30" title="Go to source code"><var>$guidAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#52-56" title="Go to source code"><var>$guidAttribute</var></a>
 
 				<div class="description short">
 					<p>Because every document has a `MongoId" class, this class is no longer needed GUID feature.</p>
@@ -402,7 +472,7 @@ yii\mongodb\ActiveRecord
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#31" title="Go to source code"><var>$idAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMongoBlameableModel.html#57" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL.The attribute that will receive the IDentifier No.
