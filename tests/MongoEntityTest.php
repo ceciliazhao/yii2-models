@@ -28,7 +28,11 @@ class MongoEntityTest extends MongoTestCase
     public function testNew()
     {
         $entity = new MongoEntity();
-        $this->assertTrue($entity->save());
+        if ($entity->save()) {
+            $this->assertTrue(true);
+        } else {
+            var_dump($entity->errors);
+        }
         $query = MongoEntity::find()->guid($entity->guid);
         $query1 = clone $query;
         $this->assertInstanceOf(MongoEntity::className(), $query1->one());

@@ -59,6 +59,8 @@
 
 - Chg: $idAttribute will be assigned '_id' in init() method. (vistart)
 - Enh: Defaults to take enabledFields() to attributes(). (vistart)
+- Chg: $idAttribute will be always set to '_id'. (vistart)
+- Chg: $idAttributeType is auto-increment. (vistart)
 
 #### models/BaseMongoBlameableModel.php
 

@@ -30,10 +30,11 @@ abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
      */
     public function init()
     {
+        $this->idAttribute = '_id';
+        $this->idAttributeType = static::$idTypeAutoIncrement;
         if ($this->skipInit) {
             return;
         }
-        $this->idAttribute = '_id';
         $this->initEntityEvents();
         parent::init();
     }
