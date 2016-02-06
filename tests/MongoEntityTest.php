@@ -24,6 +24,7 @@ class MongoEntityTest extends MongoTestCase
 
     /**
      * @group mongo
+     * @group entity
      */
     public function testNew()
     {

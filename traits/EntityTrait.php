@@ -316,7 +316,7 @@ trait EntityTrait
 
     /**
      * Get enabled fields.
-     * @return array
+     * @return string[]
      */
     public function enabledFields()
     {

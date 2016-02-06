@@ -128,7 +128,13 @@
 	<div class="description">
 	<p>This abstract class helps you build user relation model.
 If you want to use group feature, the BaseUserRelationGroup's extended class
-must be used coordinately.</p>
+must be used coordinately.
+Basic usage:</p>
+
+<pre><code class="php">class Relation extends BaseUserRelationModel {
+
+}
+</code></pre>
 	</div>
 
 	<dl class="tree well">
@@ -182,7 +188,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#18-45" title="Go to source code">models/BaseUserRelationModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseUserRelationModel.html#18-50" title="Go to source code">models/BaseUserRelationModel.php</a>
 		<br>
 	</div>
 
@@ -202,7 +208,7 @@ yii\db\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#34-44" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseUserRelationModel.html#39-49" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize the blameable model.
@@ -317,6 +323,7 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_count">count()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheKey">getBlameableBehaviorsCacheKey()</a></code>, 
@@ -384,7 +391,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#___toString">__toString()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_buildNoInitModel">buildNoInitModel()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheKey">getEntityBehaviorsCacheKey()</a></code>, 
@@ -461,37 +467,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="idAttribute" id="$idAttribute">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#29" title="Go to source code"><var>$idAttribute</var></a>
-
-				<div class="description short">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>OPTIONAL.The attribute that will receive the IDentifier No.
-You can set this property to false if you don't use this feature.</p>
-
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$idAttribute" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
 		<tr data-order="confirmationAttribute" id="$confirmationAttribute">
 			<td class="attributes"><code>
 				public  
@@ -499,7 +474,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#30" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#35" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of confirmation, or false if disable confirmation features.</p>
@@ -524,7 +499,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#31" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#36" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -585,7 +560,7 @@ For example:</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#32" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseUserRelationModel.html#37" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.

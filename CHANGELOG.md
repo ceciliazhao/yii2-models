@@ -7,9 +7,16 @@
 - Add: `$request` property enables to specify request component ID. (vistart)
 - Chg: getWebRequest() method will return web request component, if it is console one, then will return null. (vistart)
 
+#### traits/PasswordTrait.php
+
+- Chg: rename `applyNewPassword()` with `applyForNewPassword()`. (vistart)
+- Chg: permit to disable the password reset feature. (vistart)
+- Add: `eventNewPasswordAppliedFor` event will be triggered when succeeded to apply new password. (vistart) 
+
 #### traits/BlameableTrait.php
 
 - Add: getUpdater() method for getting the user who updated this model recently. (vistart)
+- Add: enabledFields() method overriding the parent method for getting the built-in attributes enabled. (vistart)
 
 #### traits/BlameableQueryTrait.php
 
@@ -44,12 +51,15 @@
 - Chg: buildOppositeRelation() method will not be skipped if its type is single relation. (vistart)
 - Add: `$relationSelf` property, determines whether permits to build self relation. If not, and initiator is same as recipient, null will be given. (vistart)
 - Add: getInitiator() and getRecipient() queries and `$initiator`, `$recipient` magic properties. (vistart)
+- Chg: buildSuspendRelation() will give null if current type of relation is not mutual. (vistart)
 
 #### traits/MultipleBlameableTrait.php
 
 - Add: createBlame() method for create blame instance. (vistart)
 - Add: addOrCreateBlame() method for add blame or create one before adding if it didn't exist. (vistart)
 - Add: getOrCreateBlame() method for get blame or create one before returning if it didn't exist. (vistart)
+- Chg: change error message if user is not an instance of [[BaseUserModel]]. (vistart)
+- Chg: the limit of blames is 64. (vistart)
 
 #### models/BaseBlameableModel.php
 
@@ -74,6 +84,10 @@
 
 - Fix: add missing namespace. (vistart)
 - Add: `init()` method. (vistart)
+
+#### models/BaseUserRelationModel.php
+
+- Chg: remove `$idAttribute` redeclaration. (vistart)
 
 #### models/BaseUserRelationGroupModel.php
 

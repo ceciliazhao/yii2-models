@@ -5,9 +5,9 @@
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
  * |___//_//____/  /_/ /_/ |_||_|     |_|
- * @link http://vistart.name/
+ * @link https://vistart.name/
  * @copyright Copyright (c) 2016 vistart
- * @license http://vistart.name/license/
+ * @license https://vistart.name/license/
  */
 
 namespace vistart\Models\traits;
@@ -33,12 +33,18 @@ trait PasswordTrait
     public static $eventBeforeResetPassword = "beforeResetPassword";
     public static $eventAfterResetPassword = "afterResetPassword";
     public static $eventResetPasswordFailed = "resetPasswordFailed";
+    public static $eventNewPasswordAppliedFor = "newPasswordAppliedFor";
     public static $eventPasswordResetTokenGenerated = "passwordResetTokenGenerated";
 
     /**
      * @var string The name of attribute used for storing password hash.
      */
     public $passwordHashAttribute = 'pass_hash';
+
+    /**
+     * @var string The name of attribute used for storing password reset token.
+     * If you do not want to provide password reset feature, please set `false`. 
+     */
     public $passwordResetTokenAttribute = 'password_reset_token';
 
     /**
@@ -93,10 +99,14 @@ trait PasswordTrait
 
     /**
      * Get the rules associated with password reset token attribute.
-     * @return array
+     * If password reset feature is not enabled, the empty array will be given.
+     * @return mixed
      */
     public function getPasswordResetTokenRules()
     {
+        if (!is_string($this->passwordResetTokenAttribute)) {
+            return [];
+        }
         if (empty($this->passwordResetTokenRules) || !is_array($this->passwordResetTokenRules)) {
             $this->passwordResetTokenRules = [
                 [[$this->passwordResetTokenAttribute], 'string', 'length' => 40],
@@ -108,7 +118,7 @@ trait PasswordTrait
 
     /**
      * Set the rules associated with password reset token attribute.
-     * @param type $rules
+     * @param mixed $rules
      */
     public function setPasswordResetTokenRules($rules)
     {
@@ -177,13 +187,23 @@ trait PasswordTrait
     }
 
     /**
-     * Apply new password.
+     * Apply for new password.
+     * If this model is new one, false will be given, and no events will be triggered.
+     * If password reset feature is not enabled, `$eventNewPasswordAppliedFor`
+     * will be triggered and return true directly.
+     * Otherwise, the new password reset token will be regenerated and saved. Then
+     * trigger the `$eventNewPasswordAppliedFor` and
+     * `$eventPasswordResetTokenGenerated` events and return true.
      * @return boolean
      */
-    public function applyNewPassword()
+    public function applyForNewPassword()
     {
         if ($this->isNewRecord) {
             return false;
+        }
+        if (!is_string($this->passwordResetTokenAttribute)) {
+            $this->trigger(static::$eventNewPasswordAppliedFor);
+            return true;
         }
         $prtAttribute = $this->passwordResetTokenAttribute;
         $this->$prtAttribute = static::generatePasswordResetToken();
@@ -191,6 +211,7 @@ trait PasswordTrait
             $this->trigger(static::$eventResetPasswordFailed);
             return false;
         }
+        $this->trigger(static::$eventNewPasswordAppliedFor);
         $this->trigger(static::$eventPasswordResetTokenGenerated);
         return true;
     }
@@ -209,8 +230,10 @@ trait PasswordTrait
         }
         $this->trigger(static::$eventBeforeResetPassword);
         $this->password = $password;
-        $prtAttribute = $this->passwordResetTokenAttribute;
-        $this->$prtAttribute = '';
+        if (is_string($this->passwordResetTokenAttribute)) {
+            $prtAttribute = $this->passwordResetTokenAttribute;
+            $this->$prtAttribute = '';
+        }
         if (!$this->save()) {
             $this->trigger(static::$eventResetPasswordFailed);
             return false;
@@ -241,22 +264,29 @@ trait PasswordTrait
 
     /**
      * Validate whether the $token is the valid password reset token.
+     * If password reset feature is not enabled, true will be given.
      * @param string $token
-     * @return boolean
+     * @return boolean whether the token is correct.
      */
     protected function validatePasswordResetToken($token)
     {
+        if (!is_string($this->passwordResetTokenAttribute)) {
+            return true;
+        }
         $prtAttribute = $this->passwordResetTokenAttribute;
         return $this->$prtAttribute === $token;
     }
 
     /**
      * Initialize password reset token attribute.
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      */
     public function onInitPasswordResetToken($event)
     {
         $sender = $event->sender;
+        if (!is_string($sender->passwordResetTokenAttribute)) {
+            return;
+        }
         $prtAttribute = $sender->passwordResetTokenAttribute;
         $sender->$prtAttribute = '';
     }

@@ -204,7 +204,7 @@ class BaseUserModelTest extends TestCase
         $user = new User(['password' => $password]);
         $user->on(User::$eventResetPasswordFailed, [$this, 'onResetPasswordFailed']);
         $user->register();
-        $this->assertTrue($user->applyNewPassword());
+        $this->assertTrue($user->applyForNewPassword());
         $password = $password . ' ';
         $passwordResetTokenAttribute = $user->passwordResetTokenAttribute;
         $user->resetPassword($password, $user->$passwordResetTokenAttribute);

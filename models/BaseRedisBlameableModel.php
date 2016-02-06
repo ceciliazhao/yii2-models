@@ -19,7 +19,7 @@ use vistart\Models\traits\BlameableTrait;
  *
  * @author vistart <i@vistart.name>
  */
-class BaseRedisBlameableModel extends BaseRedisEntityModel
+abstract class BaseRedisBlameableModel extends BaseRedisEntityModel
 {
     use BlameableTrait;
 

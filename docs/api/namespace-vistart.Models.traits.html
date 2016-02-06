@@ -224,7 +224,7 @@ checking the validity of blames.
 <li>$multiBlamesAttribute specify the field name of blames.</li>
 </ul>
 </li>
-<li>You should rename each name of following methods to be needed optionally.</li>
+<li>You should rename the following methods to be needed optionally.</li>
 </ol></td>
 </tr>
 <tr>
@@ -256,8 +256,10 @@ $contentTypeAttribute 关系组类型。</p></td>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserRelationTrait.html">UserRelationTrait</a></td>
 	<td><p>Relation features.
-This trait should be used in user relation model which is extended from BaseBlameableModel,
-and is specified <code>$userClass</code> property.
+This trait should be used in user relation model which is extended from
+[[BaseBlameableModel]], and is specified <code>$userClass</code> property. And the user
+class should be extended from [[BaseUserModel]], or any other classes used
+[[UserTrait]].
 Notice: Several methods associated with "inserting", "updating" and "removing" may
 involve more DB operations, I strongly recommend those methods to be placed in
 transaction execution, in order to ensure data consistency.
@@ -266,7 +268,12 @@ must be used coordinately.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.UserTrait.html">UserTrait</a></td>
-	<td>Assemble PasswordTrait, RegistrationTrait and IdentityTrait into UserTrait.</td>
+	<td><p>Assemble PasswordTrait, RegistrationTrait and IdentityTrait into UserTrait.
+This trait can only be used in the class extended from [[BaseEntityModel]],
+[[BaseMongoEntityModel]], [[BaseRedisEntityModel]], or any other classes used
+[[EntityTrait]].
+This trait implements two methods <code>create()</code> and <code>findOneOrCreate()</code>.
+Please read the notes of methods and used traits for further detailed usage.</p></td>
 </tr>
 	</table>
 </div>

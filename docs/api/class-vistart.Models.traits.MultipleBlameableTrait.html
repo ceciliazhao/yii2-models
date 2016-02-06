@@ -163,7 +163,7 @@ checking the validity of blames.
 <li>$multiBlamesAttribute specify the field name of blames.</li>
 </ul>
 </li>
-<li>You should rename each name of following methods to be needed optionally.</li>
+<li>You should rename the following methods to be needed optionally.</li>
 </ol>
 	</div>
 
@@ -191,7 +191,7 @@ checking the validity of blames.
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#19-397" title="Go to source code">traits/MultipleBlameableTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#19-405" title="Go to source code">traits/MultipleBlameableTrait.php</a>
 		<br>
 	</div>
 
@@ -275,14 +275,14 @@ checking the validity of blames.
 
 			<td class="attributes"><code>
 				 public static
-				
+				[[$multiBlamesClass]]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createBlame">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#127-141" title="Go to source code">createBlame</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span>array <var>$config</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#127-142" title="Go to source code">createBlame</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var></span>, <span>array <var>$config</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Create blame.</p>
@@ -297,9 +297,13 @@ checking the validity of blames.
 						<dt><var>$user</var></dt>
 						<dd>who will own this blame.</dd>
 						<dt><var>$config</var></dt>
-						<dd>blame class config array.</dd>
+						<dd>blame class configuration array.</dd>
 					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						[[$multiBlamesClass]]<br>$multiBlamesClass]]
+					</div>
 
 
 
@@ -318,23 +322,31 @@ checking the validity of blames.
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addOrCreateBlame">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#143-183" title="Go to source code">addOrCreateBlame</a>( <span>[multiBlamesClass]|string|array <var>&amp; $blame</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#144-191" title="Go to source code">addOrCreateBlame</a>( <span>[[$multiBlamesClass]]|string|array <var>&amp; $blame</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Add specified blame, or create it before adding if it didn't exist.</p>
+				<p>Add specified blame, or create it before adding if doesn't exist.
+But you should save the blame instance before adding, or the operation
+will fail.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Add specified blame, or create it before adding if it didn't exist.</p>
+				<p>Add specified blame, or create it before adding if doesn't exist.
+But you should save the blame instance before adding, or the operation
+will fail.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$blame</var></dt>
-						<dd><p>If this is string or
-[multiBlamesClass] instance, and the it existed, then will add it. If it
-didn't exist, and this is a array, it will be regarded as config array.
-Notice, This parameter passed by reference, so it must be a variable!</p></dd>
+						<dd><p>It will be regarded as blame's guid if it is a string. And assign the
+reference parameter $blame the instance if it existed, or create one if not
+found.
+If it is [[$multiBlamesClass]] instance and existed, then will add it, or
+false will be given if it is not found in database. So if you want to add
+blame instance, you should save it before adding.
+If it is a array, it will be regarded as configuration array of blame.
+Notice! This parameter passed by reference, so it must be a variable!</p></dd>
 						<dt><var>$user</var></dt>
 						<dd><p>whose blame.
 If null, it will take this blameable model's user.</p></dd>
@@ -372,7 +384,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeBlame">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#185-208" title="Go to source code">removeBlame</a>( <span>[multiBlamesClass] <var>$blame</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#193-216" title="Go to source code">removeBlame</a>( <span>[multiBlamesClass] <var>$blame</var></span> )</code>
 
 			<div class="description short">
 				<p>Remove specified blame.</p>
@@ -410,7 +422,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_removeAllBlames">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#210-216" title="Go to source code">removeAllBlames</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#218-224" title="Go to source code">removeAllBlames</a>( )</code>
 
 			<div class="description short">
 				<p>Remove all blames.</p>
@@ -439,7 +451,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlamesCount">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#218-225" title="Go to source code">getBlamesCount</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#226-233" title="Go to source code">getBlamesCount</a>( )</code>
 
 			<div class="description short">
 				<p>Count the blames.</p>
@@ -472,7 +484,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlameGuids">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#227-244" title="Go to source code">getBlameGuids</a>( <span>boolean <var>$checkValid</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#235-252" title="Go to source code">getBlameGuids</a>( <span>boolean <var>$checkValid</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Get the guid array of blames. it may check all guids if valid before return.</p>
@@ -510,7 +522,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onBlamesChanged">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#246-254" title="Go to source code">onBlamesChanged</a>( <span><code><a href="class-vistart.Models.events.MultipleBlameableEvent.html">vistart\Models\events\MultipleBlameableEvent</a></code> <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#254-262" title="Go to source code">onBlamesChanged</a>( <span><code><a href="class-vistart.Models.events.MultipleBlameableEvent.html">vistart\Models\events\MultipleBlameableEvent</a></code> <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Event triggered when blames list changed.</p>
@@ -544,7 +556,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_unsetInvalidBlames">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#256-275" title="Go to source code">unsetInvalidBlames</a>( <span>array <var>$guids</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#264-283" title="Go to source code">unsetInvalidBlames</a>( <span>array <var>$guids</var></span> )</code>
 
 			<div class="description short">
 				<p>Remove invalid blame guid from provided guid array.</p>
@@ -582,7 +594,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setBlameGuids">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#277-294" title="Go to source code">setBlameGuids</a>( <span>array <var>$guids</var> = []</span>, <span>boolean <var>$checkValid</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#285-302" title="Go to source code">setBlameGuids</a>( <span>array <var>$guids</var> = []</span>, <span>boolean <var>$checkValid</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				<p>Set the guid array of blames, it may check all guids if valid.</p>
@@ -615,14 +627,14 @@ blames guid array if created and added successfully.</p>
 
 			<td class="attributes"><code>
 				 public static
-				[multiBlamesClass]
+				[[$multiBlamesClass]]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlame">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#296-309" title="Go to source code">getBlame</a>( <span>string <var>$blameGuid</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#304-317" title="Go to source code">getBlame</a>( <span>string <var>$blameGuid</var></span> )</code>
 
 			<div class="description short">
 				<p>Get blame.</p>
@@ -640,7 +652,7 @@ blames guid array if created and added successfully.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						[multiBlamesClass]
+						[[$multiBlamesClass]]<br>$multiBlamesClass]]
 					</div>
 
 
@@ -660,7 +672,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getOrCreateBlame">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#311-329" title="Go to source code">getOrCreateBlame</a>( <span>string|array <var>$blameGuid</var></span>, <span>vistart\Models\models\BaseUserClass <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#319-337" title="Go to source code">getOrCreateBlame</a>( <span>string|array <var>$blameGuid</var></span>, <span>vistart\Models\models\BaseUserClass <var>$user</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get or create blame.</p>
@@ -700,7 +712,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getBlameds">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#331-345" title="Go to source code">getBlameds</a>( <span>[multiBlamesClass] <var>$blame</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#339-353" title="Go to source code">getBlameds</a>( <span>[multiBlamesClass] <var>$blame</var></span> )</code>
 
 			<div class="description short">
 				<p>Get all ones to be blamed by <code>$blame</code>.</p>
@@ -738,7 +750,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getAllBlames">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#347-361" title="Go to source code">getAllBlames</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#355-369" title="Go to source code">getAllBlames</a>( )</code>
 
 			<div class="description short">
 				<p>Get all the blames of record.</p>
@@ -771,7 +783,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getNonBlameds">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#363-375" title="Go to source code">getNonBlameds</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#371-383" title="Go to source code">getNonBlameds</a>( )</code>
 
 			<div class="description short">
 				<p>Get all records which without any blames.</p>
@@ -804,7 +816,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onInitBlamesLimit">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#377-387" title="Go to source code">onInitBlamesLimit</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#385-395" title="Go to source code">onInitBlamesLimit</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Initialize blames limit.</p>
@@ -838,7 +850,7 @@ blames guid array if created and added successfully.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getEmptyBlamesJson">#</a>
-			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#389-396" title="Go to source code">getEmptyBlamesJson</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#397-404" title="Go to source code">getEmptyBlamesJson</a>( )</code>
 
 			<div class="description short">
 				<p>Get the json of empty blames array.</p>
@@ -1011,25 +1023,6 @@ less than or equal 10.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Magic properties</h3></div>
 			<table class="summary table table-bordered table-striped properties" id="magicProperties">
-		<tr data-order="blameGuids" id="m$blameGuids">
-			<td class="attributes"><code>
-				public  
-				array
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.MultipleBlameableTrait.html#49" title="Go to source code"><var>$blameGuids</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-		</tr>
 		<tr data-order="multiBlamesAttributeRules" id="m$multiBlamesAttributeRules">
 			<td class="attributes"><code>
 				public  read-only

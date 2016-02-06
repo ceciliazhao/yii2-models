@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.3.1
+-- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-01-26 16:56:15
+-- Generation Time: 2016-02-06 20:43:36
 -- 服务器版本： 5.7.10
--- PHP Version: 5.6.17
+-- PHP Version: 5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,7 +28,7 @@ USE `yii2-models`;
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-26 06:52:46
--- 最后更新： 2016-01-26 08:55:44
+-- 最后更新： 2016-02-06 10:25:37
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 表的结构 `user_additional_account`
 --
 -- 创建时间： 2016-01-26 08:38:03
--- 最后更新： 2016-01-26 08:55:20
+-- 最后更新： 2016-02-06 10:24:39
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 -- 表的结构 `user_comment`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-01-26 08:55:27
+-- 最后更新： 2016-02-06 10:24:54
 --
 
 DROP TABLE IF EXISTS `user_comment`;
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-01-26 08:55:27
+-- 最后更新： 2016-02-06 10:24:55
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -147,13 +147,14 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 --
 -- 表的结构 `user_relation`
 --
--- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-01-26 08:55:44
+-- 创建时间： 2016-02-06 08:38:35
+-- 最后更新： 2016-02-06 10:25:34
 --
 
 DROP TABLE IF EXISTS `user_relation`;
 CREATE TABLE IF NOT EXISTS `user_relation` (
   `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `other_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -169,6 +170,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
   `groups` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`),
+  UNIQUE KEY `user_relation_id_unique` (`user_guid`,`id`) USING BTREE,
   KEY `relation_other_guid_fkey` (`other_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -178,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-01-26 08:55:44
+-- 最后更新： 2016-02-06 10:25:34
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -197,13 +199,14 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
 --
 -- 表的结构 `user_single_relation`
 --
--- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-01-26 08:55:40
+-- 创建时间： 2016-02-06 08:42:19
+-- 最后更新： 2016-02-06 10:25:25
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
 CREATE TABLE IF NOT EXISTS `user_single_relation` (
   `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `other_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -218,6 +221,7 @@ CREATE TABLE IF NOT EXISTS `user_single_relation` (
   `groups` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`) USING BTREE,
+  UNIQUE KEY `user_single_relation_unique` (`user_guid`,`id`),
   KEY `relation_other_guid_fkey` (`other_guid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

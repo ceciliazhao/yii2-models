@@ -134,7 +134,12 @@
 
 
 	<div class="description">
-	<p>Assemble PasswordTrait, RegistrationTrait and IdentityTrait into UserTrait.</p>
+	<p>Assemble PasswordTrait, RegistrationTrait and IdentityTrait into UserTrait.
+This trait can only be used in the class extended from [[BaseEntityModel]],
+[[BaseMongoEntityModel]], [[BaseRedisEntityModel]], or any other classes used
+[[EntityTrait]].
+This trait implements two methods <code>create()</code> and <code>findOneOrCreate()</code>.
+Please read the notes of methods and used traits for further detailed usage.</p>
 	</div>
 
 	<dl class="tree well">
@@ -174,7 +179,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserTrait.html#15-95" title="Go to source code">traits/UserTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.UserTrait.html#15-113" title="Go to source code">traits/UserTrait.php</a>
 		<br>
 	</div>
 
@@ -187,22 +192,26 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				[[$className]]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_create">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#27-54" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span>, <span>boolean <var>$loadDefault</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$skipIfSet</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#32-65" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span>, <span>boolean <var>$loadDefault</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$skipIfSet</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				<p>Create new entity model associated with current user.
+				<p>Create new entity model associated with current user. The model to be created
+must be extended from [[BaseBlameableModel]], [[BaseMongoBlameableModel]],
+[[BaseRedisBlameableModel]], or any other classes used [[BlameableTrait]].
 if $config does not specify <code>userClass</code> property, self will be assigned to.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Create new entity model associated with current user.
+				<p>Create new entity model associated with current user. The model to be created
+must be extended from [[BaseBlameableModel]], [[BaseMongoBlameableModel]],
+[[BaseRedisBlameableModel]], or any other classes used [[BlameableTrait]].
 if $config does not specify <code>userClass</code> property, self will be assigned to.</p>
 
 
@@ -215,7 +224,11 @@ if $config does not specify <code>userClass</code> property, self will be assign
 the object properties.</p></dd>
 						<dt><var>$loadDefault</var></dt>
 						<dd><p>Determines whether loading default values
-after entity model created.</p></dd>
+after entity model created.
+Notice! The [[\yii\mongodb\ActiveRecord]] and [[\yii\redis\ActiveRecord]]
+does not support load default value. If you want to assign properties
+with default values, please define the <code>default</code> rule(s) for properties in
+<code>rules()</code> method and return them by yourself.</p></dd>
 						<dt><var>$skipIfSet</var></dt>
 						<dd><p>whether existing value should be preserved.
 This will only set defaults for attributes that are <code>null</code>.</p></dd>
@@ -223,7 +236,7 @@ This will only set defaults for attributes that are <code>null</code>.</p></dd>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<br>$className
+						[[$className]]<br>$className]] new model created with specified configuration.
 					</div>
 
 
@@ -236,36 +249,47 @@ This will only set defaults for attributes that are <code>null</code>.</p></dd>
 
 			<td class="attributes"><code>
 				 public 
-				
+				[[$className]]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneOrCreate">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#56-77" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#67-95" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Find existed or create new model.</p>
+				<p>Find existed, or create new model.
+If model to be found doesn't exist, and $config is null, the parameter
+<code>$condition</code> will be regarded as properties of new model.
+If you want to know whether the returned model is new model, please check
+the return value of <code>getIsNewRecord()</code> method.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Find existed or create new model.</p>
+				<p>Find existed, or create new model.
+If model to be found doesn't exist, and $config is null, the parameter
+<code>$condition</code> will be regarded as properties of new model.
+If you want to know whether the returned model is new model, please check
+the return value of <code>getIsNewRecord()</code> method.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$className</var></dt>
-						<dd></dd>
+						<dd>Full qualified class name.</dd>
 						<dt><var>$condition</var></dt>
-						<dd></dd>
+						<dd><p>Search condition, or properties if not found and
+$config is null.</p></dd>
 						<dt><var>$config</var></dt>
-						<dd></dd>
+						<dd><p>new model's configuration array. If you specify this
+parameter, the $condition will be skipped when created one.</p></dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<br>$className
+						[[$className]]<br><p>$className]] the existed model, or new model created by specified
+condition or configuration.</p>
 					</div>
 
 
@@ -285,7 +309,7 @@ This will only set defaults for attributes that are <code>null</code>.</p></dd>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.UserTrait.html#79-94" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#97-112" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				<p>Get all rules with current user properties.</p>
@@ -314,7 +338,7 @@ This will only set defaults for attributes that are <code>null</code>.</p></dd>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_applyNewPassword">applyNewPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_applyForNewPassword">applyForNewPassword()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordResetToken">generatePasswordResetToken()</a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a></code>, 
@@ -387,6 +411,7 @@ This will only set defaults for attributes that are <code>null</code>.</p></dd>
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventAfterSetPassword"><var>$eventAfterSetPassword</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeResetPassword"><var>$eventBeforeResetPassword</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeValidatePassword"><var>$eventBeforeValidatePassword</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventNewPasswordAppliedFor"><var>$eventNewPasswordAppliedFor</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventPasswordResetTokenGenerated"><var>$eventPasswordResetTokenGenerated</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventResetPasswordFailed"><var>$eventResetPasswordFailed</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventValidatePasswordFailed"><var>$eventValidatePasswordFailed</var></a></code>, 

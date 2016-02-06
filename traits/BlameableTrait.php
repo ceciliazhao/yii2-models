@@ -5,9 +5,9 @@
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
  * |___//_//____/  /_/ /_/ |_||_|     |_|
- * @link http://vistart.name/
+ * @link https://vistart.name/
  * @copyright Copyright (c) 2016 vistart
- * @license http://vistart.name/license/
+ * @license https://vistart.name/license/
  */
 
 namespace vistart\Models\traits;
@@ -583,5 +583,35 @@ trait BlameableTrait
         }
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, "onContentChanged"]);
         $this->initSelfBlameableEvents();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function enabledFields()
+    {
+        $fields = parent::enabledFields();
+        if (is_string($this->createdByAttribute)) {
+            $fields[] = $this->createdByAttribute;
+        }
+        if (is_string($this->updatedByAttribute)) {
+            $fields[] = $this->updatedByAttribute;
+        }
+        if (is_string($this->contentAttribute)) {
+            $fields[] = $this->contentAttribute;
+        }
+        if (is_array($this->contentAttribute)) {
+            $fields = array_merge($fields, $this->contentAttribute);
+        }
+        if (is_string($this->descriptionAttribute)) {
+            $fields[] = $this->descriptionAttribute;
+        }
+        if (is_string($this->confirmationAttribute)) {
+            $fields[] = $this->confirmationAttribute;
+        }
+        if (is_string($this->parentAttribute)) {
+            $fields[] = $this->parentAttribute;
+        }
+        return $fields;
     }
 }

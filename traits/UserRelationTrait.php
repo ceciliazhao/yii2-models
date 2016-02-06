@@ -5,9 +5,9 @@
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
  * |___//_//____/  /_/ /_/ |_||_|     |_|
- * @link http://vistart.name/
+ * @link https://vistart.name/
  * @copyright Copyright (c) 2016 vistart
- * @license http://vistart.name/license/
+ * @license https://vistart.name/license/
  */
 
 namespace vistart\Models\traits;
@@ -17,8 +17,10 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
 
 /**
  * Relation features.
- * This trait should be used in user relation model which is extended from BaseBlameableModel,
- * and is specified `$userClass` property.
+ * This trait should be used in user relation model which is extended from
+ * [[BaseBlameableModel]], and is specified `$userClass` property. And the user
+ * class should be extended from [[BaseUserModel]], or any other classes used
+ * [[UserTrait]].
  * Notice: Several methods associated with "inserting", "updating" and "removing" may
  * involve more DB operations, I strongly recommend those methods to be placed in
  * transaction execution, in order to ensure data consistency.
@@ -240,7 +242,7 @@ trait UserRelationTrait
     }
 
     /**
-     * Get opposite relation to self.
+     * Get opposite relation against self.
      * @return \vistart\Models\models\BaseUserRelationModel
      */
     public function getOpposite()
@@ -254,7 +256,9 @@ trait UserRelationTrait
     }
 
     /**
-     * Build a suspend mutual relation, not support single relation.
+     * Build new or return existed suspend mutual relation, of return null if
+     * current type is not mutual.
+     * @see buildRelation()
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
@@ -263,13 +267,18 @@ trait UserRelationTrait
     public static function buildSuspendRelation($user, $other)
     {
         $relation = static::buildRelation($user, $other);
+        if ($relation->relationType != static::$relationMutual) {
+            return null;
+        }
         $btAttribute = $relation->mutualTypeAttribute;
         $relation->$btAttribute = static::$mutualTypeSuspend;
         return $relation;
     }
 
     /**
-     * Build a normal relation.
+     * Build new or return existed normal relation.
+     * The status of mutual relation will be changed to normal if it is not. 
+     * @see buildRelation()
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be
@@ -286,7 +295,12 @@ trait UserRelationTrait
     }
 
     /**
-     * Build relation between initiator and recipient.
+     * Build new or return existed relation between initiator and recipient.
+     * If relation between initiator and recipient is not found, new relation will
+     * be built. If initiator and recipient are the same one and it is not allowed
+     * to build self relation, null will be given.
+     * If you want to know whether the relation exists, you can check the return
+     * value of `getIsNewRecord()` method.
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
      * @return \vistart\Models\models\BaseUserRelationModel The relation will be

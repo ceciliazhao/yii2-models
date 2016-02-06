@@ -19,7 +19,7 @@ use vistart\Models\traits\BlameableTrait;
  *
  * @author vistart <i@vistart.name>
  */
-class BaseMongoBlameableModel extends BaseMongoEntityModel
+abstract class BaseMongoBlameableModel extends BaseMongoEntityModel
 {
     use BlameableTrait;
 
@@ -55,12 +55,9 @@ class BaseMongoBlameableModel extends BaseMongoEntityModel
      */
     public $guidAttribute = false;
     public $idAttribute = '_id';
-
+    
     public function attributes()
     {
-        return [
-            '_id',
-            $this->createdByAttribute,
-        ];
+        return $this->enabledFields();
     }
 }

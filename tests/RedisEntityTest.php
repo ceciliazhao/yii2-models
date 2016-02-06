@@ -24,6 +24,7 @@ class RedisEntityTest extends TestCase
 
     /**
      * @group redis
+     * @group entity
      */
     public function testNew()
     {

@@ -5,9 +5,9 @@
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
  * |___//_//____/  /_/ /_/ |_||_|     |_|
- * @link http://vistart.name/
+ * @link https://vistart.name/
  * @copyright Copyright (c) 2016 vistart
- * @license http://vistart.name/license/
+ * @license https://vistart.name/license/
  */
 
 namespace vistart\Models\traits;
@@ -43,10 +43,10 @@ use yii\web\JsonParser;
  * <li>$multiBlamesAttribute specify the field name of blames.</li>
  * </ul>
  * </li>
- * <li>You should rename each name of following methods to be needed optionally.</li>
+ * <li>You should rename the following methods to be needed optionally.</li>
  * </ol>
  * @property-read array $multiBlamesAttributeRules
- * @property array $blameGuids
+ * @property string[] $blameGuids
  * @property-read array $allBlames
  * @property-read array $nonBlameds
  * @property-read integer $blamesCount
@@ -127,12 +127,13 @@ trait MultipleBlameableTrait
     /**
      * Create blame.
      * @param \vistart\Models\models\BaseUserModel $user who will own this blame.
-     * @param array $config blame class config array.
+     * @param array $config blame class configuration array.
+     * @return [[$multiBlamesClass]]
      */
     public static function createBlame($user, $config = [])
     {
         if (!($user instanceof \vistart\Models\models\BaseUserModel)) {
-            $message = 'the type of user instance must be BaseUserModel or its extended class.';
+            $message = 'the type of user instance must be the extended class of BaseUserModel.';
             throw new \yii\base\InvalidParamException($message);
         }
         $mbClass = static::buildNoInitModel();
@@ -141,11 +142,18 @@ trait MultipleBlameableTrait
     }
 
     /**
-     * Add specified blame, or create it before adding if it didn't exist.
-     * @param [multiBlamesClass]|string|array $blame If this is string or
-     * [multiBlamesClass] instance, and the it existed, then will add it. If it
-     * didn't exist, and this is a array, it will be regarded as config array.
-     * Notice, This parameter passed by reference, so it must be a variable!
+     * Add specified blame, or create it before adding if doesn't exist.
+     * But you should save the blame instance before adding, or the operation
+     * will fail.
+     * @param [[$multiBlamesClass]]|string|array $blame 
+     * It will be regarded as blame's guid if it is a string. And assign the
+     * reference parameter $blame the instance if it existed, or create one if not
+     * found.
+     * If it is [[$multiBlamesClass]] instance and existed, then will add it, or
+     * false will be given if it is not found in database. So if you want to add
+     * blame instance, you should save it before adding.
+     * If it is a array, it will be regarded as configuration array of blame.
+     * Notice! This parameter passed by reference, so it must be a variable!
      * @param \vistart\Models\models\BaseUserModel $user whose blame.
      * If null, it will take this blameable model's user.
      * @return false|array false if blame created failed or not enable this feature.
@@ -296,7 +304,7 @@ trait MultipleBlameableTrait
     /**
      * Get blame.
      * @param string $blameGuid
-     * @return [multiBlamesClass]
+     * @return [[$multiBlamesClass]]
      */
     public static function getBlame($blameGuid)
     {
@@ -376,12 +384,12 @@ trait MultipleBlameableTrait
 
     /**
      * Initialize blames limit.
-     * @param \yii\base\Event $event
+     * @param \yii\base\ModelEvent $event
      */
     public function onInitBlamesLimit($event)
     {
         $sender = $event->sender;
-        if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 10) {
+        if (!is_int($sender->blamesLimit) || $sender->blamesLimit < 1 || $sender->blamesLimit > 64) {
             $sender->blamesLimit = 10;
         }
     }
