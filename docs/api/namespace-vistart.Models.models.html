@@ -232,7 +232,9 @@ class User extends \vistart\Models\models\BaseUserModel {
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></td>
-	<td>This abstract class is used for building user relation group.</td>
+	<td><p>This abstract class is used for building user relation group.
+This model is a record of user relation group, if you want to know the details
+about creating, updating, finding and removing a group, please see [[BaseUserRelationModel]].</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></td>
@@ -240,8 +242,11 @@ class User extends \vistart\Models\models\BaseUserModel {
 If you want to use group feature, the BaseUserRelationGroup's extended class
 must be used coordinately.
 Basic usage:
+- Implementation:
 ~~~php
-class Relation extends BaseUserRelationModel {</p></td>
+class SingleRelation extends BaseUserRelationModel {
+    public $relationType = 0; // 0 represents single relation, 1 represents mutual relation. 1 is default.
+    public $multiBlamesAttribute = 'groups'; // you should redeclare this property if needed. 'blames' is default.</p></td>
 </tr>
 	</table>
 </div>

@@ -36,7 +36,7 @@ class UserRelation extends BaseUserRelationModel
     }
 
     /**
-     * 
+     * Friendly to IDE.
      * @return \vistart\Models\queries\BaseUserRelationQuery
      */
     public static function find()

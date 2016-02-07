@@ -16,6 +16,8 @@ use vistart\Models\traits\UserRelationGroupTrait;
 
 /**
  * This abstract class is used for building user relation group.
+ * This model is a record of user relation group, if you want to know the details
+ * about creating, updating, finding and removing a group, please see [[BaseUserRelationModel]].
  *
  * $contentAttribute name of user relation group.
  * $contentTypeAttribute type of user relation group.
