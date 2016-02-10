@@ -45,20 +45,59 @@ trait TimestampTrait
     public static $timeFormatTimestamp = 1;
 
     /**
-     * Get the current date & time in format of "Y-m-d H:i:s".
+     * Get the current date & time in format of "Y-m-d H:i:s" or timestamp.
      * You can override this method to customize the return value.
+     * @param \yii\base\ModelEvent $event
      * @return string Date & Time.
      * @since 1.1
      */
     public static function getCurrentDatetime($event)
     {
         $sender = $event->sender;
-        if ($sender->timeFormat === self::$timeFormatDatetime) {
+        return $sender->currentDatetime();
+    }
+
+    public function currentDatetime()
+    {
+        if ($this->timeFormat === self::$timeFormatDatetime) {
             return date('Y-m-d H:i:s');
         }
-        if ($sender->timeFormat === self::$timeFormatTimestamp) {
+        if ($this->timeFormat === self::$timeFormatTimestamp) {
             return time();
         }
+    }
+
+    /**
+     * Get init date & time in format of "Y-m-d H:i:s" or timestamp.s
+     * @param \yii\base\ModelEvent $event
+     * @return string|int
+     */
+    public static function getInitDatetime($event)
+    {
+        $sender = $event->sender;
+        return $sender->initDatetime();
+    }
+
+    public function initDatetime()
+    {
+        if ($this->timeFormat === self::$timeFormatDatetime) {
+            return '1970-01-01 00:00:00';
+        }
+        if ($this->timeFormat === self::$timeFormatTimestamp) {
+            return 0;
+        }
+        return null;
+    }
+
+    protected function isInitDatetime($attribute)
+    {
+        if ($this->timeFormat === self::$timeFormatDatetime) {
+            return $this->$attribute == '1970-01-01 00:00:00';
+        }
+        if ($this->timeFormat === self::$timeFormatTimestamp) {
+            return $this->$attribute == 0;
+        }
+        return false;
     }
 
     /**

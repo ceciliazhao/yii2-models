@@ -108,6 +108,8 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MessageQueryTrait.html">MessageQueryTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MessageTrait.html">MessageTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
@@ -175,7 +177,9 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 			<code><a href="class-vistart.Models.models.BaseBlameableModel.html">vistart\Models\models\BaseBlameableModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseMetaModel.html">vistart\Models\models\BaseMetaModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">vistart\Models\models\BaseMongoBlameableModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseMongoMessageModel.html">vistart\Models\models\BaseMongoMessageModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">vistart\Models\models\BaseRedisBlameableModel</a></code>, 
+			<code><a href="class-vistart.Models.models.BaseRedisMessageModel.html">vistart\Models\models\BaseRedisMessageModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">vistart\Models\models\BaseUserRelationGroupModel</a></code>, 
 			<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
@@ -963,11 +967,15 @@ will be assigned to true.</p><br>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.TimestampTrait.html#methods">vistart\Models\traits\TimestampTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_currentDatetime">currentDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAt">getCreatedAt()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getInitDatetime">getInitDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getTimestampBehaviors">getTimestampBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAtRules">getUpdatedAtRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_initDatetime">initDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_isInitDatetime">isInitDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a></code>
 			</p>
 		</div>

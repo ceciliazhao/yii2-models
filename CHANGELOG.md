@@ -7,6 +7,11 @@
 - Add: `$request` property enables to specify request component ID. (vistart)
 - Chg: getWebRequest() method will return web request component, if it is console one, then will return null. (vistart)
 
+#### traits/TimestampTrait.php
+
+- Add: getInitDatetime() event and initDatetime() method. (vistart)
+- Add: isInitDatetime() method for judging whether specified attribute is init date & time. (vistart)
+
 #### traits/PasswordTrait.php
 
 - Chg: rename `applyNewPassword()` with `applyForNewPassword()`. (vistart)
