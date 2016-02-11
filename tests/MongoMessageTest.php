@@ -31,14 +31,64 @@ class MongoMessageTest extends MongoTestCase
         $user = static::prepareUser();
         $other = static::prepareUser();
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
-        //var_dump($message->rules());
-        //var_dump($message->behaviors());
         if ($message->save()) {
             $this->assertTrue(true);
         } else {
             var_dump($message->errors);
             $this->fail();
         }
+        $this->assertEquals(1, $message->delete());
+        $this->assertTrue($user->deregister());
+        $this->assertTrue($other->deregister());
+    }
+
+    /**
+     * @group mongo
+     * @group message
+     * @depends testNew
+     */
+    public function testRead()
+    {
+        $user = static::prepareUser();
+        $other = static::prepareUser();
+        $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
+        $this->assertTrue($message->save());
+        
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->read()->count());
+        $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unread()->count());
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->read()->count());
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->unread()->count());
+        
+        $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->read()->count());
+        $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unread()->count());
+        $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->read()->count());
+        $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unread()->count());
+        $this->assertEquals(1, $message->delete());
+        $this->assertTrue($user->deregister());
+        $this->assertTrue($other->deregister());
+    }
+    
+    /**
+     * @group mongo
+     * @group message
+     * @depends testRead
+     */
+    public function testReceived()
+    {
+        $user = static::prepareUser();
+        $other = static::prepareUser();
+        $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
+        $this->assertTrue($message->save());
+        
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->received()->count());
+        $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unreceived()->count());
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->received()->count());
+        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->unreceived()->count());
+        
+        $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->received()->count());
+        $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unreceived()->count());
+        $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->received()->count());
+        $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unreceived()->count());
         $this->assertEquals(1, $message->delete());
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());

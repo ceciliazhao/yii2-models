@@ -21,7 +21,7 @@ namespace vistart\Models\traits;
 trait MessageTrait
 {
 
-    public $recipientGuidAttribute = 'other_guid';
+    public $otherGuidAttribute = 'other_guid';
     public $attachmentAttribute = 'attachment';
     public $expiration = 604800; // 7 days
     public $receivedAtAttribute = 'received_at';
@@ -104,18 +104,32 @@ trait MessageTrait
         /* @var $sender static */
         $sender->setReadAt(static::getInitDatetime($event));
     }
-    
+
+    public function onReadAtAttributeChanged($event)
+    {
+        $sender = $event->sender;
+        if (!is_string($sender->readAtAttribute)) {
+            return;
+        }
+        $raAttribute = $sender->readAtAttribute;
+        $reaAttribute = $sender->receivedAtAttribute;
+        if ($sender->$raAttribute != $sender->initDatetime() && $sender->$reaAttribute == $sender->initDatetime()) {
+            $sender->$reaAttribute = $sender->currentDatetime();
+        }
+    }
+
     public function initMessageEvents()
     {
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReceivedAtAttribute']);
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReadAtAttribute']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReadAtAttributeChanged']);
     }
 
     public function getMessageRules()
     {
         $rules = [
-            [$this->recipientGuidAttribute, 'required'],
-            [$this->recipientGuidAttribute, 'string', 'max' => 36],
+            [$this->otherGuidAttribute, 'required'],
+            [$this->otherGuidAttribute, 'string', 'max' => 36],
         ];
         if (is_string($this->attachmentAttribute)) {
             $rules[] = [$this->attachmentAttribute, 'safe'];
@@ -137,7 +151,7 @@ trait MessageTrait
     public function enabledFields()
     {
         $fields = parent::enabledFields();
-        $fields[] = $this->recipientGuidAttribute;
+        $fields[] = $this->otherGuidAttribute;
         if (is_string($this->attachmentAttribute)) {
             $fields[] = $this->attachmentAttribute;
         }

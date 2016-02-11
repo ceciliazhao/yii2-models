@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\traits\MutualQueryTrait;
+
 /**
  * Description of MessageQueryTrait
  *
@@ -19,44 +21,29 @@ namespace vistart\Models\traits;
  */
 trait MessageQueryTrait
 {
+    use MutualQueryTrait;
 
     public function unread()
     {
         $model = $this->noInitModel;
-        $raAttribute = $model->readAtAttribute;
-        if (!is_string($raAttribute)) {
-            return $this;
-        }
-        return $this->andWhere([$this->$raAttribute => $model->initDatetime()]);
+        return $this->likeCondition($model->initDatetime(), $model->readAtAttribute);
     }
 
     public function read()
     {
         $model = $this->noInitModel;
-        $raAttribute = $model->readAtAttribute;
-        if (!is_string($raAttribute)) {
-            return $this;
-        }
-        return $this->andWhere(['!=', $this->$raAttribute, $model->initDatetime()]);
+        return $this->likeCondition($model->initDatetime(), $model->readAtAttribute, 'not in');
     }
 
     public function unreceived()
     {
         $model = $this->noInitModel;
-        $raAttribute = $model->receivedAtAttribute;
-        if (!is_string($raAttribute)) {
-            return $this;
-        }
-        return $this->andWhere([$this->$raAttribute => $model->initDatetime()]);
+        return $this->likeCondition($model->initDatetime(), $model->receivedAtAttribute);
     }
 
     public function received()
     {
         $model = $this->noInitModel;
-        $raAttribute = $model->receivedAttribute;
-        if (!is_string($raAttribute)) {
-            return $this;
-        }
-        return $this->andWhere(['!=', $this->$raAttribute, $model->initDatetime()]);
+        return $this->likeCondition($model->initDatetime(), $model->receivedAtAttribute, 'not in');
     }
 }

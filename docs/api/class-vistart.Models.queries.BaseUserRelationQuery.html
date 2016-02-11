@@ -159,6 +159,8 @@ yii\db\ActiveQuery
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>vistart\Models\queries\BaseUserRelationQuery</span></b>			
 			
+			 uses 
+					<a href="class-vistart.Models.traits.MutualQueryTrait.html"><span>vistart\Models\traits\MutualQueryTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -180,7 +182,7 @@ yii\db\ActiveQuery
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#19-113" title="Go to source code">queries/BaseUserRelationQuery.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#18-53" title="Go to source code">queries/BaseUserRelationQuery.php</a>
 		<br>
 	</div>
 
@@ -189,168 +191,6 @@ yii\db\ActiveQuery
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="opposite" id="_opposite">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_opposite">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#30-41" title="Go to source code">opposite</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span>, <span>yii\db\Connection <var>$database</var> = <span class="php-keyword1">null</span></span> )</code>
-
-			<div class="description short">
-				<p>Get the opposite relation.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get the opposite relation.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$user</var></dt>
-						<dd>initiator</dd>
-						<dt><var>$other</var></dt>
-						<dd>recipient.</dd>
-						<dt><var>$database</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="opposites" id="_opposites">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_opposites">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#43-58" title="Go to source code">opposites</a>( <span>string <var>$user</var></span>, <span>array <var>$others</var> = []</span>, <span>yii\db\Connection <var>$database</var> = <span class="php-keyword1">null</span></span> )</code>
-
-			<div class="description short">
-				<p>Get all the opposites.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get all the opposites.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$user</var></dt>
-						<dd>initator.</dd>
-						<dt><var>$others</var></dt>
-						<dd>all recipients.</dd>
-						<dt><var>$database</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>array of BaseUserRelationModel instances.
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="initiators" id="_initiators">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_initiators">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#60-73" title="Go to source code">initiators</a>( <span>string|array <var>$users</var> = []</span> )</code>
-
-			<div class="description short">
-				<p>Specify initiators.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Specify initiators.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$users</var></dt>
-						<dd><p>the guid of initiator if string, or guid array
-of initiators if array.</p></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code><br>$this
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="recipients" id="_recipients">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_recipients">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#75-88" title="Go to source code">recipients</a>( <span>string|array <var>$users</var> = []</span> )</code>
-
-			<div class="description short">
-				<p>Specify recipients.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Specify recipients.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$users</var></dt>
-						<dd><p>the guid of recipient if string, or guid array
-of recipients if array.</p></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseUserRelationQuery.html">vistart\Models\queries\BaseUserRelationQuery</a></code><br>$this
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="groups" id="_groups">
 
 			<td class="attributes"><code>
@@ -362,7 +202,7 @@ of recipients if array.</p></dd>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_groups">#</a>
-			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#90-112" title="Go to source code">groups</a>( <span>string|array <var>$groups</var> = []</span> )</code>
+			<code><a href="source-class-vistart.Models.queries.BaseUserRelationQuery.html#30-52" title="Go to source code">groups</a>( <span>string|array <var>$groups</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Specify groups.
@@ -404,6 +244,15 @@ access this method, or assign null.</p></dd>
 			</p>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MutualQueryTrait.html#methods">vistart\Models\traits\MutualQueryTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_initiators">initiators()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_opposite">opposite()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_opposites">opposites()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_recipients">recipients()</a></code>
+			</p>
+		</div>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableQueryTrait.html#methods">vistart\Models\traits\BlameableQueryTrait</a></h3></div>
 			<p class="elementList">

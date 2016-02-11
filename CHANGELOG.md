@@ -11,6 +11,7 @@
 
 - Add: getInitDatetime() event and initDatetime() method. (vistart)
 - Add: isInitDatetime() method for judging whether specified attribute is init date & time. (vistart)
+- Chg: isInitDatetime() considers the null value is init value. (vistart)
 
 #### traits/PasswordTrait.php
 

@@ -21,8 +21,18 @@ use vistart\Models\models\BaseMongoMessageModel;
  */
 class MongoMessage extends BaseMongoMessageModel
 {
+
     public static function collectionName()
     {
         return ['yii2-models', 'message'];
+    }
+
+    /**
+     * Friendly to IDE.
+     * @return \vistart\Models\queries\BaseMongoMessageQuery
+     */
+    public static function find()
+    {
+        return parent::find();
     }
 }
