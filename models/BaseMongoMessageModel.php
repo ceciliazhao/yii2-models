@@ -34,6 +34,7 @@ abstract class BaseMongoMessageModel extends BaseMongoBlameableModel
         if ($this->skipInit) {
             return;
         }
+        $this->initMessageEvents();
         parent::init();
     }
 }

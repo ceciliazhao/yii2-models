@@ -12,7 +12,6 @@
 
 namespace vistart\Models\tests;
 
-use vistart\Models\tests\data\ar\User;
 use vistart\Models\tests\data\ar\MongoBlameable;
 
 /**
@@ -22,14 +21,6 @@ use vistart\Models\tests\data\ar\MongoBlameable;
  */
 class MongoBlameableTest extends MongoTestCase
 {
-    private static function prepareUser()
-    {
-        $user = new User(['password' => '123456']);
-        if (!$user->register()) {
-            $this->fail();
-        }
-        return $user;
-    }
 
     /**
      * @group mongo
@@ -46,17 +37,17 @@ class MongoBlameableTest extends MongoTestCase
             var_dump($blameable->errors);
             $this->fail();
         }
-        
+
         $blameable = MongoBlameable::find()->id($blameable->id)->one();
         $this->assertInstanceOf(MongoBlameable::className(), $blameable);
         $this->assertEquals($content, $blameable->content);
         $cbAttribute = $blameable->createdByAttribute;
         $this->assertEquals($user->guid, $blameable->$cbAttribute);
-        
+
         $blameable = MongoBlameable::findByIdentity($user)->one();
         $this->assertInstanceOf(MongoBlameable::className(), $blameable);
         $this->assertEquals($content, $blameable->content);
-        
+
         $id = $blameable->id;
         $this->assertEquals(1, $blameable->delete());
         $this->assertNull(MongoBlameable::find()->id($id)->one());

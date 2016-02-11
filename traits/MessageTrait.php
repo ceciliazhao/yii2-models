@@ -104,6 +104,12 @@ trait MessageTrait
         /* @var $sender static */
         $sender->setReadAt(static::getInitDatetime($event));
     }
+    
+    public function initMessageEvents()
+    {
+        $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReceivedAtAttribute']);
+        $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReadAtAttribute']);
+    }
 
     public function getMessageRules()
     {
@@ -141,5 +147,6 @@ trait MessageTrait
         if (is_string($this->readAtAttribute)) {
             $fields[] = $this->readAtAttribute;
         }
+        return $fields;
     }
 }

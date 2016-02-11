@@ -256,10 +256,10 @@
 </span><span id="92" class="l"><a href="#92"> 92 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> isInitDatetime(<span class="php-var">$attribute</span>)
 </span><span id="93" class="l"><a href="#93"> 93 </a>    {
 </span><span id="94" class="l"><a href="#94"> 94 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;timeFormat === self::<span class="php-var">$timeFormatDatetime</span>) {
-</span><span id="95" class="l"><a href="#95"> 95 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-quote">'1970-01-01 00:00:00'</span>;
+</span><span id="95" class="l"><a href="#95"> 95 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-quote">'1970-01-01 00:00:00'</span> || <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-keyword1">null</span>;
 </span><span id="96" class="l"><a href="#96"> 96 </a>        }
 </span><span id="97" class="l"><a href="#97"> 97 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;timeFormat === self::<span class="php-var">$timeFormatTimestamp</span>) {
-</span><span id="98" class="l"><a href="#98"> 98 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-num">0</span>;
+</span><span id="98" class="l"><a href="#98"> 98 </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-num">0</span> || <span class="php-var">$this</span>-&gt;<span class="php-var">$attribute</span> == <span class="php-keyword1">null</span>;
 </span><span id="99" class="l"><a href="#99"> 99 </a>        }
 </span><span id="100" class="l"><a href="#100">100 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="101" class="l"><a href="#101">101 </a>    }

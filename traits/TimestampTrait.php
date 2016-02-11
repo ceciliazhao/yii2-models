@@ -92,10 +92,10 @@ trait TimestampTrait
     protected function isInitDatetime($attribute)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return $this->$attribute == '1970-01-01 00:00:00';
+            return $this->$attribute == '1970-01-01 00:00:00' || $this->$attribute == null;
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
-            return $this->$attribute == 0;
+            return $this->$attribute == 0 || $this->$attribute == null;
         }
         return false;
     }

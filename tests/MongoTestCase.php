@@ -13,6 +13,7 @@
 namespace vistart\Models\tests;
 
 use yii\db\Connection;
+use vistart\Models\tests\data\ar\User;
 
 /**
  * Description of MongoTestCase
@@ -21,6 +22,15 @@ use yii\db\Connection;
  */
 class MongoTestCase extends TestCase
 {
+
+    protected static function prepareUser()
+    {
+        $user = new User(['password' => '123456']);
+        if (!$user->register()) {
+            $this->fail();
+        }
+        return $user;
+    }
 
     public function setUp()
     {

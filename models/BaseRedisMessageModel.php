@@ -34,6 +34,7 @@ abstract class BaseRedisMessageModel extends BaseRedisBlameableModel
         if ($this->skipInit) {
             return;
         }
+        $this->initMessageEvents();
         parent::init();
     }
 }
