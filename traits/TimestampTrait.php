@@ -43,6 +43,8 @@ trait TimestampTrait
     public $timeFormat = 0;
     public static $timeFormatDatetime = 0;
     public static $timeFormatTimestamp = 1;
+    public static $initDatetime = '1970-01-01 00:00:00';
+    public static $initTimestamp = 0;
 
     /**
      * Get the current date & time in format of "Y-m-d H:i:s" or timestamp.
@@ -81,10 +83,10 @@ trait TimestampTrait
     public function initDatetime()
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return '1970-01-01 00:00:00';
+            return static::$initDatetime;
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
-            return 0;
+            return static::$initTimestamp;
         }
         return null;
     }
@@ -92,10 +94,10 @@ trait TimestampTrait
     protected function isInitDatetime($attribute)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return $this->$attribute == '1970-01-01 00:00:00' || $this->$attribute == null;
+            return $this->$attribute == static::$initDatetime || $this->$attribute == null;
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
-            return $this->$attribute == 0 || $this->$attribute == null;
+            return $this->$attribute == static::$initTimestamp || $this->$attribute == null;
         }
         return false;
     }

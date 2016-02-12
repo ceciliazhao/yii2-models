@@ -28,25 +28,27 @@ trait MessageTrait
     public $readAtAttribute = 'read_at';
     public static $eventMessageReceived = 'messageReceived';
     public static $eventMessageRead = 'messageRead';
+    public $permitChangeContent = false;
+    public $permitChangeReceivedAt = false;
 
     public function hasBeenReceived()
     {
-        return is_string($this->receivedAtAttribute) ? $this->isInitDatetime($this->receivedAtAttribute) : false;
+        return is_string($this->receivedAtAttribute) ? !$this->isInitDatetime($this->receivedAtAttribute) : false;
     }
 
     public function hasBeenRead()
     {
-        return is_string($this->readAtAttribute) ? $this->isInitDatetim($this->readAtAttribute) : false;
+        return is_string($this->readAtAttribute) ? !$this->isInitDatetime($this->readAtAttribute) : false;
     }
 
-    public function touchReceived($event)
+    public function touchReceived()
     {
-        $this->setReceivedAt(static::getCurrentDatetime($event));
+        return $this->setReceivedAt(static::currentDatetime());
     }
 
-    public function touchRead($event)
+    public function touchRead()
     {
-        $this->setReadAt(static::getCurrentDatetime($event));
+        return $this->setReadAt(static::currentDatetime());
     }
 
     public function getReceivedAt()
@@ -105,7 +107,11 @@ trait MessageTrait
         $sender->setReadAt(static::getInitDatetime($event));
     }
 
-    public function onReadAtAttributeChanged($event)
+    /**
+     * We consider you have received the message if you read it.
+     * @param \yii\base\ModelEvent $event
+     */
+    public function onReadAtChanged($event)
     {
         $sender = $event->sender;
         if (!is_string($sender->readAtAttribute)) {
@@ -116,13 +122,53 @@ trait MessageTrait
         if ($sender->$raAttribute != $sender->initDatetime() && $sender->$reaAttribute == $sender->initDatetime()) {
             $sender->$reaAttribute = $sender->currentDatetime();
         }
+        $oldRa = $sender->getOldAttribute($raAttribute);
+        if ($oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+            $sender->$raAttribute = $oldRa;
+        }
+    }
+
+    /**
+     * You are not allowed to change receive time if you have received it.
+     * @param \yii\base\ModelEvent $event
+     */
+    public function onReceivedAtChanged($event)
+    {
+        $sender = $event->sender;
+        if ($sender->permitChangeReceivedAt) {
+            return;
+        }
+        $raAttribute = $sender->receivedAtAttribute;
+        $oldRa = $sender->getOldAttribute($raAttribute);
+        if ($oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+            $sender->$raAttribute = $oldRa;
+        }
+    }
+
+    /**
+     * You are not allowed to change the content if it is not new message.
+     * @param \yii\base\ModelEvent $event
+     */
+    public function onContentChanged($event)
+    {
+        $sender = $event->sender;
+        if ($sender->permitChangeContent) {
+            return;
+        }
+        $cAttribute = $sender->contentAttribute;
+        $oldContent = $sender->getOldAttribute($cAttribute);
+        if ($oldContent != $sender->$cAttribute) {
+            $sender->$cAttribute = $oldContent;
+        }
     }
 
     public function initMessageEvents()
     {
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReceivedAtAttribute']);
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReadAtAttribute']);
-        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReadAtAttributeChanged']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReadAtChanged']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReceivedAtChanged']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onContentChanged']);
     }
 
     public function getMessageRules()

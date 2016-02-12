@@ -63,6 +63,30 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unread()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->read()->count());
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unread()->count());
+        
+        $message = MongoMessage::find()->byIdentity($user)->one();
+        $this->assertInstanceOf(MongoMessage::className(), $message);
+        $message->content = 'new message';
+        $this->assertTrue($message->save());
+        $this->assertEquals('message', $message->content);
+        if ($message->hasBeenRead()) {
+            var_dump(MongoMessage::$initDatetime);
+            var_dump($message->readAt);
+            var_dump(MongoMessage::$initDatetime == $message->readAt);
+            $this->fail();
+        } else {
+            $this->assertTrue(true);
+        }
+        $this->assertFalse($message->hasBeenReceived());
+        if ($message->touchRead() && $message->save()) {
+            $this->assertTrue(true);
+            $this->assertTrue($message->hasBeenRead());
+            $this->assertTrue($message->hasBeenReceived());
+        } else {
+            var_dump($message->errors);
+            $this->fail();
+        }
+        
         $this->assertEquals(1, $message->delete());
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
@@ -89,6 +113,20 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unreceived()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->received()->count());
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unreceived()->count());
+        
+        $message = MongoMessage::find()->recipients($other->guid)->one();
+        $this->assertInstanceOf(MongoMessage::className(), $message);
+        
+        $this->assertFalse($message->hasBeenRead());
+        $this->assertFalse($message->hasBeenReceived());
+        if ($message->touchReceived() && $message->save()) {
+            $this->assertTrue(true);
+            $this->assertTrue($message->hasBeenReceived());
+            $this->assertFalse($message->hasBeenRead());
+        } else {
+            var_dump($message->errors);
+            $this->fail();
+        }
         $this->assertEquals(1, $message->delete());
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
