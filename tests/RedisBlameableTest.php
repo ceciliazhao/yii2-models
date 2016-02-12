@@ -22,7 +22,7 @@ use vistart\Models\tests\data\ar\RedisBlameable;
  */
 class RedisBlameableTest extends TestCase
 {
-    private static function prepareUser()
+    public static function prepareUser()
     {
         $user = new User(['password' => '123456']);
         if (!$user->register()) {

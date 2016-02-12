@@ -60,6 +60,10 @@
 - Add: getInitiator() and getRecipient() queries and `$initiator`, `$recipient` magic properties. (vistart)
 - Chg: buildSuspendRelation() will give null if current type of relation is not mutual. (vistart)
 
+#### traits/UserRelationGroupTrait.php
+
+- Chg: remove add() static method. (vistart)
+
 #### traits/MultipleBlameableTrait.php
 
 - Add: createBlame() method for create blame instance. (vistart)

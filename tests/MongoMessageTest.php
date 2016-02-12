@@ -53,17 +53,17 @@ class MongoMessageTest extends MongoTestCase
         $other = static::prepareUser();
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
-        
+
         $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->read()->count());
         $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unread()->count());
         $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->read()->count());
         $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->unread()->count());
-        
+
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->read()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unread()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->read()->count());
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unread()->count());
-        
+
         $message = MongoMessage::find()->byIdentity($user)->one();
         $this->assertInstanceOf(MongoMessage::className(), $message);
         $message->content = 'new message';
@@ -86,12 +86,12 @@ class MongoMessageTest extends MongoTestCase
             var_dump($message->errors);
             $this->fail();
         }
-        
+
         $this->assertEquals(1, $message->delete());
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
     }
-    
+
     /**
      * @group mongo
      * @group message
@@ -103,20 +103,20 @@ class MongoMessageTest extends MongoTestCase
         $other = static::prepareUser();
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
-        
-        $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->received()->count());
-        $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unreceived()->count());
-        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->received()->count());
-        $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->unreceived()->count());
-        
+
+        $this->assertEquals(0, MongoMessage::findByIdentity($user)->received()->count());
+        $this->assertEquals(1, MongoMessage::findByIdentity($user)->unreceived()->count());
+        $this->assertEquals(0, MongoMessage::findByIdentity($other)->received()->count());
+        $this->assertEquals(0, MongoMessage::findByIdentity($other)->unreceived()->count());
+
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->received()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($user->guid)->unreceived()->count());
         $this->assertEquals(0, MongoMessage::find()->recipients($other->guid)->received()->count());
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unreceived()->count());
-        
+
         $message = MongoMessage::find()->recipients($other->guid)->one();
         $this->assertInstanceOf(MongoMessage::className(), $message);
-        
+
         $this->assertFalse($message->hasBeenRead());
         $this->assertFalse($message->hasBeenReceived());
         if ($message->touchReceived() && $message->save()) {

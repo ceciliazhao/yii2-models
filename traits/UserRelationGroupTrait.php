@@ -25,16 +25,6 @@ trait UserRelationGroupTrait
     public $relationClass;
 
     /**
-     * add a group to user.
-     * @param \vistart\Models\models\BaseUserModel $user
-     */
-    public static function add($user)
-    {
-        $group = $user->create(static::className());
-        return $group->save();
-    }
-
-    /**
      * Attach events associated with user relation group.
      */
     public function initUserRelationGroupEvents()
