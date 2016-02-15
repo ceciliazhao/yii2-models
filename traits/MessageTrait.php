@@ -30,6 +30,7 @@ trait MessageTrait
     public static $eventMessageRead = 'messageRead';
     public $permitChangeContent = false;
     public $permitChangeReceivedAt = false;
+    public $permitChangeReadAt = false;
 
     public function hasBeenReceived()
     {
@@ -114,13 +115,16 @@ trait MessageTrait
     public function onReadAtChanged($event)
     {
         $sender = $event->sender;
-        if (!is_string($sender->readAtAttribute)) {
+        $raAttribute = $sender->readAtAttribute;
+        if (!is_string($raAttribute)) {
             return;
         }
-        $raAttribute = $sender->readAtAttribute;
         $reaAttribute = $sender->receivedAtAttribute;
-        if ($sender->$raAttribute != $sender->initDatetime() && $sender->$reaAttribute == $sender->initDatetime()) {
+        if (is_string($reaAttribute) && $sender->$raAttribute != $sender->initDatetime() && $sender->$reaAttribute == $sender->initDatetime()) {
             $sender->$reaAttribute = $sender->currentDatetime();
+        }
+        if ($sender->permitChangeReadAt) {
+            return;
         }
         $oldRa = $sender->getOldAttribute($raAttribute);
         if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
@@ -136,10 +140,13 @@ trait MessageTrait
     public function onReceivedAtChanged($event)
     {
         $sender = $event->sender;
+        $raAttribute = $sender->receivedAtAttribute;
+        if (!is_string($raAttribute)) {
+            return;
+        }
         if ($sender->permitChangeReceivedAt) {
             return;
         }
-        $raAttribute = $sender->receivedAtAttribute;
         $oldRa = $sender->getOldAttribute($raAttribute);
         if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
             $sender->$raAttribute = $oldRa;
