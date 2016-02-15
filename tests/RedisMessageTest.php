@@ -43,6 +43,27 @@ class RedisMessageTest extends TestCase
     }
 
     /**
+     * 
+     * @param \yii\base\ModelEvent $event
+     */
+    public function onReceived($event)
+    {
+        return $this->isReceived = true;
+    }
+
+    /**
+     * 
+     * @param \yii\base\ModelEvent $event
+     */
+    public function onRead($event)
+    {
+        return $this->isRead = true;
+    }
+    
+    public $isRead = false;
+    public $isReceived = false;
+
+    /**
      * @group redis
      * @group message
      * @depends testNew
@@ -65,9 +86,13 @@ class RedisMessageTest extends TestCase
         $this->assertEquals(1, RedisMessage::find()->recipients($other->guid)->unread()->count());
 
         $message = RedisMessage::find()->byIdentity($user)->one();
+        $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
+        $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(RedisMessage::className(), $message);
         $message->content = 'new message';
         $this->assertTrue($message->save());
+        $this->assertFalse($this->isReceived);
+        $this->assertFalse($this->isRead);
         $this->assertEquals('message', $message->content);
         if ($message->hasBeenRead()) {
             var_dump(RedisMessage::$initDatetime);
@@ -80,8 +105,10 @@ class RedisMessageTest extends TestCase
         $this->assertFalse($message->hasBeenReceived());
         if ($message->touchRead() && $message->save()) {
             $this->assertTrue(true);
-            $this->assertTrue($message->hasBeenRead());
             $this->assertTrue($message->hasBeenReceived());
+            $this->assertTrue($message->hasBeenRead());
+            $this->assertTrue($this->isReceived);
+            $this->assertTrue($this->isRead);
         } else {
             var_dump($message->errors);
             $this->fail();
@@ -115,14 +142,18 @@ class RedisMessageTest extends TestCase
         $this->assertEquals(1, RedisMessage::find()->recipients($other->guid)->unreceived()->count());
 
         $message = RedisMessage::find()->recipients($other->guid)->one();
+        $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
+        $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(RedisMessage::className(), $message);
 
-        $this->assertFalse($message->hasBeenRead());
         $this->assertFalse($message->hasBeenReceived());
+        $this->assertFalse($message->hasBeenRead());
         if ($message->touchReceived() && $message->save()) {
             $this->assertTrue(true);
             $this->assertTrue($message->hasBeenReceived());
             $this->assertFalse($message->hasBeenRead());
+            $this->assertTrue($this->isReceived);
+            $this->assertFalse($this->isRead);
         } else {
             var_dump($message->errors);
             $this->fail();

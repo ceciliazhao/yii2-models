@@ -91,13 +91,18 @@ trait TimestampTrait
         return null;
     }
 
+    /**
+     * Check whether the attribute is init datetime.
+     * @param mixed $attribute
+     * @return boolean
+     */
     protected function isInitDatetime($attribute)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return $this->$attribute == static::$initDatetime || $this->$attribute == null;
+            return $attribute == static::$initDatetime || $attribute == null;
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
-            return $this->$attribute == static::$initTimestamp || $this->$attribute == null;
+            return $attribute == static::$initTimestamp || $attribute == null;
         }
         return false;
     }

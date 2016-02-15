@@ -33,12 +33,12 @@ trait MessageTrait
 
     public function hasBeenReceived()
     {
-        return is_string($this->receivedAtAttribute) ? !$this->isInitDatetime($this->receivedAtAttribute) : false;
+        return is_string($this->receivedAtAttribute) ? !$this->isInitDatetime($this->receivedAt) : false;
     }
 
     public function hasBeenRead()
     {
-        return is_string($this->readAtAttribute) ? !$this->isInitDatetime($this->readAtAttribute) : false;
+        return is_string($this->readAtAttribute) ? !$this->isInitDatetime($this->readAt) : false;
     }
 
     public function touchReceived()
@@ -123,8 +123,9 @@ trait MessageTrait
             $sender->$reaAttribute = $sender->currentDatetime();
         }
         $oldRa = $sender->getOldAttribute($raAttribute);
-        if ($oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+        if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
             $sender->$raAttribute = $oldRa;
+            return;
         }
     }
 
@@ -140,8 +141,9 @@ trait MessageTrait
         }
         $raAttribute = $sender->receivedAtAttribute;
         $oldRa = $sender->getOldAttribute($raAttribute);
-        if ($oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+        if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
             $sender->$raAttribute = $oldRa;
+            return;
         }
     }
 
@@ -162,13 +164,31 @@ trait MessageTrait
         }
     }
 
+    /**
+     * Trigger message received or read events.
+     * @param \yii\db\AfterSaveEvent $event
+     */
+    public function onMessageUpdated($event)
+    {
+        $sender = $event->sender;
+        $reaAttribute = $sender->receivedAtAttribute;
+        if (isset($event->changedAttributes[$reaAttribute]) && $event->changedAttributes[$reaAttribute] != $sender->$reaAttribute) {
+            $sender->trigger(static::$eventMessageReceived);
+        }
+        $raAttribute = $sender->readAtAttribute;
+        if (isset($event->changedAttributes[$raAttribute]) && $event->changedAttributes[$raAttribute] != $sender->$raAttribute) {
+            $sender->trigger(static::$eventMessageRead);
+        }
+    }
+
     public function initMessageEvents()
     {
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReceivedAtAttribute']);
         $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onInitReadAtAttribute']);
-        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReadAtChanged']);
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReceivedAtChanged']);
+        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onReadAtChanged']);
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onContentChanged']);
+        $this->on(static::EVENT_AFTER_UPDATE, [$this, 'onMessageUpdated']);
     }
 
     public function getMessageRules()
