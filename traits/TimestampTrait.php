@@ -17,6 +17,8 @@ use yii\behaviors\TimestampBehavior;
 /**
  * Entity features concerning timestamp.
  * @property-read array $timestampBehaviors
+ * @property-read string|int createdAt
+ * @property-read string|int updatedAt
  * @property-read array $createdAtRules
  * @property-read array $updatedAtRules
  * @version 2.0
@@ -66,6 +68,16 @@ trait TimestampTrait
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
             return time();
+        }
+    }
+
+    public function offsetDatetime($time = null, $offset = 0)
+    {
+        if ($this->timeFormat === self::$timeFormatDatetime) {
+            return date('Y-m-d H:i:s', strtotime("+$offset seconds", is_string($time) ? strtotime($time) : time()));
+        }
+        if ($this->timeFormat === self::$timeFormatTimestamp) {
+            return (is_int($time) ? $time : time()) + $offset;
         }
     }
 
@@ -137,7 +149,7 @@ trait TimestampTrait
     }
 
     /**
-     * Get createdAtAttribute.
+     * Get createdAt.
      * @return string timestamp
      */
     public function getCreatedAt()
@@ -158,6 +170,16 @@ trait TimestampTrait
         return [
             [[$this->createdAtAttribute], 'safe'],
         ];
+    }
+
+    /**
+     * Get updatedAt.
+     * @return string timestamp
+     */
+    public function getUpdatedAt()
+    {
+        $updatedAtAttribute = $this->updatedAtAttribute;
+        return $this->$updatedAtAttribute;
     }
 
     /**

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait vistart\Models\traits\MessageQueryTrait</title>
+	<title>Trait vistart\Models\traits\NotificationTrait</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -108,11 +108,11 @@
 				<li><a href="class-vistart.Models.traits.IdentityTrait.html">IdentityTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IDTrait.html">IDTrait</a></li>
 				<li><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></li>
-				<li class="active"><a href="class-vistart.Models.traits.MessageQueryTrait.html">MessageQueryTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MessageQueryTrait.html">MessageQueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MessageTrait.html">MessageTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MutualQueryTrait.html">MutualQueryTrait</a></li>
-				<li><a href="class-vistart.Models.traits.NotificationTrait.html">NotificationTrait</a></li>
+				<li class="active"><a href="class-vistart.Models.traits.NotificationTrait.html">NotificationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
@@ -134,35 +134,19 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait MessageQueryTrait</h1>
+	<h1>Trait NotificationTrait</h1>
 
 
 	<div class="description">
-	<p>Description of MessageQueryTrait</p>
+	<p>Description of NotificationTrait</p>
 	</div>
 
-	<dl class="tree well">
-		<dd style="padding-left:0px">
-<b><span>vistart\Models\traits\MessageQueryTrait</span></b>			
-			
-			 uses 
-					<a href="class-vistart.Models.traits.MutualQueryTrait.html"><span>vistart\Models\traits\MutualQueryTrait</span></a>
-			
-		</dd>
-	</dl>
 
 
 
 
 
 
-	<div>
-		<h3>Direct Known Users</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.queries.BaseMongoMessageQuery.html">vistart\Models\queries\BaseMongoMessageQuery</a></code>, 
-			<code><a href="class-vistart.Models.queries.BaseRedisMessageQuery.html">vistart\Models\queries\BaseRedisMessageQuery</a></code>
-		</p>
-	</div>
 
 
 	<div class="alert alert-info">
@@ -173,7 +157,7 @@
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.MessageQueryTrait.html#17-49" title="Go to source code">traits/MessageQueryTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.NotificationTrait.html#15-49" title="Go to source code">traits/NotificationTrait.php</a>
 		<br>
 	</div>
 
@@ -182,7 +166,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="unread" id="_unread">
+		<tr data-order="getIsExpired" id="_getIsExpired">
 
 			<td class="attributes"><code>
 				 public 
@@ -192,8 +176,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_unread">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageQueryTrait.html#26-30" title="Go to source code">unread</a>( )</code>
+			<a class="anchor" href="#_getIsExpired">#</a>
+			<code><a href="source-class-vistart.Models.traits.NotificationTrait.html#27-30" title="Go to source code">getIsExpired</a>( )</code>
 
 			<div class="description short">
 				
@@ -211,7 +195,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="read" id="_read">
+		<tr data-order="removeExpired" id="_removeExpired">
 
 			<td class="attributes"><code>
 				 public 
@@ -221,8 +205,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_read">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageQueryTrait.html#32-36" title="Go to source code">read</a>( )</code>
+			<a class="anchor" href="#_removeExpired">#</a>
+			<code><a href="source-class-vistart.Models.traits.NotificationTrait.html#32-37" title="Go to source code">removeExpired</a>( )</code>
 
 			<div class="description short">
 				
@@ -240,7 +224,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="unreceived" id="_unreceived">
+		<tr data-order="onRemoveExpired" id="_onRemoveExpired">
 
 			<td class="attributes"><code>
 				 public 
@@ -250,8 +234,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_unreceived">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageQueryTrait.html#38-42" title="Go to source code">unreceived</a>( )</code>
+			<a class="anchor" href="#_onRemoveExpired">#</a>
+			<code><a href="source-class-vistart.Models.traits.NotificationTrait.html#39-43" title="Go to source code">onRemoveExpired</a>( <span> <var>$event</var></span> )</code>
 
 			<div class="description short">
 				
@@ -269,7 +253,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="received" id="_received">
+		<tr data-order="initNotificationEvents" id="_initNotificationEvents">
 
 			<td class="attributes"><code>
 				 public 
@@ -279,8 +263,8 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_received">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageQueryTrait.html#44-48" title="Go to source code">received</a>( )</code>
+			<a class="anchor" href="#_initNotificationEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.NotificationTrait.html#45-48" title="Go to source code">initNotificationEvents</a>( )</code>
 
 			<div class="description short">
 				
@@ -302,18 +286,95 @@
 		</div>
 
 
+
+
+
+
+
+
+
+
+
 		<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MutualQueryTrait.html#methods">vistart\Models\traits\MutualQueryTrait</a></h3></div>
-			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_initiators">initiators()</a></code>, 
-				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_opposite">opposite()</a></code>, 
-				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_opposites">opposites()</a></code>, 
-				<code><a href="class-vistart.Models.traits.MutualQueryTrait.html#_recipients">recipients()</a></code>
-			</p>
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="rangeAttribute" id="$rangeAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.NotificationTrait.html#23" title="Go to source code"><var>$rangeAttribute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$rangeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'range'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="linkAttrbute" id="$linkAttrbute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.NotificationTrait.html#24" title="Go to source code"><var>$linkAttrbute</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$linkAttrbute" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="expiredAt" id="$expiredAt">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.NotificationTrait.html#25" title="Go to source code"><var>$expiredAt</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$expiredAt" class="anchor">#</a>
+					<code><span class="php-num">10080</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
 		</div>
-
-
-
 
 
 
