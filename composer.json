@@ -15,6 +15,10 @@
         "yiisoft/yii2": ">=2.0.6",
         "vistart/yii2-helpers": "*"
     },
+    "suggest": {
+        "yiisoft/yii2-mongodb": "If you want to use mongo ActiveRecord and ActiveQuery.",
+        "yiisoft/yii2-redis": "If you want to use redis ActiveRecord and ActiveQuery."
+    },
     "autoload": {
         "psr-4": {
             "vistart\\Models\\": ""
