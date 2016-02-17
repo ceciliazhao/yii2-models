@@ -12,9 +12,10 @@
 - Add: getInitDatetime() event and initDatetime() method. (vistart)
 - Add: isInitDatetime() method for judging whether specified attribute is init date & time. (vistart)
 - Chg: isInitDatetime() considers the null value is init value. (vistart)
-- Add: $initDatetime & $initTimestamp static properties. (vistart);
+- Add: $initDatetime & $initTimestamp static properties. (vistart)
 - Add: offsetDatetime() method for generating current or specified date & time with specified offset. (vistart)
 - Add: getUpdatedAt() method, known as magic-property. (vistart)
+- Add: expiration features. (vistart)
 
 #### traits/PasswordTrait.php
 

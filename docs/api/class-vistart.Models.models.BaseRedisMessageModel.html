@@ -180,7 +180,7 @@ yii\redis\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseRedisMessageModel.html#18-40" title="Go to source code">models/BaseRedisMessageModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseRedisMessageModel.html#18-41" title="Go to source code">models/BaseRedisMessageModel.php</a>
 		<br>
 	</div>
 
@@ -200,7 +200,7 @@ yii\redis\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseRedisMessageModel.html#29-39" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseRedisMessageModel.html#30-40" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize the blameable model.
@@ -394,13 +394,16 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getInitDatetime">getInitDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getIsExpired">getIsExpired()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getTimestampBehaviors">getTimestampBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAt">getUpdatedAt()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAtRules">getUpdatedAtRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_initDatetime">initDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_isInitDatetime">isInitDatetime()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_offsetDatetime">offsetDatetime()</a></code>, 
-				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a></code>
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onRemoveExpired">onRemoveExpired()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_removeIfExpired">removeIfExpired()</a></code>
 			</p>
 		</div>
 
@@ -439,6 +442,31 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<div>
 					<a href="#$updatedByAttribute" class="anchor">#</a>
 					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="expiredAt" id="$expiredAt">
+			<td class="attributes"><code>
+				public  
+				integer|false
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseRedisMessageModel.html#28" title="Go to source code"><var>$expiredAt</var></a>
+
+				<div class="description short">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$expiredAt" class="anchor">#</a>
+					<code><span class="php-num">604800</span></code>
 				</div>
 			</td>
 		</tr>
@@ -484,7 +512,6 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$attachmentAttribute"><var>$attachmentAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageRead"><var>$eventMessageRead</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageReceived"><var>$eventMessageReceived</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.MessageTrait.html#$expiration"><var>$expiration</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeContent"><var>$permitChangeContent</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeReadAt"><var>$permitChangeReadAt</var></a></code>, 

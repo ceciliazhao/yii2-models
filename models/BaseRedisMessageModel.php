@@ -25,6 +25,7 @@ abstract class BaseRedisMessageModel extends BaseRedisBlameableModel
     use MessageTrait;
 
     public $updatedByAttribute = false;
+    public $expiredAt = 604800; // 7 days.
 
     public function init()
     {

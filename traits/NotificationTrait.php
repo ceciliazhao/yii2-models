@@ -22,25 +22,6 @@ trait NotificationTrait
 
     public $rangeAttribute = 'range';
     public $linkAttrbute = '';
-    public $expiredAt = 10080; // in minutes.
-
-    public function getIsExpired()
-    {
-        return $this->offsetDatetime($this->expiredAt * 60) < $this->createdAt;
-    }
-
-    public function removeExpired()
-    {
-        if ($this->getIsExpired()) {
-            return $this->delete();
-        }
-    }
-
-    public function onRemoveExpired($event)
-    {
-        $sender = $event->sender;
-        $sender->removeExpired();
-    }
 
     public function initNotificationEvents()
     {

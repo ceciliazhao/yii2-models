@@ -23,7 +23,6 @@ trait MessageTrait
 
     public $otherGuidAttribute = 'other_guid';
     public $attachmentAttribute = 'attachment';
-    public $expiration = 604800; // 7 days
     public $receivedAtAttribute = 'received_at';
     public $readAtAttribute = 'read_at';
     public static $eventMessageReceived = 'messageReceived';
@@ -120,14 +119,14 @@ trait MessageTrait
             return;
         }
         $reaAttribute = $sender->receivedAtAttribute;
-        if (is_string($reaAttribute) && $sender->$raAttribute != $sender->initDatetime() && $sender->$reaAttribute == $sender->initDatetime()) {
+        if (is_string($reaAttribute) && !$sender->isInitDatetime($sender->$raAttribute) && $sender->isInitDatetime($sender->$reaAttribute)) {
             $sender->$reaAttribute = $sender->currentDatetime();
         }
         if ($sender->permitChangeReadAt) {
             return;
         }
         $oldRa = $sender->getOldAttribute($raAttribute);
-        if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+        if ($oldRa != null && !$sender->isInitDatetime($oldRa) && $sender->$raAttribute != $oldRa) {
             $sender->$raAttribute = $oldRa;
             return;
         }
@@ -148,7 +147,7 @@ trait MessageTrait
             return;
         }
         $oldRa = $sender->getOldAttribute($raAttribute);
-        if ($oldRa != null && $oldRa != $sender->initDatetime() && $sender->$raAttribute != $oldRa) {
+        if ($oldRa != null && !$sender->isInitDatetime($oldRa) && $sender->$raAttribute != $oldRa) {
             $sender->$raAttribute = $oldRa;
             return;
         }

@@ -43,11 +43,29 @@ class MongoMessageTest extends MongoTestCase
     }
 
     /**
+     * @group mongo
+     * @group message
+     * @depends testNew
+     */
+    public function testExpired()
+    {
+        $user = static::prepareUser();
+        $other = static::prepareUser();
+        $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
+        $this->assertTrue($message->save());
+
+        $this->assertFalse($message->isExpired);
+        $this->assertTrue($user->deregister());
+        $this->assertTrue($other->deregister());
+    }
+
+    /**
      * 
      * @param \yii\base\ModelEvent $event
      */
     public function onReceived($event)
     {
+        //echo "Received Event Triggered\n";
         return $this->isReceived = true;
     }
 
@@ -57,16 +75,17 @@ class MongoMessageTest extends MongoTestCase
      */
     public function onRead($event)
     {
+        //echo "Read Event Triggered\n";
         return $this->isRead = true;
     }
-    
+
     public $isRead = false;
     public $isReceived = false;
 
     /**
      * @group mongo
      * @group message
-     * @depends testNew
+     * @depends testExpired
      */
     public function testRead()
     {
@@ -77,6 +96,7 @@ class MongoMessageTest extends MongoTestCase
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
+        $message_id = $message->guid;
         $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->read()->count());
         $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unread()->count());
         $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->read()->count());
@@ -88,6 +108,8 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unread()->count());
 
         $message = MongoMessage::find()->byIdentity($user)->one();
+        $message1 = MongoMessage::find()->guid($message_id)->one();
+        $this->assertEquals($message->guid, $message1->guid);
         $message->on(MongoMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(MongoMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(MongoMessage::className(), $message);
@@ -135,6 +157,7 @@ class MongoMessageTest extends MongoTestCase
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
+        $message_id = $message->guid;
         $this->assertEquals(0, MongoMessage::findByIdentity($user)->received()->count());
         $this->assertEquals(1, MongoMessage::findByIdentity($user)->unreceived()->count());
         $this->assertEquals(0, MongoMessage::findByIdentity($other)->received()->count());
@@ -146,6 +169,8 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unreceived()->count());
 
         $message = MongoMessage::find()->recipients($other->guid)->one();
+        $message1 = MongoMessage::find()->guid($message_id)->one();
+        $this->assertEquals($message->guid, $message1->guid);
         $message->on(MongoMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(MongoMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(MongoMessage::className(), $message);

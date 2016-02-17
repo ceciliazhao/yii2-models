@@ -43,11 +43,29 @@ class RedisMessageTest extends TestCase
     }
 
     /**
+     * @group redis
+     * @group message
+     * @depends testNew
+     */
+    public function testExpired()
+    {
+        $user = RedisBlameableTest::prepareUser();
+        $other = RedisBlameableTest::prepareUser();
+        $message = $user->create(RedisMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
+        $this->assertTrue($message->save());
+        
+        $this->assertFalse($message->isExpired);
+        $this->assertTrue($user->deregister());
+        $this->assertTrue($other->deregister());
+    }
+
+    /**
      * 
      * @param \yii\base\ModelEvent $event
      */
     public function onReceived($event)
     {
+        //echo "Received Event Triggered\n";
         return $this->isReceived = true;
     }
 
@@ -57,6 +75,7 @@ class RedisMessageTest extends TestCase
      */
     public function onRead($event)
     {
+        //echo "Read Event Triggered\n";
         return $this->isRead = true;
     }
     
@@ -66,7 +85,7 @@ class RedisMessageTest extends TestCase
     /**
      * @group redis
      * @group message
-     * @depends testNew
+     * @depends testExpired
      */
     public function testRead()
     {
@@ -75,6 +94,7 @@ class RedisMessageTest extends TestCase
         $message = $user->create(RedisMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
+        $message_id = $message->guid;
         $this->assertEquals(0, RedisMessage::find()->byIdentity($user)->read()->count());
         $this->assertEquals(1, RedisMessage::find()->byIdentity($user)->unread()->count());
         $this->assertEquals(0, RedisMessage::find()->byIdentity($other)->read()->count());
@@ -86,6 +106,8 @@ class RedisMessageTest extends TestCase
         $this->assertEquals(1, RedisMessage::find()->recipients($other->guid)->unread()->count());
 
         $message = RedisMessage::find()->byIdentity($user)->one();
+        $message1 = RedisMessage::find()->guid($message_id)->one();
+        $this->assertEquals($message->guid, $message1->guid);
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(RedisMessage::className(), $message);
@@ -131,6 +153,7 @@ class RedisMessageTest extends TestCase
         $message = $user->create(RedisMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
+        $message_id = $message->guid;
         $this->assertEquals(0, RedisMessage::find()->byIdentity($user)->received()->count());
         $this->assertEquals(1, RedisMessage::find()->byIdentity($user)->unreceived()->count());
         $this->assertEquals(0, RedisMessage::find()->byIdentity($other)->received()->count());
@@ -142,6 +165,8 @@ class RedisMessageTest extends TestCase
         $this->assertEquals(1, RedisMessage::find()->recipients($other->guid)->unreceived()->count());
 
         $message = RedisMessage::find()->recipients($other->guid)->one();
+        $message1 = RedisMessage::find()->guid($message_id)->one();
+        $this->assertEquals($message->guid, $message1->guid);
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $this->assertInstanceOf(RedisMessage::className(), $message);

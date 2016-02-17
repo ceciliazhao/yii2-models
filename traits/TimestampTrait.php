@@ -12,6 +12,7 @@
 
 namespace vistart\Models\traits;
 
+use Closure;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -21,6 +22,7 @@ use yii\behaviors\TimestampBehavior;
  * @property-read string|int updatedAt
  * @property-read array $createdAtRules
  * @property-read array $updatedAtRules
+ * @property-read boolean isExpired
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -49,6 +51,49 @@ trait TimestampTrait
     public static $initTimestamp = 0;
 
     /**
+     * @var int|false the expiration in seconds, or false if it will not be expired.
+     */
+    public $expiredAt = false;
+
+    /**
+     * @var Closure
+     */
+    public $expiredRemovingCallback;
+
+    /**
+     * Check this entity whether expired.
+     * @return boolean
+     */
+    public function getIsExpired()
+    {
+        if ($this->expiredAt === false) {
+            return false;
+        }
+        return $this->offsetDatetime(-(int) $this->expiredAt) > $this->createdAt;
+    }
+
+    /**
+     * Remove myself if expired.
+     * @return boolean
+     */
+    public function removeIfExpired()
+    {
+        if ($this->getIsExpired()) {
+            if ($this->expiredRemovingCallback instanceof Closure && is_callable($this->expiredRemovingCallback)) {
+                return call_user_func($this->expiredRemovingCallback, $this);
+            }
+            return $this->delete();
+        }
+        return false;
+    }
+
+    public function onRemoveExpired($event)
+    {
+        $sender = $event->sender;
+        return $sender->removeIfExpired();
+    }
+
+    /**
      * Get the current date & time in format of "Y-m-d H:i:s" or timestamp.
      * You can override this method to customize the return value.
      * @param \yii\base\ModelEvent $event
@@ -74,7 +119,7 @@ trait TimestampTrait
     public function offsetDatetime($time = null, $offset = 0)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return date('Y-m-d H:i:s', strtotime("+$offset seconds", is_string($time) ? strtotime($time) : time()));
+            return date('Y-m-d H:i:s', strtotime(((int) $offset >= 0 ? "+$offset" : "-" . abs($offset)) . " seconds", is_string($time) ? strtotime($time) : time()));
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
             return (is_int($time) ? $time : time()) + $offset;
