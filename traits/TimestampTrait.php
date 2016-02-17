@@ -71,7 +71,7 @@ trait TimestampTrait
         if ($this->expiredAt === false || $createdAt === null) {
             return false;
         }
-        return $this->offsetDatetime(-(int) $this->expiredAt) > $createdAt;
+        return $this->offsetDatetime($this->currentDatetime(), -$this->expiredAt) > $createdAt;
     }
 
     /**
@@ -81,7 +81,7 @@ trait TimestampTrait
     public function removeIfExpired()
     {
         if ($this->getIsExpired() && !$this->getIsNewRecord()) {
-            if ($this->expiredRemovingCallback instanceof Closure && is_callable($this->expiredRemovingCallback)) {
+            if (($this->expiredRemovingCallback instanceof Closure || is_array($this->expiredRemovingCallback)) && is_callable($this->expiredRemovingCallback)) {
                 $result = call_user_func($this->expiredRemovingCallback, $this);
             }
             $result = $this->delete();
@@ -122,11 +122,12 @@ trait TimestampTrait
     public function offsetDatetime($time = null, $offset = 0)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return date('Y-m-d H:i:s', strtotime(((int) $offset >= 0 ? "+$offset" : "-" . abs($offset)) . " seconds", is_string($time) ? strtotime($time) : time()));
+            return date('Y-m-d H:i:s', strtotime(($offset >= 0 ? "+$offset" : $offset) . " seconds", is_string($time) ? strtotime($time) : time()));
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
             return (is_int($time) ? $time : time()) + $offset;
         }
+        return null;
     }
 
     /**

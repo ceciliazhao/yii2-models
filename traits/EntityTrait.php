@@ -229,7 +229,7 @@ trait EntityTrait
         if ($this->isNewRecord) {
             $this->trigger(static::$eventNewRecordCreated);
         }
-        $this->on(static::EVENT_INIT, [$this, 'onRemoveExpired']);
+        $this->on(static::EVENT_AFTER_FIND, [$this, 'onRemoveExpired']);
     }
 
     /**
@@ -282,9 +282,11 @@ trait EntityTrait
     {
         $self = static::buildNoInitModel();
         if (isset($self->idAttribute) && isset($row[$self->idAttribute])) {
-            return new static(['idPreassigned' => true]);
+            $model = new static(['idPreassigned' => true]);
+        } else {
+            $model = new static;
         }
-        return new static;
+        return $model;
     }
 
     /**

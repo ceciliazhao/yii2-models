@@ -54,7 +54,17 @@ class RedisMessageTest extends TestCase
         $message = $user->create(RedisMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
-        $this->assertFalse($message->isExpired);
+        if ($message->isExpired) {
+            echo "time format: ";
+            var_dump($message->timeFormat);
+            echo "created at: ";
+            var_dump($message->createdAt);
+            echo "expired at: ";
+            var_dump($message->expiredAt);
+            $this->fail("The message should not be expired.");
+        } else {
+            $this->assertTrue(true);
+        }
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
     }
@@ -116,11 +126,17 @@ class RedisMessageTest extends TestCase
 
         $message = RedisMessage::find()->byIdentity($user)->one();
         $message1 = RedisMessage::find()->guid($message_id)->one();
+        
+        $this->assertInstanceOf(RedisMessage::className(), $message);
+        $this->assertInstanceOf(RedisMessage::className(), $message1);
         $this->assertEquals($message->guid, $message1->guid);
+        $this->assertFalse($message->isExpired);
+        $this->assertFalse($message1->isExpired);
+        
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $message->on(RedisMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
-        $this->assertInstanceOf(RedisMessage::className(), $message);
+        
         $message->content = 'new message';
         $this->assertTrue($message->save());
         $this->assertFalse($this->isReceived);
@@ -130,7 +146,7 @@ class RedisMessageTest extends TestCase
             var_dump(RedisMessage::$initDatetime);
             var_dump($message->readAt);
             var_dump(RedisMessage::$initDatetime == $message->readAt);
-            $this->fail();
+            $this->fail("The message has not been read yet.");
         } else {
             $this->assertTrue(true);
         }
@@ -187,6 +203,8 @@ class RedisMessageTest extends TestCase
         $message = RedisMessage::find()->recipients($other->guid)->one();
         $message1 = RedisMessage::find()->guid($message_id)->one();
         $this->assertEquals($message->guid, $message1->guid);
+        $this->assertFalse($message->isExpired);
+        $this->assertFalse($message1->isExpired);
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
         $message->on(RedisMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);

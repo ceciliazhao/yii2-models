@@ -22,6 +22,17 @@ use vistart\Models\models\BaseMongoMessageModel;
 class MongoMessage extends BaseMongoMessageModel
 {
 
+    public function init()
+    {
+        $this->expiredRemovingCallback = [$this, 'removeExpired'];
+        parent::init();
+    }
+
+    public static function removeExpired($model)
+    {
+        return $model->delete();
+    }
+
     public static function collectionName()
     {
         return ['yii2-models', 'message'];

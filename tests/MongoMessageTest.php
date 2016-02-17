@@ -13,6 +13,7 @@
 namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\MongoMessage;
+use vistart\Models\tests\data\ar\ExpiredMongoMessage;
 
 /**
  * Description of MongoMessageTest
@@ -30,8 +31,8 @@ class MongoMessageTest extends MongoTestCase
     public function testInit()
     {
         $time = null;
-        $offset = (int) 0;
-        $this->assertTrue(date('Y-m-d H:i:s', strtotime(((int) $offset >= 0 ? "+$offset" : "-" . abs($offset)) . " seconds", is_string($time) ? strtotime($time) : time())) > null);
+        $offset = -1;
+        $this->assertTrue(date('Y-m-d H:i:s', strtotime(($offset >= 0 ? "+$offset" : $offset) . " seconds", is_string($time) ? strtotime($time) : time())) > null);
     }
 
     /**
@@ -48,7 +49,7 @@ class MongoMessageTest extends MongoTestCase
             $this->assertTrue(true);
         } else {
             var_dump($message->errors);
-            $this->fail();
+            $this->fail("The message has not been saved successfully.");
         }
         $this->assertEquals(1, $message->delete());
         $this->assertTrue($user->deregister());
@@ -78,6 +79,29 @@ class MongoMessageTest extends MongoTestCase
         } else {
             $this->assertTrue(true);
         }
+        $this->assertEquals(1, $message->delete());
+        
+        $message = $user->create(ExpiredMongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
+        $this->assertTrue($message->save());
+        $id = $message->id;
+        sleep(2);
+        $message = ExpiredMongoMessage::find()->id($id)->one();
+        $this->assertInstanceOf(ExpiredMongoMessage::className(), $message);
+        if ($message->isExpired) {
+            $this->assertTrue(true);
+        } else {
+            echo "time format: ";
+            var_dump($message->timeFormat);
+            echo "created at: ";
+            var_dump($message->createdAt);
+            echo "expired at: ";
+            var_dump($message->offsetDatetime($message->currentDatetime(), -$message->expiredAt));
+            echo ": ";
+            var_dump($message->offsetDatetime(null, -$message->expiredAt) > $message->createdAt);
+            $this->fail("This message model should be expired.");
+        }
+        $this->assertEquals(0, ExpiredMongoMessage::find()->id($id)->count());
+        
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
     }
@@ -128,7 +152,7 @@ class MongoMessageTest extends MongoTestCase
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
-        $message_id = $message->guid;
+        $message_guid = $message->guid;
         $this->assertEquals(0, MongoMessage::find()->byIdentity($user)->read()->count());
         $this->assertEquals(1, MongoMessage::find()->byIdentity($user)->unread()->count());
         $this->assertEquals(0, MongoMessage::find()->byIdentity($other)->read()->count());
@@ -140,12 +164,23 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals(1, MongoMessage::find()->recipients($other->guid)->unread()->count());
 
         $message = MongoMessage::find()->byIdentity($user)->one();
-        $message1 = MongoMessage::find()->guid($message_id)->one();
+        $message1 = MongoMessage::find()->guid($message_guid)->one();
+        
+        $this->assertInstanceOf(MongoMessage::className(), $message);
+        if ($message1 instanceof MongoMessage) {
+            $this->assertTrue(true);
+        } else {
+            var_dump($message1->isExpired);
+            var_dump($message1->offsetDatetime(null, -$message1->expiredAt));
+        }
         $this->assertEquals($message->guid, $message1->guid);
+        $this->assertFalse($message->isExpired);
+        $this->assertFalse($message1->isExpired);
+        
         $message->on(MongoMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(MongoMessage::$eventMessageRead, [$this, 'onRead']);
         $message->on(MongoMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
-        $this->assertInstanceOf(MongoMessage::className(), $message);
+        
         $message->content = 'new message';
         $this->assertTrue($message->save());
         $this->assertFalse($this->isReceived);
@@ -155,7 +190,7 @@ class MongoMessageTest extends MongoTestCase
             var_dump(MongoMessage::$initDatetime);
             var_dump($message->readAt);
             var_dump(MongoMessage::$initDatetime == $message->readAt);
-            $this->fail();
+            $this->fail("The message has not been read yet.");
         } else {
             $this->assertTrue(true);
         }
