@@ -25,6 +25,19 @@ class MongoMessageTest extends MongoTestCase
     /**
      * @group mongo
      * @group message
+     * @group init
+     */
+    public function testInit()
+    {
+        $time = null;
+        $offset = (int) 0;
+        $this->assertTrue(date('Y-m-d H:i:s', strtotime(((int) $offset >= 0 ? "+$offset" : "-" . abs($offset)) . " seconds", is_string($time) ? strtotime($time) : time())) > null);
+    }
+
+    /**
+     * @group mongo
+     * @group message
+     * @depends testInit
      */
     public function testNew()
     {
@@ -54,7 +67,17 @@ class MongoMessageTest extends MongoTestCase
         $message = $user->create(MongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
 
-        $this->assertFalse($message->isExpired);
+        if ($message->isExpired) {
+            echo "time format: ";
+            var_dump($message->timeFormat);
+            echo "created at: ";
+            var_dump($message->createdAt);
+            echo "expired at: ";
+            var_dump($message->expiredAt);
+            $this->fail();
+        } else {
+            $this->assertTrue(true);
+        }
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
     }
@@ -77,6 +100,15 @@ class MongoMessageTest extends MongoTestCase
     {
         //echo "Read Event Triggered\n";
         return $this->isRead = true;
+    }
+
+    public function onShouldNotBeExpiredRemoved($event)
+    {
+        $sender = $event->sender;
+        var_dump($sender->offsetDatetime(-$sender->expiredAt));
+        var_dump($sender->createdAt);
+        $this->fail("The message model has been removed if you meet this message.\n"
+            . "This event should not be triggered.");
     }
 
     public $isRead = false;
@@ -112,6 +144,7 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals($message->guid, $message1->guid);
         $message->on(MongoMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(MongoMessage::$eventMessageRead, [$this, 'onRead']);
+        $message->on(MongoMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
         $this->assertInstanceOf(MongoMessage::className(), $message);
         $message->content = 'new message';
         $this->assertTrue($message->save());
@@ -131,8 +164,18 @@ class MongoMessageTest extends MongoTestCase
             $this->assertTrue(true);
             $this->assertTrue($message->hasBeenReceived());
             $this->assertTrue($message->hasBeenRead());
-            $this->assertTrue($this->isReceived);
-            $this->assertTrue($this->isRead);
+            if ($this->isReceived) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->receivedAtAttribute));
+                $this->fail();
+            }
+            if ($this->isRead) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->readAtAttribute));
+                $this->fail();
+            }
         } else {
             var_dump($message->errors);
             $this->fail();
@@ -173,6 +216,7 @@ class MongoMessageTest extends MongoTestCase
         $this->assertEquals($message->guid, $message1->guid);
         $message->on(MongoMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(MongoMessage::$eventMessageRead, [$this, 'onRead']);
+        $message->on(MongoMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
         $this->assertInstanceOf(MongoMessage::className(), $message);
 
         $this->assertFalse($message->hasBeenReceived());
@@ -181,7 +225,12 @@ class MongoMessageTest extends MongoTestCase
             $this->assertTrue(true);
             $this->assertTrue($message->hasBeenReceived());
             $this->assertFalse($message->hasBeenRead());
-            $this->assertTrue($this->isReceived);
+            if ($this->isReceived) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->receivedAtAttribute));
+                $this->fail();
+            }
             $this->assertFalse($this->isRead);
         } else {
             var_dump($message->errors);

@@ -53,7 +53,7 @@ class RedisMessageTest extends TestCase
         $other = RedisBlameableTest::prepareUser();
         $message = $user->create(RedisMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
-        
+
         $this->assertFalse($message->isExpired);
         $this->assertTrue($user->deregister());
         $this->assertTrue($other->deregister());
@@ -78,7 +78,16 @@ class RedisMessageTest extends TestCase
         //echo "Read Event Triggered\n";
         return $this->isRead = true;
     }
-    
+
+    public function onShouldNotBeExpiredRemoved($event)
+    {
+        $sender = $event->sender;
+        var_dump($sender->offsetDatetime(-(int) $sender->expiredAt));
+        var_dump($sender->createdAt);
+        $this->fail("The message model has been removed if you meet this message.\n"
+            . "This event should not be triggered.");
+    }
+
     public $isRead = false;
     public $isReceived = false;
 
@@ -110,6 +119,7 @@ class RedisMessageTest extends TestCase
         $this->assertEquals($message->guid, $message1->guid);
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
+        $message->on(RedisMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
         $this->assertInstanceOf(RedisMessage::className(), $message);
         $message->content = 'new message';
         $this->assertTrue($message->save());
@@ -129,8 +139,18 @@ class RedisMessageTest extends TestCase
             $this->assertTrue(true);
             $this->assertTrue($message->hasBeenReceived());
             $this->assertTrue($message->hasBeenRead());
-            $this->assertTrue($this->isReceived);
-            $this->assertTrue($this->isRead);
+            if ($this->isReceived) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->receivedAtAttribute));
+                $this->fail();
+            }
+            if ($this->isRead) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->readAtAttribute));
+                $this->fail();
+            }
         } else {
             var_dump($message->errors);
             $this->fail();
@@ -169,6 +189,7 @@ class RedisMessageTest extends TestCase
         $this->assertEquals($message->guid, $message1->guid);
         $message->on(RedisMessage::$eventMessageReceived, [$this, 'onReceived']);
         $message->on(RedisMessage::$eventMessageRead, [$this, 'onRead']);
+        $message->on(RedisMessage::$eventExpiredRemoved, [$this, 'onShouldNotBeExpiredRemoved']);
         $this->assertInstanceOf(RedisMessage::className(), $message);
 
         $this->assertFalse($message->hasBeenReceived());
@@ -177,7 +198,12 @@ class RedisMessageTest extends TestCase
             $this->assertTrue(true);
             $this->assertTrue($message->hasBeenReceived());
             $this->assertFalse($message->hasBeenRead());
-            $this->assertTrue($this->isReceived);
+            if ($this->isReceived) {
+                $this->assertTrue(true);
+            } else {
+                var_dump($message->isAttributeChanged($message->receivedAtAttribute));
+                $this->fail();
+            }
             $this->assertFalse($this->isRead);
         } else {
             var_dump($message->errors);

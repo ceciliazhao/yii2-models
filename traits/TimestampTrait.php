@@ -59,6 +59,7 @@ trait TimestampTrait
      * @var Closure
      */
     public $expiredRemovingCallback;
+    public static $eventExpiredRemoved = 'expiredRemoved';
 
     /**
      * Check this entity whether expired.
@@ -66,10 +67,11 @@ trait TimestampTrait
      */
     public function getIsExpired()
     {
-        if ($this->expiredAt === false) {
+        $createdAt = $this->createdAt;
+        if ($this->expiredAt === false || $createdAt === null) {
             return false;
         }
-        return $this->offsetDatetime(-(int) $this->expiredAt) > $this->createdAt;
+        return $this->offsetDatetime(-(int) $this->expiredAt) > $createdAt;
     }
 
     /**
@@ -78,11 +80,12 @@ trait TimestampTrait
      */
     public function removeIfExpired()
     {
-        if ($this->getIsExpired()) {
+        if ($this->getIsExpired() && !$this->getIsNewRecord()) {
             if ($this->expiredRemovingCallback instanceof Closure && is_callable($this->expiredRemovingCallback)) {
-                return call_user_func($this->expiredRemovingCallback, $this);
+                $result = call_user_func($this->expiredRemovingCallback, $this);
             }
-            return $this->delete();
+            $result = $this->delete();
+            $this->trigger(static::$eventExpiredRemoved, new \yii\base\ModelEvent(['data' => ['result' => $result]]));
         }
         return false;
     }
@@ -200,6 +203,9 @@ trait TimestampTrait
     public function getCreatedAt()
     {
         $createdAtAttribute = $this->createdAtAttribute;
+        if (!is_string($createdAtAttribute)) {
+            return null;
+        }
         return $this->$createdAtAttribute;
     }
 
@@ -224,6 +230,9 @@ trait TimestampTrait
     public function getUpdatedAt()
     {
         $updatedAtAttribute = $this->updatedAtAttribute;
+        if (!is_string($updatedAtAttribute)) {
+            return null;
+        }
         return $this->$updatedAtAttribute;
     }
 

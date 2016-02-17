@@ -229,7 +229,7 @@ trait EntityTrait
         if ($this->isNewRecord) {
             $this->trigger(static::$eventNewRecordCreated);
         }
-        $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onRemoveExpired']);
+        $this->on(static::EVENT_INIT, [$this, 'onRemoveExpired']);
     }
 
     /**
