@@ -23,8 +23,43 @@ trait NotificationTrait
     public $rangeAttribute = 'range';
     public $linkAttrbute = '';
 
-    public function initNotificationEvents()
+    public function getRange()
     {
-        $this->on(static::EVENT_INIT, [$this, 'onRemoveExpired']);
+        $rangeAttribute = $this->rangeAttribute;
+        return $this->$rangeAttribute;
+    }
+
+    public function setRange($range)
+    {
+        $rangeAttribute = $this->rangeAttribute;
+        return $this->$rangeAttribute = $range;
+    }
+
+    public function getLink()
+    {
+        $linkAttribute = $this->linkAttrbute;
+        return $this->$linkAttribute;
+    }
+
+    public function setLink($link)
+    {
+        $linkAttribute = $this->linkAttrbute;
+        return $this->$linkAttribute = $link;
+    }
+
+    public function getNotificationRules()
+    {
+        $rules = [];
+        if (is_string($this->rangeAttribute)) {
+            $rules[] = [
+                $this->rangeAttribute, 'string',
+            ];
+        }
+        if (is_string($this->linkAttrbute)) {
+            $rules[] = [
+                $this->linkAttrbute, 'string',
+            ];
+        }
+        return $rules;
     }
 }

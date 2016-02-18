@@ -92,8 +92,7 @@ trait TimestampTrait
 
     public function onRemoveExpired($event)
     {
-        $sender = $event->sender;
-        return $sender->removeIfExpired();
+        return $event->sender->removeIfExpired();
     }
 
     /**
@@ -109,6 +108,10 @@ trait TimestampTrait
         return $sender->currentDatetime();
     }
 
+    /**
+     * Get current date & time, by current time format.
+     * @return string|int Date & time string if format is datetime, or timestamp.
+     */
     public function currentDatetime()
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
@@ -117,12 +120,19 @@ trait TimestampTrait
         if ($this->timeFormat === self::$timeFormatTimestamp) {
             return time();
         }
+        return null;
     }
 
+    /**
+     * Get offset date & time, by current time format.
+     * @param string|int $time Date &time string or timestamp.
+     * @param int $offset Offset int seconds.
+     * @return string|int Date & time string if format is datetime, or timestamp.
+     */
     public function offsetDatetime($time = null, $offset = 0)
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {
-            return date('Y-m-d H:i:s', strtotime(($offset >= 0 ? "+$offset" : $offset) . " seconds", is_string($time) ? strtotime($time) : time()));
+            return date('Y-m-d H:i:s', strtotime(($offset >= 0 ? "+$offset" : $offset) . " seconds", is_string($time) ? strtotime($time) : (is_int($time) ? $time : time())));
         }
         if ($this->timeFormat === self::$timeFormatTimestamp) {
             return (is_int($time) ? $time : time()) + $offset;
@@ -141,6 +151,10 @@ trait TimestampTrait
         return $sender->initDatetime();
     }
 
+    /**
+     * Get init date & time, by current time format.
+     * @return string|int Date & time string if format is datetime, or timestamp.
+     */
     public function initDatetime()
     {
         if ($this->timeFormat === self::$timeFormatDatetime) {

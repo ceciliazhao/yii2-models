@@ -37,6 +37,18 @@
 
 - Fix: createdAt() and updatedAt() conditions reference error attributes. (vistart)
 
+#### traits/MessageTrait.php
+
+- Add: new. (vistart)
+
+#### traits/MessageTraitQuery.php
+
+- Add: new. (vistart)
+
+#### traits/MutualQueryTrait.php
+
+- Add: new. (vistart)
+
 #### traits/SelfBlameableTrait.php
 
 - Chg: private self blameable rules name changed. It doesn't matter with logic. (vistart)
@@ -111,6 +123,14 @@
 
 - Fix: add missing initialization of `$queryClass`. (vistart)
 
+#### models/BaseMongoMessageModel.php
+
+- Add: new. (vistart)
+
+#### models/BaseRedisMessageModel.php
+
+- Add: new. (vistart)
+
 #### queries/BaseMongoEntityQuery.php
 
 - Fix: fix typo in namespace. (vistart)
@@ -120,6 +140,14 @@
 - Add: new. (vistart)
 
 #### queries/BaseRedisBlameableQuery.php
+
+- Add: new. (vistart)
+
+#### queries/BaseMongoMessageQuery.php
+
+- Add: new. (vistart)
+
+#### queries/BaseRedisMessageQuery.php
 
 - Add: new. (vistart)
 
