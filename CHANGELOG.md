@@ -1,6 +1,6 @@
 ## Base Models for Yii 2 Applications
 
-### since 2.0.0-alpha1 released
+### 2.0.0 Alpha 2
 
 #### traits/IPTrait.php
 

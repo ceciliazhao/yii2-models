@@ -17,6 +17,7 @@ use vistart\Models\traits\MessageQueryTrait;
 /**
  * Description of BaseRedisMessageQuery
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 class BaseRedisMessageQuery extends BaseRedisBlameableQuery

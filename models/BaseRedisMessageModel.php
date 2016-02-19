@@ -16,8 +16,9 @@ use vistart\Models\queries\BaseRedisMessageQuery;
 use vistart\Models\traits\MessageTrait;
 
 /**
- * Description of BaseRedisMessageModel
+ * This model helps build message model stored in redis.
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 abstract class BaseRedisMessageModel extends BaseRedisBlameableModel

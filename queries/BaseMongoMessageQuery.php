@@ -17,6 +17,7 @@ use vistart\Models\traits\MessageQueryTrait;
 /**
  * Description of BaseMongoMessageQuery
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 class BaseMongoMessageQuery extends BaseMongoBlameableQuery

@@ -13,8 +13,9 @@
 namespace vistart\Models\traits;
 
 /**
- * Description of MutualQueryTrait
+ * This trait is used for building query class which contains mutual relation operations.
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 trait MutualQueryTrait

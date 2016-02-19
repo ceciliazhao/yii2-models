@@ -16,6 +16,7 @@ namespace vistart\Models\traits;
  * This trait should be used in models extended from models used BlameableTrait.
  * Notice: The models used BlameableTrait are also models used EntityTrait.
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 trait MessageTrait

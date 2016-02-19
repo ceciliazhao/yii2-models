@@ -16,7 +16,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\caching\TagDependency;
 
 /**
- * 该 Trait 用于处理属于用户的实例。包括以下功能：
+ * This trait is used for building blameable model. It contains following features：
  * 1.单列内容；多列内容待定；
  * 2.内容类型；具体类型应当自定义；
  * 3.内容规则；自动生成；

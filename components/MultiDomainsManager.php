@@ -123,13 +123,12 @@ class MultiDomainsManager extends \yii\base\Component
             $subDomainConfig['component']['class'] = MultiDomainsUrlManager::className();
         }
         if (!isset($subDomainConfig['component']['hostInfo'])) {
-            if (!isset($subDomainConfig['scheme'])) {
+            if (!isset($subDomainConfig['scheme']) || empty($subDomainConfig['scheme'])) {
                 $subDomainConfig['scheme'] = 'http';
             }
             $subDomainConfig['component']['hostInfo'] = $subDomainConfig['scheme'] . // 'http' or 'https'
                 "://" . // delimiter
-                ($subdomain === '' ? '' : "$subdomain.") . // attach subdomain
-                $this->baseDomain;                                               // base domain
+                ($subdomain == '' || $this->baseDomain == '' ? $subdomain . $this->baseDomain : $subdomain . '.' . $this->baseDomain);                                               // base domain
         }
         return Yii::createObject($subDomainConfig['component']);
     }

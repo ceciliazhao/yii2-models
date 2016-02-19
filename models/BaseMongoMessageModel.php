@@ -16,8 +16,9 @@ use vistart\Models\queries\BaseMongoMessageQuery;
 use vistart\Models\traits\MessageTrait;
 
 /**
- * Description of BaseMongoMessageModel
+ * This model helps build message model stored in mongodb.
  *
+ * @version 2.0
  * @author vistart <i@vistart.name>
  */
 abstract class BaseMongoMessageModel extends BaseMongoBlameableModel
