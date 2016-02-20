@@ -26,7 +26,13 @@ abstract class BaseMetaModel extends BaseBlameableModel
 
     public $idAttribute = 'key';
     public $idPreassigned = true;
-    public $idAttributeLength = 255;
+
+    /**
+     * Collation: utf8mb4_unicode_ci
+     * MySQL 5.7 supports the length of key more than 767 bytes.
+     * @var int 
+     */
+    public $idAttributeLength = 190;
     public $createdAtAttribute = false;
     public $updatedAtAttribute = false;
     public $enableIP = false;

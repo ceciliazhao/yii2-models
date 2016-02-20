@@ -35,7 +35,7 @@ USE `yii2-models`;
 DROP TABLE IF EXISTS `meta`;
 CREATE TABLE `meta` (
   `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `key` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
