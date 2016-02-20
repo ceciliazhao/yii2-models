@@ -22,9 +22,4 @@ use vistart\Models\models\BaseRedisMessageModel;
 class RedisMessage extends BaseRedisMessageModel
 {
 
-    public static function primaryKey()
-    {
-        $model = new static(['skipInit' => true]);
-        return [$model->guidAttribute];
-    }
 }

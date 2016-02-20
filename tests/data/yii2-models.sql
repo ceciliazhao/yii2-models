@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-02-06 20:43:36
+-- Generation Time: 2016-02-20 20:18:35
 -- 服务器版本： 5.7.10
 -- PHP Version: 5.6.18
 
@@ -25,10 +25,30 @@ USE `yii2-models`;
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `meta`
+--
+-- 创建时间： 2016-02-20 10:24:32
+-- 最后更新： 2016-02-20 12:12:02
+--
+
+DROP TABLE IF EXISTS `meta`;
+CREATE TABLE IF NOT EXISTS `meta` (
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`guid`),
+  UNIQUE KEY `meta_key_unique` (`key`),
+  KEY `user_meta_fkey` (`user_guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `user`
 --
 -- 创建时间： 2016-01-26 06:52:46
--- 最后更新： 2016-02-06 10:25:37
+-- 最后更新： 2016-02-20 12:12:26
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -60,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 表的结构 `user_additional_account`
 --
 -- 创建时间： 2016-01-26 08:38:03
--- 最后更新： 2016-02-06 10:24:39
+-- 最后更新： 2016-02-20 12:11:01
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -92,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `user_additional_account` (
 -- 表的结构 `user_comment`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-02-06 10:24:54
+-- 最后更新： 2016-02-20 12:11:16
 --
 
 DROP TABLE IF EXISTS `user_comment`;
@@ -123,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
 -- 表的结构 `user_email`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-02-06 10:24:55
+-- 最后更新： 2016-02-20 12:11:18
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -148,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `user_email` (
 -- 表的结构 `user_relation`
 --
 -- 创建时间： 2016-02-06 08:38:35
--- 最后更新： 2016-02-06 10:25:34
+-- 最后更新： 2016-02-20 12:12:01
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -180,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
 -- 表的结构 `user_relation_group`
 --
 -- 创建时间： 2016-01-26 06:56:20
--- 最后更新： 2016-02-06 10:25:34
+-- 最后更新： 2016-02-20 12:12:01
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -200,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
 -- 表的结构 `user_single_relation`
 --
 -- 创建时间： 2016-02-06 08:42:19
--- 最后更新： 2016-02-06 10:25:25
+-- 最后更新： 2016-02-20 12:11:51
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
@@ -228,6 +248,12 @@ CREATE TABLE IF NOT EXISTS `user_single_relation` (
 --
 -- 限制导出的表
 --
+
+--
+-- 限制表 `meta`
+--
+ALTER TABLE `meta`
+  ADD CONSTRAINT `user_meta_fkey` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 限制表 `user_additional_account`

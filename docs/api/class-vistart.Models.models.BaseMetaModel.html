@@ -106,6 +106,7 @@
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisMessageModel.html">BaseRedisMessageModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseRedisMetaModel.html">BaseRedisMetaModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
@@ -159,6 +160,8 @@ yii\db\ActiveRecord
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>vistart\Models\models\BaseMetaModel</span></b>			
 			
+			 uses 
+					<a href="class-vistart.Models.traits.MetaTrait.html"><span>vistart\Models\traits\MetaTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -180,7 +183,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMetaModel.html#15-73" title="Go to source code">models/BaseMetaModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMetaModel.html#17-37" title="Go to source code">models/BaseMetaModel.php</a>
 		<br>
 	</div>
 
@@ -188,152 +191,13 @@ yii\db\ActiveRecord
 
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
-			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="behaviors" id="_behaviors">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_behaviors">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMetaModel.html#39-42" title="Go to source code">behaviors</a>( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-					<h4>Inheritdoc</h4>
-					<div class="list">
-					</div>
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_behaviors">vistart\Models\models\BaseBlameableModel::behaviors</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getMetaBehaviors" id="_getMetaBehaviors">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getMetaBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMetaModel.html#44-51" title="Go to source code">getMetaBehaviors</a>( )</code>
-
-			<div class="description short">
-				<p>Skip all behaviors of parent class.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Skip all behaviors of parent class.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="init" id="_init">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMetaModel.html#53-57" title="Go to source code">init</a>( )</code>
-
-			<div class="description short">
-				<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-
-
-
-
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">vistart\Models\models\BaseBlameableModel::init</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="onInitBlameGuid" id="_onInitBlameGuid">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_onInitBlameGuid">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMetaModel.html#59-72" title="Go to source code">onInitBlameGuid</a>( <span>yii\base\Event <var>$event</var></span> )</code>
-
-			<div class="description short">
-				<p>Initialize blame's guid.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initialize blame's guid.</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$event</var></dt>
-						<dd></dd>
-					</dl></div>
-
-
-					<h4>Throws</h4>
-					<div class="list">
-						yii\base\InvalidConfigException
-					</div>
-
-
-
-			</div>
-			</div></td>
-		</tr>
-			</table>
 		</div>
 
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseBlameableModel.html#methods">vistart\Models\models\BaseBlameableModel</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_findByIdentity">findByIdentity()</a></code>
+				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_findByIdentity">findByIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">init()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -344,6 +208,20 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</p>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MetaTrait.html#methods">vistart\Models\traits\MetaTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_behaviors">behaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_get">get()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_getKey">getKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_getMetaBehaviors">getMetaBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_getValue">getValue()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_gets">gets()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_remove">remove()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_set">set()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_sets">sets()</a></code>
+			</p>
+		</div>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
 			<p class="elementList">
@@ -509,7 +387,7 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#24" title="Go to source code"><var>$idAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#27" title="Go to source code"><var>$idAttribute</var></a>
 
 				<div class="description short">
 					<p>OPTIONAL.The attribute that will receive the IDentifier No.
@@ -540,7 +418,7 @@ You can set this property to false if you don't use this feature.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#25" title="Go to source code"><var>$idPreassigned</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#28" title="Go to source code"><var>$idPreassigned</var></a>
 
 				<div class="description short">
 					<p>Determines whether its id has been pre-assigned. It will not
@@ -560,6 +438,39 @@ generate or assign ID if true.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="idAttributeLength" id="$idAttributeLength">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#29" title="Go to source code"><var>$idAttributeLength</var></a>
+
+				<div class="description short">
+					<p>OPTIONAL. The length of id attribute value, and max length
+of this attribute in rules. If you set $idAttribute to false or ID type
+to Auto Increment, this property will be ignored.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>OPTIONAL. The length of id attribute value, and max length
+of this attribute in rules. If you set $idAttribute to false or ID type
+to Auto Increment, this property will be ignored.</p>
+
+						<h4>Since</h4>
+						<div class="list">
+								1.1<br>
+						</div>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$idAttributeLength" class="anchor">#</a>
+					<code><span class="php-num">255</span></code>
+				</div>
+			</td>
+		</tr>
 		<tr data-order="createdAtAttribute" id="$createdAtAttribute">
 			<td class="attributes"><code>
 				public  
@@ -567,7 +478,7 @@ generate or assign ID if true.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#26" title="Go to source code"><var>$createdAtAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#30" title="Go to source code"><var>$createdAtAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive datetime value
@@ -594,7 +505,7 @@ Set this property to false if you do not want to record the creation time.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#27" title="Go to source code"><var>$updatedAtAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#31" title="Go to source code"><var>$updatedAtAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive datetime value.
@@ -621,7 +532,7 @@ Set this property to false if you do not want to record the update time.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#28" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#32" title="Go to source code"><var>$enableIP</var></a>
 
 				<div class="description short">
 					<p>REQUIRED. Determine whether enabling the IP attributes and
@@ -656,7 +567,7 @@ features, and IP address type if enabled.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#29" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#33" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -717,7 +628,7 @@ For example:</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#30" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#34" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.
@@ -744,7 +655,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#31" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#35" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of confirmation, or false if disable confirmation features.</p>
@@ -759,31 +670,6 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<div>
 					<a href="#$confirmationAttribute" class="anchor">#</a>
 					<code><span class="php-keyword1">false</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="blameGuid" id="$blameGuid">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#33-37" title="Go to source code"><var>$blameGuid</var></a>
-
-				<div class="description short">
-					<p>Store the guid of blame.</p>
-				</div>
-
-				<div class="description detailed hidden">
-					<p>Store the guid of blame.</p>
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$blameGuid" class="anchor">#</a>
-					<code><span class="php-quote">''</span></code>
 				</div>
 			</td>
 		</tr>

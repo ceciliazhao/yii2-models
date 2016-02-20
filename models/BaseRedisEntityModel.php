@@ -55,4 +55,13 @@ abstract class BaseRedisEntityModel extends \yii\redis\ActiveRecord
     {
         return $this->enabledFields();
     }
+
+    public static function primaryKey()
+    {
+        $model = static::buildNoInitModel();
+        if (is_string($model->guidAttribute)) {
+            return [$model->guidAttribute];
+        }
+        return [$model->idAttribute];
+    }
 }

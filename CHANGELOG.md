@@ -1,5 +1,25 @@
 ## Base Models for Yii 2 Applications
 
+### since 2.0.0 Alpha 2 release
+
+#### traits/MetaTrait.php
+
+- Add: new. (vistart)
+
+#### models/BaseMetaModel.php
+
+- Chg: merge behaviors from BaseBlameableModel. (vistart)
+- Add: get() method for retriving meta value. (vistart)
+- Chg: use MetaTrait. (vistart)
+
+ ### models/BaseRedisMetaModel.php
+
+- Add: new. (vistart)
+
+#### models/BaseRedisEntityModel.php
+
+- Add: primaryKey() method for specifying primary key with guid or id attribute. (vistart)
+
 ### 2.0.0 Alpha 2
 
 #### traits/IPTrait.php
