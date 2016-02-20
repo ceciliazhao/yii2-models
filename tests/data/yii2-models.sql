@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `yii2-models`
 --
+DROP DATABASE IF EXISTS `yii2-models`;
 CREATE DATABASE IF NOT EXISTS `yii2-models` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `yii2-models`;
 
