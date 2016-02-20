@@ -39,8 +39,7 @@ CREATE TABLE IF NOT EXISTS `meta` (
   `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`guid`),
-  UNIQUE KEY `meta_key_unique` (`key`),
-  KEY `user_meta_fkey` (`user_guid`)
+  UNIQUE KEY `meta_key_unique` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -134,8 +133,7 @@ CREATE TABLE IF NOT EXISTS `user_comment` (
   `confirm_code` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `confirm_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`guid`),
-  UNIQUE KEY `user_coment_id_unique` (`id`,`user_guid`) USING BTREE,
-  KEY `user_comment_fkey` (`user_guid`)
+  UNIQUE KEY `user_coment_id_unique` (`id`,`user_guid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -191,8 +189,7 @@ CREATE TABLE IF NOT EXISTS `user_relation` (
   `groups` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`),
-  UNIQUE KEY `user_relation_id_unique` (`user_guid`,`id`) USING BTREE,
-  KEY `relation_other_guid_fkey` (`other_guid`)
+  UNIQUE KEY `user_relation_id_unique` (`user_guid`,`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -211,8 +208,7 @@ CREATE TABLE IF NOT EXISTS `user_relation_group` (
   `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'group name',
   `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
-  PRIMARY KEY (`guid`),
-  KEY `relation_group_user_guid_fkey` (`user_guid`)
+  PRIMARY KEY (`guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -242,8 +238,7 @@ CREATE TABLE IF NOT EXISTS `user_single_relation` (
   `groups` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`guid`),
   UNIQUE KEY `user_other_guid_unique` (`user_guid`,`other_guid`) USING BTREE,
-  UNIQUE KEY `user_single_relation_unique` (`user_guid`,`id`),
-  KEY `relation_other_guid_fkey` (`other_guid`) USING BTREE
+  UNIQUE KEY `user_single_relation_unique` (`user_guid`,`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
