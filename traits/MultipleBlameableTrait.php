@@ -12,7 +12,7 @@
 
 namespace vistart\Models\traits;
 
-use vistart\Helpers\Number;
+use vistart\helpers\Number;
 use vistart\Models\events\MultipleBlameableEvent;
 use yii\web\JsonParser;
 

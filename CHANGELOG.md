@@ -2,6 +2,8 @@
 
 ### since 2.0.0 Alpha 2 release
 
+- Chg: change dependency to [vistart/helpers](https://github.com/vistart/helpers). (vistart)
+
 #### traits/MetaTrait.php
 
 - Add: new. (vistart)

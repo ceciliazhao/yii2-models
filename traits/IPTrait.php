@@ -12,7 +12,7 @@
 
 namespace vistart\Models\traits;
 
-use vistart\Helpers\Ip;
+use vistart\helpers\Ip;
 use Yii;
 
 /**

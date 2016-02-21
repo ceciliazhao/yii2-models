@@ -13,7 +13,7 @@
 namespace vistart\Models\traits;
 
 use Yii;
-use vistart\Helpers\Number;
+use vistart\helpers\Number;
 
 /**
  * Entity features concerning ID.

@@ -13,7 +13,7 @@
 namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\User;
-use vistart\Helpers\Ip;
+use vistart\helpers\Ip;
 use Yii;
 
 /**
