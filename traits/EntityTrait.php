@@ -323,35 +323,11 @@ trait EntityTrait
      */
     public function enabledFields()
     {
-        $fields = [];
-        if (is_string($this->guidAttribute)) {
-            $fields[] = $this->guidAttribute;
-        }
-
-        if (is_string($this->idAttribute)) {
-            $fields[] = $this->idAttribute;
-        }
-
-        if (is_string($this->createdAtAttribute)) {
-            $fields[] = $this->createdAtAttribute;
-        }
-
-        if (is_string($this->updatedAtAttribute)) {
-            $fields[] = $this->updatedAtAttribute;
-        }
-        switch ($this->enableIP) {
-            case static::$ipAll:
-                $fields[] = $this->ipTypeAttribute;
-            case static::$ipv6:
-                $fields[] = $this->ipAttribute2;
-                $fields[] = $this->ipAttribute3;
-                $fields[] = $this->ipAttribute4;
-            case static::$ipv4:
-                $fields[] = $this->ipAttribute1;
-            case static::$noIp:
-            default:
-                break;
-        }
-        return $fields;
+        return array_merge(
+            is_string($this->guidAttribute) ? [$this->guidAttribute] : [],
+            is_string($this->idAttribute) ? [$this->idAttribute] : [],
+            $this->enabledTimestampFields(),
+            $this->enabledIPFields()
+        );
     }
 }

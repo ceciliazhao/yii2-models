@@ -430,8 +430,27 @@
 </span><span id="262" class="l"><a href="#262">262 </a>        }
 </span><span id="263" class="l"><a href="#263">263 </a>        <span class="php-keyword1">return</span> <span class="php-var">$rules</span>;
 </span><span id="264" class="l"><a href="#264">264 </a>    }
-</span><span id="265" class="l"><a href="#265">265 </a>}
-</span><span id="266" class="l"><a href="#266">266 </a></span></code></pre>
+</span><span id="265" class="l"><a href="#265">265 </a>
+</span><span id="266" class="l"><a href="#266">266 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> enabledIPFields()
+</span><span id="267" class="l"><a href="#267">267 </a>    {
+</span><span id="268" class="l"><a href="#268">268 </a>        <span class="php-var">$fields</span> = [];
+</span><span id="269" class="l"><a href="#269">269 </a>        <span class="php-keyword1">switch</span> (<span class="php-var">$this</span>-&gt;enableIP) {
+</span><span id="270" class="l"><a href="#270">270 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$ipAll</span>:
+</span><span id="271" class="l"><a href="#271">271 </a>                <span class="php-var">$fields</span>[] = <span class="php-var">$this</span>-&gt;ipTypeAttribute;
+</span><span id="272" class="l"><a href="#272">272 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$ipv6</span>:
+</span><span id="273" class="l"><a href="#273">273 </a>                <span class="php-var">$fields</span>[] = <span class="php-var">$this</span>-&gt;ipAttribute2;
+</span><span id="274" class="l"><a href="#274">274 </a>                <span class="php-var">$fields</span>[] = <span class="php-var">$this</span>-&gt;ipAttribute3;
+</span><span id="275" class="l"><a href="#275">275 </a>                <span class="php-var">$fields</span>[] = <span class="php-var">$this</span>-&gt;ipAttribute4;
+</span><span id="276" class="l"><a href="#276">276 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$ipv4</span>:
+</span><span id="277" class="l"><a href="#277">277 </a>                <span class="php-var">$fields</span>[] = <span class="php-var">$this</span>-&gt;ipAttribute1;
+</span><span id="278" class="l"><a href="#278">278 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$noIp</span>:
+</span><span id="279" class="l"><a href="#279">279 </a>            <span class="php-keyword1">default</span>:
+</span><span id="280" class="l"><a href="#280">280 </a>                <span class="php-keyword1">break</span>;
+</span><span id="281" class="l"><a href="#281">281 </a>        }
+</span><span id="282" class="l"><a href="#282">282 </a>        <span class="php-keyword1">return</span> <span class="php-var">$fields</span>;
+</span><span id="283" class="l"><a href="#283">283 </a>    }
+</span><span id="284" class="l"><a href="#284">284 </a>}
+</span><span id="285" class="l"><a href="#285">285 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

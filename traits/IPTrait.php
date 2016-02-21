@@ -262,4 +262,23 @@ trait IPTrait
         }
         return $rules;
     }
+
+    public function enabledIPFields()
+    {
+        $fields = [];
+        switch ($this->enableIP) {
+            case static::$ipAll:
+                $fields[] = $this->ipTypeAttribute;
+            case static::$ipv6:
+                $fields[] = $this->ipAttribute2;
+                $fields[] = $this->ipAttribute3;
+                $fields[] = $this->ipAttribute4;
+            case static::$ipv4:
+                $fields[] = $this->ipAttribute1;
+            case static::$noIp:
+            default:
+                break;
+        }
+        return $fields;
+    }
 }

@@ -167,7 +167,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.MetaTrait.html#17-127" title="Go to source code">traits/MetaTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.MetaTrait.html#17-153" title="Go to source code">traits/MetaTrait.php</a>
 		<br>
 	</div>
 
@@ -187,7 +187,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_behaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#26-33" title="Go to source code">behaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#28-35" title="Go to source code">behaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Store the guid of blame.</p>
@@ -220,7 +220,36 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getKey">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#35-38" title="Go to source code">getKey</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#37-40" title="Go to source code">getKey</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setKey" id="_setKey">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setKey">#</a>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#42-45" title="Go to source code">setKey</a>( <span> <var>$key</var></span> )</code>
 
 			<div class="description short">
 				
@@ -249,7 +278,36 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getValue">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#40-43" title="Go to source code">getValue</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#47-50" title="Go to source code">getValue</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setValue" id="_setValue">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setValue">#</a>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#52-55" title="Go to source code">setValue</a>( <span> <var>$value</var></span> )</code>
 
 			<div class="description short">
 				
@@ -278,7 +336,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMetaBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#45-52" title="Go to source code">getMetaBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#57-64" title="Go to source code">getMetaBehaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Skip all behaviors of parent class.</p>
@@ -311,7 +369,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#54-67" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#66-79" title="Go to source code">get</a>( <span>string <var>$key</var></span> )</code>
 
 			<div class="description short">
 				<p>Get meta value by specified key. If key doesn't exist, null will be given.</p>
@@ -342,14 +400,14 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_gets">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#69-94" title="Go to source code">gets</a>( <span>string[] <var>$keys</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#81-107" title="Go to source code">gets</a>( <span>string[] <var>$keys</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get meta values by specified keys. If one of keys doesn't exists, it will
@@ -367,6 +425,10 @@ not appear in return array.</p>
 						<dd></dd>
 					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>meta key-value pairs.
+					</div>
 
 
 
@@ -378,24 +440,37 @@ not appear in return array.</p>
 
 			<td class="attributes"><code>
 				 public static
-				
+				integer
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_set">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#96-111" title="Go to source code">set</a>( <span> <var>$key</var></span>, <span> <var>$value</var> = <span class="php-keyword1">null</span></span>, <span> <var>$createdBy</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#109-131" title="Go to source code">set</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$createdBy</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Set value.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Set value.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+						<dt><var>$createdBy</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
 
 
 
@@ -407,24 +482,35 @@ not appear in return array.</p>
 
 			<td class="attributes"><code>
 				 public static
-				
+				false
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_sets">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#113-121" title="Go to source code">sets</a>( <span> <var>$keys</var></span>, <span> <var>$createdBy</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#133-147" title="Go to source code">sets</a>( <span>array <var>$keys</var></span>, <span>string <var>$createdBy</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Set values in batch.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Set values in batch.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$keys</var></dt>
+						<dd>meta key-value pairs.</dd>
+						<dt><var>$createdBy</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						false<br>if $keys is not an array.
+					</div>
 
 
 
@@ -443,7 +529,7 @@ not appear in return array.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_remove">#</a>
-			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#123-126" title="Go to source code">remove</a>( <span> <var>$key</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MetaTrait.html#149-152" title="Go to source code">remove</a>( <span> <var>$key</var></span> )</code>
 
 			<div class="description short">
 				
@@ -471,6 +557,58 @@ not appear in return array.</p>
 
 
 
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+		</div>
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties</h3></div>
+			<table class="summary table table-bordered table-striped properties" id="magicProperties">
+		<tr data-order="key" id="m$key">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.MetaTrait.html#20" title="Go to source code"><var>$key</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="value" id="m$value">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.MetaTrait.html#21" title="Go to source code"><var>$value</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 

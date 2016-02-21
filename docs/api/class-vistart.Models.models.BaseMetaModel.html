@@ -183,7 +183,7 @@ yii\db\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMetaModel.html#17-37" title="Go to source code">models/BaseMetaModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMetaModel.html#17-43" title="Go to source code">models/BaseMetaModel.php</a>
 		<br>
 	</div>
 
@@ -219,6 +219,8 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.MetaTrait.html#_gets">gets()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MetaTrait.html#_remove">remove()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MetaTrait.html#_set">set()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_setKey">setKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#_setValue">setValue()</a></code>, 
 				<code><a href="class-vistart.Models.traits.MetaTrait.html#_sets">sets()</a></code>
 			</p>
 		</div>
@@ -341,6 +343,7 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IPTrait.html#methods">vistart\Models\traits\IPTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.IPTrait.html#_attachInitIpEvent">attachInitIpEvent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_enabledIPFields">enabledIPFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpAddress">getIpAddress()</a></code>, 
 				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpRules">getIpRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.IPTrait.html#_getWebRequest">getWebRequest()</a></code>, 
@@ -352,6 +355,7 @@ yii\db\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.TimestampTrait.html#methods">vistart\Models\traits\TimestampTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_currentDatetime">currentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_enabledTimestampFields">enabledTimestampFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAt">getCreatedAt()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a></code>, 
@@ -445,29 +449,23 @@ generate or assign ID if true.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#29" title="Go to source code"><var>$idAttributeLength</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#30-35" title="Go to source code"><var>$idAttributeLength</var></a>
 
 				<div class="description short">
-					<p>OPTIONAL. The length of id attribute value, and max length
-of this attribute in rules. If you set $idAttribute to false or ID type
-to Auto Increment, this property will be ignored.</p>
+					<p>Collation: utf8mb4_unicode_ci
+MySQL 5.7 supports the length of key more than 767 bytes.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>OPTIONAL. The length of id attribute value, and max length
-of this attribute in rules. If you set $idAttribute to false or ID type
-to Auto Increment, this property will be ignored.</p>
+					<p>Collation: utf8mb4_unicode_ci
+MySQL 5.7 supports the length of key more than 767 bytes.</p>
 
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
 					<a href="#$idAttributeLength" class="anchor">#</a>
-					<code><span class="php-num">255</span></code>
+					<code><span class="php-num">190</span></code>
 				</div>
 			</td>
 		</tr>
@@ -478,7 +476,7 @@ to Auto Increment, this property will be ignored.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#30" title="Go to source code"><var>$createdAtAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#36" title="Go to source code"><var>$createdAtAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive datetime value
@@ -505,7 +503,7 @@ Set this property to false if you do not want to record the creation time.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#31" title="Go to source code"><var>$updatedAtAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#37" title="Go to source code"><var>$updatedAtAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive datetime value.
@@ -532,7 +530,7 @@ Set this property to false if you do not want to record the update time.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#32" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#38" title="Go to source code"><var>$enableIP</var></a>
 
 				<div class="description short">
 					<p>REQUIRED. Determine whether enabling the IP attributes and
@@ -567,7 +565,7 @@ features, and IP address type if enabled.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#33" title="Go to source code"><var>$contentAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#39" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
 					<p>Specify the attribute(s) name of content(s). If
@@ -628,7 +626,7 @@ For example:</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#34" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#40" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.
@@ -655,7 +653,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMetaModel.html#35" title="Go to source code"><var>$confirmationAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMetaModel.html#41" title="Go to source code"><var>$confirmationAttribute</var></a>
 
 				<div class="description short">
 					<p>attribute name of confirmation, or false if disable confirmation features.</p>
@@ -730,6 +728,13 @@ Set this property to false if you do not want to record the updater ID.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$descriptionRules"><var>$descriptionRules</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$updater"><var>$updater</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$user"><var>$user</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.MetaTrait.html#properties">vistart\Models\traits\MetaTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#m$key"><var>$key</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MetaTrait.html#m$value"><var>$value</var></a></code>
 			</p>
 		</div>
 

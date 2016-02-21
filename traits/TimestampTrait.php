@@ -264,4 +264,17 @@ trait TimestampTrait
             [[$this->updatedAtAttribute], 'safe'],
         ];
     }
+
+    public function enabledTimestampFields()
+    {
+        $fields = [];
+        if (is_string($this->createdAtAttribute)) {
+            $fields[] = $this->createdAtAttribute;
+        }
+
+        if (is_string($this->updatedAtAttribute)) {
+            $fields[] = $this->updatedAtAttribute;
+        }
+        return $fields;
+    }
 }

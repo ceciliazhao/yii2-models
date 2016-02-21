@@ -20,6 +20,14 @@
 
 - Add: primaryKey() method for specifying primary key with guid or id attribute. (vistart)
 
+#### traits/TimestampTrait.php
+
+- Add: enabledTimestampFields() method for getting enabled fields of timestamp attributes. (vistart)
+
+#### traits/IPTrait.php
+
+- Add: enabledIPFields() method for getting enabled fields of IP attributes. (vistart)
+
 ### 2.0.0 Alpha 2
 
 #### traits/IPTrait.php

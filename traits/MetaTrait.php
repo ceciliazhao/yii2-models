@@ -17,6 +17,8 @@ use Yii;
 /**
  * Description of MetaTrait
  *
+ * @property string $key
+ * @property string $value
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -37,9 +39,19 @@ trait MetaTrait
         return $this->id;
     }
 
+    public function setKey($key)
+    {
+        return $this->id = $key;
+    }
+
     public function getValue()
     {
         return $this->content;
+    }
+
+    public function setValue($value)
+    {
+        return $this->content = $value;
     }
 
     /**
@@ -70,6 +82,7 @@ trait MetaTrait
      * Get meta values by specified keys. If one of keys doesn't exists, it will
      * not appear in return array.
      * @param string[] $keys
+     * @return array meta key-value pairs.
      */
     public static function gets($keys = null)
     {
@@ -93,6 +106,13 @@ trait MetaTrait
         return $result;
     }
 
+    /**
+     * Set value.
+     * @param string $key
+     * @param string $value
+     * @param string $createdBy
+     * @return int
+     */
     public static function set($key, $value = null, $createdBy = null)
     {
         $noInitModel = static::buildNoInitModel();
@@ -110,6 +130,12 @@ trait MetaTrait
         return $model->save();
     }
 
+    /**
+     * Set values in batch.
+     * @param array $keys meta key-value pairs.
+     * @param string $createdBy
+     * @return false if $keys is not an array.
+     */
     public static function sets($keys, $createdBy = null)
     {
         if (!is_array($keys)) {
