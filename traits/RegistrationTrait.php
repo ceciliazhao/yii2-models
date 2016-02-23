@@ -28,32 +28,32 @@ trait RegistrationTrait
      * @event Event an event that is triggered after user is registered successfully.
      */
     public static $eventAfterRegister = "afterRegister";
-    
+
     /**
      * @event Event an event that is triggered before registration.
      */
     public static $eventBeforeRegister = "beforeRegister";
-    
+
     /**
      * @event Event an event that is triggered when registration failed.
      */
     public static $eventRegisterFailed = "registerFailed";
-    
+
     /**
      * @event Event an event that is triggered after user is deregistered successfully.
      */
     public static $eventAfterDeregister = "afterDeregister";
-    
+
     /**
      * @event Event an event that is triggered before deregistration.
      */
     public static $eventBeforeDeregister = "beforeDeregister";
-    
+
     /**
      * @event Event an event that is triggered when deregistration failed.
      */
     public static $eventDeregisterFailed = "deregisterFailed";
-    
+
     /**
      * @var string name of attribute which store the source. if you don't want to
      * record source, please assign false.
@@ -61,7 +61,7 @@ trait RegistrationTrait
     public $sourceAttribute = 'source';
     private $_sourceRules = [];
     public static $sourceSelf = '0';
-    
+
     /**
      * @var string auth manager component id.
      */
