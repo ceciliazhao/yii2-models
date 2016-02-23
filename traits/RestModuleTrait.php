@@ -42,4 +42,29 @@ trait RestModuleTrait
             $response->statusCode = 200;
         }
     }
+
+    /**
+     * replace '_' with '/'.
+     * @param string $route
+     * @return string 
+     */
+    public static function transRouteToName($route)
+    {
+        return str_replace('/', '_', $route);
+    }
+
+    /**
+     * Get API name.
+     * @param string $route
+     * @return string
+     */
+    public static function getApiName($route)
+    {
+        return 'api_' . self::transRouteToName($route);
+    }
+
+    public static function getApiRateLimiterName($route)
+    {
+        return static::getApiName($route) . '_ratelimiter';
+    }
 }
