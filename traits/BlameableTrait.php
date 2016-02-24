@@ -156,7 +156,7 @@ trait BlameableTrait
      * Get total of contents which owned by their owner.
      * @return integer
      */
-    public function count()
+    public function countOfOwner()
     {
         $createdByAttribute = $this->createdByAttribute;
         return static::find()->where([$createdByAttribute => $this->$createdByAttribute])->count();

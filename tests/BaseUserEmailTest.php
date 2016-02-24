@@ -56,7 +56,7 @@ class BaseUserEmailTest extends TestCase
         // 此处应为 UserEmail 实例。
         $this->assertInstanceOf(UserEmail::className(), $user->userEmails[0]);
         // 此时属于该用户的 email 应该只有一个。
-        $this->assertEquals(1, $email->count());
+        $this->assertEquals(1, $email->countOfOwner());
 
         $email_guid = $user->userEmails[0]->guid;
         $email = $user->findOneOrCreate(UserEmail::className());

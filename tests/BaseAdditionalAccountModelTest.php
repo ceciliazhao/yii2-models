@@ -50,7 +50,7 @@ class BaseAdditionalAccountModelTest extends TestCase
             var_dump($aa->errors);
             $this->fail();
         }
-        $this->assertEquals(1, $aa->count());
+        $this->assertEquals(1, $aa->countOfOwner());
         $this->assertTrue($user->deregister());
     }
 

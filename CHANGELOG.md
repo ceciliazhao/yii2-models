@@ -4,6 +4,10 @@
 
 - Chg: change dependency to [vistart/helpers](https://github.com/vistart/helpers). (vistart)
 
+#### traits/BlameableTrait.php
+
+- Chg: rename count() method with countOfOwner(). (vistart)
+
 #### traits/MetaTrait.php
 
 - Add: new. (vistart)
