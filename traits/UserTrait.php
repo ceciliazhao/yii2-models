@@ -40,9 +40,9 @@ trait UserTrait
      * @param boolean $loadDefault Determines whether loading default values
      * after entity model created.
      * Notice! The [[\yii\mongodb\ActiveRecord]] and [[\yii\redis\ActiveRecord]]
-     * does not support load default value. If you want to assign properties
+     * does not support loading default value. If you want to assign properties
      * with default values, please define the `default` rule(s) for properties in
-     * `rules()` method and return them by yourself.
+     * `rules()` method and return them by yourself if you don't specified them in config param.
      * @param boolean $skipIfSet whether existing value should be preserved.
      * This will only set defaults for attributes that are `null`.
      * @return [[$className]] new model created with specified configuration.

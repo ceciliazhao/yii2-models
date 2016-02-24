@@ -88,4 +88,32 @@ trait EntityQueryTrait
         }
         return static::range($this, $model->updatedAtAttribute, $start, $end);
     }
+
+    public static $pageAll = 'all';
+    public static $defaultPageSize = 10;
+
+    /**
+     * Specify page condition.
+     * @param string|int $currentPage It will return all models if it is 'all',
+     * or it will be regarded as current page number if it is integer begun with 0.
+     * @param int $pageSize The sum of models.
+     * @return $this
+     */
+    public function page($currentPage = 0, $pageSize = 10)
+    {
+        if ($currentPage == static::$pageAll) {
+            return $this;
+        }
+
+        /* normalize $currentPage and $currentPage */
+        if (!is_numeric($currentPage) || $currentPage < 0) {
+            $currentPage = 0;
+        }
+        $currentPage = (int) $currentPage;
+        if (!is_numeric($pageSize) || $pageSize < 1) {
+            $pageSize = static::$defaultPageSize;
+        }
+        $pageSize = (int) $pageSize;
+        return $this->limit($pageSize)->offset($pageSize * $currentPage);
+    }
 }

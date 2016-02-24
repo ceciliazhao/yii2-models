@@ -8,6 +8,10 @@
 
 - Add: new. (vistart)
 
+#### traits/EntityQueryTrait.php
+
+- Add: page() condition. (vistart)
+
 #### models/BaseMetaModel.php
 
 - Chg: merge behaviors from BaseBlameableModel. (vistart)

@@ -232,9 +232,9 @@ the object properties.</p></dd>
 						<dd><p>Determines whether loading default values
 after entity model created.
 Notice! The [[\yii\mongodb\ActiveRecord]] and [[\yii\redis\ActiveRecord]]
-does not support load default value. If you want to assign properties
+does not support loading default value. If you want to assign properties
 with default values, please define the <code>default</code> rule(s) for properties in
-<code>rules()</code> method and return them by yourself.</p></dd>
+<code>rules()</code> method and return them by yourself if you don't specified them in config param.</p></dd>
 						<dt><var>$skipIfSet</var></dt>
 						<dd><p>whether existing value should be preserved.
 This will only set defaults for attributes that are <code>null</code>.</p></dd>
