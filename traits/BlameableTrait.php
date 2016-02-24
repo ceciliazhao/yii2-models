@@ -12,8 +12,10 @@
 
 namespace vistart\Models\traits;
 
+use yii\base\InvalidParamException;
 use yii\behaviors\BlameableBehavior;
 use yii\caching\TagDependency;
+use yii\data\Pagination;
 
 /**
  * This trait is used for building blameable model. It contains following features：
@@ -267,12 +269,7 @@ trait BlameableTrait
             TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-            parent::rules(),
-            $this->getConfirmationRules(),
-            $this->getBlameableAttributeRules(),
-            $this->getDescriptionRules(),
-            $this->getContentRules(),
-            $this->getSelfBlameableRules()
+            parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
@@ -613,5 +610,72 @@ trait BlameableTrait
             $fields[] = $this->parentAttribute;
         }
         return $fields;
+    }
+
+    /**
+     * Find all follows by specified identity. If `$identity` is null, the logged-in
+     * identity will be taken.
+     * @param string|integer $pageSize If it is 'all`, then will find all follows,
+     * the `$currentPage` parameter will be skipped. If it is integer, it will be
+     * regarded as sum of models in one page.
+     * @param integer $currentPage The current page number, begun with 0.
+     * @param $userClass $identity
+     * @return static[] If no follows, null will be given, or return follow array.
+     */
+    public static function findAllByIdentityInBatch($pageSize = 'all', $currentPage = 0, $identity = null)
+    {
+        if ($pageSize === 'all') {
+            return static::findByIdentity($identity)->all();
+        }
+        return static::findByIdentity($identity)->page($currentPage, $pageSize)->all();
+    }
+
+    /**
+     * Find one follow by specified identity. If `$identity` is null, the logged-in
+     * identity will be taken. If $identity doesn't has the follower, null will
+     * be given.
+     * @param integer $id user id.
+     * @param boolean $throwException
+     * @param $userClass $identity
+     * @return static
+     * @throws NotFoundHttpException
+     */
+    public static function findOneById($id, $throwException = true, $identity = null)
+    {
+        $query = static::findByIdentity($identity);
+        if (!empty($id)) {
+            $query = $query->id($id);
+        }
+        $model = $query->one();
+        if (!$model && $throwException) {
+            throw new InvalidParamException('Model Not Found.');
+        }
+        return $model;
+    }
+
+    /**
+     * Get total of follows of specified identity.
+     * @param $userClass $identity
+     * @return integer total.
+     */
+    public static function countByIdentity($identity = null)
+    {
+        return static::findByIdentity($identity)->count();
+    }
+
+    /**
+     * Get pagination, used for building contents page by page.
+     * @param integer $limit
+     * @param $userClass $identity
+     * @return Pagination
+     */
+    public static function getPagination($limit = 10, $identity = null)
+    {
+        $limit = (int) $limit;
+        $count = static::countByIdentity($identity);
+        if ($limit > $count) {
+            $limit = $count;
+        }
+        return new Pagination(['totalCount' => $count, 'pageSize' => $limit]);
     }
 }

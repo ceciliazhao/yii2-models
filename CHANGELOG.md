@@ -7,6 +7,7 @@
 #### traits/BlameableTrait.php
 
 - Chg: rename count() method with countOfOwner(). (vistart)
+- Add: findAllByIdentityInBatch(), findOneById(), countByIdentity() and getPagination(). (vistart)
 
 #### traits/MetaTrait.php
 
