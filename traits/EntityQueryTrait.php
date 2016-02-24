@@ -101,7 +101,7 @@ trait EntityQueryTrait
      */
     public function page($currentPage = 0, $pageSize = 10)
     {
-        if ($currentPage == static::$pageAll) {
+        if ($currentPage === static::$pageAll) {
             return $this;
         }
 
@@ -110,7 +110,7 @@ trait EntityQueryTrait
             $currentPage = 0;
         }
         $currentPage = (int) $currentPage;
-        if (!is_numeric($pageSize) || $pageSize < 1) {
+        if (!is_int($pageSize) || $pageSize < 1) {
             $pageSize = static::$defaultPageSize;
         }
         $pageSize = (int) $pageSize;
