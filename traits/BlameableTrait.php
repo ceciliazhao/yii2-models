@@ -632,7 +632,7 @@ trait BlameableTrait
         if ($pageSize === 'all') {
             return static::findByIdentity($identity)->all();
         }
-        return static::findByIdentity($identity)->page($currentPage, $pageSize)->all();
+        return static::findByIdentity($identity)->page($pageSize, $currentPage)->all();
     }
 
     /**
