@@ -269,7 +269,12 @@ trait BlameableTrait
             TagDependency::invalidate($cache, [$this->getEntityRulesCacheTag()]);
         }
         $rules = array_merge(
-            parent::rules(), $this->getConfirmationRules(), $this->getBlameableAttributeRules(), $this->getDescriptionRules(), $this->getContentRules(), $this->getSelfBlameableRules()
+            parent::rules(),
+            $this->getConfirmationRules(),
+            $this->getBlameableAttributeRules(),
+            $this->getDescriptionRules(),
+            $this->getContentRules(),
+            $this->getSelfBlameableRules()
         );
         $this->setBlameableRules($rules);
         return $this->blameableLocalRules;
