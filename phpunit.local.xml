@@ -26,7 +26,6 @@
             <directory suffix=".php">models</directory>
             <directory suffix=".php">queries</directory>
             <directory suffix=".php">events</directory>
-            <directory suffix=".php">components</directory>
         </whitelist>
     </filter>
 </phpunit>

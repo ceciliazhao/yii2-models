@@ -2,6 +2,8 @@
 
 ### since 2.0.0 Alpha 2 release
 
+- Chg: Move components to [vistart/yii2-components](https://github.com/vistart/yii2-components) (vistart)
+
 - Chg: change dependency to [vistart/helpers](https://github.com/vistart/helpers). (vistart)
 
 #### traits/BlameableTrait.php

@@ -20,21 +20,10 @@ namespace vistart\Models\traits;
  */
 trait NotificationTrait
 {
+    use NotificationRangeTrait;
 
-    public $rangeAttribute = 'range';
+    public $logModel;
     public $linkAttrbute = '';
-
-    public function getRange()
-    {
-        $rangeAttribute = $this->rangeAttribute;
-        return $this->$rangeAttribute;
-    }
-
-    public function setRange($range)
-    {
-        $rangeAttribute = $this->rangeAttribute;
-        return $this->$rangeAttribute = $range;
-    }
 
     public function getLink()
     {
@@ -50,12 +39,8 @@ trait NotificationTrait
 
     public function getNotificationRules()
     {
-        $rules = [];
-        if (is_string($this->rangeAttribute)) {
-            $rules[] = [
-                $this->rangeAttribute, 'string',
-            ];
-        }
+        $rules = $this->getNotificationRangeRules();
+
         if (is_string($this->linkAttrbute)) {
             $rules[] = [
                 $this->linkAttrbute, 'string',

@@ -67,7 +67,7 @@ trait TimestampTrait
      */
     public function getIsExpired()
     {
-        $createdAt = $this->createdAt;
+        $createdAt = $this->getCreatedAt();
         if ($this->expiredAt === false || $createdAt === null) {
             return false;
         }
@@ -90,6 +90,11 @@ trait TimestampTrait
         return false;
     }
 
+    /**
+     * We recommened you attach this event when after finding this active record.
+     * @param \yii\base\ModelEvent $event
+     * @return boolean
+     */
     public function onRemoveExpired($event)
     {
         return $event->sender->removeIfExpired();

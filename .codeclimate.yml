@@ -6,7 +6,6 @@ exclude_paths:
 ratings:
     paths:
         - events/**
-        - components/**
         - models/**
         - traits/**
         - queries/**

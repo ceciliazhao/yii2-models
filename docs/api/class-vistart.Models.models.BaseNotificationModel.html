@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class vistart\Models\models\BaseMongoEntityModel</title>
+	<title>Class vistart\Models\models\BaseNotificationModel</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -97,9 +97,9 @@
 				<li><a href="class-vistart.Models.models.BaseEntityModel.html">BaseEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMetaModel.html">BaseMetaModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
-				<li class="active"><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoMessageModel.html">BaseMongoMessageModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
+				<li class="active"><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisMessageModel.html">BaseRedisMessageModel</a></li>
@@ -122,59 +122,54 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class BaseMongoEntityModel</h1>
+	<h1>Class BaseNotificationModel</h1>
 
 
 	<div class="description">
-	<p>Description of BaseMongoEntityModel</p>
+	<p>Description of BaseNotificationModel</p>
 	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-yii\mongodb\ActiveRecord
+yii\db\ActiveRecord
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>vistart\Models\models\BaseMongoEntityModel</span></b>			
+			<a href="class-vistart.Models.models.BaseEntityModel.html"><span>vistart\Models\models\BaseEntityModel</span></a>
+			
 			
 			 uses 
 					<a href="class-vistart.Models.traits.EntityTrait.html"><span>vistart\Models\traits\EntityTrait</span></a>
 			
 		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>vistart\Models\models\BaseNotificationModel</span></b>			
+			
+			 uses 
+					<a href="class-vistart.Models.traits.NotificationTrait.html"><span>vistart\Models\traits\NotificationTrait</span></a>
+			
+		</dd>
 	</dl>
 
 
-	<div>
-		<h3>Direct known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">vistart\Models\models\BaseMongoBlameableModel</a></code>
-		</p>
-	</div>
 
-	<div>
-		<h3>Indirect known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-vistart.Models.models.BaseMongoMessageModel.html">vistart\Models\models\BaseMongoMessageModel</a></code>
-		</p>
-	</div>
 
 
 
 
 
 	<div class="alert alert-info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.models.html">models</a><br>
 		
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-				<b>Version:</b>
-				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoEntityModel.html#18-60" title="Go to source code">models/BaseMongoEntityModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseNotificationModel.html#17-32" title="Go to source code">models/BaseNotificationModel.php</a>
 		<br>
 	</div>
 
@@ -194,7 +189,7 @@ yii\mongodb\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMongoEntityModel.html#28-40" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseNotificationModel.html#28-31" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize new entity.</p>
@@ -208,71 +203,8 @@ yii\mongodb\ActiveRecord
 
 
 
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="find" id="_find">
-
-			<td class="attributes"><code>
-				 public static
-				<code><a href="class-vistart.Models.queries.BaseMongoEntityQuery.html">vistart\Models\queries\BaseMongoEntityQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_find">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMongoEntityModel.html#42-54" title="Go to source code">find</a>( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseMongoEntityQuery.html">vistart\Models\queries\BaseMongoEntityQuery</a></code><br>the newly created [[BaseEntityQuery]] or its sub-class instance.
-					</div>
-
-
-					<h4>Inheritdoc</h4>
-					<div class="list">
-					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="attributes" id="_attributes">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_attributes">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMongoEntityModel.html#56-59" title="Go to source code">attributes</a>( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseEntityModel.html#_init">vistart\Models\models\BaseEntityModel::init</a></code></div>
 
 			</div>
 			</div></td>
@@ -280,7 +212,32 @@ yii\mongodb\ActiveRecord
 			</table>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseEntityModel.html#methods">vistart\Models\models\BaseEntityModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseEntityModel.html#_checkAttributes">checkAttributes()</a></code>, 
+				<code><a href="class-vistart.Models.models.BaseEntityModel.html#_find">find()</a></code>
+			</p>
+		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.NotificationTrait.html#methods">vistart\Models\traits\NotificationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getLink">getLink()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getNotificationRules">getNotificationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_setLink">setLink()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.NotificationRangeTrait.html#methods">vistart\Models\traits\NotificationRangeTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.NotificationRangeTrait.html#_getNotificationRangeRules">getNotificationRangeRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationRangeTrait.html#_getRange">getRange()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationRangeTrait.html#_inRange">inRange()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationRangeTrait.html#_setRange">setRange()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationRangeTrait.html#_validateRange">validateRange()</a></code>
+			</p>
+		</div>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
@@ -375,6 +332,33 @@ yii\mongodb\ActiveRecord
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="expiredAt" id="$expiredAt">
+			<td class="attributes"><code>
+				public  
+				integer|false
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseNotificationModel.html#26" title="Go to source code"><var>$expiredAt</var></a>
+
+				<div class="description short">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$expiredAt" class="anchor">#</a>
+					<code><span class="php-num">604800</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
 		</div>
 
 
@@ -390,6 +374,13 @@ yii\mongodb\ActiveRecord
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$queryClass"><var>$queryClass</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.NotificationTrait.html#properties">vistart\Models\traits\NotificationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttrbute"><var>$linkAttrbute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$logModel"><var>$logModel</var></a></code>
 			</p>
 		</div>
 

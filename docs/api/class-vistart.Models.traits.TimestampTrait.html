@@ -59,10 +59,6 @@
 						</a>
 							<ul>
 					<li>
-						<a href="namespace-vistart.Models.components.html">
-							components						</a>
-							</li>
-					<li>
 						<a href="namespace-vistart.Models.events.html">
 							events						</a>
 							</li>
@@ -113,11 +109,12 @@
 				<li><a href="class-vistart.Models.traits.MetaTrait.html">MetaTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MutualQueryTrait.html">MutualQueryTrait</a></li>
+				<li><a href="class-vistart.Models.traits.NotificationLog.html">NotificationLog</a></li>
+				<li><a href="class-vistart.Models.traits.NotificationRangeTrait.html">NotificationRangeTrait</a></li>
 				<li><a href="class-vistart.Models.traits.NotificationTrait.html">NotificationTrait</a></li>
 				<li><a href="class-vistart.Models.traits.PasswordTrait.html">PasswordTrait</a></li>
 				<li><a href="class-vistart.Models.traits.QueryTrait.html">QueryTrait</a></li>
 				<li><a href="class-vistart.Models.traits.RegistrationTrait.html">RegistrationTrait</a></li>
-				<li><a href="class-vistart.Models.traits.RestModuleTrait.html">RestModuleTrait</a></li>
 				<li><a href="class-vistart.Models.traits.SelfBlameableTrait.html">SelfBlameableTrait</a></li>
 				<li class="active"><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></li>
 				<li><a href="class-vistart.Models.traits.UserRelationGroupTrait.html">UserRelationGroupTrait</a></li>
@@ -167,7 +164,7 @@
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.TimestampTrait.html#18-280" title="Go to source code">traits/TimestampTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.TimestampTrait.html#18-285" title="Go to source code">traits/TimestampTrait.php</a>
 		<br>
 	</div>
 
@@ -246,24 +243,33 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onRemoveExpired">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#93-96" title="Go to source code">onRemoveExpired</a>( <span> <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#93-101" title="Go to source code">onRemoveExpired</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>We recommened you attach this event when after finding this active record.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>We recommened you attach this event when after finding this active record.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
 
@@ -282,7 +288,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCurrentDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#98-109" title="Go to source code">getCurrentDatetime</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#103-114" title="Go to source code">getCurrentDatetime</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Get the current date &amp; time in format of "Y-m-d H:i:s" or timestamp.
@@ -326,7 +332,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_currentDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#111-124" title="Go to source code">currentDatetime</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#116-129" title="Go to source code">currentDatetime</a>( )</code>
 
 			<div class="description short">
 				<p>Get current date &amp; time, by current time format.</p>
@@ -359,7 +365,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_offsetDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#126-141" title="Go to source code">offsetDatetime</a>( <span>string|integer <var>$time</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#131-146" title="Go to source code">offsetDatetime</a>( <span>string|integer <var>$time</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
 				<p>Get offset date &amp; time, by current time format.</p>
@@ -399,7 +405,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInitDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#143-152" title="Go to source code">getInitDatetime</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#148-157" title="Go to source code">getInitDatetime</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Get init date &amp; time in format of "Y-m-d H:i:s" or timestamp.s</p>
@@ -437,7 +443,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_initDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#154-167" title="Go to source code">initDatetime</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#159-172" title="Go to source code">initDatetime</a>( )</code>
 
 			<div class="description short">
 				<p>Get init date &amp; time, by current time format.</p>
@@ -470,7 +476,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isInitDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#169-183" title="Go to source code">isInitDatetime</a>( <span>mixed <var>$attribute</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#174-188" title="Go to source code">isInitDatetime</a>( <span>mixed <var>$attribute</var></span> )</code>
 
 			<div class="description short">
 				<p>Check whether the attribute is init datetime.</p>
@@ -508,7 +514,7 @@ You can override this method to customize the return value.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_onUpdateCurrentDatetime">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#185-196" title="Go to source code">onUpdateCurrentDatetime</a>( <span>yii\base\Event <var>$event</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#190-201" title="Go to source code">onUpdateCurrentDatetime</a>( <span>yii\base\Event <var>$event</var></span> )</code>
 
 			<div class="description short">
 				<p>Get the current date &amp; time in format of "Y-m-d H:i:s".
@@ -554,7 +560,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getTimestampBehaviors">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#198-212" title="Go to source code">getTimestampBehaviors</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#203-217" title="Go to source code">getTimestampBehaviors</a>( )</code>
 
 			<div class="description short">
 				<p>Behaviors associated with timestamp.</p>
@@ -587,7 +593,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCreatedAt">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#214-225" title="Go to source code">getCreatedAt</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#219-230" title="Go to source code">getCreatedAt</a>( )</code>
 
 			<div class="description short">
 				<p>Get createdAt.</p>
@@ -620,7 +626,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCreatedAtRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#227-239" title="Go to source code">getCreatedAtRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#232-244" title="Go to source code">getCreatedAtRules</a>( )</code>
 
 			<div class="description short">
 				<p>Get rules associated with createdAtAttribute.</p>
@@ -653,7 +659,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUpdatedAt">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#241-252" title="Go to source code">getUpdatedAt</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#246-257" title="Go to source code">getUpdatedAt</a>( )</code>
 
 			<div class="description short">
 				<p>Get updatedAt.</p>
@@ -686,7 +692,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUpdatedAtRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#254-266" title="Go to source code">getUpdatedAtRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#259-271" title="Go to source code">getUpdatedAtRules</a>( )</code>
 
 			<div class="description short">
 				<p>Get rules associated with updatedAtAttribute.</p>
@@ -719,7 +725,7 @@ override or modify it directly, unless you know the consequences.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_enabledTimestampFields">#</a>
-			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#268-279" title="Go to source code">enabledTimestampFields</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.TimestampTrait.html#273-284" title="Go to source code">enabledTimestampFields</a>( )</code>
 
 			<div class="description short">
 				

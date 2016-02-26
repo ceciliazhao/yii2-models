@@ -59,10 +59,6 @@
 						</a>
 							<ul>
 					<li>
-						<a href="namespace-vistart.Models.components.html">
-							components						</a>
-							</li>
-					<li>
 						<a href="namespace-vistart.Models.events.html">
 							events						</a>
 							</li>
@@ -103,6 +99,7 @@
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li class="active"><a href="class-vistart.Models.models.BaseMongoMessageModel.html">BaseMongoMessageModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisMessageModel.html">BaseRedisMessageModel</a></li>
@@ -129,7 +126,28 @@
 
 
 	<div class="description">
-	<p>This model helps build message model stored in mongodb.</p>
+	<p>This model helps build message model stored in mongodb.
+This model enables the following fields:</p>
+
+<ul>
+<li>idAttribute: _id</li>
+<li>createdAtAttribute: createdAt</li>
+<li>updatedAtAttribute: updatedAt</li>
+<li>ipTypeAttribute: ip_type</li>
+<li>ipAttribute1: ip_1</li>
+<li>ipAttribute2: ip_2</li>
+<li>ipAttribute3: ip_3</li>
+<li><p>ipAttribute5: ip_4</p></li>
+<li><p>contentAttribute: content</p></li>
+<li><p>createdByAttribute: user_guid</p></li>
+<li><p>otherGuidAttribute: other_guid</p></li>
+<li>attachmentAttribute: attachment</li>
+<li>receivedAtAttribute: received_at</li>
+<li>readAtAttribute: read_at</li>
+</ul>
+
+<p>Property:
+- expiredAt: 604800 // 7 days</p>
 	</div>
 
 	<dl class="tree well">
@@ -183,7 +201,7 @@ yii\mongodb\ActiveRecord
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#18-42" title="Go to source code">models/BaseMongoMessageModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#18-63" title="Go to source code">models/BaseMongoMessageModel.php</a>
 		<br>
 	</div>
 
@@ -203,7 +221,7 @@ yii\mongodb\ActiveRecord
 
 			<td class="name"><div>
 			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#31-41" title="Go to source code">init</a>( )</code>
+			<code><a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#52-62" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
 				<p>Initialize the blameable model.
@@ -434,7 +452,7 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#28" title="Go to source code"><var>$updatedByAttribute</var></a>
+					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#49" title="Go to source code"><var>$updatedByAttribute</var></a>
 
 				<div class="description short">
 					<p>the attribute that will receive current user ID value.
@@ -461,7 +479,7 @@ Set this property to false if you do not want to record the updater ID.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#29" title="Go to source code"><var>$expiredAt</var></a>
+					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#50" title="Go to source code"><var>$expiredAt</var></a>
 
 				<div class="description short">
 					<p>the expiration in seconds, or false if it will not be expired.</p>

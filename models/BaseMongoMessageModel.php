@@ -17,6 +17,27 @@ use vistart\Models\traits\MessageTrait;
 
 /**
  * This model helps build message model stored in mongodb.
+ * This model enables the following fields:
+ * 
+ * - idAttribute: _id
+ * - createdAtAttribute: createdAt
+ * - updatedAtAttribute: updatedAt
+ * - ipTypeAttribute: ip_type
+ * - ipAttribute1: ip_1
+ * - ipAttribute2: ip_2
+ * - ipAttribute3: ip_3
+ * - ipAttribute5: ip_4
+ * 
+ * - contentAttribute: content
+ * - createdByAttribute: user_guid
+ * 
+ * - otherGuidAttribute: other_guid
+ * - attachmentAttribute: attachment
+ * - receivedAtAttribute: received_at
+ * - readAtAttribute: read_at
+ * 
+ * Property:
+ * - expiredAt: 604800 // 7 days
  *
  * @version 2.0
  * @author vistart <i@vistart.name>

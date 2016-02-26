@@ -82,7 +82,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
                             'scriptUrl' => '/index.php',
                         ],
                         'user' => [
-                            'class' => '\vistart\Models\components\SSOIdentity',
+                            'class' => '\yii\web\User',
                             'identityClass' => 'app\models\user\User',
                             'enableAutoLogin' => true,
                         ]
