@@ -12,21 +12,14 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\NotificationTrait;
+use vistart\Models\traits\NotificationLogTrait;
 
 /**
- * Description of BaseNotificationModel
+ * Description of BaseMongoNotificationLogModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseNotificationModel extends BaseBlameableModel
+abstract class BaseMongoNotificationLogModel extends BaseMongoBlameableModel
 {
-    use NotificationTrait;
-
-    public $expiredAt = 604800;
-
-    public function init()
-    {
-        parent::init();
-    }
+    use NotificationLogTrait;
 }

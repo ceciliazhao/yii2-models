@@ -19,5 +19,22 @@ namespace vistart\Models\traits;
  */
 trait NotificationLog
 {
-    
+
+    public function read($user, $notification)
+    {
+        $log = static::find()->byIdentity($user)->id($notification->guid)->one();
+        if (!$log) {
+            $log = $user->create(static::className(), ['id' => $notification->guid]);
+        }
+        return $log->save();
+    }
+
+    public function unread($user, $notification)
+    {
+        $log = static::find()->byIdentity($user)->id($notification - guid)->one();
+        if ($log) {
+            return $log->delete();
+        }
+        return true;
+    }
 }

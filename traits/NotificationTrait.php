@@ -22,7 +22,6 @@ trait NotificationTrait
 {
     use NotificationRangeTrait;
 
-    public $logModel;
     public $linkAttrbute = '';
 
     public function getLink()

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/* *
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -15,11 +15,11 @@ namespace vistart\Models\models;
 use vistart\Models\traits\NotificationTrait;
 
 /**
- * Description of BaseNotificationModel
+ * Description of BaseMongoNotificationModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseNotificationModel extends BaseBlameableModel
+abstract class BaseMongoNotificationModel extends BaseMongoNotificationModel
 {
     use NotificationTrait;
 

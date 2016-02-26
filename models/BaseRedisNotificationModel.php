@@ -15,11 +15,11 @@ namespace vistart\Models\models;
 use vistart\Models\traits\NotificationTrait;
 
 /**
- * Description of BaseNotificationModel
+ * Description of BaseRedisNotificationModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseNotificationModel extends BaseBlameableModel
+abstract class BaseRedisNotificationModel extends BaseRedisBlameableModel
 {
     use NotificationTrait;
 

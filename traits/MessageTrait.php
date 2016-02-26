@@ -34,12 +34,12 @@ trait MessageTrait
 
     public function hasBeenReceived()
     {
-        return is_string($this->receivedAtAttribute) ? !$this->isInitDatetime($this->receivedAt) : false;
+        return is_string($this->receivedAtAttribute) ? !$this->isInitDatetime($this->getReceivedAt()) : false;
     }
 
     public function hasBeenRead()
     {
-        return is_string($this->readAtAttribute) ? !$this->isInitDatetime($this->readAt) : false;
+        return is_string($this->readAtAttribute) ? !$this->isInitDatetime($this->getReadAt()) : false;
     }
 
     public function touchReceived()
@@ -200,10 +200,13 @@ trait MessageTrait
 
     public function getMessageRules()
     {
-        $rules = [
-            [$this->otherGuidAttribute, 'required'],
-            [$this->otherGuidAttribute, 'string', 'max' => 36],
-        ];
+        $rules = [];
+        if (is_string($this->otherGuidAttribute)) {
+            $rules = [
+                [$this->otherGuidAttribute, 'required'],
+                [$this->otherGuidAttribute, 'string', 'max' => 36],
+            ];
+        }
         if (is_string($this->attachmentAttribute)) {
             $rules[] = [$this->attachmentAttribute, 'safe'];
         }
@@ -224,7 +227,9 @@ trait MessageTrait
     public function enabledFields()
     {
         $fields = parent::enabledFields();
-        $fields[] = $this->otherGuidAttribute;
+        if (is_string($this->otherGuidAttribute)) {
+            $fields[] = $this->otherGuidAttribute;
+        }
         if (is_string($this->attachmentAttribute)) {
             $fields[] = $this->attachmentAttribute;
         }
