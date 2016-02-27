@@ -27,13 +27,18 @@ trait NotificationTrait
     public function getLink()
     {
         $linkAttribute = $this->linkAttribute;
-        return $this->$linkAttribute;
+        if (is_string($linkAttribute)) {
+            return $this->$linkAttribute;
+        }
+        return null;
     }
 
     public function setLink($link)
     {
         $linkAttribute = $this->linkAttribute;
-        return $this->$linkAttribute = $link;
+        if (is_string($linkAttribute)) {
+            return $this->$linkAttribute = $link;
+        }
     }
 
     public function getNotificationRules()
