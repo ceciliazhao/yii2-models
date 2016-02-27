@@ -35,7 +35,11 @@ trait NotificationRangeTrait
     public function getRange()
     {
         $rangeAttribute = $this->rangeAttribute;
-        $range = Json::decode($this->$rangeAttribute);
+        try {
+            $range = Json::decode($this->$rangeAttribute);
+        } catch (\Exception $ex) {
+            $range = [];
+        }
         if (!isset($range['exclude']) || !$range['exclude']) {
             $range['exclude'] = false;
         } else {

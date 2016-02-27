@@ -24,9 +24,4 @@ abstract class BaseMongoNotificationModel extends BaseMongoBlameableModel
     use NotificationTrait;
 
     public $expiredAt = 604800;
-
-    public function init()
-    {
-        parent::init();
-    }
 }
