@@ -19,7 +19,7 @@ use vistart\Models\traits\NotificationTrait;
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseMongoNotificationModel extends BaseMongoNotificationModel
+abstract class BaseMongoNotificationModel extends BaseMongoBlameableModel
 {
     use NotificationTrait;
 

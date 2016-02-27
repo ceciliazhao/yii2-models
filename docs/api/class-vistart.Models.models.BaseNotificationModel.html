@@ -99,11 +99,14 @@
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoMessageModel.html">BaseMongoMessageModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoNotificationLogModel.html">BaseMongoNotificationLogModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoNotificationModel.html">BaseMongoNotificationModel</a></li>
 				<li class="active"><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisMessageModel.html">BaseRedisMessageModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisMetaModel.html">BaseRedisMetaModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseRedisNotificationModel.html">BaseRedisNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserModel.html">BaseUserModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserRelationGroupModel.html">BaseUserRelationGroupModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseUserRelationModel.html">BaseUserRelationModel</a></li>
@@ -146,6 +149,15 @@ yii\db\ActiveRecord
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-vistart.Models.models.BaseBlameableModel.html"><span>vistart\Models\models\BaseBlameableModel</span></a>
+			
+			
+			 uses 
+					<a href="class-vistart.Models.traits.BlameableTrait.html"><span>vistart\Models\traits\BlameableTrait</span></a>
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
 <b><span>vistart\Models\models\BaseNotificationModel</span></b>			
 			
 			 uses 
@@ -162,7 +174,7 @@ yii\db\ActiveRecord
 
 
 	<div class="alert alert-info">
-		
+		<b>Abstract</b><br>
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.models.html">models</a><br>
 		
@@ -192,11 +204,13 @@ yii\db\ActiveRecord
 			<code><a href="source-class-vistart.Models.models.BaseNotificationModel.html#28-31" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				<p>Initialize new entity.</p>
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Initialize new entity.</p>
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 
 
 
@@ -204,7 +218,7 @@ yii\db\ActiveRecord
 
 
 					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseEntityModel.html#_init">vistart\Models\models\BaseEntityModel::init</a></code></div>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseBlameableModel.html#_init">vistart\Models\models\BaseBlameableModel::init</a></code></div>
 
 			</div>
 			</div></td>
@@ -212,6 +226,12 @@ yii\db\ActiveRecord
 			</table>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseBlameableModel.html#methods">vistart\Models\models\BaseBlameableModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseBlameableModel.html#_findByIdentity">findByIdentity()</a></code>
+			</p>
+		</div>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseEntityModel.html#methods">vistart\Models\models\BaseEntityModel</a></h3></div>
 			<p class="elementList">
@@ -239,12 +259,83 @@ yii\db\ActiveRecord
 			</p>
 		</div>
 		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countByIdentity">countByIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countOfOwner">countOfOwner()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_enabledFields">enabledFields()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findAllByIdentityInBatch">findAllByIdentityInBatch()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findOneById">findOneById()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheKey">getBlameableBehaviorsCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheTag">getBlameableBehaviorsCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheKey">getBlameableRulesCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheTag">getBlameableRulesCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentRules">getContentRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescription">getDescription()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescriptionRules">getDescriptionRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getPagination">getPagination()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUpdater">getUpdater()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUser">getUser()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_initBlameableEvents">initBlameableEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onContentChanged">onContentChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitDescription">onInitDescription()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_rules">rules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setContent">setContent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setDescription">setDescription()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.ConfirmationTrait.html#methods">vistart\Models\traits\ConfirmationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_applyConfirmation">applyConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_confirm">confirm()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_generateConfirmationCode">generateConfirmationCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmCode">getConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmation">getConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmationRules">getConfirmationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getIsConfirmed">getIsConfirmed()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onConfirmationChanged">onConfirmationChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onInitConfirmation">onInitConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetConfirmation">resetConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetOthersConfirmation">resetOthersConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmCode">setConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_validateConfirmationCode">validateConfirmationCode()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.SelfBlameableTrait.html#methods">vistart\Models\traits\SelfBlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_bear">bear()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_deleteChildren">deleteChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getChildren">getChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getOldChildren">getOldChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getParent">getParent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getSelfBlameableRules">getSelfBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_initSelfBlameableEvents">initSelfBlameableEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onDeleteChildren">onDeleteChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onParentRefIdChanged">onParentRefIdChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onUpdateChildren">onUpdateChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_setSelfBlameableRules">setSelfBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_updateChildren">updateChildren()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#___toString">__toString()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_buildNoInitModel">buildNoInitModel()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheKey">getEntityBehaviorsCacheKey()</a></code>, 
@@ -257,7 +348,6 @@ yii\db\ActiveRecord
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_onInitCache">onInitCache()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_recordWarnings">recordWarnings()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
-				<code><a href="class-vistart.Models.traits.EntityTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#_unsetFields">unsetFields()</a></code>, 
@@ -377,10 +467,28 @@ yii\db\ActiveRecord
 			</p>
 		</div>
 		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableBehaviors"><var>$cacheKeyBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableBehaviors"><var>$cacheTagBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableRules"><var>$cacheTagBlameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttribute"><var>$contentAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$descriptionAttribute"><var>$descriptionAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$idCreatorCombinatedUnique"><var>$idCreatorCombinatedUnique</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$initDescription"><var>$initDescription</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$updatedByAttribute"><var>$updatedByAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.NotificationTrait.html#properties">vistart\Models\traits\NotificationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttrbute"><var>$linkAttrbute</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$logModel"><var>$logModel</var></a></code>
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttrbute"><var>$linkAttrbute</var></a></code>
 			</p>
 		</div>
 
@@ -391,6 +499,20 @@ yii\db\ActiveRecord
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityBehaviors"><var>$entityBehaviors</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityRules"><var>$entityRules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableAttributeRules"><var>$blameableAttributeRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableBehaviors"><var>$blameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableRules"><var>$blameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$content"><var>$content</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentCanBeEdited"><var>$contentCanBeEdited</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentRules"><var>$contentRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$descriptionRules"><var>$descriptionRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$updater"><var>$updater</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$user"><var>$user</var></a></code>
 			</p>
 		</div>
 
