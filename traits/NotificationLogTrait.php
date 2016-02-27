@@ -17,10 +17,10 @@ namespace vistart\Models\traits;
  *
  * @author vistart <i@vistart.name>
  */
-trait NotificationLog
+trait NotificationLogTrait
 {
 
-    public function read($user, $notification)
+    public static function read($user, $notification)
     {
         $log = static::find()->byIdentity($user)->id($notification->guid)->one();
         if (!$log) {
@@ -29,7 +29,7 @@ trait NotificationLog
         return $log->save();
     }
 
-    public function unread($user, $notification)
+    public static function unread($user, $notification)
     {
         $log = static::find()->byIdentity($user)->id($notification - guid)->one();
         if ($log) {
