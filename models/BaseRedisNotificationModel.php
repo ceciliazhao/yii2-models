@@ -25,5 +25,6 @@ abstract class BaseRedisNotificationModel extends BaseRedisBlameableModel
 
     public $expiredAt = 604800;
     public $updatedAtAttribute = false;
+    public $updatedByAttribute = false;
     public $enableIP = false;
 }

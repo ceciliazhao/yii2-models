@@ -24,9 +24,8 @@ abstract class BaseNotificationModel extends BaseBlameableModel
     use NotificationTrait;
 
     public $expiredAt = 604800;
+    public $updatedAtAttribute = false;
+    public $updatedByAttribute = false;
+    public $enableIP = false;
 
-    public function init()
-    {
-        parent::init();
-    }
 }
