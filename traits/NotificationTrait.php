@@ -22,17 +22,17 @@ trait NotificationTrait
 {
     use NotificationRangeTrait;
 
-    public $linkAttrbute = false;
+    public $linkAttribute = false;
 
     public function getLink()
     {
-        $linkAttribute = $this->linkAttrbute;
+        $linkAttribute = $this->linkAttribute;
         return $this->$linkAttribute;
     }
 
     public function setLink($link)
     {
-        $linkAttribute = $this->linkAttrbute;
+        $linkAttribute = $this->linkAttribute;
         return $this->$linkAttribute = $link;
     }
 
@@ -40,9 +40,9 @@ trait NotificationTrait
     {
         $rules = $this->getNotificationRangeRules();
 
-        if (is_string($this->linkAttrbute)) {
+        if (is_string($this->linkAttribute)) {
             $rules[] = [
-                $this->linkAttrbute, 'string',
+                $this->linkAttribute, 'string',
             ];
         }
         return $rules;
@@ -52,7 +52,7 @@ trait NotificationTrait
     {
         $fields = parent::enabledFields();
         if (is_string($this->linkAttribute)) {
-            $fields[] = $this->linkAttrbute;
+            $fields[] = $this->linkAttribute;
         }
         if (is_string($this->rangeAttribute)) {
             $fields[] = $this->rangeAttribute;
