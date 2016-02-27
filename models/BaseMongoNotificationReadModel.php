@@ -12,14 +12,19 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\NotificationLogTrait;
+use vistart\Models\traits\NotificationReadTrait;
 
 /**
  * Description of BaseMongoNotificationLogModel
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseMongoNotificationLogModel extends BaseMongoBlameableModel
+abstract class BaseMongoNotificationReadModel extends BaseMongoBlameableModel
 {
-    use NotificationLogTrait;
+    use NotificationReadTrait;
+
+    public $updatedAtAttribute = false;
+    public $updatedByAttribute = false;
+    public $enableIP = false;
+
 }

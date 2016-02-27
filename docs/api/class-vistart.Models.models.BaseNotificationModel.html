@@ -99,8 +99,8 @@
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoMessageModel.html">BaseMongoMessageModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseMongoNotificationLogModel.html">BaseMongoNotificationLogModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoNotificationModel.html">BaseMongoNotificationModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoNotificationReadModel.html">BaseMongoNotificationReadModel</a></li>
 				<li class="active"><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
@@ -243,8 +243,10 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.NotificationTrait.html#methods">vistart\Models\traits\NotificationTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getLink">getLink()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getNotificationRules">getNotificationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_setLink">setLink()</a></code>
 			</p>
 		</div>
@@ -264,7 +266,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countByIdentity">countByIdentity()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countOfOwner">countOfOwner()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findAllByIdentityInBatch">findAllByIdentityInBatch()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findOneById">findOneById()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
@@ -288,7 +289,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitDescription">onInitDescription()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setContent">setContent()</a></code>, 
@@ -488,7 +488,7 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.NotificationTrait.html#properties">vistart\Models\traits\NotificationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttrbute"><var>$linkAttrbute</var></a></code>
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttribute"><var>$linkAttribute</var></a></code>
 			</p>
 		</div>
 

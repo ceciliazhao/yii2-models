@@ -30,6 +30,10 @@ use yii\helpers\Json;
 trait NotificationRangeTrait
 {
 
+    /**
+     * @var string range attribute name.
+     * We do not recommend you access this attribute directly.
+     */
     public $rangeAttribute = 'range';
 
     public function getRange()

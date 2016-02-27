@@ -24,9 +24,6 @@ abstract class BaseRedisNotificationModel extends BaseRedisBlameableModel
     use NotificationTrait;
 
     public $expiredAt = 604800;
-
-    public function init()
-    {
-        parent::init();
-    }
+    public $updatedAtAttribute = false;
+    public $enableIP = false;
 }

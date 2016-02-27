@@ -17,7 +17,7 @@ namespace vistart\Models\traits;
  *
  * @author vistart <i@vistart.name>
  */
-trait NotificationLogTrait
+trait NotificationReadTrait
 {
 
     public static function read($user, $notification)

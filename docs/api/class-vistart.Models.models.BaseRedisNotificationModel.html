@@ -99,8 +99,8 @@
 				<li><a href="class-vistart.Models.models.BaseMongoBlameableModel.html">BaseMongoBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoEntityModel.html">BaseMongoEntityModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoMessageModel.html">BaseMongoMessageModel</a></li>
-				<li><a href="class-vistart.Models.models.BaseMongoNotificationLogModel.html">BaseMongoNotificationLogModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseMongoNotificationModel.html">BaseMongoNotificationModel</a></li>
+				<li><a href="class-vistart.Models.models.BaseMongoNotificationReadModel.html">BaseMongoNotificationReadModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseNotificationModel.html">BaseNotificationModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisBlameableModel.html">BaseRedisBlameableModel</a></li>
 				<li><a href="class-vistart.Models.models.BaseRedisEntityModel.html">BaseRedisEntityModel</a></li>
@@ -181,7 +181,7 @@ yii\redis\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseRedisNotificationModel.html#17-32" title="Go to source code">models/BaseRedisNotificationModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseRedisNotificationModel.html#17-29" title="Go to source code">models/BaseRedisNotificationModel.php</a>
 		<br>
 	</div>
 
@@ -189,47 +189,13 @@ yii\redis\ActiveRecord
 
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
-			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="init" id="_init">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_init">#</a>
-			<code><a href="source-class-vistart.Models.models.BaseRedisNotificationModel.html#28-31" title="Go to source code">init</a>( )</code>
-
-			<div class="description short">
-				<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-
-
-
-
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-vistart.Models.models.BaseRedisBlameableModel.html#_init">vistart\Models\models\BaseRedisBlameableModel::init</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
-			</table>
 		</div>
 
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseRedisBlameableModel.html#methods">vistart\Models\models\BaseRedisBlameableModel</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.models.BaseRedisBlameableModel.html#_findByIdentity">findByIdentity()</a></code>
+				<code><a href="class-vistart.Models.models.BaseRedisBlameableModel.html#_findByIdentity">findByIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.models.BaseRedisBlameableModel.html#_init">init()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -244,8 +210,10 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.NotificationTrait.html#methods">vistart\Models\traits\NotificationTrait</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getLink">getLink()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_getNotificationRules">getNotificationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.NotificationTrait.html#_setLink">setLink()</a></code>
 			</p>
 		</div>
@@ -265,7 +233,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countByIdentity">countByIdentity()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countOfOwner">countOfOwner()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_enabledFields">enabledFields()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findAllByIdentityInBatch">findAllByIdentityInBatch()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findOneById">findOneById()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
@@ -289,7 +256,6 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitDescription">onInitDescription()</a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_rules">rules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setContent">setContent()</a></code>, 
@@ -449,6 +415,68 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 				</div>
 			</td>
 		</tr>
+		<tr data-order="updatedAtAttribute" id="$updatedAtAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseRedisNotificationModel.html#27" title="Go to source code"><var>$updatedAtAttribute</var></a>
+
+				<div class="description short">
+					<p>the attribute that will receive datetime value.
+Set this property to false if you do not want to record the update time.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>the attribute that will receive datetime value.
+Set this property to false if you do not want to record the update time.</p>
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$updatedAtAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="enableIP" id="$enableIP">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseRedisNotificationModel.html#28" title="Go to source code"><var>$enableIP</var></a>
+
+				<div class="description short">
+					<p>REQUIRED. Determine whether enabling the IP attributes and
+features, and IP address type if enabled.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>REQUIRED. Determine whether enabling the IP attributes and
+features, and IP address type if enabled.</p>
+
+						<h4>Version</h4>
+						<div class="list">
+								2.0<br>
+						</div>
+						<h4>Since</h4>
+						<div class="list">
+								1.1<br>
+						</div>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$enableIP" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
 			</table>
 		</div>
 
@@ -489,7 +517,7 @@ If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.NotificationTrait.html#properties">vistart\Models\traits\NotificationTrait</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttrbute"><var>$linkAttrbute</var></a></code>
+				<code><a href="class-vistart.Models.traits.NotificationTrait.html#$linkAttribute"><var>$linkAttribute</var></a></code>
 			</p>
 		</div>
 
