@@ -16,6 +16,7 @@ namespace vistart\Models\traits;
  * This trait should be used in models extended from models used BlameableTrait.
  * Notice: The models used BlameableTrait are also models used EntityTrait.
  *
+ * @property $recipient
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -240,5 +241,37 @@ trait MessageTrait
             $fields[] = $this->readAtAttribute;
         }
         return $fields;
+    }
+
+    /**
+     * Get initiator.
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function getInitiator()
+    {
+        return $this->getUser();
+    }
+
+    /**
+     * Get recipient.
+     * @return \vistart\Models\queries\BaseUserQuery
+     */
+    public function getRecipient()
+    {
+        if (!is_string($this->otherGuidAttribute)) {
+            return null;
+        }
+        $userClass = $this->userClass;
+        $model = $userClass::buildNoInitModel();
+        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->otherGuidAttribute]);
+    }
+
+    public function setRecipient($user)
+    {
+        if (!is_string($this->otherGuidAttribute)) {
+            return null;
+        }
+        $otherGuidAttribute = $this->otherGuidAttribute;
+        return $this->$otherGuidAttribute = $user->guid;
     }
 }

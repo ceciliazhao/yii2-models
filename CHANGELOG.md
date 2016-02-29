@@ -6,6 +6,10 @@
 
 - Chg: change dependency to [vistart/helpers](https://github.com/vistart/helpers). (vistart)
 
+#### traits/MessageTrait.php
+
+- Add: getInitiator(), getRecipient() and setRecipient() method. (vistart)
+
 #### traits/BlameableTrait.php
 
 - Chg: rename count() method with countOfOwner(). (vistart)
