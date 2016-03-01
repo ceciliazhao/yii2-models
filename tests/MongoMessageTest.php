@@ -84,11 +84,11 @@ class MongoMessageTest extends MongoTestCase
         $message = $user->create(ExpiredMongoMessage::className(), ['content' => 'message', 'other_guid' => $other->guid]);
         $this->assertTrue($message->save());
         $id = $message->id;
-        usleep(999000);
+        usleep(900000);
         $message = ExpiredMongoMessage::find()->id($id)->one();
         $this->assertInstanceOf(ExpiredMongoMessage::className(), $message);
         $this->assertFalse($message->isExpired);
-        usleep(1001000);
+        usleep(1101000);
         $message = ExpiredMongoMessage::find()->id($id)->one();
         $this->assertInstanceOf(ExpiredMongoMessage::className(), $message);
         if ($message->isExpired) {

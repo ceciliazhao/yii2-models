@@ -37,7 +37,7 @@ class BaseUserModelTest extends TestCase
             }
         }
         $count = count($users);
-        echo ("$count( / 100) users has been registered successfully.\n");
+        //echo ("$count( / 100) users has been registered successfully.\n");
         foreach ($users as $user) {
             if ($user->deregister() !== true) {
                 $this->assertTrue(false);

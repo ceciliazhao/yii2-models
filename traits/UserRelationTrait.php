@@ -40,7 +40,8 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  */
 trait UserRelationTrait
 {
-    use mb {
+    use mb,
+        MutualTrait {
         mb::addBlame as addGroup;
         mb::createBlame as createGroup;
         mb::addOrCreateBlame as addOrCreateGroup;
@@ -57,11 +58,6 @@ trait UserRelationTrait
         mb::getMultipleBlameableAttributeRules as getGroupsRules;
         mb::getEmptyBlamesJson as getEmptyGroupJson;
     }
-
-    /**
-     * @var string the another party of the relation.
-     */
-    public $otherGuidAttribute = 'other_guid';
 
     /**
      * @var string
@@ -127,29 +123,6 @@ trait UserRelationTrait
     public function rules()
     {
         return array_merge(parent::rules(), $this->getUserRelationRules());
-    }
-
-    /**
-     * Get initiator.
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function getInitiator()
-    {
-        return $this->getUser();
-    }
-
-    /**
-     * Get recipient.
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function getRecipient()
-    {
-        if (!is_string($this->otherGuidAttribute)) {
-            return null;
-        }
-        $userClass = $this->userClass;
-        $model = $userClass::buildNoInitModel();
-        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->otherGuidAttribute]);
     }
 
     /**
@@ -219,11 +192,9 @@ trait UserRelationTrait
      */
     public function getOtherGuidRules()
     {
-        $rules = [
-            [[$this->otherGuidAttribute], 'required'],
-            [[$this->otherGuidAttribute], 'string', 'max' => 36],
+        $rules = array_merge($this->getMutualRules(), [
             [[$this->otherGuidAttribute, $this->createdByAttribute], 'unique', 'targetAttribute' => [$this->otherGuidAttribute, $this->createdByAttribute]],
-        ];
+        ]);
         return $rules;
     }
 
