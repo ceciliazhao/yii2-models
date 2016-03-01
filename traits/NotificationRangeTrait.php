@@ -39,6 +39,9 @@ trait NotificationRangeTrait
     public function getRange()
     {
         $rangeAttribute = $this->rangeAttribute;
+        if (!is_string($rangeAttribute)) {
+            return null;
+        }
         try {
             $range = Json::decode($this->$rangeAttribute);
         } catch (\Exception $ex) {
@@ -60,6 +63,10 @@ trait NotificationRangeTrait
 
     public function setRange($range)
     {
+        $rangeAttribute = $this->rangeAttribute;
+        if (!is_string($rangeAttribute)) {
+            return null;
+        }
         if (!is_array($range)) {
             $range = [];
         }
@@ -72,12 +79,15 @@ trait NotificationRangeTrait
         if (isset($range['status']) && empty($range['status'])) {
             unset($range['status']);
         }
-        $rangeAttribute = $this->rangeAttribute;
         return $this->$rangeAttribute = Json::encode($range);
     }
 
     public function inRange($user, $status = null)
     {
+        $rangeAttribute = $this->rangeAttribute;
+        if (!is_string($rangeAttribute)) {
+            return false;
+        }
         $range = $this->getRange();
         if ($status === null) {
             return $range['exclude'] ? !in_array($user, $range['user']) : in_array($user, $range['user']);
@@ -87,10 +97,10 @@ trait NotificationRangeTrait
 
     public function getNotificationRangeRules()
     {
-        return [
+        return is_string($this->rangeAttribute) ? [
             [$this->rangeAttribute, 'string'],
             [$this->rangeAttribute, 'validateRange'],
-        ];
+            ] : [];
     }
 
     public function validateRange()
