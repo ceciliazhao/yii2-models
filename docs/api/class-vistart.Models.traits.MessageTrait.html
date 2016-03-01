@@ -109,6 +109,7 @@
 				<li><a href="class-vistart.Models.traits.MetaTrait.html">MetaTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MultipleBlameableTrait.html">MultipleBlameableTrait</a></li>
 				<li><a href="class-vistart.Models.traits.MutualQueryTrait.html">MutualQueryTrait</a></li>
+				<li><a href="class-vistart.Models.traits.MutualTrait.html">MutualTrait</a></li>
 				<li><a href="class-vistart.Models.traits.NotificationRangeTrait.html">NotificationRangeTrait</a></li>
 				<li><a href="class-vistart.Models.traits.NotificationReadTrait.html">NotificationReadTrait</a></li>
 				<li><a href="class-vistart.Models.traits.NotificationTrait.html">NotificationTrait</a></li>
@@ -141,6 +142,15 @@
 Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 	</div>
 
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+<b><span>vistart\Models\traits\MessageTrait</span></b>			
+			
+			 uses 
+					<a href="class-vistart.Models.traits.MutualTrait.html"><span>vistart\Models\traits\MutualTrait</span></a>
+			
+		</dd>
+	</dl>
 
 
 
@@ -166,7 +176,7 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
 				<b>Version:</b>
 				2.0<br>
-			<b>Located at</b> <a href="source-class-vistart.Models.traits.MessageTrait.html#15-277" title="Go to source code">traits/MessageTrait.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.traits.MessageTrait.html#15-240" title="Go to source code">traits/MessageTrait.php</a>
 		<br>
 	</div>
 
@@ -651,7 +661,7 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMessageRules">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#202-221" title="Go to source code">getMessageRules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#202-216" title="Go to source code">getMessageRules</a>( )</code>
 
 			<div class="description short">
 				
@@ -680,7 +690,7 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_rules">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#223-226" title="Go to source code">rules</a>( )</code>
+			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#218-221" title="Go to source code">rules</a>( )</code>
 
 			<div class="description short">
 				
@@ -709,102 +719,7 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_enabledFields">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#228-244" title="Go to source code">enabledFields</a>( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getInitiator" id="_getInitiator">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getInitiator">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#246-253" title="Go to source code">getInitiator</a>( )</code>
-
-			<div class="description short">
-				<p>Get initiator.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get initiator.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getRecipient" id="_getRecipient">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getRecipient">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#255-267" title="Go to source code">getRecipient</a>( )</code>
-
-			<div class="description short">
-				<p>Get recipient.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get recipient.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						<code><a href="class-vistart.Models.queries.BaseUserQuery.html">vistart\Models\queries\BaseUserQuery</a></code>
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="setRecipient" id="_setRecipient">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_setRecipient">#</a>
-			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#269-276" title="Go to source code">setRecipient</a>( <span> <var>$user</var></span> )</code>
+			<code><a href="source-class-vistart.Models.traits.MessageTrait.html#223-239" title="Go to source code">enabledFields</a>( )</code>
 
 			<div class="description short">
 				
@@ -826,6 +741,15 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 		</div>
 
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MutualTrait.html#methods">vistart\Models\traits\MutualTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getInitiator">getInitiator()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getMutualRules">getMutualRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getRecipient">getRecipient()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_setRecipient">setRecipient()</a></code>
+			</p>
+		</div>
 
 
 
@@ -838,31 +762,6 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 		<div class="panel panel-default">
             <div class="panel-heading"><h2>Properties summary</h2></div>
 			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="otherGuidAttribute" id="$otherGuidAttribute">
-			<td class="attributes"><code>
-				public  
-				string
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-vistart.Models.traits.MessageTrait.html#26" title="Go to source code"><var>$otherGuidAttribute</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$otherGuidAttribute" class="anchor">#</a>
-					<code><span class="php-quote">'other_guid'</span></code>
-				</div>
-			</td>
-		</tr>
 		<tr data-order="attachmentAttribute" id="$attachmentAttribute">
 			<td class="attributes"><code>
 				public  
@@ -1067,6 +966,12 @@ Notice: The models used BlameableTrait are also models used EntityTrait.</p>
 		</div>
 
 
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.MutualTrait.html#properties">vistart\Models\traits\MutualTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>
+			</p>
+		</div>
 
 		<div class="panel panel-default">
             <div class="panel-heading"><h3>Magic properties</h3></div>

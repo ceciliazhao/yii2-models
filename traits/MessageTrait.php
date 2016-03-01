@@ -22,8 +22,8 @@ namespace vistart\Models\traits;
  */
 trait MessageTrait
 {
+    use MutualTrait;
 
-    public $otherGuidAttribute = 'other_guid';
     public $attachmentAttribute = 'attachment';
     public $receivedAtAttribute = 'received_at';
     public $readAtAttribute = 'read_at';
@@ -202,12 +202,7 @@ trait MessageTrait
     public function getMessageRules()
     {
         $rules = [];
-        if (is_string($this->otherGuidAttribute)) {
-            $rules = [
-                [$this->otherGuidAttribute, 'required'],
-                [$this->otherGuidAttribute, 'string', 'max' => 36],
-            ];
-        }
+        $rules = array_merge($rules, $this->getMutualRules());
         if (is_string($this->attachmentAttribute)) {
             $rules[] = [$this->attachmentAttribute, 'safe'];
         }
@@ -241,37 +236,5 @@ trait MessageTrait
             $fields[] = $this->readAtAttribute;
         }
         return $fields;
-    }
-
-    /**
-     * Get initiator.
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function getInitiator()
-    {
-        return $this->getUser();
-    }
-
-    /**
-     * Get recipient.
-     * @return \vistart\Models\queries\BaseUserQuery
-     */
-    public function getRecipient()
-    {
-        if (!is_string($this->otherGuidAttribute)) {
-            return null;
-        }
-        $userClass = $this->userClass;
-        $model = $userClass::buildNoInitModel();
-        return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->otherGuidAttribute]);
-    }
-
-    public function setRecipient($user)
-    {
-        if (!is_string($this->otherGuidAttribute)) {
-            return null;
-        }
-        $otherGuidAttribute = $this->otherGuidAttribute;
-        return $this->$otherGuidAttribute = $user->guid;
     }
 }
