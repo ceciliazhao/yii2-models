@@ -347,9 +347,7 @@ trait BlameableTrait
             return [];
         }
         $rules = [];
-        $rules[] = [[
-            $this->contentAttribute],
-            'required'];
+        $rules[] = [$this->contentAttribute, 'required'];
         if ($this->contentAttributeRule) {
             if (is_string($this->contentAttributeRule)) {
                 $this->contentAttributeRule = [$this->contentAttributeRule];

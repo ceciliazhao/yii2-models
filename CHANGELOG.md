@@ -14,6 +14,7 @@
 
 - Chg: rename count() method with countOfOwner(). (vistart)
 - Add: findAllByIdentityInBatch(), findOneById(), countByIdentity() and getPagination(). (vistart)
+- Fix: generate required rules for multi-content-attributes. (vistart)
 
 #### traits/MetaTrait.php
 
