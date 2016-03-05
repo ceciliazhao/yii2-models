@@ -1,6 +1,6 @@
 ## Base Models for Yii 2 Applications
 
-### since 2.0.0 Alpha 2 release
+### 2.0.0 Beta 1
 
 - Chg: Move components to [vistart/yii2-components](https://github.com/vistart/yii2-components) (vistart)
 
