@@ -12,6 +12,7 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\queries\BaseBlameableQuery;
 use vistart\Models\traits\UserRelationGroupTrait;
 
 /**
@@ -38,7 +39,7 @@ abstract class BaseUserRelationGroupModel extends BaseBlameableModel
     public function init()
     {
         if (!is_string($this->queryClass)) {
-            $this->queryClass = \vistart\Models\queries\BaseBlameableQuery::className();
+            $this->queryClass = BaseBlameableQuery::className();
         }
         if ($this->skipInit) {
             return;

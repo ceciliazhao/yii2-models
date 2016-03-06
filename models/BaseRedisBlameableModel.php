@@ -12,6 +12,7 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\queries\BaseRedisBlameableQuery;
 use vistart\Models\traits\BlameableTrait;
 
 /**
@@ -30,7 +31,7 @@ abstract class BaseRedisBlameableModel extends BaseRedisEntityModel
     public function init()
     {
         if (!is_string($this->queryClass)) {
-            $this->queryClass = \vistart\Models\queries\BaseRedisBlameableQuery::className();
+            $this->queryClass = BaseRedisBlameableQuery::className();
         }
         if ($this->skipInit) {
             return;
@@ -41,8 +42,8 @@ abstract class BaseRedisBlameableModel extends BaseRedisEntityModel
 
     /**
      * Get the query class with specified identity.
-     * @param \vistart\Models\models\BaseUserModel $identity
-     * @return \vistart\Models\queries\BaseBlameableQuery
+     * @param BaseUserModel $identity
+     * @return BaseRedisBlameableQuery
      */
     public static function findByIdentity($identity = null)
     {

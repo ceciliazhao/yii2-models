@@ -12,9 +12,10 @@
 
 namespace vistart\Models\models;
 
-use yii\db\ActiveRecord;
 use vistart\Models\queries\BaseEntityQuery;
 use vistart\Models\traits\EntityTrait;
+use yii\db\ActiveRecord;
+use yii\base\NotSupportedException;
 
 /**
  * The abstract BaseEntityModel is used for entity model class which associates
@@ -46,7 +47,7 @@ abstract class BaseEntityModel extends ActiveRecord
      * checking, please override this method and return true directly. This
      * method runs when environment is not production or disable debug mode.
      * @return boolean true if all checks pass.
-     * @throws \yii\base\NotSupportedException
+     * @throws NotSupportedException
      */
     public function checkAttributes()
     {
@@ -65,7 +66,8 @@ abstract class BaseEntityModel extends ActiveRecord
      * ------------
      * This static method will take $queryClass property to query class. If it is
      * not a string, The [[BaseEntityQuery]] will be taken.
-     * @return \vistart\Models\models\BaseEntityQuery the newly created [[BaseEntityQuery]]
+     * This static method will build non-init model first, so you wouldn't build it any more.
+     * @return BaseEntityQuery the newly created [[BaseEntityQuery]]
      * or its extended class instance.
      */
     public static function find()

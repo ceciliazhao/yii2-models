@@ -12,6 +12,7 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\queries\BaseUserQuery;
 use vistart\Models\traits\UserTrait;
 
 /**
@@ -69,7 +70,7 @@ abstract class BaseUserModel extends BaseEntityModel implements \yii\web\Identit
     public function init()
     {
         if (!is_string($this->queryClass)) {
-            $this->queryClass = \vistart\Models\queries\BaseUserQuery::className();
+            $this->queryClass = BaseUserQuery::className();
         }
         if ($this->skipInit) {
             return;

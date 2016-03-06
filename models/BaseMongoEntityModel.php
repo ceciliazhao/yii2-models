@@ -14,6 +14,7 @@ namespace vistart\Models\models;
 
 use vistart\Models\queries\BaseMongoEntityQuery;
 use vistart\Models\traits\EntityTrait;
+use yii\mongodb\ActiveRecord;
 
 /**
  * Description of BaseMongoEntityModel
@@ -21,7 +22,7 @@ use vistart\Models\traits\EntityTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
+abstract class BaseMongoEntityModel extends ActiveRecord
 {
     use EntityTrait;
 
@@ -41,7 +42,7 @@ abstract class BaseMongoEntityModel extends \yii\mongodb\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \vistart\Models\queries\BaseMongoEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
+     * @return BaseMongoEntityQuery the newly created [[BaseEntityQuery]] or its sub-class instance.
      */
     public static function find()
     {

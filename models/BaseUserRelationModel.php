@@ -12,8 +12,8 @@
 
 namespace vistart\Models\models;
 
-use vistart\Models\traits\UserRelationTrait;
 use vistart\Models\queries\BaseUserRelationQuery;
+use vistart\Models\traits\UserRelationTrait;
 
 /**
  * This abstract class helps you build user relation model.

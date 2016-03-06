@@ -12,6 +12,7 @@
 
 namespace vistart\Models\models;
 
+use vistart\Models\queries\BaseMongoBlameableQuery;
 use vistart\Models\traits\BlameableTrait;
 
 /**
@@ -30,7 +31,7 @@ abstract class BaseMongoBlameableModel extends BaseMongoEntityModel
     public function init()
     {
         if (!is_string($this->queryClass)) {
-            $this->queryClass = \vistart\Models\queries\BaseMongoBlameableQuery::className();
+            $this->queryClass = BaseMongoBlameableQuery::className();
         }
         if ($this->skipInit) {
             return;
@@ -41,8 +42,8 @@ abstract class BaseMongoBlameableModel extends BaseMongoEntityModel
 
     /**
      * Get the query class with specified identity.
-     * @param \vistart\Models\models\BaseUserModel $identity
-     * @return \vistart\Models\queries\BaseBlameableQuery
+     * @param BaseUserModel $identity
+     * @return BaseMongoBlameableQuery
      */
     public static function findByIdentity($identity = null)
     {
@@ -55,7 +56,7 @@ abstract class BaseMongoBlameableModel extends BaseMongoEntityModel
      */
     public $guidAttribute = false;
     public $idAttribute = '_id';
-    
+
     public function attributes()
     {
         return $this->enabledFields();
