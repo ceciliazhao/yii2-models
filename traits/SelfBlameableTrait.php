@@ -12,10 +12,14 @@
 
 namespace vistart\Models\traits;
 
+use yii\base\ModelEvent;
+use yii\db\ActiveQuery;
+use yii\db\IntegrityException;
+
 /**
  * Description of SelfBlameableTrait
  *
- * @property-read static $parent
+ * @property static $parent
  * @property-read static[] $children
  * @property-read static[] $oldChildren
  * @property array $selfBlameableRules
@@ -72,6 +76,7 @@ trait SelfBlameableTrait
      */
     public $throwRestrictException = false;
     private $localSelfBlameableRules = [];
+    public static $eventParentChanged = 'parentChanged';
 
     /**
      * Get rules associated with self blameable attribute.
@@ -120,9 +125,9 @@ trait SelfBlameableTrait
 
     /**
      * Event triggered before deleting itself.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return boolean true if parentAttribute not specified.
-     * @throws \yii\db\IntegrityException throw if $throwRestrictException is true when $onDeleteType is on restrict.
+     * @throws IntegrityException throw if $throwRestrictException is true when $onDeleteType is on restrict.
      */
     public function onDeleteChildren($event)
     {
@@ -152,9 +157,9 @@ trait SelfBlameableTrait
 
     /**
      * Event triggered before updating itself.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return boolean true if parentAttribute not specified.
-     * @throws \yii\db\IntegrityException throw if $throwRestrictException is true when $onUpdateType is on restrict.
+     * @throws IntegrityException throw if $throwRestrictException is true when $onUpdateType is on restrict.
      */
     public function onUpdateChildren($event)
     {
@@ -185,7 +190,7 @@ trait SelfBlameableTrait
     /**
      * Get parent query.
      * Or get parent instance if access by magic property.
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getParent()
     {
@@ -193,9 +198,92 @@ trait SelfBlameableTrait
     }
 
     /**
+     * Set parent.
+     * Don't forget save model after setting it.
+     * @param static $parent
+     * @return false|string
+     */
+    public function setParent($parent)
+    {
+        if (empty($parent) || $this->guid == $parent->guid || $parent->hasAncestor($this)) {
+            return false;
+        }
+        unset($this->parent);
+        $this->trigger(static::$eventParentChanged);
+        return $this->{$this->parentAttribute} = $parent->guid;
+    }
+
+    /**
+     * Check whether this model has parent.
+     * @return boolean
+     */
+    public function hasParent()
+    {
+        return $this->parent !== null;
+    }
+
+    public function hasAncestor($ancestor)
+    {
+        if ($this->guid == $ancestor->guid) {
+            return true;
+        }
+        if (!$this->hasParent()) {
+            return false;
+        }
+        return $this->parent->hasAncestor($ancestor);
+    }
+
+    /**
+     * Get ancestor chain. (Ancestor GUID Only!)
+     * If this model has ancestor, the return array consists all the ancestor in order.
+     * The first element is parent, and the last element is root, otherwise return empty array.
+     * If you want to get ancestor model, you can simplify instance a query and specify the 
+     * condition with the return value. But it will not return models under the order of ancestor chain.
+     * @param string[] $ancestor
+     * @return string[]
+     */
+    public function getAncestorChain($ancestor = [])
+    {
+        if (!is_string($this->parentAttribute)) {
+            return [];
+        }
+        if (!$this->hasParent()) {
+            return $ancestor;
+        }
+        $ancestor[] = $this->parent->guid;
+        return $this->parent->getAncestorChain($ancestor);
+    }
+
+    /**
+     * Get ancestors with specified ancestor chain.
+     * @param string[] $ancestor Ancestor chain.
+     * @return static[]|null
+     */
+    public static function getAncestorModels($ancestor)
+    {
+        if (empty($ancestor) || !is_array($ancestor)) {
+            return null;
+        }
+        $models = [];
+        foreach ($ancestor as $self) {
+            $models[] = static::findOne($self);
+        }
+        return $models;
+    }
+
+    /**
+     * Get ancestors.
+     * @return static[]|null
+     */
+    public function getAncestors()
+    {
+        return is_string($this->parentAttribute) ? $this->getAncestorModels($this->getAncestorChain()) : null;
+    }
+
+    /**
      * Get children query.
      * Or get children instances if access magic property.
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getChildren()
     {
@@ -216,10 +304,10 @@ trait SelfBlameableTrait
      * If onUpdateType is on cascade, the children will be updated automatically.
      * @param mixed $value set guid if false, set empty string if empty() return
      * true, otherwise set it to $parentAttribute.
-     * @return \yii\db\IntegrityException|boolean true if all update operations
+     * @return IntegrityException|boolean true if all update operations
      * succeeded to execute, or false if anyone of them failed. If not production
      * environment or enable debug mode, it will return exception.
-     * @throws \yii\db\IntegrityException throw if anyone update failed.
+     * @throws IntegrityException throw if anyone update failed.
      */
     public function updateChildren($value = false)
     {
@@ -261,10 +349,10 @@ trait SelfBlameableTrait
      * If onDeleteType is on cascade, the children will be deleted automatically.
      * If onDeleteType is on restrict and contains children, the deletion will
      * be restricted.
-     * @return \yii\db\IntegrityException|boolean true if all delete operations
+     * @return IntegrityException|boolean true if all delete operations
      * succeeded to execute, or false if anyone of them failed. If not production
      * environment or enable debug mode, it will return exception.
-     * @throws \yii\db\IntegrityException throw if anyone delete failed.
+     * @throws IntegrityException throw if anyone delete failed.
      */
     public function deleteChildren()
     {
@@ -295,7 +383,7 @@ trait SelfBlameableTrait
     /**
      * Update children's parent attribute.
      * Event triggered before updating.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return boolean
      */
     public function onParentRefIdChanged($event)
@@ -310,5 +398,32 @@ trait SelfBlameableTrait
     {
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentRefIdChanged']);
         $this->on(static::EVENT_BEFORE_DELETE, [$this, 'onDeleteChildren']);
+    }
+
+    /**
+     * Check whether if this model has common ancestor with $model.
+     * @param static $model
+     * @return boolean
+     */
+    public function hasCommonAncestor($model)
+    {
+        return is_string($this->parentAttribute) ? $this->getCommonAncestor($model) !== null : false;
+    }
+
+    /**
+     * Get common ancestor. If there isn't common ancestor, null will be given.
+     * @param static $model
+     * @return static
+     */
+    public function getCommonAncestor($model)
+    {
+        if (!is_string($this->parentAttribute) || empty($model) || !$model->hasParent()) {
+            return null;
+        }
+        $ancestor = $this->getAncestorChain();
+        if (in_array($model->parent->guid, $ancestor)) {
+            return $model->parent;
+        }
+        return $this->getCommonAncestor($model->parent);
     }
 }
