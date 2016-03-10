@@ -16,8 +16,8 @@
         "vistart/helpers": "*"
     },
     "suggest": {
-        "yiisoft/yii2-mongodb": "If you want to use mongo ActiveRecord and ActiveQuery.",
-        "yiisoft/yii2-redis": "If you want to use redis ActiveRecord and ActiveQuery."
+        "yiisoft/yii2-mongodb": "Required if you want to use mongo ActiveRecord and ActiveQuery.",
+        "yiisoft/yii2-redis": "Required if you want to use redis ActiveRecord and ActiveQuery."
     },
     "autoload": {
         "psr-4": {
