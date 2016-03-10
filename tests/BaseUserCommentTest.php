@@ -59,6 +59,9 @@ class BaseUserCommentTest extends TestCase
         return $sub;
     }
 
+    /**
+     * @group comment
+     */
     public function testNew()
     {
         $user = $this->prepareUser();
@@ -86,6 +89,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testNew
      */
     public function testDeleteParentCascade()
@@ -109,6 +113,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testDeleteParentCascade
      */
     public function testDeleteParentRestrict()
@@ -148,6 +153,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testDeleteParentRestrict
      */
     public function testDeleteParentNoAction()
@@ -173,6 +179,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testDeleteParentNoAction
      */
     public function testDeleteParentSetNull()
@@ -198,6 +205,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testDeleteParentSetNull
      */
     public function testUpdateParentCascade()
@@ -218,6 +226,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testUpdateParentCascade
      */
     public function testUpdateParentRestrict()
@@ -247,6 +256,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testUpdateParentRestrict
      */
     public function testUpdateParentNoAction()
@@ -270,6 +280,7 @@ class BaseUserCommentTest extends TestCase
     }
 
     /**
+     * @group comment
      * @depends testUpdateParentNoAction
      */
     public function testUpdateParentSetNull()
@@ -288,6 +299,66 @@ class BaseUserCommentTest extends TestCase
         $this->assertInstanceOf(UserComment::className(), $sub);
         $parentAttribute = $comment->parentAttribute;
         $this->assertEquals('', $sub->$parentAttribute);
+        $this->assertTrue($user->deregister());
+    }
+
+    /**
+     * @group comment
+     * @depends testUpdateParentSetNull
+     */
+    public function testAncestor()
+    {
+        $user = $this->prepareUser();
+
+        $comment = $this->prepareComment($user);
+        $comment->onUpdateType = UserComment::$onRestrict;
+        $this->assertTrue($comment->save());
+
+        $comments = [];
+        $comments[] = $this->prepareSubComment($comment);
+        $comments[0]->onUpdateType = UserComment::$onRestrict;
+        $this->assertTrue($comments[0]->save());
+
+        for ($i = 1; $i < 10; $i++) {
+            $comments[] = $this->prepareSubComment($comments[$i - 1]);
+            $comments[$i]->onUpdateType = UserComment::$onRestrict;
+            $this->assertTrue($comments[$i]->save());
+        }
+        $this->assertEquals(10, count($comments));
+
+        $ancestor = $comments[9]->getAncestorChain();
+        $this->assertEquals(10, count($ancestor));
+
+        $this->assertNull(UserComment::getAncestorModels([]));
+        $this->assertNull(UserComment::getAncestorModels('ancestor'));
+        $ancestorModels = UserComment::getAncestorModels($ancestor);
+        $this->assertEquals(10, count($ancestorModels));
+        $ancestorModels = $comments[9]->getAncestors();
+        $this->assertEquals(10, count($ancestorModels));
+
+        // The order of $ancestorModel should be same as that of $ancestor.
+        for ($i = 0; $i < 9; $i++) {
+            $this->assertEquals($ancestor[$i], $ancestorModels[$i]->guid);
+        }
+
+        $commonComment = $this->prepareSubComment($comments[5]);
+        $commonComment->onUpdateType = UserComment::$onRestrict;
+        $this->assertTrue($commonComment->save());
+
+        $subCommonComment = $this->prepareSubComment($commonComment);
+        $subCommonComment->onUpdateType = UserComment::$onRestrict;
+        $this->assertTrue($subCommonComment->save());
+
+        $this->assertTrue($comments[9]->hasCommonAncestor($subCommonComment));
+        $this->assertEquals($comments[5]->guid, $comments[9]->getCommonAncestor($subCommonComment)->guid);
+        $this->assertEquals($comments[8]->guid, $comments[9]->getCommonAncestor($comments[9])->guid);
+        $this->assertEquals($comments[4]->guid, $comments[9]->getCommonAncestor($comments[5])->guid);
+        $this->assertFalse($comment->hasCommonAncestor($comment));
+
+        $subCommonComment->parent = $comments[5];
+        $this->assertTrue($subCommonComment->save());
+        $this->assertEquals($comments[5]->guid, $subCommonComment->parent->guid);
+
         $this->assertTrue($user->deregister());
     }
 }

@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use Closure;
+use yii\base\ModelEvent;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -92,7 +93,7 @@ trait TimestampTrait
 
     /**
      * We recommened you attach this event when after finding this active record.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return boolean
      */
     public function onRemoveExpired($event)
@@ -103,7 +104,7 @@ trait TimestampTrait
     /**
      * Get the current date & time in format of "Y-m-d H:i:s" or timestamp.
      * You can override this method to customize the return value.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return string Date & Time.
      * @since 1.1
      */
@@ -147,7 +148,7 @@ trait TimestampTrait
 
     /**
      * Get init date & time in format of "Y-m-d H:i:s" or timestamp.s
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      * @return string|int
      */
     public static function getInitDatetime($event)
@@ -191,7 +192,7 @@ trait TimestampTrait
      * Get the current date & time in format of "Y-m-d H:i:s".
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      * @return string Date & Time.
      * @since 1.1
      */

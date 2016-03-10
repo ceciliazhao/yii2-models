@@ -1,5 +1,9 @@
 ## Base Models for Yii 2 Applications
 
+### since 2.0.0 Beta 1 released
+
+- Add: hasParent(), hasAncestor(), getAncestorChain(), getAncestorModels(), getAncestors(), hasCommonAncestor(), getCommonAncestor(), setParent() methods or magic property. (vistart)
+
 ### 2.0.0 Beta 1
 
 - Chg: Move components to [vistart/yii2-components](https://github.com/vistart/yii2-components) (vistart)
