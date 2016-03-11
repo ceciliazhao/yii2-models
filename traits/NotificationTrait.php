@@ -88,10 +88,10 @@ trait NotificationTrait
         if (!is_string($sender->notificationReadClass)) {
             return false;
         }
-        $notificationReadClass = $sender->notificationReadClass;
-        $notificationReadModels = $notificationReadClass::find()->content($sender->guid)->all();
+        $nrClass = $sender->notificationReadClass;
+        $nrModels = $nrClass::find()->content($sender->guid)->all();
         $count = 0;
-        foreach ($notificationReadModels as $model) {
+        foreach ($nrModels as $model) {
             $count += $model->delete();
         }
         return $count;

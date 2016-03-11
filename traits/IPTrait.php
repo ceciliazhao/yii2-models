@@ -18,6 +18,9 @@ use yii\web\Request;
 
 /**
  * Entity features concerning IP address.
+ * The EntityTrait use this trait by default. If you want to use this trait into
+ * seperate models, please attach initialization events and merge the IP attributes
+ * rules.
  * @property string|integer|null $ipAddress
  * @proeprty array $ipRules
  * @version 2.0
@@ -150,11 +153,10 @@ trait IPTrait
             return null;
         }
         if ($this->enableIP & static::$ipAll) {
-            $ipTypeAttribute = $this->ipTypeAttribute;
-            if ($this->$ipTypeAttribute == Ip::IPv4) {
+            if ($this->{$this->ipTypeAttribute} == Ip::IPv4) {
                 return $this->getIpv4Address();
             }
-            if ($this->$ipTypeAttribute == Ip::IPv6) {
+            if ($this->{$this->ipTypeAttribute} == Ip::IPv6) {
                 return $this->getIpv6Address();
             }
         } else
@@ -173,8 +175,7 @@ trait IPTrait
      */
     private function getIpv4Address()
     {
-        $ipAttribute1 = $this->ipAttribute1;
-        return Ip::long2ip($this->$ipAttribute1);
+        return Ip::long2ip($this->{$this->ipAttribute1});
     }
 
     /**
@@ -183,15 +184,11 @@ trait IPTrait
      */
     private function getIpv6Address()
     {
-        $ipAttribute1 = $this->ipAttribute1;
-        $ipAttribute2 = $this->ipAttribute2;
-        $ipAttribute3 = $this->ipAttribute3;
-        $ipAttribute4 = $this->ipAttribute4;
         return Ip::LongtoIPv6(Ip::populateIPv6([
-                    $this->$ipAttribute1,
-                    $this->$ipAttribute2,
-                    $this->$ipAttribute3,
-                    $this->$ipAttribute4
+                    $this->{$this->ipAttribute1},
+                    $this->{$this->ipAttribute2},
+                    $this->{$this->ipAttribute3},
+                    $this->{$this->ipAttribute4}
         ]));
     }
 
@@ -209,25 +206,19 @@ trait IPTrait
         }
         $ipType = Ip::judgeIPtype($ipAddress);
         if ($ipType == Ip::IPv4 && $this->enableIP & static::$ipv4) {
-            $ipAttribute1 = $this->ipAttribute1;
-            $this->$ipAttribute1 = Ip::ip2long($ipAddress);
+            $this->{$this->ipAttribute1} = Ip::ip2long($ipAddress);
         } else
         if ($ipType == Ip::IPv6 && $this->enableIP & static::$ipv6) {
             $ips = Ip::splitIPv6(Ip::IPv6toLong($ipAddress));
-            $ipAttribute1 = $this->ipAttribute1;
-            $ipAttribute2 = $this->ipAttribute2;
-            $ipAttribute3 = $this->ipAttribute3;
-            $ipAttribute4 = $this->ipAttribute4;
-            $this->$ipAttribute1 = bindec($ips[0]);
-            $this->$ipAttribute2 = bindec($ips[1]);
-            $this->$ipAttribute3 = bindec($ips[2]);
-            $this->$ipAttribute4 = bindec($ips[3]);
+            $this->{$this->ipAttribute1} = bindec($ips[0]);
+            $this->{$this->ipAttribute2} = bindec($ips[1]);
+            $this->{$this->ipAttribute3} = bindec($ips[2]);
+            $this->{$this->ipAttribute4} = bindec($ips[3]);
         } else {
             return 0;
         }
         if ($this->enableIP & static::$ipAll) {
-            $ipTypeAttribute = $this->ipTypeAttribute;
-            $this->$ipTypeAttribute = $ipType;
+            $this->{$this->ipTypeAttribute} = $ipType;
         }
         return $ipType;
     }

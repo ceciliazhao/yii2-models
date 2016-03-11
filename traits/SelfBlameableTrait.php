@@ -17,8 +17,18 @@ use yii\db\ActiveQuery;
 use yii\db\IntegrityException;
 
 /**
- * This trait is designed for thw model who contains parent.
- *
+ * This trait is designed for the model who contains parent.
+ * The BlameableTrait use this trait by default. If you want to use this trait
+ * into seperate model, please call the `initSelfBlameableEvents()` method in
+ * `init()` method, like following:
+ * ```php
+ * public function init()
+ * {
+ *     $this->initSelfBlameableEvents();  // put it before parent call.
+ *     parent::init();
+ * }
+ * ```
+ * 
  * @property static $parent
  * @property-read static[] $ancestors
  * @property-read string[] $ancestorChain
@@ -477,6 +487,9 @@ trait SelfBlameableTrait
         }
     }
 
+    /**
+     * Attach events associated with self blameable attribute.
+     */
     protected function initSelfBlameableEvents()
     {
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentRefIdChanged']);

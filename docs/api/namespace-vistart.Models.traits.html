@@ -195,7 +195,10 @@ supports \yii\db\ActiveRecord, \yii\mongodb\ActiveRecord, \yii\redis\ActiveRecor
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.IPTrait.html">IPTrait</a></td>
-	<td>Entity features concerning IP address.</td>
+	<td><p>Entity features concerning IP address.
+The EntityTrait use this trait by default. If you want to use this trait into
+seperate models, please attach initialization events and merge the IP attributes
+rules.</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.MessageQueryTrait.html">MessageQueryTrait</a></td>
@@ -278,7 +281,16 @@ checking the validity of blames.
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.SelfBlameableTrait.html">SelfBlameableTrait</a></td>
-	<td>This trait is designed for thw model who contains parent.</td>
+	<td><p>This trait is designed for the model who contains parent.
+The BlameableTrait use this trait by default. If you want to use this trait
+into seperate model, please call the <code>initSelfBlameableEvents()</code> method in
+<code>init()</code> method, like following:</p>
+
+<pre><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> init()
+{
+    <span class="php-var">$this</span>-&gt;initSelfBlameableEvents();  <span class="php-comment">// put it before parent call.</span>
+    parent::init();
+}</pre></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-vistart.Models.traits.TimestampTrait.html">TimestampTrait</a></td>
