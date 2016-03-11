@@ -195,8 +195,13 @@
 </span><span id="27" class="l"><a href="#27">27 </a>    <span class="php-keyword1">public</span> <span class="php-var">$updatedAtAttribute</span> = <span class="php-keyword1">false</span>;
 </span><span id="28" class="l"><a href="#28">28 </a>    <span class="php-keyword1">public</span> <span class="php-var">$updatedByAttribute</span> = <span class="php-keyword1">false</span>;
 </span><span id="29" class="l"><a href="#29">29 </a>
-</span><span id="30" class="l"><a href="#30">30 </a>}
-</span><span id="31" class="l"><a href="#31">31 </a></span></code></pre>
+</span><span id="30" class="l"><a href="#30">30 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> init()
+</span><span id="31" class="l"><a href="#31">31 </a>    {
+</span><span id="32" class="l"><a href="#32">32 </a>        <span class="php-var">$this</span>-&gt;on(<span class="php-keyword1">static</span>::EVENT_AFTER_DELETE, [<span class="php-var">$this</span>, <span class="php-quote">'onDeleteNotificationRead'</span>]);
+</span><span id="33" class="l"><a href="#33">33 </a>        parent::init();
+</span><span id="34" class="l"><a href="#34">34 </a>    }
+</span><span id="35" class="l"><a href="#35">35 </a>}
+</span><span id="36" class="l"><a href="#36">36 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

@@ -31,6 +31,7 @@ class MongoNotificationTest extends MongoTestCase
     {
         $user = static::prepareUser();
         $notification = $user->create(MongoNotification::className(), ['content' => 'Notification']);
+        /* @var $notification MongoNotification */
         $this->assertTrue($notification->save());
         $this->assertTrue(MongoNotificationRead::read($user, $notification));
         $log = MongoNotificationRead::findByIdentity($user)->content($notification->guid)->one();
@@ -90,7 +91,7 @@ class MongoNotificationTest extends MongoTestCase
 
         $this->assertEquals(1, $notification->delete());
 
-        $this->assertEquals(1, MongoNotificationRead::vacuum($user, MongoNotification::className()));
+        $this->assertEquals(0, MongoNotificationRead::vacuum($user, MongoNotification::className()));
         $this->assertTrue($user->deregister());
     }
 }

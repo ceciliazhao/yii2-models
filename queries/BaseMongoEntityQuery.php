@@ -13,6 +13,7 @@
 namespace vistart\Models\queries;
 
 use vistart\Models\traits\EntityQueryTrait;
+use yii\mongodb\ActiveQuery;
 
 /**
  * Description of BaseMongoEntityQuery
@@ -20,7 +21,7 @@ use vistart\Models\traits\EntityQueryTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-class BaseMongoEntityQuery extends \yii\mongodb\ActiveQuery
+class BaseMongoEntityQuery extends ActiveQuery
 {
     use EntityQueryTrait;
 

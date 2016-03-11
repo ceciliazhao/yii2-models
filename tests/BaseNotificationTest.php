@@ -12,31 +12,19 @@
 
 namespace vistart\Models\tests;
 
-use vistart\Models\tests\data\ar\User;
 use vistart\Models\tests\data\ar\Notification;
-use vistart\Models\tests\data\ar\MongoNotificationRead;
 
 /**
  * Description of BaseNotificationTest
  *
  * @author vistart <i@vistart.name>
  */
-class BaseNotificationTest extends TestCase
+class BaseNotificationTest extends MongoTestCase
 {
 
     /**
-     * 
-     * @return User
-     */
-    private function prepareUser()
-    {
-        $user = new User(['password' => '123456']);
-        $this->assertTrue($user->register());
-        return $user;
-    }
-
-    /**
      * @group notification
+     * @group mongo
      */
     public function testNew()
     {

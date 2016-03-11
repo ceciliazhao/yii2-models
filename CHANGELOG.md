@@ -6,6 +6,7 @@
 - Add: hasReachedAncestorLimit(), hasReachedChildrenLimit() methods. (vistart)
 - Chg: bear() will check whether it has reached the ancestor limit or children limit first. (vistart)
 - Add: vacuum() method for vacuum all invalid notification logs. (vistart)
+- Add: onDeleteNotificationRead() event for deleting notification read log after notification was deleted. (vistart)
 
 ### 2.0.0 Beta 1
 
