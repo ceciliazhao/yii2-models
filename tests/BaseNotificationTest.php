@@ -10,21 +10,17 @@
  * @license https://vistart.name/license/
  */
 
-namespace vistart\Models\models;
-
-use vistart\Models\traits\NotificationTrait;
+namespace vistart\Models\tests;
 
 /**
- * Description of BaseNotificationModel
+ * Description of BaseNotificationTest
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseNotificationModel extends BaseBlameableModel
+class BaseNotificationTest extends TestCase
 {
-    use NotificationTrait;
-
-    public $expiredAt = 604800;
-    public $updatedAtAttribute = false;
-    public $updatedByAttribute = false;
-
+    public function testNew()
+    {
+        
+    }
 }

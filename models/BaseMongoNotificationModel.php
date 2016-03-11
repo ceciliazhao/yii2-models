@@ -1,6 +1,6 @@
 <?php
 
-/* *
+/**
  *  _   __ __ _____ _____ ___  ____  _____
  * | | / // // ___//_  _//   ||  __||_   _|
  * | |/ // /(__  )  / / / /| || |     | |
@@ -24,7 +24,8 @@ abstract class BaseMongoNotificationModel extends BaseMongoBlameableModel
     use NotificationTrait;
 
     public $expiredAt = 604800;
+    public $guidAttribute = 'guid';
     public $updatedAtAttribute = false;
     public $updatedByAttribute = false;
-    public $enableIP = false;
+
 }

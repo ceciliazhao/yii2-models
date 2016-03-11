@@ -5,6 +5,7 @@
 - Add: hasParent(), hasAncestor(), getAncestorChain(), getAncestorModels(), getAncestors(), hasCommonAncestor(), getCommonAncestor(), setParent() methods or magic property. (vistart)
 - Add: hasReachedAncestorLimit(), hasReachedChildrenLimit() methods. (vistart)
 - Chg: bear() will check whether it has reached the ancestor limit or children limit first. (vistart)
+- Add: vacuum() method for vacuum all invalid notification logs. (vistart)
 
 ### 2.0.0 Beta 1
 

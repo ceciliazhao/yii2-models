@@ -25,6 +25,10 @@ abstract class BaseMongoNotificationReadModel extends BaseMongoBlameableModel
 
     public $updatedAtAttribute = false;
     public $updatedByAttribute = false;
-    public $enableIP = false;
+
+    /**
+     * @var string store the notification's GUID.
+     */
+    public $contentAttribute = 'content';
 
 }
