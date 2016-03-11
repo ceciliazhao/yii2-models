@@ -17,9 +17,12 @@ use yii\db\ActiveQuery;
 use yii\db\IntegrityException;
 
 /**
- * Description of SelfBlameableTrait
+ * This trait is designed for thw model who contains parent.
  *
  * @property static $parent
+ * @property-read static[] $ancestors
+ * @property-read string[] $ancestorChain
+ * @property-read static $commonAncestor
  * @property-read static[] $children
  * @property-read static[] $oldChildren
  * @property array $selfBlameableRules
@@ -79,6 +82,16 @@ trait SelfBlameableTrait
     public static $eventParentChanged = 'parentChanged';
 
     /**
+     * @var false|integer Set the limit of ancestor level. False is no limit.
+     */
+    public $ancestorLimit = false;
+
+    /**
+     * @var false|integer Set the limit of children. False is no limit.
+     */
+    public $childrenLimit = false;
+
+    /**
      * Get rules associated with self blameable attribute.
      * @return array rules.
      */
@@ -109,12 +122,49 @@ trait SelfBlameableTrait
     }
 
     /**
+     * Check whether this model has reached the ancestor limit.
+     * If $ancestorLimit is false, it will be regared as no limit(return false).
+     * If $ancestorLimit is not false and not a number, 256 will be taken.
+     * @return boolean
+     */
+    public function hasReachedAncestorLimit()
+    {
+        if ($this->ancestorLimit === false) {
+            return false;
+        }
+        if (!is_numeric($this->ancestorLimit)) {
+            $this->ancestorLimit = 256;
+        }
+        return count($this->getAncestorChain()) >= $this->ancestorLimit;
+    }
+
+    /**
+     * Check whether this model has reached the children limit.
+     * If $childrenLimit is false, it will be regarded as no limit(return false).
+     * If $childrenLimist is not false and not a number, 256 will be taken.
+     * @return boolean
+     */
+    public function hasReachedChildrenLimit()
+    {
+        if ($this->childrenLimit === false) {
+            return false;
+        }
+        if (!is_numeric($this->childrenLimit)) {
+            $this->childrenLimit = 256;
+        }
+        return ((int) $this->getChildren()->count()) >= $this->childrenLimit;
+    }
+
+    /**
      * Bear a child.
      * @param array $config
-     * @return static
+     * @return static|null Null if reached the ancestor limit or children limit.
      */
     public function bear($config = [])
     {
+        if ($this->hasReachedAncestorLimit() || $this->hasReachedChildrenLimit()) {
+            return null;
+        }
         if (isset($config['class'])) {
             unset($config['class']);
         }
@@ -222,13 +272,19 @@ trait SelfBlameableTrait
         return $this->parent !== null;
     }
 
+    /**
+     * Check whether if $ancestor is the ancestor of myself.
+     * Note, Itself will not be regarded as the its ancestor.
+     * @param static $ancestor
+     * @return boolean
+     */
     public function hasAncestor($ancestor)
     {
-        if ($this->guid == $ancestor->guid) {
-            return true;
-        }
         if (!$this->hasParent()) {
             return false;
+        }
+        if ($this->parent->guid == $ancestor->guid) {
+            return true;
         }
         return $this->parent->hasAncestor($ancestor);
     }
@@ -278,6 +334,33 @@ trait SelfBlameableTrait
     public function getAncestors()
     {
         return is_string($this->parentAttribute) ? $this->getAncestorModels($this->getAncestorChain()) : null;
+    }
+
+    /**
+     * Check whether if this model has common ancestor with $model.
+     * @param static $model
+     * @return boolean
+     */
+    public function hasCommonAncestor($model)
+    {
+        return is_string($this->parentAttribute) ? $this->getCommonAncestor($model) !== null : false;
+    }
+
+    /**
+     * Get common ancestor. If there isn't common ancestor, null will be given.
+     * @param static $model
+     * @return static
+     */
+    public function getCommonAncestor($model)
+    {
+        if (!is_string($this->parentAttribute) || empty($model) || !$model->hasParent()) {
+            return null;
+        }
+        $ancestor = $this->getAncestorChain();
+        if (in_array($model->parent->guid, $ancestor)) {
+            return $model->parent;
+        }
+        return $this->getCommonAncestor($model->parent);
     }
 
     /**
@@ -398,32 +481,5 @@ trait SelfBlameableTrait
     {
         $this->on(static::EVENT_BEFORE_UPDATE, [$this, 'onParentRefIdChanged']);
         $this->on(static::EVENT_BEFORE_DELETE, [$this, 'onDeleteChildren']);
-    }
-
-    /**
-     * Check whether if this model has common ancestor with $model.
-     * @param static $model
-     * @return boolean
-     */
-    public function hasCommonAncestor($model)
-    {
-        return is_string($this->parentAttribute) ? $this->getCommonAncestor($model) !== null : false;
-    }
-
-    /**
-     * Get common ancestor. If there isn't common ancestor, null will be given.
-     * @param static $model
-     * @return static
-     */
-    public function getCommonAncestor($model)
-    {
-        if (!is_string($this->parentAttribute) || empty($model) || !$model->hasParent()) {
-            return null;
-        }
-        $ancestor = $this->getAncestorChain();
-        if (in_array($model->parent->guid, $ancestor)) {
-            return $model->parent;
-        }
-        return $this->getCommonAncestor($model->parent);
     }
 }

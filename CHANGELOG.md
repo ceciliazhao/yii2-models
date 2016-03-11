@@ -3,6 +3,8 @@
 ### since 2.0.0 Beta 1 released
 
 - Add: hasParent(), hasAncestor(), getAncestorChain(), getAncestorModels(), getAncestors(), hasCommonAncestor(), getCommonAncestor(), setParent() methods or magic property. (vistart)
+- Add: hasReachedAncestorLimit(), hasReachedChildrenLimit() methods. (vistart)
+- Chg: bear() will check whether it has reached the ancestor limit or children limit first. (vistart)
 
 ### 2.0.0 Beta 1
 
