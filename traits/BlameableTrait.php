@@ -12,7 +12,10 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\queries\BaseUserQuery;
 use yii\base\InvalidParamException;
+use yii\base\ModelEvent;
+use yii\base\NotSupportedException;
 use yii\behaviors\BlameableBehavior;
 use yii\caching\TagDependency;
 use yii\data\Pagination;
@@ -36,8 +39,8 @@ use yii\data\Pagination;
  * @property-read mixed $content Content.
  * @property-read boolean $contentCanBeEdited Whether this content could be edited.
  * @property-read array $contentRules Get content rules.
- * @property-read \vistart\Models\models\BaseUserModel $user
- * @property-read \vistart\Models\models\BaseUserModel $updater
+ * @property-read BaseUserModel $user
+ * @property-read BaseUserModel $updater
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -207,14 +210,14 @@ trait BlameableTrait
      * Determines whether content could be edited. Your should implement this
      * method by yourself.
      * @return boolean
-     * @throws \yii\base\NotSupportedException
+     * @throws NotSupportedException
      */
     public function getContentCanBeEdited()
     {
         if ($this->contentAttribute === false) {
             return false;
         }
-        throw new \yii\base\NotSupportedException("This method is not implemented.");
+        throw new NotSupportedException("This method is not implemented.");
     }
 
     /**
@@ -382,7 +385,7 @@ trait BlameableTrait
         $this->blameableLocalRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependency = new \yii\caching\TagDependency(['tags' => [$this->getBlameableRulesCacheTag()]]);
+            $tagDependency = new TagDependency(['tags' => [$this->getBlameableRulesCacheTag()]]);
             $cache->set($this->getBlameableRulesCacheKey(), $rules, 0, $tagDependency);
         }
     }
@@ -473,7 +476,7 @@ trait BlameableTrait
      * Get blame who owned this blameable model.
      * NOTICE! This method will not check whether `$userClass` exists. You should
      * specify it in `init()` method.
-     * @return \vistart\Models\queries\BaseUserQuery user.
+     * @return BaseUserQuery user.
      */
     public function getUser()
     {
@@ -486,7 +489,7 @@ trait BlameableTrait
      * Get updater who updated this blameable model recently.
      * NOTICE! This method will not check whether `$userClass` exists. You should
      * specify it in `init()` method.
-     * @return \vistart\Models\queries\BaseUserQuery user.
+     * @return BaseUserQuery user.
      */
     public function getUpdater()
     {
@@ -502,7 +505,7 @@ trait BlameableTrait
      * This event is triggered before the model update.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onContentChanged($event)
     {
@@ -515,7 +518,7 @@ trait BlameableTrait
      * yet, or return the owner's GUID if current model has been specified.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      * @return string the GUID of current user or the owner.
      */
     public function onGetCurrentUserGuid($event)
@@ -534,7 +537,7 @@ trait BlameableTrait
     /**
      * Initialize type of content. the first of element[index is 0] of
      * $contentTypes will be used.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitContentType($event)
     {
@@ -552,7 +555,7 @@ trait BlameableTrait
 
     /**
      * Initialize description property with $initDescription.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitDescription($event)
     {
@@ -622,7 +625,7 @@ trait BlameableTrait
      * the `$currentPage` parameter will be skipped. If it is integer, it will be
      * regarded as sum of models in one page.
      * @param integer $currentPage The current page number, begun with 0.
-     * @param $userClass $identity
+     * @param {$this->userClass} $identity
      * @return static[] If no follows, null will be given, or return follow array.
      */
     public static function findAllByIdentityInBatch($pageSize = 'all', $currentPage = 0, $identity = null)
@@ -639,9 +642,9 @@ trait BlameableTrait
      * be given.
      * @param integer $id user id.
      * @param boolean $throwException
-     * @param $userClass $identity
+     * @param {$this->userClass} $identity
      * @return static
-     * @throws NotFoundHttpException
+     * @throws InvalidParamException
      */
     public static function findOneById($id, $throwException = true, $identity = null)
     {
@@ -658,7 +661,7 @@ trait BlameableTrait
 
     /**
      * Get total of follows of specified identity.
-     * @param $userClass $identity
+     * @param {$this->userClass} $identity
      * @return integer total.
      */
     public static function countByIdentity($identity = null)
@@ -669,7 +672,7 @@ trait BlameableTrait
     /**
      * Get pagination, used for building contents page by page.
      * @param integer $limit
-     * @param $userClass $identity
+     * @param {$this->userClass} $identity
      * @return Pagination
      */
     public static function getPagination($limit = 10, $identity = null)

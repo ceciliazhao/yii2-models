@@ -25,6 +25,9 @@ use Yii;
 class BaseUserModelTest extends TestCase
 {
 
+    /**
+     * @group user
+     */
     public function testInit()
     {
         $users = [];
@@ -46,6 +49,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testInit
      */
     public function testNewUser()
@@ -64,6 +68,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testNewUser
      */
     public function testGUID()
@@ -77,6 +82,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testGUID
      */
     public function testID()
@@ -106,6 +112,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testID
      */
     public function testIP()
@@ -154,6 +161,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testIP
      */
     public function testPassword()
@@ -196,6 +204,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testPassword
      */
     public function testPasswordResetToken()
@@ -212,6 +221,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testPasswordResetToken
      */
     public function testStatus()
@@ -233,6 +243,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testStatus
      */
     public function testSource()
@@ -254,6 +265,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testSource
      */
     public function testTimestamp()
@@ -282,6 +294,7 @@ class BaseUserModelTest extends TestCase
     public $afterDeregisterEvent = '';
 
     /**
+     * @group user
      * @depends testTimestamp
      */
     public function testRegister()
@@ -336,6 +349,7 @@ class BaseUserModelTest extends TestCase
     }
 
     /**
+     * @group user
      * @depends testRegister
      * @large
      */
