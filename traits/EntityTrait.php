@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\caching\TagDependency;
 
 /**
  * This trait must be used in class extended from ActiveRecord. The ActiveRecord
@@ -145,7 +146,7 @@ trait EntityTrait
         $this->entityLocalRules = $rules;
         $cache = $this->getCache();
         if ($cache) {
-            $tagDependency = new \yii\caching\TagDependency(
+            $tagDependency = new TagDependency(
                 ['tags' => [$this->getEntityRulesCacheTag()]]
             );
             $cache->set($this->getEntityRulesCacheKey(), $rules, 0, $tagDependency);
@@ -196,7 +197,7 @@ trait EntityTrait
         $cache = $this->getCache();
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getEntityBehaviorsCacheTag()]];
-            $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
+            $tagDependency = new TagDependency($tagDependencyConfig);
             $cache->set($this->getEntityBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
         }
     }

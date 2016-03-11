@@ -10,21 +10,18 @@
  * @license https://vistart.name/license/
  */
 
-namespace vistart\Models\models;
-
-use vistart\Models\traits\NotificationTrait;
+namespace vistart\Models\tests\data\ar;
 
 /**
- * Description of BaseNotificationModel
+ * Description of MongoNotificationRead
  *
  * @author vistart <i@vistart.name>
  */
-abstract class BaseNotificationModel extends BaseBlameableModel
+class MongoNotificationRead extends \vistart\Models\models\BaseMongoNotificationReadModel
 {
-    use NotificationTrait;
 
-    public $expiredAt = 604800;
-    public $updatedAtAttribute = false;
-    public $updatedByAttribute = false;
-
+    public static function collectionName()
+    {
+        return ['yii2-models', 'notification.read'];
+    }
 }

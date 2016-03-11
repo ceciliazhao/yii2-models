@@ -14,6 +14,7 @@ namespace vistart\Models\traits;
 
 use vistart\helpers\Ip;
 use Yii;
+use yii\web\Request;
 
 /**
  * Entity features concerning IP address.
@@ -93,7 +94,7 @@ trait IPTrait
     /**
      * Get web request component. if `$requestId` not specified, Yii::$app->request
      * will be taken.
-     * @return \yii\web\Request
+     * @return Request
      */
     protected function getWebRequest()
     {
@@ -103,7 +104,7 @@ trait IPTrait
         } else {
             $request = Yii::$app->request;
         }
-        if ($request instanceof \yii\web\Request) {
+        if ($request instanceof Request) {
             return $request;
         }
         return null;

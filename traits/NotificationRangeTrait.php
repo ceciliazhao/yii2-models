@@ -99,6 +99,7 @@ trait NotificationRangeTrait
     {
         return is_string($this->rangeAttribute) ? [
             [$this->rangeAttribute, 'string'],
+            [$this->rangeAttribute, 'default', 'value' => '[]'],
             [$this->rangeAttribute, 'validateRange'],
             ] : [];
     }

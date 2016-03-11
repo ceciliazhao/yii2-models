@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-02-20 21:22:14
--- 服务器版本： 5.7.10
--- PHP Version: 5.6.18
+-- Generation Time: 2016-03-11 16:38:18
+-- 服务器版本： 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,8 +28,8 @@ USE `yii2-models`;
 --
 -- 表的结构 `meta`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:12:21
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:38:06
 --
 
 DROP TABLE IF EXISTS `meta`;
@@ -45,8 +45,8 @@ CREATE TABLE `meta` (
 --
 -- 表的结构 `user`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:12:49
+-- 创建时间： 2016-02-20 13:24:05
+-- 最后更新： 2016-03-11 08:38:18
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -73,8 +73,8 @@ CREATE TABLE `user` (
 --
 -- 表的结构 `user_additional_account`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:11:09
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:36:46
 --
 
 DROP TABLE IF EXISTS `user_additional_account`;
@@ -103,8 +103,8 @@ CREATE TABLE `user_additional_account` (
 --
 -- 表的结构 `user_comment`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:11:25
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:37:12
 --
 
 DROP TABLE IF EXISTS `user_comment`;
@@ -131,8 +131,8 @@ CREATE TABLE `user_comment` (
 --
 -- 表的结构 `user_email`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:11:27
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:37:13
 --
 
 DROP TABLE IF EXISTS `user_email`;
@@ -152,10 +152,35 @@ CREATE TABLE `user_email` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `user_notification`
+--
+-- 创建时间： 2016-03-11 08:35:35
+-- 最后更新： 2016-03-11 08:36:47
+--
+
+DROP TABLE IF EXISTS `user_notification`;
+CREATE TABLE `user_notification` (
+  `guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `user_guid` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `range` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ip_1` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_2` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_3` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_4` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `ip_type` tinyint(4) UNSIGNED NOT NULL DEFAULT '4',
+  `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `update_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `user_relation`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:12:20
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:38:04
 --
 
 DROP TABLE IF EXISTS `user_relation`;
@@ -182,8 +207,8 @@ CREATE TABLE `user_relation` (
 --
 -- 表的结构 `user_relation_group`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:12:20
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:38:04
 --
 
 DROP TABLE IF EXISTS `user_relation_group`;
@@ -200,8 +225,8 @@ CREATE TABLE `user_relation_group` (
 --
 -- 表的结构 `user_single_relation`
 --
--- 创建时间： 2016-02-20 13:10:37
--- 最后更新： 2016-02-20 13:12:08
+-- 创建时间： 2016-02-20 13:24:06
+-- 最后更新： 2016-03-11 08:37:53
 --
 
 DROP TABLE IF EXISTS `user_single_relation`;
@@ -266,6 +291,14 @@ ALTER TABLE `user_email`
   ADD UNIQUE KEY `user_email_id_unique` (`user_guid`,`id`);
 
 --
+-- Indexes for table `user_notification`
+--
+ALTER TABLE `user_notification`
+  ADD PRIMARY KEY (`guid`),
+  ADD UNIQUE KEY `user_notification_unique` (`id`,`user_guid`),
+  ADD KEY `user_notification_fkey` (`user_guid`);
+
+--
 -- Indexes for table `user_relation`
 --
 ALTER TABLE `user_relation`
@@ -317,6 +350,12 @@ ALTER TABLE `user_comment`
 --
 ALTER TABLE `user_email`
   ADD CONSTRAINT `email_user_guid_fkey` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `user_notification`
+--
+ALTER TABLE `user_notification`
+  ADD CONSTRAINT `user_notification_fkey` FOREIGN KEY (`user_guid`) REFERENCES `user` (`guid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 限制表 `user_relation`

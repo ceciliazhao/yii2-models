@@ -181,7 +181,7 @@ yii\mongodb\ActiveRecord
 
 				<b>Author:</b>
 				vistart <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;">&#105;&#x40;&#118;i&#x73;&#116;&#x61;&#x72;&#116;&#x2e;&#110;&#97;&#x6d;&#101;</a><br>
-			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoNotificationReadModel.html#17-30" title="Go to source code">models/BaseMongoNotificationReadModel.php</a>
+			<b>Located at</b> <a href="source-class-vistart.Models.models.BaseMongoNotificationReadModel.html#17-34" title="Go to source code">models/BaseMongoNotificationReadModel.php</a>
 		<br>
 	</div>
 
@@ -210,7 +210,8 @@ yii\mongodb\ActiveRecord
 	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.NotificationReadTrait.html#methods">vistart\Models\traits\NotificationReadTrait</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-vistart.Models.traits.NotificationReadTrait.html#_read">read()</a></code>, 
-				<code><a href="class-vistart.Models.traits.NotificationReadTrait.html#_unread">unread()</a></code>
+				<code><a href="class-vistart.Models.traits.NotificationReadTrait.html#_unread">unread()</a></code>, 
+				<code><a href="class-vistart.Models.traits.NotificationReadTrait.html#_vacuum">vacuum()</a></code>
 			</p>
 		</div>
 		<div class="panel panel-default">
@@ -442,38 +443,28 @@ Set this property to false if you do not want to record the updater ID.</p>
 				</div>
 			</td>
 		</tr>
-		<tr data-order="enableIP" id="$enableIP">
+		<tr data-order="contentAttribute" id="$contentAttribute">
 			<td class="attributes"><code>
 				public  
-				integer
+				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-vistart.Models.models.BaseMongoNotificationReadModel.html#28" title="Go to source code"><var>$enableIP</var></a>
+					<a href="source-class-vistart.Models.models.BaseMongoNotificationReadModel.html#29-32" title="Go to source code"><var>$contentAttribute</var></a>
 
 				<div class="description short">
-					<p>REQUIRED. Determine whether enabling the IP attributes and
-features, and IP address type if enabled.</p>
+					<p>store the notification's GUID.</p>
 				</div>
 
 				<div class="description detailed hidden">
-					<p>REQUIRED. Determine whether enabling the IP attributes and
-features, and IP address type if enabled.</p>
+					<p>store the notification's GUID.</p>
 
-						<h4>Version</h4>
-						<div class="list">
-								2.0<br>
-						</div>
-						<h4>Since</h4>
-						<div class="list">
-								1.1<br>
-						</div>
 				</div>
 			</td>
 			<td class="value">
 				<div>
-					<a href="#$enableIP" class="anchor">#</a>
-					<code><span class="php-keyword1">false</span></code>
+					<a href="#$contentAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'content'</span></code>
 				</div>
 			</td>
 		</tr>
@@ -509,7 +500,6 @@ features, and IP address type if enabled.</p>
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableBehaviors"><var>$cacheTagBlameableBehaviors</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableRules"><var>$cacheTagBlameableRules</var></a></code>, 
-				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttribute"><var>$contentAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
 				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 

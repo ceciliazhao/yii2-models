@@ -86,7 +86,7 @@ trait TimestampTrait
                 $result = call_user_func($this->expiredRemovingCallback, $this);
             }
             $result = $this->delete();
-            $this->trigger(static::$eventExpiredRemoved, new \yii\base\ModelEvent(['data' => ['result' => $result]]));
+            $this->trigger(static::$eventExpiredRemoved, new ModelEvent(['data' => ['result' => $result]]));
         }
         return false;
     }
