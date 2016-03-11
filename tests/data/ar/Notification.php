@@ -22,6 +22,6 @@ class Notification extends \vistart\Models\models\BaseNotificationModel
 
     public static function tableName()
     {
-        return '{{%notification}}';
+        return '{{%user_notification}}';
     }
 }

@@ -35,9 +35,9 @@ class MongoNotificationTest extends MongoTestCase
         $this->assertTrue(MongoNotificationRead::read($user, $notification));
         $log = MongoNotificationRead::findByIdentity($user)->content($notification->guid)->one();
         $this->assertInstanceOf(MongoNotificationRead::className(), $log);
-        $this->assertTrue($log->delete() == 1);
+        $this->assertEquals(1, $log->delete());
 
-        $this->assertTrue($notification->delete() == 1);
+        $this->assertEquals(1, $notification->delete());
         $this->assertTrue($user->deregister());
     }
 

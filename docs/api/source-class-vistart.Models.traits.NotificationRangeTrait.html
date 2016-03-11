@@ -267,23 +267,24 @@
 </span><span id="99" class="l"><a href="#99"> 99 </a>    {
 </span><span id="100" class="l"><a href="#100">100 </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;rangeAttribute) ? [
 </span><span id="101" class="l"><a href="#101">101 </a>            [<span class="php-var">$this</span>-&gt;rangeAttribute, <span class="php-quote">'string'</span>],
-</span><span id="102" class="l"><a href="#102">102 </a>            [<span class="php-var">$this</span>-&gt;rangeAttribute, <span class="php-quote">'validateRange'</span>],
-</span><span id="103" class="l"><a href="#103">103 </a>            ] : [];
-</span><span id="104" class="l"><a href="#104">104 </a>    }
-</span><span id="105" class="l"><a href="#105">105 </a>
-</span><span id="106" class="l"><a href="#106">106 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> validateRange()
-</span><span id="107" class="l"><a href="#107">107 </a>    {
-</span><span id="108" class="l"><a href="#108">108 </a>        <span class="php-keyword1">try</span> {
-</span><span id="109" class="l"><a href="#109">109 </a>            <span class="php-var">$rangeAttribute</span> = <span class="php-var">$this</span>-&gt;rangeAttribute;
-</span><span id="110" class="l"><a href="#110">110 </a>            Json::decode(<span class="php-var">$this</span>-&gt;<span class="php-var">$rangeAttribute</span>);
-</span><span id="111" class="l"><a href="#111">111 </a>        } <span class="php-keyword1">catch</span> (\Exception <span class="php-var">$ex</span>) {
-</span><span id="112" class="l"><a href="#112">112 </a>            <span class="php-var">$this</span>-&gt;addError(<span class="php-var">$ex</span>-&gt;getMessage());
-</span><span id="113" class="l"><a href="#113">113 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="114" class="l"><a href="#114">114 </a>        }
-</span><span id="115" class="l"><a href="#115">115 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="116" class="l"><a href="#116">116 </a>    }
-</span><span id="117" class="l"><a href="#117">117 </a>}
-</span><span id="118" class="l"><a href="#118">118 </a></span></code></pre>
+</span><span id="102" class="l"><a href="#102">102 </a>            [<span class="php-var">$this</span>-&gt;rangeAttribute, <span class="php-quote">'default'</span>, <span class="php-quote">'value'</span> =&gt; <span class="php-quote">'[]'</span>],
+</span><span id="103" class="l"><a href="#103">103 </a>            [<span class="php-var">$this</span>-&gt;rangeAttribute, <span class="php-quote">'validateRange'</span>],
+</span><span id="104" class="l"><a href="#104">104 </a>            ] : [];
+</span><span id="105" class="l"><a href="#105">105 </a>    }
+</span><span id="106" class="l"><a href="#106">106 </a>
+</span><span id="107" class="l"><a href="#107">107 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> validateRange()
+</span><span id="108" class="l"><a href="#108">108 </a>    {
+</span><span id="109" class="l"><a href="#109">109 </a>        <span class="php-keyword1">try</span> {
+</span><span id="110" class="l"><a href="#110">110 </a>            <span class="php-var">$rangeAttribute</span> = <span class="php-var">$this</span>-&gt;rangeAttribute;
+</span><span id="111" class="l"><a href="#111">111 </a>            Json::decode(<span class="php-var">$this</span>-&gt;<span class="php-var">$rangeAttribute</span>);
+</span><span id="112" class="l"><a href="#112">112 </a>        } <span class="php-keyword1">catch</span> (\Exception <span class="php-var">$ex</span>) {
+</span><span id="113" class="l"><a href="#113">113 </a>            <span class="php-var">$this</span>-&gt;addError(<span class="php-var">$ex</span>-&gt;getMessage());
+</span><span id="114" class="l"><a href="#114">114 </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="115" class="l"><a href="#115">115 </a>        }
+</span><span id="116" class="l"><a href="#116">116 </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="117" class="l"><a href="#117">117 </a>    }
+</span><span id="118" class="l"><a href="#118">118 </a>}
+</span><span id="119" class="l"><a href="#119">119 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
