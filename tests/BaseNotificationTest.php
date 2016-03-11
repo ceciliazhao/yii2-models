@@ -24,6 +24,7 @@ class BaseNotificationTest extends MongoTestCase
 
     /**
      * @group notification
+     * @group mongo
      */
     public function testNew()
     {
