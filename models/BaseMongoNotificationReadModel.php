@@ -15,7 +15,7 @@ namespace vistart\Models\models;
 use vistart\Models\traits\NotificationReadTrait;
 
 /**
- * Description of BaseMongoNotificationLogModel
+ * Description of BaseMongoNotificationReadModel
  *
  * @author vistart <i@vistart.name>
  */

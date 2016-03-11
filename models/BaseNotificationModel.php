@@ -27,4 +27,9 @@ abstract class BaseNotificationModel extends BaseBlameableModel
     public $updatedAtAttribute = false;
     public $updatedByAttribute = false;
 
+    public function init()
+    {
+        $this->on(static::EVENT_AFTER_DELETE, [$this, 'onDeleteNotificationRead']);
+        parent::init();
+    }
 }

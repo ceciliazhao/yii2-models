@@ -24,4 +24,10 @@ class Notification extends \vistart\Models\models\BaseNotificationModel
     {
         return '{{%user_notification}}';
     }
+
+    public function init()
+    {
+        $this->notificationReadClass = MongoNotificationRead::className();
+        parent::init();
+    }
 }

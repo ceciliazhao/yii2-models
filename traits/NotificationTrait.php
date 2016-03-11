@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use yii\base\ModelEvent;
+
 /**
  * This trait is used for building notification model.
  *
@@ -22,6 +24,7 @@ trait NotificationTrait
 {
     use NotificationRangeTrait;
 
+    public $notificationReadClass;
     public $linkAttribute = false;
 
     public function getLink()
@@ -65,8 +68,32 @@ trait NotificationTrait
         return $fields;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return array_merge(parent::rules(), $this->getNotificationRules());
+    }
+
+    /**
+     * 
+     * @param ModelEvent $event
+     * @return integer|false
+     */
+    public function onDeleteNotificationRead($event)
+    {
+        $sender = $event->sender;
+        /* @var $sender static */
+        if (!is_string($sender->notificationReadClass)) {
+            return false;
+        }
+        $notificationReadClass = $sender->notificationReadClass;
+        $notificationReadModels = $notificationReadClass::find()->content($sender->guid)->all();
+        $count = 0;
+        foreach ($notificationReadModels as $model) {
+            $count += $model->delete();
+        }
+        return $count;
     }
 }

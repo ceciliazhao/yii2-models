@@ -12,6 +12,9 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\models\BaseUserModel;
+use Yii;
+
 /**
  * This trait is used for building blameable query class for blameable model,
  * which would be attached three conditions.
@@ -85,7 +88,7 @@ trait BlameableQueryTrait
         if (!is_string($model->createdByAttribute)) {
             return $this;
         }
-        if ($guid instanceof \vistart\Models\models\BaseUserModel) {
+        if ($guid instanceof BaseUserModel) {
             $guid = $guid->guid;
         }
         return $this->andWhere([$model->createdByAttribute => $guid]);
@@ -102,7 +105,7 @@ trait BlameableQueryTrait
         if (!is_string($model->updatedByAttribute)) {
             return $this;
         }
-        if ($guid instanceof \vistart\Models\models\BaseUserModel) {
+        if ($guid instanceof BaseUserModel) {
             $guid = $guid->guid;
         }
         return $this->andWhere([$model->updatedByAttribute => $guid]);
@@ -110,13 +113,13 @@ trait BlameableQueryTrait
 
     /**
      * Attach current identity to createdBy condition.
-     * @param \vistart\Models\models\BaseUserModel $identity
+     * @param BaseUserModel $identity
      * @return $this
      */
     public function byIdentity($identity = null)
     {
         if (!$identity) {
-            $identity = \Yii::$app->user->identity;
+            $identity = Yii::$app->user->identity;
         }
         if (!$identity || !$identity->canGetProperty('guid')) {
             return $this;

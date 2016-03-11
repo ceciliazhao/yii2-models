@@ -24,4 +24,10 @@ class MongoNotification extends \vistart\Models\models\BaseMongoNotificationMode
     {
         return ['yii2-models', 'notification'];
     }
+
+    public function init()
+    {
+        $this->notificationReadClass = MongoNotificationRead::className();
+        parent::init();
+    }
 }

@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\models\BaseMongoNotificationModel;
+use vistart\Models\models\BaseNotificationModel;
 use vistart\Models\models\BaseUserModel;
 
 /**
@@ -25,7 +27,7 @@ trait NotificationReadTrait
     /**
      * 
      * @param BaseUserModel $user
-     * @param {$this->notificationClass} $notification
+     * @param BaseMongoNotificationModel|BaseNotificationModel $notification
      * @return boolean False if notification was marked as read or it didn't exist.
      */
     public static function read($user, $notification)
@@ -43,7 +45,7 @@ trait NotificationReadTrait
     /**
      * 
      * @param BaseUserModel $user
-     * @param {$this->notificationClass} $notification
+     * @param BaseMongoNotificationModel|BaseNotificationModel $notification
      * @return boolean True if notification was marked as unread or it didn't exist.
      */
     public static function unread($user, $notification)
