@@ -358,7 +358,7 @@ class BaseUserCommentTest extends TestCase
         $subCommonComment->parent = $comments[5];
         $this->assertTrue($subCommonComment->save());
         $this->assertEquals($comments[5]->guid, $subCommonComment->parent->guid);
-        
+
         $this->assertFalse($subCommonComment->hasReachedAncestorLimit());
         $this->assertFalse($subCommonComment->hasReachedChildrenLimit());
         $this->assertFalse($comment->hasReachedChildrenLimit());
@@ -366,6 +366,20 @@ class BaseUserCommentTest extends TestCase
         $this->assertFalse($comments[9]->hasReachedChildrenLimit());
         $this->assertFalse($comments[5]->hasReachedAncestorLimit());
         $this->assertFalse($comments[5]->hasReachedChildrenLimit());
+
+        $this->assertTrue($user->deregister());
+    }
+
+    /**
+     * @group comment
+     * @depends testAncestor
+     */
+    public function testAncestorEvents()
+    {
+        $user = $this->prepareUser();
+
+        $comment = $this->prepareComment($user);
+        $this->assertTrue($comment->save());
 
         $this->assertTrue($user->deregister());
     }
