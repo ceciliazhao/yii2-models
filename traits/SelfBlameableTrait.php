@@ -90,6 +90,7 @@ trait SelfBlameableTrait
     public $throwRestrictException = false;
     private $localSelfBlameableRules = [];
     public static $eventParentChanged = 'parentChanged';
+    public static $eventChildAdded = 'childAdded';
 
     /**
      * @var false|integer Set the limit of ancestor level. False is no limit.
@@ -184,6 +185,16 @@ trait SelfBlameableTrait
     }
 
     /**
+     * Add a child.
+     * @param static $child
+     * @return boolean
+     */
+    public function addChild($child)
+    {
+        return $this->hasReachedChildrenLimit() ? $child->setParent($this) : false;
+    }
+
+    /**
      * Event triggered before deleting itself.
      * @param ModelEvent $event
      * @return boolean true if parentAttribute not specified.
@@ -265,11 +276,13 @@ trait SelfBlameableTrait
      */
     public function setParent($parent)
     {
-        if (empty($parent) || $this->guid == $parent->guid || $parent->hasAncestor($this)) {
+        if (empty($parent) || $this->guid == $parent->guid || $parent->hasAncestor($this) || $parent->hasReachedAncestorLimit()) {
             return false;
         }
         unset($this->parent);
+        unset($parent->children);
         $this->trigger(static::$eventParentChanged);
+        $parent->trigger(static::$eventChildAdded);
         return $this->{$this->parentAttribute} = $parent->guid;
     }
 

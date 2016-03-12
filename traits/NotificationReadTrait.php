@@ -61,6 +61,20 @@ trait NotificationReadTrait
     }
 
     /**
+     * Check if $notification is read by $user.
+     * @param BaseUserModel $user
+     * @param BaseMongoNotificationModel|BaseNotificationModel $notification
+     * @return boolean
+     */
+    public static function isRead($user, $notification)
+    {
+        if (empty($notification) || !$notification->findByIdentity($user)->guid($notification->guid)->one()) {
+            return false;
+        }
+        return ((int) static::findByIdentity($user)->content($notification->guid)->count()) > 0;
+    }
+
+    /**
      * Vacuum all the invalid notification read records.
      * @param BaseUserModel $user
      * @param string $notificationClass
