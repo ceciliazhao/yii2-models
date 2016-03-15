@@ -56,8 +56,8 @@ class BaseUserRelationTest extends TestCase
         $relation = UserSingleRelation::buildNormalRelation($user, $other);
         if ($relation->save()) {
             $this->assertTrue(true);
-            $opposite = UserSingleRelation::find()->opposite($user, $other);
-            $this->assertNull($opposite);
+            //$opposite = UserSingleRelation::find()->opposite($user, $other);
+            //$this->assertNull($opposite);
         } else {
             var_dump($relation->rules());
             var_dump($relation->errors);
@@ -182,6 +182,7 @@ class BaseUserRelationTest extends TestCase
     /**
      * @depends testFavoriteAndRemark
      * @group relation
+     * @group relation-single
      */
     public function testSingleRelation()
     {
@@ -223,6 +224,42 @@ class BaseUserRelationTest extends TestCase
     /**
      * @depends testSingleRelation
      * @group relation
+     * @group relation-single
+     */
+    public function testSingleRelationStatic()
+    {
+        $users = $this->prepareUsers();
+        $initiator = $users[0];
+        $recipient = $users[1];
+
+        $relation = $this->prepareSingleRelationModels($initiator, $recipient);
+        $this->assertTrue(UserSingleRelation::isFollowing($initiator, $recipient));
+        $this->assertFalse(UserSingleRelation::isFollowed($initiator, $recipient));
+        $this->assertFalse(UserSingleRelation::isMutual($initiator, $recipient));
+        $this->assertFalse(UserSingleRelation::isFriend($initiator, $recipient));
+        $this->assertEquals(1, $relation->delete());
+
+        $inverse = $this->prepareSingleRelationModels($recipient, $initiator);
+        $this->assertFalse(UserSingleRelation::isFollowing($initiator, $recipient));
+        $this->assertTrue(UserSingleRelation::isFollowed($initiator, $recipient));
+        $this->assertFalse(UserSingleRelation::isMutual($initiator, $recipient));
+        $this->assertFalse(UserSingleRelation::isFriend($initiator, $recipient));
+
+        $relation = $this->prepareSingleRelationModels($initiator, $recipient);
+        $this->assertTrue(UserSingleRelation::isFollowing($initiator, $recipient));
+        $this->assertTrue(UserSingleRelation::isFollowed($initiator, $recipient));
+        $this->assertTrue(UserSingleRelation::isMutual($initiator, $recipient));
+        $this->assertTrue(UserSingleRelation::isFriend($initiator, $recipient));
+        
+        $this->assertNull(UserSingleRelation::buildSuspendRelation($initiator, $recipient));
+
+        $this->destroyUsers($users);
+    }
+
+    /**
+     * @depends testSingleRelationStatic
+     * @group relation
+     * @group relation-mutual
      */
     public function testMutualRelation()
     {
@@ -256,6 +293,42 @@ class BaseUserRelationTest extends TestCase
 
     /**
      * @depends testMutualRelation
+     * @group relation
+     * @group relation-mutual
+     */
+    public function testMutualRelationStatic()
+    {
+        $users = $this->prepareUsers();
+        $initiator = $users[0];
+        $recipient = $users[1];
+        
+        $relations = $this->prepareMutualRelationModels($initiator, $recipient, UserRelation::$mutualTypeNormal);
+        $this->assertTrue(UserRelation::isFollowing($initiator, $recipient));
+        $this->assertTrue(UserRelation::isFollowed($initiator, $recipient));
+        $this->assertTrue(UserRelation::isFollowing($recipient, $initiator));
+        $this->assertTrue(UserRelation::isFollowed($recipient, $initiator));
+        
+        $this->assertTrue(UserRelation::isMutual($initiator, $recipient));
+        $this->assertTrue(UserRelation::isMutual($recipient, $initiator));
+        $this->assertTrue(UserRelation::isFriend($initiator, $recipient));
+        $this->assertTrue(UserRelation::isFriend($recipient, $initiator));
+        
+        $relations = $this->prepareMutualRelationModels($initiator, $recipient, UserRelation::$mutualTypeSuspend);
+        $this->assertTrue(UserRelation::isFollowing($initiator, $recipient));
+        $this->assertTrue(UserRelation::isFollowed($initiator, $recipient));
+        $this->assertTrue(UserRelation::isFollowing($recipient, $initiator));
+        $this->assertTrue(UserRelation::isFollowed($recipient, $initiator));
+        
+        $this->assertTrue(UserRelation::isMutual($initiator, $recipient));
+        $this->assertTrue(UserRelation::isMutual($recipient, $initiator));
+        $this->assertFalse(UserRelation::isFriend($initiator, $recipient));
+        $this->assertFalse(UserRelation::isFriend($recipient, $initiator));
+        
+        $this->destroyUsers($users);
+    }
+
+    /**
+     * @depends testMutualRelationStatic
      * @group relation
      */
     public function testRelationGroup()

@@ -2,13 +2,26 @@
 
 ### since 2.0.0 Beta 1 released
 
+#### traits/SelfBlameableTrait.php
+
 - Add: hasParent(), hasAncestor(), getAncestorChain(), getAncestorModels(), getAncestors(), hasCommonAncestor(), getCommonAncestor(), setParent() methods or magic property. (vistart)
 - Add: hasReachedAncestorLimit(), hasReachedChildrenLimit() methods. (vistart)
 - Chg: bear() will check whether it has reached the ancestor limit or children limit first. (vistart)
-- Add: vacuum() method for vacuum all invalid notification logs. (vistart)
-- Add: onDeleteNotificationRead() event for deleting notification read log after notification was deleted. (vistart)
 - Add: addChild() method for adding a child. (vistart)
 - Add: isRead() method for checking whether this notification has been read. (vistart)
+
+#### traits/NotificationReadTrait.php
+
+- Add: vacuum() method for vacuum all invalid notification logs. (vistart)
+
+#### traits/NotificationTrait.php
+
+- Add: onDeleteNotificationRead() event for deleting notification read log after notification was deleted. (vistart)
+
+#### traits/UserRelationTrait.php
+
+- Add: isFollowed(), isFollowing(), isMutual(), isFriend() static methods for checking relations. (vistart)
+
 
 ### 2.0.0 Beta 1
 

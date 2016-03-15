@@ -14,6 +14,7 @@ namespace vistart\Models\traits;
 
 use vistart\Models\models\BaseUserModel;
 use vistart\Models\traits\MultipleBlameableTrait as mb;
+use yii\base\ModelEvent;
 
 /**
  * Relation features.
@@ -32,9 +33,9 @@ use vistart\Models\traits\MultipleBlameableTrait as mb;
  * @property-read integer $groupsCount
  * @property-read array $groupsRules
  * @property boolean $isFavorite
- * @property-read \vistart\Models\models\BaseUserModel $initiator
- * @property-read \vistart\Models\models\BaseUserModel $recipient
- * @property-read \vistart\Models\models\BaseUserRelationModel $opposite
+ * @property-read BaseUserModel $initiator
+ * @property-read BaseUserModel $recipient
+ * @property-read static $opposite
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
@@ -214,7 +215,7 @@ trait UserRelationTrait
 
     /**
      * Get opposite relation against self.
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return static
      */
     public function getOpposite()
     {
@@ -227,12 +228,69 @@ trait UserRelationTrait
     }
 
     /**
+     * Check whether the initiator is followed by recipient.
+     * @param BaseUserModel $initiator
+     * @param BaseUserModel $recipient
+     * @return boolean
+     */
+    public static function isFollowed($initiator, $recipient)
+    {
+        return ((int) static::find()->initiators($recipient)->recipients($initiator)->count()) > 0;
+    }
+
+    /**
+     * Check whether the initiator is following recipient.
+     * @param BaseUserModel $initiator
+     * @param BaseUserModel $recipient
+     * @return boolean
+     */
+    public static function isFollowing($initiator, $recipient)
+    {
+        return ((int) static::find()->initiators($initiator)->recipients($recipient)->count()) > 0;
+    }
+
+    /**
+     * Check whether the initiator is following and followed by recipient mutually (Single Relation).
+     * Or check whether the initiator and recipient are friend whatever the mutual type is normal or suspend.
+     * @param BaseUserModel $initiator
+     * @param BaseUserModel $recipient
+     * @return boolean
+     */
+    public static function isMutual($initiator, $recipient)
+    {
+        return static::isFollowed($initiator, $recipient) && static::isFollowing($initiator, $recipient);
+    }
+
+    /**
+     * Check whether the initiator is following and followed by recipient mutually (Single Relation).
+     * Or check whether the initiator and recipient are friend if the mutual type is normal.
+     * @param BaseUserModel $initiator
+     * @param BaseUserModel $recipient
+     * @return boolean
+     */
+    public static function isFriend($initiator, $recipient)
+    {
+        $query = static::find();
+        $model = $query->noInitModel;
+        /* @var $model static */
+        if ($model->relationType == static::$relationSingle) {
+            return static::isMutual($initiator, $recipient);
+        }
+        if ($model->relationType == static::$relationMutual) {
+            $relation = (int) static::find()->initiators($initiator)->recipients($recipient)->andWhere([$model->mutualTypeAttribute => static::$mutualTypeNormal])->count();
+            $inverse = (int) static::find()->recipients($initiator)->initiators($recipient)->andWhere([$model->mutualTypeAttribute => static::$mutualTypeNormal])->count();
+            return $relation && $inverse;
+        }
+        return false;
+    }
+
+    /**
      * Build new or return existed suspend mutual relation, of return null if
      * current type is not mutual.
      * @see buildRelation()
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
-     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * @return static The relation will be
      * given if exists, or return a new relation.
      */
     public static function buildSuspendRelation($user, $other)
@@ -252,7 +310,7 @@ trait UserRelationTrait
      * @see buildRelation()
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
-     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * @return static The relation will be
      * given if exists, or return a new relation.
      */
     public static function buildNormalRelation($user, $other)
@@ -274,7 +332,7 @@ trait UserRelationTrait
      * value of `getIsNewRecord()` method.
      * @param BaseUserModel|string $user Initiator or its GUID.
      * @param BaseUserModel|string $other Recipient or its GUID.
-     * @return \vistart\Models\models\BaseUserRelationModel The relation will be
+     * @return static The relation will be
      * given if exists, or return a new relation. Or return null if not allowed
      * to build self relation,
      */
@@ -305,8 +363,8 @@ trait UserRelationTrait
     /**
      * Build opposite relation throughout the current relation. The opposite
      * relation will be given if existed.
-     * @param \vistart\Models\models\BaseUserRelationModel $relation
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @param static $relation
+     * @return static
      */
     protected static function buildOppositeRelation($relation)
     {
@@ -365,7 +423,7 @@ trait UserRelationTrait
      * Get first relation between initiator(s) and recipient(s).
      * @param BaseUserModel|string|array $user Initiator or its guid, or array of them.
      * @param BaseUserModel|string|array $other Recipient or its guid, or array of them.
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return static
      */
     public static function findOneRelation($user, $other)
     {
@@ -376,7 +434,7 @@ trait UserRelationTrait
      * Get first opposite relation between initiator(s) and recipient(s).
      * @param BaseUserModel|string $user Initiator or its guid, or array of them.
      * @param BaseUserModel|string $other Recipient or its guid, or array of them.
-     * @return \vistart\Models\models\BaseUserRelationModel
+     * @return static
      */
     public static function findOneOppositeRelation($user, $other)
     {
@@ -397,7 +455,7 @@ trait UserRelationTrait
 
     /**
      * Initialize groups attribute.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitGroups($event)
     {
@@ -407,7 +465,7 @@ trait UserRelationTrait
 
     /**
      * Initialize remark attribute.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitRemark($event)
     {
@@ -420,7 +478,7 @@ trait UserRelationTrait
      * The event triggered after insert new relation.
      * The opposite relation should be inserted without triggering events
      * simultaneously after new relation inserted,
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInsertRelation($event)
     {
@@ -439,7 +497,7 @@ trait UserRelationTrait
      * The event triggered after update relation.
      * The opposite relation should be updated without triggering events
      * simultaneously after existed relation removed.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onUpdateRelation($event)
     {
@@ -458,7 +516,7 @@ trait UserRelationTrait
      * The event triggered after delete relation.
      * The opposite relation should be deleted without triggering events
      * simultaneously after existed relation removed.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onDeleteRelation($event)
     {
