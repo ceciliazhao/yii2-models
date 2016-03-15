@@ -210,7 +210,7 @@ trait SelfBlameableTrait
             case static::$onRestrict:
                 $event->isValid = $sender->children === null;
                 if ($this->throwRestrictException) {
-                    throw new \yii\db\IntegrityException('Delete restricted.');
+                    throw new IntegrityException('Delete restricted.');
                 }
                 break;
             case static::$onCascade:
@@ -242,7 +242,7 @@ trait SelfBlameableTrait
             case static::$onRestrict:
                 $event->isValid = $sender->getOldChildren() === null;
                 if ($this->throwRestrictException) {
-                    throw new \yii\db\IntegrityException('Update restricted.');
+                    throw new IntegrityException('Update restricted.');
                 }
                 break;
             case static::$onCascade:
@@ -434,11 +434,11 @@ trait SelfBlameableTrait
                     $child->$parentAttribute = $value;
                 }
                 if (!$child->save()) {
-                    throw new \yii\db\IntegrityException('Update failed:' . $child->errors);
+                    throw new IntegrityException('Update failed:' . $child->errors);
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\IntegrityException $ex) {
+        } catch (IntegrityException $ex) {
             $transaction->rollBack();
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
                 Yii::error($ex->errorInfo, static::className() . '\update');
@@ -470,11 +470,11 @@ trait SelfBlameableTrait
         try {
             foreach ($children as $child) {
                 if (!$child->delete()) {
-                    throw new \yii\db\IntegrityException('Delete failed:' . $child->errors);
+                    throw new IntegrityException('Delete failed:' . $child->errors);
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\IntegrityException $ex) {
+        } catch (IntegrityException $ex) {
             $transaction->rollBack();
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
                 Yii::error($ex->errorInfo, static::className() . '\delete');
