@@ -378,7 +378,7 @@
 </span><span id="210" class="l"><a href="#210">210 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$onRestrict</span>:
 </span><span id="211" class="l"><a href="#211">211 </a>                <span class="php-var">$event</span>-&gt;isValid = <span class="php-var">$sender</span>-&gt;children === <span class="php-keyword1">null</span>;
 </span><span id="212" class="l"><a href="#212">212 </a>                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;throwRestrictException) {
-</span><span id="213" class="l"><a href="#213">213 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\db\IntegrityException(<span class="php-quote">'Delete restricted.'</span>);
+</span><span id="213" class="l"><a href="#213">213 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> IntegrityException(<span class="php-quote">'Delete restricted.'</span>);
 </span><span id="214" class="l"><a href="#214">214 </a>                }
 </span><span id="215" class="l"><a href="#215">215 </a>                <span class="php-keyword1">break</span>;
 </span><span id="216" class="l"><a href="#216">216 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$onCascade</span>:
@@ -410,7 +410,7 @@
 </span><span id="242" class="l"><a href="#242">242 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$onRestrict</span>:
 </span><span id="243" class="l"><a href="#243">243 </a>                <span class="php-var">$event</span>-&gt;isValid = <span class="php-var">$sender</span>-&gt;getOldChildren() === <span class="php-keyword1">null</span>;
 </span><span id="244" class="l"><a href="#244">244 </a>                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;throwRestrictException) {
-</span><span id="245" class="l"><a href="#245">245 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\db\IntegrityException(<span class="php-quote">'Update restricted.'</span>);
+</span><span id="245" class="l"><a href="#245">245 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> IntegrityException(<span class="php-quote">'Update restricted.'</span>);
 </span><span id="246" class="l"><a href="#246">246 </a>                }
 </span><span id="247" class="l"><a href="#247">247 </a>                <span class="php-keyword1">break</span>;
 </span><span id="248" class="l"><a href="#248">248 </a>            <span class="php-keyword1">case</span> <span class="php-keyword1">static</span>::<span class="php-var">$onCascade</span>:
@@ -602,11 +602,11 @@
 </span><span id="434" class="l"><a href="#434">434 </a>                    <span class="php-var">$child</span>-&gt;<span class="php-var">$parentAttribute</span> = <span class="php-var">$value</span>;
 </span><span id="435" class="l"><a href="#435">435 </a>                }
 </span><span id="436" class="l"><a href="#436">436 </a>                <span class="php-keyword1">if</span> (!<span class="php-var">$child</span>-&gt;save()) {
-</span><span id="437" class="l"><a href="#437">437 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\db\IntegrityException(<span class="php-quote">'Update failed:'</span> . <span class="php-var">$child</span>-&gt;errors);
+</span><span id="437" class="l"><a href="#437">437 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> IntegrityException(<span class="php-quote">'Update failed:'</span> . <span class="php-var">$child</span>-&gt;errors);
 </span><span id="438" class="l"><a href="#438">438 </a>                }
 </span><span id="439" class="l"><a href="#439">439 </a>            }
 </span><span id="440" class="l"><a href="#440">440 </a>            <span class="php-var">$transaction</span>-&gt;commit();
-</span><span id="441" class="l"><a href="#441">441 </a>        } <span class="php-keyword1">catch</span> (\yii\db\IntegrityException <span class="php-var">$ex</span>) {
+</span><span id="441" class="l"><a href="#441">441 </a>        } <span class="php-keyword1">catch</span> (IntegrityException <span class="php-var">$ex</span>) {
 </span><span id="442" class="l"><a href="#442">442 </a>            <span class="php-var">$transaction</span>-&gt;rollBack();
 </span><span id="443" class="l"><a href="#443">443 </a>            <span class="php-keyword1">if</span> (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
 </span><span id="444" class="l"><a href="#444">444 </a>                Yii::error(<span class="php-var">$ex</span>-&gt;errorInfo, <span class="php-keyword1">static</span>::className() . <span class="php-quote">'\update'</span>);
@@ -638,11 +638,11 @@
 </span><span id="470" class="l"><a href="#470">470 </a>        <span class="php-keyword1">try</span> {
 </span><span id="471" class="l"><a href="#471">471 </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$children</span> <span class="php-keyword1">as</span> <span class="php-var">$child</span>) {
 </span><span id="472" class="l"><a href="#472">472 </a>                <span class="php-keyword1">if</span> (!<span class="php-var">$child</span>-&gt;<span class="php-keyword2">delete</span>()) {
-</span><span id="473" class="l"><a href="#473">473 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \yii\db\IntegrityException(<span class="php-quote">'Delete failed:'</span> . <span class="php-var">$child</span>-&gt;errors);
+</span><span id="473" class="l"><a href="#473">473 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> IntegrityException(<span class="php-quote">'Delete failed:'</span> . <span class="php-var">$child</span>-&gt;errors);
 </span><span id="474" class="l"><a href="#474">474 </a>                }
 </span><span id="475" class="l"><a href="#475">475 </a>            }
 </span><span id="476" class="l"><a href="#476">476 </a>            <span class="php-var">$transaction</span>-&gt;commit();
-</span><span id="477" class="l"><a href="#477">477 </a>        } <span class="php-keyword1">catch</span> (\yii\db\IntegrityException <span class="php-var">$ex</span>) {
+</span><span id="477" class="l"><a href="#477">477 </a>        } <span class="php-keyword1">catch</span> (IntegrityException <span class="php-var">$ex</span>) {
 </span><span id="478" class="l"><a href="#478">478 </a>            <span class="php-var">$transaction</span>-&gt;rollBack();
 </span><span id="479" class="l"><a href="#479">479 </a>            <span class="php-keyword1">if</span> (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
 </span><span id="480" class="l"><a href="#480">480 </a>                Yii::error(<span class="php-var">$ex</span>-&gt;errorInfo, <span class="php-keyword1">static</span>::className() . <span class="php-quote">'\delete'</span>);
