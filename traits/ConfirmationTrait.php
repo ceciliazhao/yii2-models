@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\base\ModelEvent;
 
 /**
  * This trait allow its owner to enable the entity to be blamed by user.
@@ -170,7 +171,7 @@ trait ConfirmationTrait
      * Initialize the confirmation status.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitConfirmation($event)
     {
@@ -212,7 +213,7 @@ trait ConfirmationTrait
      * or the confirm_time will be assigned to initConfirmTime.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onConfirmationChanged($event)
     {

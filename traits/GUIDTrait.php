@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use vistart\helpers\Number;
+use yii\base\ModelEvent;
 
 /**
  * Entity features concerning GUID.
@@ -42,7 +43,7 @@ trait GUIDTrait
      * Initialize the GUID attribute with new generated GUID.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param Event $event
      * @since 1.1
      */
     public function onInitGuidAttribute($event)

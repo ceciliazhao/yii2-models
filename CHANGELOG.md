@@ -1,6 +1,8 @@
 ## Base Models for Yii 2 Applications
 
-### since 2.0.0 Beta 1 released
+### 2.0.0. Beta 2
+
+- Chg: Extract references.
 
 #### traits/SelfBlameableTrait.php
 

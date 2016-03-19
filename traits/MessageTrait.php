@@ -12,6 +12,9 @@
 
 namespace vistart\Models\traits;
 
+use yii\base\ModelEvent;
+use yii\db\AfterSaveEvent;
+
 /**
  * This trait should be used in models extended from models used BlameableTrait.
  * Notice: The models used BlameableTrait are also models used EntityTrait.
@@ -90,7 +93,7 @@ trait MessageTrait
     }
 
     /**
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitReceivedAtAttribute($event)
     {
@@ -100,7 +103,7 @@ trait MessageTrait
     }
 
     /**
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitReadAtAttribute($event)
     {
@@ -111,7 +114,7 @@ trait MessageTrait
 
     /**
      * We consider you have received the message if you read it.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onReadAtChanged($event)
     {
@@ -136,7 +139,7 @@ trait MessageTrait
 
     /**
      * You are not allowed to change receive time if you have received it.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onReceivedAtChanged($event)
     {
@@ -157,7 +160,7 @@ trait MessageTrait
 
     /**
      * You are not allowed to change the content if it is not new message.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onContentChanged($event)
     {
@@ -174,7 +177,7 @@ trait MessageTrait
 
     /**
      * Trigger message received or read events.
-     * @param \yii\db\AfterSaveEvent $event
+     * @param AfterSaveEvent $event
      */
     public function onMessageUpdated($event)
     {

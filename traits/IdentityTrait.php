@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\base\ModelEvent;
 
 /**
  * User features concerning identity.
@@ -190,7 +191,7 @@ trait IdentityTrait
      * Initialize the access token attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitAccessToken($event)
     {
@@ -250,7 +251,7 @@ trait IdentityTrait
      * Initialize the status attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEventt $event
      */
     public function onInitStatusAttribute($event)
     {

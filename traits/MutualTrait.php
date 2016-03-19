@@ -12,6 +12,9 @@
 
 namespace vistart\Models\traits;
 
+use vistart\Models\models\BaseUserModel;
+use vistart\Models\queries\BaseUserQuery;
+
 /**
  * Description of MutualTrait
  *
@@ -24,7 +27,7 @@ trait MutualTrait
 
     /**
      * Get initiator.
-     * @return \vistart\Models\queries\BaseUserQuery
+     * @return BaseUserQuery
      */
     public function getInitiator()
     {
@@ -33,7 +36,7 @@ trait MutualTrait
 
     /**
      * Get recipient.
-     * @return \vistart\Models\queries\BaseUserQuery
+     * @return BaseUserQuery
      */
     public function getRecipient()
     {
@@ -45,6 +48,11 @@ trait MutualTrait
         return $this->hasOne($userClass::className(), [$model->guidAttribute => $this->otherGuidAttribute]);
     }
 
+    /**
+     * Set recipient.
+     * @param BaseUserModel $user
+     * @return string
+     */
     public function setRecipient($user)
     {
         if (!is_string($this->otherGuidAttribute)) {
@@ -54,6 +62,10 @@ trait MutualTrait
         return $this->$otherGuidAttribute = $user->guid;
     }
 
+    /**
+     * Get mutual attributes rules.
+     * @return array
+     */
     public function getMutualRules()
     {
         $rules = [];

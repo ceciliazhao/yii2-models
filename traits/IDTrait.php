@@ -12,8 +12,9 @@
 
 namespace vistart\Models\traits;
 
-use Yii;
 use vistart\helpers\Number;
+use Yii;
+use yii\base\ModelEvent;
 
 /**
  * Entity features concerning ID.
@@ -104,7 +105,7 @@ trait IDTrait
      * If the model's id is auto-increment, the id attribute will be marked safe.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      * @since 1.1
      */
     public function onInitIdAttribute($event)

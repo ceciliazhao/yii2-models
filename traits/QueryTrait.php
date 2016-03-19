@@ -12,6 +12,8 @@
 
 namespace vistart\Models\traits;
 
+use yii\db\ActiveQuery;
+
 /**
  * This trait attach two base condition.
  *
@@ -41,7 +43,7 @@ trait QueryTrait
 
     /**
      * Specify range wilth $attribute to $query.
-     * @param \yii\db\ActiveQuery $query
+     * @param ActiveQuery $query
      * @param string $attribute
      * @param string $start
      * @param string $end
