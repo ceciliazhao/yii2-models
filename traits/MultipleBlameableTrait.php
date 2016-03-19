@@ -14,6 +14,11 @@ namespace vistart\Models\traits;
 
 use vistart\helpers\Number;
 use vistart\Models\events\MultipleBlameableEvent;
+use vistart\Models\models\BaseUserModel;
+use yii\base\ModelEvent;
+use yii\base\InvalidCallException;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\web\JsonParser;
 
 /**
@@ -97,8 +102,10 @@ trait MultipleBlameableTrait
 
     /**
      * Add specified blame.
-     * @param [multiBlamesClass]|string $blame
+     * @param {$this->multiBlamesClass}|string $blame
      * @return false|array
+     * @throws InvalidParamException
+     * @throws InvalidCallException
      */
     public function addBlame($blame)
     {
@@ -114,10 +121,10 @@ trait MultipleBlameableTrait
         }
         $blameGuids = $this->getBlameGuids(true);
         if (array_search($blameGuid, $blameGuids)) {
-            throw new \yii\base\InvalidParamException('the blame has existed.');
+            throw new InvalidParamException('the blame has existed.');
         }
         if ($this->getBlamesCount() >= $this->blamesLimit) {
-            throw new \yii\base\InvalidCallException("the limit($this->blamesLimit) of blames has been reached.");
+            throw new InvalidCallException("the limit($this->blamesLimit) of blames has been reached.");
         }
         $blameGuids[] = $blameGuid;
         $this->setBlameGuids($blameGuids);
@@ -126,15 +133,15 @@ trait MultipleBlameableTrait
 
     /**
      * Create blame.
-     * @param \vistart\Models\models\BaseUserModel $user who will own this blame.
+     * @param BaseUserModel $user who will own this blame.
      * @param array $config blame class configuration array.
-     * @return [[$multiBlamesClass]]
+     * @return {$this->multiBlamesClass}
      */
     public static function createBlame($user, $config = [])
     {
-        if (!($user instanceof \vistart\Models\models\BaseUserModel)) {
+        if (!($user instanceof BaseUserModel)) {
             $message = 'the type of user instance must be the extended class of BaseUserModel.';
-            throw new \yii\base\InvalidParamException($message);
+            throw new InvalidParamException($message);
         }
         $mbClass = static::buildNoInitModel();
         $mbi = $mbClass->multiBlamesClass;
@@ -145,27 +152,27 @@ trait MultipleBlameableTrait
      * Add specified blame, or create it before adding if doesn't exist.
      * But you should save the blame instance before adding, or the operation
      * will fail.
-     * @param [[$multiBlamesClass]]|string|array $blame 
+     * @param {$this->multiBlamesClass}|string|array $blame 
      * It will be regarded as blame's guid if it is a string. And assign the
      * reference parameter $blame the instance if it existed, or create one if not
      * found.
-     * If it is [[$multiBlamesClass]] instance and existed, then will add it, or
+     * If it is {$this->multiBlamesClass} instance and existed, then will add it, or
      * false will be given if it is not found in database. So if you want to add
      * blame instance, you should save it before adding.
      * If it is a array, it will be regarded as configuration array of blame.
      * Notice! This parameter passed by reference, so it must be a variable!
-     * @param \vistart\Models\models\BaseUserModel $user whose blame.
+     * @param BaseUserModel $user whose blame.
      * If null, it will take this blameable model's user.
      * @return false|array false if blame created failed or not enable this feature.
      * blames guid array if created and added successfully.
-     * @throws \yii\base\InvalidConfigException
-     * @throws \yii\base\InvalidParamException
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @see addBlame()
      */
     public function addOrCreateBlame(&$blame = null, $user = null)
     {
         if (!is_string($this->multiBlamesClass)) {
-            throw new \yii\base\InvalidConfigException('$multiBlamesClass must be specified if you want to use multiple blameable features.');
+            throw new InvalidConfigException('$multiBlamesClass must be specified if you want to use multiple blameable features.');
         }
         if (is_array($blame)) {
             if ($user == null) {
@@ -192,7 +199,7 @@ trait MultipleBlameableTrait
 
     /**
      * Remove specified blame.
-     * @param [multiBlamesClass] $blame
+     * @param {$this->multiBlamesClass} $blame
      * @return false|array all guids in json format.
      */
     public function removeBlame($blame)
@@ -253,7 +260,7 @@ trait MultipleBlameableTrait
 
     /**
      * Event triggered when blames list changed.
-     * @param \vistart\Models\events\MultipleBlameableEvent $event
+     * @param MultipleBlameableEvent $event
      */
     public function onBlamesChanged($event)
     {
@@ -304,7 +311,7 @@ trait MultipleBlameableTrait
     /**
      * Get blame.
      * @param string $blameGuid
-     * @return [[$multiBlamesClass]]
+     * @return {$this->multiBlamesClass}
      */
     public static function getBlame($blameGuid)
     {
@@ -319,8 +326,8 @@ trait MultipleBlameableTrait
     /**
      * Get or create blame.
      * @param string|array $blameGuid
-     * @param \vistart\Models\models\BaseUserClass $user
-     * @return [multiBlamesClass]|null
+     * @param BaseUserModel $user
+     * @return {$this->multiBlamesClass}|null
      */
     public static function getOrCreateBlame($blameGuid, $user = null)
     {
@@ -338,7 +345,7 @@ trait MultipleBlameableTrait
 
     /**
      * Get all ones to be blamed by `$blame`.
-     * @param [multiBlamesClass] $blame
+     * @param {$this->multiBlamesClass} $blame
      * @return array
      */
     public function getBlameds($blame)
@@ -384,7 +391,7 @@ trait MultipleBlameableTrait
 
     /**
      * Initialize blames limit.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitBlamesLimit($event)
     {

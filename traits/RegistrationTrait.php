@@ -13,6 +13,10 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\base\ModelEvent;
+use yii\db\IntegrityException;
+use yii\rbac\BaseManager;
+use yii\rbac\Role;
 
 /**
  * User features concerning registration.
@@ -70,7 +74,7 @@ trait RegistrationTrait
     /**
      * Get auth manager. If auth manager not configured, Yii::$app->authManager
      * will be given.
-     * @return \yii\rbac\BaseManager
+     * @return BaseManager
      */
     public function getAuthManager()
     {
@@ -94,7 +98,7 @@ trait RegistrationTrait
      * @param array $associatedModels The models associated with user to be stored synchronously.
      * @param string|array $authRoles auth name, auth instance, auth name array or auth instance array.
      * @return boolean Whether the registration succeeds or not.
-     * @throws \yii\db\IntegrityException when inserting user and associated models failed.
+     * @throws IntegrityException when inserting user and associated models failed.
      */
     public function register($associatedModels = [], $authRoles = [])
     {
@@ -105,24 +109,24 @@ trait RegistrationTrait
         $transaction = $this->getDb()->beginTransaction();
         try {
             if (!$this->save()) {
-                throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $this->errors);
+                throw new IntegrityException('Registration Error(s) Occured.', $this->errors);
             }
             if ($authManager = $this->getAuthManager() && !empty($authRoles)) {
-                if (is_string($authRoles) || $authRoles instanceof \yii\rbac\Role || !is_array($authRoles)) {
+                if (is_string($authRoles) || $authRoles instanceof Role || !is_array($authRoles)) {
                     $authRoles = [$authRoles];
                 }
                 foreach ($authRoles as $role) {
                     if (is_string($role)) {
                         $role = $authManager->getRole($role);
                     }
-                    if ($role instanceof \yii\rbac\Role) {
+                    if ($role instanceof Role) {
                         $authManager->assign($role, $this->guid);
                     }
                 }
             }
             foreach ($associatedModels as $model) {
                 if (!$model->save()) {
-                    throw new \yii\db\IntegrityException('Registration Error(s) Occured.', $model->errors);
+                    throw new IntegrityException('Registration Error(s) Occured.', $model->errors);
                 }
             }
             $transaction->commit();
@@ -151,7 +155,7 @@ trait RegistrationTrait
      * if deregistration finished, the $eventAfterDeregister will be triggered. or
      * $eventDeregisterFailed will be triggered when any errors occured.
      * @return boolean Whether deregistration succeeds or not.
-     * @throws \yii\db\IntegrityException when deleting user failed.
+     * @throws IntegrityException when deleting user failed.
      */
     public function deregister()
     {
@@ -163,7 +167,7 @@ trait RegistrationTrait
         try {
             $result = $this->delete();
             if ($result != 1) {
-                throw new \yii\db\IntegrityException('Deregistration Error(s) Occured.', $this->errors);
+                throw new IntegrityException('Deregistration Error(s) Occured.', $this->errors);
             }
             $transaction->commit();
         } catch (\yii\db\Exception $ex) {
@@ -230,7 +234,7 @@ trait RegistrationTrait
      * Initialize the source attribute with $sourceSelf.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitSourceAttribute($event)
     {

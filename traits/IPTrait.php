@@ -14,6 +14,7 @@ namespace vistart\Models\traits;
 
 use vistart\helpers\Ip;
 use Yii;
+use yii\base\ModelEvent;
 use yii\web\Request;
 
 /**
@@ -126,7 +127,7 @@ trait IPTrait
      * Initialize ip attributes.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      * @since 1.1
      */
     public function onInitIpAddress($event)

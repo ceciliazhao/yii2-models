@@ -446,7 +446,7 @@ trait BlameableTrait
         $cache = $this->getCache();
         if ($cache) {
             $tagDependencyConfig = ['tags' => [$this->getBlameableBehaviorsCacheTag()]];
-            $tagDependency = new \yii\caching\TagDependency($tagDependencyConfig);
+            $tagDependency = new TagDependency($tagDependencyConfig);
             $cache->set($this->getBlameableBehaviorsCacheKey(), $behaviors, 0, $tagDependency);
         }
     }

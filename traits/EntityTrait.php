@@ -13,6 +13,8 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\base\ModelEvent;
+use yii\caching\Cache;
 use yii\caching\TagDependency;
 
 /**
@@ -94,7 +96,7 @@ trait EntityTrait
     /**
      * Get cache component. If cache component is not configured, Yii::$app->cache
      * will be given.
-     * @return \yii\caching\Cache cache component.
+     * @return Cache cache component.
      */
     protected function getCache()
     {
@@ -235,7 +237,7 @@ trait EntityTrait
 
     /**
      * Initialize the cache prefix.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitCache($event)
     {

@@ -13,6 +13,7 @@
 namespace vistart\Models\traits;
 
 use Yii;
+use yii\base\ModelEvent;
 
 /**
  * User features concerning password.
@@ -254,7 +255,7 @@ trait PasswordTrait
     /**
      * The event triggered after new password set.
      * The auth key and access token should be regenerated if new password has applied.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onAfterSetNewPassword($event)
     {
@@ -279,7 +280,7 @@ trait PasswordTrait
 
     /**
      * Initialize password reset token attribute.
-     * @param \yii\base\ModelEvent $event
+     * @param ModelEvent $event
      */
     public function onInitPasswordResetToken($event)
     {
