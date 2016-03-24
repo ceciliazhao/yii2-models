@@ -5,68 +5,88 @@
 
 	<title>Class vistart\Models\models\BaseMongoMessageModel</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-vistart.Models.models.html" title="Summary of vistart\Models\models"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li class="active">
-					<a href="namespace-vistart.html">
-						vistart<span></span>
-					</a>
-
-						<ul>
-				<li class="active">
-					<a href="namespace-vistart.Models.html">
-						Models<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.events.html">
-						events					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.gii.html">
-						gii<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.gii.baseUserModel.html">
-						baseUserModel					</a>
-
-						</li>
-							</ul></li>
-				<li class="active">
-					<a href="namespace-vistart.Models.models.html">
-						models					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.queries.html">
-						queries					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.traits.html">
-						traits					</a>
-
-						</li>
-							</ul></li></ul></li>
+					<li class="active">
+						<a href="namespace-vistart.html">
+							vistart<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-vistart.Models.html">
+							Models<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.events.html">
+							events						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
+							</li>
+								</ul></li>
+					<li class="active">
+						<a href="namespace-vistart.Models.models.html">
+							models						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.queries.html">
+							queries						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.traits.html">
+							traits						</a>
+							</li>
+								</ul></li></ul></li>
 			</ul>
 		</div>
-
-		<hr>
 
 
 		<div id="elements">
@@ -103,30 +123,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li>
-				<a href="namespace-vistart.Models.models.html" title="Summary of vistart\Models\models"><span>Namespace</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class BaseMongoMessageModel</h1>
 
@@ -156,7 +153,7 @@ This model enables the following fields:</p>
 - expiredAt: 604800 // 7 days</p>
 	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 yii\mongodb\ActiveRecord
 			
@@ -197,7 +194,7 @@ yii\mongodb\ActiveRecord
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		<b>Abstract</b><br>
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.models.html">models</a><br>
@@ -213,445 +210,409 @@ yii\mongodb\ActiveRecord
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="init" id="_init">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="init" id="_init">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#52-62" title="Go to source code">init</a>( )</code>
-
-		<div class="description short">
-			<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Initialize the blameable model.
-If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_init">vistart\Models\models\BaseMongoBlameableModel::init()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-vistart.Models.models.BaseMongoBlameableModel.html#methods">vistart\Models\models\BaseMongoBlameableModel</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_attributes">attributes()</a>, 
-			<a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_findByIdentity">findByIdentity()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-vistart.Models.models.BaseMongoEntityModel.html#methods">vistart\Models\models\BaseMongoEntityModel</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.models.BaseMongoEntityModel.html#_find">find()</a>
-		</code></td>
-	</tr>
-	</table>
-
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.MessageTrait.html#methods">vistart\Models\traits\MessageTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MessageTrait.html#_enabledFields">enabledFields()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_getMessageRules">getMessageRules()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_getReadAt">getReadAt()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_getReceivedAt">getReceivedAt()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_hasBeenRead">hasBeenRead()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_hasBeenReceived">hasBeenReceived()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_initMessageEvents">initMessageEvents()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onContentChanged">onContentChanged()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onInitReadAtAttribute">onInitReadAtAttribute()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onInitReceivedAtAttribute">onInitReceivedAtAttribute()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onMessageUpdated">onMessageUpdated()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onReadAtChanged">onReadAtChanged()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_onReceivedAtChanged">onReceivedAtChanged()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_rules">rules()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_setReadAt">setReadAt()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_setReceivedAt">setReceivedAt()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_touchRead">touchRead()</a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#_touchReceived">touchReceived()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.MutualTrait.html#methods">vistart\Models\traits\MutualTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getInitiator">getInitiator()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getMutualRules">getMutualRules()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getRecipient">getRecipient()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_setRecipient">setRecipient()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_countByIdentity">countByIdentity()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_countOfOwner">countOfOwner()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_findAllByIdentityInBatch">findAllByIdentityInBatch()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_findOneById">findOneById()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheKey">getBlameableBehaviorsCacheKey()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheTag">getBlameableBehaviorsCacheTag()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheKey">getBlameableRulesCacheKey()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheTag">getBlameableRulesCacheTag()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getContentRules">getContentRules()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getDescription">getDescription()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getDescriptionRules">getDescriptionRules()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getPagination">getPagination()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getUpdater">getUpdater()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_getUser">getUser()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_initBlameableEvents">initBlameableEvents()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_onInitDescription">onInitDescription()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_setContent">setContent()</a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#_setDescription">setDescription()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.ConfirmationTrait.html#methods">vistart\Models\traits\ConfirmationTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_applyConfirmation">applyConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_confirm">confirm()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_generateConfirmationCode">generateConfirmationCode()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmCode">getConfirmCode()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmation">getConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmationRules">getConfirmationRules()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_getIsConfirmed">getIsConfirmed()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_onConfirmationChanged">onConfirmationChanged()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_onInitConfirmation">onInitConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetConfirmation">resetConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetOthersConfirmation">resetOthersConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmCode">setConfirmCode()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a>, 
-			<a href="class-vistart.Models.traits.ConfirmationTrait.html#_validateConfirmationCode">validateConfirmationCode()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.SelfBlameableTrait.html#methods">vistart\Models\traits\SelfBlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_addChild">addChild()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_bear">bear()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_deleteChildren">deleteChildren()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestorChain">getAncestorChain()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestorModels">getAncestorModels()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestors">getAncestors()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getChildren">getChildren()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getCommonAncestor">getCommonAncestor()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getOldChildren">getOldChildren()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getParent">getParent()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getSelfBlameableRules">getSelfBlameableRules()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasAncestor">hasAncestor()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasCommonAncestor">hasCommonAncestor()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasParent">hasParent()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasReachedAncestorLimit">hasReachedAncestorLimit()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasReachedChildrenLimit">hasReachedChildrenLimit()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_initSelfBlameableEvents">initSelfBlameableEvents()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onDeleteChildren">onDeleteChildren()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onParentRefIdChanged">onParentRefIdChanged()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onUpdateChildren">onUpdateChildren()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_setParent">setParent()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_setSelfBlameableRules">setSelfBlameableRules()</a>, 
-			<a href="class-vistart.Models.traits.SelfBlameableTrait.html#_updateChildren">updateChildren()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.EntityTrait.html#___toString">__toString()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_buildNoInitModel">buildNoInitModel()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheKey">getEntityBehaviorsCacheKey()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheTag">getEntityBehaviorsCacheTag()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRulesCacheKey">getEntityRulesCacheKey()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRulesCacheTag">getEntityRulesCacheTag()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_initEntityEvents">initEntityEvents()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_instantiate">instantiate()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_onInitCache">onInitCache()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_recordWarnings">recordWarnings()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_unsetFields">unsetFields()</a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#_unsetSelfFields">unsetSelfFields()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.GUIDTrait.html#methods">vistart\Models\traits\GUIDTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_attachInitGuidEvent">attachInitGuidEvent()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_checkGuidExists">checkGuidExists()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_generateGuid">generateGuid()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_getGuid">getGuid()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_getGuidRules">getGuidRules()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_onInitGuidAttribute">onInitGuidAttribute()</a>, 
-			<a href="class-vistart.Models.traits.GUIDTrait.html#_setGuid">setGuid()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.IDTrait.html#methods">vistart\Models\traits\IDTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.IDTrait.html#_attachInitIdEvent">attachInitIdEvent()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_checkIdExists">checkIdExists()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_generateId">generateId()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_getId">getId()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_getIdRules">getIdRules()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_onInitIdAttribute">onInitIdAttribute()</a>, 
-			<a href="class-vistart.Models.traits.IDTrait.html#_setId">setId()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.IPTrait.html#methods">vistart\Models\traits\IPTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.IPTrait.html#_attachInitIpEvent">attachInitIpEvent()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_enabledIPFields">enabledIPFields()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_getIpAddress">getIpAddress()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_getIpRules">getIpRules()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_getWebRequest">getWebRequest()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_onInitIpAddress">onInitIpAddress()</a>, 
-			<a href="class-vistart.Models.traits.IPTrait.html#_setIpAddress">setIpAddress()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.TimestampTrait.html#methods">vistart\Models\traits\TimestampTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_currentDatetime">currentDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_enabledTimestampFields">enabledTimestampFields()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAt">getCreatedAt()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getInitDatetime">getInitDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getIsExpired">getIsExpired()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getTimestampBehaviors">getTimestampBehaviors()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAt">getUpdatedAt()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAtRules">getUpdatedAtRules()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_initDatetime">initDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_isInitDatetime">isInitDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_offsetDatetime">offsetDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_onRemoveExpired">onRemoveExpired()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a>, 
-			<a href="class-vistart.Models.traits.TimestampTrait.html#_removeIfExpired">removeIfExpired()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="updatedByAttribute" id="$updatedByAttribute">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#49" title="Go to source code"><var>$updatedByAttribute</var></a>
+			<td class="name"><div>
+			<a class="anchor" href="#_init">#</a>
+			<code><a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#52-62" title="Go to source code">init</a>( )</code>
 
 			<div class="description short">
-				<p>the attribute that will receive current user ID value.
-Set this property to false if you do not want to record the updater ID.</p>
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>the attribute that will receive current user ID value.
+				<p>Initialize the blameable model.
+If query class is not specified, [[BaseBlameableQuery]] will be taken.</p>
+
+
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_init">vistart\Models\models\BaseMongoBlameableModel::init</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseMongoBlameableModel.html#methods">vistart\Models\models\BaseMongoBlameableModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_attributes">attributes()</a></code>, 
+				<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#_findByIdentity">findByIdentity()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-vistart.Models.models.BaseMongoEntityModel.html#methods">vistart\Models\models\BaseMongoEntityModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseMongoEntityModel.html#_find">find()</a></code>
+			</p>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MessageTrait.html#methods">vistart\Models\traits\MessageTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_enabledFields">enabledFields()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_getMessageRules">getMessageRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_getReadAt">getReadAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_getReceivedAt">getReceivedAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_hasBeenRead">hasBeenRead()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_hasBeenReceived">hasBeenReceived()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_initMessageEvents">initMessageEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onContentChanged">onContentChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onInitReadAtAttribute">onInitReadAtAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onInitReceivedAtAttribute">onInitReceivedAtAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onMessageUpdated">onMessageUpdated()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onReadAtChanged">onReadAtChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_onReceivedAtChanged">onReceivedAtChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_rules">rules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_setReadAt">setReadAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_setReceivedAt">setReceivedAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_touchRead">touchRead()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#_touchReceived">touchReceived()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MutualTrait.html#methods">vistart\Models\traits\MutualTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getInitiator">getInitiator()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getMutualRules">getMutualRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getRecipient">getRecipient()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_setRecipient">setRecipient()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.BlameableTrait.html#methods">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_behaviors">behaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countByIdentity">countByIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_countOfOwner">countOfOwner()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findAllByIdentityInBatch">findAllByIdentityInBatch()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_findOneById">findOneById()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableAttributeRules">getBlameableAttributeRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviors">getBlameableBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheKey">getBlameableBehaviorsCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableBehaviorsCacheTag">getBlameableBehaviorsCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRules">getBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheKey">getBlameableRulesCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getBlameableRulesCacheTag">getBlameableRulesCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContent">getContent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentCanBeEdited">getContentCanBeEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getContentRules">getContentRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescription">getDescription()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getDescriptionRules">getDescriptionRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getPagination">getPagination()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUpdater">getUpdater()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_getUser">getUser()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_hasEverEdited">hasEverEdited()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_initBlameableEvents">initBlameableEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onGetCurrentUserGuid">onGetCurrentUserGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitContentType">onInitContentType()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_onInitDescription">onInitDescription()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableBehaviors">setBlameableBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setBlameableRules">setBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setContent">setContent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#_setDescription">setDescription()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.ConfirmationTrait.html#methods">vistart\Models\traits\ConfirmationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_applyConfirmation">applyConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_confirm">confirm()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_generateConfirmationCode">generateConfirmationCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmCode">getConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmation">getConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getConfirmationRules">getConfirmationRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_getIsConfirmed">getIsConfirmed()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onConfirmationChanged">onConfirmationChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_onInitConfirmation">onInitConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetConfirmation">resetConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_resetOthersConfirmation">resetOthersConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmCode">setConfirmCode()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_setConfirmation">setConfirmation()</a></code>, 
+				<code><a href="class-vistart.Models.traits.ConfirmationTrait.html#_validateConfirmationCode">validateConfirmationCode()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.SelfBlameableTrait.html#methods">vistart\Models\traits\SelfBlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_addChild">addChild()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_bear">bear()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_deleteChildren">deleteChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestorChain">getAncestorChain()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestorModels">getAncestorModels()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getAncestors">getAncestors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getChildren">getChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getCommonAncestor">getCommonAncestor()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getOldChildren">getOldChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getParent">getParent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_getSelfBlameableRules">getSelfBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasAncestor">hasAncestor()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasCommonAncestor">hasCommonAncestor()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasParent">hasParent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasReachedAncestorLimit">hasReachedAncestorLimit()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_hasReachedChildrenLimit">hasReachedChildrenLimit()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_initSelfBlameableEvents">initSelfBlameableEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onDeleteChildren">onDeleteChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onParentRefIdChanged">onParentRefIdChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_onUpdateChildren">onUpdateChildren()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_setParent">setParent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_setSelfBlameableRules">setSelfBlameableRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.SelfBlameableTrait.html#_updateChildren">updateChildren()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.EntityTrait.html#methods">vistart\Models\traits\EntityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#___toString">__toString()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_buildNoInitModel">buildNoInitModel()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getCache">getCache()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviors">getEntityBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheKey">getEntityBehaviorsCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityBehaviorsCacheTag">getEntityBehaviorsCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRules">getEntityRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRulesCacheKey">getEntityRulesCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_getEntityRulesCacheTag">getEntityRulesCacheTag()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_initEntityEvents">initEntityEvents()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_instantiate">instantiate()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_onInitCache">onInitCache()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_recordWarnings">recordWarnings()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_resetCacheKey">resetCacheKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityBehaviors">setEntityBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_setEntityRules">setEntityRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_unsetFields">unsetFields()</a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#_unsetSelfFields">unsetSelfFields()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.GUIDTrait.html#methods">vistart\Models\traits\GUIDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_attachInitGuidEvent">attachInitGuidEvent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_checkGuidExists">checkGuidExists()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_generateGuid">generateGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_getGuid">getGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_getGuidRules">getGuidRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_onInitGuidAttribute">onInitGuidAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.GUIDTrait.html#_setGuid">setGuid()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IDTrait.html#methods">vistart\Models\traits\IDTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_attachInitIdEvent">attachInitIdEvent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_checkIdExists">checkIdExists()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_generateId">generateId()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_getId">getId()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_getIdRules">getIdRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_onInitIdAttribute">onInitIdAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IDTrait.html#_setId">setId()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IPTrait.html#methods">vistart\Models\traits\IPTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_attachInitIpEvent">attachInitIpEvent()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_enabledIPFields">enabledIPFields()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpAddress">getIpAddress()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_getIpRules">getIpRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_getWebRequest">getWebRequest()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_onInitIpAddress">onInitIpAddress()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IPTrait.html#_setIpAddress">setIpAddress()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.TimestampTrait.html#methods">vistart\Models\traits\TimestampTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_currentDatetime">currentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_enabledTimestampFields">enabledTimestampFields()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAt">getCreatedAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCreatedAtRules">getCreatedAtRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getCurrentDatetime">getCurrentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getInitDatetime">getInitDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getIsExpired">getIsExpired()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getTimestampBehaviors">getTimestampBehaviors()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAt">getUpdatedAt()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_getUpdatedAtRules">getUpdatedAtRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_initDatetime">initDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_isInitDatetime">isInitDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_offsetDatetime">offsetDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onRemoveExpired">onRemoveExpired()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_onUpdateCurrentDatetime">onUpdateCurrentDatetime()</a></code>, 
+				<code><a href="class-vistart.Models.traits.TimestampTrait.html#_removeIfExpired">removeIfExpired()</a></code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="updatedByAttribute" id="$updatedByAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#49" title="Go to source code"><var>$updatedByAttribute</var></a>
+
+				<div class="description short">
+					<p>the attribute that will receive current user ID value.
+Set this property to false if you do not want to record the updater ID.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					<p>the attribute that will receive current user ID value.
 Set this property to false if you do not want to record the updater ID.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$updatedByAttribute" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="expiredAt" id="$expiredAt">
-		<td class="attributes"><code>
-			public  
-			integer|false
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$updatedByAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="expiredAt" id="$expiredAt">
+			<td class="attributes"><code>
+				public  
+				integer|false
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#50" title="Go to source code"><var>$expiredAt</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.models.BaseMongoMessageModel.html#50" title="Go to source code"><var>$expiredAt</var></a>
 
-			<div class="description short">
-				<p>the expiration in seconds, or false if it will not be expired.</p>
-			</div>
+				<div class="description short">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>the expiration in seconds, or false if it will not be expired.</p>
+				<div class="description detailed hidden">
+					<p>the expiration in seconds, or false if it will not be expired.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$expiredAt" class="anchor">#</a>
-				<code><span class="php-num">604800</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$expiredAt" class="anchor">#</a>
+					<code><span class="php-num">604800</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-vistart.Models.models.BaseMongoBlameableModel.html#properties">vistart\Models\models\BaseMongoBlameableModel</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.models.BaseMongoBlameableModel.html#$guidAttribute"><var>$guidAttribute</var></a>, 
-			<a href="class-vistart.Models.models.BaseMongoBlameableModel.html#$idAttribute"><var>$idAttribute</var></a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from <a href="class-vistart.Models.models.BaseMongoBlameableModel.html#properties">vistart\Models\models\BaseMongoBlameableModel</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#$guidAttribute"><var>$guidAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.models.BaseMongoBlameableModel.html#$idAttribute"><var>$idAttribute</var></a></code>
+			</p>
+		</div>
 
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cacheId"><var>$cacheId</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityBehaviors"><var>$cacheKeyEntityBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityRules"><var>$cacheKeyEntityRules</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cachePrefix"><var>$cachePrefix</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityBehaviors"><var>$cacheTagEntityBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityRules"><var>$cacheTagEntityRules</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$queryClass"><var>$queryClass</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableBehaviors"><var>$cacheKeyBlameableBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableBehaviors"><var>$cacheTagBlameableBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableRules"><var>$cacheTagBlameableRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttribute"><var>$contentAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$descriptionAttribute"><var>$descriptionAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$idCreatorCombinatedUnique"><var>$idCreatorCombinatedUnique</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$initDescription"><var>$initDescription</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.MessageTrait.html#properties">vistart\Models\traits\MessageTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MessageTrait.html#$attachmentAttribute"><var>$attachmentAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageRead"><var>$eventMessageRead</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageReceived"><var>$eventMessageReceived</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeContent"><var>$permitChangeContent</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeReadAt"><var>$permitChangeReadAt</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeReceivedAt"><var>$permitChangeReceivedAt</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$readAtAttribute"><var>$readAtAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.MessageTrait.html#$receivedAtAttribute"><var>$receivedAtAttribute</var></a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheId"><var>$cacheId</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityBehaviors"><var>$cacheKeyEntityBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheKeyEntityRules"><var>$cacheKeyEntityRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cachePrefix"><var>$cachePrefix</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityBehaviors"><var>$cacheTagEntityBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$cacheTagEntityRules"><var>$cacheTagEntityRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$eventNewRecordCreated"><var>$eventNewRecordCreated</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$queryClass"><var>$queryClass</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#$skipInit"><var>$skipInit</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableBehaviors"><var>$cacheKeyBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheKeyBlameableRules"><var>$cacheKeyBlameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableBehaviors"><var>$cacheTagBlameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$cacheTagBlameableRules"><var>$cacheTagBlameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttribute"><var>$contentAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentAttributeRule"><var>$contentAttributeRule</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypeAttribute"><var>$contentTypeAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$contentTypes"><var>$contentTypes</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$createdByAttribute"><var>$createdByAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$descriptionAttribute"><var>$descriptionAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$idCreatorCombinatedUnique"><var>$idCreatorCombinatedUnique</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$initDescription"><var>$initDescription</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#$userClass"><var>$userClass</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.MessageTrait.html#properties">vistart\Models\traits\MessageTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$attachmentAttribute"><var>$attachmentAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageRead"><var>$eventMessageRead</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$eventMessageReceived"><var>$eventMessageReceived</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeContent"><var>$permitChangeContent</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeReadAt"><var>$permitChangeReadAt</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$permitChangeReceivedAt"><var>$permitChangeReceivedAt</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$readAtAttribute"><var>$readAtAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#$receivedAtAttribute"><var>$receivedAtAttribute</var></a></code>
+			</p>
+		</div>
 
 
 
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.EntityTrait.html#m$entityBehaviors"><var>$entityBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.EntityTrait.html#m$entityRules"><var>$entityRules</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableAttributeRules"><var>$blameableAttributeRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableBehaviors"><var>$blameableBehaviors</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableRules"><var>$blameableRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$content"><var>$content</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$contentCanBeEdited"><var>$contentCanBeEdited</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$contentRules"><var>$contentRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$descriptionRules"><var>$descriptionRules</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$updater"><var>$updater</var></a>, 
-			<a href="class-vistart.Models.traits.BlameableTrait.html#m$user"><var>$user</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.MessageTrait.html#properties">vistart\Models\traits\MessageTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MessageTrait.html#m$recipient"><var>$recipient</var></a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.EntityTrait.html#properties">vistart\Models\traits\EntityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityBehaviors"><var>$entityBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.EntityTrait.html#m$entityRules"><var>$entityRules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.BlameableTrait.html#properties">vistart\Models\traits\BlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableAttributeRules"><var>$blameableAttributeRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableBehaviors"><var>$blameableBehaviors</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$blameableRules"><var>$blameableRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$content"><var>$content</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentCanBeEdited"><var>$contentCanBeEdited</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$contentRules"><var>$contentRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$descriptionRules"><var>$descriptionRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$updater"><var>$updater</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.BlameableTrait.html#m$user"><var>$user</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.MessageTrait.html#properties">vistart\Models\traits\MessageTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MessageTrait.html#m$recipient"><var>$recipient</var></a></code>
+			</p>
+		</div>
 
 </div>
+	</div>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>
