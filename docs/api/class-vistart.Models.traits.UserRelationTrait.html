@@ -5,68 +5,88 @@
 
 	<title>Trait vistart\Models\traits\UserRelationTrait</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li class="active">
-					<a href="namespace-vistart.html">
-						vistart<span></span>
-					</a>
-
-						<ul>
-				<li class="active">
-					<a href="namespace-vistart.Models.html">
-						Models<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.events.html">
-						events					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.gii.html">
-						gii<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.gii.baseUserModel.html">
-						baseUserModel					</a>
-
-						</li>
-							</ul></li>
-				<li>
-					<a href="namespace-vistart.Models.models.html">
-						models					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.queries.html">
-						queries					</a>
-
-						</li>
-				<li class="active">
-					<a href="namespace-vistart.Models.traits.html">
-						traits					</a>
-
-						</li>
-							</ul></li></ul></li>
+					<li class="active">
+						<a href="namespace-vistart.html">
+							vistart<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-vistart.Models.html">
+							Models<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.events.html">
+							events						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
+							</li>
+								</ul></li>
+					<li>
+						<a href="namespace-vistart.Models.models.html">
+							models						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.queries.html">
+							queries						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-vistart.Models.traits.html">
+							traits						</a>
+							</li>
+								</ul></li></ul></li>
 			</ul>
 		</div>
-
-		<hr>
 
 
 		<div id="elements">
@@ -112,30 +132,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li>
-				<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Trait UserRelationTrait</h1>
 
@@ -153,7 +150,7 @@ If you want to use group feature, the class used [[UserRelationGroupTrait]]
 must be used coordinately.</p>
 	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 <b><span>vistart\Models\traits\UserRelationTrait</span></b>			
 			
@@ -171,12 +168,14 @@ must be used coordinately.</p>
 
 
 	<div>
-		<h4>Direct Known Users</h4>
-			<a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a>
+		<h3>Direct Known Users</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.models.BaseUserRelationModel.html">vistart\Models\models\BaseUserRelationModel</a></code>
+		</p>
 	</div>
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
@@ -192,672 +191,655 @@ must be used coordinately.</p>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="getIsFavorite" id="_getIsFavorite">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getIsFavorite" id="_getIsFavorite">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getIsFavorite">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#101-109" title="Go to source code">getIsFavorite</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getIsFavorite">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#101-109" title="Go to source code">getIsFavorite</a>( )</code>
+			<div class="description short">
+				<p>Get whether this relation is favorite or not.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get whether this relation is favorite or not.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Get whether this relation is favorite or not.</p>
 
-		<div class="description detailed hidden">
-			<p>Get whether this relation is favorite or not.</p>
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setIsFavorite" id="_setIsFavorite">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setIsFavorite" id="_setIsFavorite">
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public 
+			<td class="name"><div>
+			<a class="anchor" href="#_setIsFavorite">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#111-119" title="Go to source code">setIsFavorite</a>( <span>boolean <var>$fav</var></span> )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Set favorite.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setIsFavorite">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#111-119" title="Go to source code">setIsFavorite</a>( <span>boolean <var>$fav</var></span> )</code>
+			<div class="description detailed hidden">
+				<p>Set favorite.</p>
 
-		<div class="description short">
-			<p>Set favorite.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Set favorite.</p>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$fav</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$fav</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="rules" id="_rules">
 
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="rules" id="_rules">
+			<td class="name"><div>
+			<a class="anchor" href="#_rules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#121-127" title="Go to source code">rules</a>( )</code>
 
-		<td class="attributes"><code>
-			 public 
+			<div class="description short">
+				
+			</div>
 
-			
-			
-			</code>
-		</td>
+			<div class="description detailed hidden">
+				
 
-		<td class="name"><div>
-		<a class="anchor" href="#_rules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#121-127" title="Go to source code">rules</a>( )</code>
 
-		<div class="description short">
-			
-		</div>
 
-		<div class="description detailed hidden">
-			
 
 
+					<h4>Inheritdoc</h4>
+					<div class="list">
+					</div>
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserRelationRules" id="_getUserRelationRules">
 
-				<h4>Inheritdoc</h4>
-				<div class="list">
-				</div>
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserRelationRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#129-143" title="Go to source code">getUserRelationRules</a>( )</code>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserRelationRules" id="_getUserRelationRules">
+			<div class="description short">
+				<p>Validation rules associated with user relation.</p>
+			</div>
 
-		<td class="attributes"><code>
-			 public 
+			<div class="description detailed hidden">
+				<p>Validation rules associated with user relation.</p>
 
-			array
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserRelationRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#129-143" title="Go to source code">getUserRelationRules</a>( )</code>
 
-		<div class="description short">
-			<p>Validation rules associated with user relation.</p>
-		</div>
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
-		<div class="description detailed hidden">
-			<p>Validation rules associated with user relation.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>rules.
-				</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRemark" id="_getRemark">
 
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_getRemark">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#145-153" title="Go to source code">getRemark</a>( )</code>
 
+			<div class="description short">
+				<p>Get remark.</p>
+			</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getRemark" id="_getRemark">
+			<div class="description detailed hidden">
+				<p>Get remark.</p>
 
-		<td class="attributes"><code>
-			 public 
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getRemark">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#145-153" title="Go to source code">getRemark</a>( )</code>
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>remark.
+					</div>
 
-		<div class="description short">
-			<p>Get remark.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Get remark.</p>
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setRemark" id="_setRemark">
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>remark.
-				</div>
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_setRemark">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#155-164" title="Go to source code">setRemark</a>( <span>string <var>$remark</var></span> )</code>
 
+			<div class="description short">
+				<p>Set remark.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Set remark.</p>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setRemark" id="_setRemark">
 
-		<td class="attributes"><code>
-			 public 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$remark</var></dt>
+						<dd></dd>
+					</dl></div>
 
-			string
-			
-			</code>
-		</td>
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>remark.
+					</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setRemark">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#155-164" title="Go to source code">setRemark</a>( <span>string <var>$remark</var></span> )</code>
 
-		<div class="description short">
-			<p>Set remark.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Set remark.</p>
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRemarkRules" id="_getRemarkRules">
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$remark</var></dt>
-					<dd></dd>
-				</dl></div>
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>remark.
-				</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_getRemarkRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#166-176" title="Go to source code">getRemarkRules</a>( )</code>
 
+			<div class="description short">
+				<p>Validation rules associated with remark attribute.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Validation rules associated with remark attribute.</p>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getRemarkRules" id="_getRemarkRules">
 
-		<td class="attributes"><code>
-			 public 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
-			array
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getRemarkRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#166-176" title="Go to source code">getRemarkRules</a>( )</code>
 
-		<div class="description short">
-			<p>Validation rules associated with remark attribute.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Validation rules associated with remark attribute.</p>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getFavoriteRules" id="_getFavoriteRules">
 
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_getFavoriteRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#178-188" title="Go to source code">getFavoriteRules</a>( )</code>
 
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>rules.
-				</div>
+			<div class="description short">
+				<p>Validation rules associated with favorites attribute.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Validation rules associated with favorites attribute.</p>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getFavoriteRules" id="_getFavoriteRules">
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
-		<td class="attributes"><code>
-			 public 
 
-			array
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getFavoriteRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#178-188" title="Go to source code">getFavoriteRules</a>( )</code>
 
-		<div class="description short">
-			<p>Validation rules associated with favorites attribute.</p>
-		</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOtherGuidRules" id="_getOtherGuidRules">
 
-		<div class="description detailed hidden">
-			<p>Validation rules associated with favorites attribute.</p>
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_getOtherGuidRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#190-200" title="Go to source code">getOtherGuidRules</a>( )</code>
 
+			<div class="description short">
+				<p>Validation rules associated with other guid attribute.</p>
+			</div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>rules.
-				</div>
+			<div class="description detailed hidden">
+				<p>Validation rules associated with other guid attribute.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getOtherGuidRules" id="_getOtherGuidRules">
 
-		<td class="attributes"><code>
-			 public 
 
-			array
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getOtherGuidRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#190-200" title="Go to source code">getOtherGuidRules</a>( )</code>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initUserRelationEvents" id="_initUserRelationEvents">
 
-		<div class="description short">
-			<p>Validation rules associated with other guid attribute.</p>
-		</div>
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-		<div class="description detailed hidden">
-			<p>Validation rules associated with other guid attribute.</p>
+			<td class="name"><div>
+			<a class="anchor" href="#_initUserRelationEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#202-214" title="Go to source code">initUserRelationEvents</a>( )</code>
 
+			<div class="description short">
+				<p>Attach events associated with user relation.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Attach events associated with user relation.</p>
 
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>rules.
-				</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="initUserRelationEvents" id="_initUserRelationEvents">
 
-		<td class="attributes"><code>
-			 public 
 
-			
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOpposite" id="_getOpposite">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_initUserRelationEvents">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#202-214" title="Go to source code">initUserRelationEvents</a>( )</code>
+			<td class="attributes"><code>
+				 public 
+				static
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Attach events associated with user relation.</p>
-		</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_getOpposite">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#216-228" title="Go to source code">getOpposite</a>( )</code>
 
-		<div class="description detailed hidden">
-			<p>Attach events associated with user relation.</p>
+			<div class="description short">
+				<p>Get opposite relation against self.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Get opposite relation against self.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						static
+					</div>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getOpposite" id="_getOpposite">
 
-		<td class="attributes"><code>
-			 public 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isFollowed" id="_isFollowed">
 
-			static
-			
-			</code>
-		</td>
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getOpposite">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#216-228" title="Go to source code">getOpposite</a>( )</code>
+			<td class="name"><div>
+			<a class="anchor" href="#_isFollowed">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#230-239" title="Go to source code">isFollowed</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
 
-		<div class="description short">
-			<p>Get opposite relation against self.</p>
-		</div>
+			<div class="description short">
+				<p>Check whether the initiator is followed by recipient.</p>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Get opposite relation against self.</p>
+			<div class="description detailed hidden">
+				<p>Check whether the initiator is followed by recipient.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$initiator</var></dt>
+						<dd></dd>
+						<dt><var>$recipient</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isFollowed" id="_isFollowed">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isFollowing" id="_isFollowing">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_isFollowing">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#241-250" title="Go to source code">isFollowing</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_isFollowed">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#230-239" title="Go to source code">isFollowed</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
+			<div class="description short">
+				<p>Check whether the initiator is following recipient.</p>
+			</div>
 
-		<div class="description short">
-			<p>Check whether the initiator is followed by recipient.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Check whether the initiator is following recipient.</p>
 
-		<div class="description detailed hidden">
-			<p>Check whether the initiator is followed by recipient.</p>
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$initiator</var></dt>
+						<dd></dd>
+						<dt><var>$recipient</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$initiator</var></dt>
-					<dd></dd>
-					<dt><var>$recipient</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isMutual" id="_isMutual">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isFollowing" id="_isFollowing">
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_isMutual">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#252-262" title="Go to source code">isMutual</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isFollowing">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#241-250" title="Go to source code">isFollowing</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
-
-		<div class="description short">
-			<p>Check whether the initiator is following recipient.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Check whether the initiator is following recipient.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$initiator</var></dt>
-					<dd></dd>
-					<dt><var>$recipient</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isMutual" id="_isMutual">
-
-		<td class="attributes"><code>
-			 public static
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isMutual">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#252-262" title="Go to source code">isMutual</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
-
-		<div class="description short">
-			<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
+			<div class="description short">
+				<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
 Or check whether the initiator and recipient are friend whatever the mutual type is normal or suspend.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
+			<div class="description detailed hidden">
+				<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
 Or check whether the initiator and recipient are friend whatever the mutual type is normal or suspend.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$initiator</var></dt>
-					<dd></dd>
-					<dt><var>$recipient</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$initiator</var></dt>
+						<dd></dd>
+						<dt><var>$recipient</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isFriend" id="_isFriend">
 
-		<td class="attributes"><code>
-			 public static
 
-			boolean
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isFriend" id="_isFriend">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_isFriend">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#264-285" title="Go to source code">isFriend</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
+			<td class="name"><div>
+			<a class="anchor" href="#_isFriend">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#264-285" title="Go to source code">isFriend</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$initiator</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code> <var>$recipient</var></span> )</code>
+
+			<div class="description short">
+				<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
 Or check whether the initiator and recipient are friend if the mutual type is normal.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
+			<div class="description detailed hidden">
+				<p>Check whether the initiator is following and followed by recipient mutually (Single Relation).
 Or check whether the initiator and recipient are friend if the mutual type is normal.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$initiator</var></dt>
-					<dd></dd>
-					<dt><var>$recipient</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$initiator</var></dt>
+						<dd></dd>
+						<dt><var>$recipient</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="buildSuspendRelation" id="_buildSuspendRelation">
 
-		<td class="attributes"><code>
-			 public static
 
-			static
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="buildSuspendRelation" id="_buildSuspendRelation">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_buildSuspendRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#287-305" title="Go to source code">buildSuspendRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
+			<td class="attributes"><code>
+				 public static
+				static
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Build new or return existed suspend mutual relation, of return null if
+			<td class="name"><div>
+			<a class="anchor" href="#_buildSuspendRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#287-305" title="Go to source code">buildSuspendRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
+
+			<div class="description short">
+				<p>Build new or return existed suspend mutual relation, of return null if
 current type is not mutual.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Build new or return existed suspend mutual relation, of return null if
+			<div class="description detailed hidden">
+				<p>Build new or return existed suspend mutual relation, of return null if
 current type is not mutual.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its GUID.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its GUID.</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its GUID.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its GUID.</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static<br><p>The relation will be
+					<h4>Returns</h4>
+					<div class="list">
+						static<br><p>The relation will be
 given if exists, or return a new relation.</p>
-				</div>
+					</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">vistart\Models\traits\UserRelationTrait::buildRelation()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">vistart\Models\traits\UserRelationTrait::buildRelation()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="buildNormalRelation" id="_buildNormalRelation">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="buildNormalRelation" id="_buildNormalRelation">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				static
+				
+				</code>
+			</td>
 
-			static
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_buildNormalRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#307-324" title="Go to source code">buildNormalRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_buildNormalRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#307-324" title="Go to source code">buildNormalRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
-
-		<div class="description short">
-			<p>Build new or return existed normal relation.
+			<div class="description short">
+				<p>Build new or return existed normal relation.
 The status of mutual relation will be changed to normal if it is not.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Build new or return existed normal relation.
+			<div class="description detailed hidden">
+				<p>Build new or return existed normal relation.
 The status of mutual relation will be changed to normal if it is not.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its GUID.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its GUID.</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its GUID.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its GUID.</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static<br><p>The relation will be
+					<h4>Returns</h4>
+					<div class="list">
+						static<br><p>The relation will be
 given if exists, or return a new relation.</p>
-				</div>
+					</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">vistart\Models\traits\UserRelationTrait::buildRelation()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-vistart.Models.traits.UserRelationTrait.html#_buildRelation">vistart\Models\traits\UserRelationTrait::buildRelation()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="buildRelation" id="_buildRelation">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="buildRelation" id="_buildRelation">
 
-		<td class="attributes"><code>
-			 protected static
+			<td class="attributes"><code>
+				 protected static
+				static
+				
+				</code>
+			</td>
 
-			static
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_buildRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#326-361" title="Go to source code">buildRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_buildRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#326-361" title="Go to source code">buildRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
-
-		<div class="description short">
-			<p>Build new or return existed relation between initiator and recipient.
+			<div class="description short">
+				<p>Build new or return existed relation between initiator and recipient.
 If relation between initiator and recipient is not found, new relation will
 be built. If initiator and recipient are the same one and it is not allowed
 to build self relation, null will be given.
 If you want to know whether the relation exists, you can check the return
 value of <code>getIsNewRecord()</code> method.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Build new or return existed relation between initiator and recipient.
+			<div class="description detailed hidden">
+				<p>Build new or return existed relation between initiator and recipient.
 If relation between initiator and recipient is not found, new relation will
 be built. If initiator and recipient are the same one and it is not allowed
 to build self relation, null will be given.
@@ -865,1062 +847,1044 @@ If you want to know whether the relation exists, you can check the return
 value of <code>getIsNewRecord()</code> method.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its GUID.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its GUID.</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its GUID.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its GUID.</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static<br><p>The relation will be
+					<h4>Returns</h4>
+					<div class="list">
+						static<br><p>The relation will be
 given if exists, or return a new relation. Or return null if not allowed
 to build self relation,</p>
-				</div>
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="buildOppositeRelation" id="_buildOppositeRelation">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="buildOppositeRelation" id="_buildOppositeRelation">
 
-		<td class="attributes"><code>
-			 protected static
+			<td class="attributes"><code>
+				 protected static
+				static
+				
+				</code>
+			</td>
 
-			static
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_buildOppositeRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#363-384" title="Go to source code">buildOppositeRelation</a>( <span>static <var>$relation</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_buildOppositeRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#363-384" title="Go to source code">buildOppositeRelation</a>( <span>static <var>$relation</var></span> )</code>
-
-		<div class="description short">
-			<p>Build opposite relation throughout the current relation. The opposite
+			<div class="description short">
+				<p>Build opposite relation throughout the current relation. The opposite
 relation will be given if existed.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Build opposite relation throughout the current relation. The opposite
+			<div class="description detailed hidden">
+				<p>Build opposite relation throughout the current relation. The opposite
 relation will be given if existed.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$relation</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$relation</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="remove" id="_remove">
-
-		<td class="attributes"><code>
-			 public 
-
-			integer|false
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#386-395" title="Go to source code">remove</a>( )</code>
-
-		<div class="description short">
-			<p>Remove myself.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Remove myself.</p>
+					<h4>Returns</h4>
+					<div class="list">
+						static
+					</div>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					integer|false<br><p>The number of relations removed, or false if the remove
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="remove" id="_remove">
+
+			<td class="attributes"><code>
+				 public 
+				integer|false
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_remove">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#386-395" title="Go to source code">remove</a>( )</code>
+
+			<div class="description short">
+				<p>Remove myself.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Remove myself.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer|false<br><p>The number of relations removed, or false if the remove
 is unsuccessful for some reason. Note that it is possible the number of relations
 removed is 0, even though the remove execution is successful.</p>
-				</div>
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="removeOneRelation" id="_removeOneRelation">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="removeOneRelation" id="_removeOneRelation">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				integer|false
+				
+				</code>
+			</td>
 
-			integer|false
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_removeOneRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#397-406" title="Go to source code">removeOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_removeOneRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#397-406" title="Go to source code">removeOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
+			<div class="description short">
+				<p>Remove first relation between initiator(s) and recipient(s).</p>
+			</div>
 
-		<div class="description short">
-			<p>Remove first relation between initiator(s) and recipient(s).</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Remove first relation between initiator(s) and recipient(s).</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its guid, or array of them.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its guid, or array of them.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					integer|false<br>The number of relations removed.
-				</div>
+			<div class="description detailed hidden">
+				<p>Remove first relation between initiator(s) and recipient(s).</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its guid, or array of them.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its guid, or array of them.</dd>
+					</dl></div>
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="removeAllRelations" id="_removeAllRelations">
-
-		<td class="attributes"><code>
-			 public static
-
-			integer
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_removeAllRelations">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#408-420" title="Go to source code">removeAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
-
-		<div class="description short">
-			<p>Remove all relations between initiator(s) and recipient(s).</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Remove all relations between initiator(s) and recipient(s).</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its guid, or array of them.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its guid, or array of them.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					integer<br>The number of relations removed.
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						integer|false<br>The number of relations removed.
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="findOneRelation" id="_findOneRelation">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="removeAllRelations" id="_removeAllRelations">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				integer
+				
+				</code>
+			</td>
 
-			static
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_removeAllRelations">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#408-420" title="Go to source code">removeAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_findOneRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#422-431" title="Go to source code">findOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
+			<div class="description short">
+				<p>Remove all relations between initiator(s) and recipient(s).</p>
+			</div>
 
-		<div class="description short">
-			<p>Get first relation between initiator(s) and recipient(s).</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get first relation between initiator(s) and recipient(s).</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its guid, or array of them.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its guid, or array of them.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					static
-				</div>
+			<div class="description detailed hidden">
+				<p>Remove all relations between initiator(s) and recipient(s).</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its guid, or array of them.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its guid, or array of them.</dd>
+					</dl></div>
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="findOneOppositeRelation" id="_findOneOppositeRelation">
-
-		<td class="attributes"><code>
-			 public static
-
-			static
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_findOneOppositeRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#433-442" title="Go to source code">findOneOppositeRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
-
-		<div class="description short">
-			<p>Get first opposite relation between initiator(s) and recipient(s).</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get first opposite relation between initiator(s) and recipient(s).</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its guid, or array of them.</dd>
-					<dt><var>$other</var></dt>
-					<dd>Recipient or its guid, or array of them.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					static
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						integer<br>The number of relations removed.
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="findOnesAllRelations" id="_findOnesAllRelations">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOneRelation" id="_findOneRelation">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				static
+				
+				</code>
+			</td>
 
-			array
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_findOneRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#422-431" title="Go to source code">findOneRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$other</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_findOnesAllRelations">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#444-454" title="Go to source code">findOnesAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span>BaseUserRelationGroupModel|string|array|null <var>$groups</var> = <span class="php-keyword1">null</span></span> )</code>
+			<div class="description short">
+				<p>Get first relation between initiator(s) and recipient(s).</p>
+			</div>
 
-		<div class="description short">
-			<p>Get user's or users' all relations, or by specified groups.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get user's or users' all relations, or by specified groups.</p>
+			<div class="description detailed hidden">
+				<p>Get first relation between initiator(s) and recipient(s).</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$user</var></dt>
-					<dd>Initiator or its GUID, or Initiators or their GUIDs.</dd>
-					<dt><var>$groups</var></dt>
-					<dd><p>UserRelationGroup
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its guid, or array of them.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its guid, or array of them.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						static
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOneOppositeRelation" id="_findOneOppositeRelation">
+
+			<td class="attributes"><code>
+				 public static
+				static
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findOneOppositeRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#433-442" title="Go to source code">findOneOppositeRelation</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$user</var></span>, <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string <var>$other</var></span> )</code>
+
+			<div class="description short">
+				<p>Get first opposite relation between initiator(s) and recipient(s).</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get first opposite relation between initiator(s) and recipient(s).</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its guid, or array of them.</dd>
+						<dt><var>$other</var></dt>
+						<dd>Recipient or its guid, or array of them.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						static
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOnesAllRelations" id="_findOnesAllRelations">
+
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findOnesAllRelations">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#444-454" title="Go to source code">findOnesAllRelations</a>( <span><code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>|string|array <var>$user</var></span>, <span>BaseUserRelationGroupModel|string|array|null <var>$groups</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Get user's or users' all relations, or by specified groups.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get user's or users' all relations, or by specified groups.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$user</var></dt>
+						<dd>Initiator or its GUID, or Initiators or their GUIDs.</dd>
+						<dt><var>$groups</var></dt>
+						<dd><p>UserRelationGroup
 or its guid, or array of them. If you do not want to delimit the groups, please assign null.</p></dd>
-				</dl></div>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>all eligible relations
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>all eligible relations
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onInitGroups" id="_onInitGroups">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onInitGroups">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#456-464" title="Go to source code">onInitGroups</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>Initialize groups attribute.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Initialize groups attribute.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onInitRemark" id="_onInitRemark">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onInitRemark">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#466-475" title="Go to source code">onInitRemark</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>Initialize remark attribute.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Initialize remark attribute.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onInsertRelation" id="_onInsertRelation">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onInsertRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#477-494" title="Go to source code">onInsertRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>The event triggered after insert new relation.
+The opposite relation should be inserted without triggering events
+simultaneously after new relation inserted,</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The event triggered after insert new relation.
+The opposite relation should be inserted without triggering events
+simultaneously after new relation inserted,</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onUpdateRelation" id="_onUpdateRelation">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onUpdateRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#496-513" title="Go to source code">onUpdateRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>The event triggered after update relation.
+The opposite relation should be updated without triggering events
+simultaneously after existed relation removed.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The event triggered after update relation.
+The opposite relation should be updated without triggering events
+simultaneously after existed relation removed.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onDeleteRelation" id="_onDeleteRelation">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onDeleteRelation">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#515-531" title="Go to source code">onDeleteRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>The event triggered after delete relation.
+The opposite relation should be deleted without triggering events
+simultaneously after existed relation removed.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The event triggered after delete relation.
+The opposite relation should be deleted without triggering events
+simultaneously after existed relation removed.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#methods">vistart\Models\traits\MultipleBlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addGroup()</a>(as addGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addOrCreateBlame">addOrCreateBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addOrCreateBlame">addOrCreateGroup()</a>(as addOrCreateGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_createBlame">createBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_createBlame">createGroup()</a>(as createGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllBlames()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllGroups()</a>(as getAllGroups())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlame">getBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameGuids">getBlameGuids()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameds">getBlameds()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlamesCount">getBlamesCount()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getEmptyBlamesJson">getEmptyBlamesJson()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getEmptyBlamesJson">getEmptyGroupJson()</a>(as getEmptyGroupJson())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlame">getGroup()</a>(as getGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameGuids">getGroupGuids()</a>(as getGroupGuids())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameds">getGroupMembers()</a>(as getGroupMembers())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlamesCount">getGroupsCount()</a>(as getGroupsCount())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getMultipleBlameableAttributeRules">getGroupsRules()</a>(as getGroupsRules())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getMultipleBlameableAttributeRules">getMultipleBlameableAttributeRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getNonBlameds">getNonBlameds()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getNonBlameds">getNonGroupMembers()</a>(as getNonGroupMembers())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getOrCreateBlame">getOrCreateBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getOrCreateBlame">getOrCreateGroup()</a>(as getOrCreateGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_onBlamesChanged">onBlamesChanged()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_onInitBlamesLimit">onInitBlamesLimit()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllBlames()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllGroups()</a>(as removeAllGroups())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeBlame()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeGroup()</a>(as removeGroup())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setBlameGuids()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setGroupGuids()</a>(as setGroupGuids())</code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_unsetInvalidBlames">unsetInvalidBlames()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.MutualTrait.html#methods">vistart\Models\traits\MutualTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getInitiator">getInitiator()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getMutualRules">getMutualRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_getRecipient">getRecipient()</a></code>, 
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#_setRecipient">setRecipient()</a></code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="remarkAttribute" id="$remarkAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#63-66" title="Go to source code"><var>$remarkAttribute</var></a>
+
+				<div class="description short">
+					
 				</div>
 
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onInitGroups" id="_onInitGroups">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_onInitGroups">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#456-464" title="Go to source code">onInitGroups</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>Initialize groups attribute.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Initialize groups attribute.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onInitRemark" id="_onInitRemark">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_onInitRemark">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#466-475" title="Go to source code">onInitRemark</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>Initialize remark attribute.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Initialize remark attribute.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onInsertRelation" id="_onInsertRelation">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_onInsertRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#477-494" title="Go to source code">onInsertRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>The event triggered after insert new relation.
-The opposite relation should be inserted without triggering events
-simultaneously after new relation inserted,</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>The event triggered after insert new relation.
-The opposite relation should be inserted without triggering events
-simultaneously after new relation inserted,</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onUpdateRelation" id="_onUpdateRelation">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_onUpdateRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#496-513" title="Go to source code">onUpdateRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>The event triggered after update relation.
-The opposite relation should be updated without triggering events
-simultaneously after existed relation removed.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>The event triggered after update relation.
-The opposite relation should be updated without triggering events
-simultaneously after existed relation removed.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onDeleteRelation" id="_onDeleteRelation">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_onDeleteRelation">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserRelationTrait.html#515-531" title="Go to source code">onDeleteRelation</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>The event triggered after delete relation.
-The opposite relation should be deleted without triggering events
-simultaneously after existed relation removed.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>The event triggered after delete relation.
-The opposite relation should be deleted without triggering events
-simultaneously after existed relation removed.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#methods">vistart\Models\traits\MultipleBlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addBlame">addGroup()</a>(as addGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addOrCreateBlame">addOrCreateBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_addOrCreateBlame">addOrCreateGroup()</a>(as addOrCreateGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_createBlame">createBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_createBlame">createGroup()</a>(as createGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllBlames()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getAllBlames">getAllGroups()</a>(as getAllGroups()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlame">getBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameGuids">getBlameGuids()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameds">getBlameds()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlamesCount">getBlamesCount()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getEmptyBlamesJson">getEmptyBlamesJson()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getEmptyBlamesJson">getEmptyGroupJson()</a>(as getEmptyGroupJson()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlame">getGroup()</a>(as getGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameGuids">getGroupGuids()</a>(as getGroupGuids()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlameds">getGroupMembers()</a>(as getGroupMembers()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getBlamesCount">getGroupsCount()</a>(as getGroupsCount()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getMultipleBlameableAttributeRules">getGroupsRules()</a>(as getGroupsRules()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getMultipleBlameableAttributeRules">getMultipleBlameableAttributeRules()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getNonBlameds">getNonBlameds()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getNonBlameds">getNonGroupMembers()</a>(as getNonGroupMembers()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getOrCreateBlame">getOrCreateBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_getOrCreateBlame">getOrCreateGroup()</a>(as getOrCreateGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_onBlamesChanged">onBlamesChanged()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_onInitBlamesLimit">onInitBlamesLimit()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllBlames()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeAllBlames">removeAllGroups()</a>(as removeAllGroups()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeBlame()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_removeBlame">removeGroup()</a>(as removeGroup()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setBlameGuids()</a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_setBlameGuids">setGroupGuids()</a>(as setGroupGuids()), 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#_unsetInvalidBlames">unsetInvalidBlames()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.MutualTrait.html#methods">vistart\Models\traits\MutualTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getInitiator">getInitiator()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getMutualRules">getMutualRules()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_getRecipient">getRecipient()</a>, 
-			<a href="class-vistart.Models.traits.MutualTrait.html#_setRecipient">setRecipient()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="remarkAttribute" id="$remarkAttribute">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#63-66" title="Go to source code"><var>$remarkAttribute</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$remarkAttribute" class="anchor">#</a>
-				<code><span class="php-quote">'remark'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="relationSingle" id="$relationSingle">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#67" title="Go to source code"><var>$relationSingle</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$relationSingle" class="anchor">#</a>
-				<code><span class="php-num">0</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="relationMutual" id="$relationMutual">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#68" title="Go to source code"><var>$relationMutual</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$relationMutual" class="anchor">#</a>
-				<code><span class="php-num">1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="relationType" id="$relationType">
-		<td class="attributes"><code>
-			public  
-			integer
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#69" title="Go to source code"><var>$relationType</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$relationType" class="anchor">#</a>
-				<code><span class="php-num">1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="relationTypes" id="$relationTypes">
-		<td class="attributes"><code>
-			public  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#70-73" title="Go to source code"><var>$relationTypes</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$relationTypes" class="anchor">#</a>
-				<code>[
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$remarkAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'remark'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationSingle" id="$relationSingle">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#67" title="Go to source code"><var>$relationSingle</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationSingle" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationMutual" id="$relationMutual">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#68" title="Go to source code"><var>$relationMutual</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationMutual" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationType" id="$relationType">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#69" title="Go to source code"><var>$relationType</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationType" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationTypes" id="$relationTypes">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#70-73" title="Go to source code"><var>$relationTypes</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationTypes" class="anchor">#</a>
+					<code>[
     <span class="php-num">0</span> =&gt; <span class="php-quote">'Single'</span>,
     <span class="php-num">1</span> =&gt; <span class="php-quote">'Mutual'</span>,
 ]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="mutualTypeAttribute" id="$mutualTypeAttribute">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="mutualTypeAttribute" id="$mutualTypeAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#75-78" title="Go to source code"><var>$mutualTypeAttribute</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#75-78" title="Go to source code"><var>$mutualTypeAttribute</var></a>
 
-			<div class="description short">
-				<p>the attribute name of which determines the relation type.</p>
-			</div>
+				<div class="description short">
+					<p>the attribute name of which determines the relation type.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>the attribute name of which determines the relation type.</p>
+				<div class="description detailed hidden">
+					<p>the attribute name of which determines the relation type.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$mutualTypeAttribute" class="anchor">#</a>
-				<code><span class="php-quote">'type'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="mutualTypeNormal" id="$mutualTypeNormal">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$mutualTypeAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'type'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="mutualTypeNormal" id="$mutualTypeNormal">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#79" title="Go to source code"><var>$mutualTypeNormal</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#79" title="Go to source code"><var>$mutualTypeNormal</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$mutualTypeNormal" class="anchor">#</a>
-				<code><span class="php-num">0x00</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="mutualTypeSuspend" id="$mutualTypeSuspend">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$mutualTypeNormal" class="anchor">#</a>
+					<code><span class="php-num">0x00</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="mutualTypeSuspend" id="$mutualTypeSuspend">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#80" title="Go to source code"><var>$mutualTypeSuspend</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#80" title="Go to source code"><var>$mutualTypeSuspend</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$mutualTypeSuspend" class="anchor">#</a>
-				<code><span class="php-num">0x01</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="mutualTypes" id="$mutualTypes">
-		<td class="attributes"><code>
-			public static 
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$mutualTypeSuspend" class="anchor">#</a>
+					<code><span class="php-num">0x01</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="mutualTypes" id="$mutualTypes">
+			<td class="attributes"><code>
+				public static 
+				array
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#82-88" title="Go to source code"><var>$mutualTypes</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#82-88" title="Go to source code"><var>$mutualTypes</var></a>
 
-			<div class="description short">
-				<p>Mutual types.</p>
-			</div>
+				<div class="description short">
+					<p>Mutual types.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>Mutual types.</p>
+				<div class="description detailed hidden">
+					<p>Mutual types.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$mutualTypes" class="anchor">#</a>
-				<code>[
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$mutualTypes" class="anchor">#</a>
+					<code>[
     <span class="php-num">0x00</span> =&gt; <span class="php-quote">'Normal'</span>,
     <span class="php-num">0x01</span> =&gt; <span class="php-quote">'Suspend'</span>,
 ]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="favoriteAttribute" id="$favoriteAttribute">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="favoriteAttribute" id="$favoriteAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#90-93" title="Go to source code"><var>$favoriteAttribute</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#90-93" title="Go to source code"><var>$favoriteAttribute</var></a>
 
-			<div class="description short">
-				<p>the attribute name of which determines the <code>favorite</code> field.</p>
-			</div>
+				<div class="description short">
+					<p>the attribute name of which determines the <code>favorite</code> field.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>the attribute name of which determines the <code>favorite</code> field.</p>
+				<div class="description detailed hidden">
+					<p>the attribute name of which determines the <code>favorite</code> field.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$favoriteAttribute" class="anchor">#</a>
-				<code><span class="php-quote">'favorite'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="relationSelf" id="$relationSelf">
-		<td class="attributes"><code>
-			public  
-			boolean
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$favoriteAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'favorite'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="relationSelf" id="$relationSelf">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#95-99" title="Go to source code"><var>$relationSelf</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#95-99" title="Go to source code"><var>$relationSelf</var></a>
 
-			<div class="description short">
-				<p>Permit to build self relation.</p>
-			</div>
+				<div class="description short">
+					<p>Permit to build self relation.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>Permit to build self relation.</p>
+				<div class="description detailed hidden">
+					<p>Permit to build self relation.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$relationSelf" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
-
-
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#properties">vistart\Models\traits\MultipleBlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$blamesChanged"><var>$blamesChanged</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$blamesLimit"><var>$blamesLimit</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$eventMultipleBlamesChanged"><var>$eventMultipleBlamesChanged</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$multiBlamesAttribute"><var>$multiBlamesAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$multiBlamesClass"><var>$multiBlamesClass</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.MutualTrait.html#properties">vistart\Models\traits\MutualTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MutualTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a>
-		</code></td>
-	</tr>
-	</table>
-
-	<table class="summary properties" id="magicProperties">
-	<caption>Magic properties summary</caption>
-	<tr data-order="groupGuids" id="m$groupGuids">
-		<td class="attributes"><code>
-			public  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#30" title="Go to source code"><var>$groupGuids</var></a>
-
-			<div class="description short">
-				<p>the guid array of all groups which owned by current relation.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="isFavorite" id="m$isFavorite">
-		<td class="attributes"><code>
-			public  
-			boolean
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#35" title="Go to source code"><var>$isFavorite</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="allGroups" id="m$allGroups">
-		<td class="attributes"><code>
-			public  read-only
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#31" title="Go to source code"><var>$allGroups</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="nonGroupMembers" id="m$nonGroupMembers">
-		<td class="attributes"><code>
-			public  read-only
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#32" title="Go to source code"><var>$nonGroupMembers</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="groupsCount" id="m$groupsCount">
-		<td class="attributes"><code>
-			public  read-only
-			integer
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#33" title="Go to source code"><var>$groupsCount</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="groupsRules" id="m$groupsRules">
-		<td class="attributes"><code>
-			public  read-only
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#34" title="Go to source code"><var>$groupsRules</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="initiator" id="m$initiator">
-		<td class="attributes"><code>
-			public  read-only
-			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#36" title="Go to source code"><var>$initiator</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="recipient" id="m$recipient">
-		<td class="attributes"><code>
-			public  read-only
-			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#37" title="Go to source code"><var>$recipient</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	<tr data-order="opposite" id="m$opposite">
-		<td class="attributes"><code>
-			public  read-only
-			static
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.UserRelationTrait.html#38" title="Go to source code"><var>$opposite</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$relationSelf" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#properties">vistart\Models\traits\MultipleBlameableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$allBlames"><var>$allBlames</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$blamesCount"><var>$blamesCount</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$multiBlamesAttributeRules"><var>$multiBlamesAttributeRules</var></a>, 
-			<a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$nonBlameds"><var>$nonBlameds</var></a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#properties">vistart\Models\traits\MultipleBlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$blamesChanged"><var>$blamesChanged</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$blamesLimit"><var>$blamesLimit</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$eventMultipleBlamesChanged"><var>$eventMultipleBlamesChanged</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$multiBlamesAttribute"><var>$multiBlamesAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#$multiBlamesClass"><var>$multiBlamesClass</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.MutualTrait.html#properties">vistart\Models\traits\MutualTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MutualTrait.html#$otherGuidAttribute"><var>$otherGuidAttribute</var></a></code>
+			</p>
+		</div>
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties</h3></div>
+			<table class="summary table table-bordered table-striped properties" id="magicProperties">
+		<tr data-order="groupGuids" id="m$groupGuids">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#30" title="Go to source code"><var>$groupGuids</var></a>
+
+				<div class="description short">
+					<p>the guid array of all groups which owned by current relation.</p>
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="isFavorite" id="m$isFavorite">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#35" title="Go to source code"><var>$isFavorite</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="allGroups" id="m$allGroups">
+			<td class="attributes"><code>
+				public  read-only
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#31" title="Go to source code"><var>$allGroups</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="nonGroupMembers" id="m$nonGroupMembers">
+			<td class="attributes"><code>
+				public  read-only
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#32" title="Go to source code"><var>$nonGroupMembers</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="groupsCount" id="m$groupsCount">
+			<td class="attributes"><code>
+				public  read-only
+				integer
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#33" title="Go to source code"><var>$groupsCount</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="groupsRules" id="m$groupsRules">
+			<td class="attributes"><code>
+				public  read-only
+				array
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#34" title="Go to source code"><var>$groupsRules</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="initiator" id="m$initiator">
+			<td class="attributes"><code>
+				public  read-only
+				<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#36" title="Go to source code"><var>$initiator</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="recipient" id="m$recipient">
+			<td class="attributes"><code>
+				public  read-only
+				<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#37" title="Go to source code"><var>$recipient</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+		<tr data-order="opposite" id="m$opposite">
+			<td class="attributes"><code>
+				public  read-only
+				static
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.UserRelationTrait.html#38" title="Go to source code"><var>$opposite</var></a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.MultipleBlameableTrait.html#properties">vistart\Models\traits\MultipleBlameableTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$allBlames"><var>$allBlames</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$blamesCount"><var>$blamesCount</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$multiBlamesAttributeRules"><var>$multiBlamesAttributeRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.MultipleBlameableTrait.html#m$nonBlameds"><var>$nonBlameds</var></a></code>
+			</p>
+		</div>
 
 </div>
+	</div>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

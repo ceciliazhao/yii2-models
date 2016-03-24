@@ -74,7 +74,26 @@ trait EntityTrait
      * You should call this function in your extended class and merge the result
      * with your rules, instead of overriding it, unless you know the
      * consequences.
-     * @return type
+     * The classical rules is like following:
+     * [
+     *     ['guid', 'required'],
+     *     ['guid', 'unique'],
+     *     ['guid', 'string', 'max' => 36],
+     * 
+     *     ['id', 'required'],
+     *     ['id', 'unique'],
+     *     ['id', 'string', 'max' => 4],
+     * 
+     *     ['create_time', 'safe'],
+     *     ['update_time', 'safe'],
+     * 
+     *     ['ip_type', 'in', 'range' => [4, 6]],
+     *     ['ip_1', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_2', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_3', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_4', 'number', 'integerOnly' => true, 'min' => 0],
+     * ]
+     * @return array
      */
     public function rules()
     {
@@ -86,7 +105,7 @@ trait EntityTrait
      * You should call this function in your extended class and merge the result
      * with your behaviors, instead of overriding it, unless you know the
      * consequences.
-     * @return type
+     * @return array
      */
     public function behaviors()
     {

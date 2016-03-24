@@ -5,68 +5,88 @@
 
 	<title>Trait vistart\Models\traits\UserTrait</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li class="active">
-					<a href="namespace-vistart.html">
-						vistart<span></span>
-					</a>
-
-						<ul>
-				<li class="active">
-					<a href="namespace-vistart.Models.html">
-						Models<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.events.html">
-						events					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.gii.html">
-						gii<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.gii.baseUserModel.html">
-						baseUserModel					</a>
-
-						</li>
-							</ul></li>
-				<li>
-					<a href="namespace-vistart.Models.models.html">
-						models					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.queries.html">
-						queries					</a>
-
-						</li>
-				<li class="active">
-					<a href="namespace-vistart.Models.traits.html">
-						traits					</a>
-
-						</li>
-							</ul></li></ul></li>
+					<li class="active">
+						<a href="namespace-vistart.html">
+							vistart<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-vistart.Models.html">
+							Models<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.events.html">
+							events						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
+							</li>
+								</ul></li>
+					<li>
+						<a href="namespace-vistart.Models.models.html">
+							models						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.queries.html">
+							queries						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-vistart.Models.traits.html">
+							traits						</a>
+							</li>
+								</ul></li></ul></li>
 			</ul>
 		</div>
-
-		<hr>
 
 
 		<div id="elements">
@@ -112,30 +132,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li>
-				<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Trait UserTrait</h1>
 
@@ -149,7 +146,7 @@ This trait implements two methods <code>create()</code> and <code>findOneOrCreat
 Please read the notes of methods and used traits for further detailed usage.</p>
 	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 <b><span>vistart\Models\traits\UserTrait</span></b>			
 			
@@ -169,12 +166,14 @@ Please read the notes of methods and used traits for further detailed usage.</p>
 
 
 	<div>
-		<h4>Direct Known Users</h4>
-			<a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a>
+		<h3>Direct Known Users</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.models.BaseUserModel.html">vistart\Models\models\BaseUserModel</a></code>
+		</p>
 	</div>
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
@@ -190,319 +189,302 @@ Please read the notes of methods and used traits for further detailed usage.</p>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="create" id="_create">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="create" id="_create">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				[[$className]]
+				
+				</code>
+			</td>
 
-			[[$className]]
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_create">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#32-65" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span>, <span>boolean <var>$loadDefault</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$skipIfSet</var> = <span class="php-keyword1">true</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserTrait.html#32-65" title="Go to source code">create</a>( <span>string <var>$className</var></span>, <span>array <var>$config</var> = []</span>, <span>boolean <var>$loadDefault</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$skipIfSet</var> = <span class="php-keyword1">true</span></span> )</code>
-
-		<div class="description short">
-			<p>Create new entity model associated with current user. The model to be created
+			<div class="description short">
+				<p>Create new entity model associated with current user. The model to be created
 must be extended from [[BaseBlameableModel]], [[BaseMongoBlameableModel]],
 [[BaseRedisBlameableModel]], or any other classes used [[BlameableTrait]].
 if $config does not specify <code>userClass</code> property, self will be assigned to.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Create new entity model associated with current user. The model to be created
+			<div class="description detailed hidden">
+				<p>Create new entity model associated with current user. The model to be created
 must be extended from [[BaseBlameableModel]], [[BaseMongoBlameableModel]],
 [[BaseRedisBlameableModel]], or any other classes used [[BlameableTrait]].
 if $config does not specify <code>userClass</code> property, self will be assigned to.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$className</var></dt>
-					<dd>Full qualified class name.</dd>
-					<dt><var>$config</var></dt>
-					<dd><p>name-value pairs that will be used to initialize
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$className</var></dt>
+						<dd>Full qualified class name.</dd>
+						<dt><var>$config</var></dt>
+						<dd><p>name-value pairs that will be used to initialize
 the object properties.</p></dd>
-					<dt><var>$loadDefault</var></dt>
-					<dd><p>Determines whether loading default values
+						<dt><var>$loadDefault</var></dt>
+						<dd><p>Determines whether loading default values
 after entity model created.
 Notice! The [[\yii\mongodb\ActiveRecord]] and [[\yii\redis\ActiveRecord]]
 does not support loading default value. If you want to assign properties
 with default values, please define the <code>default</code> rule(s) for properties in
 <code>rules()</code> method and return them by yourself if you don't specified them in config param.</p></dd>
-					<dt><var>$skipIfSet</var></dt>
-					<dd><p>whether existing value should be preserved.
+						<dt><var>$skipIfSet</var></dt>
+						<dd><p>whether existing value should be preserved.
 This will only set defaults for attributes that are <code>null</code>.</p></dd>
-				</dl></div>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					[[$className]]<br>$className]] new model created with specified configuration.
-				</div>
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						[[$className]]<br>$className]] new model created with specified configuration.
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="findOneOrCreate" id="_findOneOrCreate">
 
-		<td class="attributes"><code>
-			 public 
 
-			[[$className]]
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findOneOrCreate" id="_findOneOrCreate">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_findOneOrCreate">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserTrait.html#67-95" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
+			<td class="attributes"><code>
+				 public 
+				[[$className]]
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Find existed, or create new model.
+			<td class="name"><div>
+			<a class="anchor" href="#_findOneOrCreate">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#67-95" title="Go to source code">findOneOrCreate</a>( <span>string <var>$className</var></span>, <span>array <var>$condition</var> = []</span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Find existed, or create new model.
 If model to be found doesn't exist, and $config is null, the parameter
 <code>$condition</code> will be regarded as properties of new model.
 If you want to know whether the returned model is new model, please check
 the return value of <code>getIsNewRecord()</code> method.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Find existed, or create new model.
+			<div class="description detailed hidden">
+				<p>Find existed, or create new model.
 If model to be found doesn't exist, and $config is null, the parameter
 <code>$condition</code> will be regarded as properties of new model.
 If you want to know whether the returned model is new model, please check
 the return value of <code>getIsNewRecord()</code> method.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$className</var></dt>
-					<dd>Full qualified class name.</dd>
-					<dt><var>$condition</var></dt>
-					<dd><p>Search condition, or properties if not found and
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$className</var></dt>
+						<dd>Full qualified class name.</dd>
+						<dt><var>$condition</var></dt>
+						<dd><p>Search condition, or properties if not found and
 $config is null.</p></dd>
-					<dt><var>$config</var></dt>
-					<dd><p>new model's configuration array. If you specify this
+						<dt><var>$config</var></dt>
+						<dd><p>new model's configuration array. If you specify this
 parameter, the $condition will be skipped when created one.</p></dd>
-				</dl></div>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					[[$className]]<br><p>$className]] the existed model, or new model created by specified
+					<h4>Returns</h4>
+					<div class="list">
+						[[$className]]<br><p>$className]] the existed model, or new model created by specified
 condition or configuration.</p>
-				</div>
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="rules" id="_rules">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_rules">#</a>
+			<code><a href="source-class-vistart.Models.traits.UserTrait.html#97-112" title="Go to source code">rules</a>( )</code>
+
+			<div class="description short">
+				<p>Get all rules with current user properties.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get all rules with current user properties.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>all rules.
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="rules" id="_rules">
 
-		<td class="attributes"><code>
-			 public 
 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_rules">#</a>
-		<code><a href="source-class-vistart.Models.traits.UserTrait.html#97-112" title="Go to source code">rules</a>( )</code>
-
-		<div class="description short">
-			<p>Get all rules with current user properties.</p>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_applyForNewPassword">applyForNewPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordResetToken">generatePasswordResetToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordResetTokenRules">getPasswordResetTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_onAfterSetNewPassword">onAfterSetNewPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_onInitPasswordResetToken">onInitPasswordResetToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_resetPassword">resetPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPassword">setPassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordHashRules">setPasswordHashRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordResetTokenRules">setPasswordResetTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#_validatePasswordResetToken">validatePasswordResetToken()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.RegistrationTrait.html#methods">vistart\Models\traits\RegistrationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_deregister">deregister()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_getAuthManager">getAuthManager()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_getSource">getSource()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_getSourceRules">getSourceRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_onInitSourceAttribute">onInitSourceAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_register">register()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_setSource">setSource()</a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#_setSourceRules">setSourceRules()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods used from <a href="class-vistart.Models.traits.IdentityTrait.html#methods">vistart\Models\traits\IdentityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentity">findIdentity()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByAccessToken">findIdentityByAccessToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByGuid">findIdentityByGuid()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAccessToken">getAccessToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAccessTokenRules">getAccessTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKey">getAuthKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKeyRules">getAuthKeyRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getStatus">getStatus()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_getStatusRules">getStatusRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_onInitAccessToken">onInitAccessToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_onInitAuthKey">onInitAuthKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_onInitStatusAttribute">onInitStatusAttribute()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAccessToken">setAccessToken()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAccessTokenRules">setAccessTokenRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAuthKey">setAuthKey()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setAuthKeyRules">setAuthKeyRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setStatus">setStatus()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_setStatusRules">setStatusRules()</a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#_validateAuthKey">validateAuthKey()</a></code>
+			</p>
 		</div>
 
-		<div class="description detailed hidden">
-			<p>Get all rules with current user properties.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>all rules.
-				</div>
 
 
 
 
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
 		</div>
-		</div></td>
-	</tr>
-	</table>
 
 
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.PasswordTrait.html#methods">vistart\Models\traits\PasswordTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_applyForNewPassword">applyForNewPassword()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordHash">generatePasswordHash()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_generatePasswordResetToken">generatePasswordResetToken()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordHashRules">getPasswordHashRules()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_getPasswordResetTokenRules">getPasswordResetTokenRules()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_onAfterSetNewPassword">onAfterSetNewPassword()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_onInitPasswordResetToken">onInitPasswordResetToken()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_resetPassword">resetPassword()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_setPassword">setPassword()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordHashRules">setPasswordHashRules()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_setPasswordResetTokenRules">setPasswordResetTokenRules()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_validatePassword">validatePassword()</a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#_validatePasswordResetToken">validatePasswordResetToken()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.RegistrationTrait.html#methods">vistart\Models\traits\RegistrationTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_deregister">deregister()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_getAuthManager">getAuthManager()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_getSource">getSource()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_getSourceRules">getSourceRules()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_onInitSourceAttribute">onInitSourceAttribute()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_register">register()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_setSource">setSource()</a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#_setSourceRules">setSourceRules()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-vistart.Models.traits.IdentityTrait.html#methods">vistart\Models\traits\IdentityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentity">findIdentity()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByAccessToken">findIdentityByAccessToken()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_findIdentityByGuid">findIdentityByGuid()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getAccessToken">getAccessToken()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getAccessTokenRules">getAccessTokenRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKey">getAuthKey()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getAuthKeyRules">getAuthKeyRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getStatus">getStatus()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_getStatusRules">getStatusRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_onInitAccessToken">onInitAccessToken()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_onInitAuthKey">onInitAuthKey()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_onInitStatusAttribute">onInitStatusAttribute()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setAccessToken">setAccessToken()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setAccessTokenRules">setAccessTokenRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setAuthKey">setAuthKey()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setAuthKeyRules">setAuthKeyRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setStatus">setStatus()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_setStatusRules">setStatusRules()</a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#_validateAuthKey">validateAuthKey()</a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.PasswordTrait.html#properties">vistart\Models\traits\PasswordTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventAfterResetPassword"><var>$eventAfterResetPassword</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventAfterSetPassword"><var>$eventAfterSetPassword</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeResetPassword"><var>$eventBeforeResetPassword</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeValidatePassword"><var>$eventBeforeValidatePassword</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventNewPasswordAppliedFor"><var>$eventNewPasswordAppliedFor</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventPasswordResetTokenGenerated"><var>$eventPasswordResetTokenGenerated</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventResetPasswordFailed"><var>$eventResetPasswordFailed</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventValidatePasswordFailed"><var>$eventValidatePasswordFailed</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$eventValidatePasswordSucceeded"><var>$eventValidatePasswordSucceeded</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$passwordCost"><var>$passwordCost</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashAttribute"><var>$passwordHashAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashAttributeLength"><var>$passwordHashAttributeLength</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashStrategy"><var>$passwordHashStrategy</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#$passwordResetTokenAttribute"><var>$passwordResetTokenAttribute</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.RegistrationTrait.html#properties">vistart\Models\traits\RegistrationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$authManagerId"><var>$authManagerId</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventAfterDeregister"><var>$eventAfterDeregister</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventAfterRegister"><var>$eventAfterRegister</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventBeforeDeregister"><var>$eventBeforeDeregister</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventBeforeRegister"><var>$eventBeforeRegister</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventDeregisterFailed"><var>$eventDeregisterFailed</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$eventRegisterFailed"><var>$eventRegisterFailed</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$sourceAttribute"><var>$sourceAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#$sourceSelf"><var>$sourceSelf</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties used from <a href="class-vistart.Models.traits.IdentityTrait.html#properties">vistart\Models\traits\IdentityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#$accessTokenAttribute"><var>$accessTokenAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#$authKeyAttribute"><var>$authKeyAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#$statusActive"><var>$statusActive</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#$statusAttribute"><var>$statusAttribute</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#$statusInactive"><var>$statusInactive</var></a></code>
+			</p>
+		</div>
 
 
 
-
-
-
-
-
-
-
-
-
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.PasswordTrait.html#properties">vistart\Models\traits\PasswordTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventAfterResetPassword"><var>$eventAfterResetPassword</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventAfterSetPassword"><var>$eventAfterSetPassword</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeResetPassword"><var>$eventBeforeResetPassword</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventBeforeValidatePassword"><var>$eventBeforeValidatePassword</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventNewPasswordAppliedFor"><var>$eventNewPasswordAppliedFor</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventPasswordResetTokenGenerated"><var>$eventPasswordResetTokenGenerated</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventResetPasswordFailed"><var>$eventResetPasswordFailed</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventValidatePasswordFailed"><var>$eventValidatePasswordFailed</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$eventValidatePasswordSucceeded"><var>$eventValidatePasswordSucceeded</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$passwordCost"><var>$passwordCost</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashAttribute"><var>$passwordHashAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashAttributeLength"><var>$passwordHashAttributeLength</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$passwordHashStrategy"><var>$passwordHashStrategy</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#$passwordResetTokenAttribute"><var>$passwordResetTokenAttribute</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.RegistrationTrait.html#properties">vistart\Models\traits\RegistrationTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$authManagerId"><var>$authManagerId</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventAfterDeregister"><var>$eventAfterDeregister</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventAfterRegister"><var>$eventAfterRegister</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventBeforeDeregister"><var>$eventBeforeDeregister</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventBeforeRegister"><var>$eventBeforeRegister</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventDeregisterFailed"><var>$eventDeregisterFailed</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$eventRegisterFailed"><var>$eventRegisterFailed</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$sourceAttribute"><var>$sourceAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#$sourceSelf"><var>$sourceSelf</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-vistart.Models.traits.IdentityTrait.html#properties">vistart\Models\traits\IdentityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.IdentityTrait.html#$accessTokenAttribute"><var>$accessTokenAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#$authKeyAttribute"><var>$authKeyAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#$statusActive"><var>$statusActive</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#$statusAttribute"><var>$statusAttribute</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#$statusInactive"><var>$statusInactive</var></a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.PasswordTrait.html#properties">vistart\Models\traits\PasswordTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.PasswordTrait.html#m$password"><var>$password</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#m$passwordHashRules"><var>$passwordHashRules</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#m$passwordResetTokenRules"><var>$passwordResetTokenRules</var></a>, 
-			<a href="class-vistart.Models.traits.PasswordTrait.html#m$rules"><var>$rules</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.RegistrationTrait.html#properties">vistart\Models\traits\RegistrationTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.RegistrationTrait.html#m$sourceRules"><var>$sourceRules</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Magic properties used from <a href="class-vistart.Models.traits.IdentityTrait.html#properties">vistart\Models\traits\IdentityTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vistart.Models.traits.IdentityTrait.html#m$accessTokenRules"><var>$accessTokenRules</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#m$authKey"><var>$authKey</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#m$authKeyRules"><var>$authKeyRules</var></a>, 
-			<a href="class-vistart.Models.traits.IdentityTrait.html#m$statusRules"><var>$statusRules</var></a>
-		</code></td>
-	</tr>
-	</table>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.PasswordTrait.html#properties">vistart\Models\traits\PasswordTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#m$password"><var>$password</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#m$passwordHashRules"><var>$passwordHashRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#m$passwordResetTokenRules"><var>$passwordResetTokenRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.PasswordTrait.html#m$rules"><var>$rules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.RegistrationTrait.html#properties">vistart\Models\traits\RegistrationTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.RegistrationTrait.html#m$sourceRules"><var>$sourceRules</var></a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties used from <a href="class-vistart.Models.traits.IdentityTrait.html#properties">vistart\Models\traits\IdentityTrait</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#m$accessTokenRules"><var>$accessTokenRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#m$authKey"><var>$authKey</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#m$authKeyRules"><var>$authKeyRules</var></a></code>, 
+				<code><a href="class-vistart.Models.traits.IdentityTrait.html#m$statusRules"><var>$statusRules</var></a></code>
+			</p>
+		</div>
 
 </div>
+	</div>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

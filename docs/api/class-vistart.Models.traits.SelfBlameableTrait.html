@@ -5,68 +5,88 @@
 
 	<title>Trait vistart\Models\traits\SelfBlameableTrait</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li class="active">
-					<a href="namespace-vistart.html">
-						vistart<span></span>
-					</a>
-
-						<ul>
-				<li class="active">
-					<a href="namespace-vistart.Models.html">
-						Models<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.events.html">
-						events					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.gii.html">
-						gii<span></span>
-					</a>
-
-						<ul>
-				<li>
-					<a href="namespace-vistart.Models.gii.baseUserModel.html">
-						baseUserModel					</a>
-
-						</li>
-							</ul></li>
-				<li>
-					<a href="namespace-vistart.Models.models.html">
-						models					</a>
-
-						</li>
-				<li>
-					<a href="namespace-vistart.Models.queries.html">
-						queries					</a>
-
-						</li>
-				<li class="active">
-					<a href="namespace-vistart.Models.traits.html">
-						traits					</a>
-
-						</li>
-							</ul></li></ul></li>
+					<li class="active">
+						<a href="namespace-vistart.html">
+							vistart<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-vistart.Models.html">
+							Models<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.events.html">
+							events						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.gii.html">
+							gii<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-vistart.Models.gii.baseUserModel.html">
+							baseUserModel						</a>
+							</li>
+								</ul></li>
+					<li>
+						<a href="namespace-vistart.Models.models.html">
+							models						</a>
+							</li>
+					<li>
+						<a href="namespace-vistart.Models.queries.html">
+							queries						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-vistart.Models.traits.html">
+							traits						</a>
+							</li>
+								</ul></li></ul></li>
 			</ul>
 		</div>
-
-		<hr>
 
 
 		<div id="elements">
@@ -112,30 +132,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li>
-				<a href="namespace-vistart.Models.traits.html" title="Summary of vistart\Models\traits"><span>Namespace</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Trait SelfBlameableTrait</h1>
 
@@ -158,12 +155,14 @@ into seperate model, please call the <code>initSelfBlameableEvents()</code> meth
 
 
 	<div>
-		<h4>Direct Known Users</h4>
-			<a href="class-vistart.Models.traits.BlameableTrait.html">vistart\Models\traits\BlameableTrait</a>
+		<h3>Direct Known Users</h3>
+		<p class="elementList">
+			<code><a href="class-vistart.Models.traits.BlameableTrait.html">vistart\Models\traits\BlameableTrait</a></code>
+		</p>
 	</div>
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		<b>Namespace:</b> <a href="namespace-vistart.html">vistart</a>\<a href="namespace-vistart.Models.html">Models</a>\<a href="namespace-vistart.Models.traits.html">traits</a><br>
@@ -179,1450 +178,1432 @@ into seperate model, please call the <code>initSelfBlameableEvents()</code> meth
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="getSelfBlameableRules" id="_getSelfBlameableRules">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getSelfBlameableRules" id="_getSelfBlameableRules">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
 
-			array
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getSelfBlameableRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#105-124" title="Go to source code">getSelfBlameableRules</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSelfBlameableRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#105-124" title="Go to source code">getSelfBlameableRules</a>( )</code>
+			<div class="description short">
+				<p>Get rules associated with self blameable attribute.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get rules associated with self blameable attribute.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get rules associated with self blameable attribute.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>rules.
-				</div>
+			<div class="description detailed hidden">
+				<p>Get rules associated with self blameable attribute.</p>
 
 
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setSelfBlameableRules" id="_setSelfBlameableRules">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setSelfBlameableRules">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#126-133" title="Go to source code">setSelfBlameableRules</a>( <span>array <var>$rules</var> = []</span> )</code>
-
-		<div class="description short">
-			<p>Set rules associated with self blameable attribute.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Set rules associated with self blameable attribute.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$rules</var></dt>
-					<dd>rules.</dd>
-				</dl></div>
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>rules.
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSelfBlameableRules" id="_setSelfBlameableRules">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasReachedAncestorLimit" id="_hasReachedAncestorLimit">
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public 
+			<td class="name"><div>
+			<a class="anchor" href="#_setSelfBlameableRules">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#126-133" title="Go to source code">setSelfBlameableRules</a>( <span>array <var>$rules</var> = []</span> )</code>
 
-			boolean
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Set rules associated with self blameable attribute.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_hasReachedAncestorLimit">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#135-150" title="Go to source code">hasReachedAncestorLimit</a>( )</code>
+			<div class="description detailed hidden">
+				<p>Set rules associated with self blameable attribute.</p>
 
-		<div class="description short">
-			<p>Check whether this model has reached the ancestor limit.
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$rules</var></dt>
+						<dd>rules.</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasReachedAncestorLimit" id="_hasReachedAncestorLimit">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasReachedAncestorLimit">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#135-150" title="Go to source code">hasReachedAncestorLimit</a>( )</code>
+
+			<div class="description short">
+				<p>Check whether this model has reached the ancestor limit.
 If $ancestorLimit is false, it will be regared as no limit(return false).
 If $ancestorLimit is not false and not a number, 256 will be taken.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Check whether this model has reached the ancestor limit.
+			<div class="description detailed hidden">
+				<p>Check whether this model has reached the ancestor limit.
 If $ancestorLimit is false, it will be regared as no limit(return false).
 If $ancestorLimit is not false and not a number, 256 will be taken.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasReachedChildrenLimit" id="_hasReachedChildrenLimit">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasReachedChildrenLimit" id="_hasReachedChildrenLimit">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_hasReachedChildrenLimit">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#152-167" title="Go to source code">hasReachedChildrenLimit</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_hasReachedChildrenLimit">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#152-167" title="Go to source code">hasReachedChildrenLimit</a>( )</code>
-
-		<div class="description short">
-			<p>Check whether this model has reached the children limit.
+			<div class="description short">
+				<p>Check whether this model has reached the children limit.
 If $childrenLimit is false, it will be regarded as no limit(return false).
 If $childrenLimist is not false and not a number, 256 will be taken.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Check whether this model has reached the children limit.
+			<div class="description detailed hidden">
+				<p>Check whether this model has reached the children limit.
 If $childrenLimit is false, it will be regarded as no limit(return false).
 If $childrenLimist is not false and not a number, 256 will be taken.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="bear" id="_bear">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="bear" id="_bear">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				static|null
+				
+				</code>
+			</td>
 
-			static|null
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_bear">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#169-185" title="Go to source code">bear</a>( <span>array <var>$config</var> = []</span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_bear">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#169-185" title="Go to source code">bear</a>( <span>array <var>$config</var> = []</span> )</code>
+			<div class="description short">
+				<p>Bear a child.</p>
+			</div>
 
-		<div class="description short">
-			<p>Bear a child.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Bear a child.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$config</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					static|null<br>Null if reached the ancestor limit or children limit.
-				</div>
+			<div class="description detailed hidden">
+				<p>Bear a child.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$config</var></dt>
+						<dd></dd>
+					</dl></div>
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addChild" id="_addChild">
-
-		<td class="attributes"><code>
-			 public 
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addChild">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#187-195" title="Go to source code">addChild</a>( <span>static <var>$child</var></span> )</code>
-
-		<div class="description short">
-			<p>Add a child.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Add a child.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$child</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						static|null<br>Null if reached the ancestor limit or children limit.
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onDeleteChildren" id="_onDeleteChildren">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addChild" id="_addChild">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_addChild">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#187-195" title="Go to source code">addChild</a>( <span>static <var>$child</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_onDeleteChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#197-227" title="Go to source code">onDeleteChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<div class="description short">
+				<p>Add a child.</p>
+			</div>
 
-		<div class="description short">
-			<p>Event triggered before deleting itself.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Event triggered before deleting itself.</p>
+			<div class="description detailed hidden">
+				<p>Add a child.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$child</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean<br>true if parentAttribute not specified.
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					yii\db\IntegrityException<br>throw if $throwRestrictException is true when $onDeleteType is on restrict.
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onUpdateChildren" id="_onUpdateChildren">
 
-		<td class="attributes"><code>
-			 public 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onDeleteChildren" id="_onDeleteChildren">
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_onUpdateChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#229-259" title="Go to source code">onUpdateChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+			<td class="name"><div>
+			<a class="anchor" href="#_onDeleteChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#197-227" title="Go to source code">onDeleteChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
-		<div class="description short">
-			<p>Event triggered before updating itself.</p>
-		</div>
+			<div class="description short">
+				<p>Event triggered before deleting itself.</p>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Event triggered before updating itself.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean<br>true if parentAttribute not specified.
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					yii\db\IntegrityException<br>throw if $throwRestrictException is true when $onUpdateType is on restrict.
-				</div>
+			<div class="description detailed hidden">
+				<p>Event triggered before deleting itself.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getParent" id="_getParent">
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true if parentAttribute not specified.
+					</div>
 
-		<td class="attributes"><code>
-			 public 
+					<h4>Throws</h4>
+					<div class="list">
+						yii\db\IntegrityException<br>throw if $throwRestrictException is true when $onDeleteType is on restrict.
+					</div>
 
-			yii\db\ActiveQuery
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getParent">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#261-269" title="Go to source code">getParent</a>( )</code>
 
-		<div class="description short">
-			<p>Get parent query.
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onUpdateChildren" id="_onUpdateChildren">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_onUpdateChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#229-259" title="Go to source code">onUpdateChildren</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
+
+			<div class="description short">
+				<p>Event triggered before updating itself.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Event triggered before updating itself.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true if parentAttribute not specified.
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						yii\db\IntegrityException<br>throw if $throwRestrictException is true when $onUpdateType is on restrict.
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getParent" id="_getParent">
+
+			<td class="attributes"><code>
+				 public 
+				yii\db\ActiveQuery
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getParent">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#261-269" title="Go to source code">getParent</a>( )</code>
+
+			<div class="description short">
+				<p>Get parent query.
 Or get parent instance if access by magic property.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Get parent query.
+			<div class="description detailed hidden">
+				<p>Get parent query.
 Or get parent instance if access by magic property.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					yii\db\ActiveQuery
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						yii\db\ActiveQuery
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setParent" id="_setParent">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setParent" id="_setParent">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				false|string
+				
+				</code>
+			</td>
 
-			false|string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setParent">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#271-287" title="Go to source code">setParent</a>( <span>static <var>$parent</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setParent">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#271-287" title="Go to source code">setParent</a>( <span>static <var>$parent</var></span> )</code>
-
-		<div class="description short">
-			<p>Set parent.
+			<div class="description short">
+				<p>Set parent.
 Don't forget save model after setting it.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Set parent.
+			<div class="description detailed hidden">
+				<p>Set parent.
 Don't forget save model after setting it.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$parent</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$parent</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					false|string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasParent" id="_hasParent">
-
-		<td class="attributes"><code>
-			 public 
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_hasParent">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#289-296" title="Go to source code">hasParent</a>( )</code>
-
-		<div class="description short">
-			<p>Check whether this model has parent.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Check whether this model has parent.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						false|string
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasAncestor" id="_hasAncestor">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasParent" id="_hasParent">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_hasParent">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#289-296" title="Go to source code">hasParent</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_hasAncestor">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#298-313" title="Go to source code">hasAncestor</a>( <span>static <var>$ancestor</var></span> )</code>
+			<div class="description short">
+				<p>Check whether this model has parent.</p>
+			</div>
 
-		<div class="description short">
-			<p>Check whether if $ancestor is the ancestor of myself.
+			<div class="description detailed hidden">
+				<p>Check whether this model has parent.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasAncestor" id="_hasAncestor">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasAncestor">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#298-313" title="Go to source code">hasAncestor</a>( <span>static <var>$ancestor</var></span> )</code>
+
+			<div class="description short">
+				<p>Check whether if $ancestor is the ancestor of myself.
 Note, Itself will not be regarded as the its ancestor.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Check whether if $ancestor is the ancestor of myself.
+			<div class="description detailed hidden">
+				<p>Check whether if $ancestor is the ancestor of myself.
 Note, Itself will not be regarded as the its ancestor.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$ancestor</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$ancestor</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAncestorChain" id="_getAncestorChain">
 
-		<td class="attributes"><code>
-			 public 
 
-			string[]
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAncestorChain" id="_getAncestorChain">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getAncestorChain">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#315-334" title="Go to source code">getAncestorChain</a>( <span>string[] <var>$ancestor</var> = []</span> )</code>
+			<td class="attributes"><code>
+				 public 
+				string[]
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Get ancestor chain. (Ancestor GUID Only!)
+			<td class="name"><div>
+			<a class="anchor" href="#_getAncestorChain">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#315-334" title="Go to source code">getAncestorChain</a>( <span>string[] <var>$ancestor</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Get ancestor chain. (Ancestor GUID Only!)
 If this model has ancestor, the return array consists all the ancestor in order.
 The first element is parent, and the last element is root, otherwise return empty array.
 If you want to get ancestor model, you can simplify instance a query and specify the
 condition with the return value. But it will not return models under the order of ancestor chain.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Get ancestor chain. (Ancestor GUID Only!)
+			<div class="description detailed hidden">
+				<p>Get ancestor chain. (Ancestor GUID Only!)
 If this model has ancestor, the return array consists all the ancestor in order.
 The first element is parent, and the last element is root, otherwise return empty array.
 If you want to get ancestor model, you can simplify instance a query and specify the
 condition with the return value. But it will not return models under the order of ancestor chain.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$ancestor</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$ancestor</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string[]
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAncestorModels" id="_getAncestorModels">
-
-		<td class="attributes"><code>
-			 public static
-
-			static[]|null
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAncestorModels">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#336-351" title="Go to source code">getAncestorModels</a>( <span>string[] <var>$ancestor</var></span> )</code>
-
-		<div class="description short">
-			<p>Get ancestors with specified ancestor chain.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get ancestors with specified ancestor chain.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$ancestor</var></dt>
-					<dd>Ancestor chain.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					static[]|null
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						string[]
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAncestors" id="_getAncestors">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAncestorModels" id="_getAncestorModels">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public static
+				static[]|null
+				
+				</code>
+			</td>
 
-			static[]|null
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getAncestorModels">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#336-351" title="Go to source code">getAncestorModels</a>( <span>string[] <var>$ancestor</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getAncestors">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#353-360" title="Go to source code">getAncestors</a>( )</code>
+			<div class="description short">
+				<p>Get ancestors with specified ancestor chain.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get ancestors.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get ancestors.</p>
-
+			<div class="description detailed hidden">
+				<p>Get ancestors with specified ancestor chain.</p>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					static[]|null
-				</div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$ancestor</var></dt>
+						<dd>Ancestor chain.</dd>
+					</dl></div>
 
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasCommonAncestor" id="_hasCommonAncestor">
-
-		<td class="attributes"><code>
-			 public 
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_hasCommonAncestor">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#362-370" title="Go to source code">hasCommonAncestor</a>( <span>static <var>$model</var></span> )</code>
-
-		<div class="description short">
-			<p>Check whether if this model has common ancestor with $model.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Check whether if this model has common ancestor with $model.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$model</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						static[]|null
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCommonAncestor" id="_getCommonAncestor">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAncestors" id="_getAncestors">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				static[]|null
+				
+				</code>
+			</td>
 
-			static
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getAncestors">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#353-360" title="Go to source code">getAncestors</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getCommonAncestor">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#372-387" title="Go to source code">getCommonAncestor</a>( <span>static <var>$model</var></span> )</code>
+			<div class="description short">
+				<p>Get ancestors.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get common ancestor. If there isn't common ancestor, null will be given.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get common ancestor. If there isn't common ancestor, null will be given.</p>
+			<div class="description detailed hidden">
+				<p>Get ancestors.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$model</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					static
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						static[]|null
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getChildren" id="_getChildren">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasCommonAncestor" id="_hasCommonAncestor">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			yii\db\ActiveQuery
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_hasCommonAncestor">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#362-370" title="Go to source code">hasCommonAncestor</a>( <span>static <var>$model</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#389-397" title="Go to source code">getChildren</a>( )</code>
+			<div class="description short">
+				<p>Check whether if this model has common ancestor with $model.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get children query.
+			<div class="description detailed hidden">
+				<p>Check whether if this model has common ancestor with $model.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$model</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getCommonAncestor" id="_getCommonAncestor">
+
+			<td class="attributes"><code>
+				 public 
+				static
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCommonAncestor">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#372-387" title="Go to source code">getCommonAncestor</a>( <span>static <var>$model</var></span> )</code>
+
+			<div class="description short">
+				<p>Get common ancestor. If there isn't common ancestor, null will be given.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get common ancestor. If there isn't common ancestor, null will be given.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$model</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						static
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getChildren" id="_getChildren">
+
+			<td class="attributes"><code>
+				 public 
+				yii\db\ActiveQuery
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#389-397" title="Go to source code">getChildren</a>( )</code>
+
+			<div class="description short">
+				<p>Get children query.
 Or get children instances if access magic property.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Get children query.
+			<div class="description detailed hidden">
+				<p>Get children query.
 Or get children instances if access magic property.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					yii\db\ActiveQuery
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						yii\db\ActiveQuery
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getOldChildren" id="_getOldChildren">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOldChildren" id="_getOldChildren">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				static[]
+				
+				</code>
+			</td>
 
-			static[]
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getOldChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#399-406" title="Go to source code">getOldChildren</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getOldChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#399-406" title="Go to source code">getOldChildren</a>( )</code>
+			<div class="description short">
+				<p>Get children which parent attribute point to the my old guid.</p>
+			</div>
 
-		<div class="description short">
-			<p>Get children which parent attribute point to the my old guid.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get children which parent attribute point to the my old guid.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					static[]
-				</div>
+			<div class="description detailed hidden">
+				<p>Get children which parent attribute point to the my old guid.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						static[]
+					</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="updateChildren" id="_updateChildren">
 
-		<td class="attributes"><code>
-			 public 
 
-			yii\db\IntegrityException|boolean
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_updateChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#408-451" title="Go to source code">updateChildren</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="updateChildren" id="_updateChildren">
 
-		<div class="description short">
-			<p>Update all children, not grandchildren.
+			<td class="attributes"><code>
+				 public 
+				yii\db\IntegrityException|boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#408-451" title="Go to source code">updateChildren</a>( <span>mixed <var>$value</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				<p>Update all children, not grandchildren.
 If onUpdateType is on cascade, the children will be updated automatically.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Update all children, not grandchildren.
+			<div class="description detailed hidden">
+				<p>Update all children, not grandchildren.
 If onUpdateType is on cascade, the children will be updated automatically.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd><p>set guid if false, set empty string if empty() return
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$value</var></dt>
+						<dd><p>set guid if false, set empty string if empty() return
 true, otherwise set it to $parentAttribute.</p></dd>
-				</dl></div>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					yii\db\IntegrityException|boolean<br><p>true if all update operations
+					<h4>Returns</h4>
+					<div class="list">
+						yii\db\IntegrityException|boolean<br><p>true if all update operations
 succeeded to execute, or false if anyone of them failed. If not production
 environment or enable debug mode, it will return exception.</p>
-				</div>
+					</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					yii\db\IntegrityException<br>throw if anyone update failed.
-				</div>
+					<h4>Throws</h4>
+					<div class="list">
+						yii\db\IntegrityException<br>throw if anyone update failed.
+					</div>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="deleteChildren" id="_deleteChildren">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deleteChildren" id="_deleteChildren">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				yii\db\IntegrityException|boolean
+				
+				</code>
+			</td>
 
-			yii\db\IntegrityException|boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_deleteChildren">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#453-487" title="Go to source code">deleteChildren</a>( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_deleteChildren">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#453-487" title="Go to source code">deleteChildren</a>( )</code>
-
-		<div class="description short">
-			<p>Delete all children, not grandchildren.
+			<div class="description short">
+				<p>Delete all children, not grandchildren.
 If onDeleteType is on cascade, the children will be deleted automatically.
 If onDeleteType is on restrict and contains children, the deletion will
 be restricted.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Delete all children, not grandchildren.
+			<div class="description detailed hidden">
+				<p>Delete all children, not grandchildren.
 If onDeleteType is on cascade, the children will be deleted automatically.
 If onDeleteType is on restrict and contains children, the deletion will
 be restricted.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					yii\db\IntegrityException|boolean<br><p>true if all delete operations
+					<h4>Returns</h4>
+					<div class="list">
+						yii\db\IntegrityException|boolean<br><p>true if all delete operations
 succeeded to execute, or false if anyone of them failed. If not production
 environment or enable debug mode, it will return exception.</p>
-				</div>
+					</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					yii\db\IntegrityException<br>throw if anyone delete failed.
-				</div>
+					<h4>Throws</h4>
+					<div class="list">
+						yii\db\IntegrityException<br>throw if anyone delete failed.
+					</div>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="onParentRefIdChanged" id="_onParentRefIdChanged">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="onParentRefIdChanged" id="_onParentRefIdChanged">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
 
-			boolean
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_onParentRefIdChanged">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#489-501" title="Go to source code">onParentRefIdChanged</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_onParentRefIdChanged">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#489-501" title="Go to source code">onParentRefIdChanged</a>( <span>yii\base\ModelEvent <var>$event</var></span> )</code>
-
-		<div class="description short">
-			<p>Update children's parent attribute.
+			<div class="description short">
+				<p>Update children's parent attribute.
 Event triggered before updating.</p>
-		</div>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Update children's parent attribute.
+			<div class="description detailed hidden">
+				<p>Update children's parent attribute.
 Event triggered before updating.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$event</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$event</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initSelfBlameableEvents" id="_initSelfBlameableEvents">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_initSelfBlameableEvents">#</a>
+			<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#503-510" title="Go to source code">initSelfBlameableEvents</a>( )</code>
+
+			<div class="description short">
+				<p>Attach events associated with self blameable attribute.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Attach events associated with self blameable attribute.</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="parentAttribute" id="$parentAttribute">
+			<td class="attributes"><code>
+				public  
+				false|string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#45-48" title="Go to source code"><var>$parentAttribute</var></a>
+
+				<div class="description short">
+					<p>attribute name of which store the parent's guid.</p>
 				</div>
 
+				<div class="description detailed hidden">
+					<p>attribute name of which store the parent's guid.</p>
 
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentAttribute" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="parentAttributeRule" id="$parentAttributeRule">
+			<td class="attributes"><code>
+				public  
+				string|array
+			</code></td>
 
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#50-54" title="Go to source code"><var>$parentAttributeRule</var></a>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="initSelfBlameableEvents" id="_initSelfBlameableEvents">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_initSelfBlameableEvents">#</a>
-		<code><a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#503-510" title="Go to source code">initSelfBlameableEvents</a>( )</code>
-
-		<div class="description short">
-			<p>Attach events associated with self blameable attribute.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Attach events associated with self blameable attribute.</p>
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="parentAttribute" id="$parentAttribute">
-		<td class="attributes"><code>
-			public  
-			false|string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#45-48" title="Go to source code"><var>$parentAttribute</var></a>
-
-			<div class="description short">
-				<p>attribute name of which store the parent's guid.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>attribute name of which store the parent's guid.</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentAttribute" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="parentAttributeRule" id="$parentAttributeRule">
-		<td class="attributes"><code>
-			public  
-			string|array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#50-54" title="Go to source code"><var>$parentAttributeRule</var></a>
-
-			<div class="description short">
-				<p>rule name and parameters of parent attribute, as well
+				<div class="description short">
+					<p>rule name and parameters of parent attribute, as well
 as self referenced ID attribute.</p>
-			</div>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>rule name and parameters of parent attribute, as well
+				<div class="description detailed hidden">
+					<p>rule name and parameters of parent attribute, as well
 as self referenced ID attribute.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentAttributeRule" class="anchor">#</a>
-				<code>[<span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">36</span>]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="refIdAttribute" id="$refIdAttribute">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentAttributeRule" class="anchor">#</a>
+					<code>[<span class="php-quote">'string'</span>, <span class="php-quote">'max'</span> =&gt; <span class="php-num">36</span>]</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="refIdAttribute" id="$refIdAttribute">
+			<td class="attributes"><code>
+				public  
+				string
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#56-59" title="Go to source code"><var>$refIdAttribute</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#56-59" title="Go to source code"><var>$refIdAttribute</var></a>
 
-			<div class="description short">
-				<p>self referenced ID attribute.</p>
-			</div>
+				<div class="description short">
+					<p>self referenced ID attribute.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>self referenced ID attribute.</p>
+				<div class="description detailed hidden">
+					<p>self referenced ID attribute.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$refIdAttribute" class="anchor">#</a>
-				<code><span class="php-quote">'guid'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="parentNone" id="$parentNone">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$refIdAttribute" class="anchor">#</a>
+					<code><span class="php-quote">'guid'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="parentNone" id="$parentNone">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#60" title="Go to source code"><var>$parentNone</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#60" title="Go to source code"><var>$parentNone</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentNone" class="anchor">#</a>
-				<code><span class="php-num">0</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="parentParent" id="$parentParent">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentNone" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="parentParent" id="$parentParent">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#61" title="Go to source code"><var>$parentParent</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#61" title="Go to source code"><var>$parentParent</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentParent" class="anchor">#</a>
-				<code><span class="php-num">1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="parentTypes" id="$parentTypes">
-		<td class="attributes"><code>
-			public static 
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentParent" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="parentTypes" id="$parentTypes">
+			<td class="attributes"><code>
+				public static 
+				array
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#62-65" title="Go to source code"><var>$parentTypes</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#62-65" title="Go to source code"><var>$parentTypes</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentTypes" class="anchor">#</a>
-				<code>[
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$parentTypes" class="anchor">#</a>
+					<code>[
     <span class="php-num">0</span> =&gt; <span class="php-quote">'none'</span>,
     <span class="php-num">1</span> =&gt; <span class="php-quote">'parent'</span>,
 ]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onNoAction" id="$onNoAction">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onNoAction" id="$onNoAction">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#66" title="Go to source code"><var>$onNoAction</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#66" title="Go to source code"><var>$onNoAction</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onNoAction" class="anchor">#</a>
-				<code><span class="php-num">0</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onRestrict" id="$onRestrict">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onNoAction" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onRestrict" id="$onRestrict">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#67" title="Go to source code"><var>$onRestrict</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#67" title="Go to source code"><var>$onRestrict</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onRestrict" class="anchor">#</a>
-				<code><span class="php-num">1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onCascade" id="$onCascade">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onRestrict" class="anchor">#</a>
+					<code><span class="php-num">1</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onCascade" id="$onCascade">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#68" title="Go to source code"><var>$onCascade</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#68" title="Go to source code"><var>$onCascade</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onCascade" class="anchor">#</a>
-				<code><span class="php-num">2</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onSetNull" id="$onSetNull">
-		<td class="attributes"><code>
-			public static 
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onCascade" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onSetNull" id="$onSetNull">
+			<td class="attributes"><code>
+				public static 
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#69" title="Go to source code"><var>$onSetNull</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#69" title="Go to source code"><var>$onSetNull</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onSetNull" class="anchor">#</a>
-				<code><span class="php-num">3</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onUpdateTypes" id="$onUpdateTypes">
-		<td class="attributes"><code>
-			public static 
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onSetNull" class="anchor">#</a>
+					<code><span class="php-num">3</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onUpdateTypes" id="$onUpdateTypes">
+			<td class="attributes"><code>
+				public static 
+				array
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#70-75" title="Go to source code"><var>$onUpdateTypes</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#70-75" title="Go to source code"><var>$onUpdateTypes</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onUpdateTypes" class="anchor">#</a>
-				<code>[
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onUpdateTypes" class="anchor">#</a>
+					<code>[
     <span class="php-num">0</span> =&gt; <span class="php-quote">'on action'</span>,
     <span class="php-num">1</span> =&gt; <span class="php-quote">'restrict'</span>,
     <span class="php-num">2</span> =&gt; <span class="php-quote">'cascade'</span>,
     <span class="php-num">3</span> =&gt; <span class="php-quote">'set null'</span>,
 ]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onDeleteType" id="$onDeleteType">
-		<td class="attributes"><code>
-			public  
-			integer
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onDeleteType" id="$onDeleteType">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#77-80" title="Go to source code"><var>$onDeleteType</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#77-80" title="Go to source code"><var>$onDeleteType</var></a>
 
-			<div class="description short">
-				<p>indicates the on delete type. default to cascade.</p>
-			</div>
+				<div class="description short">
+					<p>indicates the on delete type. default to cascade.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>indicates the on delete type. default to cascade.</p>
+				<div class="description detailed hidden">
+					<p>indicates the on delete type. default to cascade.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onDeleteType" class="anchor">#</a>
-				<code><span class="php-num">2</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="onUpdateType" id="$onUpdateType">
-		<td class="attributes"><code>
-			public  
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onDeleteType" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="onUpdateType" id="$onUpdateType">
+			<td class="attributes"><code>
+				public  
+				integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#82-85" title="Go to source code"><var>$onUpdateType</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#82-85" title="Go to source code"><var>$onUpdateType</var></a>
 
-			<div class="description short">
-				<p>indicates the on update type. default to cascade.</p>
-			</div>
+				<div class="description short">
+					<p>indicates the on update type. default to cascade.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>indicates the on update type. default to cascade.</p>
+				<div class="description detailed hidden">
+					<p>indicates the on update type. default to cascade.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$onUpdateType" class="anchor">#</a>
-				<code><span class="php-num">2</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="throwRestrictException" id="$throwRestrictException">
-		<td class="attributes"><code>
-			public  
-			boolean
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$onUpdateType" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="throwRestrictException" id="$throwRestrictException">
+			<td class="attributes"><code>
+				public  
+				boolean
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#87-90" title="Go to source code"><var>$throwRestrictException</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#87-90" title="Go to source code"><var>$throwRestrictException</var></a>
 
-			<div class="description short">
-				<p>indicates whether throw exception or not when restriction occured on updating or deleting operation.</p>
-			</div>
+				<div class="description short">
+					<p>indicates whether throw exception or not when restriction occured on updating or deleting operation.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>indicates whether throw exception or not when restriction occured on updating or deleting operation.</p>
+				<div class="description detailed hidden">
+					<p>indicates whether throw exception or not when restriction occured on updating or deleting operation.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$throwRestrictException" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="eventParentChanged" id="$eventParentChanged">
-		<td class="attributes"><code>
-			public static 
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$throwRestrictException" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="eventParentChanged" id="$eventParentChanged">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#92" title="Go to source code"><var>$eventParentChanged</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#92" title="Go to source code"><var>$eventParentChanged</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$eventParentChanged" class="anchor">#</a>
-				<code><span class="php-quote">'parentChanged'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="eventChildAdded" id="$eventChildAdded">
-		<td class="attributes"><code>
-			public static 
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$eventParentChanged" class="anchor">#</a>
+					<code><span class="php-quote">'parentChanged'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="eventChildAdded" id="$eventChildAdded">
+			<td class="attributes"><code>
+				public static 
+				string
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#93" title="Go to source code"><var>$eventChildAdded</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#93" title="Go to source code"><var>$eventChildAdded</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$eventChildAdded" class="anchor">#</a>
-				<code><span class="php-quote">'childAdded'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ancestorLimit" id="$ancestorLimit">
-		<td class="attributes"><code>
-			public  
-			false|integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$eventChildAdded" class="anchor">#</a>
+					<code><span class="php-quote">'childAdded'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="ancestorLimit" id="$ancestorLimit">
+			<td class="attributes"><code>
+				public  
+				false|integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#95-98" title="Go to source code"><var>$ancestorLimit</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#95-98" title="Go to source code"><var>$ancestorLimit</var></a>
 
-			<div class="description short">
-				<p>Set the limit of ancestor level. False is no limit.</p>
-			</div>
+				<div class="description short">
+					<p>Set the limit of ancestor level. False is no limit.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>Set the limit of ancestor level. False is no limit.</p>
+				<div class="description detailed hidden">
+					<p>Set the limit of ancestor level. False is no limit.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$ancestorLimit" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="childrenLimit" id="$childrenLimit">
-		<td class="attributes"><code>
-			public  
-			false|integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$ancestorLimit" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="childrenLimit" id="$childrenLimit">
+			<td class="attributes"><code>
+				public  
+				false|integer
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#100-103" title="Go to source code"><var>$childrenLimit</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#100-103" title="Go to source code"><var>$childrenLimit</var></a>
 
-			<div class="description short">
-				<p>Set the limit of children. False is no limit.</p>
-			</div>
+				<div class="description short">
+					<p>Set the limit of children. False is no limit.</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>Set the limit of children. False is no limit.</p>
+				<div class="description detailed hidden">
+					<p>Set the limit of children. False is no limit.</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$childrenLimit" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$childrenLimit" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 
-	<table class="summary properties" id="magicProperties">
-	<caption>Magic properties summary</caption>
-	<tr data-order="parent" id="m$parent">
-		<td class="attributes"><code>
-			public  
-			static
-		</code></td>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Magic properties</h3></div>
+			<table class="summary table table-bordered table-striped properties" id="magicProperties">
+		<tr data-order="parent" id="m$parent">
+			<td class="attributes"><code>
+				public  
+				static
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#32" title="Go to source code"><var>$parent</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#32" title="Go to source code"><var>$parent</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-	</tr>
-	<tr data-order="selfBlameableRules" id="m$selfBlameableRules">
-		<td class="attributes"><code>
-			public  
-			array
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="selfBlameableRules" id="m$selfBlameableRules">
+			<td class="attributes"><code>
+				public  
+				array
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#38" title="Go to source code"><var>$selfBlameableRules</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#38" title="Go to source code"><var>$selfBlameableRules</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-	</tr>
-	<tr data-order="commonAncestor" id="m$commonAncestor">
-		<td class="attributes"><code>
-			public  read-only
-			static
-		</code></td>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="commonAncestor" id="m$commonAncestor">
+			<td class="attributes"><code>
+				public  read-only
+				static
+			</code></td>
 
-		<td class="name">
-				<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#35" title="Go to source code"><var>$commonAncestor</var></a>
+			<td class="name">
+					<a href="source-class-vistart.Models.traits.SelfBlameableTrait.html#35" title="Go to source code"><var>$commonAncestor</var></a>
 
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

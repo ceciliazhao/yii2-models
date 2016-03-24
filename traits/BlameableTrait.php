@@ -143,6 +143,29 @@ trait BlameableTrait
 
     /**
      * @inheritdoc
+     * ------------
+     * The classical rules is like following:
+     * [
+     *     ['guid', 'required'],
+     *     ['guid', 'unique'],
+     *     ['guid', 'string', 'max' => 36],
+     * 
+     *     ['id', 'required'],
+     *     ['id', 'unique'],
+     *     ['id', 'string', 'max' => 4],
+     * 
+     *     ['create_time', 'safe'],
+     *     ['update_time', 'safe'],
+     * 
+     *     ['ip_type', 'in', 'range' => [4, 6]],
+     *     ['ip_1', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_2', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_3', 'number', 'integerOnly' => true, 'min' => 0],
+     *     ['ip_4', 'number', 'integerOnly' => true, 'min' => 0],
+     * 
+     * 
+     * ]
+     * @return array
      */
     public function rules()
     {
@@ -308,7 +331,7 @@ trait BlameableTrait
         }
 
         if ($this->idCreatorCombinatedUnique && is_string($this->idAttribute)) {
-            $rules [] = [
+            $rules ['id'] = [
                 [$this->idAttribute,
                     $this->createdByAttribute],
                 'unique',

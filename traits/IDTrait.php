@@ -181,7 +181,7 @@ trait IDTrait
             $this->idAttributeLength > 0) {
             $rules = [
                 [[$this->idAttribute], 'required'],
-                [[$this->idAttribute], 'unique'],
+                'id' => [[$this->idAttribute], 'unique'],
             ];
             if ($this->idAttributeType === self::$idTypeInteger) {
                 $rules[] = [
