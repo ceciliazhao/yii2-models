@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
-        "vistart/helpers": "^1.1.0"
+        "vistart/helpers": "^1.1.1"
     },
     "suggest": {
         "yiisoft/yii2-mongodb": "Required if you want to use mongo ActiveRecord and ActiveQuery.",
