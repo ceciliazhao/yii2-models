@@ -34,7 +34,7 @@ class BaseUserRelationQuery extends BaseBlameableQuery
      * groups if array. If you want to get ungrouped relation(s), please assign
      * empty array, or if you do not want to delimit group(s), please do not
      * access this method, or assign null.
-     * @return \vistart\Models\queries\BaseUserRelationQuery $this
+     * @return static $this
      */
     public function groups($groups = [])
     {

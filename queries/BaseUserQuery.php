@@ -24,7 +24,7 @@ class BaseUserQuery extends BaseEntityQuery
     /**
      * Specify active status.
      * @param integer $active
-     * @return \vistart\Models\queries\BaseUserQuery
+     * @return static
      */
     public function active($active)
     {
@@ -38,7 +38,7 @@ class BaseUserQuery extends BaseEntityQuery
     /**
      * Specify source.
      * @param null|string|array $source
-     * @return \vistart\Models\queries\BaseUserQuery
+     * @return static
      */
     public function source($source = null)
     {

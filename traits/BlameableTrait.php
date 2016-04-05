@@ -316,7 +316,7 @@ trait BlameableTrait
         $rules = [];
         // 创建者和上次修改者由 BlameableBehavior 负责，因此标记为安全。
         if (!is_string($this->createdByAttribute) || empty($this->createdByAttribute)) {
-            throw new \yii\base\NotSupportedException('You must assign the creator.');
+            throw new NotSupportedException('You must assign the creator.');
         }
         $rules[] = [
             [$this->createdByAttribute],
