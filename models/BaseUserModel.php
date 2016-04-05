@@ -14,6 +14,7 @@ namespace vistart\Models\models;
 
 use vistart\Models\queries\BaseUserQuery;
 use vistart\Models\traits\UserTrait;
+use yii\web\IdentityInterface;
 
 /**
  * The abstract BaseUserModel is used for user identity class.
@@ -55,7 +56,7 @@ use vistart\Models\traits\UserTrait;
  * @version 2.0
  * @author vistart <i@vistart.name>
  */
-abstract class BaseUserModel extends BaseEntityModel implements \yii\web\IdentityInterface
+abstract class BaseUserModel extends BaseEntityModel implements IdentityInterface
 {
     use UserTrait;
 

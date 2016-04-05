@@ -14,6 +14,7 @@ namespace vistart\Models\traits;
 
 use Yii;
 use yii\base\ModelEvent;
+use yii\db\Exception;
 use yii\db\IntegrityException;
 use yii\rbac\BaseManager;
 use yii\rbac\Role;
@@ -130,7 +131,7 @@ trait RegistrationTrait
                 }
             }
             $transaction->commit();
-        } catch (\yii\db\Exception $ex) {
+        } catch (Exception $ex) {
             $transaction->rollBack();
             $this->trigger(static::$eventRegisterFailed);
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {
@@ -170,7 +171,7 @@ trait RegistrationTrait
                 throw new IntegrityException('Deregistration Error(s) Occured.', $this->errors);
             }
             $transaction->commit();
-        } catch (\yii\db\Exception $ex) {
+        } catch (Exception $ex) {
             $transaction->rollBack();
             $this->trigger(static::$eventDeregisterFailed);
             if (YII_DEBUG || YII_ENV !== YII_ENV_PROD) {

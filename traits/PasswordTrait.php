@@ -17,6 +17,16 @@ use yii\base\ModelEvent;
 
 /**
  * User features concerning password.
+ * 
+ * Notice! Please DO NOT change password throughout modifying `pass_hash` property,
+ * use `setPassword()` magic property instead!
+ * 
+ * Set or directly reset password:
+ * ```php
+ * $this->password = '<new password>'; // 'afterSetPassword' event will be triggered.
+ * $this->save();
+ * ```
+ * 
  * @property-write string $password New password to be set.
  * @property array $passwordHashRules
  * @property array $passwordResetTokenRules
@@ -39,6 +49,8 @@ trait PasswordTrait
 
     /**
      * @var string The name of attribute used for storing password hash.
+     * We strongly recommend you not to change `pass_hash` property directly,
+     * please use setPassword() magic property instead.
      */
     public $passwordHashAttribute = 'pass_hash';
 

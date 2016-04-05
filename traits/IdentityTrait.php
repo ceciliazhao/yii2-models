@@ -131,7 +131,7 @@ trait IdentityTrait
      * Initialize the auth key attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param \yii\base\Event $event
+     * @param ModelEvent $event
      */
     public function onInitAuthKey($event)
     {
@@ -251,7 +251,7 @@ trait IdentityTrait
      * Initialize the status attribute.
      * This method is ONLY used for being triggered by event. DO NOT call,
      * override or modify it directly, unless you know the consequences.
-     * @param ModelEventt $event
+     * @param ModelEvent $event
      */
     public function onInitStatusAttribute($event)
     {
