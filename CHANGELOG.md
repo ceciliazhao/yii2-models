@@ -1,6 +1,12 @@
 ## Base Models for Yii 2 Applications
 
-### 2.0.0. Beta 2
+### 2.0.0 Release Candidate 2
+
+#### traits/RegistrationTrait.php
+
+- Chg: $associatedModels of register() method will skip the empty or non-array parameter.
+
+### 2.0.0 Beta 2
 
 - Chg: Extract references.
 
