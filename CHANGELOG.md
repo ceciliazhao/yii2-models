@@ -6,6 +6,10 @@
 
 - Chg: $associatedModels of register() method will skip the empty or non-array parameter.
 
+#### traits/PasswordTrait.php
+
+- Chg: generatePasswordHash() will cast the $password to string.
+
 ### 2.0.0 Beta 2
 
 - Chg: Extract references.

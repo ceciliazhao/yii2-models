@@ -168,7 +168,7 @@ trait PasswordTrait
     public function generatePasswordHash($password)
     {
         Yii::$app->security->passwordHashStrategy = $this->passwordHashStrategy;
-        return Yii::$app->security->generatePasswordHash($password, $this->passwordCost);
+        return Yii::$app->security->generatePasswordHash((string)$password, $this->passwordCost);
     }
 
     /**
