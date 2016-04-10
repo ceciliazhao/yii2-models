@@ -125,9 +125,11 @@ trait RegistrationTrait
                     }
                 }
             }
-            foreach ($associatedModels as $model) {
-                if (!$model->save()) {
-                    throw new IntegrityException('Registration Error(s) Occured.', $model->errors);
+            if (!empty($associatedModels) && is_array($associatedModels)) {
+                foreach ($associatedModels as $model) {
+                    if (!$model->save()) {
+                        throw new IntegrityException('Registration Error(s) Occured.', $model->errors);
+                    }
                 }
             }
             $transaction->commit();
