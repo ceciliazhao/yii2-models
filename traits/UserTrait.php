@@ -101,13 +101,96 @@ trait UserTrait
     public function rules()
     {
         return array_merge(
-            parent::rules(),
-            $this->passwordHashRules,
-            $this->passwordResetTokenRules,
-            $this->sourceRules,
-            $this->statusRules,
-            $this->authKeyRules,
-            $this->accessTokenRules
+            parent::rules(), $this->passwordHashRules, $this->passwordResetTokenRules, $this->sourceRules, $this->statusRules, $this->authKeyRules, $this->accessTokenRules
         );
+    }
+
+    /**
+     * @var string[] Subsidiary map.
+     * Array key represents class alias,
+     * array value represents the full qualified class name corresponds to the alias.
+     * 
+     * For example:
+     * ```php
+     * public $subsidiaryMap = [
+     *     'Profile' => 'app\models\user\Profile',
+     * ];
+     * ```
+     * 
+     * If you want to create subsidiary model and the class is not found, the array elements will be taken.
+     * @see normalizeSubsidiaryClass
+     * @since 2.1
+     */
+    public $subsidiaryMap = [
+    ];
+
+    /**
+     * Get full-qualified subsidiary class name.
+     * @param string $class Subsidiary class name or alias.
+     * If this parameter is empty or not a string, `null` will ge returned.
+     * If `$class` exists, then it will be returned directly.
+     * If not, it will search the subsidiary map. then return it if found.
+     * If not yet, it will check whether `$class` exists in current namespace,
+     * then return it if found.
+     * @return string|null Full-qualified class name.
+     * @since 2.1
+     */
+    public function normalizeSubsidiaryClass($class)
+    {
+        if (empty($class) || !is_string($class)) {
+            return null;
+        }
+        if (!class_exists($class)) {
+            if (array_key_exists($class, $this->subsidiaryMap)) {
+                $class = $this->subsidiaryMap[$class];
+            } else {
+                return null;
+            }
+        }
+        return $class;
+    }
+
+    /**
+     * Call `create*` method.
+     * If prefix of method name is `create`, then it will be regarded as 'creating subsidiary model`.
+     * The rest of it will be regareded as class name or alias.
+     * 
+     * You can access it like following:
+     * ```php
+     * $profile = $user->createProfile();
+     * ```
+     * If `Profile` exists, then it will return.
+     * If not, then it will search the subsidiary map or `user`'s namespace, then it will return if found.
+     * 
+     * @inheritdoc
+     * @param mixed $name
+     * @param mixed $params
+     * @return mixed
+     * @since 2.1
+     */
+    public function __call($name, $params)
+    {
+        if (strpos(strtolower($name), "create") === 0) {
+            $class = substr($name, 6);
+            $config = (isset($params) && isset($params[0])) ? $params[0] : [];
+            return $this->createSubsidiary($class, $config);
+        }
+        return parent::__call($name, $params);
+    }
+
+    /**
+     * Create subsidiary model.
+     * @param string $class Subsidiary class name or alias.
+     * @param array $config
+     * @return mixed
+     * @since 2.1
+     */
+    public function createSubsidiary($class, $config = [])
+    {
+        $class = $this->normalizeSubsidiaryClass($class);
+        if (empty($class)) {
+            return null;
+        }
+        return $this->create($class, $config);
     }
 }

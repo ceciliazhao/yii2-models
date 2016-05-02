@@ -13,6 +13,7 @@
 namespace vistart\Models\tests;
 
 use vistart\Models\tests\data\ar\User;
+use vistart\Models\tests\data\ar\UserComment;
 use vistart\helpers\Ip;
 use Yii;
 
@@ -370,5 +371,58 @@ class BaseUserModelTest extends TestCase
             }
         }
         echo "$i\n";
+    }
+
+    /**
+     * @group user
+     * @depends testRegister
+     */
+    public function testCreateNonObject()
+    {
+        $user = new User();
+        $this->assertNull($user->createProfile());
+    }
+
+    /**
+     * @group user
+     * @depends testCreateNonObject
+     */
+    public function testCreateCommentWithoutMap()
+    {
+        $user = new User(['password' => '123456']);
+        $this->assertTrue($user->register());
+
+        $comment = $user->createUserComment();
+        $this->assertNull($comment);
+        $this->assertTrue($user->deregister());
+    }
+
+    /**
+     * @group user
+     * @depends testCreateCommentWithoutMap
+     */
+    public function testCreateCommentWithMap()
+    {
+        $user = new User(['password' => '123456']);
+        $this->assertTrue($user->register());
+
+        $user->subsidiaryMap = [
+            'Comment' => UserComment::className(),
+        ];
+        $comment = $user->createComment(['class' => UserComment::className()]);
+        $this->assertInstanceOf(UserComment::className(), $comment);
+
+        $comment = $user->createSubsidiary(UserComment::className(), ['class' => UserComment::className()]);
+        $this->assertTrue($user->deregister());
+    }
+
+    /**
+     * @group user
+     * @depends testCreateCommentWithMap
+     */
+    public function testNormalizeSubsidiaryClass()
+    {
+        $user = new User(['password' => '123456']);
+        $this->assertNull($user->normalizeSubsidiaryClass(null));
     }
 }
